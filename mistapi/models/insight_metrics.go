@@ -10,14 +10,19 @@ import (
 )
 
 // InsightMetrics represents a InsightMetrics struct.
+// Insight metric response for a requested time range and aggregation interval
 type InsightMetrics struct {
-	End      int  `json:"end"`
-	Interval int  `json:"interval"`
-	Limit    *int `json:"limit,omitempty"`
+	// Window end timestamp for the returned insight metrics
+	End int `json:"end"`
+	// Aggregation interval used for the metric results
+	Interval int `json:"interval"`
+	// Maximum number of insight metric result items returned
+	Limit *int `json:"limit,omitempty"`
 	// Results depends on the `metric` - some return numbers (e.g. bytes, ap-count), others return objects
-	Results              []InsightMetricsResultsItem `json:"results,omitempty"`
-	Start                int                         `json:"start"`
-	AdditionalProperties map[string]interface{}      `json:"_"`
+	Results []InsightMetricsResultsItem `json:"results,omitempty"`
+	// Window start timestamp for the returned insight metrics
+	Start                int                    `json:"start"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for InsightMetrics,

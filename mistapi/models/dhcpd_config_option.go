@@ -8,11 +8,13 @@ import (
 )
 
 // DhcpdConfigOption represents a DhcpdConfigOption struct.
+// Custom DHCP option value
 type DhcpdConfigOption struct {
 	// enum: `boolean`, `hex`, `int16`, `int32`, `ip`, `string`, `uint16`, `uint32`
-	Type                 *DhcpdConfigOptionTypeEnum `json:"type,omitempty"`
-	Value                *string                    `json:"value,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"_"`
+	Type *DhcpdConfigOptionTypeEnum `json:"type,omitempty"`
+	// Option value to send for this DHCP option
+	Value                *string                `json:"value,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for DhcpdConfigOption,

@@ -22,3 +22,18 @@ enum: `hostname`, `lldp_mgmt_addr`, `lldp_port_id`, `lldp_system_desc`, `lldp_sy
 | `mxtunnel_status` |
 | `version` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteDevicesCountDistinct := models.SiteDevicesCountDistinctEnum_MXTUNNELSTATUS
+
+}
+```
+

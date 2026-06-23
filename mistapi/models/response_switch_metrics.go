@@ -8,11 +8,15 @@ import (
 )
 
 // ResponseSwitchMetrics represents a ResponseSwitchMetrics struct.
+// Switch metrics returned for the requested site or switch scope
 type ResponseSwitchMetrics struct {
-	ActivePortsSummary   *ResponseSwitchMetricsActivePortsSummary `json:"active_ports_summary,omitempty"`
-	ConfigSuccess        *ResponseSwitchMetricsConfigSuccess      `json:"config_success,omitempty"`
-	VersionCompliance    *ResponseSwitchMetricsVersionCompliance  `json:"version_compliance,omitempty"`
-	AdditionalProperties map[string]interface{}                   `json:"_"`
+	// Active-port summary metric for switches in the requested scope
+	ActivePortsSummary *ResponseSwitchMetricsActivePortsSummary `json:"active_ports_summary,omitempty"`
+	// Configuration success metric for switches in the requested scope
+	ConfigSuccess *ResponseSwitchMetricsConfigSuccess `json:"config_success,omitempty"`
+	// Version compliance metric for switches in the requested scope
+	VersionCompliance    *ResponseSwitchMetricsVersionCompliance `json:"version_compliance,omitempty"`
+	AdditionalProperties map[string]interface{}                  `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseSwitchMetrics,

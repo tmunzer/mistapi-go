@@ -8,14 +8,23 @@ import (
 )
 
 // ServiceStatProperty represents a ServiceStatProperty struct.
+// Version information for gateway service packages
 type ServiceStatProperty struct {
-	AshVersion           *string                `json:"ash_version,omitempty"`
-	CiaVersion           *string                `json:"cia_version,omitempty"`
-	EmberVersion         *string                `json:"ember_version,omitempty"`
-	IpsecClientVersion   *string                `json:"ipsec_client_version,omitempty"`
-	MistAgentVersion     *string                `json:"mist_agent_version,omitempty"`
-	PackageVersion       *string                `json:"package_version,omitempty"`
-	TestingToolsVersion  *string                `json:"testing_tools_version,omitempty"`
+	// Version of the ASH service package
+	AshVersion *string `json:"ash_version,omitempty"`
+	// Version of the CIA service package
+	CiaVersion *string `json:"cia_version,omitempty"`
+	// Version of the Ember service package
+	EmberVersion *string `json:"ember_version,omitempty"`
+	// Version of the IPsec client package
+	IpsecClientVersion *string `json:"ipsec_client_version,omitempty"`
+	// Version of the Mist agent package
+	MistAgentVersion *string `json:"mist_agent_version,omitempty"`
+	// Version of the service package
+	PackageVersion *string `json:"package_version,omitempty"`
+	// Version of the testing tools package
+	TestingToolsVersion *string `json:"testing_tools_version,omitempty"`
+	// Version of the Wheeljack service package
 	WheeljackVersion     *string                `json:"wheeljack_version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -33,3 +33,18 @@ enum:
 | `static_gbp` |
 | `subnet` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    aclTagType := models.AclTagTypeEnum_GBPRESOURCE
+
+}
+```
+

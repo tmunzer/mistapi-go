@@ -8,7 +8,9 @@ import (
 )
 
 // Marvis represents a Marvis struct.
+// Marvis automation and client settings
 type Marvis struct {
+	// Marvis automatic remediation operation toggles
 	AutoOperations       *MarvisAutoOperations  `json:"auto_operations,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

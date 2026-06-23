@@ -19,7 +19,7 @@ orgsSDKTemplates := client.OrgsSDKTemplates()
 
 # Create Sdk Template
 
-Create SDK Template
+Create an SDK template that defines visual customization for the mobile SDK experience, including branding images, colors, header text, and welcome messages.
 
 ```go
 CreateSdkTemplate(
@@ -30,6 +30,10 @@ CreateSdkTemplate(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -38,6 +42,8 @@ CreateSdkTemplate(
 | `body` | [`*models.Sdktemplate`](../../doc/models/sdktemplate.md) | Body, Optional | Request Body |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sdktemplate](../../doc/models/sdktemplate.md).
 
@@ -57,14 +63,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -94,15 +100,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Delete Sdk Template
 
-Delete SDK Template
+Delete an SDK visual customization template from the organization.
 
 ```go
 DeleteSdkTemplate(
@@ -113,6 +119,10 @@ DeleteSdkTemplate(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -121,6 +131,8 @@ DeleteSdkTemplate(
 | `sdktemplateId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
@@ -138,14 +150,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -159,15 +171,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Get Sdk Template
 
-Get SDK Template Details
+Return the visual customization settings for an SDK template, including branding text, image URLs, colors, default state, and site scope.
 
 ```go
 GetSdkTemplate(
@@ -178,6 +190,10 @@ GetSdkTemplate(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -186,6 +202,8 @@ GetSdkTemplate(
 | `sdktemplateId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sdktemplate](../../doc/models/sdktemplate.md).
 
@@ -203,14 +221,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -240,15 +258,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # List Sdk Templates
 
-Get List of Org SDK Templates
+List SDK templates configured for the organization. SDK templates define visual customization for the mobile SDK experience, including branding images, colors, header text, and welcome messages.
 
 ```go
 ListSdkTemplates(
@@ -258,6 +276,10 @@ ListSdkTemplates(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -265,6 +287,8 @@ ListSdkTemplates(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: Example response
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Sdktemplate](../../doc/models/sdktemplate.md).
 
@@ -280,14 +304,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -319,15 +343,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Update Sdk Template
 
-Update SDK Template
+Update an SDK template's visual customization settings, such as branding images, colors, header text, welcome message, default state, or site association.
 
 ```go
 UpdateSdkTemplate(
@@ -339,6 +363,10 @@ UpdateSdkTemplate(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -348,6 +376,8 @@ UpdateSdkTemplate(
 | `body` | [`*models.Sdktemplate`](../../doc/models/sdktemplate.md) | Body, Optional | Request Body |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sdktemplate](../../doc/models/sdktemplate.md).
 
@@ -369,14 +399,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -406,8 +436,8 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 

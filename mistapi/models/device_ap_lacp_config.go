@@ -8,7 +8,9 @@ import (
 )
 
 // DeviceApLacpConfig represents a DeviceApLacpConfig struct.
+// LACP settings for supported AP Ethernet uplinks
 type DeviceApLacpConfig struct {
+	// Whether to enable LACP on supported AP Ethernet uplinks
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

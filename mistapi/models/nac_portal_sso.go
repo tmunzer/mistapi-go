@@ -8,15 +8,21 @@ import (
 )
 
 // NacPortalSso represents a NacPortalSso struct.
+// SAML SSO configuration for a NAC portal
 type NacPortalSso struct {
+	// Identity provider certificate used to verify signed SAML responses
 	IdpCert *string `json:"idp_cert,omitempty"`
 	// Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`.
-	IdpSignAlgo     *NacPortalSsoIdpSignAlgoEnum `json:"idp_sign_algo,omitempty"`
-	IdpSsoUrl       *string                      `json:"idp_sso_url,omitempty"`
-	Issuer          *string                      `json:"issuer,omitempty"`
-	NameidFormat    *string                      `json:"nameid_format,omitempty"`
-	SsoRoleMatching []NacPortalSsoRoleMatching   `json:"sso_role_matching,omitempty"`
-	// If it's desired to inject a role into Cert's Subject (so it can be used later on in policy)
+	IdpSignAlgo *NacPortalSsoIdpSignAlgoEnum `json:"idp_sign_algo,omitempty"`
+	// Identity provider Single Sign-On URL for SAML authentication
+	IdpSsoUrl *string `json:"idp_sso_url,omitempty"`
+	// Identity provider issuer URL for SAML authentication
+	Issuer *string `json:"issuer,omitempty"`
+	// SAML NameID format expected from the identity provider
+	NameidFormat *string `json:"nameid_format,omitempty"`
+	// List of SSO role mapping rules for the NAC portal
+	SsoRoleMatching []NacPortalSsoRoleMatching `json:"sso_role_matching,omitempty"`
+	// Whether to include the matched SSO role in the issued certificate subject for later policy matching
 	UseSsoRoleForCert    *bool                  `json:"use_sso_role_for_cert,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -10,11 +10,15 @@ import (
 )
 
 // StatsSdkclientNetworkConnection represents a StatsSdkclientNetworkConnection struct.
-// Various network connection info for the SDK client (if known, else omitted), with RSSI in dBm, and signal level as
+// Current network connection details reported for an SDK client
 type StatsSdkclientNetworkConnection struct {
-	Mac                  string                 `json:"mac"`
-	Rssi                 float64                `json:"rssi"`
-	SignalLevel          float64                `json:"signal_level"`
+	// Current network connection MAC address reported for the SDK client
+	Mac string `json:"mac"`
+	// Received signal strength indicator for the SDK client's current network connection, in dBm
+	Rssi float64 `json:"rssi"`
+	// Numeric signal quality level reported with the SDK client's current network connection
+	SignalLevel float64 `json:"signal_level"`
+	// Network connection type reported for the SDK client, such as WiFi
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -18,7 +18,16 @@ webhook topic. enum: `status`, `status_code`, `topic`, `webhook_id`
 
 ## Example
 
-```
-webhook_id
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookDeliveryDistinct := models.WebhookDeliveryDistinctEnum_STATUS
+
+}
 ```
 

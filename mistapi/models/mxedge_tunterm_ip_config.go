@@ -10,14 +10,19 @@ import (
 )
 
 // MxedgeTuntermIpConfig represents a MxedgeTuntermIpConfig struct.
-// IPconfiguration of the Mist Tunnel interface
+// IP configuration for the Mist Tunnel interface
 type MxedgeTuntermIpConfig struct {
-	Gateway  string  `json:"gateway"`
+	// IPv4 gateway for the Mist Tunnel interface
+	Gateway string `json:"gateway"`
+	// IPv6 gateway for the Mist Tunnel interface
 	Gateway6 *string `json:"gateway6,omitempty"`
-	// Untagged VLAN
-	Ip                   string                 `json:"ip"`
-	Ip6                  *string                `json:"ip6,omitempty"`
-	Netmask              string                 `json:"netmask"`
+	// Address on the untagged Mist Tunnel interface, in IPv4 format
+	Ip string `json:"ip"`
+	// Address on the Mist Tunnel interface, in IPv6 format
+	Ip6 *string `json:"ip6,omitempty"`
+	// Subnet mask for the Mist Tunnel IPv4 address
+	Netmask string `json:"netmask"`
+	// Prefix length for the Mist Tunnel IPv6 address
 	Netmask6             *string                `json:"netmask6,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

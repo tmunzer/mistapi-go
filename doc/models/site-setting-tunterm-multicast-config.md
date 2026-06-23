@@ -1,6 +1,8 @@
 
 # Site Setting Tunterm Multicast Config
 
+Multicast forwarding settings for tunnel termination at the site
+
 ## Structure
 
 `SiteSettingTuntermMulticastConfig`
@@ -9,30 +11,39 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mdns` | [`*models.SiteSettingTuntermMulticastConfigMdns`](../../doc/models/site-setting-tunterm-multicast-config-mdns.md) | Optional | - |
-| `MulticastAll` | `*bool` | Optional | **Default**: `false` |
-| `Ssdp` | [`*models.SiteSettingTuntermMulticastConfigSsdp`](../../doc/models/site-setting-tunterm-multicast-config-ssdp.md) | Optional | - |
+| `Mdns` | [`*models.SiteSettingTuntermMulticastConfigMdns`](../../doc/models/site-setting-tunterm-multicast-config-mdns.md) | Optional | mDNS multicast forwarding settings for tunneled VLANs |
+| `MulticastAll` | `*bool` | Optional | Whether all multicast traffic is forwarded through tunnel termination<br><br>**Default**: `false` |
+| `Ssdp` | [`*models.SiteSettingTuntermMulticastConfigSsdp`](../../doc/models/site-setting-tunterm-multicast-config-ssdp.md) | Optional | SSDP multicast forwarding settings for tunneled VLANs |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "multicast_all": false,
-  "mdns": {
-    "enabled": false,
-    "vlan_ids": [
-      246,
-      247
-    ]
-  },
-  "ssdp": {
-    "enabled": false,
-    "vlan_ids": [
-      236,
-      237,
-      238
-    ]
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteSettingTuntermMulticastConfig := models.SiteSettingTuntermMulticastConfig{
+        Mdns:                 models.ToPointer(models.SiteSettingTuntermMulticastConfigMdns{
+            Enabled:              models.ToPointer(false),
+            VlanIds:              []int{
+                246,
+                247,
+            },
+        }),
+        MulticastAll:         models.ToPointer(false),
+        Ssdp:                 models.ToPointer(models.SiteSettingTuntermMulticastConfigSsdp{
+            Enabled:              models.ToPointer(false),
+            VlanIds:              []int{
+                236,
+                237,
+                238,
+            },
+        }),
+    }
+
 }
 ```
 

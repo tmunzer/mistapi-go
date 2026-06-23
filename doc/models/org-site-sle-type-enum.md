@@ -15,3 +15,18 @@ enum: `wan`, `wifi`, `wired`
 | `wifi` |
 | `wired` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSiteSleType := models.OrgSiteSleTypeEnum_WIRED
+
+}
+```
+

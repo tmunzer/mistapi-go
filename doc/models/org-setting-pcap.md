@@ -1,6 +1,8 @@
 
 # Org Setting Pcap
 
+Packet capture export settings for the organization
+
 ## Structure
 
 `OrgSettingPcap`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Bucket` | `*string` | Optional | - |
-| `MaxPktLen` | `*int` | Optional | Max_len of non-management packets to capture<br><br>**Default**: `128`<br><br>**Constraints**: `<= 128` |
+| `Bucket` | `*string` | Optional | Storage bucket name used for organization packet capture files |
+| `MaxPktLen` | `*int` | Optional | Maximum length of non-management packets to capture, in bytes<br><br>**Default**: `128`<br><br>**Constraints**: `<= 128` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "bucket": "myorg_pcap",
-  "max_pkt_len": 128
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingPcap := models.OrgSettingPcap{
+        Bucket:               models.ToPointer("myorg_pcap"),
+        MaxPktLen:            models.ToPointer(128),
+    }
+
 }
 ```
 

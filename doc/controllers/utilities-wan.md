@@ -40,6 +40,10 @@ ClearSiteDeviceSession(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -49,6 +53,8 @@ ClearSiteDeviceSession(
 | `body` | [`*models.UtilsClearSession`](../../doc/models/utils-clear-session.md) | Body, Optional | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
@@ -72,14 +78,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -93,10 +99,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Clear Site Ssr Arp Cache
@@ -117,6 +123,10 @@ ClearSiteSsrArpCache(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -126,6 +136,8 @@ ClearSiteSsrArpCache(
 | `body` | [`*models.UtilsClearArp`](../../doc/models/utils-clear-arp.md) | Body, Optional | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
@@ -150,14 +162,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -173,10 +185,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Clear Site Ssr Bgp Routes
@@ -193,6 +205,10 @@ ClearSiteSsrBgpRoutes(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -202,6 +218,8 @@ ClearSiteSsrBgpRoutes(
 | `body` | [`*models.UtilsClearBgp`](../../doc/models/utils-clear-bgp.md) | Body, Optional | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
@@ -223,14 +241,14 @@ body := models.UtilsClearBgp{
 apiResponse, err := utilitiesWAN.ClearSiteSsrBgpRoutes(ctx, siteId, deviceId, &body)
 if err != nil {
     switch typedErr := err.(type) {
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -246,10 +264,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Parameter neighbor absent | `ApiError` |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Release Site Ssr Dhcp Lease
@@ -297,6 +315,10 @@ ReleaseSiteSsrDhcpLease(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -306,6 +328,8 @@ ReleaseSiteSsrDhcpLease(
 | `body` | [`*models.UtilsReleaseDhcp`](../../doc/models/utils-release-dhcp.md) | Body, Optional | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
@@ -325,14 +349,14 @@ body := models.UtilsReleaseDhcp{
 apiResponse, err := utilitiesWAN.ReleaseSiteSsrDhcpLease(ctx, siteId, deviceId, &body)
 if err != nil {
     switch typedErr := err.(type) {
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -348,10 +372,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Parameter `port ` absent | `ApiError` |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Run Site Srx Top Command
@@ -379,6 +403,10 @@ RunSiteSrxTopCommand(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -387,6 +415,8 @@ RunSiteSrxTopCommand(
 | `deviceId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSessionWithUrl](../../doc/models/websocket-session-with-url.md).
 
@@ -404,14 +434,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -427,10 +457,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Service Ping from Ssr
@@ -472,6 +502,10 @@ ServicePingFromSsr(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -481,6 +515,8 @@ ServicePingFromSsr(
 | `body` | [`*models.UtilsServicePing`](../../doc/models/utils-service-ping.md) | Body, Optional | Request Body |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
@@ -504,14 +540,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -527,10 +563,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Show Site Gateway Ospf Database
@@ -571,6 +607,10 @@ ShowSiteGatewayOspfDatabase(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -580,6 +620,8 @@ ShowSiteGatewayOspfDatabase(
 | `body` | [`*models.UtilsShowOspfDatabase`](../../doc/models/utils-show-ospf-database.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
@@ -602,14 +644,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -625,10 +667,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Show Site Gateway Ospf Interfaces
@@ -651,7 +693,7 @@ As there can be multiple commands issued against the same device at the same tim
 
 ```
 ===== ================== =================== ============== =============== =========== ========= ===========
-Vrf   Device Interface   Network Interface   Interface Up   IP Address      OSPF Type   Area ID   Area Type
+Vrf   Device Interface   Network Interface   Interface Up   IP address      OSPF Type   Area ID   Area Type
 ===== ================== =================== ============== =============== =========== ========= ===========
       net1               g1                          True   172.16.1.2/24   Broadcast   0.0.0.0   default
       net3               g3                          True   172.16.3.2/24   Broadcast   0.0.0.0   default
@@ -668,6 +710,10 @@ ShowSiteGatewayOspfInterfaces(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -677,6 +723,8 @@ ShowSiteGatewayOspfInterfaces(
 | `body` | [`*models.UtilsShowOspfInterfaces`](../../doc/models/utils-show-ospf-interfaces.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
@@ -699,14 +747,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -722,10 +770,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Show Site Gateway Ospf Neighbors
@@ -766,6 +814,10 @@ ShowSiteGatewayOspfNeighbors(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -775,6 +827,8 @@ ShowSiteGatewayOspfNeighbors(
 | `body` | [`*models.UtilsShowOspfNeighbors`](../../doc/models/utils-show-ospf-neighbors.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
@@ -798,14 +852,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -821,10 +875,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Show Site Gateway Ospf Summary
@@ -864,6 +918,10 @@ ShowSiteGatewayOspfSummary(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -873,6 +931,8 @@ ShowSiteGatewayOspfSummary(
 | `body` | [`*models.UtilsShowOspfSummary`](../../doc/models/utils-show-ospf-summary.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
@@ -894,14 +954,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -917,10 +977,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Show Site Ssr and Srx Routes
@@ -970,6 +1030,10 @@ ShowSiteSsrAndSrxRoutes(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -979,6 +1043,8 @@ ShowSiteSsrAndSrxRoutes(
 | `body` | [`*models.UtilsShowRoute`](../../doc/models/utils-show-route.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
@@ -996,7 +1062,7 @@ body := models.UtilsShowRoute{
     Interval:             models.ToPointer(0),
     Neighbor:             models.ToPointer("192.168.4.1"),
     Prefix:               models.ToPointer("192.168.0.5/30"),
-    Protocol:             models.ToPointer(models.UtilsShowRouteProtocol2Enum_BGP),
+    Protocol:             models.ToPointer(models.UtilsShowRouteProtocolEnum_BGP),
     Route:                models.ToPointer("advertised"),
     Vrf:                  models.ToPointer("default"),
 }
@@ -1006,14 +1072,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -1029,10 +1095,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Show Site Ssr and Srx Sessions
@@ -1074,6 +1140,10 @@ ShowSiteSsrAndSrxSessions(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -1083,6 +1153,8 @@ ShowSiteSsrAndSrxSessions(
 | `body` | [`*models.UtilsShowSession`](../../doc/models/utils-show-session.md) | Body, Optional | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
@@ -1105,14 +1177,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -1128,10 +1200,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Show Site Ssr Service Path
@@ -1173,6 +1245,10 @@ ShowSiteSsrServicePath(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -1182,6 +1258,8 @@ ShowSiteSsrServicePath(
 | `body` | [`*models.UtilsShowServicePath`](../../doc/models/utils-show-service-path.md) | Body, Optional | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
@@ -1204,14 +1282,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -1227,10 +1305,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Test Site Ssr Dns Resolution
@@ -1266,6 +1344,10 @@ TestSiteSsrDnsResolution(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -1274,6 +1356,8 @@ TestSiteSsrDnsResolution(
 | `deviceId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
@@ -1291,14 +1375,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -1314,8 +1398,8 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 

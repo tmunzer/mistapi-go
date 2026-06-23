@@ -25,7 +25,7 @@ func NewConstantsModels(baseController baseController) *ConstantsModels {
 // GetGatewayDefaultConfig takes context, model, ha as parameters and
 // returns an models.ApiResponse with interface{} data and
 // an error if there was an issue with the request or response.
-// Generate Default Gateway Config
+// Generate the default gateway configuration for the requested model and HA mode.
 func (c *ConstantsModels) GetGatewayDefaultConfig(
 	ctx context.Context,
 	model string,
@@ -37,19 +37,15 @@ func (c *ConstantsModels) GetGatewayDefaultConfig(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.QueryParam("model", model)
 	if ha != nil {
@@ -68,7 +64,7 @@ func (c *ConstantsModels) GetGatewayDefaultConfig(
 // ListDeviceModels takes context as parameters and
 // returns an models.ApiResponse with []models.ConstDeviceModel data and
 // an error if there was an issue with the request or response.
-// Get list of AP device models for the Mist Site
+// Return AP, Switch and Gateway device models supported by Mist, including their features and capabilities.
 func (c *ConstantsModels) ListDeviceModels(ctx context.Context) (
 	models.ApiResponse[[]models.ConstDeviceModel],
 	error) {
@@ -77,19 +73,15 @@ func (c *ConstantsModels) ListDeviceModels(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstDeviceModel
 	decoder, resp, err := req.CallAsJson()
@@ -104,7 +96,7 @@ func (c *ConstantsModels) ListDeviceModels(ctx context.Context) (
 // ListMxEdgeModels takes context as parameters and
 // returns an models.ApiResponse with []models.ConstMxedgeModel data and
 // an error if there was an issue with the request or response.
-// Get List of available Mx Edge models
+// Return Mist Edge models supported by Mist, including their capabilities.
 func (c *ConstantsModels) ListMxEdgeModels(ctx context.Context) (
 	models.ApiResponse[[]models.ConstMxedgeModel],
 	error) {
@@ -113,19 +105,15 @@ func (c *ConstantsModels) ListMxEdgeModels(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstMxedgeModel
 	decoder, resp, err := req.CallAsJson()
@@ -140,7 +128,7 @@ func (c *ConstantsModels) ListMxEdgeModels(ctx context.Context) (
 // ListSupportedOtherDeviceModels takes context as parameters and
 // returns an models.ApiResponse with []models.ConstOtherDeviceModel data and
 // an error if there was an issue with the request or response.
-// Supported OtherDevice Models
+// Return supported models for other or third-party devices.
 func (c *ConstantsModels) ListSupportedOtherDeviceModels(ctx context.Context) (
 	models.ApiResponse[[]models.ConstOtherDeviceModel],
 	error) {
@@ -149,19 +137,15 @@ func (c *ConstantsModels) ListSupportedOtherDeviceModels(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstOtherDeviceModel
 	decoder, resp, err := req.CallAsJson()

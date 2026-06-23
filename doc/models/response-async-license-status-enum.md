@@ -1,7 +1,7 @@
 
 # Response Async License Status Enum
 
-processing status of async. enum: `prepared`, `ongoing`, `done`
+Processing state for an asynchronous license claim. enum: `prepared`, `ongoing`, `done`
 
 ## Enumeration
 
@@ -14,4 +14,19 @@ processing status of async. enum: `prepared`, `ongoing`, `done`
 | `prepared` |
 | `ongoing` |
 | `done` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseAsyncLicenseStatus := models.ResponseAsyncLicenseStatusEnum_ONGOING
+
+}
+```
 

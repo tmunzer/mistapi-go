@@ -8,8 +8,11 @@ import (
 )
 
 // SiteSettingTuntermMulticastConfigSsdp represents a SiteSettingTuntermMulticastConfigSsdp struct.
+// SSDP multicast forwarding settings for tunneled VLANs
 type SiteSettingTuntermMulticastConfigSsdp struct {
-	Enabled              *bool                  `json:"enabled,omitempty"`
+	// Whether SSDP multicast forwarding is enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// VLAN IDs where SSDP forwarding is enabled
 	VlanIds              []int                  `json:"vlan_ids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

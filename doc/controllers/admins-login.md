@@ -16,11 +16,11 @@ adminsLogin := client.AdminsLogin()
 
 # Login
 
-Log in with email/password.
-When 2FA is enabled, there are two ways to login:
+Authenticate an administrator with email and password. A successful login creates the browser session cookies, including the `csrftoken` value used with the `X-CSRFToken` header on later API requests.
 
-1. login with two_factor token (with Google Authenticator, etc)
-2. login with email/password, generate the token, and use /login/two_factor with the token
+When 2FA is enabled, either include the `two_factor` code in this request or submit the first factor here and complete the login with [Two Factor](../../doc/controllers/admins-login.md#two-factor).
+
+:information_source: **Note** This endpoint does not require authentication.
 
 ```go
 Login(
@@ -37,6 +37,8 @@ Login(
 | `body` | [`*models.Login`](../../doc/models/login.md) | Body, Optional | - |
 
 ## Response Type
+
+**200**: Login Success
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseLoginSuccess](../../doc/models/response-login-success.md).
 
@@ -85,7 +87,9 @@ if err != nil {
 
 # Two Factor
 
-Send 2FA Code
+Complete a two-factor login by submitting the 2FA code after the initial email/password step has created a pending login session.
+
+:information_source: **Note** This endpoint does not require authentication.
 
 ```go
 TwoFactor(
@@ -103,6 +107,8 @@ TwoFactor(
 
 ## Response Type
 
+**200**: OK
+
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
@@ -119,10 +125,10 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -137,7 +143,7 @@ if err != nil {
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 401 | two_factor code is incorrect or the user hasn't login yet | `ApiError` |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | The user doesn't have 2FA enabled | `ApiError` |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 

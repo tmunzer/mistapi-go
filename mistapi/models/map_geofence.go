@@ -8,8 +8,9 @@ import (
 )
 
 // MapGeofence represents a MapGeofence struct.
+// Geofence drawn on a map
 type MapGeofence struct {
-	// Name of the geofence
+	// Display name for the map geofence
 	Name *string `json:"name,omitempty"`
 	// List of vertices defining the geofence
 	Vertices             []MapGeofenceVertice   `json:"vertices,omitempty"`

@@ -8,14 +8,15 @@ import (
 )
 
 // SwitchPortConfigOverwrite represents a SwitchPortConfigOverwrite struct.
-// Switch port config
+// Switch port configuration overrides
 type SwitchPortConfigOverwrite struct {
+	// Administrative description applied to the switch port override
 	Description *string `json:"description,omitempty"`
 	// Whether the port is disabled
 	Disabled *bool `json:"disabled,omitempty"`
 	// Link connection mode. enum: `auto`, `full`, `half`
 	Duplex *SwitchPortUsageDuplexOverwriteEnum `json:"duplex,omitempty"`
-	// Max number of mac addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform)
+	// Max number of MAC addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform)
 	MacLimit *SwitchPortUsageMacLimitOverwrite `json:"mac_limit,omitempty"`
 	// Whether PoE capabilities are disabled for a port
 	PoeDisabled *bool `json:"poe_disabled,omitempty"`

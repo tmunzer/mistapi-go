@@ -9,6 +9,7 @@ import (
 )
 
 // WlanVlanIds represents a WlanVlanIds struct.
+// WLAN VLAN pool IDs represented as either a comma-separated string or a list
 type WlanVlanIds struct {
 	value                        any
 	isString                     bool
@@ -74,6 +75,7 @@ func (w *WlanVlanIds) AsArrayOfVlanIdWithVariable4() (
 }
 
 // internalWlanVlanIds represents a wlanVlanIds struct.
+// WLAN VLAN pool IDs represented as either a comma-separated string or a list
 type internalWlanVlanIds struct{}
 
 var WlanVlanIdsContainer internalWlanVlanIds

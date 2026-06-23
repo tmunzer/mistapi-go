@@ -1,6 +1,8 @@
 
 # Evpn Topology Switch Config Vrf Config
 
+VRF enablement for an EVPN topology switch override
+
 ## Structure
 
 `EvpnTopologySwitchConfigVrfConfig`
@@ -11,11 +13,20 @@
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | Whether to enable VRF (when supported on the device) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    evpnTopologySwitchConfigVrfConfig := models.EvpnTopologySwitchConfigVrfConfig{
+        Enabled:              models.ToPointer(false),
+    }
+
 }
 ```
 

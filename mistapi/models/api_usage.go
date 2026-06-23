@@ -10,11 +10,13 @@ import (
 )
 
 // ApiUsage represents a ApiUsage struct.
+// API rate-limit usage status for the current user or API token
 type ApiUsage struct {
-	// max number of request permitted
+	// Maximum API requests allowed in the current hourly rate-limit window
 	RequestLimit int `json:"request_limit"`
-	// num of request made in the current hour
-	Requests             int                    `json:"requests"`
+	// Number of API requests made in the current hourly rate-limit window
+	Requests int `json:"requests"`
+	// Time remaining, in seconds, before the current hourly rate-limit window resets
 	Seconds              *float64               `json:"seconds,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

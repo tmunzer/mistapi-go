@@ -9,11 +9,15 @@ import (
 )
 
 // WebhookSiteSleEvent represents a WebhookSiteSleEvent struct.
+// Site-level Wi-Fi SLE score snapshot
 type WebhookSiteSleEvent struct {
-	OrgId  *uuid.UUID              `json:"org_id,omitempty"`
-	SiteId *uuid.UUID              `json:"site_id,omitempty"`
-	Sle    *WebhookSiteSleEventSle `json:"sle,omitempty"`
-	// Epoch (seconds)
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Wi-Fi SLE scores reported by a site SLE webhook event
+	Sle *WebhookSiteSleEventSle `json:"sle,omitempty"`
+	// Epoch timestamp, in seconds
 	Timestamp            *float64               `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

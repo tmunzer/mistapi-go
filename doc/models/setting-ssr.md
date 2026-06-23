@@ -1,6 +1,8 @@
 
 # Setting Ssr
 
+SSR management settings for device onboarding and connectivity
+
 ## Structure
 
 `SettingSsr`
@@ -9,35 +11,43 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AutoUpgrade` | [`*models.SettingSsrAutoUpgrade`](../../doc/models/setting-ssr-auto-upgrade.md) | Optional | auto_upgrade device first time it is onboarded |
-| `ConductorHosts` | `[]string` | Optional | List of Conductor IP Addresses or Hosts to be used by the SSR Devices |
-| `ConductorToken` | `*string` | Optional | Token to be used by the SSR Devices to connect to the Conductor |
-| `DisableStats` | `*bool` | Optional | Disable stats collection on SSR devices |
+| `AutoUpgrade` | [`*models.SettingSsrAutoUpgrade`](../../doc/models/setting-ssr-auto-upgrade.md) | Optional | Automatic firmware upgrade settings applied when an SSR device is first onboarded |
+| `ConductorHosts` | `[]string` | Optional | Conductor IP addresses or hostnames used by SSR devices |
+| `ConductorToken` | `*string` | Optional | Registration token used by SSR devices to connect to the conductor |
+| `DisableStats` | `*bool` | Optional | Whether stats collection is disabled on SSR devices |
 | `Proxy` | [`*models.SsrProxy`](../../doc/models/ssr-proxy.md) | Optional | SSR proxy configuration to talk to Mist |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "auto_upgrade": {
-    "channel": "beta",
-    "custom_versions": {
-      "key0": "custom_versions3",
-      "key1": "custom_versions2"
-    },
-    "enabled": false,
-    "version": "version2"
-  },
-  "conductor_hosts": [
-    "conductor_hosts4",
-    "conductor_hosts5"
-  ],
-  "conductor_token": "conductor_token6",
-  "disable_stats": false,
-  "proxy": {
-    "disabled": false,
-    "url": "url6"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    settingSsr := models.SettingSsr{
+        AutoUpgrade:          models.ToPointer(models.SettingSsrAutoUpgrade{
+            Channel:              models.ToPointer(models.SsrUpgradeChannelEnum_BETA),
+            CustomVersions:       map[string]string{
+                "key0": "custom_versions3",
+                "key1": "custom_versions2",
+            },
+            Enabled:              models.ToPointer(false),
+            Version:              models.ToPointer("version2"),
+        }),
+        ConductorHosts:       []string{
+            "conductor_hosts0",
+        },
+        ConductorToken:       models.ToPointer("conductor_token2"),
+        DisableStats:         models.ToPointer(false),
+        Proxy:                models.ToPointer(models.SsrProxy{
+            Disabled:             models.ToPointer(false),
+            Url:                  models.ToPointer("url6"),
+        }),
+    }
+
 }
 ```
 

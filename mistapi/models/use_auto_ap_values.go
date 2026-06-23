@@ -8,12 +8,13 @@ import (
 )
 
 // UseAutoApValues represents a UseAutoApValues struct.
+// Request to accept or reject cached AP placement or orientation values on a map
 type UseAutoApValues struct {
-	// If accept is true, accepts placement for devices in list otherwise. If false, reject for devices in list.
+	// Whether to accept cached values; false rejects them for the selected APs
 	Accept *bool `json:"accept,omitempty"`
 	// The selector to choose auto placement or auto orientation. enum: `orientation`, `placement`
 	For *UseAutoApValuesForEnum `json:"for,omitempty"`
-	// A list of macs to accept/reject. If a list is not provided the API will accept/reject for the full map.
+	// AP MAC addresses to accept or reject. If omitted, the API applies the decision to the full map.
 	Macs                 []string               `json:"macs,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

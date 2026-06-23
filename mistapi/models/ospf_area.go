@@ -10,8 +10,10 @@ import (
 // OspfArea represents a OspfArea struct.
 // Property key is the OSPF Area (Area should be a number (0-255) / IP address)
 type OspfArea struct {
-	IncludeLoopback *bool                       `json:"include_loopback,omitempty"`
-	Networks        map[string]OspfAreasNetwork `json:"networks,omitempty"`
+	// Whether loopback interfaces are included in this OSPF area
+	IncludeLoopback *bool `json:"include_loopback,omitempty"`
+	// OSPF network settings keyed by network name
+	Networks map[string]OspfAreasNetwork `json:"networks,omitempty"`
 	// OSPF type. enum: `default`, `nssa`, `stub`
 	Type                 *OspfAreaTypeEnum      `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`

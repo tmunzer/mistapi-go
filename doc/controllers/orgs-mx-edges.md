@@ -36,7 +36,7 @@ orgsMxEdges := client.OrgsMxEdges()
 
 # Add Org Mx Edge Image
 
-Attach up to 3 images to a mxedge
+Upload and attach an image file to a Mist Edge appliance. A Mist Edge can have up to three image attachments.
 
 ```go
 AddOrgMxEdgeImage(
@@ -50,6 +50,10 @@ AddOrgMxEdgeImage(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -57,10 +61,12 @@ AddOrgMxEdgeImage(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mxedgeId` | `uuid.UUID` | Template, Required | - |
 | `imageNumber` | `int` | Template, Required | **Constraints**: `>= 1`, `<= 3` |
-| `file` | `models.FileWrapper` | Form, Required | Binary file |
-| `json` | `*string` | Form, Optional | - |
+| `file` | `models.FileWrapper` | Form, Required | Image file content uploaded as multipart form data |
+| `json` | `*string` | Form, Optional | Optional JSON metadata submitted with the image upload |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
@@ -82,14 +88,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -103,15 +109,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Assign Org Mx Edge to Site
 
-Assign Org MxEdge to Site
+Assign one or more Mist Edge appliances from the organization to a site by Mist Edge ID and site ID.
 
 ```go
 AssignOrgMxEdgeToSite(
@@ -122,6 +128,10 @@ AssignOrgMxEdgeToSite(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -130,6 +140,8 @@ AssignOrgMxEdgeToSite(
 | `body` | [`*models.MxedgesAssign`](../../doc/models/mxedges-assign.md) | Body, Optional | Request Body |
 
 ## Response Type
+
+**200**: OK - list only devices that has deviceprofile_id changed
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAssignSuccess](../../doc/models/response-assign-success.md).
 
@@ -152,14 +164,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -185,15 +197,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Bounce Org Mx Edge Data Ports
 
-Bounce TunTerm Data Ports
+Bounce one or more TunTerm data ports on a Mist Edge, optionally setting the hold time between port bounces.
 
 ```go
 BounceOrgMxEdgeDataPorts(
@@ -205,6 +217,10 @@ BounceOrgMxEdgeDataPorts(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -214,6 +230,8 @@ BounceOrgMxEdgeDataPorts(
 | `body` | [`*models.UtilsTuntermBouncePort`](../../doc/models/utils-tunterm-bounce-port.md) | Body, Optional | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
@@ -238,14 +256,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -259,15 +277,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Claim Org Mx Edge
 
-For a Mist Edge in default state, it will show a random claim code like `135-546-673` which you can "claim" it into your Org
+Claim one or more Mist Edge appliances into the organization using their claim codes.
 
 ```go
 ClaimOrgMxEdge(
@@ -278,6 +296,10 @@ ClaimOrgMxEdge(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -286,6 +308,8 @@ ClaimOrgMxEdge(
 | `body` | `[]string` | Body, Optional | Request Body<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseClaimMxEdge](../../doc/models/response-claim-mx-edge.md).
 
@@ -306,14 +330,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -338,15 +362,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Control Org Mx Edge Services
 
-Control Services on a Mist Edge
+Start, stop, or restart a named Mist Edge service such as `tunterm`, `mxagent`, or `radsecproxy`.
 
 ```go
 ControlOrgMxEdgeServices(
@@ -359,6 +383,10 @@ ControlOrgMxEdgeServices(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -369,6 +397,8 @@ ControlOrgMxEdgeServices(
 | `action` | [`models.MxedgeServiceActionEnum`](../../doc/models/mxedge-service-action-enum.md) | Template, Required | Restart or start or stop |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
@@ -390,14 +420,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -411,15 +441,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Count Org Mx Edges
 
-Count by Distinct Attributes of Org Mist Edges
+Count organization Mist Edge records, optionally grouped by `distinct` and filtered by Mist Edge, cluster, site, model, distro, tunnel termination version, and time range.
 
 ```go
 CountOrgMxEdges(
@@ -442,26 +472,32 @@ CountOrgMxEdges(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.OrgMxedgeCountDistinctEnum`](../../doc/models/org-mxedge-count-distinct-enum.md) | Query, Optional | **Default**: `"model"` |
-| `mxedgeId` | `*string` | Query, Optional | Mist edge id |
+| `distinct` | [`*models.OrgMxedgeCountDistinctEnum`](../../doc/models/org-mxedge-count-distinct-enum.md) | Query, Optional | Field used to group this count response. enum: `distro`, `model`, `mxcluster_id`, `site_id`, `tunterm_version`<br><br>**Default**: `"model"` |
+| `mxedgeId` | `*string` | Query, Optional | Filter results by Mist Edge identifier |
 | `siteId` | `*string` | Query, Optional | Mist edge site id |
 | `mxclusterId` | `*string` | Query, Optional | Mist edge cluster id |
-| `model` | `*string` | Query, Optional | Model name |
+| `model` | `*string` | Query, Optional | Filter results by device model |
 | `distro` | `*string` | Query, Optional | Debian code name (buster, bullseye) |
-| `tuntermVersion` | `*string` | Query, Optional | tunterm version |
-| `sort` | `*string` | Query, Optional | Sort options, -prefix represents DESC order, default is -last_seen |
+| `tuntermVersion` | `*string` | Query, Optional | Filter results by tunnel termination version |
+| `sort` | `*string` | Query, Optional | Field used to sort results |
 | `stats` | `*bool` | Query, Optional | Whether to return device stats, default is false |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
+
+**200**: Result of Count
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
@@ -483,14 +519,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -524,15 +560,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Count Org Site Mx Edge Events
 
-Count by Distinct Attributes of Org Mist Edge Events
+Count Mist Edge event records across the organization, optionally grouped by `distinct` and filtered by Mist Edge, cluster, event type, service, and time range.
 
 ```go
 CountOrgSiteMxEdgeEvents(
@@ -551,22 +587,28 @@ CountOrgSiteMxEdgeEvents(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.OrgMxedgeEventsCountDistinctEnum`](../../doc/models/org-mxedge-events-count-distinct-enum.md) | Query, Optional | **Default**: `"mxedge_id"` |
-| `mxedgeId` | `*string` | Query, Optional | Mist edge id |
+| `distinct` | [`*models.OrgMxedgeEventsCountDistinctEnum`](../../doc/models/org-mxedge-events-count-distinct-enum.md) | Query, Optional | Field used to group this count response. enum: `mxcluster_id`, `mxedge_id`, `package`, `type`<br><br>**Default**: `"mxedge_id"` |
+| `mxedgeId` | `*string` | Query, Optional | Filter results by Mist Edge identifier |
 | `mxclusterId` | `*string` | Query, Optional | Mist edge cluster id |
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
-| `service` | `*string` | Query, Optional | Service running on mist edge(mxagent, tunterm etc) |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `service` | `*string` | Query, Optional | Filter results by service name |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
+
+**200**: Result of Count
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
@@ -588,14 +630,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -629,15 +671,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Create Org Mx Edge
 
-Create MxEdge
+Create a Mist Edge appliance configuration in the organization, including cluster assignment, management, services, and tunnel termination settings.
 
 ```go
 CreateOrgMxEdge(
@@ -648,6 +690,10 @@ CreateOrgMxEdge(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -656,6 +702,8 @@ CreateOrgMxEdge(
 | `body` | [`*models.Mxedge`](../../doc/models/mxedge.md) | Body, Optional | Request Body |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Mxedge](../../doc/models/mxedge.md).
 
@@ -720,14 +768,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -793,15 +841,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Delete Org Mx Edge
 
-Delete Org MxEdge
+Delete a Mist Edge appliance record from the organization by Mist Edge ID.
 
 ```go
 DeleteOrgMxEdge(
@@ -812,6 +860,10 @@ DeleteOrgMxEdge(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -820,6 +872,8 @@ DeleteOrgMxEdge(
 | `mxedgeId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
@@ -837,14 +891,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -858,15 +912,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Delete Org Mx Edge Image
 
-Remove MxEdge Image
+Delete a numbered image attachment from a Mist Edge appliance.
 
 ```go
 DeleteOrgMxEdgeImage(
@@ -878,6 +932,10 @@ DeleteOrgMxEdgeImage(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -887,6 +945,8 @@ DeleteOrgMxEdgeImage(
 | `imageNumber` | `int` | Template, Required | **Constraints**: `>= 1`, `<= 3` |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
@@ -906,14 +966,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -927,15 +987,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Disconnect Org Mx Edge Tunterm Aps
 
-Disconnect AP’s from TunTerm
+Disconnect specific APs from the Mist Edge TunTerm service by AP MAC address.
 
 ```go
 DisconnectOrgMxEdgeTuntermAps(
@@ -947,6 +1007,10 @@ DisconnectOrgMxEdgeTuntermAps(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -956,6 +1020,8 @@ DisconnectOrgMxEdgeTuntermAps(
 | `body` | [`*models.MacAddresses`](../../doc/models/mac-addresses.md) | Body, Optional | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
@@ -980,14 +1046,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -1001,15 +1067,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Get Org Mx Edge
 
-Get Org MxEdge details
+Retrieve configuration and registration details for a specific Mist Edge appliance in the organization.
 
 ```go
 GetOrgMxEdge(
@@ -1020,6 +1086,10 @@ GetOrgMxEdge(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -1028,6 +1098,8 @@ GetOrgMxEdge(
 | `mxedgeId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Mxedge](../../doc/models/mxedge.md).
 
@@ -1045,14 +1117,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -1118,15 +1190,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Get Org Mx Edge Upgrade Info
 
-Get Mist Edge Upgrade Information
+Retrieve available Mist Edge package versions by upgrade channel and distro.
 
 ```go
 GetOrgMxEdgeUpgradeInfo(
@@ -1138,15 +1210,21 @@ GetOrgMxEdgeUpgradeInfo(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `channel` | [`*models.GetOrgMxedgeUpgradeInfoChannelEnum`](../../doc/models/get-org-mxedge-upgrade-info-channel-enum.md) | Query, Optional | Upgrade channel to follow, stable (default) / beta / alpha<br><br>**Default**: `"stable"` |
-| `distro` | `*string` | Query, Optional | Distro code name (e.g. `buster`, `bullseye`, ...) |
+| `channel` | [`*models.GetOrgMxedgeUpgradeInfoChannelEnum`](../../doc/models/get-org-mxedge-upgrade-info-channel-enum.md) | Query, Optional | Upgrade channel used to filter available versions. enum: `alpha`, `beta`, `stable`<br><br>**Default**: `"stable"` |
+| `distro` | `*string` | Query, Optional | Filter results by distro |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.MxedgeUpgradeInfoItems](../../doc/models/mxedge-upgrade-info-items.md).
 
@@ -1164,14 +1242,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -1205,15 +1283,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Get Org Mx Edge Vm Params
 
-Get Mist Edge VM parameters
+Retrieve VM deployment parameters for a Mist Edge, including model, optional name, and base64 user data.
 
 ```go
 GetOrgMxEdgeVmParams(
@@ -1224,6 +1302,10 @@ GetOrgMxEdgeVmParams(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -1232,6 +1314,8 @@ GetOrgMxEdgeVmParams(
 | `mxedgeId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: Mist Edge VM Parameters
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.MxedgeVmParams](../../doc/models/mxedge-vm-params.md).
 
@@ -1249,14 +1333,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -1272,15 +1356,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # List Org Mx Edges
 
-Get List of Org MxEdges
+List Mist Edge appliances in the organization, optionally filtering for org-level, site-level, or all Mist Edges with `for_site`.
 
 ```go
 ListOrgMxEdges(
@@ -1293,16 +1377,22 @@ ListOrgMxEdges(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `forSite` | [`*models.MxedgeForSiteEnum`](../../doc/models/mxedge-for-site-enum.md) | Query, Optional | Filter for org/site level mist edges<br><br>**Default**: `"any"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `forSite` | [`*models.MxedgeForSiteEnum`](../../doc/models/mxedge-for-site-enum.md) | Query, Optional | Filter for org/site level Mist Edges. enum: `any`, `false`, `true`<br><br>**Default**: `"any"` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | Select the page number to return when using page-based pagination; starts at `1`<br><br>**Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Mxedge](../../doc/models/mxedge.md).
 
@@ -1324,14 +1414,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -1448,15 +1538,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Restart Org Mx Edge
 
-In the case where a Mist Edge is replaced, you would need to unregister it. Which disconnects the currently the connected Mist Edge and allow another to register.
+Restart the registration workflow for a Mist Edge replacement by disconnecting the currently registered appliance so another Mist Edge can register.
 
 ```go
 RestartOrgMxEdge(
@@ -1467,6 +1557,10 @@ RestartOrgMxEdge(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -1475,6 +1569,8 @@ RestartOrgMxEdge(
 | `mxedgeId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
@@ -1492,14 +1588,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -1513,15 +1609,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Search Org Mist Edge Events
 
-Search Org Mist Edge Events
+Search Mist Edge event records across the organization with filters for Mist Edge, cluster, event type, service, component, and time range.
 
 ```go
 SearchOrgMistEdgeEvents(
@@ -1542,24 +1638,30 @@ SearchOrgMistEdgeEvents(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mxedgeId` | `*string` | Query, Optional | Mist edge id |
+| `mxedgeId` | `*string` | Query, Optional | Filter results by Mist Edge identifier |
 | `mxclusterId` | `*string` | Query, Optional | Mist edge cluster id |
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
-| `service` | `*string` | Query, Optional | Service running on mist edge(mxagent, tunterm etc) |
-| `component` | `*string` | Query, Optional | Component like PS1, PS2 |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `service` | `*string` | Query, Optional | Filter results by service name |
+| `component` | `*string` | Query, Optional | Filter results by component name |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
+
+**200**: Example response
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseMxedgeEventsSearch](../../doc/models/response-mxedge-events-search.md).
 
@@ -1581,14 +1683,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -1625,15 +1727,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Search Org Mx Edges
 
-Search Org Mist Edges
+Search organization Mist Edge records with filters for hostname, Mist Edge, cluster, site, model, distro, tunnel termination version, and time range.
 
 ```go
 SearchOrgMxEdges(
@@ -1657,27 +1759,33 @@ SearchOrgMxEdges(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `hostname` | `*string` | Query, Optional | Partial / full Device hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `my-london*` and `*london*` match `my-london-1`). Suffix-only wildcards (e.g. `*london-1`) are not supported |
-| `mxedgeId` | `*string` | Query, Optional | Mist edge id |
-| `mxclusterId` | `*string` | Query, Optional | Mist edge cluster id |
-| `model` | `*string` | Query, Optional | Partial / full Device model. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `AP4*` and `*P4*` match `AP43`). Suffix-only wildcards (e.g. `*43`) are not supported |
+| `hostname` | `*string` | Query, Optional | Partial / full Device hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `my-london*` and `*london*` match `my-london-1`). Suffix-only wildcards (e.g. `*london-1`) are not supported. Accepts multiple comma-separated values. |
+| `mxedgeId` | `*string` | Query, Optional | Filter results by Mist Edge identifier. Accepts multiple comma-separated values. |
+| `mxclusterId` | `*string` | Query, Optional | Mist edge cluster id. Accepts multiple comma-separated values. |
+| `model` | `*string` | Query, Optional | Partial / full Device model. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `AP4*` and `*P4*` match `AP43`). Suffix-only wildcards (e.g. `*43`) are not supported. Accepts multiple comma-separated values. |
 | `distro` | `*string` | Query, Optional | Debian code name (buster, bullseye) |
-| `tuntermVersion` | `*string` | Query, Optional | tunterm version |
+| `tuntermVersion` | `*string` | Query, Optional | Filter results by tunnel termination version |
 | `siteId` | `*string` | Query, Optional | Mist edge site id |
 | `stats` | `*bool` | Query, Optional | Whether to return device stats, default is false |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
+
+**200**: Example response
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseMxedgeSearch](../../doc/models/response-mxedge-search.md).
 
@@ -1688,9 +1796,13 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-hostname := "my-london-1"
+hostname := "my-london-1,my-london*"
 
-model := "AP43"
+mxedgeId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+
+mxclusterId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+
+model := "AP43,AP4*"
 
 limit := 100
 
@@ -1698,19 +1810,19 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsMxEdges.SearchOrgMxEdges(ctx, orgId, &hostname, nil, nil, &model, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := orgsMxEdges.SearchOrgMxEdges(ctx, orgId, &hostname, &mxedgeId, &mxclusterId, &model, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -1748,15 +1860,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Unassign Org Mx Edge from Site
 
-Unassign Org MxEdge from Site
+Unassign one or more Mist Edge appliances from their current site while keeping them in the organization.
 
 ```go
 UnassignOrgMxEdgeFromSite(
@@ -1767,6 +1879,10 @@ UnassignOrgMxEdgeFromSite(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -1775,6 +1891,8 @@ UnassignOrgMxEdgeFromSite(
 | `body` | [`*models.MxedgesUnassign`](../../doc/models/mxedges-unassign.md) | Body, Optional | Request Body |
 
 ## Response Type
+
+**200**: OK - list only devices that has deviceprofile_id changed
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAssignSuccess](../../doc/models/response-assign-success.md).
 
@@ -1796,14 +1914,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -1829,15 +1947,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Unregister Org Mx Edge
 
-In the case where a Mist Edge is replaced, you would need to unregister it. Which disconnects the currently the connected Mist Edge and allow another to register.
+Unregister a Mist Edge during a replacement workflow by disconnecting the currently registered appliance so another Mist Edge can register.
 
 ```go
 UnregisterOrgMxEdge(
@@ -1848,6 +1966,10 @@ UnregisterOrgMxEdge(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -1856,6 +1978,8 @@ UnregisterOrgMxEdge(
 | `mxedgeId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
@@ -1873,14 +1997,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -1894,15 +2018,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Update Org Mx Edge
 
-Update Org MxEdge
+Update a Mist Edge appliance configuration, including model, name, management IP, services, and tunnel termination settings.
 
 ```go
 UpdateOrgMxEdge(
@@ -1914,6 +2038,10 @@ UpdateOrgMxEdge(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -1923,6 +2051,8 @@ UpdateOrgMxEdge(
 | `body` | [`*models.Mxedge`](../../doc/models/mxedge.md) | Body, Optional | Request Body |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Mxedge](../../doc/models/mxedge.md).
 
@@ -1973,14 +2103,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -2046,15 +2176,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Upload Org Mx Edge Support Files
 
-Support / Upload Mist Edge support files
+Trigger upload of support files from a Mist Edge for troubleshooting.
 
 ```go
 UploadOrgMxEdgeSupportFiles(
@@ -2065,6 +2195,10 @@ UploadOrgMxEdgeSupportFiles(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -2073,6 +2207,8 @@ UploadOrgMxEdgeSupportFiles(
 | `mxedgeId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
@@ -2090,14 +2226,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -2111,8 +2247,8 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 

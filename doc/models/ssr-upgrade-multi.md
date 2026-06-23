@@ -1,6 +1,8 @@
 
 # Ssr Upgrade Multi
 
+Request to upgrade multiple SSR devices
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -19,23 +21,33 @@
 | `Version` | `*string` | Optional | 128T firmware version to upgrade (e.g. 5.3.0-93)<br><br>**Constraints**: *Minimum Length*: `1` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "channel": "stable",
-  "device_ids": [
-    "000005c7-0000-0000-0000-000000000000",
-    "000005c8-0000-0000-0000-000000000000"
-  ],
-  "strategy": "big_bang",
-  "reboot_at": 78,
-  "start_time": 148,
-  "version": "version6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    ssrUpgradeMulti := models.SsrUpgradeMulti{
+        Channel:              models.ToPointer(models.SsrUpgradeChannelEnum_STABLE),
+        DeviceIds:            []uuid.UUID{
+            uuid.MustParse("000002a9-0000-0000-0000-000000000000"),
+            uuid.MustParse("000002aa-0000-0000-0000-000000000000"),
+            uuid.MustParse("000002ab-0000-0000-0000-000000000000"),
+        },
+        RebootAt:             models.ToPointer(112),
+        StartTime:            models.ToPointer(182),
+        Strategy:             models.ToPointer(models.SsrUpgradeStrategyEnum_BIGBANG),
+        Version:              models.ToPointer("version8"),
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

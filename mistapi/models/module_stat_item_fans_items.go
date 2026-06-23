@@ -8,10 +8,15 @@ import (
 )
 
 // ModuleStatItemFansItems represents a ModuleStatItemFansItems struct.
+// Cooling fan telemetry for a device module
 type ModuleStatItemFansItems struct {
-	Airflow              *string                `json:"airflow,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
-	Rpm                  *int                   `json:"rpm,omitempty"`
+	// Direction of airflow reported for the fan
+	Airflow *string `json:"airflow,omitempty"`
+	// Fan label reported by the device
+	Name *string `json:"name,omitempty"`
+	// Current fan speed in revolutions per minute
+	Rpm *int `json:"rpm,omitempty"`
+	// Operational status reported for the fan
 	Status               *string                `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

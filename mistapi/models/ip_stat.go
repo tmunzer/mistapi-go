@@ -8,16 +8,27 @@ import (
 )
 
 // IpStat represents a IpStat struct.
+// Read-only IP addressing status reported by a device interface
 type IpStat struct {
-	DhcpServer           Optional[string]       `json:"dhcp_server"`
-	Dns                  []string               `json:"dns,omitempty"`
-	DnsSuffix            []string               `json:"dns_suffix,omitempty"`
-	Gateway              Optional[string]       `json:"gateway"`
-	Gateway6             Optional[string]       `json:"gateway6"`
-	Ip                   Optional[string]       `json:"ip"`
-	Ip6                  Optional[string]       `json:"ip6"`
-	Ips                  map[string]string      `json:"ips,omitempty"`
-	Netmask              Optional[string]       `json:"netmask"`
+	// Reported DHCP server IPv4 address for the interface, when available
+	DhcpServer Optional[string] `json:"dhcp_server"`
+	// Unique string values returned or accepted by this schema
+	Dns []string `json:"dns,omitempty"`
+	// Unique string values returned or accepted by this schema
+	DnsSuffix []string `json:"dns_suffix,omitempty"`
+	// Current IPv4 default gateway for the interface, when available
+	Gateway Optional[string] `json:"gateway"`
+	// Current IPv6 default gateway for the interface, when available
+	Gateway6 Optional[string] `json:"gateway6"`
+	// Current IPv4 address for the interface, when available
+	Ip Optional[string] `json:"ip"`
+	// Current IPv6 address for the interface, when available
+	Ip6 Optional[string] `json:"ip6"`
+	// Per-VLAN IP address summaries keyed by VLAN name
+	Ips map[string]string `json:"ips,omitempty"`
+	// Current IPv4 subnet mask for the interface, when available
+	Netmask Optional[string] `json:"netmask"`
+	// Current IPv6 prefix length for the interface, when available
 	Netmask6             Optional[string]       `json:"netmask6"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -10,12 +10,13 @@ import (
 )
 
 // UtilsRrmOptimize represents a UtilsRrmOptimize struct.
+// Request to optimize RRM for selected AP radio bands
 type UtilsRrmOptimize struct {
-	// List of bands
+	// Radio bands to include in the RRM optimization
 	Bands []string `json:"bands"`
-	// Targeting AP (neighbor APs may get changed, too), default is empty for ALL APs
+	// AP MAC addresses to target for optimization. Neighboring APs may also change; omitted or empty targets all APs
 	Macs []string `json:"macs,omitempty"`
-	// Only changing TX Power (will not disconnect clients)
+	// When true, adjust only transmit power so clients are not disconnected
 	TxpowerOnly          *bool                  `json:"txpower_only,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

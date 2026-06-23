@@ -1,7 +1,7 @@
 
 # Tunterm Dhcpd Type Enum
 
-enum: `relay`
+DHCP handling mode for tunnel termination. enum: `relay`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `relay`
 | Name |
 |  --- |
 | `relay` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    tuntermDhcpdType := models.TuntermDhcpdTypeEnum_RELAY
+
+}
+```
 

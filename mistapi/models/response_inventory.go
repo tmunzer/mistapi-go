@@ -8,14 +8,21 @@ import (
 )
 
 // ResponseInventory represents a ResponseInventory struct.
+// Result of adding device claim codes to organization inventory
 type ResponseInventory struct {
-	Added                []string                                    `json:"added,omitempty"`
-	Duplicated           []string                                    `json:"duplicated,omitempty"`
-	Error                []string                                    `json:"error,omitempty"`
-	InventoryAdded       []ResponseInventoryInventoryAddedItems      `json:"inventory_added,omitempty"`
-	InventoryDuplicated  []ResponseInventoryInventoryDuplicatedItems `json:"inventory_duplicated,omitempty"`
-	Reason               []string                                    `json:"reason,omitempty"`
-	AdditionalProperties map[string]interface{}                      `json:"_"`
+	// Claim codes accepted into organization inventory
+	Added []string `json:"added,omitempty"`
+	// Claim codes already present in organization inventory
+	Duplicated []string `json:"duplicated,omitempty"`
+	// Claim codes rejected by the inventory add operation
+	Error []string `json:"error,omitempty"`
+	// Detailed inventory records added by the claim operation
+	InventoryAdded []ResponseInventoryInventoryAddedItems `json:"inventory_added,omitempty"`
+	// Detailed inventory records already present during the claim operation
+	InventoryDuplicated []ResponseInventoryInventoryDuplicatedItems `json:"inventory_duplicated,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Reason               []string               `json:"reason,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseInventory,

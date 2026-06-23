@@ -9,21 +9,27 @@ import (
 )
 
 // EvpnTopologyResponse represents a EvpnTopologyResponse struct.
+// EVPN topology metadata returned by EVPN topology APIs
 type EvpnTopologyResponse struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	// EVPN Options
+	// EVPN topology generation options for campus fabric configuration
 	EvpnOptions *EvpnOptions `json:"evpn_options,omitempty"`
-	ForSite     *bool        `json:"for_site,omitempty"`
+	// Whether the EVPN topology is scoped to a site rather than the organization
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64   `json:"modified_time,omitempty"`
-	Name         *string    `json:"name,omitempty"`
-	OrgId        *uuid.UUID `json:"org_id,omitempty"`
-	Overwrite    *bool      `json:"overwrite,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Display name for the EVPN topology
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Whether generated EVPN configuration changes are applied automatically
+	Overwrite *bool `json:"overwrite,omitempty"`
 	// Property key is the pod number
-	PodNames             map[string]string      `json:"pod_names,omitempty"`
+	PodNames map[string]string `json:"pod_names,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

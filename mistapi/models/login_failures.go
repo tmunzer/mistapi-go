@@ -8,11 +8,11 @@ import (
 )
 
 // LoginFailures represents a LoginFailures struct.
-// Failed login attempts
+// Failed login attempt summary with source IPs and user agents
 type LoginFailures struct {
-	// Email address of the user
+	// User email address for the failed login attempts
 	Email *string `json:"email,omitempty"`
-	// Last failure time
+	// Time of the most recent failed login attempt
 	LastFailureAt *int `json:"last_failure_at,omitempty"`
 	// Number of failed login attempts
 	NumAttempts *int `json:"num_attempts,omitempty"`

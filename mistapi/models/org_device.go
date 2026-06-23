@@ -10,8 +10,11 @@ import (
 )
 
 // OrgDevice represents a OrgDevice struct.
+// Organization device identifier returned by the devices list
 type OrgDevice struct {
-	Mac                  string                 `json:"mac"`
+	// Organization device MAC address
+	Mac string `json:"mac"`
+	// Display name of the organization device
 	Name                 string                 `json:"name"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

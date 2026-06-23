@@ -16,3 +16,18 @@ Optional if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enu
 | `sha384` |
 | `sha512` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanPortalIdpSignAlgo := models.WlanPortalIdpSignAlgoEnum_SHA384
+
+}
+```
+

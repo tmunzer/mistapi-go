@@ -8,8 +8,9 @@ import (
 )
 
 // StatsMxedgeCpuStat represents a StatsMxedgeCpuStat struct.
-// CPU/core stats list
+// Aggregate and per-core CPU utilization statistics for a Mist Edge
 type StatsMxedgeCpuStat struct {
+	// Per-core CPU utilization statistics keyed by CPU name
 	Cpus map[string]CpuStat `json:"cpus,omitempty"`
 	// Percentage of Idle, Idle/(Idle + Busy) since last sampling
 	Idle *int `json:"idle,omitempty"`

@@ -19,7 +19,7 @@ mSPsOrgGroups := client.MSPsOrgGroups()
 
 # Create Msp Org Group
 
-Create MSP Org Group
+Create an organization group under this MSP with a display name and optional list of member organization IDs.
 
 ```go
 CreateMspOrgGroup(
@@ -30,6 +30,10 @@ CreateMspOrgGroup(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -38,6 +42,8 @@ CreateMspOrgGroup(
 | `body` | [`*models.Orggroup`](../../doc/models/orggroup.md) | Body, Optional | Request Body |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Orggroup](../../doc/models/orggroup.md).
 
@@ -60,14 +66,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -98,15 +104,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Delete Msp Org Group
 
-Delete MSP Org Group
+Delete an MSP organization group. This removes the grouping object without deleting the organizations it referenced.
 
 ```go
 DeleteMspOrgGroup(
@@ -117,6 +123,10 @@ DeleteMspOrgGroup(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -125,6 +135,8 @@ DeleteMspOrgGroup(
 | `orggroupId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
@@ -142,14 +154,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -163,15 +175,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Get Msp Org Group
 
-Get MSP Org Group Details
+Return the organization group details, including its name and member organization IDs.
 
 ```go
 GetMspOrgGroup(
@@ -182,6 +194,10 @@ GetMspOrgGroup(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -190,6 +206,8 @@ GetMspOrgGroup(
 | `orggroupId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Orggroup](../../doc/models/orggroup.md).
 
@@ -207,14 +225,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -245,15 +263,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # List Msp Org Groups
 
-Get List of MSP Org Groups
+List organization groups defined under this MSP. Organization groups contain related organization IDs and can be used in MSP privilege assignments.
 
 ```go
 ListMspOrgGroups(
@@ -263,6 +281,10 @@ ListMspOrgGroups(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -270,6 +292,8 @@ ListMspOrgGroups(
 | `mspId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Orggroup](../../doc/models/orggroup.md).
 
@@ -285,14 +309,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -325,15 +349,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Update Msp Org Group
 
-Update MSP Org Group
+Update an MSP organization group's display name or member organization IDs.
 
 ```go
 UpdateMspOrgGroup(
@@ -345,6 +369,10 @@ UpdateMspOrgGroup(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -354,6 +382,8 @@ UpdateMspOrgGroup(
 | `body` | [`*models.Orggroup`](../../doc/models/orggroup.md) | Body, Optional | Request Body |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Orggroup](../../doc/models/orggroup.md).
 
@@ -375,14 +405,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -413,8 +443,8 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 

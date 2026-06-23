@@ -11,17 +11,26 @@ FFT sample data for a specific frequency
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Frequency` | `*float64` | Optional | Frequency in MHz |
-| `Rssi` | `*float64` | Optional | RSSI in dBm |
-| `Signal7` | `*float64` | Optional | RSSI in dBm |
+| `Frequency` | `*float64` | Optional | Sample frequency, in MHz, for this FFT point |
+| `Rssi` | `*float64` | Optional | Received signal strength, in dBm, for this FFT sample |
+| `Signal7` | `*float64` | Optional | Additional signal level, in dBm, reported for this FFT sample |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "frequency": 2437.0,
-  "rssi": -70.0,
-  "signal7": -70.0
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responsePastSpectrumAnalysisFftSample := models.ResponsePastSpectrumAnalysisFftSample{
+        Frequency:            models.ToPointer(float64(2437)),
+        Rssi:                 models.ToPointer(float64(-70)),
+        Signal7:              models.ToPointer(float64(-70)),
+    }
+
 }
 ```
 

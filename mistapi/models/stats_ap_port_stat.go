@@ -8,20 +8,27 @@ import (
 )
 
 // StatsApPortStat represents a StatsApPortStat struct.
+// Ethernet port statistics reported by an AP
 type StatsApPortStat struct {
+	// Whether the AP Ethernet port is operating in full-duplex mode
 	FullDuplex Optional[bool] `json:"full_duplex"`
 	// Amount of traffic received since connection
-	RxBytes   Optional[int64] `json:"rx_bytes"`
-	RxErrors  Optional[int]   `json:"rx_errors"`
-	RxPeakBps Optional[int]   `json:"rx_peak_bps"`
+	RxBytes Optional[int64] `json:"rx_bytes"`
+	// Receive error count reported for the AP Ethernet port
+	RxErrors Optional[int] `json:"rx_errors"`
+	// Peak receive throughput on the AP Ethernet port, in bits per second
+	RxPeakBps Optional[int] `json:"rx_peak_bps"`
 	// Amount of packets received since connection
 	RxPkts Optional[int64] `json:"rx_pkts"`
-	Speed  Optional[int]   `json:"speed"`
+	// Negotiated Ethernet link speed for the AP port, in Mbps
+	Speed Optional[int] `json:"speed"`
 	// Amount of traffic sent since connection
-	TxBytes   Optional[int64] `json:"tx_bytes"`
-	TxPeakBps Optional[int]   `json:"tx_peak_bps"`
+	TxBytes Optional[int64] `json:"tx_bytes"`
+	// Peak transmit throughput on the AP Ethernet port, in bits per second
+	TxPeakBps Optional[int] `json:"tx_peak_bps"`
 	// Amount of packets sent since connection
-	TxPkts               Optional[int64]        `json:"tx_pkts"`
+	TxPkts Optional[int64] `json:"tx_pkts"`
+	// Whether the AP Ethernet port link is up
 	Up                   Optional[bool]         `json:"up"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

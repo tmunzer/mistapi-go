@@ -8,10 +8,15 @@ import (
 )
 
 // StatsMxedgePortStatLacp represents a StatsMxedgePortStatLacp struct.
+// LACP state and counters for a Mist Edge port
 type StatsMxedgePortStatLacp struct {
-	MuxState             *string                `json:"mux_state,omitempty"`
-	RxLacpdu             *int                   `json:"rx_lacpdu,omitempty"`
-	RxState              *string                `json:"rx_state,omitempty"`
+	// LACP multiplexer state reported for the port
+	MuxState *string `json:"mux_state,omitempty"`
+	// Number of LACPDUs received on the port
+	RxLacpdu *int `json:"rx_lacpdu,omitempty"`
+	// LACP receive state reported for the port
+	RxState *string `json:"rx_state,omitempty"`
+	// Number of LACPDUs transmitted from the port
 	TxLacpdu             *int                   `json:"tx_lacpdu,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

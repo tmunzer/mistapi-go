@@ -10,10 +10,13 @@ import (
 )
 
 // MapNode represents a MapNode struct.
-// Nodes on maps
+// Node in a map path graph
 type MapNode struct {
-	Edges                map[string]string      `json:"edges,omitempty"`
-	Name                 string                 `json:"name"`
+	// Adjacent node IDs and path weights for this map node
+	Edges map[string]string `json:"edges,omitempty"`
+	// Map node identifier or display name
+	Name string `json:"name"`
+	// Position of a map path node
 	Position             *MapNodePosition       `json:"position,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

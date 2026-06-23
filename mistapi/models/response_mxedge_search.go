@@ -8,12 +8,19 @@ import (
 )
 
 // ResponseMxedgeSearch represents a ResponseMxedgeSearch struct.
+// Search response for Mist Edge records
 type ResponseMxedgeSearch struct {
-	End                  *int                   `json:"end,omitempty"`
-	Limit                *int                   `json:"limit,omitempty"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []SearchMxedge         `json:"results,omitempty"`
-	Start                *int                   `json:"start,omitempty"`
+	// Epoch timestamp for the end of the Mist Edge search window
+	End *int `json:"end,omitempty"`
+	// Maximum number of Mist Edge records returned in this page
+	Limit *int `json:"limit,omitempty"`
+	// Pagination cursor or URL for retrieving the next page of Mist Edge records
+	Next *string `json:"next,omitempty"`
+	// Mist Edge search records returned by a search response
+	Results []SearchMxedge `json:"results,omitempty"`
+	// Epoch timestamp for the start of the Mist Edge search window
+	Start *int `json:"start,omitempty"`
+	// Number of Mist Edge records matching the search filters across all pages
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

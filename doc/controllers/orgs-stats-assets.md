@@ -17,7 +17,7 @@ orgsStatsAssets := client.OrgsStatsAssets()
 
 # Count Org Assets by Distance Field
 
-Count by Distinct Attributes of Org Assets
+Count organization asset statistics grouped by a distinct asset attribute, such as MAC address, site, map, iBeacon UUID, iBeacon major, or iBeacon minor.
 
 ```go
 CountOrgAssetsByDistanceField(
@@ -29,15 +29,21 @@ CountOrgAssetsByDistanceField(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.OrgAssetCountDistinctEnum`](../../doc/models/org-asset-count-distinct-enum.md) | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `distinct` | [`*models.OrgAssetCountDistinctEnum`](../../doc/models/org-asset-count-distinct-enum.md) | Query, Optional | Field used to group this count response. enum: `ibeacon_major`, `ibeacon_minor`, `ibeacon_uuid`, `mac`, `map_id`, `site_id` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
+
+**200**: Result of Count
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
@@ -55,14 +61,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -96,15 +102,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # List Org Assets Stats
 
-Get List of Org Assets Stats
+List BLE asset location and advertisement statistics for the organization over an optional time window, including map coordinates, RSSI, zones, and iBeacon or Eddystone fields.
 
 ```go
 ListOrgAssetsStats(
@@ -119,18 +125,24 @@ ListOrgAssetsStats(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | Select the page number to return when using page-based pagination; starts at `1`<br><br>**Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.StatsAsset](../../doc/models/stats-asset.md).
 
@@ -152,14 +164,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -227,15 +239,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Search Org Assets
 
-Search for Org Assets
+Search BLE asset statistics with filters for site, MAC address, asset name, map, iBeacon or Eddystone identifiers, reporting AP MAC address, RSSI, beam, and time range. Supports pagination and sorting.
 
 ```go
 SearchOrgAssets(
@@ -265,33 +277,39 @@ SearchOrgAssets(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `siteId` | `*string` | Query, Optional | - |
-| `mac` | `*string` | Query, Optional | - |
-| `deviceName` | `*string` | Query, Optional | - |
-| `name` | `*string` | Query, Optional | - |
-| `mapId` | `*string` | Query, Optional | - |
-| `ibeaconUuid` | `*string` | Query, Optional | - |
-| `ibeaconMajor` | `*string` | Query, Optional | - |
-| `ibeaconMinor` | `*string` | Query, Optional | - |
-| `eddystoneUidNamespace` | `*string` | Query, Optional | - |
-| `eddystoneUidInstance` | `*string` | Query, Optional | - |
-| `eddystoneUrl` | `*string` | Query, Optional | - |
-| `apMac` | `*string` | Query, Optional | - |
-| `beam` | `*int` | Query, Optional | - |
-| `rssi` | `*int` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `siteId` | `*string` | Query, Optional | Filter results by site identifier |
+| `mac` | `*string` | Query, Optional | Filter results by MAC address. Accepts multiple comma-separated values. |
+| `deviceName` | `*string` | Query, Optional | Filter asset results by reporting device name |
+| `name` | `*string` | Query, Optional | Filter results by name. Accepts multiple comma-separated values. |
+| `mapId` | `*string` | Query, Optional | Filter results by map identifier |
+| `ibeaconUuid` | `*string` | Query, Optional | Filter asset results by iBeacon UUID. Accepts multiple comma-separated values. |
+| `ibeaconMajor` | `*string` | Query, Optional | Filter asset results by iBeacon major value. Accepts multiple comma-separated values. |
+| `ibeaconMinor` | `*string` | Query, Optional | Filter asset results by iBeacon minor value. Accepts multiple comma-separated values. |
+| `eddystoneUidNamespace` | `*string` | Query, Optional | Filter asset results by Eddystone UID namespace |
+| `eddystoneUidInstance` | `*string` | Query, Optional | Filter asset results by Eddystone UID instance |
+| `eddystoneUrl` | `*string` | Query, Optional | Filter asset results by Eddystone URL |
+| `apMac` | `*string` | Query, Optional | Filter asset results by reporting AP MAC address. Accepts multiple comma-separated values. |
+| `beam` | `*int` | Query, Optional | Filter asset results by beam value. Accepts multiple comma-separated integer values. |
+| `rssi` | `*int` | Query, Optional | Filter asset results by RSSI value. Accepts multiple comma-separated integer values. |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseStatsAssets](../../doc/models/response-stats-assets.md).
 
@@ -302,25 +320,37 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+mac := "5c5b53010101,5c5b53020202"
+
+name := "name-a,name-b"
+
+ibeaconUuid := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+
+ibeaconMajor := "59788,902"
+
+ibeaconMinor := "8385,4432"
+
+apMac := "5c5b53010101,5c5b53020202"
+
 limit := 100
 
 duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsStatsAssets.SearchOrgAssets(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := orgsStatsAssets.SearchOrgAssets(ctx, orgId, nil, &mac, nil, &name, nil, &ibeaconUuid, &ibeaconMajor, &ibeaconMinor, nil, nil, nil, &apMac, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -377,8 +407,8 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 

@@ -8,9 +8,13 @@ import (
 )
 
 // AggregateRoute represents a AggregateRoute struct.
+// Aggregate route configuration for a network or routing instance
 type AggregateRoute struct {
-	Discard              *bool                  `json:"discard,omitempty"`
-	Metric               Optional[int]          `json:"metric"`
+	// Whether to install the aggregate route as a discard route
+	Discard *bool `json:"discard,omitempty"`
+	// Routing metric assigned to the aggregate route
+	Metric Optional[int] `json:"metric"`
+	// Route preference assigned to the aggregate route
 	Preference           Optional[int]          `json:"preference"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

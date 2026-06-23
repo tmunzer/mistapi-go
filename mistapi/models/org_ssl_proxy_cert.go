@@ -8,7 +8,9 @@ import (
 )
 
 // OrgSslProxyCert represents a OrgSslProxyCert struct.
+// SSL proxy certificate returned for the organization
 type OrgSslProxyCert struct {
+	// PEM-encoded SSL proxy certificate for the organization
 	Cert                 *string                `json:"cert,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

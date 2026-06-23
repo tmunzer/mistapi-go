@@ -8,9 +8,13 @@ import (
 )
 
 // DhcpdConfigFixedBinding represents a DhcpdConfigFixedBinding struct.
+// Static DHCP binding for a client MAC address
 type DhcpdConfigFixedBinding struct {
-	Ip                   *string                `json:"ip,omitempty"`
-	Ip6                  *string                `json:"ip6,omitempty"`
+	// Reserved IPv4 address for this fixed DHCP binding
+	Ip *string `json:"ip,omitempty"`
+	// Reserved IPv6 address for this fixed DHCP binding
+	Ip6 *string `json:"ip6,omitempty"`
+	// Friendly name for this fixed DHCP binding
 	Name                 *string                `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -10,8 +10,11 @@ import (
 )
 
 // MxedgeTuntermOtherIpConfig represents a MxedgeTuntermOtherIpConfig struct.
+// Additional IP configuration for a Mist Tunnel VLAN interface
 type MxedgeTuntermOtherIpConfig struct {
-	Ip                   string                 `json:"ip"`
+	// Address for the additional Mist Tunnel interface, in IPv4 format
+	Ip string `json:"ip"`
+	// Subnet mask for the additional Mist Tunnel IPv4 address
 	Netmask              string                 `json:"netmask"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

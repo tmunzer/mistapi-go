@@ -1,6 +1,8 @@
 
 # Locate Switch
 
+Request body for locating a switch or virtual chassis member by MAC address for a limited duration
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -15,16 +17,24 @@
 | `Mac` | `*string` | Optional | For virtual chassis, the MAC of the member |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "duration": 5,
-  "mac": "f01c2d4ff760",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    locateSwitch := models.LocateSwitch{
+        Duration:             models.ToPointer(5),
+        Mac:                  models.ToPointer("f01c2d4ff760"),
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

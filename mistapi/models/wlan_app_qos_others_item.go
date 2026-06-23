@@ -8,12 +8,17 @@ import (
 )
 
 // WlanAppQosOthersItem represents a WlanAppQosOthersItem struct.
+// Custom QoS rewrite rule for traffic not matched by a named application
 type WlanAppQosOthersItem struct {
 	// DSCP value range between 0 and 63
-	Dscp                 *Dscp                  `json:"dscp,omitempty"`
-	DstSubnet            *string                `json:"dst_subnet,omitempty"`
-	PortRanges           *string                `json:"port_ranges,omitempty"`
-	Protocol             *string                `json:"protocol,omitempty"`
+	Dscp *Dscp `json:"dscp,omitempty"`
+	// Destination subnet filter for this custom QoS rule
+	DstSubnet *string `json:"dst_subnet,omitempty"`
+	// TCP or UDP port ranges matched by this custom QoS rule
+	PortRanges *string `json:"port_ranges,omitempty"`
+	// IP protocol matched by this custom QoS rule
+	Protocol *string `json:"protocol,omitempty"`
+	// Source subnet filter for this custom QoS rule
 	SrcSubnet            *string                `json:"src_subnet,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

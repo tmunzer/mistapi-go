@@ -9,21 +9,35 @@ import (
 )
 
 // DiscoveredSwitch represents a DiscoveredSwitch struct.
+// Switch discovered from AP uplink LLDP data and site switch discovery
 type DiscoveredSwitch struct {
-	Adopted      *bool                `json:"adopted,omitempty"`
-	ApRedundancy *ApRedundancy        `json:"ap_redundancy,omitempty"`
-	Aps          []DiscoveredSwitchAp `json:"aps,omitempty"`
-	ChassisId    []string             `json:"chassis_id,omitempty"`
-	ForSite      *bool                `json:"for_site,omitempty"`
-	MgmtAddr     *string              `json:"mgmt_addr,omitempty"`
-	Model        *string              `json:"model,omitempty"`
-	OrgId        *uuid.UUID           `json:"org_id,omitempty"`
-	SiteId       *uuid.UUID           `json:"site_id,omitempty"`
-	SystemDesc   *string              `json:"system_desc,omitempty"`
-	SystemName   *string              `json:"system_name,omitempty"`
-	// Epoch (seconds)
-	Timestamp            *float64               `json:"timestamp,omitempty"`
-	Vendor               *string                `json:"vendor,omitempty"`
+	// Whether the discovered switch has been adopted into Mist management
+	Adopted *bool `json:"adopted,omitempty"`
+	// AP switch redundancy coverage summary
+	ApRedundancy *ApRedundancy `json:"ap_redundancy,omitempty"`
+	// AP attachments observed on a discovered switch
+	Aps []DiscoveredSwitchAp `json:"aps,omitempty"`
+	// Unique string values returned or accepted by this schema
+	ChassisId []string `json:"chassis_id,omitempty"`
+	// Whether the discovered switch is associated with the requested site
+	ForSite *bool `json:"for_site,omitempty"`
+	// Management IP address advertised by the discovered switch
+	MgmtAddr *string `json:"mgmt_addr,omitempty"`
+	// Switch model reported for the discovered switch
+	Model *string `json:"model,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// LLDP system description advertised by the discovered switch
+	SystemDesc *string `json:"system_desc,omitempty"`
+	// LLDP system name advertised by the discovered switch
+	SystemName *string `json:"system_name,omitempty"`
+	// Epoch timestamp, in seconds
+	Timestamp *float64 `json:"timestamp,omitempty"`
+	// Switch vendor reported for the discovered switch
+	Vendor *string `json:"vendor,omitempty"`
+	// Software version reported for the discovered switch
 	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

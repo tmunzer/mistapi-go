@@ -9,8 +9,11 @@ import (
 )
 
 // OtherDeviceUpdate represents a OtherDeviceUpdate struct.
+// Manual site association update for one other device
 type OtherDeviceUpdate struct {
-	DeviceMac            *string                `json:"device_mac,omitempty"`
+	// Other-device MAC address to associate with a site
+	DeviceMac *string `json:"device_mac,omitempty"`
+	// Site ID to associate with the other device
 	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

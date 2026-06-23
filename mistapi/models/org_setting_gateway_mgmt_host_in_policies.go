@@ -8,8 +8,11 @@ import (
 )
 
 // OrgSettingGatewayMgmtHostInPolicies represents a OrgSettingGatewayMgmtHostInPolicies struct.
+// Host-in access policies for gateway management services
 type OrgSettingGatewayMgmtHostInPolicies struct {
-	Icmp                 *OrgSettingGatewayMgmtHostInPolicy `json:"icmp,omitempty"`
+	// Host-in access policy for a gateway management service
+	Icmp *OrgSettingGatewayMgmtHostInPolicy `json:"icmp,omitempty"`
+	// Host-in access policy for a gateway management service
 	Snmp                 *OrgSettingGatewayMgmtHostInPolicy `json:"snmp,omitempty"`
 	AdditionalProperties map[string]interface{}             `json:"_"`
 }

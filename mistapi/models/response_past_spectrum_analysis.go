@@ -8,17 +8,19 @@ import (
 )
 
 // ResponsePastSpectrumAnalysis represents a ResponsePastSpectrumAnalysis struct.
+// Paginated response for past site spectrum analysis records
 type ResponsePastSpectrumAnalysis struct {
-	// End time of the spectrum analysis in epoch seconds
+	// Epoch timestamp, in seconds, for the end of the spectrum analysis query window
 	End *int `json:"end,omitempty"`
-	// Limit of the number of results returned
+	// Maximum number of spectrum analysis records returned in this page
 	Limit *int `json:"limit,omitempty"`
-	// Page number of the results returned
-	Page    *int                                 `json:"page,omitempty"`
+	// Current page number returned for the spectrum analysis results
+	Page *int `json:"page,omitempty"`
+	// Past spectrum analysis records returned for the site
 	Results []ResponsePastSpectrumAnalysisResult `json:"results,omitempty"`
-	// Start time of the spectrum analysis in epoch seconds
+	// Epoch timestamp, in seconds, for the start of the spectrum analysis query window
 	Start *int `json:"start,omitempty"`
-	// Total number of results available for the given time range
+	// Number of spectrum analysis records available for the given time range
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

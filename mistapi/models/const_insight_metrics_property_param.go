@@ -8,7 +8,9 @@ import (
 )
 
 // ConstInsightMetricsPropertyParam represents a ConstInsightMetricsPropertyParam struct.
+// Query parameter definition for an insight metric
 type ConstInsightMetricsPropertyParam struct {
+	// Whether this query parameter is required
 	Required             *bool                  `json:"required,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

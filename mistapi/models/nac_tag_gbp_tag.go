@@ -9,7 +9,7 @@ import (
 )
 
 // NacTagGbpTag represents a NacTagGbpTag struct.
-// If `type`==`gbp_tag`
+// If `type`==`gbp_tag`, GBP tag value returned by the NAC rule
 type NacTagGbpTag struct {
 	value    any
 	isNumber bool
@@ -75,7 +75,7 @@ func (n *NacTagGbpTag) AsString() (
 }
 
 // internalNacTagGbpTag represents a nacTagGbpTag struct.
-// If `type`==`gbp_tag`
+// If `type`==`gbp_tag`, GBP tag value returned by the NAC rule
 type internalNacTagGbpTag struct{}
 
 var NacTagGbpTagContainer internalNacTagGbpTag

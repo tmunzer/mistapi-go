@@ -1,7 +1,7 @@
 
 # App Probing Custom App Protocol Enum
 
-enum: `http`, `icmp`
+Probe protocol for a custom application. enum: `http`, `icmp`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `http`, `icmp`
 |  --- |
 | `http` |
 | `icmp` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    appProbingCustomAppProtocol := models.AppProbingCustomAppProtocolEnum_HTTP
+
+}
+```
 

@@ -10,12 +10,13 @@ import (
 )
 
 // DeviceVersionItem represents a DeviceVersionItem struct.
+// Available firmware version for a specific device model and release tag
 type DeviceVersionItem struct {
 	// Device model (as seen in the device stats)
 	Model string `json:"model"`
 	// Annotation, stable / beta / alpha. Or it can be empty or nothing which is likely a dev build
 	Tag *string `json:"tag,omitempty"`
-	// Firmware version
+	// Available firmware version for this device model
 	Version              string                 `json:"version"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

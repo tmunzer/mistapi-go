@@ -8,6 +8,7 @@ import (
 )
 
 // OrgSettingScep represents a OrgSettingScep struct.
+// Mist SCEP settings for certificate enrollment
 type OrgSettingScep struct {
 	// List of SCEP cert providers, e.g. `intune`, `jamf`, `byod`
 	CertProviders []OrgSettingScepCertProviderEnum `json:"cert_providers,omitempty"`

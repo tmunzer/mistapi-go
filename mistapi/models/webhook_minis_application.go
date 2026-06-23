@@ -12,8 +12,9 @@ import (
 // WebhookMinisApplication represents a WebhookMinisApplication struct.
 // Sample of the `minis-application` webhook payload.
 type WebhookMinisApplication struct {
+	// Marvis Minis application test events included in a webhook delivery
 	Events []WebhookMinisApplicationEvent `json:"events"`
-	// enum: `minis-application`
+	// Webhook topic name for Minis application test deliveries. enum: `minis-application`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -1,6 +1,8 @@
 
 # Gateway Extra Route
 
+Gateway IPv4 extra route next-hop settings
+
 ## Structure
 
 `GatewayExtraRoute`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Via` | `*string` | Optional | - |
+| `Via` | `*string` | Optional | Next-hop IPv4 address for the gateway extra route |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "via": "via8"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayExtraRoute := models.GatewayExtraRoute{
+        Via:                  models.ToPointer("via8"),
+    }
+
 }
 ```
 

@@ -1,7 +1,7 @@
 
 # Vrrp Group Auth Type Enum
 
-enum: `md5`, `simple`
+Authentication method used by the VRRP group. enum: `md5`, `simple`
 
 ## Enumeration
 
@@ -16,7 +16,16 @@ enum: `md5`, `simple`
 
 ## Example
 
-```
-md5
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    vrrpGroupAuthType := models.VrrpGroupAuthTypeEnum_MD5
+
+}
 ```
 

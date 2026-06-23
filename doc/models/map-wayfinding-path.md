@@ -11,36 +11,45 @@ JSON blob for wayfinding (using Dijkstra’s algorithm)
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Coordinate` | `*string` | Optional | - |
-| `Nodes` | [`[]models.MapNode`](../../doc/models/map-node.md) | Optional | **Constraints**: *Minimum Items*: `0` |
+| `Coordinate` | `*string` | Optional | Wayfinding path coordinate space |
+| `Nodes` | [`[]models.MapNode`](../../doc/models/map-node.md) | Optional | Map nodes included in a wayfinding path<br><br>**Constraints**: *Minimum Items*: `0` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "coordinate": "actual",
-  "nodes": [
-    {
-      "edges": {
-        "key0": "edges6"
-      },
-      "name": "name6",
-      "position": {
-        "x": 224.72,
-        "y": 100.0
-      }
-    },
-    {
-      "edges": {
-        "key0": "edges6"
-      },
-      "name": "name6",
-      "position": {
-        "x": 224.72,
-        "y": 100.0
-      }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mapWayfindingPath := models.MapWayfindingPath{
+        Coordinate:           models.ToPointer("actual"),
+        Nodes:                []models.MapNode{
+            models.MapNode{
+                Edges:                map[string]string{
+                    "key0": "edges6",
+                },
+                Name:                 "name6",
+                Position:             models.ToPointer(models.MapNodePosition{
+                    X:                    float64(224.72),
+                    Y:                    float64(100),
+                }),
+            },
+            models.MapNode{
+                Edges:                map[string]string{
+                    "key0": "edges6",
+                },
+                Name:                 "name6",
+                Position:             models.ToPointer(models.MapNodePosition{
+                    X:                    float64(224.72),
+                    Y:                    float64(100),
+                }),
+            },
+        },
     }
-  ]
+
 }
 ```
 

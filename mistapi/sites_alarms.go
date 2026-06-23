@@ -39,19 +39,15 @@ func (s *SitesAlarms) AckSiteMultipleAlarms(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -81,19 +77,15 @@ func (s *SitesAlarms) AckSiteAllAlarms(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -110,7 +102,7 @@ func (s *SitesAlarms) AckSiteAllAlarms(
 // CountSiteAlarms takes context, siteId, distinct, ackAdminName, acked, mType, severity, group, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of Site Alarms
+// Count alarms for a site, optionally grouped by the `distinct` field and filtered by time range. Use [Count Org Alarms]($e/Orgs%20Alarms/countOrgAlarms) to count alarms across the organization.
 func (s *SitesAlarms) CountSiteAlarms(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -131,19 +123,15 @@ func (s *SitesAlarms) CountSiteAlarms(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -189,7 +177,7 @@ func (s *SitesAlarms) CountSiteAlarms(
 // SearchSiteAlarms takes context, siteId, group, severity, mType, ackAdminName, acked, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.AlarmSearchResult data and
 // an error if there was an issue with the request or response.
-// Search Site Alarms
+// Search alarms for a site with filters for alarm group, severity, type, acknowledgement state, acknowledgement admin, and time range. Use [Search Org Alarms]($e/Orgs%20Alarms/searchOrgAlarms) to search alarms across the organization.
 func (s *SitesAlarms) SearchSiteAlarms(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -211,19 +199,15 @@ func (s *SitesAlarms) SearchSiteAlarms(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if group != nil {
 		req.QueryParam("group", *group)
@@ -284,19 +268,15 @@ func (s *SitesAlarms) UnackSiteMultipleAlarms(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -326,19 +306,15 @@ func (s *SitesAlarms) UnackSiteAllAlarms(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -368,19 +344,15 @@ func (s *SitesAlarms) AckSiteAlarm(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -410,19 +382,15 @@ func (s *SitesAlarms) UnackSiteAlarm(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -450,19 +418,15 @@ func (s *SitesAlarms) UnsubscribeSiteAlarms(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -486,19 +450,15 @@ func (s *SitesAlarms) SubscribeSiteAlarms(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()

@@ -18,7 +18,16 @@ note: ble_config will be ignored if esl_config is enabled and with native mode. 
 
 ## Example
 
-```
-imagotag
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    apEslType := models.ApEslTypeEnum_NATIVE
+
+}
 ```
 

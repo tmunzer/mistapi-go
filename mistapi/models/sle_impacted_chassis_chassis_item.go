@@ -8,13 +8,21 @@ import (
 )
 
 // SleImpactedChassisChassisItem represents a SleImpactedChassisChassisItem struct.
+// SLE impact row for a chassis
 type SleImpactedChassisChassisItem struct {
-	Chassis              *string                `json:"chassis,omitempty"`
-	Degraded             *float64               `json:"degraded,omitempty"`
-	Duration             *float64               `json:"duration,omitempty"`
-	Role                 *string                `json:"role,omitempty"`
-	SwitchMac            *string                `json:"switch_mac,omitempty"`
-	SwitchName           *string                `json:"switch_name,omitempty"`
+	// Identifier of the chassis represented by this impacted row
+	Chassis *string `json:"chassis,omitempty"`
+	// Portion of the SLE total that was degraded for this chassis
+	Degraded *float64 `json:"degraded,omitempty"`
+	// Observation time represented by this chassis impact row
+	Duration *float64 `json:"duration,omitempty"`
+	// Virtual Chassis role for the switch member
+	Role *string `json:"role,omitempty"`
+	// MAC address of the switch represented by this chassis row
+	SwitchMac *string `json:"switch_mac,omitempty"`
+	// Display name of the switch represented by this chassis row
+	SwitchName *string `json:"switch_name,omitempty"`
+	// Overall SLE total measured for this chassis impact row
 	Total                *float64               `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

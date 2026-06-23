@@ -28,3 +28,18 @@ enum: `analytic_enabled`, `app_waking`, `asset_enabled`, `auto_upgrade_enabled`,
 | `vna_enabled` |
 | `wifi_enabled` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSitesCountDistinct := models.OrgSitesCountDistinctEnum_ROGUEENABLED
+
+}
+```
+

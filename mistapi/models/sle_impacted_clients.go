@@ -8,17 +8,27 @@ import (
 )
 
 // SleImpactedClients represents a SleImpactedClients struct.
+// Paginated list of clients impacted by an SLE metric
 type SleImpactedClients struct {
-	Classifier           *string                    `json:"classifier,omitempty"`
-	Clients              []SleImpactedClientsClient `json:"clients,omitempty"`
-	End                  *int                       `json:"end,omitempty"`
-	Failure              *string                    `json:"failure,omitempty"`
-	Limit                *int                       `json:"limit,omitempty"`
-	Metric               *string                    `json:"metric,omitempty"`
-	Page                 *int                       `json:"page,omitempty"`
-	Start                *int                       `json:"start,omitempty"`
-	TotalCount           *int                       `json:"total_count,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"_"`
+	// Requested SLE classifier filter applied to the query
+	Classifier *string `json:"classifier,omitempty"`
+	// Impacted client rows returned for an SLE query
+	Clients []SleImpactedClientsClient `json:"clients,omitempty"`
+	// Last timestamp in the impacted clients window
+	End *int `json:"end,omitempty"`
+	// Requested SLE failure filter applied to the query
+	Failure *string `json:"failure,omitempty"`
+	// Maximum number of impacted client rows returned per page
+	Limit *int `json:"limit,omitempty"`
+	// SLE metric name used for the impacted clients query
+	Metric *string `json:"metric,omitempty"`
+	// Current page number for impacted client results
+	Page *int `json:"page,omitempty"`
+	// First timestamp in the impacted clients window
+	Start *int `json:"start,omitempty"`
+	// Number of impacted client rows matching the query
+	TotalCount           *int                   `json:"total_count,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SleImpactedClients,

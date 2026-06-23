@@ -8,11 +8,15 @@ import (
 )
 
 // ResponseSwitchMetricsConfigSuccess represents a ResponseSwitchMetricsConfigSuccess struct.
+// Configuration success metric for switches in the requested scope
 type ResponseSwitchMetricsConfigSuccess struct {
-	Details              *ResponseSwitchMetricsConfigSuccessDetails `json:"details,omitempty"`
-	Score                *int                                       `json:"score,omitempty"`
-	TotalSwitchCount     *int                                       `json:"total_switch_count,omitempty"`
-	AdditionalProperties map[string]interface{}                     `json:"_"`
+	// Detail values for the switch configuration success metric
+	Details *ResponseSwitchMetricsConfigSuccessDetails `json:"details,omitempty"`
+	// Reported metric score for switch configuration success
+	Score *int `json:"score,omitempty"`
+	// Number of switches included in the configuration success metric
+	TotalSwitchCount     *int                   `json:"total_switch_count,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseSwitchMetricsConfigSuccess,

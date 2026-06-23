@@ -10,14 +10,21 @@ import (
 )
 
 // ResponseTunnelSearch represents a ResponseTunnelSearch struct.
+// Paginated response for organization tunnel statistics search results
 type ResponseTunnelSearch struct {
-	End                  int                        `json:"end"`
-	Limit                int                        `json:"limit"`
-	Next                 *string                    `json:"next,omitempty"`
-	Results              []ResponseTunnelSearchItem `json:"results"`
-	Start                int                        `json:"start"`
-	Total                int                        `json:"total"`
-	AdditionalProperties map[string]interface{}     `json:"_"`
+	// Epoch timestamp, in seconds, for the end of the tunnel statistics search window
+	End int `json:"end"`
+	// Maximum number of tunnel statistics records returned in this page
+	Limit int `json:"limit"`
+	// URL for retrieving the next page of tunnel statistics results
+	Next *string `json:"next,omitempty"`
+	// Tunnel statistics records returned by search
+	Results []ResponseTunnelSearchItem `json:"results"`
+	// Epoch timestamp, in seconds, for the start of the tunnel statistics search window
+	Start int `json:"start"`
+	// Number of tunnel statistics records matching the search filters across all pages
+	Total                int                    `json:"total"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseTunnelSearch,

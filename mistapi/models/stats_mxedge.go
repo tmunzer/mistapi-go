@@ -9,56 +9,77 @@ import (
 )
 
 // StatsMxedge represents a StatsMxedge struct.
+// Statistics for a Mist Edge appliance returned by stats endpoints
 type StatsMxedge struct {
-	// CPU/core stats list
+	// Aggregate and per-core CPU utilization statistics for a Mist Edge
 	CpuStat *StatsMxedgeCpuStat `json:"cpu_stat,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	// Indicate fips configuration on the device
-	FipsEnabled *bool         `json:"fips_enabled,omitempty"`
-	ForSite     *bool         `json:"for_site,omitempty"`
-	Fwupdate    *FwupdateStat `json:"fwupdate,omitempty"`
+	// Whether FIPS mode is enabled on the Mist Edge
+	FipsEnabled *bool `json:"fips_enabled,omitempty"`
+	// Whether the Mist Edge is assigned directly to a site
+	ForSite *bool `json:"for_site,omitempty"`
+	// Firmware update status for a device
+	Fwupdate *FwupdateStat `json:"fwupdate,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// IDRAC version of the mist edge device
 	IdracVersion *string `json:"idrac_version,omitempty"`
 	// Inactive wired/L2TP VLANs. Entries can be individual VLANs or ranges.
 	InactiveVlanStrs *StatsMxedgeInactiveVlanStrs `json:"inactive_vlan_strs,omitempty"`
-	// IP stats
+	// IP address statistics reported by a Mist Edge
 	IpStat *StatsMxedgeIpStat `json:"ip_stat,omitempty"`
-	// Stat for LAG (Link Aggregation Group). Property key is the LAG name
+	// Link aggregation group statistics keyed by LAG name
 	LagStat map[string]StatsMxedgeLagStat `json:"lag_stat,omitempty"`
-	// Last seen timestamp
+	// Timestamp indicating when the entity was last seen
 	LastSeen Optional[float64] `json:"last_seen"`
-	Mac      *string           `json:"mac,omitempty"`
-	Magic    *string           `json:"magic,omitempty"`
-	// Memory usage
+	// Mist Edge MAC address reported by Mist
+	Mac *string `json:"mac,omitempty"`
+	// Claim magic token associated with the Mist Edge
+	Magic *string `json:"magic,omitempty"`
+	// Memory usage counters reported by a Mist Edge
 	MemoryStat *StatsMxedgeMemoryStat `json:"memory_stat,omitempty"`
-	Model      *string                `json:"model,omitempty"`
+	// Mist Edge hardware or VM model
+	Model *string `json:"model,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime      *float64   `json:"modified_time,omitempty"`
-	MxagentRegistered *bool      `json:"mxagent_registered,omitempty"`
-	MxclusterId       *uuid.UUID `json:"mxcluster_id,omitempty"`
-	// The name of the tunnel
-	Name       *string `json:"name,omitempty"`
-	NumTunnels *int    `json:"num_tunnels,omitempty"`
-	// IPconfiguration of the Mist Edge out-of_band management interface
-	OobIpConfig *MxedgeOobIpConfig             `json:"oob_ip_config,omitempty"`
-	OobIpStat   *StatsMxedgeOobIpStat          `json:"oob_ip_stat,omitempty"`
-	OrgId       *uuid.UUID                     `json:"org_id,omitempty"`
-	PortStat    map[string]StatsMxedgePortStat `json:"port_stat,omitempty"`
-	Serial      Optional[string]               `json:"serial"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Whether the Mist Edge management agent is registered with Mist
+	MxagentRegistered *bool `json:"mxagent_registered,omitempty"`
+	// Mist Edge cluster identifier associated with this Mist Edge
+	MxclusterId *uuid.UUID `json:"mxcluster_id,omitempty"`
+	// Display name of the Mist Edge
+	Name *string `json:"name,omitempty"`
+	// Number of tunnels currently terminated by the Mist Edge
+	NumTunnels *int `json:"num_tunnels,omitempty"`
+	// IP configuration for the Mist Edge out-of-band management interface
+	OobIpConfig *MxedgeOobIpConfig `json:"oob_ip_config,omitempty"`
+	// Observed out-of-band management IP settings for a Mist Edge
+	OobIpStat *StatsMxedgeOobIpStat `json:"oob_ip_stat,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Mist Edge port statistics keyed by port name
+	PortStat map[string]StatsMxedgePortStat `json:"port_stat,omitempty"`
+	// Device serial number reported for the Mist Edge, when available
+	Serial Optional[string] `json:"serial"`
 	// Stat for each services
-	ServiceStat       map[string]StatsMxedgeServiceStat `json:"service_stat,omitempty"`
-	Services          []string                          `json:"services,omitempty"`
-	SiteId            *uuid.UUID                        `json:"site_id,omitempty"`
-	Status            *string                           `json:"status,omitempty"`
-	TuntermIpConfig   *StatsMxedgeTuntermIpConfig       `json:"tunterm_ip_config,omitempty"`
-	TuntermPortConfig *StatsMxedgeTuntermPortConfig     `json:"tunterm_port_config,omitempty"`
-	TuntermRegistered *bool                             `json:"tunterm_registered,omitempty"`
-	TuntermStat       *StatsMxedgeTuntermStat           `json:"tunterm_stat,omitempty"`
-	Uptime            *int                              `json:"uptime,omitempty"`
-	// Virtualization environment
+	ServiceStat map[string]StatsMxedgeServiceStat `json:"service_stat,omitempty"`
+	// Mist Edge service names enabled or running on the appliance
+	Services []string `json:"services,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Connection status reported for the Mist Edge, such as connected
+	Status *string `json:"status,omitempty"`
+	// Tunnel termination IP configuration reported by a Mist Edge
+	TuntermIpConfig *StatsMxedgeTuntermIpConfig `json:"tunterm_ip_config,omitempty"`
+	// Tunnel termination port role configuration reported by a Mist Edge
+	TuntermPortConfig *StatsMxedgeTuntermPortConfig `json:"tunterm_port_config,omitempty"`
+	// Whether the tunnel termination service is registered with Mist
+	TuntermRegistered *bool `json:"tunterm_registered,omitempty"`
+	// Tunnel termination monitoring status reported by a Mist Edge
+	TuntermStat *StatsMxedgeTuntermStat `json:"tunterm_stat,omitempty"`
+	// Number of seconds the Mist Edge has been running since last boot
+	Uptime *int `json:"uptime,omitempty"`
+	// Virtualization platform or environment running the Mist Edge VM
 	VirtualizationType   *string                `json:"virtualization_type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

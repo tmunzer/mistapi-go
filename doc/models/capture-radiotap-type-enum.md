@@ -1,7 +1,7 @@
 
 # Capture Radiotap Type Enum
 
-enum: `radiotap`
+Packet capture type discriminator for radiotap captures. enum: `radiotap`
 
 ## Enumeration
 
@@ -15,7 +15,16 @@ enum: `radiotap`
 
 ## Example
 
-```
-radiotap
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureRadiotapType := models.CaptureRadiotapTypeEnum_RADIOTAP
+
+}
 ```
 

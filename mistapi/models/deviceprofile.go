@@ -9,6 +9,7 @@ import (
 )
 
 // Deviceprofile represents a Deviceprofile struct.
+// Device profile configuration for an AP, switch, or gateway
 type Deviceprofile struct {
 	value                  any
 	isDeviceprofileAp      bool
@@ -87,6 +88,7 @@ func (d *Deviceprofile) AsDeviceprofileSwitch() (
 }
 
 // internalDeviceprofile represents a deviceprofile struct.
+// Device profile configuration for an AP, switch, or gateway
 type internalDeviceprofile struct{}
 
 var DeviceprofileContainer internalDeviceprofile

@@ -8,7 +8,9 @@ import (
 )
 
 // NetworkTenant represents a NetworkTenant struct.
+// Tenant address entry for a network
 type NetworkTenant struct {
+	// IP addresses or subnets assigned to a network tenant
 	Addresses            []string               `json:"addresses,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

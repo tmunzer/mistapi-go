@@ -8,25 +8,35 @@ import (
 )
 
 // StatsDeviceOther represents a StatsDeviceOther struct.
+// Statistics for a third-party or other device tracked by Mist
 type StatsDeviceOther struct {
-	CachedStats  *bool   `json:"cached_stats,omitempty"`
+	// Whether the response was served from cached vendor statistics
+	CachedStats *bool `json:"cached_stats,omitempty"`
+	// Synchronization status of the other device configuration in Mist
 	ConfigStatus *string `json:"config_status,omitempty"`
-	// Property key is the connected device MAC Address
+	// Property key is the connected device MAC address
 	ConnectedDevices map[string]StatsDeviceOtherConnectedDevice `json:"connected_devices,omitempty"`
 	// Property key is the interface name
 	Interfaces map[string]StatsDeviceOtherInterface `json:"interfaces,omitempty"`
-	LastConfig *int                                 `json:"last_config,omitempty"`
-	// Last seen timestamp
-	LastSeen    Optional[float64] `json:"last_seen"`
-	LldpEnabled *bool             `json:"lldp_enabled,omitempty"`
-	Mac         *string           `json:"mac,omitempty"`
-	Status      *string           `json:"status,omitempty"`
-	Uptime      *int              `json:"uptime,omitempty"`
-	Vendor      *string           `json:"vendor,omitempty"`
-	// When `vendor`==`cradlepoint`
-	VendorSpecific       *StatsDeviceOtherVendorSpecific `json:"vendor_specific,omitempty"`
-	Version              *string                         `json:"version,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"_"`
+	// Timestamp of the last configuration update reported for the other device, in epoch seconds
+	LastConfig *int `json:"last_config,omitempty"`
+	// Timestamp indicating when the entity was last seen
+	LastSeen Optional[float64] `json:"last_seen"`
+	// Whether LLDP is enabled on the other device
+	LldpEnabled *bool `json:"lldp_enabled,omitempty"`
+	// Other device MAC address reported in the statistics response
+	Mac *string `json:"mac,omitempty"`
+	// Connectivity status reported for the other device, such as online
+	Status *string `json:"status,omitempty"`
+	// Elapsed time since the other device last booted, in seconds
+	Uptime *int `json:"uptime,omitempty"`
+	// Device vendor name, such as Cradlepoint
+	Vendor *string `json:"vendor,omitempty"`
+	// When `vendor`==`cradlepoint`, contains Cradlepoint-specific statistics reported for the other device
+	VendorSpecific *StatsDeviceOtherVendorSpecific `json:"vendor_specific,omitempty"`
+	// Vendor software version reported for the other device
+	Version              *string                `json:"version,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for StatsDeviceOther,

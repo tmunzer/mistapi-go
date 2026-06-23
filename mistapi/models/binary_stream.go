@@ -10,8 +10,9 @@ import (
 )
 
 // BinaryStream represents a BinaryStream struct.
+// Binary file upload payload
 type BinaryStream struct {
-	// File to upload
+	// Binary file payload to upload with this request
 	File                 []byte                 `json:"file"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

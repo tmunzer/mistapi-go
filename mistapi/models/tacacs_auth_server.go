@@ -8,10 +8,15 @@ import (
 )
 
 // TacacsAuthServer represents a TacacsAuthServer struct.
+// TACACS+ authentication server settings
 type TacacsAuthServer struct {
-	Host                 *string                `json:"host,omitempty"`
-	Port                 *string                `json:"port,omitempty"`
-	Secret               *string                `json:"secret,omitempty"`
+	// Address or hostname of the TACACS+ authentication server
+	Host *string `json:"host,omitempty"`
+	// TCP port used by the TACACS+ authentication server
+	Port *string `json:"port,omitempty"`
+	// Shared secret used with this TACACS+ authentication server
+	Secret *string `json:"secret,omitempty"`
+	// TACACS+ authentication server timeout, in seconds
 	Timeout              *int                   `json:"timeout,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

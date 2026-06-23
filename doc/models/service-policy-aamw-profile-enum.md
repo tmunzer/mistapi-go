@@ -15,3 +15,18 @@ enum: `docsonly`, `executables`, `standard`
 | `executables` |
 | `standard` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    servicePolicyAamwProfile := models.ServicePolicyAamwProfileEnum_STANDARD
+
+}
+```
+

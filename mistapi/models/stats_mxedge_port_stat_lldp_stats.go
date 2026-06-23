@@ -8,12 +8,19 @@ import (
 )
 
 // StatsMxedgePortStatLldpStats represents a StatsMxedgePortStatLldpStats struct.
+// LLDP neighbor information reported for a Mist Edge port
 type StatsMxedgePortStatLldpStats struct {
-	ChassisId            *string                `json:"chassis_id,omitempty"`
-	MgmtAddr             *string                `json:"mgmt_addr,omitempty"`
-	PortDesc             *string                `json:"port_desc,omitempty"`
-	PortId               *string                `json:"port_id,omitempty"`
-	SystemDesc           *string                `json:"system_desc,omitempty"`
+	// LLDP chassis identifier advertised by the neighbor
+	ChassisId *string `json:"chassis_id,omitempty"`
+	// Management address advertised by the LLDP neighbor
+	MgmtAddr *string `json:"mgmt_addr,omitempty"`
+	// Port description advertised by the LLDP neighbor
+	PortDesc *string `json:"port_desc,omitempty"`
+	// Port identifier advertised by the LLDP neighbor
+	PortId *string `json:"port_id,omitempty"`
+	// System description advertised by the LLDP neighbor
+	SystemDesc *string `json:"system_desc,omitempty"`
+	// System name advertised by the LLDP neighbor
 	SystemName           *string                `json:"system_name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

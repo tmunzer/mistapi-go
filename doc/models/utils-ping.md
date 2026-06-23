@@ -1,6 +1,8 @@
 
 # Utils Ping
 
+Request body for running a ping utility command
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,29 +13,37 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Count` | `*int` | Optional | **Default**: `10` |
-| `EgressInterface` | `*string` | Optional | Interface through which packet needs to egress |
-| `Host` | `string` | Required | can be ip, ipv6, hostname |
-| `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
-| `Size` | `*int` | Optional | **Default**: `56`<br><br>**Constraints**: `>= 56`, `<= 65535` |
+| `Count` | `*int` | Optional | Number of echo requests to send<br><br>**Default**: `10` |
+| `EgressInterface` | `*string` | Optional | Interface through which ping packets should egress |
+| `Host` | `string` | Required | Destination IP address, IPv6 address, or hostname to ping |
+| `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | HA cluster node selector. enum: `node0`, `node1` |
+| `Size` | `*int` | Optional | ICMP payload size, in bytes<br><br>**Default**: `56`<br><br>**Constraints**: `>= 56`, `<= 65535` |
 | `UseIpv6` | `*bool` | Optional | applicable when host is hostname<br><br>**Default**: `false` |
-| `Vrf` | `*string` | Optional | VRF/Routing instance through which the packet needs to be sent |
+| `Vrf` | `*string` | Optional | Routing instance or VRF through which ping packets are sent |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "count": 10,
-  "host": "1.1.1.1",
-  "size": 56,
-  "use_ipv6": false,
-  "egress_interface": "egress_interface2",
-  "node": "node0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    utilsPing := models.UtilsPing{
+        Count:                models.ToPointer(10),
+        EgressInterface:      models.ToPointer("egress_interface8"),
+        Host:                 "1.1.1.1",
+        Node:                 models.ToPointer(models.HaClusterNodeEnum_NODE0),
+        Size:                 models.ToPointer(56),
+        UseIpv6:              models.ToPointer(false),
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

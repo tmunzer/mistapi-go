@@ -17,3 +17,18 @@ SSpecify NAS-IP-ADDRESS, NAS-IPv6-ADDRESS to use with auth_servers. enum: `any`,
 | `tunnel` |
 | `tunnel6` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxclusterRadsecNasIpSource := models.MxclusterRadsecNasIpSourceEnum_TUNNEL6
+
+}
+```
+

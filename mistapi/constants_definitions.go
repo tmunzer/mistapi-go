@@ -25,7 +25,7 @@ func NewConstantsDefinitions(baseController baseController) *ConstantsDefinition
 // ListApChannels takes context, countryCode as parameters and
 // returns an models.ApiResponse with models.ConstApChannel data and
 // an error if there was an issue with the request or response.
-// Get List of List of Available channels per country code
+// Return supported AP radio channels for the requested country code, based on the regulatory domain used by Mist AP configuration.
 func (c *ConstantsDefinitions) ListApChannels(
 	ctx context.Context,
 	countryCode *string) (
@@ -36,19 +36,15 @@ func (c *ConstantsDefinitions) ListApChannels(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if countryCode != nil {
 		req.QueryParam("country_code", *countryCode)
@@ -66,7 +62,7 @@ func (c *ConstantsDefinitions) ListApChannels(
 // ListApLEslVersions takes context as parameters and
 // returns an models.ApiResponse with []models.ConstApEslVersion data and
 // an error if there was an issue with the request or response.
-// Get Available AP ESL Versions
+// Return Electronic Shelf Label (ESL) firmware versions available per AP model.
 func (c *ConstantsDefinitions) ListApLEslVersions(ctx context.Context) (
 	models.ApiResponse[[]models.ConstApEslVersion],
 	error) {
@@ -75,19 +71,15 @@ func (c *ConstantsDefinitions) ListApLEslVersions(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstApEslVersion
 	decoder, resp, err := req.CallAsJson()
@@ -102,7 +94,7 @@ func (c *ConstantsDefinitions) ListApLEslVersions(ctx context.Context) (
 // ListApLedDefinition takes context as parameters and
 // returns an models.ApiResponse with []models.ConstApLed data and
 // an error if there was an issue with the request or response.
-// Get List of AP LED definition
+// Return AP LED status definitions, including the values used to describe LED behavior and the corresponding `error_code` value.
 func (c *ConstantsDefinitions) ListApLedDefinition(ctx context.Context) (
 	models.ApiResponse[[]models.ConstApLed],
 	error) {
@@ -111,19 +103,15 @@ func (c *ConstantsDefinitions) ListApLedDefinition(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstApLed
 	decoder, resp, err := req.CallAsJson()
@@ -138,7 +126,7 @@ func (c *ConstantsDefinitions) ListApLedDefinition(ctx context.Context) (
 // ListAppCategoryDefinitions takes context as parameters and
 // returns an models.ApiResponse with []models.ConstAppCategoryDefinition data and
 // an error if there was an issue with the request or response.
-// Get List of definitions of all the supported Application Categories. The example field contains an example payload as you would receive in the alarm webhook output.
+// Return supported application categories used for application identification, traffic classification, and policy matching.
 func (c *ConstantsDefinitions) ListAppCategoryDefinitions(ctx context.Context) (
 	models.ApiResponse[[]models.ConstAppCategoryDefinition],
 	error) {
@@ -147,19 +135,15 @@ func (c *ConstantsDefinitions) ListAppCategoryDefinitions(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstAppCategoryDefinition
 	decoder, resp, err := req.CallAsJson()
@@ -174,7 +158,7 @@ func (c *ConstantsDefinitions) ListAppCategoryDefinitions(ctx context.Context) (
 // ListAppSubCategoryDefinitions takes context as parameters and
 // returns an models.ApiResponse with []models.ConstAppSubcategoryDefinition data and
 // an error if there was an issue with the request or response.
-// Get List of definitions of all the supported Application sub-categories. The example field contains an example payload as you would receive in the alarm webhook output.
+// Return supported application subcategories used for application identification, traffic classification, and policy matching.
 func (c *ConstantsDefinitions) ListAppSubCategoryDefinitions(ctx context.Context) (
 	models.ApiResponse[[]models.ConstAppSubcategoryDefinition],
 	error) {
@@ -183,19 +167,15 @@ func (c *ConstantsDefinitions) ListAppSubCategoryDefinitions(ctx context.Context
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstAppSubcategoryDefinition
 	decoder, resp, err := req.CallAsJson()
@@ -210,7 +190,7 @@ func (c *ConstantsDefinitions) ListAppSubCategoryDefinitions(ctx context.Context
 // ListApplications takes context as parameters and
 // returns an models.ApiResponse with []models.ConstApplicationDefinition data and
 // an error if there was an issue with the request or response.
-// Get List of a list of applications that Juniper-Mist APs recognize
+// Return applications recognized by Juniper Mist devices for traffic classification and application analytics.
 func (c *ConstantsDefinitions) ListApplications(ctx context.Context) (
 	models.ApiResponse[[]models.ConstApplicationDefinition],
 	error) {
@@ -219,19 +199,15 @@ func (c *ConstantsDefinitions) ListApplications(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstApplicationDefinition
 	decoder, resp, err := req.CallAsJson()
@@ -246,7 +222,7 @@ func (c *ConstantsDefinitions) ListApplications(ctx context.Context) (
 // ListCountryCodes takes context, extend as parameters and
 // returns an models.ApiResponse with []models.ConstCountry data and
 // an error if there was an issue with the request or response.
-// Get List of available Country Codes
+// Return supported country codes for Mist configuration. Set `extend=true` to include additional country codes when available.
 func (c *ConstantsDefinitions) ListCountryCodes(
 	ctx context.Context,
 	extend *bool) (
@@ -257,19 +233,15 @@ func (c *ConstantsDefinitions) ListCountryCodes(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if extend != nil {
 		req.QueryParam("extend", *extend)
@@ -287,12 +259,7 @@ func (c *ConstantsDefinitions) ListCountryCodes(
 // ListFingerprintTypes takes context as parameters and
 // returns an models.ApiResponse with models.ConstFingerprintTypes data and
 // an error if there was an issue with the request or response.
-// Get List of supported fingerprint attribute values
-// * family
-// * model
-// * mfg
-// * os_type
-// This information can be used in the [Mist NAC Rules]($h/Orgs%20NAC%20Rules/_overview) `matching` attribute.
+// Return supported client fingerprint attribute values (`family`, `model`, `mfg`, and `os_type`) that can be used in [Mist NAC Rules]($h/Orgs%20NAC%20Rules/_overview) `matching` conditions.
 func (c *ConstantsDefinitions) ListFingerprintTypes(ctx context.Context) (
 	models.ApiResponse[models.ConstFingerprintTypes],
 	error) {
@@ -301,19 +268,15 @@ func (c *ConstantsDefinitions) ListFingerprintTypes(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result models.ConstFingerprintTypes
 	decoder, resp, err := req.CallAsJson()
@@ -328,7 +291,7 @@ func (c *ConstantsDefinitions) ListFingerprintTypes(ctx context.Context) (
 // ListGatewayApplications takes context as parameters and
 // returns an models.ApiResponse with []models.ConstGatewayApplicationsDefinition data and
 // an error if there was an issue with the request or response.
-// Get the full list of applications that we recognize
+// Return applications recognized by Mist gateways for traffic classification.
 func (c *ConstantsDefinitions) ListGatewayApplications(ctx context.Context) (
 	models.ApiResponse[[]models.ConstGatewayApplicationsDefinition],
 	error) {
@@ -337,19 +300,15 @@ func (c *ConstantsDefinitions) ListGatewayApplications(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstGatewayApplicationsDefinition
 	decoder, resp, err := req.CallAsJson()
@@ -364,7 +323,7 @@ func (c *ConstantsDefinitions) ListGatewayApplications(ctx context.Context) (
 // ListInsightMetrics takes context as parameters and
 // returns an models.ApiResponse with map[string]models.ConstInsightMetricsProperty data and
 // an error if there was an issue with the request or response.
-// List Insight Metrics
+// Return supported insight metric names and metadata used by insight and SLE APIs.
 func (c *ConstantsDefinitions) ListInsightMetrics(ctx context.Context) (
 	models.ApiResponse[map[string]models.ConstInsightMetricsProperty],
 	error) {
@@ -373,19 +332,15 @@ func (c *ConstantsDefinitions) ListInsightMetrics(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result map[string]models.ConstInsightMetricsProperty
 	decoder, resp, err := req.CallAsJson()
@@ -400,7 +355,7 @@ func (c *ConstantsDefinitions) ListInsightMetrics(ctx context.Context) (
 // ListSiteLanguages takes context as parameters and
 // returns an models.ApiResponse with []models.ConstLanguage data and
 // an error if there was an issue with the request or response.
-// Get List of Languages
+// Return supported language codes for localized Mist configuration and user-facing portals.
 func (c *ConstantsDefinitions) ListSiteLanguages(ctx context.Context) (
 	models.ApiResponse[[]models.ConstLanguage],
 	error) {
@@ -409,19 +364,15 @@ func (c *ConstantsDefinitions) ListSiteLanguages(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstLanguage
 	decoder, resp, err := req.CallAsJson()
@@ -436,7 +387,7 @@ func (c *ConstantsDefinitions) ListSiteLanguages(ctx context.Context) (
 // ListLicenseTypes takes context as parameters and
 // returns an models.ApiResponse with []models.ConstLicenseType data and
 // an error if there was an issue with the request or response.
-// Get License Types
+// Return Mist license type definitions used by inventory and subscription APIs.
 func (c *ConstantsDefinitions) ListLicenseTypes(ctx context.Context) (
 	models.ApiResponse[[]models.ConstLicenseType],
 	error) {
@@ -445,19 +396,15 @@ func (c *ConstantsDefinitions) ListLicenseTypes(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstLicenseType
 	decoder, resp, err := req.CallAsJson()
@@ -472,7 +419,7 @@ func (c *ConstantsDefinitions) ListLicenseTypes(ctx context.Context) (
 // ListMarvisClientVersions takes context as parameters and
 // returns an models.ApiResponse with []models.ConstMarvisClientVersion data and
 // an error if there was an issue with the request or response.
-// Get List of the available Marvis Client Versions.
+// Return available Marvis Client application versions for tracking or managing Marvis Client deployments.
 func (c *ConstantsDefinitions) ListMarvisClientVersions(ctx context.Context) (
 	models.ApiResponse[[]models.ConstMarvisClientVersion],
 	error) {
@@ -481,19 +428,15 @@ func (c *ConstantsDefinitions) ListMarvisClientVersions(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstMarvisClientVersion
 	decoder, resp, err := req.CallAsJson()
@@ -508,7 +451,7 @@ func (c *ConstantsDefinitions) ListMarvisClientVersions(ctx context.Context) (
 // ListStates takes context, countryCode as parameters and
 // returns an models.ApiResponse with []models.ConstState data and
 // an error if there was an issue with the request or response.
-// Get List of ISO States based on country code
+// Return ISO state or province codes for the supplied country code.
 func (c *ConstantsDefinitions) ListStates(
 	ctx context.Context,
 	countryCode string) (
@@ -519,19 +462,15 @@ func (c *ConstantsDefinitions) ListStates(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.QueryParam("country_code", countryCode)
 	var result []models.ConstState
@@ -547,7 +486,7 @@ func (c *ConstantsDefinitions) ListStates(
 // ListTrafficTypes takes context as parameters and
 // returns an models.ApiResponse with []models.ConstTrafficType data and
 // an error if there was an issue with the request or response.
-// Get List of identified traffic
+// Return traffic type definitions used to classify recognized network traffic.
 func (c *ConstantsDefinitions) ListTrafficTypes(ctx context.Context) (
 	models.ApiResponse[[]models.ConstTrafficType],
 	error) {
@@ -556,19 +495,15 @@ func (c *ConstantsDefinitions) ListTrafficTypes(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstTrafficType
 	decoder, resp, err := req.CallAsJson()
@@ -583,7 +518,7 @@ func (c *ConstantsDefinitions) ListTrafficTypes(ctx context.Context) (
 // ListWebhookTopics takes context as parameters and
 // returns an models.ApiResponse with []models.ConstWebhookTopic data and
 // an error if there was an issue with the request or response.
-// Get List of the available Webhook Topics.
+// Return webhook topic definitions that can be subscribed to in webhook configuration.
 func (c *ConstantsDefinitions) ListWebhookTopics(ctx context.Context) (
 	models.ApiResponse[[]models.ConstWebhookTopic],
 	error) {
@@ -592,19 +527,15 @@ func (c *ConstantsDefinitions) ListWebhookTopics(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstWebhookTopic
 	decoder, resp, err := req.CallAsJson()

@@ -1,6 +1,8 @@
 
 # Const Ap Esl Version
 
+Supported Electronic Shelf Label (ESL) version for an AP model
+
 ## Structure
 
 `ConstApEslVersion`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `EslVersion` | `*string` | Optional | - |
-| `Model` | `*string` | Optional | - |
+| `EslVersion` | `*string` | Optional, Read-only | Electronic Shelf Label (ESL) package version supported by the AP model |
+| `Model` | `*string` | Optional, Read-only | AP model that supports the listed ESL version |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "esl_version": "2.5.1",
-  "model": "AP34"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constApEslVersion := models.ConstApEslVersion{
+        EslVersion:           models.ToPointer("2.5.1"),
+        Model:                models.ToPointer("AP34"),
+    }
+
 }
 ```
 

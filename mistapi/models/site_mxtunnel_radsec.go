@@ -8,10 +8,15 @@ import (
 )
 
 // SiteMxtunnelRadsec represents a SiteMxtunnelRadsec struct.
+// RadSec proxy settings for a site Mist Tunnel
 type SiteMxtunnelRadsec struct {
-	AcctServers          []RadiusAcctServer     `json:"acct_servers,omitempty"`
-	AuthServers          []RadiusAuthServer     `json:"auth_servers,omitempty"`
-	Enabled              *bool                  `json:"enabled,omitempty"`
+	// RADIUS accounting servers used by the site Mist Tunnel RadSec proxy
+	AcctServers []RadiusAcctServer `json:"acct_servers,omitempty"`
+	// RADIUS authentication servers used by the site Mist Tunnel RadSec proxy
+	AuthServers []RadiusAuthServer `json:"auth_servers,omitempty"`
+	// Whether RadSec proxying is enabled for this site Mist Tunnel
+	Enabled *bool `json:"enabled,omitempty"`
+	// Whether RadSec proxying uses Mist Edge
 	UseMxedge            *bool                  `json:"use_mxedge,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

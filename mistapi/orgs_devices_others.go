@@ -27,7 +27,7 @@ func NewOrgsDevicesOthers(baseController baseController) *OrgsDevicesOthers {
 // ListOrgOtherDevices takes context, orgId, vendor, mac, serial, model, name, limit, page as parameters and
 // returns an models.ApiResponse with []models.DeviceOther data and
 // an error if there was an issue with the request or response.
-// Get List of Org other devices (3rd party devices)
+// List third-party devices across the organization, such as devices discovered or tracked outside the managed Mist device inventory.
 func (o *OrgsDevicesOthers) ListOrgOtherDevices(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -45,19 +45,15 @@ func (o *OrgsDevicesOthers) ListOrgOtherDevices(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if vendor != nil {
 		req.QueryParam("vendor", *vendor)
@@ -94,7 +90,7 @@ func (o *OrgsDevicesOthers) ListOrgOtherDevices(
 // UpdateOrgOtherDevices takes context, orgId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Assign or unassign OtherDevices to and from a site.
+// Bulk assign or unassign third-party devices to or from a site by MAC address.
 func (o *OrgsDevicesOthers) UpdateOrgOtherDevices(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -106,19 +102,15 @@ func (o *OrgsDevicesOthers) UpdateOrgOtherDevices(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -135,7 +127,7 @@ func (o *OrgsDevicesOthers) UpdateOrgOtherDevices(
 // CountOrgOtherDeviceEvents takes context, orgId, distinct, mType, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of Org OtherDevices Events
+// Count third-party device events across the organization, optionally grouped by `distinct` and filtered by event type and time range.
 func (o *OrgsDevicesOthers) CountOrgOtherDeviceEvents(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -152,19 +144,15 @@ func (o *OrgsDevicesOthers) CountOrgOtherDeviceEvents(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -198,7 +186,7 @@ func (o *OrgsDevicesOthers) CountOrgOtherDeviceEvents(
 // SearchOrgOtherDeviceEvents takes context, orgId, siteId, mac, deviceMac, model, vendor, mType, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseEventsOtherDevicesSearch data and
 // an error if there was an issue with the request or response.
-// Search Org OtherDevices Events
+// Search third-party device events across the organization with filters for site, MAC address, attached device MAC address, model, vendor, event type, and time range.
 func (o *OrgsDevicesOthers) SearchOrgOtherDeviceEvents(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -221,19 +209,15 @@ func (o *OrgsDevicesOthers) SearchOrgOtherDeviceEvents(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if siteId != nil {
 		req.QueryParam("site_id", *siteId)
@@ -285,7 +269,7 @@ func (o *OrgsDevicesOthers) SearchOrgOtherDeviceEvents(
 // DeleteOrgOtherDevice takes context, orgId, deviceMac as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete OtherDevice
+// Delete a third-party device record from the organization by device MAC address.
 func (o *OrgsDevicesOthers) DeleteOrgOtherDevice(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -297,19 +281,15 @@ func (o *OrgsDevicesOthers) DeleteOrgOtherDevice(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -322,7 +302,7 @@ func (o *OrgsDevicesOthers) DeleteOrgOtherDevice(
 // GetOrgOtherDevice takes context, orgId, deviceMac as parameters and
 // returns an models.ApiResponse with models.DeviceOther data and
 // an error if there was an issue with the request or response.
-// Get Org other device (3rd party device)
+// Retrieve details for a third-party device record, including vendor, model, serial, attached Mist device MAC address, site assignment, and state.
 func (o *OrgsDevicesOthers) GetOrgOtherDevice(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -334,19 +314,15 @@ func (o *OrgsDevicesOthers) GetOrgOtherDevice(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.DeviceOther
@@ -362,7 +338,7 @@ func (o *OrgsDevicesOthers) GetOrgOtherDevice(
 // UpdateOrgOtherDevice takes context, orgId, deviceMac, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// If the Site / Device cannot be identified, a manual association can be made
+// Manually update the site or attached Mist device association for a third-party device when automatic identification is unavailable.
 func (o *OrgsDevicesOthers) UpdateOrgOtherDevice(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -375,19 +351,15 @@ func (o *OrgsDevicesOthers) UpdateOrgOtherDevice(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -404,7 +376,7 @@ func (o *OrgsDevicesOthers) UpdateOrgOtherDevice(
 // RebootOrgOtherDevice takes context, orgId, deviceMac as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Reboot OtherDevice
+// Request a reboot for a third-party device by device MAC address.
 func (o *OrgsDevicesOthers) RebootOrgOtherDevice(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -416,19 +388,15 @@ func (o *OrgsDevicesOthers) RebootOrgOtherDevice(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()

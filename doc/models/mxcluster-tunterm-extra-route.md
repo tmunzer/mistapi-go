@@ -1,6 +1,8 @@
 
 # Mxcluster Tunterm Extra Route
 
+Extra route for Mist Tunneled VLAN traffic
+
 ## Structure
 
 `MxclusterTuntermExtraRoute`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Via` | `*string` | Optional | - |
+| `Via` | `*string` | Optional | Next-hop IP address for this extra route |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "via": "via0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxclusterTuntermExtraRoute := models.MxclusterTuntermExtraRoute{
+        Via:                  models.ToPointer("via2"),
+    }
+
 }
 ```
 

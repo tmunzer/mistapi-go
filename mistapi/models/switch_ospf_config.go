@@ -8,6 +8,7 @@ import (
 )
 
 // SwitchOspfConfig represents a SwitchOspfConfig struct.
+// OSPF routing configuration for a Junos switch
 type SwitchOspfConfig struct {
 	// Property key is the area name. Defines the OSPF areas configured on the switch.
 	Areas map[string]SwitchOspfConfigArea `json:"areas,omitempty"`

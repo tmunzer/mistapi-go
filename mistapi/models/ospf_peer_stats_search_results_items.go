@@ -9,24 +9,25 @@ import (
 )
 
 // OspfPeerStatsSearchResultsItems represents a OspfPeerStatsSearchResultsItems struct.
+// OSPF peer statistic record reported by a router
 type OspfPeerStatsSearchResultsItems struct {
-	// Activity timer
+	// Seconds remaining before the neighbor is considered inactive
 	DeadTime *int `json:"dead_time,omitempty"`
-	// Router MAC address
+	// Router MAC address of the device advertising the OSPF peer
 	Mac *string `json:"mac,omitempty"`
-	// Router org ID
+	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
-	// Neighbor address (IP)
+	// IP address of the OSPF neighbor
 	PeerIp *string `json:"peer_ip,omitempty"`
-	// Interface name
+	// Interface on which the OSPF neighbor is learned
 	PortId *string `json:"port_id,omitempty"`
-	// Neighbor priority, 0-255
+	// OSPF priority advertised by the neighbor, from 0 to 255
 	Priority *int `json:"priority,omitempty"`
-	// Router site ID
+	// Unique identifier of a Mist site
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// Eg. full, down, 2way, init, exstart, exchange, loading
 	State *string `json:"state,omitempty"`
-	// Sampling time (in epoch seconds)
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
 	// True if state is full
 	Up *bool `json:"up,omitempty"`

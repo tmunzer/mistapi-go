@@ -8,6 +8,7 @@ import (
 )
 
 // SwitchOspfConfigArea represents a SwitchOspfConfigArea struct.
+// Settings for a single OSPF area on a switch
 type SwitchOspfConfigArea struct {
 	// Disable OSPF summary routes for this area
 	NoSummary            *bool                  `json:"no_summary,omitempty"`

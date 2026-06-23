@@ -16,3 +16,18 @@ to move a license, use the `amend` operation. enum: `amend`, `annotate`, `delete
 | `delete` |
 | `unamend` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgLicenseActionOperation := models.OrgLicenseActionOperationEnum_AMEND
+
+}
+```
+

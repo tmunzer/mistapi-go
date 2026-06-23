@@ -8,8 +8,11 @@ import (
 )
 
 // WebhookWifiConnRawEventPacket represents a WebhookWifiConnRawEventPacket struct.
+// RSSI observation for a connected Wi-Fi client packet
 type WebhookWifiConnRawEventPacket struct {
-	Band                 *string                `json:"band,omitempty"`
+	// Radio band on which the connected Wi-Fi packet was observed
+	Band *string `json:"band,omitempty"`
+	// Received signal strength of the connected Wi-Fi packet at the reporting AP, in dBm
 	Rssi                 *int                   `json:"rssi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

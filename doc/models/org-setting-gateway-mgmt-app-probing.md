@@ -1,6 +1,8 @@
 
 # Org Setting Gateway Mgmt App Probing
 
+Application probing settings for organization gateway management
+
 ## Structure
 
 `OrgSettingGatewayMgmtAppProbing`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Apps` | `[]string` | Optional | APp-keys from [List Applications](../../doc/controllers/constants-definitions.md#list-applications) |
+| `Apps` | `[]string` | Optional | Application keys from [List Applications](../../doc/controllers/constants-definitions.md#list-applications) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "apps": [
-    "facebook"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingGatewayMgmtAppProbing := models.OrgSettingGatewayMgmtAppProbing{
+        Apps:                 []string{
+            "facebook",
+        },
+    }
+
 }
 ```
 

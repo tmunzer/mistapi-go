@@ -10,18 +10,29 @@ import (
 )
 
 // SleImpactSummary represents a SleImpactSummary struct.
+// SLE impact summary grouped by client, device, AP, WLAN, and band dimensions
 type SleImpactSummary struct {
-	Ap                   []SleImpactSummaryApItem         `json:"ap"`
-	Band                 []SleImpactSummaryBandItem       `json:"band"`
-	Classifier           string                           `json:"classifier"`
-	DeviceOs             []SleImpactSummaryDeviceOsItem   `json:"device_os"`
-	DeviceType           []SleImpactSummaryDeviceTypeItem `json:"device_type"`
-	End                  float64                          `json:"end"`
-	Failure              string                           `json:"failure"`
-	Metric               string                           `json:"metric"`
-	Start                float64                          `json:"start"`
-	Wlan                 []SleImpactSummaryWlanItem       `json:"wlan"`
-	AdditionalProperties map[string]interface{}           `json:"_"`
+	// Impact summary rows grouped by AP
+	Ap []SleImpactSummaryApItem `json:"ap"`
+	// Impact summary rows grouped by radio band
+	Band []SleImpactSummaryBandItem `json:"band"`
+	// Requested SLE classifier filter applied to the impact summary
+	Classifier string `json:"classifier"`
+	// Impact summary rows grouped by client device OS
+	DeviceOs []SleImpactSummaryDeviceOsItem `json:"device_os"`
+	// Impact summary rows grouped by client device type
+	DeviceType []SleImpactSummaryDeviceTypeItem `json:"device_type"`
+	// Last timestamp in the impact summary window
+	End float64 `json:"end"`
+	// Requested SLE failure filter applied to the impact summary
+	Failure string `json:"failure"`
+	// SLE metric name summarized by this response
+	Metric string `json:"metric"`
+	// First timestamp in the impact summary window
+	Start float64 `json:"start"`
+	// Impact summary rows grouped by WLAN
+	Wlan                 []SleImpactSummaryWlanItem `json:"wlan"`
+	AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SleImpactSummary,

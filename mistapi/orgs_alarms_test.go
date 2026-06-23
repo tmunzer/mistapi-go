@@ -104,18 +104,16 @@ func TestOrgsAlarmsTestSearchOrgAlarms(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	siteId, errUUID := uuid.Parse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
-	if errUUID != nil {
-		t.Error(errUUID)
-	}
-
+	siteId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+	group := "security,infrastructure"
+	severity := "warn,critical"
 	mType := "infra_dhcp_failure,missing_vlan"
 
 	duration := "1d"
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, nil, nil, &mType, nil, nil, nil, nil, &duration, &limit, &sort, nil)
+	apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, &group, &severity, &mType, nil, nil, nil, nil, &duration, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -133,18 +131,16 @@ func TestOrgsAlarmsTestSearchOrgAlarms1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	siteId, errUUID := uuid.Parse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
-	if errUUID != nil {
-		t.Error(errUUID)
-	}
-
+	siteId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+	group := "security,infrastructure"
+	severity := "warn,critical"
 	mType := "infra_dhcp_failure,missing_vlan"
 
 	duration := "1d"
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, nil, nil, &mType, nil, nil, nil, nil, &duration, &limit, &sort, nil)
+	apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, &group, &severity, &mType, nil, nil, nil, nil, &duration, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -8,9 +8,13 @@ import (
 )
 
 // ModuleStatItemTemperaturesItem represents a ModuleStatItemTemperaturesItem struct.
+// Temperature sensor reading for a device module
 type ModuleStatItemTemperaturesItem struct {
-	Celsius              *float64               `json:"celsius,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
+	// Temperature reading for the sensor, in degrees Celsius
+	Celsius *float64 `json:"celsius,omitempty"`
+	// Temperature sensor label reported by the device
+	Name *string `json:"name,omitempty"`
+	// Operational status reported for the temperature sensor
 	Status               *string                `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

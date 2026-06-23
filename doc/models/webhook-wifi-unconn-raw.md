@@ -22,29 +22,39 @@ Clients can be identified uniquely across these client raw data topics and locat
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookWifiUnconnRawEvent`](../../doc/models/webhook-wifi-unconn-raw-event.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required, Constant | enum: `wifi-unconn-raw`<br><br>**Value**: `"wifi-unconn-raw"` |
+| `Events` | [`[]models.WebhookWifiUnconnRawEvent`](../../doc/models/webhook-wifi-unconn-raw-event.md) | Required | Unconnected Wi-Fi raw packet events included in a webhook delivery<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Topic` | `string` | Required, Constant | Webhook topic name for unconnected Wi-Fi raw packet deliveries. enum: `wifi-unconn-raw`<br><br>**Value**: `"wifi-unconn-raw"` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "events": [
-    {
-      "map_id": "53f10664-3ce8-4c27-b382-0ef66432349f",
-      "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-      "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-      "ap_id": "ap_id2",
-      "ap_loc": [
-        26.98,
-        26.97,
-        26.96
-      ],
-      "client_id": "client_id2",
-      "connected_site": false
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    webhookWifiUnconnRaw := models.WebhookWifiUnconnRaw{
+        Events:               []models.WebhookWifiUnconnRawEvent{
+            models.WebhookWifiUnconnRawEvent{
+                ApId:                 models.ToPointer("ap_id2"),
+                ApLoc:                []float64{
+                    float64(26.98),
+                    float64(26.97),
+                    float64(26.96),
+                },
+                ClientId:             models.ToPointer("client_id2"),
+                ConnectedSite:        models.ToPointer(false),
+                MapId:                models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
+                OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
+                SiteId:               models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
+            },
+        },
+        Topic:                "wifi-unconn-raw",
     }
-  ],
-  "topic": "wifi-unconn-raw"
+
 }
 ```
 

@@ -27,7 +27,7 @@ func NewOrgsAlarmTemplates(baseController baseController) *OrgsAlarmTemplates {
 // ListOrgAlarmTemplates takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.AlarmTemplate data and
 // an error if there was an issue with the request or response.
-// Get List of Org Alarm Templates
+// List alarm templates defined for the organization, including default delivery settings and per-alarm rule configuration.
 func (o *OrgsAlarmTemplates) ListOrgAlarmTemplates(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -40,19 +40,15 @@ func (o *OrgsAlarmTemplates) ListOrgAlarmTemplates(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if limit != nil {
 		req.QueryParam("limit", *limit)
@@ -74,8 +70,10 @@ func (o *OrgsAlarmTemplates) ListOrgAlarmTemplates(
 // CreateOrgAlarmTemplate takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.AlarmTemplate data and
 // an error if there was an issue with the request or response.
-// Available rules can be found in [List Alarm Definitions#]($e/Events%20Definitions/listAlarmDefinitions)
-// The delivery dict is only required if different from the template delivery settings.
+// Create an organization alarm template that defines default delivery settings and per-alarm rule overrides.
+// Available rules can be found in [List Alarm Definitions]($e/Events%20Definitions/listAlarmDefinitions)
+// The `delivery` object is only required when it differs from the template delivery settings.
+// To assign an Alarm template to a site, use the [Update Site]($e/Sites/updateSiteInfo) endpoint and specify the Alarm template ID in the `alarmtemplate_id` field of the request body.
 func (o *OrgsAlarmTemplates) CreateOrgAlarmTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -87,19 +85,15 @@ func (o *OrgsAlarmTemplates) CreateOrgAlarmTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -119,7 +113,7 @@ func (o *OrgsAlarmTemplates) CreateOrgAlarmTemplate(
 // UnsuppressOrgSuppressedAlarms takes context, orgId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Un-Suppress Suppressed Alarms
+// Remove alarm suppression entries currently configured for this organization.
 func (o *OrgsAlarmTemplates) UnsuppressOrgSuppressedAlarms(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -130,19 +124,15 @@ func (o *OrgsAlarmTemplates) UnsuppressOrgSuppressedAlarms(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -155,7 +145,7 @@ func (o *OrgsAlarmTemplates) UnsuppressOrgSuppressedAlarms(
 // ListOrgSuppressedAlarms takes context, orgId, scope as parameters and
 // returns an models.ApiResponse with models.ResponseOrgSuppressAlarm data and
 // an error if there was an issue with the request or response.
-// Get List of Org Alarms Currently Suppressed
+// List alarm suppression entries currently configured for this organization, optionally filtered by organization-wide or site-specific scope.
 func (o *OrgsAlarmTemplates) ListOrgSuppressedAlarms(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -167,19 +157,15 @@ func (o *OrgsAlarmTemplates) ListOrgSuppressedAlarms(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if scope != nil {
 		req.QueryParam("scope", *scope)
@@ -198,7 +184,7 @@ func (o *OrgsAlarmTemplates) ListOrgSuppressedAlarms(
 // SuppressOrgAlarm takes context, orgId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// In certain situations, for example, scheduled maintenance, you may want to suspend alarms to be triggered against Sites for a period of time.
+// Create or schedule an alarm suppression window for the organization or selected sites, for example during planned maintenance.
 func (o *OrgsAlarmTemplates) SuppressOrgAlarm(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -210,19 +196,15 @@ func (o *OrgsAlarmTemplates) SuppressOrgAlarm(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -239,7 +221,7 @@ func (o *OrgsAlarmTemplates) SuppressOrgAlarm(
 // DeleteOrgAlarmTemplate takes context, orgId, alarmtemplateId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete Org Alarm Template
+// Delete an organization alarm template by template ID from this organization.
 func (o *OrgsAlarmTemplates) DeleteOrgAlarmTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -251,19 +233,15 @@ func (o *OrgsAlarmTemplates) DeleteOrgAlarmTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -276,7 +254,7 @@ func (o *OrgsAlarmTemplates) DeleteOrgAlarmTemplate(
 // GetOrgAlarmTemplate takes context, orgId, alarmtemplateId as parameters and
 // returns an models.ApiResponse with models.AlarmTemplate data and
 // an error if there was an issue with the request or response.
-// Get Org Alarm Template Details
+// Return one organization alarm template, including default delivery settings and per-alarm rule overrides.
 func (o *OrgsAlarmTemplates) GetOrgAlarmTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -288,19 +266,15 @@ func (o *OrgsAlarmTemplates) GetOrgAlarmTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.AlarmTemplate
@@ -316,7 +290,7 @@ func (o *OrgsAlarmTemplates) GetOrgAlarmTemplate(
 // UpdateOrgAlarmTemplate takes context, orgId, alarmtemplateId, body as parameters and
 // returns an models.ApiResponse with models.AlarmTemplate data and
 // an error if there was an issue with the request or response.
-// Update Org Alarm Template
+// Update an organization alarm template's default delivery settings or per-alarm rule overrides.
 func (o *OrgsAlarmTemplates) UpdateOrgAlarmTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -329,19 +303,15 @@ func (o *OrgsAlarmTemplates) UpdateOrgAlarmTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

@@ -8,21 +8,23 @@ import (
 )
 
 // WxlanTunnelSession represents a WxlanTunnelSession struct.
+// L2TPv3 session established inside a WxLAN tunnel
 type WxlanTunnelSession struct {
 	// If `use_ap_as_session_ids`==`true`, only apmac is supported right now. This is the name WLAN should use for wxtunnel_remote_id
 	ApAsSessionId *string `json:"ap_as_session_id,omitempty"`
 	// Optional, user-specified string for display purpose
-	Comment      *string `json:"comment,omitempty"`
-	EnableCookie *bool   `json:"enable_cookie,omitempty"`
-	// enum: `ethernet`, `vlan`
+	Comment *string `json:"comment,omitempty"`
+	// Whether L2TPv3 cookie support is enabled for this session
+	EnableCookie *bool `json:"enable_cookie,omitempty"`
+	// Frame type carried by this tunnel session. enum: `ethernet`, `vlan`
 	Ethertype *WxlanTunnelSessionEthertypeEnum `json:"ethertype,omitempty"`
-	// 1-2147483647
+	// Identifier for the local L2TPv3 session, from 1 to 2147483647
 	LocalSessionId *int `json:"local_session_id,omitempty"`
 	// Optional. Enables the pseudo 802.1ad QinQ mode where the AP device drops the outer vlan tag (QinQ). This mode is useful when tunneling Mist AP’s to some aggregation routers.
 	Pseudo8021adEnabled *bool `json:"pseudo_802.1ad_enabled,omitempty"`
 	// Remote-id of the session, has to be unique in the same tunnel
 	RemoteId *string `json:"remote_id,omitempty"`
-	// 1-2147483647
+	// Identifier for the remote L2TPv3 session, from 1 to 2147483647
 	RemoteSessionId *int `json:"remote_session_id,omitempty"`
 	// Whether to use AP (last 4 bytes of MAC currently) as session ids
 	UseApAsSessionIds    *bool                  `json:"use_ap_as_session_ids,omitempty"`

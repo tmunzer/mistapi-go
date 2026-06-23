@@ -10,8 +10,11 @@ import (
 )
 
 // StatsOrgSle represents a StatsOrgSle struct.
+// Organization SLE summary for a service path
 type StatsOrgSle struct {
-	Path                 string                  `json:"path"`
+	// SLE path represented by this organization summary
+	Path string `json:"path"`
+	// User-minute totals for an organization SLE summary
 	UserMinutes          *StatsOrgSleUserMinutes `json:"user_minutes,omitempty"`
 	AdditionalProperties map[string]interface{}  `json:"_"`
 }

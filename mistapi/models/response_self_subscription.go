@@ -11,7 +11,9 @@ import (
 )
 
 // ResponseSelfSubscription represents a ResponseSelfSubscription struct.
+// Subscription record visible to the current account
 type ResponseSelfSubscription struct {
+	// Unique identifier of a Mist organization
 	OrgId                uuid.UUID              `json:"org_id"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

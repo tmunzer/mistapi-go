@@ -9,8 +9,11 @@ import (
 )
 
 // UpgradeOrgDevicesUpgrade represents a UpgradeOrgDevicesUpgrade struct.
+// Upgrade entry for a single site within an organization upgrade job
 type UpgradeOrgDevicesUpgrade struct {
-	SiteId               *uuid.UUID                    `json:"site_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Site-level upgrade job details within an organization upgrade
 	Upgrade              *UpgradeOrgDevicesUpgradeInfo `json:"upgrade,omitempty"`
 	AdditionalProperties map[string]interface{}        `json:"_"`
 }

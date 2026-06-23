@@ -10,10 +10,13 @@ import (
 )
 
 // DswitchesMetricsVersionCompliance represents a DswitchesMetricsVersionCompliance struct.
+// Version compliance metric for discovered switches
 type DswitchesMetricsVersionCompliance struct {
-	Details              DswitchesMetricsVersionComplianceDetails `json:"details"`
-	Score                float64                                  `json:"score"`
-	AdditionalProperties map[string]interface{}                   `json:"_"`
+	// Detail values used by the discovered-switch version compliance metric
+	Details DswitchesMetricsVersionComplianceDetails `json:"details"`
+	// Compliance score for the discovered-switch version metric
+	Score                float64                `json:"score"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for DswitchesMetricsVersionCompliance,

@@ -11,25 +11,31 @@ import (
 )
 
 // EventsClient represents a EventsClient struct.
-// Client events
+// Wireless client event returned by client event search APIs
 type EventsClient struct {
+	// Access point MAC address associated with the wireless client event
 	Ap *string `json:"ap,omitempty"`
 	// enum: `24`, `5`, `5-dedicated`, `5-selectable`, `6`, `6-dedicated`, `6-selectable`
-	Band    Dot11BandEnum `json:"band"`
-	Bssid   *string       `json:"bssid,omitempty"`
-	Channel *int          `json:"channel,omitempty"`
-	// Key management protocol used for the latest authentication. enum: `WPA2-PSK`, `WPA2-PSK-FT`, `WPA2-PSK-SHA256`, `WPA3-EAP-SHA256`, `WPA3-SAE-FT`, `WPA3-SAE-PSK`
+	Band Dot11BandEnum `json:"band"`
+	// Wireless BSSID involved in the client event
+	Bssid *string `json:"bssid,omitempty"`
+	// Radio channel used for the wireless client event
+	Channel *int `json:"channel,omitempty"`
+	// Key management protocol used for the latest authentication. enum: `WPA2-PSK`, `WPA2-PSK/CCMP`, `WPA2-PSK-FT`, `WPA2-PSK-SHA256`, `WPA3-EAP-SHA256`, `WPA3-EAP-SHA256/CCMP`, `WPA3-EAP-FT/GCMP256`, `WPA3-SAE-FT`, `WPA3-SAE-PSK`
 	KeyMgmt *ClientKeyMgmtEnum `json:"key_mgmt,omitempty"`
 	// enum: `a`, `ac`, `ax`, `b`, `be`, `g`, `n`
 	Proto *Dot11ProtoEnum `json:"proto,omitempty"`
-	Ssid  *string         `json:"ssid,omitempty"`
-	Text  *string         `json:"text,omitempty"`
-	// Epoch (seconds)
+	// Wireless network SSID involved in the client event
+	Ssid *string `json:"ssid,omitempty"`
+	// Human-readable message for the client event
+	Text *string `json:"text,omitempty"`
+	// Epoch timestamp, in seconds
 	Timestamp float64 `json:"timestamp"`
 	// Event type, e.g. MARVIS_EVENT_CLIENT_FBT_FAILURE
 	Type *string `json:"type,omitempty"`
-	// For assoc/disassoc events
-	TypeCode             *int                   `json:"type_code,omitempty"`
+	// Reason code for association or disassociation client events
+	TypeCode *int `json:"type_code,omitempty"`
+	// Wireless LAN identifier associated with the client event
 	WlanId               *uuid.UUID             `json:"wlan_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

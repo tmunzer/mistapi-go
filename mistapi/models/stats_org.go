@@ -11,27 +11,39 @@ import (
 )
 
 // StatsOrg represents a StatsOrg struct.
-// Org statistics
+// Organization statistics summary returned by the org stats endpoint
 type StatsOrg struct {
+	// Organization-level alarm template identifier used as the default for sites
 	AlarmtemplateId uuid.UUID `json:"alarmtemplate_id"`
-	AllowMist       bool      `json:"allow_mist"`
+	// Whether Mist support access is allowed for this organization
+	AllowMist bool `json:"allow_mist"`
 	// When the object has been created, in epoch
 	CreatedTime float64 `json:"created_time"`
 	// Unique ID of the object instance in the Mist Organization
 	Id uuid.UUID `json:"id"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime           float64                `json:"modified_time"`
-	MspId                  uuid.UUID              `json:"msp_id"`
-	Name                   string                 `json:"name"`
-	NumDevices             int                    `json:"num_devices"`
-	NumDevicesConnected    int                    `json:"num_devices_connected"`
-	NumDevicesDisconnected int                    `json:"num_devices_disconnected"`
-	NumInventory           int                    `json:"num_inventory"`
-	NumSites               int                    `json:"num_sites"`
-	OrggroupIds            []uuid.UUID            `json:"orggroup_ids"`
-	SessionExpiry          int64                  `json:"session_expiry"`
-	Sle                    []StatsOrgSle          `json:"sle"`
-	AdditionalProperties   map[string]interface{} `json:"_"`
+	ModifiedTime float64 `json:"modified_time"`
+	// Managed service provider identifier
+	MspId uuid.UUID `json:"msp_id"`
+	// Display name of the organization
+	Name string `json:"name"`
+	// Total number of devices in the organization
+	NumDevices int `json:"num_devices"`
+	// Number of organization devices currently connected to Mist
+	NumDevicesConnected int `json:"num_devices_connected"`
+	// Number of organization devices currently disconnected from Mist
+	NumDevicesDisconnected int `json:"num_devices_disconnected"`
+	// Number of devices in the organization's inventory
+	NumInventory int `json:"num_inventory"`
+	// Number of sites in the organization
+	NumSites int `json:"num_sites"`
+	// Organization group identifiers associated with an organization stats record
+	OrggroupIds []uuid.UUID `json:"orggroup_ids"`
+	// Admin session lifetime for the organization, in minutes
+	SessionExpiry int64 `json:"session_expiry"`
+	// Service level expectation summaries for an organization
+	Sle                  []StatsOrgSle          `json:"sle"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for StatsOrg,

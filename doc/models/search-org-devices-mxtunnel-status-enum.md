@@ -1,7 +1,7 @@
 
 # Search Org Devices Mxtunnel Status Enum
 
-enum: `down`, `up`
+Mist Tunnel status filter for organization device search. enum: `down`, `up`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `down`, `up`
 |  --- |
 | `down` |
 | `up` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    searchOrgDevicesMxtunnelStatus := models.SearchOrgDevicesMxtunnelStatusEnum_DOWN
+
+}
+```
 

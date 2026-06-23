@@ -15,3 +15,18 @@ enum: `ecmp`, `ordered`, `weighted`
 | `ordered` |
 | `weighted` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayPathStrategy := models.GatewayPathStrategyEnum_ORDERED
+
+}
+```
+

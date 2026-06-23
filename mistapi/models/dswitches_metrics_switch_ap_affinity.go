@@ -10,10 +10,13 @@ import (
 )
 
 // DswitchesMetricsSwitchApAffinity represents a DswitchesMetricsSwitchApAffinity struct.
+// Switch/AP affinity metric for discovered switches
 type DswitchesMetricsSwitchApAffinity struct {
-	Details              DswitchesMetricsSwitchApAffinityDetails `json:"details"`
-	Score                float64                                 `json:"score"`
-	AdditionalProperties map[string]interface{}                  `json:"_"`
+	// Detail values used by the switch/AP affinity metric
+	Details DswitchesMetricsSwitchApAffinityDetails `json:"details"`
+	// Compliance score for the switch/AP affinity metric
+	Score                float64                `json:"score"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for DswitchesMetricsSwitchApAffinity,

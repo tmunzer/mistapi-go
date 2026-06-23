@@ -13,20 +13,23 @@ import (
 // CaptureWireless represents a CaptureWireless struct.
 // Initiate a Wireless Packet Capture
 type CaptureWireless struct {
+	// AP MAC address used to target the wireless packet capture
 	ApMac Optional[string] `json:"ap_mac"`
 	// enum: `24`, `5`, `6`
 	Band *CaptureWirelessBandEnum `json:"band,omitempty"`
 	// Duration of the capture, in seconds
 	Duration Optional[int] `json:"duration"`
 	// pcap format. enum: `pcap`, `stream`
-	Format    *CaptureWirelessFormatEnum `json:"format,omitempty"`
-	MaxPktLen Optional[int]              `json:"max_pkt_len"`
+	Format *CaptureWirelessFormatEnum `json:"format,omitempty"`
+	// Maximum bytes captured from each packet, or null to use the default
+	MaxPktLen Optional[int] `json:"max_pkt_len"`
 	// number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
 	NumPackets Optional[int] `json:"num_packets"`
-	Ssid       *string       `json:"ssid,omitempty"`
-	// enum: `wireless`
+	// Wireless network SSID used to filter the packet capture
+	Ssid *string `json:"ssid,omitempty"`
+	// Packet capture type discriminator for wireless captures. enum: `wireless`
 	Type string `json:"type"`
-	// WLAN ID
+	// WLAN identifier used to filter the wireless packet capture
 	WlanId               *uuid.UUID             `json:"wlan_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

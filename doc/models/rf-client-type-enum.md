@@ -15,3 +15,18 @@ enum: `asset`, `client`, `sdkclient`
 | `client` |
 | `sdkclient` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    rfClientType := models.RfClientTypeEnum_CLIENT
+
+}
+```
+

@@ -10,10 +10,12 @@ import (
 )
 
 // SwitchPortUsageDynamicRule represents a SwitchPortUsageDynamicRule struct.
+// Dynamic port usage rule evaluated against LLDP, RADIUS, or peer MAC attributes
 type SwitchPortUsageDynamicRule struct {
 	// Optional description of the rule
 	Description *string `json:"description,omitempty"`
-	Equals      *string `json:"equals,omitempty"`
+	// Exact value that the selected source attribute must match
+	Equals *string `json:"equals,omitempty"`
 	// Use `equals_any` to match any item in a list
 	EqualsAny []string `json:"equals_any,omitempty"`
 	// "[0:3]":"abcdef" -> "abc"
@@ -22,7 +24,7 @@ type SwitchPortUsageDynamicRule struct {
 	Expression *string `json:"expression,omitempty"`
 	// enum: `link_peermac`, `lldp_chassis_id`, `lldp_hardware_revision`, `lldp_manufacturer_name`, `lldp_oui`, `lldp_serial_number`, `lldp_system_description`, `lldp_system_name`, `radius_dynamicfilter`, `radius_usermac`, `radius_username`
 	Src SwitchPortUsageDynamicRuleSrcEnum `json:"src"`
-	// `port_usage` name
+	// Port usage name to apply when this dynamic rule matches
 	Usage                *string                `json:"usage,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

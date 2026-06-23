@@ -1,6 +1,8 @@
 
 # Account Jse Info
 
+Linked Juniper Security Exchange account information
+
 ## Structure
 
 `AccountJseInfo`
@@ -9,19 +11,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CloudName` | `*string` | Optional | - |
-| `OrgNames` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `Username` | `*string` | Optional | - |
+| `CloudName` | `*string` | Optional | JSE cloud hostname configured for the integration |
+| `OrgNames` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
+| `Username` | `*string` | Optional | JSE integration username configured for the linked account |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "cloud_name": "devcentral.juniperclouds.net",
-  "username": "john@abc.com",
-  "org_names": [
-    "org_names8"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    accountJseInfo := models.AccountJseInfo{
+        CloudName:            models.ToPointer("devcentral.juniperclouds.net"),
+        OrgNames:             []string{
+            "org_names2",
+        },
+        Username:             models.ToPointer("john@abc.com"),
+    }
+
 }
 ```
 

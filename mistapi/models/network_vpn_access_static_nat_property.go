@@ -8,9 +8,11 @@ import (
 )
 
 // NetworkVpnAccessStaticNatProperty represents a NetworkVpnAccessStaticNatProperty struct.
+// VPN access static NAT rule target settings
 type NetworkVpnAccessStaticNatProperty struct {
-	// The Static NAT destination IP Address. Must be an IP Address (i.e. "192.168.70.3") or a Variable (i.e. "{{myvar}}")
-	InternalIp           *string                `json:"internal_ip,omitempty"`
+	// The Static NAT destination IP address. Must be an IP address (i.e. "192.168.70.3") or a Variable (i.e. "{{myvar}}")
+	InternalIp *string `json:"internal_ip,omitempty"`
+	// Label for this VPN static NAT rule
 	Name                 *string                `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

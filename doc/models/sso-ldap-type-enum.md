@@ -16,3 +16,18 @@ if `idp_type`==`ldap`. enum: `azure`, `custom`, `google`, `okta`, `ping_identity
 | `google` |
 | `okta` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ssoLdapType := models.SsoLdapTypeEnum_AZURE
+
+}
+```
+

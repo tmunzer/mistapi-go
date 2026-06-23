@@ -13,24 +13,32 @@ OAuth linked Zscaler apps account details
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CloudName` | `string` | Required | - |
-| `PartnerKey` | `string` | Required | - |
-| `Password` | `string` | Required | Customer account password |
-| `Username` | `string` | Required | Customer account user name |
+| `CloudName` | `string` | Required | Zscaler Internet Access cloud name used for the integration |
+| `PartnerKey` | `string` | Required | Zscaler partner key generated for the Mist integration |
+| `Password` | `string` | Required | Credential password for the Zscaler partner administrator |
+| `Username` | `string` | Required | Zscaler partner administrator username used by Mist |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "cloud_name": "zscalerbeta.net",
-  "partner_key": "K35vrZcK3JvrZc",
-  "password": "password",
-  "username": "john@nmo.com",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    accountZscalerConfig := models.AccountZscalerConfig{
+        CloudName:            "zscalerbeta.net",
+        PartnerKey:           "K35vrZcK3JvrZc",
+        Password:             "password",
+        Username:             "john@nmo.com",
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

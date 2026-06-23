@@ -20,3 +20,18 @@ enum: `ap`, `client_family`, `client_manufacture`, `client_model`, `client_os`, 
 | `ssid` |
 | `wlan_id` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteClientSessionsCountDistinct := models.SiteClientSessionsCountDistinctEnum_SSID
+
+}
+```
+

@@ -66,16 +66,26 @@ func TestOrgsClientsWiredTestSearchOrgWiredClients(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	mac := "aabbccddeeff"
+	authMethod := "server_reject,mac_auth"
+	source := "lldp,mac"
 
+	mac := "aabbccddeeff,aabbcc*"
+
+	vlan := "1"
 	ip := "192.168.1.1"
+	manufacture := "Unknown,GIFA"
 
+	dhcpHostname := "client-a,client-b"
+
+	dhcpClientIdentifier := "MAC address a8f7d982288f,MAC address 5c5b351e120c"
+	dhcpVendorClassIdentifier := "Mist AP34-WW,Mist BT11-WW"
+	dhcpRequestParams := "1 121 3 6 12 15 28 42 43 180,1 3 6 12 15 28 42 43 180"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, &mac, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, &authMethod, &source, nil, nil, &mac, nil, &vlan, &ip, &manufacture, nil, nil, &dhcpHostname, nil, &dhcpClientIdentifier, &dhcpVendorClassIdentifier, &dhcpRequestParams, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -96,16 +106,26 @@ func TestOrgsClientsWiredTestSearchOrgWiredClients1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	mac := "aabbccddeeff"
+	authMethod := "server_reject,mac_auth"
+	source := "lldp,mac"
 
+	mac := "aabbccddeeff,aabbcc*"
+
+	vlan := "1"
 	ip := "192.168.1.1"
+	manufacture := "Unknown,GIFA"
 
+	dhcpHostname := "client-a,client-b"
+
+	dhcpClientIdentifier := "MAC address a8f7d982288f,MAC address 5c5b351e120c"
+	dhcpVendorClassIdentifier := "Mist AP34-WW,Mist BT11-WW"
+	dhcpRequestParams := "1 121 3 6 12 15 28 42 43 180,1 3 6 12 15 28 42 43 180"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, &mac, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, &authMethod, &source, nil, nil, &mac, nil, &vlan, &ip, &manufacture, nil, nil, &dhcpHostname, nil, &dhcpClientIdentifier, &dhcpVendorClassIdentifier, &dhcpRequestParams, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

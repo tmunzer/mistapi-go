@@ -8,13 +8,13 @@ import (
 )
 
 // IdpProfileOverwrite represents a IdpProfileOverwrite struct.
+// Override rule that changes the IDP action for matching signatures
 type IdpProfileOverwrite struct {
-	// enum:
-	// * alert (default)
-	// * drop: silently dropping packets
-	// * close: notify client/server to close connection
-	Action               *IdpProfileActionEnum  `json:"action,omitempty"`
-	Matching             *IdpProfileMatching    `json:"matching,omitempty"`
+	// IDP profile action. enum: `alert`, `close`, `drop`. `alert` is the default, `drop` silently drops packets, and `close` asks the client/server to close the connection
+	Action *IdpProfileActionEnum `json:"action,omitempty"`
+	// Criteria that select IDP signatures for an overwrite rule
+	Matching *IdpProfileMatching `json:"matching,omitempty"`
+	// Display name for this IDP profile overwrite rule
 	Name                 *string                `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

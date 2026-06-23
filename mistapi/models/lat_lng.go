@@ -10,8 +10,11 @@ import (
 )
 
 // LatLng represents a LatLng struct.
+// Geographic latitude and longitude coordinate pair
 type LatLng struct {
-	Lat                  float64                `json:"lat"`
+	// Geographic latitude in decimal degrees
+	Lat float64 `json:"lat"`
+	// Geographic longitude in decimal degrees
 	Lng                  float64                `json:"lng"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

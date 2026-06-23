@@ -8,10 +8,13 @@ import (
 )
 
 // NetworkVpnAccessDestinationNatProperty represents a NetworkVpnAccessDestinationNatProperty struct.
+// VPN access destination NAT rule target settings
 type NetworkVpnAccessDestinationNatProperty struct {
-	// The Destination NAT destination IP Address. Must be an IP (i.e. "192.168.70.30") or a Variable (i.e. "{{myvar}}")
-	InternalIp           *string                `json:"internal_ip,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
+	// The Destination NAT destination IP address. Must be an IP (i.e. "192.168.70.30") or a Variable (i.e. "{{myvar}}")
+	InternalIp *string `json:"internal_ip,omitempty"`
+	// Label for this VPN destination NAT rule
+	Name *string `json:"name,omitempty"`
+	// Destination port or variable for this VPN destination NAT rule
 	Port                 *string                `json:"port,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

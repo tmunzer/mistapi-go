@@ -16,7 +16,16 @@ When doing port auth. enum: `dot1x`, `none`
 
 ## Example
 
-```
-none
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    apPortConfigPortAuth := models.ApPortConfigPortAuthEnum_DOT1X
+
+}
 ```
 

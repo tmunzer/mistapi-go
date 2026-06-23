@@ -11,33 +11,39 @@ import (
 )
 
 // WebhookDiscoveredRawRssiEvent represents a WebhookDiscoveredRawRssiEvent struct.
+// Raw RSSI sample reported for a passive BLE device packet
 type WebhookDiscoveredRawRssiEvent struct {
 	// coordinates (if any) of reporting AP (updated once in 60s per client)
 	ApLoc []float64 `json:"ap_loc,omitempty"`
 	// Antenna index, from 1-8, clock-wise starting from the LED
 	Beam int `json:"beam"`
-	// Device id of the reporting AP
+	// Identifier of the AP that reported the raw RSSI sample
 	DeviceId uuid.UUID `json:"device_id"`
 	// Major number for iBeacon
 	IbeaconMajor Optional[int] `json:"ibeacon_major"`
 	// Minor number for iBeacon
-	IbeaconMinor Optional[int]       `json:"ibeacon_minor"`
-	IbeaconUuid  Optional[uuid.UUID] `json:"ibeacon_uuid"`
-	IsAsset      *bool               `json:"is_asset,omitempty"`
-	// MAC of the asset/ beacon
-	Mac   string    `json:"mac"`
+	IbeaconMinor Optional[int] `json:"ibeacon_minor"`
+	// iBeacon UUID value, or null when no iBeacon UUID is configured
+	IbeaconUuid Optional[uuid.UUID] `json:"ibeacon_uuid"`
+	// Whether the advertising MAC address is recognized as an asset
+	IsAsset *bool `json:"is_asset,omitempty"`
+	// Client MAC address for the passive BLE device or beacon that emitted the packet
+	Mac string `json:"mac"`
+	// Map associated with the reporting AP when location context is available
 	MapId uuid.UUID `json:"map_id"`
 	// BLE manufacturing company ID
 	MfgCompanyId *string `json:"mfg_company_id,omitempty"`
 	// BLE manufacturing data in hex byte-string format (ie: "112233AABBCC")
-	MfgData *string   `json:"mfg_data,omitempty"`
-	OrgId   uuid.UUID `json:"org_id"`
-	// Signal strength
+	MfgData *string `json:"mfg_data,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId uuid.UUID `json:"org_id"`
+	// Received signal strength of the packet at the reporting AP, in dBm
 	Rssi float64 `json:"rssi"`
 	// List of service data packets heard from the asset/ beacon
 	ServicePackets []ServicePacket `json:"service_packets,omitempty"`
-	SiteId         uuid.UUID       `json:"site_id"`
-	// Epoch (seconds)
+	// Unique identifier of a Mist site
+	SiteId uuid.UUID `json:"site_id"`
+	// Epoch timestamp, in seconds
 	Timestamp            *float64               `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

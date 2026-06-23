@@ -8,13 +8,15 @@ import (
 )
 
 // SiteSettingMxedge represents a SiteSettingMxedge struct.
-// Site Mist Edges form a cluster of RadSec Proxy servers
+// Service settings for the site Mist Edge cluster
 type SiteSettingMxedge struct {
-	// Configure cloud-assisted dynamic authorization service on this cluster of mist edges
-	MistDas     *MxedgeDas    `json:"mist_das,omitempty"`
-	MistNac     *MxclusterNac `json:"mist_nac,omitempty"`
-	MistNacedge *MistNacedge  `json:"mist_nacedge,omitempty"`
-	// MxEdge RadSec Configuration
+	// Cloud-assisted Dynamic Authorization Service settings for a Mist Edge cluster
+	MistDas *MxedgeDas `json:"mist_das,omitempty"`
+	// Mist NAC RADIUS settings for a Mist Edge cluster. Used when the Mist Edge Cluster is used as a RADIUS Proxy between the local devices and the Mist NAC
+	MistNac *MxclusterNac `json:"mist_nac,omitempty"`
+	// Mist NAC Site Survivability settings for the site
+	MistNacedge *MistNacedge `json:"mist_nacedge,omitempty"`
+	// RadSec proxy configuration for a Mist Edge cluster. Used when the Mist Edge Cluster is used as a RADIUS Proxy between the local devices and external RADIUS Server.
 	Radsec               *MxclusterRadsec       `json:"radsec,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

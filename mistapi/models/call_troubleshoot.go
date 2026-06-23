@@ -9,9 +9,13 @@ import (
 )
 
 // CallTroubleshoot represents a CallTroubleshoot struct.
+// Detailed call troubleshooting response
 type CallTroubleshoot struct {
-	Mac                  *string                `json:"mac,omitempty"`
-	MeetingId            *uuid.UUID             `json:"meeting_id,omitempty"`
+	// Client MAC address for the troubleshot call
+	Mac *string `json:"mac,omitempty"`
+	// Meeting identifier for the troubleshot call
+	MeetingId *uuid.UUID `json:"meeting_id,omitempty"`
+	// List of call troubleshooting detail records
 	Results              []TroubleshootCallItem `json:"results,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

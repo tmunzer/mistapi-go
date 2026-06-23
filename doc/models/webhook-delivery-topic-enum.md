@@ -19,7 +19,16 @@ webhook topic. enum: `alarms`, `audits`, `device-updowns`, `occupancy-alerts`, `
 
 ## Example
 
-```
-audits
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookDeliveryTopic := models.WebhookDeliveryTopicEnum_OCCUPANCYALERTS
+
+}
 ```
 

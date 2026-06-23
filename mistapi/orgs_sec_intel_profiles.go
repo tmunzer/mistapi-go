@@ -27,7 +27,7 @@ func NewOrgsSecIntelProfiles(baseController baseController) *OrgsSecIntelProfile
 // ListOrgSecIntelProfiles takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.SecintelProfile data and
 // an error if there was an issue with the request or response.
-// Get List of Sec Intel Profiles
+// List organization SecIntel profiles. These profiles define protection levels for SecIntel feed categories such as command-and-control, infected host, and DNS.
 func (o *OrgsSecIntelProfiles) ListOrgSecIntelProfiles(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -40,19 +40,15 @@ func (o *OrgsSecIntelProfiles) ListOrgSecIntelProfiles(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if limit != nil {
 		req.QueryParam("limit", *limit)
@@ -74,7 +70,7 @@ func (o *OrgsSecIntelProfiles) ListOrgSecIntelProfiles(
 // CreateOrgSecIntelProfile takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.SecintelProfile data and
 // an error if there was an issue with the request or response.
-// Create Sec Intel Profiles
+// Create an organization SecIntel profile with category-specific protection levels for threat intelligence feeds.
 func (o *OrgsSecIntelProfiles) CreateOrgSecIntelProfile(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -86,19 +82,15 @@ func (o *OrgsSecIntelProfiles) CreateOrgSecIntelProfile(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -118,7 +110,7 @@ func (o *OrgsSecIntelProfiles) CreateOrgSecIntelProfile(
 // DeleteOrgSecIntelProfile takes context, orgId, secintelprofileId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete Sec Intel Profile
+// Remove an organization SecIntel profile from the organization's available threat intelligence profile set.
 func (o *OrgsSecIntelProfiles) DeleteOrgSecIntelProfile(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -130,19 +122,15 @@ func (o *OrgsSecIntelProfiles) DeleteOrgSecIntelProfile(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -155,7 +143,7 @@ func (o *OrgsSecIntelProfiles) DeleteOrgSecIntelProfile(
 // GetOrgSecIntelProfile takes context, orgId, secintelprofileId as parameters and
 // returns an models.ApiResponse with models.SecintelProfile data and
 // an error if there was an issue with the request or response.
-// Get Sec Intel Profile
+// Return an organization SecIntel profile, including the protection level configured for each SecIntel feed category.
 func (o *OrgsSecIntelProfiles) GetOrgSecIntelProfile(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -167,19 +155,15 @@ func (o *OrgsSecIntelProfiles) GetOrgSecIntelProfile(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.SecintelProfile
@@ -195,7 +179,7 @@ func (o *OrgsSecIntelProfiles) GetOrgSecIntelProfile(
 // UpdateOrgSecIntelProfile takes context, orgId, secintelprofileId, body as parameters and
 // returns an models.ApiResponse with models.SecintelProfile data and
 // an error if there was an issue with the request or response.
-// Update Sec Intel Profile
+// Update an organization SecIntel profile, including its display name and category-specific threat intelligence protection levels.
 func (o *OrgsSecIntelProfiles) UpdateOrgSecIntelProfile(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -208,19 +192,15 @@ func (o *OrgsSecIntelProfiles) UpdateOrgSecIntelProfile(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

@@ -8,7 +8,9 @@ import (
 )
 
 // VsInstanceProperty represents a VsInstanceProperty struct.
+// EX9200 virtual-switch instance settings
 type VsInstanceProperty struct {
+	// Network names included in a virtual-switch instance
 	Networks             []string               `json:"networks,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

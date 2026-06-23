@@ -1,6 +1,8 @@
 
 # Capture Gateway Gateways
 
+Gateway-specific packet capture settings keyed under a gateway MAC address
+
 ## Structure
 
 `CaptureGatewayGateways`
@@ -11,21 +13,30 @@
 |  --- | --- | --- | --- |
 | `Ports` | [`map[string]models.CaptureGatewayGatewaysPort`](../../doc/models/capture-gateway-gateways-port.md) | Optional | Property key is the port ID |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "ports": {
-    "key0": {
-      "tcpdump_expression": "tcpdump_expression0"
-    },
-    "key1": {
-      "tcpdump_expression": "tcpdump_expression0"
-    },
-    "key2": {
-      "tcpdump_expression": "tcpdump_expression0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureGatewayGateways := models.CaptureGatewayGateways{
+        Ports:                map[string]models.CaptureGatewayGatewaysPort{
+            "key0": models.CaptureGatewayGatewaysPort{
+                TcpdumpExpression:    models.ToPointer("tcpdump_expression0"),
+            },
+            "key1": models.CaptureGatewayGatewaysPort{
+                TcpdumpExpression:    models.ToPointer("tcpdump_expression0"),
+            },
+            "key2": models.CaptureGatewayGatewaysPort{
+                TcpdumpExpression:    models.ToPointer("tcpdump_expression0"),
+            },
+        },
     }
-  }
+
 }
 ```
 

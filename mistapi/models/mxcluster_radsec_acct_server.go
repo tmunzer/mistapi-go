@@ -8,12 +8,13 @@ import (
 )
 
 // MxclusterRadsecAcctServer represents a MxclusterRadsecAcctServer struct.
+// RadSec accounting server settings for a Mist Edge cluster
 type MxclusterRadsecAcctServer struct {
 	// IP / hostname of RADIUS server
 	Host *string `json:"host,omitempty"`
 	// Acct port of RADIUS server
 	Port *int `json:"port,omitempty"`
-	// Secret of RADIUS server
+	// Shared secret used with this RADIUS accounting server
 	Secret *string `json:"secret,omitempty"`
 	// List of ssids that will use this server if match_ssid is true and match is found
 	Ssids                []string               `json:"ssids,omitempty"`

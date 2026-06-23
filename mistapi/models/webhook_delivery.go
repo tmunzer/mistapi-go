@@ -9,32 +9,37 @@ import (
 )
 
 // WebhookDelivery represents a WebhookDelivery struct.
+// Record of a webhook delivery attempt and the destination response
 type WebhookDelivery struct {
-	// Error message, if there is one
+	// Message returned for a failed delivery attempt, when available
 	Error *string `json:"error,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id    *uuid.UUID `json:"id,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
-	// HTTP request headers
+	// HTTP headers sent with the webhook delivery request
 	ReqHeaders *string `json:"req_headers,omitempty"`
-	// HTTP request payload
+	// JSON payload sent in the webhook delivery request
 	ReqPayload *string `json:"req_payload,omitempty"`
-	// HTTP request URL
+	// Destination URL used for the webhook delivery request
 	ReqUrl *string `json:"req_url,omitempty"`
-	// HTTP response body
+	// Response body returned by the webhook destination
 	RespBody *string `json:"resp_body,omitempty"`
-	// HTTP response headers
-	RespHeaders *string    `json:"resp_headers,omitempty"`
-	SiteId      *uuid.UUID `json:"site_id,omitempty"`
+	// Response headers returned by the webhook destination
+	RespHeaders *string `json:"resp_headers,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// webhook delivery status. enum: `failure`, `success`
-	Status     *WebhookDeliveryStatusEnum `json:"status,omitempty"`
-	StatusCode *int                       `json:"status_code,omitempty"`
-	// Epoch (seconds)
+	Status *WebhookDeliveryStatusEnum `json:"status,omitempty"`
+	// HTTP status code returned by the webhook destination
+	StatusCode *int `json:"status_code,omitempty"`
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
 	// webhook topic. enum: `alarms`, `audits`, `device-updowns`, `occupancy-alerts`, `ping`
-	Topic                *WebhookDeliveryTopicEnum `json:"topic,omitempty"`
-	WebhookId            *uuid.UUID                `json:"webhook_id,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"_"`
+	Topic *WebhookDeliveryTopicEnum `json:"topic,omitempty"`
+	// Unique identifier of the configured webhook used for this delivery attempt
+	WebhookId            *uuid.UUID             `json:"webhook_id,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookDelivery,

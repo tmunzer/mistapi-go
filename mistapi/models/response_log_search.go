@@ -10,12 +10,19 @@ import (
 )
 
 // ResponseLogSearch represents a ResponseLogSearch struct.
+// Paginated response for audit log search results
 type ResponseLogSearch struct {
-	End                  int                    `json:"end"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []LogEvent             `json:"results"`
-	Start                int                    `json:"start"`
+	// Epoch timestamp for the end of the audit log search window
+	End int `json:"end"`
+	// Maximum number of audit log events returned in this page
+	Limit int `json:"limit"`
+	// Pagination cursor or URL for retrieving the next page of audit log events
+	Next *string `json:"next,omitempty"`
+	// Audit log events returned by a log query
+	Results []LogEvent `json:"results"`
+	// Epoch timestamp for the start of the audit log search window
+	Start int `json:"start"`
+	// Number of audit log events matching the search filters across all pages
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

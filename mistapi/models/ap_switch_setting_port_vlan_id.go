@@ -9,7 +9,7 @@ import (
 )
 
 // ApSwitchSettingPortVlanId represents a ApSwitchSettingPortVlanId struct.
-// Native VLAN id, optional
+// Native VLAN ID, optional
 type ApSwitchSettingPortVlanId struct {
 	value    any
 	isNumber bool
@@ -75,7 +75,7 @@ func (a *ApSwitchSettingPortVlanId) AsString() (
 }
 
 // internalApSwitchSettingPortVlanId represents a apSwitchSettingPortVlanId struct.
-// Native VLAN id, optional
+// Native VLAN ID, optional
 type internalApSwitchSettingPortVlanId struct{}
 
 var ApSwitchSettingPortVlanIdContainer internalApSwitchSettingPortVlanId

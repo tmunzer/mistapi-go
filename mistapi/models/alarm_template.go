@@ -11,7 +11,7 @@ import (
 )
 
 // AlarmTemplate represents a AlarmTemplate struct.
-// Alarm Template
+// Alarm template defining default delivery and per-alarm rules
 type AlarmTemplate struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
@@ -22,7 +22,8 @@ type AlarmTemplate struct {
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
 	// Some string to name the alarm template
-	Name  *string    `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Alarm Rules object to configure the individual alarm keys/types. Property key is the alarm name.
 	Rules                map[string]AlarmTemplateRule `json:"rules"`

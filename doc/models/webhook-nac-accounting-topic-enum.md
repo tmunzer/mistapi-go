@@ -1,7 +1,7 @@
 
 # Webhook Nac Accounting Topic Enum
 
-enum: `nac-accounting`
+Webhook topic name for NAC accounting deliveries. enum: `nac-accounting`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `nac-accounting`
 | Name |
 |  --- |
 | `nac-accounting` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookNacAccountingTopic := models.WebhookNacAccountingTopicEnum_NACACCOUNTING
+
+}
+```
 

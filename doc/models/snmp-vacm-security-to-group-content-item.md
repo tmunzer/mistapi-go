@@ -1,6 +1,8 @@
 
 # Snmp Vacm Security to Group Content Item
 
+VACM security-name to group mapping entry
+
 ## Structure
 
 `SnmpVacmSecurityToGroupContentItem`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Group` | `*string` | Optional | Refer to group_name under access |
-| `SecurityName` | `*string` | Optional | - |
+| `Group` | `*string` | Optional | VACM group name referenced by this mapping |
+| `SecurityName` | `*string` | Optional | Name of the SNMP security principal mapped to a VACM group |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "group": "group4",
-  "security_name": "security_name6"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    snmpVacmSecurityToGroupContentItem := models.SnmpVacmSecurityToGroupContentItem{
+        Group:                models.ToPointer("group0"),
+        SecurityName:         models.ToPointer("security_name2"),
+    }
+
 }
 ```
 

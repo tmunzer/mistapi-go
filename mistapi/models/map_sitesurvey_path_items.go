@@ -9,11 +9,15 @@ import (
 )
 
 // MapSitesurveyPathItems represents a MapSitesurveyPathItems struct.
+// Site survey path definition on a map
 type MapSitesurveyPathItems struct {
+	// Site survey path coordinate space
 	Coordinate *string `json:"coordinate,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id                   *uuid.UUID             `json:"id,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Display name of the site survey path
+	Name *string `json:"name,omitempty"`
+	// Map nodes included in a site survey path
 	Nodes                []MapNode              `json:"nodes,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

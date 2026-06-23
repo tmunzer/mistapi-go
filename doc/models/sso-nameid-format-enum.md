@@ -14,3 +14,18 @@ if `idp_type`==`saml`. enum: `email`, `unspecified`
 | `email` |
 | `unspecified` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ssoNameidFormat := models.SsoNameidFormatEnum_EMAIL
+
+}
+```
+

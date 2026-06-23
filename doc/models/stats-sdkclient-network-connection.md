@@ -1,7 +1,7 @@
 
 # Stats Sdkclient Network Connection
 
-Various network connection info for the SDK client (if known, else omitted), with RSSI in dBm, and signal level as
+Current network connection details reported for an SDK client
 
 ## Structure
 
@@ -11,19 +11,28 @@ Various network connection info for the SDK client (if known, else omitted), wit
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mac` | `string` | Required | - |
-| `Rssi` | `float64` | Required | - |
-| `SignalLevel` | `float64` | Required | - |
-| `Type` | `string` | Required | - |
+| `Mac` | `string` | Required | Current network connection MAC address reported for the SDK client |
+| `Rssi` | `float64` | Required | Received signal strength indicator for the SDK client's current network connection, in dBm |
+| `SignalLevel` | `float64` | Required | Numeric signal quality level reported with the SDK client's current network connection |
+| `Type` | `string` | Required | Network connection type reported for the SDK client, such as WiFi |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mac": "mac6",
-  "rssi": 116.74,
-  "signal_level": 184.76,
-  "type": "type8"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsSdkclientNetworkConnection := models.StatsSdkclientNetworkConnection{
+        Mac:                  "mac0",
+        Rssi:                 float64(231.48),
+        SignalLevel:          float64(43.5),
+        Type:                 "type4",
+    }
+
 }
 ```
 

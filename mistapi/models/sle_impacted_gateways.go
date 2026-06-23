@@ -8,17 +8,27 @@ import (
 )
 
 // SleImpactedGateways represents a SleImpactedGateways struct.
+// Paginated list of gateways impacted by an SLE metric
 type SleImpactedGateways struct {
-	Classifier           *string                      `json:"classifier,omitempty"`
-	End                  *int                         `json:"end,omitempty"`
-	Failure              *string                      `json:"failure,omitempty"`
-	Gateways             []SleImpactedGatewaysGateway `json:"gateways,omitempty"`
-	Limit                *int                         `json:"limit,omitempty"`
-	Metric               *string                      `json:"metric,omitempty"`
-	Page                 *int                         `json:"page,omitempty"`
-	Start                *int                         `json:"start,omitempty"`
-	TotalCount           *int                         `json:"total_count,omitempty"`
-	AdditionalProperties map[string]interface{}       `json:"_"`
+	// Requested SLE classifier filter applied to the query
+	Classifier *string `json:"classifier,omitempty"`
+	// Last timestamp in the impacted gateways window
+	End *int `json:"end,omitempty"`
+	// Requested SLE failure filter applied to the query
+	Failure *string `json:"failure,omitempty"`
+	// Impacted gateway rows returned for an SLE query
+	Gateways []SleImpactedGatewaysGateway `json:"gateways,omitempty"`
+	// Maximum number of impacted gateway rows returned per page
+	Limit *int `json:"limit,omitempty"`
+	// SLE metric name used for the impacted gateways query
+	Metric *string `json:"metric,omitempty"`
+	// Current page number for impacted gateway results
+	Page *int `json:"page,omitempty"`
+	// First timestamp in the impacted gateways window
+	Start *int `json:"start,omitempty"`
+	// Number of impacted gateway rows matching the query
+	TotalCount           *int                   `json:"total_count,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SleImpactedGateways,

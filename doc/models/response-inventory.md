@@ -1,6 +1,8 @@
 
 # Response Inventory
 
+Result of adding device claim codes to organization inventory
+
 ## Structure
 
 `ResponseInventory`
@@ -9,61 +11,77 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Added` | `[]string` | Optional | - |
-| `Duplicated` | `[]string` | Optional | - |
-| `Error` | `[]string` | Optional | - |
-| `InventoryAdded` | [`[]models.ResponseInventoryInventoryAddedItems`](../../doc/models/response-inventory-inventory-added-items.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `InventoryDuplicated` | [`[]models.ResponseInventoryInventoryDuplicatedItems`](../../doc/models/response-inventory-inventory-duplicated-items.md) | Optional | **Constraints**: *Unique Items Required* |
-| `Reason` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `Added` | `[]string` | Optional | Claim codes accepted into organization inventory |
+| `Duplicated` | `[]string` | Optional | Claim codes already present in organization inventory |
+| `Error` | `[]string` | Optional | Claim codes rejected by the inventory add operation |
+| `InventoryAdded` | [`[]models.ResponseInventoryInventoryAddedItems`](../../doc/models/response-inventory-inventory-added-items.md) | Optional | Detailed inventory records added by the claim operation<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `InventoryDuplicated` | [`[]models.ResponseInventoryInventoryDuplicatedItems`](../../doc/models/response-inventory-inventory-duplicated-items.md) | Optional | Detailed inventory records already present during the claim operation<br><br>**Constraints**: *Unique Items Required* |
+| `Reason` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "added": [
-    "added6",
-    "added7"
-  ],
-  "duplicated": [
-    "duplicated5"
-  ],
-  "error": [
-    "error9",
-    "error0",
-    "error1"
-  ],
-  "inventory_added": [
-    {
-      "mac": "mac0",
-      "magic": "magic6",
-      "model": "model4",
-      "serial": "serial6",
-      "type": "type6"
-    },
-    {
-      "mac": "mac0",
-      "magic": "magic6",
-      "model": "model4",
-      "serial": "serial6",
-      "type": "type6"
-    },
-    {
-      "mac": "mac0",
-      "magic": "magic6",
-      "model": "model4",
-      "serial": "serial6",
-      "type": "type6"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseInventory := models.ResponseInventory{
+        Added:                []string{
+            "added8",
+        },
+        Duplicated:           []string{
+            "duplicated7",
+            "duplicated8",
+            "duplicated9",
+        },
+        Error:                []string{
+            "error1",
+            "error2",
+        },
+        InventoryAdded:       []models.ResponseInventoryInventoryAddedItems{
+            models.ResponseInventoryInventoryAddedItems{
+                Mac:                  "mac0",
+                Magic:                "magic6",
+                Model:                "model4",
+                Serial:               "serial6",
+                Type:                 "type6",
+            },
+            models.ResponseInventoryInventoryAddedItems{
+                Mac:                  "mac0",
+                Magic:                "magic6",
+                Model:                "model4",
+                Serial:               "serial6",
+                Type:                 "type6",
+            },
+            models.ResponseInventoryInventoryAddedItems{
+                Mac:                  "mac0",
+                Magic:                "magic6",
+                Model:                "model4",
+                Serial:               "serial6",
+                Type:                 "type6",
+            },
+        },
+        InventoryDuplicated:  []models.ResponseInventoryInventoryDuplicatedItems{
+            models.ResponseInventoryInventoryDuplicatedItems{
+                Mac:                  "mac0",
+                Magic:                "magic6",
+                Model:                "model4",
+                Serial:               "serial6",
+                Type:                 "type6",
+            },
+            models.ResponseInventoryInventoryDuplicatedItems{
+                Mac:                  "mac0",
+                Magic:                "magic6",
+                Model:                "model4",
+                Serial:               "serial6",
+                Type:                 "type6",
+            },
+        },
     }
-  ],
-  "inventory_duplicated": [
-    {
-      "mac": "mac0",
-      "magic": "magic6",
-      "model": "model4",
-      "serial": "serial6",
-      "type": "type6"
-    }
-  ]
+
 }
 ```
 

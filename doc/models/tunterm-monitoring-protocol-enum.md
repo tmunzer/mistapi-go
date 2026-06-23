@@ -17,7 +17,16 @@ enum: `arp`, `ping`, `tcp`
 
 ## Example
 
-```
-tcp
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    tuntermMonitoringProtocol := models.TuntermMonitoringProtocolEnum_PING
+
+}
 ```
 

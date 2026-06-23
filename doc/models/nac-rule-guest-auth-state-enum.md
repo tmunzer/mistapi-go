@@ -16,7 +16,16 @@ Guest portal authorization state. enum: `authorized`, `unknown`
 
 ## Example
 
-```
-authorized
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    nacRuleGuestAuthState := models.NacRuleGuestAuthStateEnum_AUTHORIZED
+
+}
 ```
 

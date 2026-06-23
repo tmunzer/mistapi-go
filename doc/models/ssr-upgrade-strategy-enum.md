@@ -17,3 +17,18 @@ enum:
 | `big_bang` |
 | `serial` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ssrUpgradeStrategy := models.SsrUpgradeStrategyEnum_BIGBANG
+
+}
+```
+

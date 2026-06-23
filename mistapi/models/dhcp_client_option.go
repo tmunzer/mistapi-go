@@ -8,8 +8,11 @@ import (
 )
 
 // DhcpClientOption represents a DhcpClientOption struct.
+// DHCP client option observed in a DHCP packet
 type DhcpClientOption struct {
-	Code                 *string                `json:"code,omitempty"`
+	// DHCP option code and option name
+	Code *string `json:"code,omitempty"`
+	// Decoded value carried by the DHCP option
 	Data                 *string                `json:"data,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

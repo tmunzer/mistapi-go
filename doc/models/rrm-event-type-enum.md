@@ -20,3 +20,18 @@ enum: `interference-ap-co-channel`, `interference-ap-non-wifi`, `neighbor-ap-dow
 | `scheduled-site_rrm` |
 | `triggered-site_rrm` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    rrmEventType := models.RrmEventTypeEnum_SCHEDULEDSITERRM
+
+}
+```
+

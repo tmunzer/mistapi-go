@@ -8,10 +8,15 @@ import (
 )
 
 // ResponsePcapAp represents a ResponsePcapAp struct.
+// AP radio settings used for a packet capture
 type ResponsePcapAp struct {
-	Band                 *int                   `json:"band,omitempty"`
-	Bandwidth            *int                   `json:"bandwidth,omitempty"`
-	Channel              *int                   `json:"channel,omitempty"`
+	// Radio band used for the AP packet capture
+	Band *int `json:"band,omitempty"`
+	// Channel bandwidth used for the AP packet capture, in MHz
+	Bandwidth *int `json:"bandwidth,omitempty"`
+	// Radio channel used for the AP packet capture
+	Channel *int `json:"channel,omitempty"`
+	// Tcpdump filter expression applied to the AP packet capture, or null when no filter is applied
 	TcpdumpExpression    Optional[string]       `json:"tcpdump_expression"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

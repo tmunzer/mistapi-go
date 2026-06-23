@@ -1,7 +1,7 @@
 
 # Org Tickets Count Distinct Enum
 
-enum: `status`, `type`
+Distinct field used when counting organization tickets. enum: `status`, `type`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `status`, `type`
 |  --- |
 | `status` |
 | `type` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgTicketsCountDistinct := models.OrgTicketsCountDistinctEnum_STATUS
+
+}
+```
 

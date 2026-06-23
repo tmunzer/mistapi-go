@@ -8,8 +8,11 @@ import (
 )
 
 // SiteSettingPaloaltoNetworkGateway represents a SiteSettingPaloaltoNetworkGateway struct.
+// Palo Alto Networks gateway API connection settings
 type SiteSettingPaloaltoNetworkGateway struct {
-	ApiKey               *string                `json:"api_key,omitempty"`
+	// Authentication key used to access the Palo Alto Networks gateway API
+	ApiKey *string `json:"api_key,omitempty"`
+	// Base URL for the Palo Alto Networks gateway API
 	ApiUrl               *string                `json:"api_url,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

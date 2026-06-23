@@ -27,7 +27,7 @@ func NewOrgsMxTunnels(baseController baseController) *OrgsMxTunnels {
 // ListOrgMxTunnels takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.Mxtunnel data and
 // an error if there was an issue with the request or response.
-// Get List of Org MxTunnels
+// List organization Mist Tunnel configurations used to carry AP user VLANs to Mist Edge clusters.
 func (o *OrgsMxTunnels) ListOrgMxTunnels(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -40,19 +40,15 @@ func (o *OrgsMxTunnels) ListOrgMxTunnels(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if limit != nil {
 		req.QueryParam("limit", *limit)
@@ -74,7 +70,7 @@ func (o *OrgsMxTunnels) ListOrgMxTunnels(
 // CreateOrgMxTunnel takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.Mxtunnel data and
 // an error if there was an issue with the request or response.
-// Create MxTunnel
+// Create an organization Mist Tunnel configuration, including hosting Mist Edge clusters, VLANs, heartbeat settings, and optional IPsec settings.
 func (o *OrgsMxTunnels) CreateOrgMxTunnel(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -86,19 +82,15 @@ func (o *OrgsMxTunnels) CreateOrgMxTunnel(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -118,7 +110,7 @@ func (o *OrgsMxTunnels) CreateOrgMxTunnel(
 // DeleteOrgMxTunnel takes context, orgId, mxtunnelId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete Org MxTunnel
+// Delete an organization Mist Tunnel configuration by Mist Tunnel ID.
 func (o *OrgsMxTunnels) DeleteOrgMxTunnel(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -130,19 +122,15 @@ func (o *OrgsMxTunnels) DeleteOrgMxTunnel(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -155,7 +143,7 @@ func (o *OrgsMxTunnels) DeleteOrgMxTunnel(
 // GetOrgMxTunnel takes context, orgId, mxtunnelId as parameters and
 // returns an models.ApiResponse with models.Mxtunnel data and
 // an error if there was an issue with the request or response.
-// Get Org MxTunnel Details
+// Retrieve configuration details for a specific organization Mist Tunnel, including cluster, VLAN, heartbeat, IPsec, and preemption settings.
 func (o *OrgsMxTunnels) GetOrgMxTunnel(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -167,19 +155,15 @@ func (o *OrgsMxTunnels) GetOrgMxTunnel(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.Mxtunnel
@@ -195,7 +179,7 @@ func (o *OrgsMxTunnels) GetOrgMxTunnel(
 // UpdateOrgMxTunnel takes context, orgId, mxtunnelId, body as parameters and
 // returns an models.ApiResponse with models.Mxtunnel data and
 // an error if there was an issue with the request or response.
-// Update Org MxTunnel
+// Update an organization Mist Tunnel configuration, including cluster membership, VLANs, heartbeat settings, IPsec, and preemption behavior.
 func (o *OrgsMxTunnels) UpdateOrgMxTunnel(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -208,19 +192,15 @@ func (o *OrgsMxTunnels) UpdateOrgMxTunnel(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

@@ -9,13 +9,19 @@ import (
 )
 
 // TicketCommentsAttachment represents a TicketCommentsAttachment struct.
+// Metadata for an attachment on a ticket comment
 type TicketCommentsAttachment struct {
+	// MIME type of the ticket comment attachment
 	ContentType *string `json:"content_type,omitempty"`
-	ContentUrl  *string `json:"content_url,omitempty"`
-	CreatedAt   *int    `json:"created_at,omitempty"`
-	FileName    *string `json:"file_name,omitempty"`
+	// Download URL for the ticket comment attachment
+	ContentUrl *string `json:"content_url,omitempty"`
+	// Time when this ticket comment attachment was created, in epoch seconds
+	CreatedAt *int `json:"created_at,omitempty"`
+	// Original file name of the ticket comment attachment
+	FileName *string `json:"file_name,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id                   *uuid.UUID             `json:"id,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Attachment file size, in bytes
 	SizeInBytes          *int                   `json:"size_in_bytes,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

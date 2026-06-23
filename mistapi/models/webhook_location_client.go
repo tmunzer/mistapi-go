@@ -12,9 +12,9 @@ import (
 // WebhookLocationClient represents a WebhookLocationClient struct.
 // Sample of the `location-client` webhook payload.
 type WebhookLocationClient struct {
-	// List of events
+	// Connected client location events included in this webhook delivery
 	Events []WebhookLocationClientEvent `json:"events"`
-	// enum: `location-client`
+	// Webhook topic name for connected client location deliveries. enum: `location-client`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

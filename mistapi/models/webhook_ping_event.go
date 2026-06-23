@@ -11,12 +11,15 @@ import (
 )
 
 // WebhookPingEvent represents a WebhookPingEvent struct.
+// Ping webhook event generated to verify webhook delivery
 type WebhookPingEvent struct {
 	// Unique ID of the object instance in the Mist Organization
-	Id     uuid.UUID `json:"id"`
-	Name   string    `json:"name"`
+	Id uuid.UUID `json:"id"`
+	// Display name associated with the webhook ping event
+	Name string `json:"name"`
+	// Unique identifier of a Mist site
 	SiteId uuid.UUID `json:"site_id"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp            float64                `json:"timestamp"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

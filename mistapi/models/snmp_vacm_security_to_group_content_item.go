@@ -8,9 +8,11 @@ import (
 )
 
 // SnmpVacmSecurityToGroupContentItem represents a SnmpVacmSecurityToGroupContentItem struct.
+// VACM security-name to group mapping entry
 type SnmpVacmSecurityToGroupContentItem struct {
-	// Refer to group_name under access
-	Group                *string                `json:"group,omitempty"`
+	// VACM group name referenced by this mapping
+	Group *string `json:"group,omitempty"`
+	// Name of the SNMP security principal mapped to a VACM group
 	SecurityName         *string                `json:"security_name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

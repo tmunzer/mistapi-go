@@ -1,7 +1,7 @@
 
 # Webhook Mxedge Event Topic Enum
 
-enum: `mxedge-events`
+Webhook topic name for Mist Edge event deliveries. enum: `mxedge-events`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `mxedge-events`
 | Name |
 |  --- |
 | `mxedge-events` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookMxedgeEventTopic := models.WebhookMxedgeEventTopicEnum_MXEDGEEVENTS
+
+}
+```
 

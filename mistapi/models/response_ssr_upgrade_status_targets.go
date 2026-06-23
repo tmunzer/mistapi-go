@@ -10,10 +10,15 @@ import (
 )
 
 // ResponseSsrUpgradeStatusTargets represents a ResponseSsrUpgradeStatusTargets struct.
+// SSR device IDs grouped by upgrade status
 type ResponseSsrUpgradeStatusTargets struct {
-	Failed               []string               `json:"failed"`
-	Queued               []string               `json:"queued"`
-	Success              []string               `json:"success"`
+	// Unique string values returned or accepted by this schema
+	Failed []string `json:"failed"`
+	// Unique string values returned or accepted by this schema
+	Queued []string `json:"queued"`
+	// Unique string values returned or accepted by this schema
+	Success []string `json:"success"`
+	// Unique string values returned or accepted by this schema
 	Upgrading            []string               `json:"upgrading"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

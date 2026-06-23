@@ -8,8 +8,11 @@ import (
 )
 
 // ModuleStatItemPsusItem represents a ModuleStatItemPsusItem struct.
+// Power supply status for a device module
 type ModuleStatItemPsusItem struct {
-	Name                 *string                `json:"name,omitempty"`
+	// Power supply label reported by the device
+	Name *string `json:"name,omitempty"`
+	// Operational status reported for the power supply
 	Status               *string                `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

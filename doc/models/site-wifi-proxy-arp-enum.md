@@ -15,3 +15,18 @@ enum: `default`, `disabled`, `enabled`
 | `disabled` |
 | `enabled` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteWifiProxyArp := models.SiteWifiProxyArpEnum_DISABLED
+
+}
+```
+

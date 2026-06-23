@@ -1,7 +1,7 @@
 
 # Webhook Occupancy Alerts Topic Enum
 
-enum: `occupeancy-alerts`
+Webhook topic name for occupancy alert deliveries. enum: `occupancy-alerts`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `occupeancy-alerts`
 | Name |
 |  --- |
 | `occupancy-alerts` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookOccupancyAlertsTopic := models.WebhookOccupancyAlertsTopicEnum_OCCUPANCYALERTS
+
+}
+```
 

@@ -9,27 +9,29 @@ import (
 )
 
 // NacClientEvent represents a NacClientEvent struct.
+// NAC authentication event for a wired or wireless client
 type NacClientEvent struct {
-	// AP mac
+	// Access point MAC address for the client session
 	Ap *string `json:"ap,omitempty"`
 	// enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `eap-peap`
 	AuthType *NacAuthTypeEnum `json:"auth_type,omitempty"`
-	// BSSID
+	// Wireless BSSID used for the client session
 	Bssid *string `json:"bssid,omitempty"`
 	// Type of network access. enum: `wireless`, `wired`, `vty`
 	ClientType *NacAccessTypeEnum `json:"client_type,omitempty"`
-	// MAC Address of the device (AP, Switch) the client is connected to
+	// MAC address of the AP or switch the client is connected to
 	DeviceMac *string `json:"device_mac,omitempty"`
 	// NAC Policy Dry Run Rule ID, if present and matched
 	DryrunNacruleId *uuid.UUID `json:"dryrun_nacrule_id,omitempty"`
 	// `true` if dryrun rule present and matched with priority, `false` if not matched or not present
 	DryrunNacruleMatched *bool `json:"dryrun_nacrule_matched,omitempty"`
 	// If IDP is used, the id of the IDP configuration used
-	IdpId   *uuid.UUID `json:"idp_id,omitempty"`
-	IdpRole []string   `json:"idp_role,omitempty"`
+	IdpId *uuid.UUID `json:"idp_id,omitempty"`
+	// Identity provider roles or groups returned for a NAC client event
+	IdpRole []string `json:"idp_role,omitempty"`
 	// If IDP is used, the username presented to the Identity Provider
 	IdpUsername *string `json:"idp_username,omitempty"`
-	// Client MAC address
+	// Client MAC address observed in the NAC event
 	Mac *string `json:"mac,omitempty"`
 	// Mist Edge ID used to connect to cloud
 	MxedgeId *string `json:"mxedge_id,omitempty"`
@@ -38,20 +40,22 @@ type NacClientEvent struct {
 	// NAC Policy Rule Matched
 	NacruleMatched *bool `json:"nacrule_matched,omitempty"`
 	// Vendor name of the NAS
-	NasVendor *string    `json:"nas_vendor,omitempty"`
-	OrgId     *uuid.UUID `json:"org_id,omitempty"`
+	NasVendor *string `json:"nas_vendor,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Port ID where the NAC client event occurred
 	PortId *string `json:"port_id,omitempty"`
 	// Type of network access. enum: `wireless`, `wired`, `vty`
 	PortType *NacAccessTypeEnum `json:"port_type,omitempty"`
-	// Whether the client is using randomized MAC Address or not
+	// Whether the client is using randomized MAC address or not. enum: `true`, `false`
 	RandomMac *RandomMacEnum `json:"random_mac,omitempty"`
-	// List of Radius AVP returned by the Authentication Server
-	RespAttrs []string   `json:"resp_attrs,omitempty"`
-	SiteId    *uuid.UUID `json:"site_id,omitempty"`
+	// List of RADIUS AVP returned by the Authentication Server
+	RespAttrs []string `json:"resp_attrs,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// SSIDs the client was connecting to
 	Ssid *string `json:"ssid,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
 	// Event type, e.g. NAC_CLIENT_PERMIT. Use the [List NAC Events Definitions]($e/Constants%20Events/listNacEventsDefinitions) endpoint to get the full list of available values.
 	Type *string `json:"type,omitempty"`
@@ -61,7 +65,7 @@ type NacClientEvent struct {
 	Username *string `json:"username,omitempty"`
 	// vlan that assigned to the client
 	Vlan *string `json:"vlan,omitempty"`
-	// Vlan source, e.g. "nactag", "usermac"
+	// Source of the assigned VLAN, for example `nactag` or `usermac`
 	VlanSource           *string                `json:"vlan_source,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

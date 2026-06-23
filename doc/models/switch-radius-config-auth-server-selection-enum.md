@@ -1,7 +1,7 @@
 
 # Switch Radius Config Auth Server Selection Enum
 
-enum: `ordered`, `unordered`
+Selection strategy for RADIUS authentication servers. enum: `ordered`, `unordered`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `ordered`, `unordered`
 |  --- |
 | `ordered` |
 | `unordered` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchRadiusConfigAuthServerSelection := models.SwitchRadiusConfigAuthServerSelectionEnum_ORDERED
+
+}
+```
 

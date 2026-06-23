@@ -8,12 +8,15 @@ import (
 )
 
 // GatewayComplianceVersion represents a GatewayComplianceVersion struct.
-// Version compliance score, major version for gateway, type
+// Version compliance metric for gateway devices
 type GatewayComplianceVersion struct {
-	MajorVersion         map[string]GatewayComplianceMajorVersionProperties `json:"major_version,omitempty"`
-	Score                *float64                                           `json:"score,omitempty"`
-	Type                 *string                                            `json:"type,omitempty"`
-	AdditionalProperties map[string]interface{}                             `json:"_"`
+	// Gateway version-compliance entries keyed by gateway model
+	MajorVersion map[string]GatewayComplianceMajorVersionProperties `json:"major_version,omitempty"`
+	// Gateway software version compliance score
+	Score *float64 `json:"score,omitempty"`
+	// Device type represented by the gateway compliance metric
+	Type                 *string                `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for GatewayComplianceVersion,

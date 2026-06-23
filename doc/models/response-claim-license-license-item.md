@@ -1,6 +1,8 @@
 
 # Response Claim License License Item
 
+License entitlement returned by a claim operation
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,24 +13,32 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `End` | `int` | Required | - |
-| `Quantity` | `int` | Required | - |
-| `Start` | `int` | Required | - |
-| `Type` | `string` | Required | - |
+| `End` | `int` | Required | Epoch timestamp when the license entitlement ends |
+| `Quantity` | `int` | Required | Number of license units included in the entitlement |
+| `Start` | `int` | Required | Epoch timestamp when the license entitlement starts |
+| `Type` | `string` | Required | License SKU or subscription type |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "end": 12,
-  "quantity": 82,
-  "start": 226,
-  "type": "type4",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseClaimLicenseLicenseItem := models.ResponseClaimLicenseLicenseItem{
+        End:                  14,
+        Quantity:             84,
+        Start:                228,
+        Type:                 "type0",
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

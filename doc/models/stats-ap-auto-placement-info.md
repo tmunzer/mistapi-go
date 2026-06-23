@@ -1,7 +1,7 @@
 
 # Stats Ap Auto Placement Info
 
-Additional information about auto placements AP data
+Additional diagnostics for AP auto placement
 
 ## Structure
 
@@ -13,19 +13,28 @@ Additional information about auto placements AP data
 |  --- | --- | --- | --- |
 | `ClusterNumber` | `*int` | Optional | All APs sharing a given cluster number can be placed relative to each other |
 | `OrientationStats` | `*int` | Optional | The orientation of an AP |
-| `ProbabilitySurface` | [`*models.StatsApAutoPlacementInfoProbabilitySurface`](../../doc/models/stats-ap-auto-placement-info-probability-surface.md) | Optional | Coordinates representing a circle where the AP is most likely exists in the event of an inaccurate placement result |
+| `ProbabilitySurface` | [`*models.StatsApAutoPlacementInfoProbabilitySurface`](../../doc/models/stats-ap-auto-placement-info-probability-surface.md) | Optional | Circular uncertainty area for an AP auto placement result |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "cluster_number": 0,
-  "orientation_stats": 0,
-  "probability_surface": {
-    "radius": 74.96,
-    "radius_m": 19.46,
-    "x": 93.54
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsApAutoPlacementInfo := models.StatsApAutoPlacementInfo{
+        ClusterNumber:        models.ToPointer(0),
+        OrientationStats:     models.ToPointer(0),
+        ProbabilitySurface:   models.ToPointer(models.StatsApAutoPlacementInfoProbabilitySurface{
+            Radius:               models.ToPointer(float64(74.96)),
+            RadiusM:              models.ToPointer(float64(19.46)),
+            X:                    models.ToPointer(float64(93.54)),
+        }),
+    }
+
 }
 ```
 

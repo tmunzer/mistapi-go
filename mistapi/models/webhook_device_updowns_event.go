@@ -11,15 +11,23 @@ import (
 )
 
 // WebhookDeviceUpdownsEvent represents a WebhookDeviceUpdownsEvent struct.
+// Device availability event delivered when a monitored AP changes up/down state
 type WebhookDeviceUpdownsEvent struct {
-	Ap       string    `json:"ap"`
-	ApName   string    `json:"ap_name"`
-	ForSite  *bool     `json:"for_site,omitempty"`
-	OrgId    uuid.UUID `json:"org_id"`
-	SiteId   uuid.UUID `json:"site_id"`
-	SiteName string    `json:"site_name"`
-	// Epoch (seconds)
-	Timestamp            float64                `json:"timestamp"`
+	// MAC address for the AP whose availability changed
+	Ap string `json:"ap"`
+	// AP name for the device whose availability changed
+	ApName string `json:"ap_name"`
+	// Whether this device up/down event is scoped to a site rather than only to the organization
+	ForSite *bool `json:"for_site,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId uuid.UUID `json:"org_id"`
+	// Unique identifier of a Mist site
+	SiteId uuid.UUID `json:"site_id"`
+	// Site name associated with the device up/down event
+	SiteName string `json:"site_name"`
+	// Epoch timestamp, in seconds
+	Timestamp float64 `json:"timestamp"`
+	// Reported up/down event type for the device
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

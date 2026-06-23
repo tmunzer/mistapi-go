@@ -11,13 +11,15 @@ import (
 )
 
 // WebhookClientSessionsEvent represents a WebhookClientSessionsEvent struct.
+// Wireless client session event delivered when a client roams or disconnects
 type WebhookClientSessionsEvent struct {
 	// MAC address of the AP the client roamed or disconnected from
 	Ap string `json:"ap"`
 	// user-friendly name of the AP the client roamed or disconnected from.
 	ApName string `json:"ap_name"`
 	// 5GHz or 2.4GHz band
-	Band  string `json:"band"`
+	Band string `json:"band"`
+	// WLAN radio BSSID that the client was associated with
 	Bssid string `json:"bssid"`
 	// Device family E.g. "Mac", "iPhone", "Apple watch"
 	ClientFamily string `json:"client_family"`
@@ -27,32 +29,37 @@ type WebhookClientSessionsEvent struct {
 	ClientModel string `json:"client_model"`
 	// Device operating system E.g. "Mojave", "Windows 10", "Linux"
 	ClientOs string `json:"client_os"`
-	// Time when the user connects
+	// Time when the client connected, in epoch seconds
 	Connect int `json:"connect"`
-	// floating point connect timestamp with millisecond precision
+	// Client connection timestamp with millisecond precision
 	ConnectFloat float64 `json:"connect_float"`
-	// Time when the user disconnects
+	// Time when the client disconnected, in epoch seconds
 	Disconnect int `json:"disconnect"`
-	// floating point disconnect timestamp with millisecond precision
+	// Client disconnect timestamp with millisecond precision
 	DisconnectFloat float64 `json:"disconnect_float"`
-	// Duration of the roamed or complete session indicated by termination_reason field.
+	// Length of the roamed or completed client session indicated by the `termination_reason` value
 	Duration int `json:"duration"`
-	// Client's MAC Address'
+	// Client MAC address for the roaming or disconnected session
 	Mac string `json:"mac"`
 	// the AP the client has roamed to.
-	NextAp string    `json:"next_ap"`
-	OrgId  uuid.UUID `json:"org_id"`
+	NextAp string `json:"next_ap"`
+	// Unique identifier of a Mist organization
+	OrgId uuid.UUID `json:"org_id"`
 	// Latest average RSSI before the user disconnects
-	Rssi     float64   `json:"rssi"`
-	SiteId   uuid.UUID `json:"site_id"`
-	SiteName string    `json:"site_name"`
-	Ssid     string    `json:"ssid"`
+	Rssi float64 `json:"rssi"`
+	// Unique identifier of a Mist site
+	SiteId uuid.UUID `json:"site_id"`
+	// Site name associated with the client session event
+	SiteName string `json:"site_name"`
+	// WLAN SSID for the client session
+	Ssid string `json:"ssid"`
 	// 1 disassociate - when the client disassociates. 2 inactive - when the client is timeout. 3 roamed - when the client is roamed between APs
 	TerminationReason int `json:"termination_reason"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp float64 `json:"timestamp"`
 	// schema version of this message
-	Version              float64                `json:"version"`
+	Version float64 `json:"version"`
+	// Unique identifier of the WLAN for the client session
 	WlanId               uuid.UUID              `json:"wlan_id"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

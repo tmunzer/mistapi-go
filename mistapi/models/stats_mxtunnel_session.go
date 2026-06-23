@@ -10,13 +10,15 @@ import (
 )
 
 // StatsMxtunnelSession represents a StatsMxtunnelSession struct.
+// Session information for a WxLAN or Mist tunnel
 type StatsMxtunnelSession struct {
-	// Remote sessions id (dynamically unless Tunnel is said to be static)
+	// Local session identifier for the tunnel session
 	LocalSid int `json:"local_sid"`
-	// WxlanTunnel Remote ID
+	// Configured remote identifier for the tunnel session
 	RemoteId string `json:"remote_id"`
-	// Remote sessions id (dynamically unless Tunnel is said to be static)
-	RemoteSid            int                    `json:"remote_sid"`
+	// Peer session identifier for the tunnel session
+	RemoteSid int `json:"remote_sid"`
+	// Current state of the tunnel session
 	State                string                 `json:"state"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

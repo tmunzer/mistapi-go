@@ -26,7 +26,7 @@ func NewSitesStatsBGPPeers(baseController baseController) *SitesStatsBGPPeers {
 // CountSiteBgpStats takes context, siteId, state, distinct, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of BGP Stats
+// Count BGP peer statistics for a site, optionally grouped by the `distinct` field and filtered by peer state. Use [Count Org BGP Stats]($e/Orgs%20Stats%20-%20BGP%20Peers/countOrgBgpStats) to count BGP peer statistics across the organization.
 func (s *SitesStatsBGPPeers) CountSiteBgpStats(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -40,19 +40,15 @@ func (s *SitesStatsBGPPeers) CountSiteBgpStats(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if state != nil {
 		req.QueryParam("state", *state)
@@ -77,7 +73,7 @@ func (s *SitesStatsBGPPeers) CountSiteBgpStats(
 // SearchSiteBgpStats takes context, siteId, mac, neighborMac, vrfName, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseSearchBgps data and
 // an error if there was an issue with the request or response.
-// Search BGP Stats
+// Search BGP peer statistics for a site with filters for device, neighbor, VRF, and time range. Use [Search Org BGP Stats]($e/Orgs%20Stats%20-%20BGP%20Peers/searchOrgBgpStats) to search BGP peer statistics across the organization.
 func (s *SitesStatsBGPPeers) SearchSiteBgpStats(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -97,19 +93,15 @@ func (s *SitesStatsBGPPeers) SearchSiteBgpStats(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if mac != nil {
 		req.QueryParam("mac", *mac)

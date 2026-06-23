@@ -1,6 +1,8 @@
 
 # Email String
 
+Request body containing an email address
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,18 +13,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Email` | `string` | Required | - |
+| `Email` | `string` | Required | Request email address provided in the payload |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "email": "email8",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    emailString := models.EmailString{
+        Email:                "email0",
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

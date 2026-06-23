@@ -1,7 +1,7 @@
 
 # Virtual Chassis Port Operation Enum
 
-enum: `delete`, `set`
+Action to perform on the specified Virtual Chassis ports. enum: `delete`, `set`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `delete`, `set`
 |  --- |
 | `delete` |
 | `set` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    virtualChassisPortOperation := models.VirtualChassisPortOperationEnum_DELETE
+
+}
+```
 

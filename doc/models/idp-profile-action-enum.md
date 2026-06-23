@@ -1,11 +1,7 @@
 
 # Idp Profile Action Enum
 
-enum:
-
-* alert (default)
-* drop: silently dropping packets
-* close: notify client/server to close connection
+IDP profile action. enum: `alert`, `close`, `drop`. `alert` is the default, `drop` silently drops packets, and `close` asks the client/server to close the connection
 
 ## Enumeration
 
@@ -21,7 +17,16 @@ enum:
 
 ## Example
 
-```
-alert
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    idpProfileAction := models.IdpProfileActionEnum_ALERT
+
+}
 ```
 

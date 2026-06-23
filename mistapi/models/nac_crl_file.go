@@ -8,6 +8,7 @@ import (
 )
 
 // NacCrlFile represents a NacCrlFile struct.
+// Metadata for an uploaded NAC CRL file
 type NacCrlFile struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
@@ -17,7 +18,7 @@ type NacCrlFile struct {
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
 	// Issuer name for the CRL file
 	Name *string `json:"name,omitempty"`
-	// URL to download the uploaded CRL file
+	// Download URL for the uploaded NAC CRL file
 	Url                  *string                `json:"url,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

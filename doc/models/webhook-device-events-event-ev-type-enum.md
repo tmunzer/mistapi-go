@@ -14,3 +14,18 @@
 | `notice` |
 | `warn` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookDeviceEventsEventEvType := models.WebhookDeviceEventsEventEvTypeEnum_NOTICE
+
+}
+```
+

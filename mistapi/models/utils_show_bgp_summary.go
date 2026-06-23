@@ -8,8 +8,9 @@ import (
 )
 
 // UtilsShowBgpSummary represents a UtilsShowBgpSummary struct.
+// BGP summary command request
 type UtilsShowBgpSummary struct {
-	// only for HA. enum: `node0`, `node1`
+	// HA cluster node selector. enum: `node0`, `node1`
 	Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -11,6 +11,7 @@ import (
 )
 
 // ResponseAutoMapAssignmentApply represents a ResponseAutoMapAssignmentApply struct.
+// Result returned after applying accepted auto map assignments
 type ResponseAutoMapAssignmentApply struct {
 	// List of map IDs that were successfully accepted
 	AcceptedMaps []uuid.UUID `json:"accepted_maps"`

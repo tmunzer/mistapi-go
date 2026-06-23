@@ -27,7 +27,7 @@ func NewMSPsOrgs(baseController baseController) *MSPsOrgs {
 // ListMspOrgs takes context, mspId as parameters and
 // returns an models.ApiResponse with []models.Org data and
 // an error if there was an issue with the request or response.
-// Get List of MSP Orgs
+// List organizations managed by this MSP account, including MSP ownership and organization-group membership metadata.
 func (m *MSPsOrgs) ListMspOrgs(
 	ctx context.Context,
 	mspId uuid.UUID) (
@@ -38,19 +38,15 @@ func (m *MSPsOrgs) ListMspOrgs(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result []models.Org
@@ -66,7 +62,7 @@ func (m *MSPsOrgs) ListMspOrgs(
 // CreateMspOrg takes context, mspId, body as parameters and
 // returns an models.ApiResponse with models.Org data and
 // an error if there was an issue with the request or response.
-// Create an Org under MSP
+// Create an organization under this MSP, optionally assigning it to organization groups and setting organization-level defaults.
 func (m *MSPsOrgs) CreateMspOrg(
 	ctx context.Context,
 	mspId uuid.UUID,
@@ -78,19 +74,15 @@ func (m *MSPsOrgs) CreateMspOrg(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -110,7 +102,7 @@ func (m *MSPsOrgs) CreateMspOrg(
 // ManageMspOrgs takes context, mspId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Assign or Unassign Orgs to an MSP account
+// Assign existing organizations to this MSP account or unassign organizations from it by providing the desired operation and org IDs.
 func (m *MSPsOrgs) ManageMspOrgs(
 	ctx context.Context,
 	mspId uuid.UUID,
@@ -122,19 +114,15 @@ func (m *MSPsOrgs) ManageMspOrgs(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -151,7 +139,7 @@ func (m *MSPsOrgs) ManageMspOrgs(
 // SearchMspOrgs takes context, mspId, name, orgId, subInsufficient, trialEnabled, usageTypes, limit, sort, start, end, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseOrgSearch data and
 // an error if there was an issue with the request or response.
-// Search Org in MSP
+// Search organizations under this MSP using organization identifiers, names, subscription state, trial state, usage types, and time-based filters.
 func (m *MSPsOrgs) SearchMspOrgs(
 	ctx context.Context,
 	mspId uuid.UUID,
@@ -172,19 +160,15 @@ func (m *MSPsOrgs) SearchMspOrgs(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if name != nil {
 		req.QueryParam("name", *name)
@@ -230,7 +214,7 @@ func (m *MSPsOrgs) SearchMspOrgs(
 // DeleteMspOrg takes context, mspId, orgId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete MSP Org
+// Delete an organization managed by this MSP. Use the MSP organization assignment endpoint when only assigning or unassigning organizations from the MSP account.
 func (m *MSPsOrgs) DeleteMspOrg(
 	ctx context.Context,
 	mspId uuid.UUID,
@@ -242,19 +226,15 @@ func (m *MSPsOrgs) DeleteMspOrg(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -267,7 +247,7 @@ func (m *MSPsOrgs) DeleteMspOrg(
 // GetMspOrg takes context, mspId, orgId as parameters and
 // returns an models.ApiResponse with models.Org data and
 // an error if there was an issue with the request or response.
-// Get MSP Org Details
+// Return details for one organization managed by this MSP, including MSP ownership, organization groups, support access, and session settings.
 func (m *MSPsOrgs) GetMspOrg(
 	ctx context.Context,
 	mspId uuid.UUID,
@@ -279,19 +259,15 @@ func (m *MSPsOrgs) GetMspOrg(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.Org
@@ -307,7 +283,7 @@ func (m *MSPsOrgs) GetMspOrg(
 // UpdateMspOrg takes context, mspId, orgId, body as parameters and
 // returns an models.ApiResponse with models.Org data and
 // an error if there was an issue with the request or response.
-// Update MSP Org
+// Update organization settings for an organization managed by this MSP.
 func (m *MSPsOrgs) UpdateMspOrg(
 	ctx context.Context,
 	mspId uuid.UUID,
@@ -320,19 +296,15 @@ func (m *MSPsOrgs) UpdateMspOrg(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -352,7 +324,7 @@ func (m *MSPsOrgs) UpdateMspOrg(
 // ListMspOrgStats takes context, mspId, limit, page as parameters and
 // returns an models.ApiResponse with []models.StatsOrg data and
 // an error if there was an issue with the request or response.
-// Get List of MSP Orgs Stats
+// List organization statistics for organizations managed by this MSP, including device, inventory, site, and SLE summary fields.
 func (m *MSPsOrgs) ListMspOrgStats(
 	ctx context.Context,
 	mspId uuid.UUID,
@@ -365,19 +337,15 @@ func (m *MSPsOrgs) ListMspOrgStats(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if limit != nil {
 		req.QueryParam("limit", *limit)

@@ -1,7 +1,7 @@
 
 # Stats Unconnected Client
 
-Unconnected clients statistics
+Location statistics for an unconnected Wi-Fi client observed by an AP
 
 ## Structure
 
@@ -12,26 +12,36 @@ Unconnected clients statistics
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ApMac` | `string` | Required | MAC address of the AP that heard the client |
-| `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
-| `Mac` | `string` | Required | MAC address of the (unconnected) client |
+| `LastSeen` | `models.Optional[float64]` | Optional, Read-only | Timestamp indicating when the entity was last seen |
+| `Mac` | `string` | Required | Unconnected client MAC address observed by an AP |
 | `Manufacture` | `string` | Required | Device manufacture, through fingerprinting or OUI |
-| `MapId` | `models.Optional[uuid.UUID]` | Optional | Map_id of the client (if known), or null |
+| `MapId` | `models.Optional[uuid.UUID]` | Optional | Map identifier for the unconnected client's location, if known |
 | `Rssi` | `int` | Required | Client RSSI observed by the AP that heard the client (in dBm) |
-| `X` | `*float64` | Optional | X (in pixels) of user location on the map (if known) |
-| `Y` | `float64` | Required | Y (in pixels) of user location on the map (if known) |
+| `X` | `*float64` | Optional | Horizontal map coordinate of the unconnected client location, in pixels, if known |
+| `Y` | `float64` | Required | Vertical map coordinate of the unconnected client location, in pixels, if known |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "ap_mac": "ap_mac4",
-  "last_seen": 1470417522.0,
-  "mac": "mac6",
-  "manufacture": "manufacture6",
-  "rssi": 166,
-  "y": 241.26,
-  "map_id": "00000b60-0000-0000-0000-000000000000",
-  "x": 109.98
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    statsUnconnectedClient := models.StatsUnconnectedClient{
+        ApMac:                "ap_mac6",
+        LastSeen:             models.NewOptional(models.ToPointer(float64(1470417522))),
+        Mac:                  "mac8",
+        Manufacture:          "manufacture8",
+        MapId:                models.NewOptional(models.ToPointer(uuid.MustParse("00001af4-0000-0000-0000-000000000000"))),
+        Rssi:                 242,
+        X:                    models.ToPointer(float64(126.1)),
+        Y:                    float64(1.38),
+    }
+
 }
 ```
 

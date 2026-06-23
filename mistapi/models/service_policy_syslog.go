@@ -8,9 +8,11 @@ import (
 )
 
 // ServicePolicySyslog represents a ServicePolicySyslog struct.
-// Required for syslog logging
+// Syslog logging settings for a service policy
 type ServicePolicySyslog struct {
-	Enabled              *bool                  `json:"enabled,omitempty"`
+	// Whether syslog logging is enabled for the service policy
+	Enabled *bool `json:"enabled,omitempty"`
+	// Names of syslog servers that receive logs for this service policy
 	ServerNames          []string               `json:"server_names,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

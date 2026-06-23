@@ -8,7 +8,9 @@ import (
 )
 
 // VersionString represents a VersionString struct.
+// JSI device upgrade target version request
 type VersionString struct {
+	// Target software version for the JSI device upgrade
 	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

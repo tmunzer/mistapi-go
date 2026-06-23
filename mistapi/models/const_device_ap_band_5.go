@@ -8,9 +8,13 @@ import (
 )
 
 // ConstDeviceApBand5 represents a ConstDeviceApBand5 struct.
+// 5 GHz radio capability limits for an AP model
 type ConstDeviceApBand5 struct {
-	MaxClients           *int                   `json:"max_clients,omitempty"`
-	MaxPower             *int                   `json:"max_power,omitempty"`
+	// Maximum client count supported on the 5 GHz radio
+	MaxClients *int `json:"max_clients,omitempty"`
+	// Maximum transmit power for the 5 GHz radio, in dBm
+	MaxPower *int `json:"max_power,omitempty"`
+	// Minimum transmit power for the 5 GHz radio, in dBm
 	MinPower             *int                   `json:"min_power,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

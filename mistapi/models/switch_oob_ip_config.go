@@ -12,13 +12,15 @@ import (
 // - If HA configuration: key parameter will be nodeX (eg: node1)
 // - If there are 2 routing engines, re1 mgmt IP has to be set separately (if desired): key parameter = `re1`
 type SwitchOobIpConfig struct {
+	// Default gateway for the out-of-band management interface when `type`==`static`
 	Gateway *string `json:"gateway,omitempty"`
-	Ip      *string `json:"ip,omitempty"`
+	// Static IPv4 address for the out-of-band management interface when `type`==`static`
+	Ip *string `json:"ip,omitempty"`
 	// Used only if `subnet` is not specified in `networks`
 	Netmask *string `json:"netmask,omitempty"`
 	// Optional, the network to be used for mgmt
 	Network *string `json:"network,omitempty"`
-	// enum: `dhcp`, `static`
+	// IP address assignment mode, either DHCP or static. enum: `dhcp`, `static`
 	Type *IpTypeEnum `json:"type,omitempty"`
 	// If supported on the platform. If enabled, DNS will be using this routing-instance, too
 	UseMgmtVrf *bool `json:"use_mgmt_vrf,omitempty"`

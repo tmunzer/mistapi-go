@@ -8,12 +8,19 @@ import (
 )
 
 // ResponseClientNacSearch represents a ResponseClientNacSearch struct.
+// Paginated NAC client search response
 type ResponseClientNacSearch struct {
-	End                  *int                   `json:"end,omitempty"`
-	Limit                *int                   `json:"limit,omitempty"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []ClientNac            `json:"results,omitempty"`
-	Start                *int                   `json:"start,omitempty"`
+	// Search window end timestamp for NAC clients, in epoch seconds
+	End *int `json:"end,omitempty"`
+	// Maximum number of NAC client results requested
+	Limit *int `json:"limit,omitempty"`
+	// URL for the next page of NAC client results
+	Next *string `json:"next,omitempty"`
+	// NAC client records returned by a search response
+	Results []ClientNac `json:"results,omitempty"`
+	// Search window start timestamp for NAC clients, in epoch seconds
+	Start *int `json:"start,omitempty"`
+	// Number of NAC client records matching the search
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

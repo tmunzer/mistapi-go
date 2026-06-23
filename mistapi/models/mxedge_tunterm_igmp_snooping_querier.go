@@ -8,6 +8,7 @@ import (
 )
 
 // MxedgeTuntermIgmpSnoopingQuerier represents a MxedgeTuntermIgmpSnoopingQuerier struct.
+// IGMP querier settings for tunnel termination
 type MxedgeTuntermIgmpSnoopingQuerier struct {
 	// Querier's query response interval, in tenths-of-seconds
 	MaxResponseTime *int `json:"max_response_time,omitempty"`
@@ -15,7 +16,7 @@ type MxedgeTuntermIgmpSnoopingQuerier struct {
 	Mtu *int `json:"mtu,omitempty"`
 	// Querier's query interval, in seconds
 	QueryInterval *int `json:"query_interval,omitempty"`
-	// Querier's robustness
+	// IGMP querier robustness variable
 	Robustness *int `json:"robustness,omitempty"`
 	// Querier's maximum protocol version
 	Version              *int                   `json:"version,omitempty"`

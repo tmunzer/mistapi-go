@@ -10,7 +10,9 @@ import (
 )
 
 // CountResult represents a CountResult struct.
+// Count result row with the matching distinct field values
 type CountResult struct {
+	// Number of matching items for the distinct value or values in this result
 	Count                int               `json:"count"`
 	AdditionalProperties map[string]string `json:"_"`
 }

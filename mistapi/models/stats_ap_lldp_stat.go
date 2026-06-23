@@ -10,16 +10,17 @@ import (
 // StatsApLldpStat represents a StatsApLldpStat struct.
 // LLDP neighbor information and power negotiations. For backward compatibility, when multiple neighbors exist, only information from the first neighbor is displayed.
 type StatsApLldpStat struct {
+	// LLDP neighbor chassis identifier
 	ChassisId Optional[string] `json:"chassis_id"`
 	// Whether it support LLDP-MED
 	LldpMedSupported Optional[bool] `json:"lldp_med_supported"`
 	// Management IP address of the switch
 	MgmtAddr Optional[string] `json:"mgmt_addr"`
-	// List of management IP addresses (IPv4 and IPv6)
+	// Management IP addresses advertised by an LLDP neighbor
 	MgmtAddrs []string `json:"mgmt_addrs,omitempty"`
 	// Port description, e.g. “2/20”, “Port 2 on Switch0”
 	PortDesc Optional[string] `json:"port_desc"`
-	// Port identifier
+	// LLDP neighbor port identifier
 	PortId Optional[string] `json:"port_id"`
 	// In mW, power allocated by PSE
 	PowerAllocated Optional[float64] `json:"power_allocated"`
@@ -33,7 +34,7 @@ type StatsApLldpStat struct {
 	PowerDraw Optional[float64] `json:"power_draw"`
 	// In mW, total Power needed incl Peripherals
 	PowerNeeded *int `json:"power_needed,omitempty"`
-	// Constrained mode
+	// Power operating mode negotiated through LLDP
 	PowerOpmode *string `json:"power_opmode,omitempty"`
 	// Number of negotiations, if it keeps increasing, we don’ t have a stable power
 	PowerRequestCount Optional[int] `json:"power_request_count"`
@@ -41,7 +42,7 @@ type StatsApLldpStat struct {
 	PowerRequested Optional[float64] `json:"power_requested"`
 	// Single power source (DC Input / PoE 802.3at / PoE 802.3af / PoE 802.3bt / MULTI-PD / LLDP / ? (unknown)).
 	PowerSrc *string `json:"power_src,omitempty"`
-	// List of management IP addresses (IPv4 and IPv6)
+	// Power sources reported through LLDP for an AP
 	PowerSrcs []string `json:"power_srcs,omitempty"`
 	// Description provided by switch
 	SystemDesc Optional[string] `json:"system_desc"`

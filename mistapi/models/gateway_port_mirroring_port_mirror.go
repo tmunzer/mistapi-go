@@ -8,11 +8,17 @@ import (
 )
 
 // GatewayPortMirroringPortMirror represents a GatewayPortMirroringPortMirror struct.
+// Gateway port mirroring rule
 type GatewayPortMirroringPortMirror struct {
-	FamilyType           *string                `json:"family_type,omitempty"`
-	IngressPortIds       []string               `json:"ingress_port_ids,omitempty"`
-	OutputPortId         *string                `json:"output_port_id,omitempty"`
-	Rate                 *int                   `json:"rate,omitempty"`
+	// Packet family used for this port mirroring rule
+	FamilyType *string `json:"family_type,omitempty"`
+	// Gateway port IDs used as ingress sources for mirrored traffic
+	IngressPortIds []string `json:"ingress_port_ids,omitempty"`
+	// Destination gateway port ID that receives mirrored traffic
+	OutputPortId *string `json:"output_port_id,omitempty"`
+	// Sampling rate applied to mirrored traffic
+	Rate *int `json:"rate,omitempty"`
+	// Number of bytes copied from each mirrored packet
 	RunLength            *int                   `json:"run_length,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -23,3 +23,18 @@ Optional, enum:
 | `process` |
 | `var-logs` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    utilsSendSupportLogsInfo := models.UtilsSendSupportLogsInfoEnum_CODEDUMPS
+
+}
+```
+

@@ -8,12 +8,17 @@ import (
 )
 
 // ResponseCountMarvisActions represents a ResponseCountMarvisActions struct.
+// Distinct count response for Marvis action suggestions
 type ResponseCountMarvisActions struct {
-	Distinct             *string                            `json:"distinct,omitempty"`
-	Limit                *int                               `json:"limit,omitempty"`
-	Results              []ResponseCountMarvisActionsResult `json:"results,omitempty"`
-	Total                *int                               `json:"total,omitempty"`
-	AdditionalProperties map[string]interface{}             `json:"_"`
+	// Field used to group Marvis action count results
+	Distinct *string `json:"distinct,omitempty"`
+	// Maximum number of Marvis action count results requested
+	Limit *int `json:"limit,omitempty"`
+	// Marvis action count results grouped by a distinct field
+	Results []ResponseCountMarvisActionsResult `json:"results,omitempty"`
+	// Number of Marvis action count result buckets returned
+	Total                *int                   `json:"total,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseCountMarvisActions,

@@ -1,6 +1,8 @@
 
 # Issued Client Certificates Results
 
+Issued client certificate search results wrapper
+
 ## Structure
 
 `IssuedClientCertificatesResults`
@@ -9,21 +11,49 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Results` | [`[]models.IssuedClientCertificate`](../../doc/models/issued-client-certificate.md) | Optional | - |
+| `Limit` | `*int` | Optional | Maximum number of results requested |
+| `Page` | `*int` | Optional | Current page number |
+| `Results` | [`[]models.IssuedClientCertificate`](../../doc/models/issued-client-certificate.md) | Optional | Issued client certificates returned by a SCEP certificate query |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "results": [
-    {
-      "cert_provider": "cert_provider6",
-      "common_name": "common_name4",
-      "created_time": "created_time6",
-      "device_id": "00001510-0000-0000-0000-000000000000",
-      "expire_time": "expire_time4"
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    issuedClientCertificatesResults := models.IssuedClientCertificatesResults{
+        Limit:                models.ToPointer(84),
+        Page:                 models.ToPointer(198),
+        Results:              []models.IssuedClientCertificate{
+            models.IssuedClientCertificate{
+                CertProvider:         models.ToPointer("cert_provider6"),
+                CommonName:           models.ToPointer("common_name4"),
+                CreatedTime:          models.ToPointer(208),
+                DeviceId:             models.ToPointer(uuid.MustParse("00001510-0000-0000-0000-000000000000")),
+                ExpireTime:           models.ToPointer(238),
+            },
+            models.IssuedClientCertificate{
+                CertProvider:         models.ToPointer("cert_provider6"),
+                CommonName:           models.ToPointer("common_name4"),
+                CreatedTime:          models.ToPointer(208),
+                DeviceId:             models.ToPointer(uuid.MustParse("00001510-0000-0000-0000-000000000000")),
+                ExpireTime:           models.ToPointer(238),
+            },
+            models.IssuedClientCertificate{
+                CertProvider:         models.ToPointer("cert_provider6"),
+                CommonName:           models.ToPointer("common_name4"),
+                CreatedTime:          models.ToPointer(208),
+                DeviceId:             models.ToPointer(uuid.MustParse("00001510-0000-0000-0000-000000000000")),
+                ExpireTime:           models.ToPointer(238),
+            },
+        },
     }
-  ]
+
 }
 ```
 

@@ -11,14 +11,15 @@ import (
 )
 
 // SpectrumAnalysis represents a SpectrumAnalysis struct.
+// Request parameters for starting AP spectrum analysis at a site
 type SpectrumAnalysis struct {
 	// Band for spectrum analysis. enum: `24`, `5`, `6`
 	Band SpectrumAnalysisBandEnum `json:"band"`
 	// Optional list of channels to scan. If not specified, all supported channels will be scanned
-	Channels []string `json:"channels,omitempty"`
+	Channels []int `json:"channels,omitempty"`
 	// Device ID of the AP that is performing spectrum analysis
 	DeviceId *uuid.UUID `json:"device_id,omitempty"`
-	// Duration of the spectrum analysis in seconds
+	// Length of the spectrum analysis run, in seconds
 	Duration *int `json:"duration,omitempty"`
 	// Format of the spectrum analysis data. enum: `json`, `stream`
 	Format               *SpectrumAnalysisFormatEnum `json:"format,omitempty"`
@@ -94,7 +95,7 @@ func (s *SpectrumAnalysis) UnmarshalJSON(input []byte) error {
 // tempSpectrumAnalysis is a temporary struct used for validating the fields of SpectrumAnalysis.
 type tempSpectrumAnalysis struct {
 	Band     *SpectrumAnalysisBandEnum   `json:"band"`
-	Channels []string                    `json:"channels,omitempty"`
+	Channels []int                       `json:"channels,omitempty"`
 	DeviceId *uuid.UUID                  `json:"device_id,omitempty"`
 	Duration *int                        `json:"duration,omitempty"`
 	Format   *SpectrumAnalysisFormatEnum `json:"format,omitempty"`

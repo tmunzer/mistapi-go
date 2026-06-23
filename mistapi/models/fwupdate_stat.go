@@ -8,13 +8,17 @@ import (
 )
 
 // FwupdateStat represents a FwupdateStat struct.
+// Firmware update status for a device
 type FwupdateStat struct {
+	// Firmware update progress percentage, or null when unavailable
 	Progress Optional[int] `json:"progress"`
 	// enum: `inprogress`, `failed`, `upgraded`, `success`, `scheduled`, `error`
-	Status   Optional[FwupdateStatStatusEnum] `json:"status"`
-	StatusId Optional[int]                    `json:"status_id"`
-	// Epoch (seconds)
-	Timestamp            *float64               `json:"timestamp,omitempty"`
+	Status Optional[FwupdateStatStatusEnum] `json:"status"`
+	// Numeric firmware update status identifier
+	StatusId Optional[int] `json:"status_id"`
+	// Epoch timestamp, in seconds
+	Timestamp *float64 `json:"timestamp,omitempty"`
+	// Whether the firmware update process will retry after the current status
 	WillRetry            Optional[bool]         `json:"will_retry"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

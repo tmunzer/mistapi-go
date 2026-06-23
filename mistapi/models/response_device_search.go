@@ -10,14 +10,21 @@ import (
 )
 
 // ResponseDeviceSearch represents a ResponseDeviceSearch struct.
+// Paginated response for organization or site device search results
 type ResponseDeviceSearch struct {
-	End                  int                                `json:"end"`
-	Limit                int                                `json:"limit"`
-	Next                 *string                            `json:"next,omitempty"`
-	Results              []ResponseDeviceSearchResultsItems `json:"results"`
-	Start                int                                `json:"start"`
-	Total                int                                `json:"total"`
-	AdditionalProperties map[string]interface{}             `json:"_"`
+	// Epoch timestamp for the end of the device search window
+	End int `json:"end"`
+	// Maximum number of device records returned in this page
+	Limit int `json:"limit"`
+	// Pagination cursor or URL for retrieving the next page of device records
+	Next *string `json:"next,omitempty"`
+	// Device search records for APs, switches, or gateways
+	Results []ResponseDeviceSearchResultsItems `json:"results"`
+	// Epoch timestamp for the start of the device search window
+	Start int `json:"start"`
+	// Number of device records matching the search filters across all pages
+	Total                int                    `json:"total"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseDeviceSearch,

@@ -25,7 +25,7 @@ func NewOrgsCRL(baseController baseController) *OrgsCRL {
 // GetOrgCrlFile takes context, orgId as parameters and
 // returns an models.ApiResponse with []byte data and
 // an error if there was an issue with the request or response.
-// Get Org CRL File
+// Download the organization certificate revocation list (CRL) file used to identify certificates that should no longer be trusted.
 func (o *OrgsCRL) GetOrgCrlFile(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -36,19 +36,15 @@ func (o *OrgsCRL) GetOrgCrlFile(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	stream, resp, err := req.CallAsStream()

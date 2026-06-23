@@ -9,21 +9,33 @@ import (
 )
 
 // ResponseVirtualChassisConfig represents a ResponseVirtualChassisConfig struct.
+// Combined virtual chassis status, topology, and member statistics
 type ResponseVirtualChassisConfig struct {
+	// Provisioning mode of the virtual chassis configuration
 	ConfigType *string `json:"config_type,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id       *uuid.UUID                  `json:"id,omitempty"`
-	Locating *bool                       `json:"locating,omitempty"`
-	Mac      *string                     `json:"mac,omitempty"`
-	Members  []StatsSwitchModuleStatItem `json:"members,omitempty"`
-	Model    *string                     `json:"model,omitempty"`
-	// routing-engine count
-	NumRoutingEngines    *int                   `json:"num_routing_engines,omitempty"`
-	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-	Serial               *string                `json:"serial,omitempty"`
-	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-	Status               *string                `json:"status,omitempty"`
-	Type                 *string                `json:"type,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Whether locate mode is active for the virtual chassis device
+	Locating *bool `json:"locating,omitempty"`
+	// Device MAC address for the virtual chassis device record
+	Mac *string `json:"mac,omitempty"`
+	// Hardware module statistics reported by a switch
+	Members []StatsSwitchModuleStatItem `json:"members,omitempty"`
+	// Switch model for the virtual chassis device record
+	Model *string `json:"model,omitempty"`
+	// Number of routing engines in the virtual chassis
+	NumRoutingEngines *int `json:"num_routing_engines,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Device serial number reported for the virtual chassis
+	Serial *string `json:"serial,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Connection status of the virtual chassis device
+	Status *string `json:"status,omitempty"`
+	// Device type for the virtual chassis record
+	Type *string `json:"type,omitempty"`
+	// Virtual Chassis MAC address used to identify the VC device
 	VcMac                *string                `json:"vc_mac,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

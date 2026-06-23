@@ -9,6 +9,7 @@ import (
 )
 
 // ResponseOrgSiteSle represents a ResponseOrgSiteSle struct.
+// Organization site SLE response for Wi-Fi, wired, or WAN
 type ResponseOrgSiteSle struct {
 	value              any
 	isOrgSiteSleWifi   bool
@@ -87,6 +88,7 @@ func (r *ResponseOrgSiteSle) AsOrgSiteWanWifi() (
 }
 
 // internalResponseOrgSiteSle represents a responseOrgSiteSle struct.
+// Organization site SLE response for Wi-Fi, wired, or WAN
 type internalResponseOrgSiteSle struct{}
 
 var ResponseOrgSiteSleContainer internalResponseOrgSiteSle

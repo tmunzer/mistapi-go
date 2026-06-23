@@ -40,19 +40,15 @@ func (o *OrgsDevicesSSR) GetOrg128TRegistrationCommands(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if ttl != nil {
 		req.QueryParam("ttl", *ttl)
@@ -74,7 +70,7 @@ func (o *OrgsDevicesSSR) GetOrg128TRegistrationCommands(
 // ExportOrgSsrIdTokens takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.ResponseSsrExportIdTokens data and
 // an error if there was an issue with the request or response.
-// Export IDTokens from Mist to import into Conductor to securely allow SSR devices during onboarding
+// Export SSR ID tokens for the requested device MAC addresses so they can be imported into Conductor during SSR onboarding.
 func (o *OrgsDevicesSSR) ExportOrgSsrIdTokens(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -86,19 +82,15 @@ func (o *OrgsDevicesSSR) ExportOrgSsrIdTokens(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -118,7 +110,7 @@ func (o *OrgsDevicesSSR) ExportOrgSsrIdTokens(
 // GetOrgSsrRegistrationCommands takes context, orgId, ttl, assetIds as parameters and
 // returns an models.ApiResponse with models.ResponseRouterSsrRegisterCmd data and
 // an error if there was an issue with the request or response.
-// SSR devices can be managed/adopted by Mist.
+// Return the registration token and conductor or router commands used to register SSR routers with Mist. The optional TTL controls token validity, and asset IDs can restrict registration to specific assets.
 func (o *OrgsDevicesSSR) GetOrgSsrRegistrationCommands(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -131,19 +123,15 @@ func (o *OrgsDevicesSSR) GetOrgSsrRegistrationCommands(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if ttl != nil {
 		req.QueryParam("ttl", *ttl)

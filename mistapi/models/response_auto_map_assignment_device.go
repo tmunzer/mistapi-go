@@ -8,6 +8,7 @@ import (
 )
 
 // ResponseAutoMapAssignmentDevice represents a ResponseAutoMapAssignmentDevice struct.
+// Per-device validation result for auto map assignment
 type ResponseAutoMapAssignmentDevice struct {
 	// Provides the reason for the status if the AP is invalid
 	Reason *string `json:"reason,omitempty"`

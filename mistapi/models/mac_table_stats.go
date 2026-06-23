@@ -8,8 +8,11 @@ import (
 )
 
 // MacTableStats represents a MacTableStats struct.
+// MAC table capacity and usage statistics
 type MacTableStats struct {
-	MacTableCount          *int                   `json:"mac_table_count,omitempty"`
+	// Number of learned MAC table entries currently present
+	MacTableCount *int `json:"mac_table_count,omitempty"`
+	// Maximum number of MAC table entries supported
 	MaxMacEntriesSupported *int                   `json:"max_mac_entries_supported,omitempty"`
 	AdditionalProperties   map[string]interface{} `json:"_"`
 }

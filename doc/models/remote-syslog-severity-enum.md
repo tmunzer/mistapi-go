@@ -20,3 +20,18 @@ enum: `alert`, `any`, `critical`, `emergency`, `error`, `info`, `notice`, `warni
 | `notice` |
 | `warning` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    remoteSyslogSeverity := models.RemoteSyslogSeverityEnum_ENUMERROR
+
+}
+```
+

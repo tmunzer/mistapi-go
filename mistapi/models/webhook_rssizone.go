@@ -12,8 +12,9 @@ import (
 // WebhookRssizone represents a WebhookRssizone struct.
 // Sample of the `rssizone` webhook payload.
 type WebhookRssizone struct {
+	// RSSI zone transition events included in a webhook delivery
 	Events []WebhookRssizoneEvent `json:"events"`
-	// enum: `rssizone`
+	// Webhook topic name for RSSI zone event deliveries. enum: `rssizone`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

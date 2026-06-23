@@ -8,15 +8,17 @@ import (
 )
 
 // TuntermMonitoringItem represents a TuntermMonitoringItem struct.
+// Monitoring check for tunnel termination reachability
 type TuntermMonitoringItem struct {
 	// Can be ip, ipv6, hostname
 	Host *string `json:"host,omitempty"`
-	// When `protocol`==`tcp`
+	// When `protocol`==`tcp`, TCP port checked by the monitoring probe
 	Port *int `json:"port,omitempty"`
 	// enum: `arp`, `ping`, `tcp`
 	Protocol *TuntermMonitoringProtocolEnum `json:"protocol,omitempty"`
 	// Optional source for the monitoring check, vlan_id configured in tunterm_other_ip_configs
-	SrcVlanId            *int                   `json:"src_vlan_id,omitempty"`
+	SrcVlanId *int `json:"src_vlan_id,omitempty"`
+	// Maximum time for this monitoring check, in seconds
 	Timeout              *int                   `json:"timeout,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

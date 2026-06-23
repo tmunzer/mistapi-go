@@ -10,11 +10,17 @@ import (
 )
 
 // SleImpactSummaryBandItem represents a SleImpactSummaryBandItem struct.
+// SLE impact summary row for a radio band
 type SleImpactSummaryBandItem struct {
-	Band                 string                 `json:"band"`
-	Degraded             float64                `json:"degraded"`
-	Duration             float64                `json:"duration"`
-	Name                 string                 `json:"name"`
+	// Radio band represented by this impact row
+	Band string `json:"band"`
+	// Portion of the SLE total that was degraded for this radio band
+	Degraded float64 `json:"degraded"`
+	// Observation time represented by this radio-band impact row
+	Duration float64 `json:"duration"`
+	// Display name for the radio-band impact row
+	Name string `json:"name"`
+	// Overall SLE total measured for this radio-band impact row
 	Total                float64                `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

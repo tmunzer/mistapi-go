@@ -8,7 +8,9 @@ import (
 )
 
 // OrgSettingWirelessPma represents a OrgSettingWirelessPma struct.
+// PMA feature settings for Wireless Assurance
 type OrgSettingWirelessPma struct {
+	// Whether PMA is enabled for Wireless Assurance
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -10,18 +10,29 @@ import (
 )
 
 // SleImpactedUsers represents a SleImpactedUsers struct.
+// Paginated list of users impacted by an SLE metric
 type SleImpactedUsers struct {
-	Classifier           string                   `json:"classifier"`
-	Clients              []SleImpactedUsersClient `json:"clients,omitempty"`
-	End                  float64                  `json:"end"`
-	Failure              string                   `json:"failure"`
-	Limit                float64                  `json:"limit"`
-	Metric               string                   `json:"metric"`
-	Page                 float64                  `json:"page"`
-	Start                float64                  `json:"start"`
-	TotalCount           float64                  `json:"total_count"`
-	Users                []SleImpactedUsersUser   `json:"users,omitempty"`
-	AdditionalProperties map[string]interface{}   `json:"_"`
+	// Requested SLE classifier filter applied to the query
+	Classifier string `json:"classifier"`
+	// Impacted client rows returned for an SLE query
+	Clients []SleImpactedUsersClient `json:"clients,omitempty"`
+	// Last timestamp in the impacted users window
+	End float64 `json:"end"`
+	// Requested SLE failure filter applied to the query
+	Failure string `json:"failure"`
+	// Maximum number of impacted user rows returned per page
+	Limit float64 `json:"limit"`
+	// SLE metric name used for the impacted users query
+	Metric string `json:"metric"`
+	// Current page number for impacted user results
+	Page float64 `json:"page"`
+	// First timestamp in the impacted users window
+	Start float64 `json:"start"`
+	// Number of impacted user rows matching the query
+	TotalCount float64 `json:"total_count"`
+	// Impacted user rows returned for an SLE query
+	Users                []SleImpactedUsersUser `json:"users,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SleImpactedUsers,

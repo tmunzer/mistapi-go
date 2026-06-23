@@ -1,6 +1,8 @@
 
 # Asset Import
 
+Asset record supplied in a JSON import payload
+
 ## Structure
 
 `AssetImport`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mac` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
-| `Name` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
+| `Mac` | `string` | Required | Bluetooth MAC address used to identify the imported BLE asset<br><br>**Constraints**: *Minimum Length*: `1` |
+| `Name` | `string` | Required | Display name for the imported BLE asset<br><br>**Constraints**: *Minimum Length*: `1` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mac": "mac6",
-  "name": "name2"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    assetImport := models.AssetImport{
+        Mac:                  "mac2",
+        Name:                 "name8",
+    }
+
 }
 ```
 

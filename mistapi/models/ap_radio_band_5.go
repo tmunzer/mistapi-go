@@ -8,10 +8,12 @@ import (
 )
 
 // ApRadioBand5 represents a ApRadioBand5 struct.
-// Radio Band AP settings
+// 5 GHz radio settings for an access point
 type ApRadioBand5 struct {
-	AllowRrmDisable *bool         `json:"allow_rrm_disable,omitempty"`
-	AntGain         Optional[int] `json:"ant_gain"`
+	// Whether RRM may disable the 5 GHz radio when optimizing RF settings
+	AllowRrmDisable *bool `json:"allow_rrm_disable,omitempty"`
+	// External antenna gain for the 5 GHz radio
+	AntGain Optional[int] `json:"ant_gain"`
 	// enum: `narrow`, `medium`, `wide`
 	AntennaBeamPattern *RadioBandAntennaBeamPatternEnum `json:"antenna_beam_pattern,omitempty"`
 	// enum: `1x1`, `2x2`, `3x3`, `4x4`, `default`
@@ -24,11 +26,11 @@ type ApRadioBand5 struct {
 	Channels Optional[[]int] `json:"channels"`
 	// Whether to disable the radio
 	Disabled *bool `json:"disabled,omitempty"`
-	// TX power of the radio. For Devices, 0 means auto. -1 / -2 / -3 / …: treated as 0 / -1 / -2 / …
+	// Radio Tx power, in dBm. Can be an integer 0-25 for static power configuration, or `null` or unset for auto power mode
 	Power Optional[int] `json:"power"`
-	// When power=0, max tx power to use, HW-specific values will be used if not set
+	// When power=null/unset, max tx power to use, HW-specific values will be used if not set
 	PowerMax Optional[int] `json:"power_max"`
-	// When power=0, min tx power to use, HW-specific values will be used if not set
+	// When power=null/unset, min tx power to use, HW-specific values will be used if not set
 	PowerMin Optional[int] `json:"power_min"`
 	// enum: `auto`, `long`, `short`
 	Preamble             *RadioBandPreambleEnum `json:"preamble,omitempty"`

@@ -8,10 +8,13 @@ import (
 )
 
 // VpnPathTrafficShaping represents a VpnPathTrafficShaping struct.
+// Traffic shaping settings for a VPN path
 type VpnPathTrafficShaping struct {
 	// percentages for different class of traffic: high / medium / low / best-effort adding up to 100
-	ClassPercentage      []int                  `json:"class_percentage,omitempty"`
-	Enabled              *bool                  `json:"enabled,omitempty"`
+	ClassPercentage []int `json:"class_percentage,omitempty"`
+	// Whether traffic shaping is enabled for this VPN path
+	Enabled *bool `json:"enabled,omitempty"`
+	// Maximum transmit rate for this VPN path, in Kbps; `null` means no explicit limit
 	MaxTxKbps            Optional[int]          `json:"max_tx_kbps"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

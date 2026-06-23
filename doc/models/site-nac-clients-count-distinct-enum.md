@@ -39,3 +39,18 @@ enum: `ap`, `auth_type`, `device_mac`, `edr_managed`, `edr_provider`, `edr_statu
 | `username` |
 | `vlan` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteNacClientsCountDistinct := models.SiteNacClientsCountDistinctEnum_USERNAME
+
+}
+```
+

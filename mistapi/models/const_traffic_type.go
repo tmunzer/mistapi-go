@@ -8,14 +8,23 @@ import (
 )
 
 // ConstTrafficType represents a ConstTrafficType struct.
+// Traffic type definition returned by the constants API
 type ConstTrafficType struct {
-	Display              *string                `json:"display,omitempty"`
-	Dscp                 *int                   `json:"dscp,omitempty"`
-	FailoverPolicy       *string                `json:"failover_policy,omitempty"`
-	MaxJitter            *int                   `json:"max_jitter,omitempty"`
-	MaxLatency           *int                   `json:"max_latency,omitempty"`
-	MaxLoss              *int                   `json:"max_loss,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
+	// Human-readable traffic type label
+	Display *string `json:"display,omitempty"`
+	// Differentiated Services Code Point value used for this traffic type
+	Dscp *int `json:"dscp,omitempty"`
+	// Failover behavior associated with this traffic type
+	FailoverPolicy *string `json:"failover_policy,omitempty"`
+	// Maximum jitter threshold for this traffic type, in milliseconds
+	MaxJitter *int `json:"max_jitter,omitempty"`
+	// Maximum latency threshold for this traffic type, in milliseconds
+	MaxLatency *int `json:"max_latency,omitempty"`
+	// Maximum packet loss threshold for this traffic type, in percent
+	MaxLoss *int `json:"max_loss,omitempty"`
+	// Machine-readable traffic type name
+	Name *string `json:"name,omitempty"`
+	// Traffic class associated with this traffic type
 	TrafficClass         *string                `json:"traffic_class,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

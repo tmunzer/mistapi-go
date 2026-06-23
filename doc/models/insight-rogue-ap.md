@@ -1,6 +1,8 @@
 
 # Insight Rogue Ap
 
+Rogue or neighbor AP observation returned by site insights
+
 ## Structure
 
 `InsightRogueAp`
@@ -9,31 +11,40 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ApMac` | `string` | Required | MAC of the device that had strongest signal strength for ssid/bssid pair |
-| `AvgRssi` | `float64` | Required | Average signal strength of ap_mac for ssid/bssid pair |
-| `Bssid` | `string` | Required | BSSID of the network detected as threat |
-| `Channel` | `string` | Required | Channel over which ap_mac heard ssid/bssid pair |
+| `ApMac` | `string` | Required | Reporting AP MAC address with the strongest signal for the SSID/BSSID pair |
+| `AvgRssi` | `float64` | Required | Average RSSI for the SSID/BSSID pair as heard by the reporting AP |
+| `Bssid` | `string` | Required | Rogue or neighbor BSSID detected as a threat |
+| `Channel` | `string` | Required | Radio channel where the reporting AP heard the SSID/BSSID pair |
 | `DeltaX` | `*float64` | Optional | X position relative to the reporting AP (`ap_mac`) |
 | `DeltaY` | `*float64` | Optional | Y position relative to the reporting AP (`ap_mac`) |
-| `NumAps` | `int` | Required | Num of aps that heard the ssid/bssid pair |
-| `SeenOnLan` | `*bool` | Optional | Whether the reporting AP see a wireless client (on LAN) connecting to it |
-| `Ssid` | `*string` | Optional | SSID of the network detected as threat |
+| `NumAps` | `int` | Required | Number of APs that heard the SSID/BSSID pair |
+| `SeenOnLan` | `*bool` | Optional | Whether the reporting AP sees a LAN-side client associated with the BSSID |
+| `Ssid` | `*string` | Optional | Wireless SSID detected for the rogue or neighbor BSSID |
 | `TimesHeard` | `*int` | Optional | Represents number of times the pair was heard in the interval. Each count roughly corresponds to a minute. |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "ap_mac": "ap_mac4",
-  "avg_rssi": 133.82,
-  "bssid": "bssid6",
-  "channel": "channel2",
-  "delta_x": 22.92,
-  "delta_y": 101.78,
-  "num_aps": 138,
-  "seen_on_lan": false,
-  "ssid": "ssid0",
-  "times_heard": 112
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    insightRogueAp := models.InsightRogueAp{
+        ApMac:                "ap_mac6",
+        AvgRssi:              float64(90.64),
+        Bssid:                "bssid8",
+        Channel:              "channel0",
+        DeltaX:               models.ToPointer(float64(235.74)),
+        DeltaY:               models.ToPointer(float64(58.6)),
+        NumAps:               104,
+        SeenOnLan:            models.ToPointer(false),
+        Ssid:                 models.ToPointer("ssid2"),
+        TimesHeard:           models.ToPointer(146),
+    }
+
 }
 ```
 

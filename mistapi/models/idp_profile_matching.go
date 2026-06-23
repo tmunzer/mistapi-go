@@ -8,9 +8,13 @@ import (
 )
 
 // IdpProfileMatching represents a IdpProfileMatching struct.
+// Criteria that select IDP signatures for an overwrite rule
 type IdpProfileMatching struct {
-	AttackName           []string                              `json:"attack_name,omitempty"`
-	DstSubnet            []string                              `json:"dst_subnet,omitempty"`
+	// IDP attack signature names matched by an overwrite rule
+	AttackName []string `json:"attack_name,omitempty"`
+	// Destination CIDR subnets matched by an IDP profile overwrite
+	DstSubnet []string `json:"dst_subnet,omitempty"`
+	// Severity levels matched by an IDP profile overwrite
 	Severity             []IdpProfileMatchingSeverityValueEnum `json:"severity,omitempty"`
 	AdditionalProperties map[string]interface{}                `json:"_"`
 }

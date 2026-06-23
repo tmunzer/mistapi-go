@@ -11,16 +11,19 @@ import (
 )
 
 // Sitegroup represents a Sitegroup struct.
-// Sites Group
+// Group of sites within an organization
 type Sitegroup struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime         *float64               `json:"modified_time,omitempty"`
-	Name                 string                 `json:"name"`
-	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Display name of the site group
+	Name string `json:"name"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Site identifiers included in a site group
 	SiteIds              []uuid.UUID            `json:"site_ids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -13,3 +13,18 @@ The vendor ‘micello’. enum: `micello`
 |  --- |
 | `micello` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mapMicelloVendorName := models.MapMicelloVendorNameEnum_MICELLO
+
+}
+```
+

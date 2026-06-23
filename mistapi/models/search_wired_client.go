@@ -10,12 +10,19 @@ import (
 )
 
 // SearchWiredClient represents a SearchWiredClient struct.
+// Paginated response for wired client searches
 type SearchWiredClient struct {
-	End                  float64                `json:"end"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []WiredClientResponse  `json:"results"`
-	Start                float64                `json:"start"`
+	// Upper bound timestamp of the wired client search window, in epoch seconds
+	End float64 `json:"end"`
+	// Maximum number of wired client records returned by this page
+	Limit int `json:"limit"`
+	// URL for the next page of wired client records, when more results are available
+	Next *string `json:"next,omitempty"`
+	// Wired client records returned by a search response
+	Results []WiredClientResponse `json:"results"`
+	// Lower bound timestamp of the wired client search window, in epoch seconds
+	Start float64 `json:"start"`
+	// Count of wired client records matching the search
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

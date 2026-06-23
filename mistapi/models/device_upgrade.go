@@ -10,6 +10,7 @@ import (
 )
 
 // DeviceUpgrade represents a DeviceUpgrade struct.
+// Device firmware upgrade request options
 type DeviceUpgrade struct {
 	// For Switches and Gateways only (APs are automatically rebooted). Reboot device immediately after upgrade is completed
 	Reboot *bool `json:"reboot,omitempty"`

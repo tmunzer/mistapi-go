@@ -11,31 +11,37 @@ import (
 )
 
 // WebhookClientJoinEvent represents a WebhookClientJoinEvent struct.
+// Wireless client association event delivered when a client joins a WLAN
 type WebhookClientJoinEvent struct {
 	// MAC address of the AP the client connected to
 	Ap string `json:"ap"`
 	// user-friendly name of the AP the client connected to.
 	ApName string `json:"ap_name"`
 	// 5GHz or 2.4GHz band
-	Band  string `json:"band"`
+	Band string `json:"band"`
+	// WLAN radio BSSID that the client associated with
 	Bssid string `json:"bssid"`
-	// Time when the user connects
+	// Time when the client connected, in epoch seconds
 	Connect int `json:"connect"`
-	// floating point connect timestamp with millisecond precision
+	// Client connection timestamp with millisecond precision
 	ConnectFloat float64 `json:"connect_float"`
-	// Client's MAC Address
-	Mac   string    `json:"mac"`
+	// Client MAC address that joined the WLAN
+	Mac string `json:"mac"`
+	// Unique identifier of a Mist organization
 	OrgId uuid.UUID `json:"org_id"`
-	// RSSI when the client associated
-	Rssi     float64   `json:"rssi"`
-	SiteId   uuid.UUID `json:"site_id"`
-	SiteName string    `json:"site_name"`
-	// ESSID
+	// Signal strength when the client associated, in dBm
+	Rssi float64 `json:"rssi"`
+	// Unique identifier of a Mist site
+	SiteId uuid.UUID `json:"site_id"`
+	// Site name associated with the client join event
+	SiteName string `json:"site_name"`
+	// WLAN SSID that the client joined
 	Ssid string `json:"ssid"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp float64 `json:"timestamp"`
 	// schema version of this message
-	Version              float64                `json:"version"`
+	Version float64 `json:"version"`
+	// Unique identifier of the WLAN the client joined
 	WlanId               uuid.UUID              `json:"wlan_id"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

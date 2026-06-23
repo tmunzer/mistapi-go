@@ -11,10 +11,12 @@ import (
 )
 
 // AssetFilter represents a AssetFilter struct.
-// Asset Filter
+// BLE asset filter definition; all specified criteria must match
 type AssetFilter struct {
+	// Access point MAC address that must observe the BLE asset
 	ApMac *string `json:"ap_mac,omitempty"`
-	Beam  *int    `json:"beam,omitempty"`
+	// BLE beam number used to filter asset observations
+	Beam *int `json:"beam,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
 	// Whether the asset filter is disabled
@@ -23,21 +25,29 @@ type AssetFilter struct {
 	EddystoneUidNamespace *string `json:"eddystone_uid_namespace,omitempty"`
 	// Eddystone url used to filter assets
 	EddystoneUrl *string `json:"eddystone_url,omitempty"`
-	ForSite      *bool   `json:"for_site,omitempty"`
+	// Whether this asset filter is scoped directly to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Major number for iBeacon
-	IbeaconMajor Optional[int]       `json:"ibeacon_major"`
-	IbeaconUuid  Optional[uuid.UUID] `json:"ibeacon_uuid"`
+	IbeaconMajor Optional[int] `json:"ibeacon_major"`
+	// iBeacon UUID value, or null when no iBeacon UUID is configured
+	IbeaconUuid Optional[uuid.UUID] `json:"ibeacon_uuid"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// BLE manufacturing-specific company-id used to filter assets
 	MfgCompanyId *int `json:"mfg_company_id,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64   `json:"modified_time,omitempty"`
-	Name         string     `json:"name"`
-	OrgId        *uuid.UUID `json:"org_id,omitempty"`
-	Rssi         *int       `json:"rssi,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// If set, matching BLE advertisements are forwarded to this MQTT topic when MQTT publishing is enabled
+	MqttTopic *string `json:"mqtt_topic,omitempty"`
+	// Display name for this BLE asset filter
+	Name string `json:"name"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Signal strength threshold used to filter BLE asset observations
+	Rssi *int `json:"rssi,omitempty"`
 	// BLE service data uuid used to filter assets
-	ServiceUuid          *uuid.UUID             `json:"service_uuid,omitempty"`
+	ServiceUuid *uuid.UUID `json:"service_uuid,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -46,8 +56,8 @@ type AssetFilter struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a AssetFilter) String() string {
 	return fmt.Sprintf(
-		"AssetFilter[ApMac=%v, Beam=%v, CreatedTime=%v, Disabled=%v, EddystoneUidNamespace=%v, EddystoneUrl=%v, ForSite=%v, IbeaconMajor=%v, IbeaconUuid=%v, Id=%v, MfgCompanyId=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Rssi=%v, ServiceUuid=%v, SiteId=%v, AdditionalProperties=%v]",
-		a.ApMac, a.Beam, a.CreatedTime, a.Disabled, a.EddystoneUidNamespace, a.EddystoneUrl, a.ForSite, a.IbeaconMajor, a.IbeaconUuid, a.Id, a.MfgCompanyId, a.ModifiedTime, a.Name, a.OrgId, a.Rssi, a.ServiceUuid, a.SiteId, a.AdditionalProperties)
+		"AssetFilter[ApMac=%v, Beam=%v, CreatedTime=%v, Disabled=%v, EddystoneUidNamespace=%v, EddystoneUrl=%v, ForSite=%v, IbeaconMajor=%v, IbeaconUuid=%v, Id=%v, MfgCompanyId=%v, ModifiedTime=%v, MqttTopic=%v, Name=%v, OrgId=%v, Rssi=%v, ServiceUuid=%v, SiteId=%v, AdditionalProperties=%v]",
+		a.ApMac, a.Beam, a.CreatedTime, a.Disabled, a.EddystoneUidNamespace, a.EddystoneUrl, a.ForSite, a.IbeaconMajor, a.IbeaconUuid, a.Id, a.MfgCompanyId, a.ModifiedTime, a.MqttTopic, a.Name, a.OrgId, a.Rssi, a.ServiceUuid, a.SiteId, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AssetFilter.
@@ -56,7 +66,7 @@ func (a AssetFilter) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(a.AdditionalProperties,
-		"ap_mac", "beam", "created_time", "disabled", "eddystone_uid_namespace", "eddystone_url", "for_site", "ibeacon_major", "ibeacon_uuid", "id", "mfg_company_id", "modified_time", "name", "org_id", "rssi", "service_uuid", "site_id"); err != nil {
+		"ap_mac", "beam", "created_time", "disabled", "eddystone_uid_namespace", "eddystone_url", "for_site", "ibeacon_major", "ibeacon_uuid", "id", "mfg_company_id", "modified_time", "mqtt_topic", "name", "org_id", "rssi", "service_uuid", "site_id"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(a.toMap())
@@ -110,6 +120,9 @@ func (a AssetFilter) toMap() map[string]any {
 	if a.ModifiedTime != nil {
 		structMap["modified_time"] = a.ModifiedTime
 	}
+	if a.MqttTopic != nil {
+		structMap["mqtt_topic"] = a.MqttTopic
+	}
 	structMap["name"] = a.Name
 	if a.OrgId != nil {
 		structMap["org_id"] = a.OrgId
@@ -138,7 +151,7 @@ func (a *AssetFilter) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "beam", "created_time", "disabled", "eddystone_uid_namespace", "eddystone_url", "for_site", "ibeacon_major", "ibeacon_uuid", "id", "mfg_company_id", "modified_time", "name", "org_id", "rssi", "service_uuid", "site_id")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "beam", "created_time", "disabled", "eddystone_uid_namespace", "eddystone_url", "for_site", "ibeacon_major", "ibeacon_uuid", "id", "mfg_company_id", "modified_time", "mqtt_topic", "name", "org_id", "rssi", "service_uuid", "site_id")
 	if err != nil {
 		return err
 	}
@@ -156,6 +169,7 @@ func (a *AssetFilter) UnmarshalJSON(input []byte) error {
 	a.Id = temp.Id
 	a.MfgCompanyId = temp.MfgCompanyId
 	a.ModifiedTime = temp.ModifiedTime
+	a.MqttTopic = temp.MqttTopic
 	a.Name = *temp.Name
 	a.OrgId = temp.OrgId
 	a.Rssi = temp.Rssi
@@ -178,6 +192,7 @@ type tempAssetFilter struct {
 	Id                    *uuid.UUID          `json:"id,omitempty"`
 	MfgCompanyId          *int                `json:"mfg_company_id,omitempty"`
 	ModifiedTime          *float64            `json:"modified_time,omitempty"`
+	MqttTopic             *string             `json:"mqtt_topic,omitempty"`
 	Name                  *string             `json:"name"`
 	OrgId                 *uuid.UUID          `json:"org_id,omitempty"`
 	Rssi                  *int                `json:"rssi,omitempty"`

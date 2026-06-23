@@ -16,7 +16,16 @@ Only if `mode`==`dynamic` Control when the DPC port should be changed to the def
 
 ## Example
 
-```
-link_down
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchPortUsageDynamicResetDefaultWhen := models.SwitchPortUsageDynamicResetDefaultWhenEnum_LINKDOWN
+
+}
 ```
 

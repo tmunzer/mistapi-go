@@ -13,6 +13,7 @@ import (
 // DeviceprofileSwitch represents a DeviceprofileSwitch struct.
 // Switch Device Profiles can be applied to one or multiple switches. The settings from the Device Profile will override the settings from the Switch Template and the Site Settings.
 type DeviceprofileSwitch struct {
+	// List of ACL policy definitions
 	AclPolicies []AclPolicy `json:"acl_policies,omitempty"`
 	// ACL Tags to identify traffic source or destination. Key name is the tag name
 	AclTags map[string]AclTag `json:"acl_tags,omitempty"`
@@ -23,14 +24,16 @@ type DeviceprofileSwitch struct {
 	// Property key is the destination subnet (e.g. "2a02:1234:420a:10c9::/64")
 	AggregateRoutes6 map[string]AggregateRoute `json:"aggregate_routes6,omitempty"`
 	// When the object has been created, in epoch
-	CreatedTime  *float64           `json:"created_time,omitempty"`
-	DhcpSnooping *DhcpSnooping      `json:"dhcp_snooping,omitempty"`
-	DhcpdConfig  *SwitchDhcpdConfig `json:"dhcpd_config,omitempty"`
+	CreatedTime *float64 `json:"created_time,omitempty"`
+	// DHCP snooping security settings
+	DhcpSnooping *DhcpSnooping `json:"dhcp_snooping,omitempty"`
+	// Switch DHCP server or relay configuration keyed by network name
+	DhcpdConfig *SwitchDhcpdConfig `json:"dhcpd_config,omitempty"`
 	// Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
 	DnsServers []string `json:"dns_servers,omitempty"`
 	// Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
 	DnsSuffix []string `json:"dns_suffix,omitempty"`
-	// EVPN Junos settings
+	// EVPN configuration settings applied to a Junos switch
 	EvpnConfig *EvpnConfig `json:"evpn_config,omitempty"`
 	// Property key is the destination CIDR (e.g. "10.0.0.0/8")
 	ExtraRoutes map[string]ExtraRoute `json:"extra_routes,omitempty"`
@@ -43,13 +46,14 @@ type DeviceprofileSwitch struct {
 	// * `OUT1` for the FPC0 output port (can only be triggered by either IN0 or IN1)
 	// * "X/IN0`, `X/IN1` and `X/OUT` are used to define IOT ports on VC members
 	IotConfig map[string]SwitchIotPort `json:"iot_config,omitempty"`
-	// Junos IP Config
+	// Junos management IP configuration
 	IpConfig *JunosIpConfig `json:"ip_config,omitempty"`
-	// Enable mist_nac to use RadSec
+	// Mist NAC RadSec settings for a switch
 	MistNac *SwitchMistNac `json:"mist_nac,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	Name         string   `json:"name"`
+	// Display name of the switch profile
+	Name string `json:"name"`
 	// Property key is network name
 	Networks map[string]SwitchNetwork `json:"networks,omitempty"`
 	// List of NTP servers specific to this device. By default, those in Site Settings will be used
@@ -58,7 +62,8 @@ type DeviceprofileSwitch struct {
 	// - If HA configuration: key parameter will be nodeX (eg: node1)
 	// - If there are 2 routing engines, re1 mgmt IP has to be set separately (if desired): key parameter = `re1`
 	OobIpConfig *SwitchOobIpConfig `json:"oob_ip_config,omitempty"`
-	OrgId       *uuid.UUID         `json:"org_id,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Junos OSPF areas. Property key is the OSPF Area (Area should be a number (0-255) / IP address)
 	OspfAreas map[string]OspfArea `json:"ospf_areas,omitempty"`
 	// Property key is the network name. Defines the additional IP Addresses configured on the device.
@@ -69,24 +74,29 @@ type DeviceprofileSwitch struct {
 	PortMirroring map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
 	// Property key is the port usage name. Defines the profiles of port configuration configured on the switch
 	PortUsages map[string]SwitchPortUsage `json:"port_usages,omitempty"`
-	// Junos Radius config
+	// Switch RADIUS authentication and accounting configuration
 	RadiusConfig *SwitchRadiusConfig `json:"radius_config,omitempty"`
-	RemoteSyslog *RemoteSyslog       `json:"remote_syslog,omitempty"`
-	// Property key is the routing policy name
+	// Remote syslog forwarding settings
+	RemoteSyslog *RemoteSyslog `json:"remote_syslog,omitempty"`
+	// Switch routing policies keyed by routing policy name
 	RoutingPolicies map[string]SwRoutingPolicy `json:"routing_policies,omitempty"`
-	SiteId          *uuid.UUID                 `json:"site_id,omitempty"`
-	SnmpConfig      *SnmpConfig                `json:"snmp_config,omitempty"`
-	StpConfig       *SwitchStpConfig           `json:"stp_config,omitempty"`
-	// Switch Management settings
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// SNMP configuration for managed network devices
+	SnmpConfig *SnmpConfig `json:"snmp_config,omitempty"`
+	// Switch spanning-tree protocol configuration
+	StpConfig *SwitchStpConfig `json:"stp_config,omitempty"`
+	// Switch management-plane access and proxy settings
 	SwitchMgmt *SwitchMgmt `json:"switch_mgmt,omitempty"`
 	// Device Type. enum: `switch`
 	Type string `json:"type"`
 	// Whether to use it for snmp / syslog / tacplus / radius
-	UseRouterIdAsSourceIp *bool      `json:"use_router_id_as_source_ip,omitempty"`
-	VrfConfig             *VrfConfig `json:"vrf_config,omitempty"`
+	UseRouterIdAsSourceIp *bool `json:"use_router_id_as_source_ip,omitempty"`
+	// VRF enablement settings applied when supported on the device
+	VrfConfig *VrfConfig `json:"vrf_config,omitempty"`
 	// Property key is the network name
 	VrfInstances map[string]SwitchVrfInstance `json:"vrf_instances,omitempty"`
-	// Junos VRRP config
+	// Junos VRRP configuration applied to a switch or switch profile
 	VrrpConfig           *VrrpConfig            `json:"vrrp_config,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

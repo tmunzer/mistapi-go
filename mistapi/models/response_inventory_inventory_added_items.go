@@ -10,11 +10,17 @@ import (
 )
 
 // ResponseInventoryInventoryAddedItems represents a ResponseInventoryInventoryAddedItems struct.
+// Inventory device added by the claim operation
 type ResponseInventoryInventoryAddedItems struct {
-	Mac                  string                 `json:"mac"`
-	Magic                string                 `json:"magic"`
-	Model                string                 `json:"model"`
-	Serial               string                 `json:"serial"`
+	// Device MAC address for the claimed inventory item
+	Mac string `json:"mac"`
+	// Activation code or claim code associated with the inventory item
+	Magic string `json:"magic"`
+	// Device model for the claimed inventory item
+	Model string `json:"model"`
+	// Device serial number for the claimed inventory item
+	Serial string `json:"serial"`
+	// Device type for the claimed inventory item
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

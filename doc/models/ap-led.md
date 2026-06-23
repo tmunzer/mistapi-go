@@ -1,7 +1,7 @@
 
 # Ap Led
 
-LED AP settings
+Indicator light settings for an access point
 
 ## Structure
 
@@ -11,15 +11,24 @@ LED AP settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Brightness` | `*int` | Optional | **Default**: `255`<br><br>**Constraints**: `>= 0`, `<= 255` |
-| `Enabled` | `*bool` | Optional | **Default**: `true` |
+| `Brightness` | `*int` | Optional | Indicator LED brightness level from 0 to 255<br><br>**Default**: `255`<br><br>**Constraints**: `>= 0`, `<= 255` |
+| `Enabled` | `*bool` | Optional | Whether the AP indicator LED is enabled<br><br>**Default**: `true` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "brightness": 255,
-  "enabled": true
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    apLed := models.ApLed{
+        Brightness:           models.ToPointer(255),
+        Enabled:              models.ToPointer(true),
+    }
+
 }
 ```
 

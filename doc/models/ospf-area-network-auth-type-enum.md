@@ -17,7 +17,16 @@ auth type. enum: `md5`, `none`, `password`
 
 ## Example
 
-```
-md5
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ospfAreaNetworkAuthType := models.OspfAreaNetworkAuthTypeEnum_MD5
+
+}
 ```
 

@@ -15,3 +15,18 @@ enum: `24`, `5`, `6`
 | `5` |
 | `6` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureWirelessBand := models.CaptureWirelessBandEnum_ENUM24
+
+}
+```
+

@@ -8,14 +8,23 @@ import (
 )
 
 // WanUsages represents a WanUsages struct.
+// WAN usage record returned by site WAN usage searches
 type WanUsages struct {
-	Mac                  *string                `json:"mac,omitempty"`
-	PathType             *string                `json:"path_type,omitempty"`
-	PathWeight           *int                   `json:"path_weight,omitempty"`
-	PeerMac              *string                `json:"peer_mac,omitempty"`
-	PeerPortId           *string                `json:"peer_port_id,omitempty"`
-	Policy               *string                `json:"policy,omitempty"`
-	PortId               *string                `json:"port_id,omitempty"`
+	// Local router MAC address for the WAN usage record
+	Mac *string `json:"mac,omitempty"`
+	// WAN path type used by this usage record
+	PathType *string `json:"path_type,omitempty"`
+	// Configured weight for the WAN path
+	PathWeight *int `json:"path_weight,omitempty"`
+	// Remote peer MAC address for the WAN path
+	PeerMac *string `json:"peer_mac,omitempty"`
+	// Remote peer interface identifier for the WAN path
+	PeerPortId *string `json:"peer_port_id,omitempty"`
+	// WAN path policy that selected this path
+	Policy *string `json:"policy,omitempty"`
+	// Local router interface identifier for the WAN path
+	PortId *string `json:"port_id,omitempty"`
+	// Network tenant context for the WAN usage record
 	Tenant               *string                `json:"tenant,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

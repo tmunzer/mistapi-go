@@ -1,7 +1,7 @@
 
 # Capture New Assoc Type Enum
 
-enum: `new_assoc`
+Packet capture type discriminator for new association captures. enum: `new_assoc`
 
 ## Enumeration
 
@@ -15,7 +15,16 @@ enum: `new_assoc`
 
 ## Example
 
-```
-new_assoc
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureNewAssocType := models.CaptureNewAssocTypeEnum_NEWASSOC
+
+}
 ```
 

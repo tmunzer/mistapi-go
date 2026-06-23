@@ -1,7 +1,7 @@
 
 # Tunterm Port Config
 
-Ethernet port configurations
+Ethernet port configuration for tunnel termination interfaces
 
 ## Structure
 
@@ -13,23 +13,32 @@ Ethernet port configurations
 |  --- | --- | --- | --- |
 | `DownstreamPorts` | `[]string` | Optional | List of ports to be used for downstream (to AP) purpose |
 | `SeparateUpstreamDownstream` | `*bool` | Optional | Whether to separate upstream / downstream ports. default is false where all ports will be used.<br><br>**Default**: `false` |
-| `UpstreamPortVlanId` | [`*models.TuntermPortConfigUpstreamPortVlanId`](../../doc/models/containers/tunterm-port-config-upstream-port-vlan-id.md) | Optional | Native VLAN id for upstream ports |
+| `UpstreamPortVlanId` | [`*models.TuntermPortConfigUpstreamPortVlanId`](../../doc/models/containers/tunterm-port-config-upstream-port-vlan-id.md) | Optional | Native VLAN ID for upstream ports |
 | `UpstreamPorts` | `[]string` | Optional | List of ports to be used for upstream purpose (to LAN) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "downstream_ports": [
-    "2",
-    "3"
-  ],
-  "separate_upstream_downstream": false,
-  "upstream_ports": [
-    "0",
-    "1"
-  ],
-  "upstream_port_vlan_id": "String1"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    tuntermPortConfig := models.TuntermPortConfig{
+        DownstreamPorts:            []string{
+            "2",
+            "3",
+        },
+        SeparateUpstreamDownstream: models.ToPointer(false),
+        UpstreamPortVlanId:         models.ToPointer(models.TuntermPortConfigUpstreamPortVlanIdContainer.FromString("String3")),
+        UpstreamPorts:              []string{
+            "0",
+            "1",
+        },
+    }
+
 }
 ```
 

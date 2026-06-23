@@ -9,6 +9,7 @@ import (
 )
 
 // ResponseTunnelSearchItem represents a ResponseTunnelSearchItem struct.
+// Tunnel statistics record; shape depends on the requested tunnel type
 type ResponseTunnelSearchItem struct {
 	value            any
 	isStatsMxtunnel  bool
@@ -74,6 +75,7 @@ func (r *ResponseTunnelSearchItem) AsStatsWanTunnel() (
 }
 
 // internalResponseTunnelSearchItem represents a responseTunnelSearchItem struct.
+// Tunnel statistics record; shape depends on the requested tunnel type
 type internalResponseTunnelSearchItem struct{}
 
 var ResponseTunnelSearchItemContainer internalResponseTunnelSearchItem

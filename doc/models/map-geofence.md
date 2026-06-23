@@ -1,6 +1,8 @@
 
 # Map Geofence
 
+Geofence drawn on a map
+
 ## Structure
 
 `MapGeofence`
@@ -9,28 +11,29 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Name` | `*string` | Optional | Name of the geofence |
+| `Name` | `*string` | Optional | Display name for the map geofence |
 | `Vertices` | [`[]models.MapGeofenceVertice`](../../doc/models/map-geofence-vertice.md) | Optional | List of vertices defining the geofence |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "example",
-  "vertices": [
-    {
-      "X": 86.66,
-      "Y": 252.2
-    },
-    {
-      "X": 86.66,
-      "Y": 252.2
-    },
-    {
-      "X": 86.66,
-      "Y": 252.2
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mapGeofence := models.MapGeofence{
+        Name:                 models.ToPointer("example"),
+        Vertices:             []models.MapGeofenceVertice{
+            models.MapGeofenceVertice{
+                X:                    models.ToPointer(float64(86.66)),
+                Y:                    models.ToPointer(float64(252.2)),
+            },
+        },
     }
-  ]
+
 }
 ```
 

@@ -30,7 +30,7 @@ type AclTag struct {
 	// * `type`==`resource` (optional. default is `any`)
 	// * `type`==`static_gbp` if from matching network (vlan)
 	Network *string `json:"network,omitempty"`
-	// Required if `type`==`port_usage`
+	// Required if `type`==`port_usage`. Switch port usage name matched by this ACL tag
 	PortUsage *string `json:"port_usage,omitempty"`
 	// Required if:
 	// * `type`==`radius_group`

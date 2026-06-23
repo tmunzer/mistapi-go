@@ -8,8 +8,9 @@ import (
 )
 
 // HaClusterConfigNode represents a HaClusterConfigNode struct.
+// HA cluster inventory node identified by MAC address
 type HaClusterConfigNode struct {
-	// Node mac, should be unassigned
+	// Gateway node MAC address for an inventory node that is currently unassigned
 	Mac                  *string                `json:"mac,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

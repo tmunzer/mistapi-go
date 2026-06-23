@@ -8,10 +8,12 @@ import (
 )
 
 // GatewayMgmtAutoSignatureUpdate represents a GatewayMgmtAutoSignatureUpdate struct.
+// Automatic security signature update schedule
 type GatewayMgmtAutoSignatureUpdate struct {
 	// enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed`
 	DayOfWeek *DayOfWeekEnum `json:"day_of_week,omitempty"`
-	Enable    *bool          `json:"enable,omitempty"`
+	// Whether automatic security signature updates are enabled
+	Enable *bool `json:"enable,omitempty"`
 	// Optional, Mist will decide the timing
 	TimeOfDay            *string                `json:"time_of_day,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`

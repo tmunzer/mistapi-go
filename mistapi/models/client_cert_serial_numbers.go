@@ -8,7 +8,9 @@ import (
 )
 
 // ClientCertSerialNumbers represents a ClientCertSerialNumbers struct.
+// Client certificate serial numbers targeted by a certificate operation
 type ClientCertSerialNumbers struct {
+	// Unique string values returned or accepted by this schema
 	SerialNumbers        []string               `json:"serial_numbers,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

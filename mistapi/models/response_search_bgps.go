@@ -8,12 +8,19 @@ import (
 )
 
 // ResponseSearchBgps represents a ResponseSearchBgps struct.
+// Paginated response for BGP peer statistics search results
 type ResponseSearchBgps struct {
-	End                  *float64               `json:"end,omitempty"`
-	Limit                *int                   `json:"limit,omitempty"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []BgpStats             `json:"results,omitempty"`
-	Start                *float64               `json:"start,omitempty"`
+	// Epoch timestamp, in seconds, for the end of the BGP statistics search window
+	End *float64 `json:"end,omitempty"`
+	// Maximum number of BGP peer statistics records returned in this page
+	Limit *int `json:"limit,omitempty"`
+	// URL for retrieving the next page of BGP peer statistics results
+	Next *string `json:"next,omitempty"`
+	// BGP statistics records returned by a search response
+	Results []BgpStats `json:"results,omitempty"`
+	// Epoch timestamp, in seconds, for the start of the BGP statistics search window
+	Start *float64 `json:"start,omitempty"`
+	// Number of BGP peer statistics records matching the search filters across all pages
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

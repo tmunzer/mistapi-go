@@ -8,6 +8,7 @@ import (
 )
 
 // AutoPlacement represents a AutoPlacement struct.
+// Request options for validating or starting AP auto-placement
 type AutoPlacement struct {
 	// Set to `true` to perform an invalid AP check and provide an estimated run time without enqueuing the run into the auto placement service.
 	Dryrun *bool `json:"dryrun,omitempty"`

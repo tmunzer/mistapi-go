@@ -23,7 +23,8 @@ type AccountOauthInfoAccount struct {
 	// For Prisma accounts only, tunnel probe enable/disable
 	EnableProbe *bool `json:"enable_probe,omitempty"`
 	// This error is provided when the account fails to fetch token/data
-	Error  *string  `json:"error,omitempty"`
+	Error *string `json:"error,omitempty"`
+	// Read-only OAuth account error messages
 	Errors []string `json:"errors,omitempty"`
 	// Customer account instance URL
 	InstanceUrl *string `json:"instance_url,omitempty"`
@@ -34,11 +35,12 @@ type AccountOauthInfoAccount struct {
 	// Last data pull timestamp, background jobs that pull account data
 	LastSync *int64 `json:"last_sync,omitempty"`
 	// First name of the user who linked the account
-	LinkedBy        *string  `json:"linked_by,omitempty"`
+	LinkedBy *string `json:"linked_by,omitempty"`
+	// Timestamp when this third-party account was linked
 	LinkedTimestamp *float64 `json:"linked_timestamp,omitempty"`
 	// Zoom daily api request quota, https://developers.zoom.us/docs/api/rest/rate-limits/
 	MaxDailyApiRequests *int `json:"max_daily_api_requests,omitempty"`
-	// Name of the company whose account mist has subscribed to
+	// Display name of the linked third-party account or company
 	Name *string `json:"name,omitempty"`
 	// Customer account password instance URL
 	Password *string `json:"password,omitempty"`
@@ -54,7 +56,7 @@ type AccountOauthInfoAccount struct {
 	SmartgroupName *string `json:"smartgroup_name,omitempty"`
 	// For Prisma accounts only, Prisma Tenant Service Group id
 	TsgId *string `json:"tsg_id,omitempty"`
-	// Customer account username
+	// Login name configured for the linked third-party account
 	Username *string `json:"username,omitempty"`
 	// For Crowdstrike, JAMF, SentinelOne and VMWare accounts only
 	WebhookAuthType *string `json:"webhook_auth_type,omitempty"`

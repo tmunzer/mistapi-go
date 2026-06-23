@@ -26,7 +26,7 @@ func NewOrgsSites(baseController baseController) *OrgsSites {
 // ListOrgSites takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.Site data and
 // an error if there was an issue with the request or response.
-// Get List of Org Sites
+// List sites in the organization. Site records include location metadata, timezone, site group membership, and template or policy associations.
 func (o *OrgsSites) ListOrgSites(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -39,19 +39,15 @@ func (o *OrgsSites) ListOrgSites(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if limit != nil {
 		req.QueryParam("limit", *limit)
@@ -73,7 +69,7 @@ func (o *OrgsSites) ListOrgSites(
 // CreateOrgSite takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.Site data and
 // an error if there was an issue with the request or response.
-// Create Org Site
+// Create a site in the organization with location metadata, timezone, site group membership, and optional template or policy associations.
 func (o *OrgsSites) CreateOrgSite(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -85,19 +81,15 @@ func (o *OrgsSites) CreateOrgSite(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -117,7 +109,7 @@ func (o *OrgsSites) CreateOrgSite(
 // CountOrgSites takes context, orgId, distinct, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of Sites
+// Count organization sites grouped by a distinct site attribute, such as country code, site name, feature flags, or enabled services.
 func (o *OrgsSites) CountOrgSites(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -133,19 +125,15 @@ func (o *OrgsSites) CountOrgSites(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -176,7 +164,7 @@ func (o *OrgsSites) CountOrgSites(
 // SearchOrgSites takes context, orgId, analyticEnabled, appWaking, assetEnabled, autoUpgradeEnabled, autoUpgradeVersion, countryCode, honeypotEnabled, id, locateUnconnected, meshEnabled, name, rogueEnabled, remoteSyslogEnabled, rtsaEnabled, vnaEnabled, wifiEnabled, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseSiteSearch data and
 // an error if there was an issue with the request or response.
-// Search Sites
+// Search organization sites with filters for feature flags, country code, identifiers, names, upgrade settings, and other site attributes. Supports pagination and sorting.
 func (o *OrgsSites) SearchOrgSites(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -209,19 +197,15 @@ func (o *OrgsSites) SearchOrgSites(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if analyticEnabled != nil {
 		req.QueryParam("analytic_enabled", *analyticEnabled)

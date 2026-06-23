@@ -14,3 +14,18 @@ if `type`==`marvis_client`. enum: `wireless`, `wireless+wired`
 | `wireless` |
 | `wireless+wired` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    nacPortalAccessType := models.NacPortalAccessTypeEnum_WIRELESS
+
+}
+```
+

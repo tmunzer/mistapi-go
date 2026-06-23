@@ -8,11 +8,15 @@ import (
 )
 
 // ResponseSwitchMetricsVersionCompliance represents a ResponseSwitchMetricsVersionCompliance struct.
+// Version compliance metric for switches in the requested scope
 type ResponseSwitchMetricsVersionCompliance struct {
-	Details              *ResponseSwitchMetricsVersionComplianceDetails `json:"details,omitempty"`
-	Score                *int                                           `json:"score,omitempty"`
-	TotalSwitchCount     *int                                           `json:"total_switch_count,omitempty"`
-	AdditionalProperties map[string]interface{}                         `json:"_"`
+	// Detail values for the switch software version compliance metric
+	Details *ResponseSwitchMetricsVersionComplianceDetails `json:"details,omitempty"`
+	// Reported metric score for switch software version compliance
+	Score *int `json:"score,omitempty"`
+	// Number of switches included in the version compliance metric
+	TotalSwitchCount     *int                   `json:"total_switch_count,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseSwitchMetricsVersionCompliance,

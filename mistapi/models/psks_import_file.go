@@ -8,7 +8,9 @@ import (
 )
 
 // PsksImportFile represents a PsksImportFile struct.
+// Multipart upload payload for importing PSKs
 type PsksImportFile struct {
+	// Uploaded CSV or binary file containing PSKs to import
 	File                 *[]byte                `json:"file,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

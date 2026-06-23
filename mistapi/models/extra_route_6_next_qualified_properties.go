@@ -8,8 +8,11 @@ import (
 )
 
 // ExtraRoute6NextQualifiedProperties represents a ExtraRoute6NextQualifiedProperties struct.
+// Qualified next-hop attributes for an IPv6 static route
 type ExtraRoute6NextQualifiedProperties struct {
-	Metric               Optional[int]          `json:"metric"`
+	// Route metric for this qualified IPv6 next hop
+	Metric Optional[int] `json:"metric"`
+	// Route preference for this qualified IPv6 next hop
 	Preference           Optional[int]          `json:"preference"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

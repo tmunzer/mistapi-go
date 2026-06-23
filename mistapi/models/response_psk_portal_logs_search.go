@@ -8,14 +8,21 @@ import (
 )
 
 // ResponsePskPortalLogsSearch represents a ResponsePskPortalLogsSearch struct.
+// Paginated response for organization PSK Portal log search results
 type ResponsePskPortalLogsSearch struct {
-	End                  *int                              `json:"end,omitempty"`
-	Limit                *int                              `json:"limit,omitempty"`
-	Next                 *string                           `json:"next,omitempty"`
-	Results              []ResponsePskPortalLogsSearchItem `json:"results,omitempty"`
-	Start                *int                              `json:"start,omitempty"`
-	Total                *int                              `json:"total,omitempty"`
-	AdditionalProperties map[string]interface{}            `json:"_"`
+	// Epoch timestamp, in seconds, for the end of the PSK Portal log search window
+	End *int `json:"end,omitempty"`
+	// Maximum number of PSK Portal log entries returned in this page
+	Limit *int `json:"limit,omitempty"`
+	// URL for retrieving the next page of PSK Portal log search results
+	Next *string `json:"next,omitempty"`
+	// PSK Portal log entries returned by search
+	Results []ResponsePskPortalLogsSearchItem `json:"results,omitempty"`
+	// Epoch timestamp, in seconds, for the start of the PSK Portal log search window
+	Start *int `json:"start,omitempty"`
+	// Number of PSK Portal log entries matching the search filters across all pages
+	Total                *int                   `json:"total,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponsePskPortalLogsSearch,

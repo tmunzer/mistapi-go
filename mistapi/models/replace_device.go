@@ -8,16 +8,17 @@ import (
 )
 
 // ReplaceDevice represents a ReplaceDevice struct.
+// Request payload for replacing an inventory device with a claimed, unassigned device
 type ReplaceDevice struct {
-	// Attributes that you don’t want to copy
+	// Attributes that should not be copied to the replacement device
 	Discard []string `json:"discard,omitempty"`
-	// MAC Address of the inventory that will be replacing the old one. It has to be claimed and unassigned
+	// MAC address of the claimed, unassigned inventory device that will replace the old device
 	InventoryMac *string `json:"inventory_mac,omitempty"`
-	// MAC Address of the device to replace
+	// Device MAC address being replaced
 	Mac *string `json:"mac,omitempty"`
-	// Site_id of the device to be replaced
+	// Site containing the device being replaced
 	SiteId *string `json:"site_id,omitempty"`
-	// Ethernet port configurations
+	// Ethernet port configuration for tunnel termination interfaces
 	TuntermPortConfig    *TuntermPortConfig     `json:"tunterm_port_config,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

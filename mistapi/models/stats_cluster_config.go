@@ -8,18 +8,29 @@ import (
 )
 
 // StatsClusterConfig represents a StatsClusterConfig struct.
+// High-availability cluster configuration and health reported by a gateway
 type StatsClusterConfig struct {
-	Configuration              *string                                     `json:"configuration,omitempty"`
-	ControlLinkInfo            *StatsClusterConfigControlLinkInfo          `json:"control_link_info,omitempty"`
-	EthernetConnection         []StatsClusterConfigEthernetConnectionItem  `json:"ethernet_connection,omitempty"`
-	FabricLinkInfo             *StatsClusterConfigFabricLinkInfo           `json:"fabric_link_info,omitempty"`
-	LastStatusChangeReason     *string                                     `json:"last_status_change_reason,omitempty"`
-	Operational                *string                                     `json:"operational,omitempty"`
-	PrimaryNodeHealth          *string                                     `json:"primary_node_health,omitempty"`
+	// Configured high-availability mode for the gateway cluster, such as active-active
+	Configuration *string `json:"configuration,omitempty"`
+	// Control link status details for a gateway cluster
+	ControlLinkInfo *StatsClusterConfigControlLinkInfo `json:"control_link_info,omitempty"`
+	// Ethernet interface connection states for a gateway cluster
+	EthernetConnection []StatsClusterConfigEthernetConnectionItem `json:"ethernet_connection,omitempty"`
+	// Fabric link status details for a gateway cluster
+	FabricLinkInfo *StatsClusterConfigFabricLinkInfo `json:"fabric_link_info,omitempty"`
+	// Reason reported for the most recent gateway cluster status change
+	LastStatusChangeReason *string `json:"last_status_change_reason,omitempty"`
+	// Current operational high-availability mode of the gateway cluster
+	Operational *string `json:"operational,omitempty"`
+	// Health state reported for the primary gateway cluster node
+	PrimaryNodeHealth *string `json:"primary_node_health,omitempty"`
+	// Redundancy group monitoring entries for a gateway cluster
 	RedundancyGroupInformation []StatsClusterConfigRedundancyGroupInfoItem `json:"redundancy_group_information,omitempty"`
-	SecondaryNodeHealth        *string                                     `json:"secondary_node_health,omitempty"`
-	Status                     *string                                     `json:"status,omitempty"`
-	AdditionalProperties       map[string]interface{}                      `json:"_"`
+	// Health state reported for the secondary gateway cluster node
+	SecondaryNodeHealth *string `json:"secondary_node_health,omitempty"`
+	// Overall health status reported for the gateway cluster
+	Status               *string                `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for StatsClusterConfig,

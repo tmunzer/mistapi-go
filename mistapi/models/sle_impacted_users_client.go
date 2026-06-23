@@ -8,15 +8,23 @@ import (
 )
 
 // SleImpactedUsersClient represents a SleImpactedUsersClient struct.
+// SLE impact row for a client in an impacted users response
 type SleImpactedUsersClient struct {
-	Degraded             *float64                   `json:"degraded,omitempty"`
-	Duration             *float64                   `json:"duration,omitempty"`
-	Gateways             []SleImpactedClientGateway `json:"gateways,omitempty"`
-	Mac                  *string                    `json:"mac,omitempty"`
-	Name                 *string                    `json:"name,omitempty"`
-	SrcIp                *string                    `json:"src_ip,omitempty"`
-	Total                *float64                   `json:"total,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"_"`
+	// Portion of the SLE total that was degraded for this client
+	Degraded *float64 `json:"degraded,omitempty"`
+	// Observation time represented by this client impact row
+	Duration *float64 `json:"duration,omitempty"`
+	// Gateway associations for impacted clients
+	Gateways []SleImpactedClientGateway `json:"gateways,omitempty"`
+	// Client MAC address for the impacted client
+	Mac *string `json:"mac,omitempty"`
+	// Display name for the client impact row
+	Name *string `json:"name,omitempty"`
+	// Client source IP address for the impacted client
+	SrcIp *string `json:"src_ip,omitempty"`
+	// Overall SLE total measured for this client impact row
+	Total                *float64               `json:"total,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SleImpactedUsersClient,

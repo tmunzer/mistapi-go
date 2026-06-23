@@ -161,14 +161,19 @@ func TestOrgsSitesTestSearchOrgSites(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	name := "my-site-01"
+	autoUpgradeVersion := "custom,stable"
+	countryCode := "CA,FR"
+
+	id := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+
+	name := "my-site-01,my-site*"
 
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsSites.SearchOrgSites(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &name, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsSites.SearchOrgSites(ctx, orgId, nil, nil, nil, nil, &autoUpgradeVersion, &countryCode, nil, &id, nil, nil, &name, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -189,14 +194,19 @@ func TestOrgsSitesTestSearchOrgSites1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	name := "my-site-01"
+	autoUpgradeVersion := "custom,stable"
+	countryCode := "CA,FR"
+
+	id := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+
+	name := "my-site-01,my-site*"
 
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsSites.SearchOrgSites(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &name, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsSites.SearchOrgSites(ctx, orgId, nil, nil, nil, nil, &autoUpgradeVersion, &countryCode, nil, &id, nil, nil, &name, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -11,11 +11,14 @@ import (
 )
 
 // RfTemplate represents a RfTemplate struct.
-// RF Template
+// RF template used by the current RRM calculation
 type RfTemplate struct {
+	// External antenna gain for the 2.4 GHz radio
 	AntGain24 *int `json:"ant_gain_24,omitempty"`
-	AntGain5  *int `json:"ant_gain_5,omitempty"`
-	AntGain6  *int `json:"ant_gain_6,omitempty"`
+	// External antenna gain for the 5 GHz radio
+	AntGain5 *int `json:"ant_gain_5,omitempty"`
+	// External antenna gain for the 6 GHz radio
+	AntGain6 *int `json:"ant_gain_6,omitempty"`
 	// Radio Band AP settings
 	Band24 *RftemplateRadioBand24 `json:"band_24,omitempty"`
 	// enum: `24`, `5`, `6`, `auto`
@@ -30,7 +33,8 @@ type RfTemplate struct {
 	CountryCode *string `json:"country_code,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	ForSite     *bool    `json:"for_site,omitempty"`
+	// Whether the RF template is scoped to a site rather than the organization
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// overwrites for a specific model. If a band is specified, it will shadow the default. Property key is the model name (e.g. "AP63")
@@ -38,7 +42,8 @@ type RfTemplate struct {
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
 	// The name of the RF template
-	Name  string     `json:"name"`
+	Name string `json:"name"`
+	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Whether scanning radio is enabled
 	ScanningEnabled      *bool                  `json:"scanning_enabled,omitempty"`

@@ -1,6 +1,8 @@
 
 # Webhook Occupancy Alerts Event
 
+Site-level occupancy alert batch containing one or more zone alerts
+
 ## Structure
 
 `WebhookOccupancyAlertsEvent`
@@ -9,30 +11,60 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AlertEvents` | [`[]models.WebhookOccupancyAlertsEventAlertEventsItems`](../../doc/models/webhook-occupancy-alerts-event-alert-events-items.md) | Optional | List of occupancy alerts for non-compliance zones within the site detected around the same time<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `ForSite` | `*bool` | Optional | - |
-| `SiteId` | `uuid.UUID` | Required | - |
-| `SiteName` | `string` | Required | - |
+| `AlertEvents` | [`[]models.WebhookOccupancyAlertsEventAlertEventsItems`](../../doc/models/webhook-occupancy-alerts-event-alert-events-items.md) | Optional, Read-only | List of occupancy alerts for non-compliance zones within the site detected around the same time<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `ForSite` | `*bool` | Optional, Read-only | Whether this occupancy alert batch is scoped to a site rather than only to the organization |
+| `SiteId` | `uuid.UUID` | Required, Read-only | Unique identifier of a Mist site |
+| `SiteName` | `string` | Required, Read-only | Site name associated with the occupancy alert batch |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "site_name": "site_name6",
-  "alert_events": [
-    {
-      "current_occupancy": 30,
-      "map_id": "00000fb2-0000-0000-0000-000000000000",
-      "occupancy_limit": 78,
-      "org_id": "00000f52-0000-0000-0000-000000000000",
-      "timestamp": 148.24,
-      "type": "COMPLIANCE-OK",
-      "zone_id": "000010f6-0000-0000-0000-000000000000",
-      "zone_name": "zone_name6"
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    webhookOccupancyAlertsEvent := models.WebhookOccupancyAlertsEvent{
+        AlertEvents:          []models.WebhookOccupancyAlertsEventAlertEventsItems{
+            models.WebhookOccupancyAlertsEventAlertEventsItems{
+                CurrentOccupancy:     30,
+                MapId:                uuid.MustParse("00000fb2-0000-0000-0000-000000000000"),
+                OccupancyLimit:       78,
+                OrgId:                uuid.MustParse("00000f52-0000-0000-0000-000000000000"),
+                Timestamp:            float64(148.24),
+                Type:                 models.WebhookOccupancyAlertTypeEnum_COMPLIANCEOK,
+                ZoneId:               uuid.MustParse("000010f6-0000-0000-0000-000000000000"),
+                ZoneName:             "zone_name6",
+            },
+            models.WebhookOccupancyAlertsEventAlertEventsItems{
+                CurrentOccupancy:     30,
+                MapId:                uuid.MustParse("00000fb2-0000-0000-0000-000000000000"),
+                OccupancyLimit:       78,
+                OrgId:                uuid.MustParse("00000f52-0000-0000-0000-000000000000"),
+                Timestamp:            float64(148.24),
+                Type:                 models.WebhookOccupancyAlertTypeEnum_COMPLIANCEOK,
+                ZoneId:               uuid.MustParse("000010f6-0000-0000-0000-000000000000"),
+                ZoneName:             "zone_name6",
+            },
+            models.WebhookOccupancyAlertsEventAlertEventsItems{
+                CurrentOccupancy:     30,
+                MapId:                uuid.MustParse("00000fb2-0000-0000-0000-000000000000"),
+                OccupancyLimit:       78,
+                OrgId:                uuid.MustParse("00000f52-0000-0000-0000-000000000000"),
+                Timestamp:            float64(148.24),
+                Type:                 models.WebhookOccupancyAlertTypeEnum_COMPLIANCEOK,
+                ZoneId:               uuid.MustParse("000010f6-0000-0000-0000-000000000000"),
+                ZoneName:             "zone_name6",
+            },
+        },
+        ForSite:              models.ToPointer(false),
+        SiteId:               uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6"),
+        SiteName:             "site_name6",
     }
-  ],
-  "for_site": false
+
 }
 ```
 

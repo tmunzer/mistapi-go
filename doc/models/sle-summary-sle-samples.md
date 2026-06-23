@@ -1,6 +1,8 @@
 
 # Sle Summary Sle Samples
 
+Per-interval sample arrays for an SLE summary
+
 ## Structure
 
 `SleSummarySleSamples`
@@ -9,27 +11,35 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Degraded` | [`[]models.NumberOrNull`](../../doc/models/containers/number-or-null.md) | Required | - |
-| `Total` | [`[]models.NumberOrNull`](../../doc/models/containers/number-or-null.md) | Required | - |
-| `Value` | [`[]models.NumberOrNull`](../../doc/models/containers/number-or-null.md) | Required | - |
+| `Degraded` | [`[]models.NumberOrNull`](../../doc/models/containers/number-or-null.md) | Required | Numeric value or null |
+| `Total` | [`[]models.NumberOrNull`](../../doc/models/containers/number-or-null.md) | Required | Numeric value or null |
+| `Value` | [`[]models.NumberOrNull`](../../doc/models/containers/number-or-null.md) | Required | Numeric value or null |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "degraded": [
-    79.29,
-    79.3,
-    79.31
-  ],
-  "total": [
-    249.39,
-    249.38
-  ],
-  "value": [
-    178.72,
-    178.73
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    sleSummarySleSamples := models.SleSummarySleSamples{
+        Degraded:             []models.NumberOrNull{
+            models.NumberOrNullContainer.FromPrecision(float64(137.33)),
+            models.NumberOrNullContainer.FromPrecision(float64(137.34)),
+        },
+        Total:                []models.NumberOrNull{
+            models.NumberOrNullContainer.FromPrecision(float64(51.43)),
+            models.NumberOrNullContainer.FromPrecision(float64(51.42)),
+            models.NumberOrNullContainer.FromPrecision(float64(51.41)),
+        },
+        Value:                []models.NumberOrNull{
+            models.NumberOrNullContainer.FromPrecision(float64(236.76)),
+        },
+    }
+
 }
 ```
 

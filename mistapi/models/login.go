@@ -10,9 +10,13 @@ import (
 )
 
 // Login represents a Login struct.
+// Login request using email/password and an optional two-factor code
 type Login struct {
-	Email                string                 `json:"email"`
-	Password             string                 `json:"password"`
+	// Administrator email address used to log in
+	Email string `json:"email"`
+	// Administrator password used to log in
+	Password string `json:"password"`
+	// Optional two-factor authentication code for the login request
 	TwoFactor            *string                `json:"two_factor,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

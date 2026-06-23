@@ -1,7 +1,7 @@
 
 # Webhook Alarms Topic Enum
 
-enum: `alarms`
+Webhook topic name for alarm event deliveries. enum: `alarms`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `alarms`
 | Name |
 |  --- |
 | `alarms` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookAlarmsTopic := models.WebhookAlarmsTopicEnum_ALARMS
+
+}
+```
 

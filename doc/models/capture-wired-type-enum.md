@@ -1,7 +1,7 @@
 
 # Capture Wired Type Enum
 
-enum: `wired`
+Packet capture type discriminator for wired captures. enum: `wired`
 
 ## Enumeration
 
@@ -15,7 +15,16 @@ enum: `wired`
 
 ## Example
 
-```
-wired
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureWiredType := models.CaptureWiredTypeEnum_WIRED
+
+}
 ```
 

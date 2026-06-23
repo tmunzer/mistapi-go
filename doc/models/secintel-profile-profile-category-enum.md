@@ -15,3 +15,18 @@ enum: `CC`, `IH` (Infected Host), `DNS`
 | `DNS` |
 | `IH` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    secintelProfileProfileCategory := models.SecintelProfileProfileCategoryEnum_CC
+
+}
+```
+

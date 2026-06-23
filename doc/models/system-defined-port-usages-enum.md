@@ -15,3 +15,18 @@ system-default port usages. enum: `ap`, `iot`, `uplink``
 | `iot` |
 | `uplink` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    systemDefinedPortUsages := models.SystemDefinedPortUsagesEnum_AP
+
+}
+```
+

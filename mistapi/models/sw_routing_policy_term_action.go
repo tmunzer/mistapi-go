@@ -8,8 +8,9 @@ import (
 )
 
 // SwRoutingPolicyTermAction represents a SwRoutingPolicyTermAction struct.
-// When used as import policy
+// Actions applied to routes matched by a switch routing policy term
 type SwRoutingPolicyTermAction struct {
+	// Whether to accept routes that match this term
 	Accept *bool `json:"accept,omitempty"`
 	// When used as export policy, optional
 	Community []string `json:"community,omitempty"`

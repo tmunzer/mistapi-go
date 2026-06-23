@@ -1,7 +1,7 @@
 
 # Ap Zigbee
 
-Zigbee AP settings
+Zigbee radio and network settings applied to an AP or AP profile
 
 ## Structure
 
@@ -17,15 +17,24 @@ Zigbee AP settings
 | `ExtendedPanId` | `models.Optional[string]` | Optional | Extended PAN ID in hex string format; only applicable when `pan_id` is also specified |
 | `PanId` | `models.Optional[string]` | Optional | PAN ID in hex string format; if not specified, assigned automatically |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "allow_join": "manual",
-  "channel": 0,
-  "enabled": false,
-  "extended_pan_id": "1311768467294899695",
-  "pan_id": "0x1234"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    apZigbee := models.ApZigbee{
+        AllowJoin:            models.ToPointer(models.ApZigbeeAllowJoinEnum_MANUAL),
+        Channel:              models.ToPointer(0),
+        Enabled:              models.ToPointer(false),
+        ExtendedPanId:        models.NewOptional(models.ToPointer("1311768467294899695")),
+        PanId:                models.NewOptional(models.ToPointer("0x1234")),
+    }
+
 }
 ```
 

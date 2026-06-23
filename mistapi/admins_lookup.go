@@ -25,7 +25,7 @@ func NewAdminsLookup(baseController baseController) *AdminsLookup {
 // Lookup takes context, body as parameters and
 // returns an models.ApiResponse with models.ResponseLoginLookup data and
 // an error if there was an issue with the request or response.
-// Login Lookup
+// Check the login method for an administrator email address. This public lookup is mainly used by UI clients to determine whether the user should continue with local login or be redirected to SSO.
 func (a *AdminsLookup) Lookup(
 	ctx context.Context,
 	body *models.EmailString) (
@@ -33,22 +33,12 @@ func (a *AdminsLookup) Lookup(
 	error) {
 	req := a.prepareRequest(ctx, "POST", "/api/v1/login/lookup")
 
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "User does not exist"},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

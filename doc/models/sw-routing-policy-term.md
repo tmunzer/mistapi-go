@@ -1,6 +1,8 @@
 
 # Sw Routing Policy Term
 
+Switch routing policy term with match criteria and actions
+
 ## Structure
 
 `SwRoutingPolicyTerm`
@@ -9,45 +11,54 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Actions` | [`*models.SwRoutingPolicyTermAction`](../../doc/models/sw-routing-policy-term-action.md) | Optional | When used as import policy |
-| `Matching` | [`*models.SwRoutingPolicyTermMatching`](../../doc/models/sw-routing-policy-term-matching.md) | Optional | zero or more criteria/filter can be specified to match the term, all criteria have to be met |
-| `Name` | `string` | Required | - |
+| `Actions` | [`*models.SwRoutingPolicyTermAction`](../../doc/models/sw-routing-policy-term-action.md) | Optional | Actions applied to routes matched by a switch routing policy term |
+| `Matching` | [`*models.SwRoutingPolicyTermMatching`](../../doc/models/sw-routing-policy-term-matching.md) | Optional | Route match criteria for a switch routing policy term; all specified criteria must match |
+| `Name` | `string` | Required | Display name of the switch routing policy term |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "actions": {
-    "accept": false,
-    "community": [
-      "community4",
-      "community5"
-    ],
-    "local_preference": "String5",
-    "prepend_as_path": [
-      "prepend_as_path9",
-      "prepend_as_path8",
-      "prepend_as_path7"
-    ]
-  },
-  "matching": {
-    "as_path": [
-      "String3"
-    ],
-    "community": [
-      "community4"
-    ],
-    "prefix": [
-      "prefix5",
-      "prefix6",
-      "prefix7"
-    ],
-    "protocol": [
-      "bgp",
-      "direct"
-    ]
-  },
-  "name": "name4"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    swRoutingPolicyTerm := models.SwRoutingPolicyTerm{
+        Actions:              models.ToPointer(models.SwRoutingPolicyTermAction{
+            Accept:               models.ToPointer(false),
+            Community:            []string{
+                "community4",
+                "community5",
+            },
+            LocalPreference:      models.ToPointer(models.RoutingPolicyLocalPreferenceContainer.FromString("String5")),
+            PrependAsPath:        []string{
+                "prepend_as_path9",
+                "prepend_as_path8",
+                "prepend_as_path7",
+            },
+        }),
+        Matching:             models.ToPointer(models.SwRoutingPolicyTermMatching{
+            AsPath:               []models.BgpAs{
+                models.BgpAsContainer.FromString("String3"),
+            },
+            Community:            []string{
+                "community4",
+            },
+            Prefix:               []string{
+                "prefix5",
+                "prefix6",
+                "prefix7",
+            },
+            Protocol:             []models.SwRoutingPolicyTermMatchingProtocolEnum{
+                models.SwRoutingPolicyTermMatchingProtocolEnum_BGP,
+                models.SwRoutingPolicyTermMatchingProtocolEnum_DIRECT,
+            },
+        }),
+        Name:                 "name0",
+    }
+
 }
 ```
 

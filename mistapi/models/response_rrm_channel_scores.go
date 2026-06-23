@@ -10,7 +10,9 @@ import (
 )
 
 // ResponseRrmChannelScores represents a ResponseRrmChannelScores struct.
+// Response containing RRM channel score records
 type ResponseRrmChannelScores struct {
+	// RRM channel score records returned for a band
 	Results              []RrmChannelScore      `json:"results"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

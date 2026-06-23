@@ -8,8 +8,11 @@ import (
 )
 
 // SiteSettingTuntermMulticastConfigMdns represents a SiteSettingTuntermMulticastConfigMdns struct.
+// mDNS multicast forwarding settings for tunneled VLANs
 type SiteSettingTuntermMulticastConfigMdns struct {
-	Enabled              *bool                  `json:"enabled,omitempty"`
+	// Whether mDNS multicast forwarding is enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// VLAN IDs where mDNS forwarding is enabled
 	VlanIds              []int                  `json:"vlan_ids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

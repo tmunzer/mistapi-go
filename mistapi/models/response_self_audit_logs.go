@@ -10,12 +10,19 @@ import (
 )
 
 // ResponseSelfAuditLogs represents a ResponseSelfAuditLogs struct.
+// Paginated response for audit logs for the current admin across organizations
 type ResponseSelfAuditLogs struct {
-	End                  int                    `json:"end"`
-	Limit                int                    `json:"limit"`
-	Page                 int                    `json:"page"`
-	Results              []AuditLog             `json:"results"`
-	Start                int                    `json:"start"`
+	// Epoch timestamp, in seconds, for the end of the self audit log search window
+	End int `json:"end"`
+	// Maximum number of self audit log entries returned in this page
+	Limit int `json:"limit"`
+	// Current page number returned for self audit log results
+	Page int `json:"page"`
+	// Audit log entries returned for the current admin
+	Results []AuditLog `json:"results"`
+	// Epoch timestamp, in seconds, for the start of the self audit log search window
+	Start int `json:"start"`
+	// Number of self audit log entries matching the filters across all pages
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

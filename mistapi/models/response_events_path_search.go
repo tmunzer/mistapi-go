@@ -8,12 +8,19 @@ import (
 )
 
 // ResponseEventsPathSearch represents a ResponseEventsPathSearch struct.
+// Paginated response for service path event search results
 type ResponseEventsPathSearch struct {
-	End                  *int                   `json:"end,omitempty"`
-	Limit                *int                   `json:"limit,omitempty"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []ServicePathEvent     `json:"results,omitempty"`
-	Start                *int                   `json:"start,omitempty"`
+	// Epoch timestamp for the end of the service path event search window
+	End *int `json:"end,omitempty"`
+	// Maximum number of service path event records returned in this page
+	Limit *int `json:"limit,omitempty"`
+	// Pagination cursor or URL for retrieving the next page of service path event records
+	Next *string `json:"next,omitempty"`
+	// Service path event records returned by a search response
+	Results []ServicePathEvent `json:"results,omitempty"`
+	// Epoch timestamp for the start of the service path event search window
+	Start *int `json:"start,omitempty"`
+	// Number of service path event records matching the search filters across all pages
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

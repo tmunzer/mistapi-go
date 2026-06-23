@@ -10,13 +10,17 @@ import (
 )
 
 // ResponseOrgInventoryChange represents a ResponseOrgInventoryChange struct.
+// Result of an organization inventory assignment or deletion operation
 type ResponseOrgInventoryChange struct {
+	// Unique string values returned or accepted by this schema
 	Error []string `json:"error"`
 	// enum: `assign`, `delete`, `downgrade_to_jsi`, `unassign`, `upgrade_to_mist`
-	Op                   ResponseOrgInventoryChangeOpEnum `json:"op"`
-	Reason               []string                         `json:"reason"`
-	Success              []string                         `json:"success"`
-	AdditionalProperties map[string]interface{}           `json:"_"`
+	Op ResponseOrgInventoryChangeOpEnum `json:"op"`
+	// Unique string values returned or accepted by this schema
+	Reason []string `json:"reason"`
+	// Unique string values returned or accepted by this schema
+	Success              []string               `json:"success"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseOrgInventoryChange,

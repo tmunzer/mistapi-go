@@ -18,8 +18,10 @@ type MapstackResponse struct {
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
 	// The name of the map stack
-	Name                 *string                `json:"name,omitempty"`
-	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

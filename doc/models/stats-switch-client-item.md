@@ -1,6 +1,8 @@
 
 # Stats Switch Client Item
 
+Client observed on a switch port in switch statistics
+
 ## Structure
 
 `StatsSwitchClientItem`
@@ -9,19 +11,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DeviceMac` | `*string` | Optional | - |
-| `Hostname` | `*string` | Optional | - |
-| `Mac` | `*string` | Optional | - |
-| `PortId` | `*string` | Optional | - |
+| `DeviceMac` | `*string` | Optional | Switch MAC address for the device reporting this client entry |
+| `Hostname` | `*string` | Optional | Reported client hostname, when known |
+| `Mac` | `*string` | Optional | Client MAC address observed on the switch port |
+| `PortId` | `*string` | Optional | Switch port identifier where the client was observed |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "device_mac": "device_mac0",
-  "hostname": "hostname8",
-  "mac": "mac0",
-  "port_id": "port_id6"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsSwitchClientItem := models.StatsSwitchClientItem{
+        DeviceMac:            models.ToPointer("device_mac8"),
+        Hostname:             models.ToPointer("hostname0"),
+        Mac:                  models.ToPointer("mac8"),
+        PortId:               models.ToPointer("port_id4"),
+    }
+
 }
 ```
 

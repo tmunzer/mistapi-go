@@ -1,7 +1,7 @@
 
 # Mfa Secret Type Enum
 
-enum: `qrcode`
+MFA secret representation format for enrollment. enum: `qrcode`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `qrcode`
 | Name |
 |  --- |
 | `qrcode` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mfaSecretType := models.MfaSecretTypeEnum_QRCODE
+
+}
+```
 

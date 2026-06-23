@@ -17,15 +17,24 @@ IoT output AP settings
 | `Pullup` | [`*models.ApIotPullupEnum`](../../doc/models/ap-iot-pullup-enum.md) | Optional | the type of pull-up the pin uses. enum: `external`, `internal`, `none`<br><br>**Default**: `"none"` |
 | `Value` | `*int` | Optional | Output pin signal level, default 0 |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "name": "motion",
-  "output": true,
-  "pullup": "none",
-  "value": 0
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    apIotOutput := models.ApIotOutput{
+        Enabled:              models.ToPointer(false),
+        Name:                 models.ToPointer("motion"),
+        Output:               models.ToPointer(true),
+        Pullup:               models.ToPointer(models.ApIotPullupEnum_NONE),
+        Value:                models.ToPointer(0),
+    }
+
 }
 ```
 

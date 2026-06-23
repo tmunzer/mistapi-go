@@ -1,6 +1,8 @@
 
 # Stats Org Sle
 
+Organization SLE summary for a service path
+
 ## Structure
 
 `StatsOrgSle`
@@ -9,18 +11,27 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Path` | `string` | Required | - |
-| `UserMinutes` | [`*models.StatsOrgSleUserMinutes`](../../doc/models/stats-org-sle-user-minutes.md) | Optional | - |
+| `Path` | `string` | Required | SLE path represented by this organization summary |
+| `UserMinutes` | [`*models.StatsOrgSleUserMinutes`](../../doc/models/stats-org-sle-user-minutes.md) | Optional | User-minute totals for an organization SLE summary |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "path": "path0",
-  "user_minutes": {
-    "ok": 13.84,
-    "total": 12.38
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsOrgSle := models.StatsOrgSle{
+        Path:                 "path4",
+        UserMinutes:          models.ToPointer(models.StatsOrgSleUserMinutes{
+            Ok:                   float64(13.84),
+            Total:                float64(12.38),
+        }),
+    }
+
 }
 ```
 

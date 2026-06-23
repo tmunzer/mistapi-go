@@ -8,6 +8,7 @@ import (
 )
 
 // CaptureGatewayGatewaysPort represents a CaptureGatewayGatewaysPort struct.
+// Per-port tcpdump filter for a gateway packet capture
 type CaptureGatewayGatewaysPort struct {
 	// tcpdump expression per port
 	TcpdumpExpression    *string                `json:"tcpdump_expression,omitempty"`

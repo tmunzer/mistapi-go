@@ -10,7 +10,9 @@ import (
 )
 
 // ResponseOrgDevices represents a ResponseOrgDevices struct.
+// Response containing organization device records
 type ResponseOrgDevices struct {
+	// List of organization device identifiers
 	Results              []OrgDevice            `json:"results"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

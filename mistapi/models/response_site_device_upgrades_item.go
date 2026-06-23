@@ -11,7 +11,9 @@ import (
 )
 
 // ResponseSiteDeviceUpgradesItem represents a ResponseSiteDeviceUpgradesItem struct.
+// Site device upgrade job summary
 type ResponseSiteDeviceUpgradesItem struct {
+	// Device counts grouped by status for a site upgrade job
 	Counts *UpgradeSiteDevicesCounts `json:"counts,omitempty"`
 	// Current canary or rrm phase in progress
 	CurrentPhase *int `json:"current_phase,omitempty"`

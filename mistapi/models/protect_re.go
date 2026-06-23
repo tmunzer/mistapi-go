@@ -12,16 +12,17 @@ import (
 // when enabled, all traffic that is not essential to our operation will be dropped
 // e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works
 type ProtectRe struct {
-	// Optionally, services we'll allow
+	// Built-in services explicitly allowed by the Protect RE policy
 	AllowedServices []ProtectReAllowedServiceEnum `json:"allowed_services,omitempty"`
-	Custom          []ProtectReCustom             `json:"custom,omitempty"`
+	// Custom Protect RE ACL entries
+	Custom []ProtectReCustom `json:"custom,omitempty"`
 	// When enabled, all traffic that is not essential to our operation will be dropped
 	// e.g. ntp / dns / traffic to mist will be allowed by default
 	// if dhcpd is enabled, we'll make sure it works
 	Enabled *bool `json:"enabled,omitempty"`
 	// Whether to enable hit count for Protect_RE policy
 	HitCount *bool `json:"hit_count,omitempty"`
-	// host/subnets we'll allow traffic to/from
+	// Host or subnet entries allowed by the Protect RE policy
 	TrustedHosts         []string               `json:"trusted_hosts,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

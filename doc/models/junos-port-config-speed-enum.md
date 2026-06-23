@@ -22,3 +22,18 @@ enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
 | `100g` |
 | `auto` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    junosPortConfigSpeed := models.JunosPortConfigSpeedEnum_ENUM1G
+
+}
+```
+

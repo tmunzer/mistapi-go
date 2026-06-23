@@ -8,9 +8,13 @@ import (
 )
 
 // WebhookSiteSleEventSle represents a WebhookSiteSleEventSle struct.
+// Wi-Fi SLE scores reported by a site SLE webhook event
 type WebhookSiteSleEventSle struct {
-	ApAvailability       *float64               `json:"ap-availability,omitempty"`
-	SuccessfulConnect    *float64               `json:"successful-connect,omitempty"`
+	// Wireless AP availability SLE score for the site
+	ApAvailability *float64 `json:"ap-availability,omitempty"`
+	// Connection success SLE score for the site
+	SuccessfulConnect *float64 `json:"successful-connect,omitempty"`
+	// Client connection-time SLE score for the site
 	TimeToConnect        *float64               `json:"time-to-connect,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -11,14 +11,21 @@ import (
 )
 
 // ResponseSsrUpgrade represents a ResponseSsrUpgrade struct.
+// SSR firmware upgrade job summary
 type ResponseSsrUpgrade struct {
-	Channel    string                   `json:"channel"`
-	Counts     ResponseSsrUpgradeCounts `json:"counts"`
-	DeviceType string                   `json:"device_type"`
+	// Firmware release channel used for the SSR upgrade
+	Channel string `json:"channel"`
+	// Device counts grouped by SSR upgrade status
+	Counts ResponseSsrUpgradeCounts `json:"counts"`
+	// Type of devices targeted by the SSR upgrade
+	DeviceType string `json:"device_type"`
 	// Unique ID of the object instance in the Mist Organization
-	Id                   uuid.UUID              `json:"id"`
-	Status               string                 `json:"status"`
-	Strategy             string                 `json:"strategy"`
+	Id uuid.UUID `json:"id"`
+	// Current status of the SSR upgrade job
+	Status string `json:"status"`
+	// Upgrade strategy used by the SSR upgrade job
+	Strategy string `json:"strategy"`
+	// SSR firmware versions included in the upgrade job
 	Versions             map[string]string      `json:"versions"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

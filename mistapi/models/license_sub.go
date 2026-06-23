@@ -9,6 +9,7 @@ import (
 )
 
 // LicenseSub represents a LicenseSub struct.
+// Read-only license subscription record
 type LicenseSub struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
@@ -17,15 +18,18 @@ type LicenseSub struct {
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64   `json:"modified_time,omitempty"`
-	OrderId      *string    `json:"order_id,omitempty"`
-	OrgId        *uuid.UUID `json:"org_id,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Order identifier for this license subscription
+	OrderId *string `json:"order_id,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Number of devices entitled for this license
 	Quantity *int `json:"quantity,omitempty"`
 	// Number of licenses left in this subscription
 	RemainingQuantity *int `json:"remaining_quantity,omitempty"`
 	// Start date of the license term
-	StartTime      *int    `json:"start_time,omitempty"`
+	StartTime *int `json:"start_time,omitempty"`
+	// Subscription identifier for this license subscription
 	SubscriptionId *string `json:"subscription_id,omitempty"`
 	// Type of license. The list of supported license type can be retrieve with the [List License Type]($e/Constants%20Definitions/listLicenseTypes) API request.
 	Type                 *string                `json:"type,omitempty"`

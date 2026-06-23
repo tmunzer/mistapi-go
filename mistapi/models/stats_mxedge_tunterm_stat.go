@@ -8,7 +8,9 @@ import (
 )
 
 // StatsMxedgeTuntermStat represents a StatsMxedgeTuntermStat struct.
+// Tunnel termination monitoring status reported by a Mist Edge
 type StatsMxedgeTuntermStat struct {
+	// Whether tunnel termination monitoring is currently failing
 	MonitoringFailed     *bool                  `json:"monitoring_failed,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

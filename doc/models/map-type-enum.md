@@ -1,7 +1,7 @@
 
 # Map Type Enum
 
-enum: `google`, `image`
+Map type, such as `image` or `google`. enum: `google`, `image`
 
 ## Enumeration
 
@@ -16,7 +16,16 @@ enum: `google`, `image`
 
 ## Example
 
-```
-image
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mapType := models.MapTypeEnum_GOOGLE
+
+}
 ```
 

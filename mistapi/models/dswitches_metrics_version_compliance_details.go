@@ -10,10 +10,13 @@ import (
 )
 
 // DswitchesMetricsVersionComplianceDetails represents a DswitchesMetricsVersionComplianceDetails struct.
+// Detail values used by the discovered-switch version compliance metric
 type DswitchesMetricsVersionComplianceDetails struct {
-	MajorVersions        []DswitchesComplianceMajorVersion `json:"major_versions"`
-	TotalSwitchCount     int                               `json:"total_switch_count"`
-	AdditionalProperties map[string]interface{}            `json:"_"`
+	// Version-compliance groupings by discovered switch model
+	MajorVersions []DswitchesComplianceMajorVersion `json:"major_versions"`
+	// Number of discovered switches evaluated for version compliance
+	TotalSwitchCount     int                    `json:"total_switch_count"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for DswitchesMetricsVersionComplianceDetails,

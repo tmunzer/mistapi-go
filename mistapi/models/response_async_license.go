@@ -8,24 +8,27 @@ import (
 )
 
 // ResponseAsyncLicense represents a ResponseAsyncLicense struct.
+// Asynchronous license claim progress response
 type ResponseAsyncLicense struct {
-	Completed []string                     `json:"completed,omitempty"`
-	Details   []ResponseAsyncLicenseDetail `json:"details,omitempty"`
-	// Current failed number of device
+	// Device MAC addresses that completed asynchronous license claim processing
+	Completed []string `json:"completed,omitempty"`
+	// Per-device asynchronous license claim status details
+	Details []ResponseAsyncLicenseDetail `json:"details,omitempty"`
+	// Number of devices that failed license claim processing
 	Failed *int `json:"failed,omitempty"`
-	// Current incompleted lists (macs)
+	// Device MAC addresses not yet completed in asynchronous license claim processing
 	Incompleted []string `json:"incompleted,omitempty"`
-	// Current processed number of device
+	// Number of devices processed so far by asynchronous license claim
 	Processed *int `json:"processed,omitempty"`
-	// epoch time of aysnc claim scheduled
+	// Epoch timestamp when the asynchronous license claim was scheduled
 	ScheduledAt *int `json:"scheduled_at,omitempty"`
-	// processing status of async. enum: `prepared`, `ongoing`, `done`
+	// Processing state for an asynchronous license claim. enum: `prepared`, `ongoing`, `done`
 	Status *ResponseAsyncLicenseStatusEnum `json:"status,omitempty"`
-	// Current succeed number of device
+	// Number of devices that successfully completed license claim processing
 	Succeed *int `json:"succeed,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
-	// total number of device included in claim
+	// Number of devices included in the license claim
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

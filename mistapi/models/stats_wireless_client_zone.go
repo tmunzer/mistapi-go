@@ -9,9 +9,11 @@ import (
 )
 
 // StatsWirelessClientZone represents a StatsWirelessClientZone struct.
+// Zone currently containing a wireless client
 type StatsWirelessClientZone struct {
 	// Unique ID of the object instance in the Mist Organization
-	Id                   *uuid.UUID             `json:"id,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Time when the wireless client entered the zone, in epoch seconds
 	Since                *float64               `json:"since,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

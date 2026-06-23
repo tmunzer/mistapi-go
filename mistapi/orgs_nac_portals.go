@@ -27,7 +27,7 @@ func NewOrgsNACPortals(baseController baseController) *OrgsNACPortals {
 // ListOrgNacPortals takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.NacPortal data and
 // an error if there was an issue with the request or response.
-// List Org NAC Portals
+// List NAC portal configurations in the organization for guest portal, guest admin, or Marvis Client onboarding workflows.
 func (o *OrgsNACPortals) ListOrgNacPortals(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -40,19 +40,15 @@ func (o *OrgsNACPortals) ListOrgNacPortals(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if limit != nil {
 		req.QueryParam("limit", *limit)
@@ -74,7 +70,7 @@ func (o *OrgsNACPortals) ListOrgNacPortals(
 // CreateOrgNacPortal takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.NacPortal data and
 // an error if there was an issue with the request or response.
-// Create Org NAC Portal
+// Create a NAC portal configuration for guest access, guest administration, or Marvis Client certificate onboarding.
 func (o *OrgsNACPortals) CreateOrgNacPortal(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -86,19 +82,15 @@ func (o *OrgsNACPortals) CreateOrgNacPortal(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -118,7 +110,7 @@ func (o *OrgsNACPortals) CreateOrgNacPortal(
 // DeleteOrgNacPortal takes context, orgId, nacportalId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete Org NAC Portal
+// Delete an organization NAC portal configuration by NAC portal ID.
 func (o *OrgsNACPortals) DeleteOrgNacPortal(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -130,19 +122,15 @@ func (o *OrgsNACPortals) DeleteOrgNacPortal(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -155,7 +143,7 @@ func (o *OrgsNACPortals) DeleteOrgNacPortal(
 // GetOrgNacPortal takes context, orgId, nacportalId as parameters and
 // returns an models.ApiResponse with models.NacPortal data and
 // an error if there was an issue with the request or response.
-// Get Org NAC Portal
+// Retrieve configuration details for a specific NAC portal, including portal type, SSID, SSO, guest portal, certificate, and template settings.
 func (o *OrgsNACPortals) GetOrgNacPortal(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -167,19 +155,15 @@ func (o *OrgsNACPortals) GetOrgNacPortal(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.NacPortal
@@ -195,7 +179,7 @@ func (o *OrgsNACPortals) GetOrgNacPortal(
 // UpdateOrgNacPortal takes context, orgId, nacportalId, body as parameters and
 // returns an models.ApiResponse with models.NacPortal data and
 // an error if there was an issue with the request or response.
-// Update Org NAC Portal
+// Update a NAC portal configuration, including portal type, SSID, SSO, guest portal, certificate, and template settings.
 func (o *OrgsNACPortals) UpdateOrgNacPortal(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -208,19 +192,15 @@ func (o *OrgsNACPortals) UpdateOrgNacPortal(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -240,7 +220,7 @@ func (o *OrgsNACPortals) UpdateOrgNacPortal(
 // ListOrgNacPortalSsoLatestFailures takes context, orgId, nacportalId, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseSsoFailureSearch data and
 // an error if there was an issue with the request or response.
-// Get List of Org NAC Portal SSO Latest Failures
+// List recent SAML SSO failures for a NAC portal within a selected time range.
 func (o *OrgsNACPortals) ListOrgNacPortalSsoLatestFailures(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -257,19 +237,15 @@ func (o *OrgsNACPortals) ListOrgNacPortalSsoLatestFailures(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if start != nil {
 		req.QueryParam("start", *start)
@@ -300,8 +276,7 @@ func (o *OrgsNACPortals) ListOrgNacPortalSsoLatestFailures(
 // DeleteOrgNacPortalImage takes context, orgId, nacportalId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete background image for NAC Portal
-// If image is not uploaded or is deleted, NAC Portal will use default image.
+// Delete the custom background image for a NAC portal. If no image is configured, the NAC portal uses the default background image.
 func (o *OrgsNACPortals) DeleteOrgNacPortalImage(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -317,19 +292,15 @@ func (o *OrgsNACPortals) DeleteOrgNacPortalImage(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -342,7 +313,7 @@ func (o *OrgsNACPortals) DeleteOrgNacPortalImage(
 // UploadOrgNacPortalImage takes context, orgId, nacportalId, file, json as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Upload background image for NAC Portal
+// Upload a custom background image for a NAC portal.
 func (o *OrgsNACPortals) UploadOrgNacPortalImage(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -360,19 +331,15 @@ func (o *OrgsNACPortals) UploadOrgNacPortalImage(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	formFields := []https.FormParam{}
 	if file != nil {
@@ -395,7 +362,7 @@ func (o *OrgsNACPortals) UploadOrgNacPortalImage(
 // UpdateOrgNacPortalTemplate takes context, orgId, nacportalId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Update Org NAC Portal Template
+// Update visual template settings for a NAC portal, including alignment, primary color, logo, and Powered by visibility.
 func (o *OrgsNACPortals) UpdateOrgNacPortalTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -412,19 +379,15 @@ func (o *OrgsNACPortals) UpdateOrgNacPortalTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -441,7 +404,7 @@ func (o *OrgsNACPortals) UpdateOrgNacPortalTemplate(
 // GetOrgNacPortalSamlMetadata takes context, orgId, nacportalId as parameters and
 // returns an models.ApiResponse with models.SamlMetadata data and
 // an error if there was an issue with the request or response.
-// Get Org NAC Portal SAML Metadata
+// Retrieve SAML service provider metadata for a NAC portal, including ACS URL, entity ID, logout URL, and metadata XML.
 func (o *OrgsNACPortals) GetOrgNacPortalSamlMetadata(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -457,19 +420,15 @@ func (o *OrgsNACPortals) GetOrgNacPortalSamlMetadata(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.SamlMetadata
@@ -485,7 +444,7 @@ func (o *OrgsNACPortals) GetOrgNacPortalSamlMetadata(
 // DownloadOrgNacPortalSamlMetadata takes context, orgId, nacportalId as parameters and
 // returns an models.ApiResponse with []byte data and
 // an error if there was an issue with the request or response.
-// Download Org NAC Portal SAML Metadata
+// Download NAC portal SAML service provider metadata as an XML document.
 // Example of metadata.xml:
 // ```xml
 // <?xml version="1.0" encoding="UTF-8"?><md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://api.mist.com/api/v1/saml/5hdF5g/login" validUntil="2027-10-12T21:59:01Z" xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
@@ -517,19 +476,15 @@ func (o *OrgsNACPortals) DownloadOrgNacPortalSamlMetadata(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	stream, resp, err := req.CallAsStream()

@@ -8,6 +8,7 @@ import (
 )
 
 // CaptureSwitchSwitches represents a CaptureSwitchSwitches struct.
+// Switch-specific packet capture settings keyed under a switch MAC address
 type CaptureSwitchSwitches struct {
 	// Property key is the port name. 6 ports max per switch supported, or 5 max with irb port auto-included into capture request
 	Ports                map[string]CaptureSwitchPortsTcpdumpExpression `json:"ports,omitempty"`

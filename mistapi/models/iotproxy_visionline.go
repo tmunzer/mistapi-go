@@ -12,14 +12,17 @@ import (
 type IotproxyVisionline struct {
 	// Access ID for the Visionline service
 	AccessId *string `json:"access_id,omitempty"`
-	Enabled  *bool   `json:"enabled,omitempty"`
-	// Hostname or IP of the Visionline collector
+	// PEM-encoded CA certificates used to verify the Visionline collector's TLS certificate. Required when the collector uses a self-signed certificate
+	Cacerts []string `json:"cacerts,omitempty"`
+	// Whether the Visionline integration is enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// Collector hostname or IP address for Visionline
 	Host *string `json:"host,omitempty"`
-	// Password for the Visionline service
+	// Visionline service password used by the IoT proxy
 	Password *string `json:"password,omitempty"`
 	// TCP port of the Visionline collector
 	Port *int `json:"port,omitempty"`
-	// Username for the Visionline service
+	// Visionline service username used by the IoT proxy
 	Username             *string                `json:"username,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -28,8 +31,8 @@ type IotproxyVisionline struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (i IotproxyVisionline) String() string {
 	return fmt.Sprintf(
-		"IotproxyVisionline[AccessId=%v, Enabled=%v, Host=%v, Password=%v, Port=%v, Username=%v, AdditionalProperties=%v]",
-		i.AccessId, i.Enabled, i.Host, i.Password, i.Port, i.Username, i.AdditionalProperties)
+		"IotproxyVisionline[AccessId=%v, Cacerts=%v, Enabled=%v, Host=%v, Password=%v, Port=%v, Username=%v, AdditionalProperties=%v]",
+		i.AccessId, i.Cacerts, i.Enabled, i.Host, i.Password, i.Port, i.Username, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for IotproxyVisionline.
@@ -38,7 +41,7 @@ func (i IotproxyVisionline) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(i.AdditionalProperties,
-		"access_id", "enabled", "host", "password", "port", "username"); err != nil {
+		"access_id", "cacerts", "enabled", "host", "password", "port", "username"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(i.toMap())
@@ -50,6 +53,9 @@ func (i IotproxyVisionline) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, i.AdditionalProperties)
 	if i.AccessId != nil {
 		structMap["access_id"] = i.AccessId
+	}
+	if i.Cacerts != nil {
+		structMap["cacerts"] = i.Cacerts
 	}
 	if i.Enabled != nil {
 		structMap["enabled"] = i.Enabled
@@ -77,13 +83,14 @@ func (i *IotproxyVisionline) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "access_id", "enabled", "host", "password", "port", "username")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "access_id", "cacerts", "enabled", "host", "password", "port", "username")
 	if err != nil {
 		return err
 	}
 	i.AdditionalProperties = additionalProperties
 
 	i.AccessId = temp.AccessId
+	i.Cacerts = temp.Cacerts
 	i.Enabled = temp.Enabled
 	i.Host = temp.Host
 	i.Password = temp.Password
@@ -94,10 +101,11 @@ func (i *IotproxyVisionline) UnmarshalJSON(input []byte) error {
 
 // tempIotproxyVisionline is a temporary struct used for validating the fields of IotproxyVisionline.
 type tempIotproxyVisionline struct {
-	AccessId *string `json:"access_id,omitempty"`
-	Enabled  *bool   `json:"enabled,omitempty"`
-	Host     *string `json:"host,omitempty"`
-	Password *string `json:"password,omitempty"`
-	Port     *int    `json:"port,omitempty"`
-	Username *string `json:"username,omitempty"`
+	AccessId *string  `json:"access_id,omitempty"`
+	Cacerts  []string `json:"cacerts,omitempty"`
+	Enabled  *bool    `json:"enabled,omitempty"`
+	Host     *string  `json:"host,omitempty"`
+	Password *string  `json:"password,omitempty"`
+	Port     *int     `json:"port,omitempty"`
+	Username *string  `json:"username,omitempty"`
 }

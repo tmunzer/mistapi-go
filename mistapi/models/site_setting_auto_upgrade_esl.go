@@ -8,7 +8,7 @@ import (
 )
 
 // SiteSettingAutoUpgradeEsl represents a SiteSettingAutoUpgradeEsl struct.
-// auto upgrade AP ESL. When both firmware and ESL auto-upgrade are enabled, ESL upgrade will be done only after firmware upgrade
+// Automatic AP ESL firmware upgrade policy. When both firmware and ESL auto-upgrade are enabled, ESL upgrade will be done only after firmware upgrade
 type SiteSettingAutoUpgradeEsl struct {
 	// If true, it will allow downgrade to a lower version
 	AllowDowngrade *bool `json:"allow_downgrade,omitempty"`
@@ -19,7 +19,8 @@ type SiteSettingAutoUpgradeEsl struct {
 	// Whether auto upgrade should happen (Note that Mist may auto-upgrade if the version is not supported)
 	Enabled *bool `json:"enabled,omitempty"`
 	// `any` / HH:MM (24-hour format), upgrade will happen within up to 1-hour from this time
-	TimeOfDay            *string                `json:"time_of_day,omitempty"`
+	TimeOfDay *string `json:"time_of_day,omitempty"`
+	// ESL firmware version used for auto-upgrade
 	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

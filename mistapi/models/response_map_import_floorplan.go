@@ -11,12 +11,17 @@ import (
 )
 
 // ResponseMapImportFloorplan represents a ResponseMapImportFloorplan struct.
+// Floorplan result from a map import
 type ResponseMapImportFloorplan struct {
+	// Import action applied to this floorplan
 	Action string `json:"action"`
 	// Unique ID of the object instance in the Mist Organization
-	Id                   uuid.UUID              `json:"id"`
-	MapId                uuid.UUID              `json:"map_id"`
-	Name                 string                 `json:"name"`
+	Id uuid.UUID `json:"id"`
+	// Map identifier associated with the imported floorplan
+	MapId uuid.UUID `json:"map_id"`
+	// Floorplan name imported from the map file
+	Name string `json:"name"`
+	// Explanation of why the floorplan import action was not completed, when provided
 	Reason               *string                `json:"reason,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

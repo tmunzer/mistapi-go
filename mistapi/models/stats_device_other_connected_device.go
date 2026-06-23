@@ -8,10 +8,15 @@ import (
 )
 
 // StatsDeviceOtherConnectedDevice represents a StatsDeviceOtherConnectedDevice struct.
+// LLDP neighbor device discovered from an other-device statistics record
 type StatsDeviceOtherConnectedDevice struct {
-	Mac                  *string                `json:"mac,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
-	PortId               *string                `json:"port_id,omitempty"`
+	// Connected device MAC address learned from LLDP
+	Mac *string `json:"mac,omitempty"`
+	// LLDP system name reported for the connected device
+	Name *string `json:"name,omitempty"`
+	// LLDP port identifier reported for the connected device
+	PortId *string `json:"port_id,omitempty"`
+	// Detected Mist device type for the connected neighbor
 	Type                 *string                `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

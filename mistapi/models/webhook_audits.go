@@ -12,8 +12,9 @@ import (
 // WebhookAudits represents a WebhookAudits struct.
 // Sample of the `audits` webhook payload.
 type WebhookAudits struct {
+	// Audit log events returned by a log query
 	Events []LogEvent `json:"events"`
-	// enum: `audits`
+	// Webhook topic name for audit event deliveries. enum: `audits`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -16,3 +16,18 @@
 | `inet` |
 | `trunk` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchPortUsageMode := models.SwitchPortUsageModeEnum_ACCESS
+
+}
+```
+

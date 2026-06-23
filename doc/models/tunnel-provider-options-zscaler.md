@@ -11,7 +11,7 @@ For zscaler-ipsec and zscaler-gre
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AupBlockInternetUntilAccepted` | `*bool` | Optional | **Default**: `false` |
+| `AupBlockInternetUntilAccepted` | `*bool` | Optional | Whether Zscaler blocks internet access until the Acceptable Use Policy is accepted<br><br>**Default**: `false` |
 | `AupEnabled` | `*bool` | Optional | Can only be `true` when `auth_required`==`false`, display Acceptable Use Policy (AUP)<br><br>**Default**: `false` |
 | `AupForceSslInspection` | `*bool` | Optional | Proxy HTTPs traffic, requiring Zscaler cert to be installed in browser<br><br>**Default**: `false` |
 | `AupTimeoutInDays` | `*int` | Optional | Required if `aup_enabled`==`true`. Days before AUP is requested again<br><br>**Constraints**: `>= 1`, `<= 180` |
@@ -27,21 +27,30 @@ For zscaler-ipsec and zscaler-gre
 | `UpBandwidth` | `models.Optional[float64]` | Optional | Download bandwidth cap of the link, in Mbps. Disabled if not set<br><br>**Constraints**: `>= 0.1`, `<= 99999` |
 | `XffForwardEnabled` | `*bool` | Optional | Location uses proxy chaining to forward traffic<br><br>**Default**: `false` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "aup_block_internet_until_accepted": false,
-  "aup_enabled": false,
-  "aup_force_ssl_inspection": false,
-  "auth_required": false,
-  "caution_enabled": false,
-  "dn_bandwidth": 200,
-  "ofw_enabled": false,
-  "surrogate_IP": false,
-  "up_bandwidth": 200,
-  "xff_forward_enabled": false,
-  "aup_timeout_in_days": 180
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    tunnelProviderOptionsZscaler := models.TunnelProviderOptionsZscaler{
+        AupBlockInternetUntilAccepted:       models.ToPointer(false),
+        AupEnabled:                          models.ToPointer(false),
+        AupForceSslInspection:               models.ToPointer(false),
+        AupTimeoutInDays:                    models.ToPointer(50),
+        AuthRequired:                        models.ToPointer(false),
+        CautionEnabled:                      models.ToPointer(false),
+        DnBandwidth:                         models.NewOptional(models.ToPointer(float64(200))),
+        OfwEnabled:                          models.ToPointer(false),
+        SurrogateIP:                         models.ToPointer(false),
+        UpBandwidth:                         models.NewOptional(models.ToPointer(float64(200))),
+        XffForwardEnabled:                   models.ToPointer(false),
+    }
+
 }
 ```
 

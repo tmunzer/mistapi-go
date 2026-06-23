@@ -15,3 +15,18 @@ the type of pull-up the pin uses. enum: `external`, `internal`, `none`
 | `internal` |
 | `none` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    apIotPullup := models.ApIotPullupEnum_NONE
+
+}
+```
+

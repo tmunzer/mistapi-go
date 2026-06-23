@@ -10,10 +10,15 @@ import (
 )
 
 // SleClassifierImpact represents a SleClassifierImpact struct.
+// AP and user impact counts for an SLE classifier
 type SleClassifierImpact struct {
-	NumAps               float64                `json:"num_aps"`
-	NumUsers             float64                `json:"num_users"`
-	TotalAps             float64                `json:"total_aps"`
+	// Number of APs affected by degraded SLE experience
+	NumAps float64 `json:"num_aps"`
+	// Number of users affected by degraded SLE experience
+	NumUsers float64 `json:"num_users"`
+	// Total number of APs considered for the classifier
+	TotalAps float64 `json:"total_aps"`
+	// Total number of users considered for the classifier
 	TotalUsers           float64                `json:"total_users"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

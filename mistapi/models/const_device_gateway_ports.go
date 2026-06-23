@@ -10,8 +10,11 @@ import (
 // ConstDeviceGatewayPorts represents a ConstDeviceGatewayPorts struct.
 // Object Key is the interface name (e.g. "ge-0/0/1", ...)
 type ConstDeviceGatewayPorts struct {
-	Display              *string                `json:"display,omitempty"`
-	PciAddress           *string                `json:"pci_address,omitempty"`
+	// User-facing interface name for the gateway port
+	Display *string `json:"display,omitempty"`
+	// PCI address for the gateway port
+	PciAddress *string `json:"pci_address,omitempty"`
+	// Port speed for the gateway interface, in Mbps
 	Speed                *int                   `json:"speed,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

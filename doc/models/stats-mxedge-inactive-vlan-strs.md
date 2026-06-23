@@ -14,17 +14,28 @@ Inactive wired/L2TP VLANs. Entries can be individual VLANs or ranges.
 | `L2tp` | `[]string` | Optional | Inactive L2TP VLANs. Entries can be individual VLANs or ranges. |
 | `Wired` | `[]string` | Optional | Inactive wired VLANs. Entries can be individual VLANs or ranges. |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "wired": [
-    "100",
-    "102-106"
-  ],
-  "l2tp": [
-    "l2tp1"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsMxedgeInactiveVlanStrs := models.StatsMxedgeInactiveVlanStrs{
+        L2tp:                 []string{
+            "l2tp3",
+            "l2tp2",
+            "l2tp1",
+        },
+        Wired:                []string{
+            "100",
+            "102-106",
+        },
+    }
+
 }
 ```
 

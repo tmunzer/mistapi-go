@@ -8,9 +8,11 @@ import (
 )
 
 // ServicePolicySkyatpHttpInspection represents a ServicePolicySkyatpHttpInspection struct.
+// Sky ATP HTTP inspection settings
 type ServicePolicySkyatpHttpInspection struct {
+	// Whether Sky ATP HTTP inspection is enabled
 	Enabled *bool `json:"enabled,omitempty"`
-	// enum: `standard`, `strict`
+	// Sky ATP HTTP inspection profile to apply. enum: `standard`, `strict`
 	Profile              *ServicePolicySkyatpHttpInspectionProfileEnum `json:"profile,omitempty"`
 	AdditionalProperties map[string]interface{}                        `json:"_"`
 }

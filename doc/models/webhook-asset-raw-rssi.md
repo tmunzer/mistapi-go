@@ -22,31 +22,41 @@ Clients can be identified uniquely across these client raw data topics and locat
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookAssetRawRssiEvent`](../../doc/models/webhook-asset-raw-rssi-event.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required, Constant | enum: `asset-raw-rssi`<br><br>**Value**: `"asset-raw-rssi"` |
+| `Events` | [`[]models.WebhookAssetRawRssiEvent`](../../doc/models/webhook-asset-raw-rssi-event.md) | Required | Asset raw RSSI events included in a webhook delivery<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Topic` | `string` | Required, Constant | Webhook topic name for asset raw RSSI deliveries. enum: `asset-raw-rssi`<br><br>**Value**: `"asset-raw-rssi"` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "events": [
-    {
-      "device_id": "53f10664-3ce8-4c27-b382-0ef66432349f",
-      "ibeacon_major": 1234,
-      "ibeacon_minor": 1234,
-      "ibeacon_uuid": "f3f17139-704a-f03a-2786-0400279e37c3",
-      "map_id": "53f10664-3ce8-4c27-b382-0ef66432349f",
-      "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-      "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-      "ap_loc": [
-        26.98,
-        26.97,
-        26.96
-      ],
-      "beam": 9
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    webhookAssetRawRssi := models.WebhookAssetRawRssi{
+        Events:               []models.WebhookAssetRawRssiEvent{
+            models.WebhookAssetRawRssiEvent{
+                ApLoc:                []float64{
+                    float64(26.98),
+                    float64(26.97),
+                    float64(26.96),
+                },
+                Beam:                 models.ToPointer(9),
+                DeviceId:             models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
+                IbeaconMajor:         models.NewOptional(models.ToPointer(1234)),
+                IbeaconMinor:         models.NewOptional(models.ToPointer(1234)),
+                IbeaconUuid:          models.NewOptional(models.ToPointer(uuid.MustParse("f3f17139-704a-f03a-2786-0400279e37c3"))),
+                MapId:                models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
+                OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
+                SiteId:               models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
+            },
+        },
+        Topic:                "asset-raw-rssi",
     }
-  ],
-  "topic": "asset-raw-rssi"
+
 }
 ```
 

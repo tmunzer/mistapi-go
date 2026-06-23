@@ -1,7 +1,7 @@
 
 # Webhook Client Join Topic Enum
 
-enum: `client-join`
+Webhook topic name for client join deliveries. enum: `client-join`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `client-join`
 | Name |
 |  --- |
 | `client-join` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookClientJoinTopic := models.WebhookClientJoinTopicEnum_CLIENTJOIN
+
+}
+```
 

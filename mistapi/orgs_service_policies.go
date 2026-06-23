@@ -27,7 +27,7 @@ func NewOrgsServicePolicies(baseController baseController) *OrgsServicePolicies 
 // ListOrgServicePolicies takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.OrgServicePolicy data and
 // an error if there was an issue with the request or response.
-// Get List of Org Service Policies
+// List organization-level service policies. Service policies match tenants to services or service groups and define the allow or deny action plus optional inspection controls.
 func (o *OrgsServicePolicies) ListOrgServicePolicies(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -40,19 +40,15 @@ func (o *OrgsServicePolicies) ListOrgServicePolicies(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if limit != nil {
 		req.QueryParam("limit", *limit)
@@ -74,7 +70,10 @@ func (o *OrgsServicePolicies) ListOrgServicePolicies(
 // CreateOrgServicePolicy takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.OrgServicePolicy data and
 // an error if there was an issue with the request or response.
-// Create Org Service Policy
+// Create an organization-level service policy that matches tenants
+// to services and applies an allow or deny action with optional security inspection
+// settings.
+// Organization-level service policies can be imported in the gateway templates and gateway policies.
 func (o *OrgsServicePolicies) CreateOrgServicePolicy(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -86,19 +85,15 @@ func (o *OrgsServicePolicies) CreateOrgServicePolicy(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -118,7 +113,7 @@ func (o *OrgsServicePolicies) CreateOrgServicePolicy(
 // DeleteOrgServicePolicy takes context, orgId, servicepolicyId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete Org Service Policy
+// Remove an organization-level service policy from the available policy set.
 func (o *OrgsServicePolicies) DeleteOrgServicePolicy(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -130,19 +125,15 @@ func (o *OrgsServicePolicies) DeleteOrgServicePolicy(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -155,7 +146,7 @@ func (o *OrgsServicePolicies) DeleteOrgServicePolicy(
 // GetOrgServicePolicy takes context, orgId, servicepolicyId as parameters and
 // returns an models.ApiResponse with models.OrgServicePolicy data and
 // an error if there was an issue with the request or response.
-// Get Org Service Policy Details
+// Return an organization-level service policy, including the matched tenants and services, action, local routing, path preference, and inspection settings.
 func (o *OrgsServicePolicies) GetOrgServicePolicy(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -167,19 +158,15 @@ func (o *OrgsServicePolicies) GetOrgServicePolicy(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.OrgServicePolicy
@@ -195,7 +182,7 @@ func (o *OrgsServicePolicies) GetOrgServicePolicy(
 // UpdateOrgServicePolicy takes context, orgId, servicepolicyId, body as parameters and
 // returns an models.ApiResponse with models.OrgServicePolicy data and
 // an error if there was an issue with the request or response.
-// Update Org Service Policy
+// Update an organization-level service policy, including its tenant and service matches, action, local routing, path preference, or inspection settings.
 func (o *OrgsServicePolicies) UpdateOrgServicePolicy(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -208,19 +195,15 @@ func (o *OrgsServicePolicies) UpdateOrgServicePolicy(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

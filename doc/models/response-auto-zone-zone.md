@@ -1,7 +1,7 @@
 
 # Response Auto Zone Zone
 
-A list of suggested zones to review and accept for a given map
+Suggested zone returned by the auto zones service
 
 ## Structure
 
@@ -11,28 +11,29 @@ A list of suggested zones to review and accept for a given map
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Name` | `*string` | Optional | The name of the suggested zone |
-| `Vertices` | [`[]models.ResponseAutoZoneZoneVertex`](../../doc/models/response-auto-zone-zone-vertex.md) | Optional | A list of of points comprising the zones map location in pixels |
+| `Name` | `*string` | Optional | Human-readable name of the suggested zone |
+| `Vertices` | [`[]models.ResponseAutoZoneZoneVertex`](../../doc/models/response-auto-zone-zone-vertex.md) | Optional | List of points comprising the suggested zone polygon in map pixels |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "zone1",
-  "vertices": [
-    {
-      "x": 16,
-      "y": 88
-    },
-    {
-      "x": 16,
-      "y": 88
-    },
-    {
-      "x": 16,
-      "y": 88
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseAutoZoneZone := models.ResponseAutoZoneZone{
+        Name:                 models.ToPointer("zone1"),
+        Vertices:             []models.ResponseAutoZoneZoneVertex{
+            models.ResponseAutoZoneZoneVertex{
+                X:                    models.ToPointer(16),
+                Y:                    models.ToPointer(88),
+            },
+        },
     }
-  ]
+
 }
 ```
 

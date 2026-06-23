@@ -8,14 +8,15 @@ import (
 )
 
 // UpgradeOrgDevicesVersion represents a UpgradeOrgDevicesVersion struct.
+// Target firmware version entry for an organization upgrade request
 type UpgradeOrgDevicesVersion struct {
-	// enum: `ap`, `junos`
+	// Firmware family this version entry applies to. enum: `ap`, `junos`
 	FirmwareType *UpgradeOrgDevicesVersionFirmwareTypeEnum `json:"firmware_type,omitempty"`
 	// If `firmware_type`==`ap`, set to `true` if upgrade is needed when target version <= running version
 	Force *bool `json:"force,omitempty"`
 	// If `firmware_type`==`junos`, used to select different versions for different models (Overrides `version` for the specified models). Property key is the hadware model (e.g. `EX4400-24MP`), Property value is the firmware version (e.g. `23.4R1.9`)
 	ModelVersion map[string]string `json:"model_version,omitempty"`
-	// version of the firmware to deploy
+	// Firmware version to deploy for this entry
 	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

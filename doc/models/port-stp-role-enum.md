@@ -1,7 +1,7 @@
 
 # Port Stp Role Enum
 
-enum: `alternate`, `backup`, `designated`, `disabled`, `root`, `root-prevented`
+Spanning Tree Protocol role for the port. enum: `""`, `alternate`, `backup`, `designated`, `disabled`, `root`, `root-prevented`
 
 ## Enumeration
 
@@ -17,4 +17,19 @@ enum: `alternate`, `backup`, `designated`, `disabled`, `root`, `root-prevented`
 | `disabled` |
 | `root` |
 | `root-prevented` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    portStpRole := models.PortStpRoleEnum_ROOT
+
+}
+```
 

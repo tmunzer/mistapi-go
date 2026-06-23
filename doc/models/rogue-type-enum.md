@@ -16,3 +16,18 @@ enum: `honeypot`, `lan`, `others`, `spoof`
 | `others` |
 | `spoof` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    rogueType := models.RogueTypeEnum_HONEYPOT
+
+}
+```
+

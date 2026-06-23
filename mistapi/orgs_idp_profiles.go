@@ -27,7 +27,7 @@ func NewOrgsIDPProfiles(baseController baseController) *OrgsIDPProfiles {
 // ListOrgIdpProfiles takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.IdpProfile data and
 // an error if there was an issue with the request or response.
-// Get the list of Org IDP Profiles
+// List organization Intrusion Detection and Prevention (IDP) profiles, including their base profile and signature overwrite rules.
 func (o *OrgsIDPProfiles) ListOrgIdpProfiles(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -40,19 +40,15 @@ func (o *OrgsIDPProfiles) ListOrgIdpProfiles(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if limit != nil {
 		req.QueryParam("limit", *limit)
@@ -74,7 +70,7 @@ func (o *OrgsIDPProfiles) ListOrgIdpProfiles(
 // CreateOrgIdpProfile takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.IdpProfile data and
 // an error if there was an issue with the request or response.
-// Create Org IDP Profile
+// Create an organization Intrusion Detection and Prevention (IDP) profile with a built-in base profile and optional signature overwrite rules.
 func (o *OrgsIDPProfiles) CreateOrgIdpProfile(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -86,19 +82,15 @@ func (o *OrgsIDPProfiles) CreateOrgIdpProfile(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -118,7 +110,7 @@ func (o *OrgsIDPProfiles) CreateOrgIdpProfile(
 // DeleteOrgIdpProfile takes context, orgId, idpprofileId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete Org IDP Profile
+// Delete an organization Intrusion Detection and Prevention (IDP) profile by profile ID.
 func (o *OrgsIDPProfiles) DeleteOrgIdpProfile(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -130,19 +122,15 @@ func (o *OrgsIDPProfiles) DeleteOrgIdpProfile(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -155,7 +143,7 @@ func (o *OrgsIDPProfiles) DeleteOrgIdpProfile(
 // GetOrgIdpProfile takes context, orgId, idpprofileId as parameters and
 // returns an models.ApiResponse with models.IdpProfile data and
 // an error if there was an issue with the request or response.
-// Get Org IDP Profile
+// Retrieve the base profile and signature overwrite rules for a specific organization IDP profile.
 func (o *OrgsIDPProfiles) GetOrgIdpProfile(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -167,19 +155,15 @@ func (o *OrgsIDPProfiles) GetOrgIdpProfile(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.IdpProfile
@@ -195,7 +179,7 @@ func (o *OrgsIDPProfiles) GetOrgIdpProfile(
 // UpdateOrgIdpProfile takes context, orgId, idpprofileId, body as parameters and
 // returns an models.ApiResponse with models.IdpProfile data and
 // an error if there was an issue with the request or response.
-// Update Org IDP Profile
+// Update an organization IDP profile, including its base profile and signature overwrite rules.
 func (o *OrgsIDPProfiles) UpdateOrgIdpProfile(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -208,19 +192,15 @@ func (o *OrgsIDPProfiles) UpdateOrgIdpProfile(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

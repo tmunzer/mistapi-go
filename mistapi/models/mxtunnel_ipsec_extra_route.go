@@ -8,8 +8,11 @@ import (
 )
 
 // MxtunnelIpsecExtraRoute represents a MxtunnelIpsecExtraRoute struct.
+// Extra route advertised for an IPsec tunnel
 type MxtunnelIpsecExtraRoute struct {
-	Dest                 *string                `json:"dest,omitempty"`
+	// Route destination CIDR for the IPsec extra route
+	Dest *string `json:"dest,omitempty"`
+	// Route next-hop IPv4 address for the IPsec extra route
 	NextHop              *string                `json:"next_hop,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

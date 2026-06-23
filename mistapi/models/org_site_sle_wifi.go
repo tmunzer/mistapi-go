@@ -10,13 +10,21 @@ import (
 )
 
 // OrgSiteSleWifi represents a OrgSiteSleWifi struct.
+// Paginated Wi-Fi SLE results for organization sites
 type OrgSiteSleWifi struct {
-	End                  float64                `json:"end"`
-	Interval             int                    `json:"interval"`
-	Limit                int                    `json:"limit"`
-	Page                 int                    `json:"page"`
-	Results              []OrgSiteSleWifiResult `json:"results"`
-	Start                float64                `json:"start"`
+	// Query end timestamp for the returned SLE window
+	End float64 `json:"end"`
+	// Aggregation interval, in seconds, used for the SLE query
+	Interval int `json:"interval"`
+	// Maximum number of site results returned per page
+	Limit int `json:"limit"`
+	// Result page number returned by the query
+	Page int `json:"page"`
+	// Wi-Fi SLE results returned for organization sites
+	Results []OrgSiteSleWifiResult `json:"results"`
+	// Query start timestamp for the returned SLE window
+	Start float64 `json:"start"`
+	// Number of matching site results available for the query
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

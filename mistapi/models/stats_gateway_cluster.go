@@ -8,7 +8,9 @@ import (
 )
 
 // StatsGatewayCluster represents a StatsGatewayCluster struct.
+// High-availability cluster state reported by a gateway
 type StatsGatewayCluster struct {
+	// Current HA cluster state for the gateway
 	State                Optional[string]       `json:"state"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

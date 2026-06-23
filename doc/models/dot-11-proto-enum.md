@@ -19,3 +19,18 @@ enum: `a`, `ac`, `ax`, `b`, `be`, `g`, `n`
 | `g` |
 | `n` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    dot11Proto := models.Dot11ProtoEnum_G
+
+}
+```
+

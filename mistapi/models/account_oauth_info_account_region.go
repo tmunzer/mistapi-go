@@ -8,6 +8,7 @@ import (
 )
 
 // AccountOauthInfoAccountRegion represents a AccountOauthInfoAccountRegion struct.
+// Prisma Access region bandwidth allocation for a linked OAuth account
 type AccountOauthInfoAccountRegion struct {
 	// Bandwidth Aggregate region for this region
 	AggregateRegion *string `json:"aggregate_region,omitempty"`

@@ -11,22 +11,29 @@ import (
 )
 
 // Org represents a Org struct.
+// Mist organization containing sites, devices, users, and organization-level settings
 type Org struct {
+	// Org-level alarm template ID used as the default for sites
 	AlarmtemplateId Optional[uuid.UUID] `json:"alarmtemplate_id"`
-	AllowMist       *bool               `json:"allow_mist,omitempty"`
+	// Whether Mist support access is allowed for this organization
+	AllowMist *bool `json:"allow_mist,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64   `json:"modified_time,omitempty"`
-	MspId        *uuid.UUID `json:"msp_id,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Managed service provider identifier
+	MspId *uuid.UUID `json:"msp_id,omitempty"`
 	// logo uploaded by the MSP with advanced tier, only present if provided
 	MspLogoUrl *string `json:"msp_logo_url,omitempty"`
 	// Name of the msp the org belongs to
-	MspName              *string                `json:"msp_name,omitempty"`
-	Name                 string                 `json:"name"`
-	OrggroupIds          []uuid.UUID            `json:"orggroup_ids,omitempty"`
+	MspName *string `json:"msp_name,omitempty"`
+	// Display name of the organization
+	Name string `json:"name"`
+	// List of organization group identifiers
+	OrggroupIds []uuid.UUID `json:"orggroup_ids,omitempty"`
+	// Admin session lifetime for the organization, in minutes
 	SessionExpiry        *int                   `json:"session_expiry,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

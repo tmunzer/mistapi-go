@@ -8,9 +8,11 @@ import (
 )
 
 // ApLed represents a ApLed struct.
-// LED AP settings
+// Indicator light settings for an access point
 type ApLed struct {
-	Brightness           *int                   `json:"brightness,omitempty"`
+	// Indicator LED brightness level from 0 to 255
+	Brightness *int `json:"brightness,omitempty"`
+	// Whether the AP indicator LED is enabled
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

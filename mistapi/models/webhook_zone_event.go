@@ -11,25 +11,27 @@ import (
 )
 
 // WebhookZoneEvent represents a WebhookZoneEvent struct.
+// Zone enter or exit event for a Wi-Fi client, SDK client, or asset
 type WebhookZoneEvent struct {
 	// Only if `type`==`asset`. UUID of named asset
 	AssetId *uuid.UUID `json:"asset_id,omitempty"`
 	// Only if `type`==`sdk`. UUID of the SDK Client
 	Id *uuid.UUID `json:"id,omitempty"`
-	// MAC address of Wi-Fi client, SDK Client or Asset
+	// Client or asset MAC address associated with the zone event
 	Mac *string `json:"mac,omitempty"`
-	// Map id
+	// Map associated with the zone event
 	MapId uuid.UUID `json:"map_id"`
-	// Name of the client, may be empty
-	Name   *string   `json:"name,omitempty"`
+	// Display name of the client or asset, when available
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId uuid.UUID `json:"site_id"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp float64 `json:"timestamp"`
-	// enum: `enter`, `exit`
+	// Zone transition direction, either enter or exit. enum: `enter`, `exit`
 	Trigger WebhookZoneEventTriggerEnum `json:"trigger"`
 	// Type of client. enum: `asset` (BLE Tag), `sdk`, `wifi`
 	Type WebhookZoneEventTypeEnum `json:"type"`
-	// Zone id
+	// Zone identifier associated with the event
 	ZoneId               uuid.UUID              `json:"zone_id"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

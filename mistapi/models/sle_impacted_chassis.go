@@ -8,17 +8,27 @@ import (
 )
 
 // SleImpactedChassis represents a SleImpactedChassis struct.
+// Paginated list of chassis impacted by an SLE metric
 type SleImpactedChassis struct {
-	Chassis              []SleImpactedChassisChassisItem `json:"chassis,omitempty"`
-	Classifier           *string                         `json:"classifier,omitempty"`
-	End                  *int                            `json:"end,omitempty"`
-	Failure              *string                         `json:"failure,omitempty"`
-	Limit                *int                            `json:"limit,omitempty"`
-	Metric               *string                         `json:"metric,omitempty"`
-	Page                 *int                            `json:"page,omitempty"`
-	Start                *int                            `json:"start,omitempty"`
-	TotalCount           *int                            `json:"total_count,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"_"`
+	// Impacted chassis rows returned for an SLE query
+	Chassis []SleImpactedChassisChassisItem `json:"chassis,omitempty"`
+	// Requested SLE classifier filter applied to the query
+	Classifier *string `json:"classifier,omitempty"`
+	// Last timestamp in the impacted chassis window
+	End *int `json:"end,omitempty"`
+	// Requested SLE failure filter applied to the query
+	Failure *string `json:"failure,omitempty"`
+	// Maximum number of impacted chassis rows returned per page
+	Limit *int `json:"limit,omitempty"`
+	// SLE metric name used for the impacted chassis query
+	Metric *string `json:"metric,omitempty"`
+	// Current page number for impacted chassis results
+	Page *int `json:"page,omitempty"`
+	// First timestamp in the impacted chassis window
+	Start *int `json:"start,omitempty"`
+	// Number of impacted chassis rows matching the query
+	TotalCount           *int                   `json:"total_count,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SleImpactedChassis,

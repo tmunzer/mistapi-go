@@ -11,13 +11,19 @@ import (
 )
 
 // ResponseMapImport represents a ResponseMapImport struct.
+// Result of importing map files and matching AP placements
 type ResponseMapImport struct {
-	Aps                  []ResponseMapImportAp        `json:"aps"`
-	Floorplans           []ResponseMapImportFloorplan `json:"floorplans"`
-	ForSite              *bool                        `json:"for_site,omitempty"`
-	SiteId               uuid.UUID                    `json:"site_id"`
-	Summary              ResponseMapImportSummary     `json:"summary"`
-	AdditionalProperties map[string]interface{}       `json:"_"`
+	// AP placement results produced by the map import
+	Aps []ResponseMapImportAp `json:"aps"`
+	// Floorplan import results produced by the map import
+	Floorplans []ResponseMapImportFloorplan `json:"floorplans"`
+	// Whether this map import response is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId uuid.UUID `json:"site_id"`
+	// Counts summarizing assignments made during the map import
+	Summary              ResponseMapImportSummary `json:"summary"`
+	AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseMapImport,

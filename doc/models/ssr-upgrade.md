@@ -1,6 +1,8 @@
 
 # Ssr Upgrade
 
+Request to upgrade a single SSR device
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -17,18 +19,26 @@
 | `Version` | `string` | Required | 128T firmware version to upgrade (e.g. 5.3.0-93)<br><br>**Default**: `"stable"`<br><br>**Constraints**: *Minimum Length*: `1` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "channel": "stable",
-  "version": "stable",
-  "reboot_at": 124,
-  "start_time": 194,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ssrUpgrade := models.SsrUpgrade{
+        Channel:              models.ToPointer(models.SsrUpgradeChannelEnum_STABLE),
+        RebootAt:             models.ToPointer(0),
+        StartTime:            models.ToPointer(186),
+        Version:              "stable",
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

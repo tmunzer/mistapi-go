@@ -10,8 +10,9 @@ import (
 // WlanSchedule represents a WlanSchedule struct.
 // WLAN operating schedule, default is disabled
 type WlanSchedule struct {
+	// Whether the WLAN operating schedule is enabled
 	Enabled *bool `json:"enabled,omitempty"`
-	// Days/Hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun)
+	// Day-of-week operating hour filters using hour ranges such as 09:00-17:00
 	Hours                *Hours                 `json:"hours,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

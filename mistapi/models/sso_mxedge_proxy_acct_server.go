@@ -8,9 +8,13 @@ import (
 )
 
 // SsoMxedgeProxyAcctServer represents a SsoMxedgeProxyAcctServer struct.
+// RADIUS accounting server for the Mist Edge SSO proxy
 type SsoMxedgeProxyAcctServer struct {
-	Host                 *string                `json:"host,omitempty"`
-	Port                 *int                   `json:"port,omitempty"`
+	// RADIUS accounting server hostname or IP address
+	Host *string `json:"host,omitempty"`
+	// UDP port for RADIUS accounting requests
+	Port *int `json:"port,omitempty"`
+	// Shared secret used with the RADIUS accounting server
 	Secret               *string                `json:"secret,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

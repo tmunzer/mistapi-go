@@ -11,15 +11,23 @@ import (
 )
 
 // InstallerSite represents a InstallerSite struct.
+// Site definition available to installer workflows
 type InstallerSite struct {
-	Address     string `json:"address"`
+	// Street or postal address for the installer site
+	Address string `json:"address"`
+	// ISO country code for the installer site
 	CountryCode string `json:"country_code"`
 	// Unique ID of the object instance in the Mist Organization
-	Id                   *uuid.UUID             `json:"id,omitempty"`
-	Latlng               LatLng                 `json:"latlng"`
-	Name                 string                 `json:"name"`
-	RftemplateName       *string                `json:"rftemplate_name,omitempty"`
-	SitegroupNames       []string               `json:"sitegroup_names,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Geographic latitude and longitude coordinate pair
+	Latlng LatLng `json:"latlng"`
+	// Display name of the installer site
+	Name string `json:"name"`
+	// RF template name applied to the installer site
+	RftemplateName *string `json:"rftemplate_name,omitempty"`
+	// Site group names associated with an installer site
+	SitegroupNames []string `json:"sitegroup_names,omitempty"`
+	// Time zone configured for the installer site
 	Timezone             *string                `json:"timezone,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

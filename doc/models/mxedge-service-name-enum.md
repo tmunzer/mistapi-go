@@ -1,7 +1,7 @@
 
 # Mxedge Service Name Enum
 
-enum: `mxagent`, `mxdas`, `mxocproxy`, `radsecproxy`, `tunterm`
+Mist Edge service name. enum: `mxagent`, `mxdas`, `mxnacedge`, `mxocproxy`, `radsecproxy`, `tunterm`
 
 ## Enumeration
 
@@ -17,4 +17,19 @@ enum: `mxagent`, `mxdas`, `mxocproxy`, `radsecproxy`, `tunterm`
 | `mxocproxy` |
 | `radsecproxy` |
 | `tunterm` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxedgeServiceName := models.MxedgeServiceNameEnum_MXNACEDGE
+
+}
+```
 

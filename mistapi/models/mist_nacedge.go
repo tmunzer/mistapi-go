@@ -5,18 +5,23 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/google/uuid"
 )
 
 // MistNacedge represents a MistNacedge struct.
+// Mist NAC Site Survivability settings for the site
 type MistNacedge struct {
 	// Cache of last auth result; in seconds
 	AuthTtl *int `json:"auth_ttl,omitempty"`
+	// Site UUIDs whose auth requests are cached by NAC Edges in the cluster
+	CachingSiteIds []uuid.UUID `json:"caching_site_ids,omitempty"`
 	// Default vlan for all dot1x devices, if different from default_vlan
 	DefaultDot1xVlan *string `json:"default_dot1x_vlan,omitempty"`
 	// Default vlan to assign for devices not in the cache
 	DefaultVlan *string `json:"default_vlan,omitempty"`
-	Enabled     *bool   `json:"enabled,omitempty"`
-	// List of NAC Edges in this site
+	// Whether Mist Site Survivability is enabled for the site
+	Enabled *bool `json:"enabled,omitempty"`
+	// List of NAC Edges used for the Site Survivability feature
 	MxedgeHosts          []string               `json:"mxedge_hosts,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -25,8 +30,8 @@ type MistNacedge struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m MistNacedge) String() string {
 	return fmt.Sprintf(
-		"MistNacedge[AuthTtl=%v, DefaultDot1xVlan=%v, DefaultVlan=%v, Enabled=%v, MxedgeHosts=%v, AdditionalProperties=%v]",
-		m.AuthTtl, m.DefaultDot1xVlan, m.DefaultVlan, m.Enabled, m.MxedgeHosts, m.AdditionalProperties)
+		"MistNacedge[AuthTtl=%v, CachingSiteIds=%v, DefaultDot1xVlan=%v, DefaultVlan=%v, Enabled=%v, MxedgeHosts=%v, AdditionalProperties=%v]",
+		m.AuthTtl, m.CachingSiteIds, m.DefaultDot1xVlan, m.DefaultVlan, m.Enabled, m.MxedgeHosts, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MistNacedge.
@@ -35,7 +40,7 @@ func (m MistNacedge) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(m.AdditionalProperties,
-		"auth_ttl", "default_dot1x_vlan", "default_vlan", "enabled", "mxedge_hosts"); err != nil {
+		"auth_ttl", "caching_site_ids", "default_dot1x_vlan", "default_vlan", "enabled", "mxedge_hosts"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(m.toMap())
@@ -47,6 +52,9 @@ func (m MistNacedge) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, m.AdditionalProperties)
 	if m.AuthTtl != nil {
 		structMap["auth_ttl"] = m.AuthTtl
+	}
+	if m.CachingSiteIds != nil {
+		structMap["caching_site_ids"] = m.CachingSiteIds
 	}
 	if m.DefaultDot1xVlan != nil {
 		structMap["default_dot1x_vlan"] = m.DefaultDot1xVlan
@@ -71,13 +79,14 @@ func (m *MistNacedge) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth_ttl", "default_dot1x_vlan", "default_vlan", "enabled", "mxedge_hosts")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth_ttl", "caching_site_ids", "default_dot1x_vlan", "default_vlan", "enabled", "mxedge_hosts")
 	if err != nil {
 		return err
 	}
 	m.AdditionalProperties = additionalProperties
 
 	m.AuthTtl = temp.AuthTtl
+	m.CachingSiteIds = temp.CachingSiteIds
 	m.DefaultDot1xVlan = temp.DefaultDot1xVlan
 	m.DefaultVlan = temp.DefaultVlan
 	m.Enabled = temp.Enabled
@@ -87,9 +96,10 @@ func (m *MistNacedge) UnmarshalJSON(input []byte) error {
 
 // tempMistNacedge is a temporary struct used for validating the fields of MistNacedge.
 type tempMistNacedge struct {
-	AuthTtl          *int     `json:"auth_ttl,omitempty"`
-	DefaultDot1xVlan *string  `json:"default_dot1x_vlan,omitempty"`
-	DefaultVlan      *string  `json:"default_vlan,omitempty"`
-	Enabled          *bool    `json:"enabled,omitempty"`
-	MxedgeHosts      []string `json:"mxedge_hosts,omitempty"`
+	AuthTtl          *int        `json:"auth_ttl,omitempty"`
+	CachingSiteIds   []uuid.UUID `json:"caching_site_ids,omitempty"`
+	DefaultDot1xVlan *string     `json:"default_dot1x_vlan,omitempty"`
+	DefaultVlan      *string     `json:"default_vlan,omitempty"`
+	Enabled          *bool       `json:"enabled,omitempty"`
+	MxedgeHosts      []string    `json:"mxedge_hosts,omitempty"`
 }

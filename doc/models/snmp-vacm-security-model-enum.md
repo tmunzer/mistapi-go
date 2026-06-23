@@ -15,3 +15,18 @@ enum: `usm`, `v1`, `v2c`
 | `v1` |
 | `v2c` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    snmpVacmSecurityModel := models.SnmpVacmSecurityModelEnum_V2C
+
+}
+```
+

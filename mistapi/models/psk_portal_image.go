@@ -8,10 +8,11 @@ import (
 )
 
 // PskPortalImage represents a PskPortalImage struct.
+// PSK portal image upload payload
 type PskPortalImage struct {
-	// Binary file
+	// Image binary payload to upload for the PSK portal
 	File *[]byte `json:"file,omitempty"`
-	// JSON string describing the upload
+	// Metadata JSON string describing the PSK portal image upload
 	Json                 *string                `json:"json,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

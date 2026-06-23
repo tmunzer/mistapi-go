@@ -14,3 +14,18 @@ Only if `provider`==`custom-ipsec`. enum: `aggressive`, `main`
 | `aggressive` |
 | `main` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    tunnelConfigIkeMode := models.TunnelConfigIkeModeEnum_AGGRESSIVE
+
+}
+```
+

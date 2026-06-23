@@ -8,12 +8,15 @@ import (
 )
 
 // StatsSwitchApRedundancy represents a StatsSwitchApRedundancy struct.
+// AP switch redundancy coverage summary for a switch
 type StatsSwitchApRedundancy struct {
-	// For a VC / stacked switches.
-	Modules                    map[string]StatsSwitchApRedundancyModule `json:"modules,omitempty"`
-	NumAps                     *int                                     `json:"num_aps,omitempty"`
-	NumApsWithSwitchRedundancy *int                                     `json:"num_aps_with_switch_redundancy,omitempty"`
-	AdditionalProperties       map[string]interface{}                   `json:"_"`
+	// Per-module AP redundancy counts for VC or stacked switches
+	Modules map[string]StatsSwitchApRedundancyModule `json:"modules,omitempty"`
+	// Total number of APs considered for switch redundancy
+	NumAps *int `json:"num_aps,omitempty"`
+	// Number of APs that have switch redundancy coverage
+	NumApsWithSwitchRedundancy *int                   `json:"num_aps_with_switch_redundancy,omitempty"`
+	AdditionalProperties       map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for StatsSwitchApRedundancy,

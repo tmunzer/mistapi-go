@@ -1,6 +1,8 @@
 
 # Inventory Search Result Member
 
+Virtual Chassis member in an inventory search result
+
 ## Structure
 
 `InventorySearchResultMember`
@@ -9,17 +11,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mac` | `*string` | Optional | - |
-| `Model` | `*string` | Optional | - |
-| `Serial` | `*string` | Optional | - |
+| `Mac` | `*string` | Optional | Member device MAC address in this inventory search result |
+| `Model` | `*string` | Optional | Member device model in this inventory search result |
+| `Serial` | `*string` | Optional | Member device serial number in this inventory search result |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mac": "f01c2df166e0",
-  "model": "EX4300-48P",
-  "serial": "PD3714460200"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    inventorySearchResultMember := models.InventorySearchResultMember{
+        Mac:                  models.ToPointer("f01c2df166e0"),
+        Model:                models.ToPointer("EX4300-48P"),
+        Serial:               models.ToPointer("PD3714460200"),
+    }
+
 }
 ```
 

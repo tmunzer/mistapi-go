@@ -11,6 +11,7 @@ import (
 )
 
 // ResponseSiteDeviceUpgrade represents a ResponseSiteDeviceUpgrade struct.
+// Site device upgrade job details
 type ResponseSiteDeviceUpgrade struct {
 	// phases for canary deployment. Each phase represents percentage of devices that need to be upgraded in that phase.
 	CanaryPhases []int `json:"canary_phases,omitempty"`
@@ -39,8 +40,9 @@ type ResponseSiteDeviceUpgrade struct {
 	// enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)
 	Strategy *UpgradeDeviceStrategyEnum `json:"strategy,omitempty"`
 	// Version to upgrade to
-	TargetVersion *string                `json:"target_version,omitempty"`
-	Targets       *UpgradeDevicesTargets `json:"targets,omitempty"`
+	TargetVersion *string `json:"target_version,omitempty"`
+	// Read-only device target lists grouped by upgrade status
+	Targets *UpgradeDevicesTargets `json:"targets,omitempty"`
 	// If `strategy`!=`big_bang`, a dictionary of phase number to devices part of that phase
 	UpgradePlan          map[string][]string    `json:"upgrade_plan,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`

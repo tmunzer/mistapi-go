@@ -16,11 +16,13 @@ func TestOrgsVarsTestSearchOrgVars(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	siteId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+	mVar := "guest_end,guest_net"
 
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsVars.SearchOrgVars(ctx, orgId, nil, nil, nil, &limit, &sort, nil)
+	apiResponse, err := orgsVars.SearchOrgVars(ctx, orgId, &siteId, &mVar, nil, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -40,11 +42,13 @@ func TestOrgsVarsTestSearchOrgVars1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	siteId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+	mVar := "guest_end,guest_net"
 
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsVars.SearchOrgVars(ctx, orgId, nil, nil, nil, &limit, &sort, nil)
+	apiResponse, err := orgsVars.SearchOrgVars(ctx, orgId, &siteId, &mVar, nil, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

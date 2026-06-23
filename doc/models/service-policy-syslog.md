@@ -1,7 +1,7 @@
 
 # Service Policy Syslog
 
-Required for syslog logging
+Syslog logging settings for a service policy
 
 ## Structure
 
@@ -11,17 +11,26 @@ Required for syslog logging
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `ServerNames` | `[]string` | Optional | - |
+| `Enabled` | `*bool` | Optional | Whether syslog logging is enabled for the service policy<br><br>**Default**: `false` |
+| `ServerNames` | `[]string` | Optional | Names of syslog servers that receive logs for this service policy |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "server_names": [
-    "dc_syslog_server"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    servicePolicySyslog := models.ServicePolicySyslog{
+        Enabled:              models.ToPointer(false),
+        ServerNames:          []string{
+            "dc_syslog_server",
+        },
+    }
+
 }
 ```
 

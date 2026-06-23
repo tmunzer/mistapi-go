@@ -9,14 +9,17 @@ import (
 )
 
 // UpgradeOrgDevicesUpgradeInfo represents a UpgradeOrgDevicesUpgradeInfo struct.
+// Site-level upgrade job details within an organization upgrade
 type UpgradeOrgDevicesUpgradeInfo struct {
 	// Unique ID of the object instance in the Mist Organization
-	Id        *uuid.UUID `json:"id,omitempty"`
-	StartTime *int       `json:"start_time,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Epoch timestamp, in seconds, when the site-level upgrade starts
+	StartTime *int `json:"start_time,omitempty"`
 	// status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`, `queued`
-	Status               *UpgradeDeviceStatusEnum `json:"status,omitempty"`
-	Targets              *UpgradeDevicesTargets   `json:"targets,omitempty"`
-	AdditionalProperties map[string]interface{}   `json:"_"`
+	Status *UpgradeDeviceStatusEnum `json:"status,omitempty"`
+	// Read-only device target lists grouped by upgrade status
+	Targets              *UpgradeDevicesTargets `json:"targets,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for UpgradeOrgDevicesUpgradeInfo,

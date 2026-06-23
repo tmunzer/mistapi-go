@@ -10,6 +10,7 @@ import (
 // CaptureMxedgeMxedges represents a CaptureMxedgeMxedges struct.
 // Property key is the Mx Edge ID, currently limited to one mxedge per org capture session
 type CaptureMxedgeMxedges struct {
+	// Mx Edge interfaces to include in the capture, keyed by interface name
 	Interfaces           map[string]CaptureMxedgeMxedgesInterfaces `json:"interfaces,omitempty"`
 	AdditionalProperties map[string]interface{}                    `json:"_"`
 }

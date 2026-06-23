@@ -11,18 +11,21 @@ import (
 )
 
 // Network represents a Network struct.
-// Networks are usually subnets that have cross-site significance. `networks`in Org Settings will got merged into `networks`in Site Setting. For gateways, they can be used to define Service Routes.
+// Organization-level Layer 3 network definition that can be merged into site settings and used for service routes. Networks are used to define the service routes in the Gateway settings or templates
 type Network struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
 	// Whether to disallow Mist Devices in the network
-	DisallowMistServices *bool   `json:"disallow_mist_services,omitempty"`
-	Gateway              *string `json:"gateway,omitempty"`
-	Gateway6             *string `json:"gateway6,omitempty"`
+	DisallowMistServices *bool `json:"disallow_mist_services,omitempty"`
+	// IPv4 gateway address for this network
+	Gateway *string `json:"gateway,omitempty"`
+	// IPv6 gateway address for this network
+	Gateway6 *string `json:"gateway6,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id             *uuid.UUID             `json:"id,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Internal access settings for an organization network
 	InternalAccess *NetworkInternalAccess `json:"internal_access,omitempty"`
-	// Whether this network has direct internet access
+	// Direct internet access settings for an organization network
 	InternetAccess *NetworkInternetAccess `json:"internet_access,omitempty"`
 	// Whether to allow clients in the network to talk to each other
 	Isolation *bool `json:"isolation,omitempty"`
@@ -30,15 +33,20 @@ type Network struct {
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
 	// Whether to enable multicast support (only PIM-sparse mode is supported)
 	Multicast *NetworkMulticast `json:"multicast,omitempty"`
-	Name      string            `json:"name"`
-	OrgId     *uuid.UUID        `json:"org_id,omitempty"`
+	// Display name of the organization network
+	Name string `json:"name"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// For a Network (usually LAN), it can be routable to other networks (e.g. OSPF)
 	RoutedForNetworks []string `json:"routed_for_networks,omitempty"`
-	Subnet            *string  `json:"subnet,omitempty"`
-	Subnet6           *string  `json:"subnet6,omitempty"`
+	// IPv4 subnet CIDR for this network
+	Subnet *string `json:"subnet,omitempty"`
+	// IPv6 subnet CIDR for this network
+	Subnet6 *string `json:"subnet6,omitempty"`
 	// Property key must be the user/tenant name (i.e. "printer-1") or a Variable (i.e. "{{myvar}}")
 	Tenants map[string]NetworkTenant `json:"tenants,omitempty"`
-	VlanId  *VlanIdWithVariable      `json:"vlan_id,omitempty"`
+	// VLAN ID, either numeric or expressed as a template variable string
+	VlanId *VlanIdWithVariable `json:"vlan_id,omitempty"`
 	// Property key is the VPN name. Whether this network can be accessed from vpn
 	VpnAccess            map[string]NetworkVpnAccessConfig `json:"vpn_access,omitempty"`
 	AdditionalProperties map[string]interface{}            `json:"_"`

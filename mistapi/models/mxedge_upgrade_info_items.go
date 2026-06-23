@@ -10,10 +10,15 @@ import (
 )
 
 // MxedgeUpgradeInfoItems represents a MxedgeUpgradeInfoItems struct.
+// Available upgrade version for a Mist Edge package
 type MxedgeUpgradeInfoItems struct {
-	Default              *bool                  `json:"default,omitempty"`
-	Distro               *string                `json:"distro,omitempty"`
-	Package              string                 `json:"package"`
+	// Whether this version is the default upgrade target for the package
+	Default *bool `json:"default,omitempty"`
+	// Linux distribution codename for the package version
+	Distro *string `json:"distro,omitempty"`
+	// Mist Edge service package name
+	Package string `json:"package"`
+	// Available version for this package
 	Version              string                 `json:"version"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

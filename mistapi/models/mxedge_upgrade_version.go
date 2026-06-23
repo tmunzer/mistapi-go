@@ -12,10 +12,15 @@ import (
 // MxedgeUpgradeVersion represents a MxedgeUpgradeVersion struct.
 // Version to upgrade for each service, `current` / `latest` / `default` / specific version (e.g. `2.5.100`).\nIgnored if distro upgrade, `tunterm`, `radsecproxy`, `mxagent`, `mxocproxy`, `mxdas` or `mxnacedge`
 type MxedgeUpgradeVersion struct {
-	Mxagent              string                 `json:"mxagent"`
-	Mxdas                *string                `json:"mxdas,omitempty"`
-	Mxocproxy            *string                `json:"mxocproxy,omitempty"`
-	Radsecproxy          *string                `json:"radsecproxy,omitempty"`
+	// Target version for the mxagent service
+	Mxagent string `json:"mxagent"`
+	// Target version for the mxdas service
+	Mxdas *string `json:"mxdas,omitempty"`
+	// Target version for the mxocproxy service
+	Mxocproxy *string `json:"mxocproxy,omitempty"`
+	// Target version for the radsecproxy service
+	Radsecproxy *string `json:"radsecproxy,omitempty"`
+	// Target version for the tunterm service
 	Tunterm              string                 `json:"tunterm"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

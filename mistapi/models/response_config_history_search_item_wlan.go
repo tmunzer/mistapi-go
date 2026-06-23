@@ -11,12 +11,17 @@ import (
 )
 
 // ResponseConfigHistorySearchItemWlan represents a ResponseConfigHistorySearchItemWlan struct.
+// WLAN config history detail
 type ResponseConfigHistorySearchItemWlan struct {
-	Auth  string   `json:"auth"`
+	// Configured authentication method for this WLAN
+	Auth string `json:"auth"`
+	// Unique string values returned or accepted by this schema
 	Bands []string `json:"bands,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id                   uuid.UUID              `json:"id"`
-	Ssid                 string                 `json:"ssid"`
+	Id uuid.UUID `json:"id"`
+	// WLAN SSID for this config history detail
+	Ssid string `json:"ssid"`
+	// Unique string values returned or accepted by this schema
 	VlanIds              []string               `json:"vlan_ids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

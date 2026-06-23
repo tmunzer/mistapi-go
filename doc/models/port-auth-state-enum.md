@@ -1,7 +1,7 @@
 
 # Port Auth State Enum
 
-enum: `authenticated`, `authenticating`, `held`, `init`
+Port authentication state. enum: `""`, `authenticated`, `authenticating`, `held`, `init`
 
 ## Enumeration
 
@@ -15,4 +15,19 @@ enum: `authenticated`, `authenticating`, `held`, `init`
 | `authenticating` |
 | `held` |
 | `init` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    portAuthState := models.PortAuthStateEnum_AUTHENTICATED
+
+}
+```
 

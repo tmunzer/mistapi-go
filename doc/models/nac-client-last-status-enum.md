@@ -18,7 +18,16 @@ Latest Authentication status of the client. enum: `denied`, `permitted`, `sessio
 
 ## Example
 
-```
-permitted
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    nacClientLastStatus := models.NacClientLastStatusEnum_PERMITTED
+
+}
 ```
 

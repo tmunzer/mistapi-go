@@ -8,12 +8,19 @@ import (
 )
 
 // SleImpactedApplicationsApp represents a SleImpactedApplicationsApp struct.
+// SLE impact row for an application
 type SleImpactedApplicationsApp struct {
-	App                  *string                `json:"app,omitempty"`
-	Degraded             *int                   `json:"degraded,omitempty"`
-	Duration             *int                   `json:"duration,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
-	Threshold            *int                   `json:"threshold,omitempty"`
+	// Identifier of the application represented by this impacted row
+	App *string `json:"app,omitempty"`
+	// Portion of the SLE total that was degraded for this application
+	Degraded *int `json:"degraded,omitempty"`
+	// Observation time represented by this application impact row
+	Duration *int `json:"duration,omitempty"`
+	// Display name for the application impact row
+	Name *string `json:"name,omitempty"`
+	// SLE threshold value used for this application
+	Threshold *int `json:"threshold,omitempty"`
+	// Overall SLE total measured for this application impact row
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

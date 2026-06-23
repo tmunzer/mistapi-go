@@ -11,17 +11,17 @@ import (
 )
 
 // PrivilegeOrg represents a PrivilegeOrg struct.
-// Privileges settings
+// Organization privilege scope and role settings
 type PrivilegeOrg struct {
-	// If `scope`==`org`
+	// If `scope`==`org`, organization ID this privilege applies to
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
 	Role PrivilegeOrgRoleEnum `json:"role"`
 	// enum: `org`, `site`, `sitegroup`, `orgsites`
 	Scope PrivilegeOrgScopeEnum `json:"scope"`
-	// If `scope`==`site`
+	// If `scope`==`site`, site ID this privilege applies to
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
-	// If `scope`==`sitegroup`
+	// If `scope`==`sitegroup`, site group ID this privilege applies to
 	SitegroupId *uuid.UUID `json:"sitegroup_id,omitempty"`
 	// Used for backward compatibility. Use `views` instead.
 	View *string `json:"view,omitempty"` // Deprecated

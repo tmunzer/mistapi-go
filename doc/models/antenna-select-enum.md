@@ -16,7 +16,16 @@ Antenna Mode for AP which supports selectable antennas. enum: `""` (default), `e
 
 ## Example
 
-```
-external
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    antennaSelect := models.AntennaSelectEnum_EXTERNAL
+
+}
 ```
 

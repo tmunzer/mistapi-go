@@ -8,9 +8,13 @@ import (
 )
 
 // ResponseLoginSuccess represents a ResponseLoginSuccess struct.
+// Login response body, empty on normal success or populated with two-factor state
 type ResponseLoginSuccess struct {
-	Email                *string                `json:"email,omitempty"`
-	TwoFactorPassed      *bool                  `json:"two_factor_passed,omitempty"`
+	// Admin email address for a login flow that requires two-factor authentication
+	Email *string `json:"email,omitempty"`
+	// Whether the supplied two-factor code has been accepted for this login
+	TwoFactorPassed *bool `json:"two_factor_passed,omitempty"`
+	// Whether this login requires a two-factor code before a session is established
 	TwoFactorRequired    *bool                  `json:"two_factor_required,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

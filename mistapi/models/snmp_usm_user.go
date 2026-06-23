@@ -8,6 +8,7 @@ import (
 )
 
 // SnmpUsmUser represents a SnmpUsmUser struct.
+// SNMPv3 USM user definition
 type SnmpUsmUser struct {
 	// Not required if `authentication_type`==`authentication-none`. Include alphabetic, numeric, and special characters, but it cannot include control characters.
 	AuthenticationPassword *string `json:"authentication_password,omitempty"`
@@ -16,9 +17,10 @@ type SnmpUsmUser struct {
 	// Not required if `encryption_type`==`privacy-none`. Include alphabetic, numeric, and special characters, but it cannot include control characters
 	EncryptionPassword *string `json:"encryption_password,omitempty"`
 	// enum: `privacy-3des`, `privacy-aes128`, `privacy-des`, `privacy-none`
-	EncryptionType       *SnmpUsmUserEncryptionTypeEnum `json:"encryption_type,omitempty"`
-	Name                 *string                        `json:"name,omitempty"`
-	AdditionalProperties map[string]interface{}         `json:"_"`
+	EncryptionType *SnmpUsmUserEncryptionTypeEnum `json:"encryption_type,omitempty"`
+	// Username for the SNMPv3 USM user
+	Name                 *string                `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SnmpUsmUser,

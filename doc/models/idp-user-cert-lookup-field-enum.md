@@ -16,3 +16,18 @@ allow customer to choose the EAP-TLS client certificate's field. To use for IDP 
 | `email` |
 | `upn` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    idpUserCertLookupField := models.IdpUserCertLookupFieldEnum_AUTOMATIC
+
+}
+```
+

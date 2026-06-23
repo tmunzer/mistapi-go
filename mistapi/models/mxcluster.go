@@ -9,27 +9,36 @@ import (
 )
 
 // Mxcluster represents a Mxcluster struct.
-// MxCluster
+// Mist Edge cluster that groups one or more Mist Edge devices for tunneling, RadSec, and related edge services
 type Mxcluster struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	ForSite     *bool    `json:"for_site,omitempty"`
+	// Whether this Mist Edge cluster is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
-	// Configure cloud-assisted dynamic authorization service on this cluster of mist edges
-	MistDas *MxedgeDas    `json:"mist_das,omitempty"`
+	// Cloud-assisted Dynamic Authorization Service settings for a Mist Edge cluster
+	MistDas *MxedgeDas `json:"mist_das,omitempty"`
+	// Mist NAC RADIUS settings for a Mist Edge cluster. Used when the Mist Edge Cluster is used as a RADIUS Proxy between the local devices and the Mist NAC
 	MistNac *MxclusterNac `json:"mist_nac,omitempty"`
+	// NAC Edge survivability settings for a Mist Edge cluster. Requires `mist_nac` to be enabled on the cluster
+	MistNacedge *MxclusterNacedge `json:"mist_nacedge,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64    `json:"modified_time,omitempty"`
-	MxedgeMgmt   *MxedgeMgmt `json:"mxedge_mgmt,omitempty"`
-	Name         *string     `json:"name,omitempty"`
-	OrgId        *uuid.UUID  `json:"org_id,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Management settings for a Mist Edge appliance
+	MxedgeMgmt *MxedgeMgmt `json:"mxedge_mgmt,omitempty"`
+	// Display name of the Mist Edge cluster
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Proxy Configuration to talk to Mist
 	Proxy *Proxy `json:"proxy,omitempty"`
-	// MxEdge RadSec Configuration
-	Radsec    *MxclusterRadsec    `json:"radsec,omitempty"`
+	// RadSec proxy configuration for a Mist Edge cluster. Used when the Mist Edge Cluster is used as a RADIUS Proxy between the local devices and external RADIUS Server.
+	Radsec *MxclusterRadsec `json:"radsec,omitempty"`
+	// TLS settings for RadSec on a Mist Edge cluster
 	RadsecTls *MxclusterRadsecTls `json:"radsec_tls,omitempty"`
-	SiteId    *uuid.UUID          `json:"site_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// List of subnets where we allow AP to establish Mist Tunnels from
 	TuntermApSubnets []string `json:"tunterm_ap_subnets,omitempty"`
 	// DHCP server/relay configuration of Mist Tunneled VLANs. Property key is the VLAN ID
@@ -40,22 +49,24 @@ type Mxcluster struct {
 	TuntermHosts []string `json:"tunterm_hosts,omitempty"`
 	// List of index of tunterm_hosts
 	TuntermHostsOrder []int `json:"tunterm_hosts_order,omitempty"`
-	// Ordering of tunterm_hosts for mxedge within the same mxcluster. enum:
+	// Ordering of tunterm_hosts for Mist Edge within the same mxcluster. enum:
 	// * `shuffle`: the ordering of tunterm_hosts is randomized by the device''s MAC
 	// * `shuffle-by-site`: shuffle by site_id+tunnel_id (so when client connects to a specific Tunnel, it will go to the same (order of) mxedge, and we load-balancing between tunnels)
 	// * `ordered`: order decided by tunterm_hosts_order
-	TuntermHostsSelection     *MxclusterTuntermHostsSelectionEnum `json:"tunterm_hosts_selection,omitempty"`
-	TuntermMonitoring         [][]TuntermMonitoringItem           `json:"tunterm_monitoring,omitempty"`
-	TuntermMonitoringDisabled *bool                               `json:"tunterm_monitoring_disabled,omitempty"`
-	AdditionalProperties      map[string]interface{}              `json:"_"`
+	TuntermHostsSelection *MxclusterTuntermHostsSelectionEnum `json:"tunterm_hosts_selection,omitempty"`
+	// Tunnel termination monitoring checks for a Mist Edge cluster
+	TuntermMonitoring [][]TuntermMonitoringItem `json:"tunterm_monitoring,omitempty"`
+	// Whether tunnel termination monitoring is disabled for the cluster
+	TuntermMonitoringDisabled *bool                  `json:"tunterm_monitoring_disabled,omitempty"`
+	AdditionalProperties      map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for Mxcluster,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m Mxcluster) String() string {
 	return fmt.Sprintf(
-		"Mxcluster[CreatedTime=%v, ForSite=%v, Id=%v, MistDas=%v, MistNac=%v, ModifiedTime=%v, MxedgeMgmt=%v, Name=%v, OrgId=%v, Proxy=%v, Radsec=%v, RadsecTls=%v, SiteId=%v, TuntermApSubnets=%v, TuntermDhcpdConfig=%v, TuntermExtraRoutes=%v, TuntermHosts=%v, TuntermHostsOrder=%v, TuntermHostsSelection=%v, TuntermMonitoring=%v, TuntermMonitoringDisabled=%v, AdditionalProperties=%v]",
-		m.CreatedTime, m.ForSite, m.Id, m.MistDas, m.MistNac, m.ModifiedTime, m.MxedgeMgmt, m.Name, m.OrgId, m.Proxy, m.Radsec, m.RadsecTls, m.SiteId, m.TuntermApSubnets, m.TuntermDhcpdConfig, m.TuntermExtraRoutes, m.TuntermHosts, m.TuntermHostsOrder, m.TuntermHostsSelection, m.TuntermMonitoring, m.TuntermMonitoringDisabled, m.AdditionalProperties)
+		"Mxcluster[CreatedTime=%v, ForSite=%v, Id=%v, MistDas=%v, MistNac=%v, MistNacedge=%v, ModifiedTime=%v, MxedgeMgmt=%v, Name=%v, OrgId=%v, Proxy=%v, Radsec=%v, RadsecTls=%v, SiteId=%v, TuntermApSubnets=%v, TuntermDhcpdConfig=%v, TuntermExtraRoutes=%v, TuntermHosts=%v, TuntermHostsOrder=%v, TuntermHostsSelection=%v, TuntermMonitoring=%v, TuntermMonitoringDisabled=%v, AdditionalProperties=%v]",
+		m.CreatedTime, m.ForSite, m.Id, m.MistDas, m.MistNac, m.MistNacedge, m.ModifiedTime, m.MxedgeMgmt, m.Name, m.OrgId, m.Proxy, m.Radsec, m.RadsecTls, m.SiteId, m.TuntermApSubnets, m.TuntermDhcpdConfig, m.TuntermExtraRoutes, m.TuntermHosts, m.TuntermHostsOrder, m.TuntermHostsSelection, m.TuntermMonitoring, m.TuntermMonitoringDisabled, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Mxcluster.
@@ -64,7 +75,7 @@ func (m Mxcluster) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(m.AdditionalProperties,
-		"created_time", "for_site", "id", "mist_das", "mist_nac", "modified_time", "mxedge_mgmt", "name", "org_id", "proxy", "radsec", "radsec_tls", "site_id", "tunterm_ap_subnets", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_hosts", "tunterm_hosts_order", "tunterm_hosts_selection", "tunterm_monitoring", "tunterm_monitoring_disabled"); err != nil {
+		"created_time", "for_site", "id", "mist_das", "mist_nac", "mist_nacedge", "modified_time", "mxedge_mgmt", "name", "org_id", "proxy", "radsec", "radsec_tls", "site_id", "tunterm_ap_subnets", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_hosts", "tunterm_hosts_order", "tunterm_hosts_selection", "tunterm_monitoring", "tunterm_monitoring_disabled"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(m.toMap())
@@ -88,6 +99,9 @@ func (m Mxcluster) toMap() map[string]any {
 	}
 	if m.MistNac != nil {
 		structMap["mist_nac"] = m.MistNac.toMap()
+	}
+	if m.MistNacedge != nil {
+		structMap["mist_nacedge"] = m.MistNacedge.toMap()
 	}
 	if m.ModifiedTime != nil {
 		structMap["modified_time"] = m.ModifiedTime
@@ -148,7 +162,7 @@ func (m *Mxcluster) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "for_site", "id", "mist_das", "mist_nac", "modified_time", "mxedge_mgmt", "name", "org_id", "proxy", "radsec", "radsec_tls", "site_id", "tunterm_ap_subnets", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_hosts", "tunterm_hosts_order", "tunterm_hosts_selection", "tunterm_monitoring", "tunterm_monitoring_disabled")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "for_site", "id", "mist_das", "mist_nac", "mist_nacedge", "modified_time", "mxedge_mgmt", "name", "org_id", "proxy", "radsec", "radsec_tls", "site_id", "tunterm_ap_subnets", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_hosts", "tunterm_hosts_order", "tunterm_hosts_selection", "tunterm_monitoring", "tunterm_monitoring_disabled")
 	if err != nil {
 		return err
 	}
@@ -159,6 +173,7 @@ func (m *Mxcluster) UnmarshalJSON(input []byte) error {
 	m.Id = temp.Id
 	m.MistDas = temp.MistDas
 	m.MistNac = temp.MistNac
+	m.MistNacedge = temp.MistNacedge
 	m.ModifiedTime = temp.ModifiedTime
 	m.MxedgeMgmt = temp.MxedgeMgmt
 	m.Name = temp.Name
@@ -185,6 +200,7 @@ type tempMxcluster struct {
 	Id                        *uuid.UUID                            `json:"id,omitempty"`
 	MistDas                   *MxedgeDas                            `json:"mist_das,omitempty"`
 	MistNac                   *MxclusterNac                         `json:"mist_nac,omitempty"`
+	MistNacedge               *MxclusterNacedge                     `json:"mist_nacedge,omitempty"`
 	ModifiedTime              *float64                              `json:"modified_time,omitempty"`
 	MxedgeMgmt                *MxedgeMgmt                           `json:"mxedge_mgmt,omitempty"`
 	Name                      *string                               `json:"name,omitempty"`

@@ -1,7 +1,7 @@
 
 # Org Setting Mist Nac Fingerprinting
 
-Allows customer to enable client fingerprinting for policy enforcement
+Client fingerprinting settings used for Mist NAC policy enforcement
 
 ## Structure
 
@@ -14,16 +14,25 @@ Allows customer to enable client fingerprinting for policy enforcement
 | `Enabled` | `*bool` | Optional | enable/disable writes to NAC DDB fingerprint table<br><br>**Default**: `false` |
 | `GenerateCoa` | `*bool` | Optional | enable/disable CoA triggers on fingerprint change for wired clients, always port-bounce<br><br>**Default**: `false` |
 | `GenerateWirelessCoa` | `*bool` | Optional | enable/disable CoA triggers on fingerprint change for wireless clients<br><br>**Default**: `false` |
-| `WirelessCoaType` | [`*models.OrgSettingMistNacFingerprintingWirelessCoaEnum`](../../doc/models/org-setting-mist-nac-fingerprinting-wireless-coa-enum.md) | Optional | enum: `reauth`, `disconnect` |
+| `WirelessCoaType` | [`*models.OrgSettingMistNacFingerprintingWirelessCoaEnum`](../../doc/models/org-setting-mist-nac-fingerprinting-wireless-coa-enum.md) | Optional | Change of Authorization action sent to wireless clients when fingerprints change. enum: `reauth`, `disconnect` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "generate_coa": false,
-  "generate_wireless_coa": false,
-  "wireless_coa_type": "reauth"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingMistNacFingerprinting := models.OrgSettingMistNacFingerprinting{
+        Enabled:              models.ToPointer(false),
+        GenerateCoa:          models.ToPointer(false),
+        GenerateWirelessCoa:  models.ToPointer(false),
+        WirelessCoaType:      models.ToPointer(models.OrgSettingMistNacFingerprintingWirelessCoaEnum_REAUTH),
+    }
+
 }
 ```
 

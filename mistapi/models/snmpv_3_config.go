@@ -8,14 +8,21 @@ import (
 )
 
 // Snmpv3Config represents a Snmpv3Config struct.
+// SNMPv3 notification, target, USM, and VACM configuration
 type Snmpv3Config struct {
-	Notify               []Snmpv3ConfigNotifyItems       `json:"notify,omitempty"`
-	NotifyFilter         []Snmpv3ConfigNotifyFilterItem  `json:"notify_filter,omitempty"`
-	TargetAddress        []Snmpv3ConfigTargetAddressItem `json:"target_address,omitempty"`
-	TargetParameters     []Snmpv3ConfigTargetParam       `json:"target_parameters,omitempty"`
-	Usm                  []SnmpUsm                       `json:"usm,omitempty"`
-	Vacm                 *SnmpVacm                       `json:"vacm,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"_"`
+	// SNMPv3 notification definitions used for traps and informs
+	Notify []Snmpv3ConfigNotifyItems `json:"notify,omitempty"`
+	// SNMPv3 notification filter profiles
+	NotifyFilter []Snmpv3ConfigNotifyFilterItem `json:"notify_filter,omitempty"`
+	// SNMPv3 notification target addresses
+	TargetAddress []Snmpv3ConfigTargetAddressItem `json:"target_address,omitempty"`
+	// SNMPv3 target parameter profiles
+	TargetParameters []Snmpv3ConfigTargetParam `json:"target_parameters,omitempty"`
+	// SNMPv3 USM engine configurations
+	Usm []SnmpUsm `json:"usm,omitempty"`
+	// SNMPv3 View-based Access Control Model configuration
+	Vacm                 *SnmpVacm              `json:"vacm,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for Snmpv3Config,

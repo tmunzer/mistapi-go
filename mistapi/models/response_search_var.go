@@ -8,14 +8,21 @@ import (
 )
 
 // ResponseSearchVar represents a ResponseSearchVar struct.
+// Paginated response for organization variable search results
 type ResponseSearchVar struct {
-	End                  *int                    `json:"end,omitempty"`
-	Limit                *int                    `json:"limit,omitempty"`
-	Next                 *string                 `json:"next,omitempty"`
-	Results              []ResponseSearchVarItem `json:"results,omitempty"`
-	Start                *int                    `json:"start,omitempty"`
-	Total                *int                    `json:"total,omitempty"`
-	AdditionalProperties map[string]interface{}  `json:"_"`
+	// Epoch timestamp, in seconds, for the end of the variable search window
+	End *int `json:"end,omitempty"`
+	// Maximum number of variable records returned in this page
+	Limit *int `json:"limit,omitempty"`
+	// URL for retrieving the next page of variable search results
+	Next *string `json:"next,omitempty"`
+	// Organization variable records returned by search
+	Results []ResponseSearchVarItem `json:"results,omitempty"`
+	// Epoch timestamp, in seconds, for the start of the variable search window
+	Start *int `json:"start,omitempty"`
+	// Number of variable records matching the search filters across all pages
+	Total                *int                   `json:"total,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseSearchVar,

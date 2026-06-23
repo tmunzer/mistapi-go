@@ -1,6 +1,8 @@
 
 # Response Self Subscription
 
+Subscription record visible to the current account
+
 ## Structure
 
 `ResponseSelfSubscription`
@@ -9,13 +11,23 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `OrgId` | `uuid.UUID` | Required | - |
+| `OrgId` | `uuid.UUID` | Required, Read-only | Unique identifier of a Mist organization |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61"
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    responseSelfSubscription := models.ResponseSelfSubscription{
+        OrgId:                uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61"),
+    }
+
 }
 ```
 

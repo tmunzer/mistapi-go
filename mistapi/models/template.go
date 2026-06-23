@@ -11,7 +11,7 @@ import (
 )
 
 // Template represents a Template struct.
-// Template
+// WLAN template configuration applied across sites or site groups
 type Template struct {
 	// Where this template should be applied to, can be org_id, site_ids, sitegroup_ids
 	Applies *TemplateApplies `json:"applies,omitempty"`
@@ -26,8 +26,10 @@ type Template struct {
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime         *float64               `json:"modified_time,omitempty"`
-	Name                 string                 `json:"name"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Display name of the WLAN template
+	Name string `json:"name"`
+	// Unique identifier of a Mist organization
 	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

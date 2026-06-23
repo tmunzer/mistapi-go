@@ -8,7 +8,9 @@ import (
 )
 
 // WanExtraRoutes represents a WanExtraRoutes struct.
+// Additional IPv4 route for a WAN interface
 type WanExtraRoutes struct {
+	// IPv4 next-hop address for this WAN extra route
 	Via                  *string                `json:"via,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

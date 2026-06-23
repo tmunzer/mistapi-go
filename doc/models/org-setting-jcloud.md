@@ -1,6 +1,8 @@
 
 # Org Setting Jcloud
 
+JCloud integration settings for this Mist organization
+
 ## Structure
 
 `OrgSettingJcloud`
@@ -9,17 +11,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `OrgApitoken` | `*string` | Optional | JCloud Org Token |
-| `OrgApitokenName` | `*string` | Optional | JCloud Org Token Name |
-| `OrgId` | `*string` | Optional | JCloud Org ID |
+| `OrgApitoken` | `*string` | Optional | JCloud organization API token used by this Mist organization |
+| `OrgApitokenName` | `*string` | Optional | Display name for the JCloud organization API token |
+| `OrgId` | `*string` | Optional | JCloud organization identifier linked to this Mist organization |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "org_apitoken": "org_apitoken6",
-  "org_apitoken_name": "org_apitoken_name2",
-  "org_id": "org_id2"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingJcloud := models.OrgSettingJcloud{
+        OrgApitoken:          models.ToPointer("org_apitoken0"),
+        OrgApitokenName:      models.ToPointer("org_apitoken_name6"),
+        OrgId:                models.ToPointer("org_id4"),
+    }
+
 }
 ```
 

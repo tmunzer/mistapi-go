@@ -8,6 +8,7 @@ import (
 )
 
 // VcPort represents a VcPort struct.
+// Request to change the Virtual Chassis port mode on a switch
 type VcPort struct {
 	// enum: `network`, `vcp-higig`, `vcp-hgoe`
 	Mode                 *VcPortModeEnum        `json:"mode,omitempty"`

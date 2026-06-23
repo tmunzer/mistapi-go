@@ -11,12 +11,17 @@ import (
 )
 
 // MapOrgImportFileJson represents a MapOrgImportFileJson struct.
+// Options for importing map files at organization scope
 type MapOrgImportFileJson struct {
-	ImportAllFloorplans *bool      `json:"import_all_floorplans,omitempty"`
-	ImportHeight        *bool      `json:"import_height,omitempty"`
-	ImportOrientation   *bool      `json:"import_orientation,omitempty"`
-	SiteId              *uuid.UUID `json:"site_id,omitempty"`
-	// enum: `ekahau`, `ibwave`
+	// Whether to import all floorplans from the uploaded map file
+	ImportAllFloorplans *bool `json:"import_all_floorplans,omitempty"`
+	// Whether to import height metadata from the uploaded map file
+	ImportHeight *bool `json:"import_height,omitempty"`
+	// Whether to import orientation metadata from the uploaded map file
+	ImportOrientation *bool `json:"import_orientation,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Map import vendor for the uploaded file. enum: `ekahau`, `ibwave`
 	VendorName           MapOrgImportFileJsonVendorNameEnum `json:"vendor_name"`
 	AdditionalProperties map[string]interface{}             `json:"_"`
 }

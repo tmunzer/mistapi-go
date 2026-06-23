@@ -10,10 +10,11 @@ import (
 )
 
 // ZoneVertex represents a ZoneVertex struct.
+// Zone polygon vertex expressed in map pixels
 type ZoneVertex struct {
-	// X in pixel
+	// Horizontal pixel coordinate of the zone vertex
 	X float64 `json:"x"`
-	// Y in pixel
+	// Vertical pixel coordinate of the zone vertex
 	Y                    float64                `json:"y"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

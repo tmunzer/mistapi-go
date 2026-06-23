@@ -10,7 +10,9 @@ import (
 )
 
 // MacAddresses represents a MacAddresses struct.
+// Request containing one or more MAC addresses
 type MacAddresses struct {
+	// Unique MAC addresses included in a request
 	Macs                 []string               `json:"macs"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

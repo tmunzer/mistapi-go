@@ -8,8 +8,9 @@ import (
 )
 
 // HaClusterNode represents a HaClusterNode struct.
+// HA cluster node selector for device operations
 type HaClusterNode struct {
-	// only for HA. enum: `node0`, `node1`
+	// HA cluster node selector. enum: `node0`, `node1`
 	Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

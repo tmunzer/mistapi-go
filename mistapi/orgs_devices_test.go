@@ -63,7 +63,7 @@ func TestOrgsDevicesTestCountOrgDevices(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	model := "MR84"
+	model := "AP45,AP47D"
 	managed := "true"
 	mac := "5c5b53010101"
 	version := "10.0.0"
@@ -107,7 +107,7 @@ func TestOrgsDevicesTestCountOrgDevices1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	model := "MR84"
+	model := "AP45,AP47D"
 	managed := "true"
 	mac := "5c5b53010101"
 	version := "10.0.0"
@@ -154,11 +154,10 @@ func TestOrgsDevicesTestCountOrgDeviceEvents(t *testing.T) {
 	apfw := "10.0.0"
 	model := "AP43"
 	text := "Device connected"
-	timestamp := "1703003296"
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsDevices.CountOrgDeviceEvents(ctx, orgId, &distinct, &siteId, &ap, &apfw, &model, &text, &timestamp, nil, nil, nil, &duration, &limit)
+	apiResponse, err := orgsDevices.CountOrgDeviceEvents(ctx, orgId, &distinct, &siteId, &ap, &apfw, &model, &text, nil, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -187,11 +186,10 @@ func TestOrgsDevicesTestCountOrgDeviceEvents1(t *testing.T) {
 	apfw := "10.0.0"
 	model := "AP43"
 	text := "Device connected"
-	timestamp := "1703003296"
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsDevices.CountOrgDeviceEvents(ctx, orgId, &distinct, &siteId, &ap, &apfw, &model, &text, &timestamp, nil, nil, nil, &duration, &limit)
+	apiResponse, err := orgsDevices.CountOrgDeviceEvents(ctx, orgId, &distinct, &siteId, &ap, &apfw, &model, &text, nil, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -211,12 +209,11 @@ func TestOrgsDevicesTestSearchOrgDeviceEvents(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mac := "5c5b53010101"
-	model := "AP43"
+	mac := "5c5b53010101,5c5b53020202"
+	model := "EX4100-48MP,AP17"
 	deviceType := "ap"
 	text := "Device connected"
-	timestamp := "1703003296"
-
+	mType := "SW_PORT_DOWN,AP_CONFIGURED"
 	lastBy := "port_id"
 	includes := "ext_tunnel"
 	limit := int(100)
@@ -224,7 +221,7 @@ func TestOrgsDevicesTestSearchOrgDeviceEvents(t *testing.T) {
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &timestamp, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &mType, &lastBy, &includes, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -244,12 +241,11 @@ func TestOrgsDevicesTestSearchOrgDeviceEvents1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mac := "5c5b53010101"
-	model := "AP43"
+	mac := "5c5b53010101,5c5b53020202"
+	model := "EX4100-48MP,AP17"
 	deviceType := "ap"
 	text := "Device connected"
-	timestamp := "1703003296"
-
+	mType := "SW_PORT_DOWN,AP_CONFIGURED"
 	lastBy := "port_id"
 	includes := "ext_tunnel"
 	limit := int(100)
@@ -257,7 +253,7 @@ func TestOrgsDevicesTestSearchOrgDeviceEvents1(t *testing.T) {
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &timestamp, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &mType, &lastBy, &includes, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -326,9 +322,9 @@ func TestOrgsDevicesTestSearchOrgDeviceLastConfigs(t *testing.T) {
 		t.Error(errUUID)
 	}
 	deviceType := models.LastConfigDeviceTypeEnum("ap")
-	mac := "5c5b53010101"
-	name := "My AP"
-	version := "10.0.0"
+	mac := "5c5b53010101,5c5b53020202"
+	name := "name-a,name-b"
+	version := "apfw-0.15.34615-noro-0a3c,apfw-0.15.34436-noro-d810"
 	certExpiryDuration := "2d"
 
 	limit := int(100)
@@ -356,9 +352,9 @@ func TestOrgsDevicesTestSearchOrgDeviceLastConfigs1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	deviceType := models.LastConfigDeviceTypeEnum("ap")
-	mac := "5c5b53010101"
-	name := "My AP"
-	version := "10.0.0"
+	mac := "5c5b53010101,5c5b53020202"
+	name := "name-a,name-b"
+	version := "apfw-0.15.34615-noro-0a3c,apfw-0.15.34436-noro-d810"
 	certExpiryDuration := "2d"
 
 	limit := int(100)
@@ -430,27 +426,29 @@ func TestOrgsDevicesTestSearchOrgDevices(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	eth0PortSpeed := int(100)
-
-	extIp := "1.2.3.4"
-	hostname := "my-london-1"
-	ip := "10.100.10.54"
+	extIp := "1.2.3.4,1.2.3.*"
+	hostname := "my-london-1,my-london*"
+	ip := "10.100.10.54,10.100.10.*"
 	lastConfigStatus := "success"
+	lastHostname := "ap-01,ap-02"
+	lldpMgmtAddr := "192.0.2.10,192.0.2.11"
+	lldpPortId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
 
-	mac := "aabbccddeeff"
-	model := "AP43"
+	lldpSystemName := "richmond-hill-switch,Phoenix_Switch"
+	mac := "aabbccddeeff,aabbcc*"
+	model := "AP43,AP4*"
 
 	siteId := "7dae216d-7c98-a51b-e068-dd7d477b7216"
 	stats := bool(false)
 
 	mType := models.DeviceTypeDefaultApEnum("ap")
-
+	version := "0.15.34615,0.14.29967"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &eth0PortSpeed, nil, &extIp, &hostname, &ip, &lastConfigStatus, nil, nil, nil, nil, nil, &mac, &model, nil, nil, nil, nil, nil, nil, nil, nil, &siteId, &stats, nil, &mType, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &extIp, &hostname, &ip, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, nil, &lldpSystemName, &mac, &model, nil, nil, nil, nil, nil, nil, nil, nil, &siteId, &stats, nil, &mType, &version, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -471,27 +469,29 @@ func TestOrgsDevicesTestSearchOrgDevices1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	eth0PortSpeed := int(100)
-
-	extIp := "1.2.3.4"
-	hostname := "my-london-1"
-	ip := "10.100.10.54"
+	extIp := "1.2.3.4,1.2.3.*"
+	hostname := "my-london-1,my-london*"
+	ip := "10.100.10.54,10.100.10.*"
 	lastConfigStatus := "success"
+	lastHostname := "ap-01,ap-02"
+	lldpMgmtAddr := "192.0.2.10,192.0.2.11"
+	lldpPortId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
 
-	mac := "aabbccddeeff"
-	model := "AP43"
+	lldpSystemName := "richmond-hill-switch,Phoenix_Switch"
+	mac := "aabbccddeeff,aabbcc*"
+	model := "AP43,AP4*"
 
 	siteId := "7dae216d-7c98-a51b-e068-dd7d477b7216"
 	stats := bool(false)
 
 	mType := models.DeviceTypeDefaultApEnum("ap")
-
+	version := "0.15.34615,0.14.29967"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &eth0PortSpeed, nil, &extIp, &hostname, &ip, &lastConfigStatus, nil, nil, nil, nil, nil, &mac, &model, nil, nil, nil, nil, nil, nil, nil, nil, &siteId, &stats, nil, &mType, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &extIp, &hostname, &ip, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, nil, &lldpSystemName, &mac, &model, nil, nil, nil, nil, nil, nil, nil, nil, &siteId, &stats, nil, &mType, &version, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

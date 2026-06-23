@@ -27,7 +27,7 @@ func NewOrgsNACCRL(baseController baseController) *OrgsNACCRL {
 // GetOrgNacCrl takes context, orgId as parameters and
 // returns an models.ApiResponse with models.ResponseNacCrlFiles data and
 // an error if there was an issue with the request or response.
-// Returns all uploaded CRL file IDs with names for the orgI
+// List uploaded NAC CRL files for the organization, including file IDs, issuer names, upload timestamps, and download URLs.
 func (o *OrgsNACCRL) GetOrgNacCrl(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -38,19 +38,15 @@ func (o *OrgsNACCRL) GetOrgNacCrl(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.ResponseNacCrlFiles
@@ -66,7 +62,7 @@ func (o *OrgsNACCRL) GetOrgNacCrl(
 // ImportOrgNacCrl takes context, orgId, file, json as parameters and
 // returns an models.ApiResponse with models.NacCrlFile data and
 // an error if there was an issue with the request or response.
-// The Import NAC Org CRL File endpoint allows users to manually upload a Certificate Revocation List (CRL) file in either PEM or DER format. This is a multipart POST request. We support one file upload per issuer, and re-uploads for the same issuer will overwrite the existing file.
+// Upload a NAC Certificate Revocation List (CRL) file in PEM or DER format. This multipart request supports one CRL file per issuer; uploading another file for the same issuer replaces the existing file.
 func (o *OrgsNACCRL) ImportOrgNacCrl(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -79,19 +75,15 @@ func (o *OrgsNACCRL) ImportOrgNacCrl(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	formFields := []https.FormParam{}
 	if file != nil {
@@ -117,7 +109,7 @@ func (o *OrgsNACCRL) ImportOrgNacCrl(
 // DeleteOrgNacCrl takes context, orgId, naccrlId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete NAC Org CRL file is a DELETE request to delete CRL file identified by its ID (ID assigned on file upload/creation)
+// Delete an uploaded NAC CRL file identified by the file ID assigned when the CRL was uploaded.
 func (o *OrgsNACCRL) DeleteOrgNacCrl(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -133,19 +125,15 @@ func (o *OrgsNACCRL) DeleteOrgNacCrl(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()

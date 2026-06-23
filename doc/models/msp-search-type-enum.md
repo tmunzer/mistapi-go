@@ -1,7 +1,7 @@
 
 # Msp Search Type Enum
 
-enum: `orgs`
+Search result type returned by MSP organization search. enum: `orgs`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `orgs`
 | Name |
 |  --- |
 | `orgs` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mspSearchType := models.MspSearchTypeEnum_ORGS
+
+}
+```
 

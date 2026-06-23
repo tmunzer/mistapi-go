@@ -20,3 +20,18 @@ enum: `boolean`, `hex`, `int16`, `int32`, `ip`, `string`, `uint16`, `uint32`
 | `uint16` |
 | `uint32` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    dhcpdConfigOptionType := models.DhcpdConfigOptionTypeEnum_ENUMINT16
+
+}
+```
+

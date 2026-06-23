@@ -8,14 +8,19 @@ import (
 )
 
 // GatewayIpConfigProperty represents a GatewayIpConfigProperty struct.
+// Gateway network interface IP configuration
 type GatewayIpConfigProperty struct {
-	Ip       *string `json:"ip,omitempty"`
-	Ip6      *string `json:"ip6,omitempty"`
-	Netmask  *string `json:"netmask,omitempty"`
+	// Static IPv4 address for the gateway network interface when `type`==`static`
+	Ip *string `json:"ip,omitempty"`
+	// Static IPv6 address for the gateway network interface when `type6`==`static`
+	Ip6 *string `json:"ip6,omitempty"`
+	// IPv4 netmask or prefix length for the gateway network interface when `type`==`static`
+	Netmask *string `json:"netmask,omitempty"`
+	// IPv6 netmask or prefix length for the gateway network interface when `type6`==`static`
 	Netmask6 *string `json:"netmask6,omitempty"`
 	// Optional list of secondary IPs in CIDR format
 	SecondaryIps []string `json:"secondary_ips,omitempty"`
-	// enum: `dhcp`, `static`
+	// IP address assignment mode, either DHCP or static. enum: `dhcp`, `static`
 	Type *IpTypeEnum `json:"type,omitempty"`
 	// enum: `autoconf`, `dhcp`, `disabled`, `static`
 	Type6                *IpType6Enum           `json:"type6,omitempty"`

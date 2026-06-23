@@ -8,15 +8,25 @@ import (
 )
 
 // ConstApplicationDefinition represents a ConstApplicationDefinition struct.
+// Application definition recognized by Juniper Devices
 type ConstApplicationDefinition struct {
-	AppId                *bool                  `json:"app_id,omitempty"`
-	AppImageUrl          *string                `json:"app_image_url,omitempty"`
-	AppProbe             *bool                  `json:"app_probe,omitempty"`
-	Category             *string                `json:"category,omitempty"`
-	Group                *string                `json:"group,omitempty"`
-	Key                  *string                `json:"key,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
-	SignatureBased       *bool                  `json:"signature_based,omitempty"`
+	// Whether an AppID is defined for this application
+	AppId *bool `json:"app_id,omitempty"`
+	// URL of the application icon image, when one is available
+	AppImageUrl *string `json:"app_image_url,omitempty"`
+	// Whether an application probe is available for this application
+	AppProbe *bool `json:"app_probe,omitempty"`
+	// Application category key associated with this application
+	Category *string `json:"category,omitempty"`
+	// Application group display name for this application
+	Group *string `json:"group,omitempty"`
+	// Machine-readable key that identifies the application
+	Key *string `json:"key,omitempty"`
+	// Display name of the application
+	Name *string `json:"name,omitempty"`
+	// Whether this application is detected using signatures
+	SignatureBased *bool `json:"signature_based,omitempty"`
+	// Whether an SSR AppID is defined for this application
 	SsrAppId             *bool                  `json:"ssr_app_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

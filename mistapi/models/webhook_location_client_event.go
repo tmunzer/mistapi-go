@@ -9,18 +9,23 @@ import (
 )
 
 // WebhookLocationClientEvent represents a WebhookLocationClientEvent struct.
+// Connected Wi-Fi client location update with map coordinates
 type WebhookLocationClientEvent struct {
-	Mac    *string    `json:"mac,omitempty"`
-	MapId  *uuid.UUID `json:"map_id,omitempty"`
+	// Connected client MAC address used as the location identifier
+	Mac *string `json:"mac,omitempty"`
+	// Map where the connected client location was calculated
+	MapId *uuid.UUID `json:"map_id,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
-	Type      *string  `json:"type,omitempty"`
+	// Location object type for the connected client event; defaults to `wifi`
+	Type *string `json:"type,omitempty"`
 	// Optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload
 	WifiBeaconExtendedInfo []WifiBeaconExtendedInfoItems `json:"wifi_beacon_extended_info,omitempty"`
-	// x, in meter
+	// Horizontal map coordinate of the connected client, in meters
 	X *float64 `json:"x,omitempty"`
-	// y, in meter
+	// Vertical map coordinate of the connected client, in meters
 	Y                    *float64               `json:"y,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

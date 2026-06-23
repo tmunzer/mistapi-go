@@ -10,10 +10,13 @@ import (
 )
 
 // DswitchesMetricsPoeCompliance represents a DswitchesMetricsPoeCompliance struct.
+// PoE compliance metric for APs connected to discovered switches
 type DswitchesMetricsPoeCompliance struct {
-	Details              DswitchesMetricsPoeComplianceDetails `json:"details"`
-	Score                float64                              `json:"score"`
-	AdditionalProperties map[string]interface{}               `json:"_"`
+	// Detail values used by the discovered-switch PoE compliance metric
+	Details DswitchesMetricsPoeComplianceDetails `json:"details"`
+	// Compliance score for the PoE compliance metric
+	Score                float64                `json:"score"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for DswitchesMetricsPoeCompliance,

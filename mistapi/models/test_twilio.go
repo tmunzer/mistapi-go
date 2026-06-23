@@ -10,14 +10,15 @@ import (
 )
 
 // TestTwilio represents a TestTwilio struct.
+// Request body for validating Twilio SMS gateway credentials
 type TestTwilio struct {
 	// One of the numbers you have in your Twilio account
 	From string `json:"from"`
 	// Phone number of the recipient of SMS
 	To string `json:"to"`
-	// Auth Token associated with twilio account
+	// Twilio Auth Token used to send the test SMS
 	TwilioAuthToken string `json:"twilio_auth_token"`
-	// Twilio Account SID
+	// Twilio account SID used to send the test SMS
 	TwilioSid            string                 `json:"twilio_sid"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

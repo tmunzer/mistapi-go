@@ -1,6 +1,8 @@
 
 # Map Micello
 
+Micello map import configuration
+
 ## Structure
 
 `MapMicello`
@@ -10,18 +12,28 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AccountKey` | `string` | Required | Account key that has access to the map |
-| `DefaultLevelId` | `int` | Required | Micello floor/level id |
-| `MapId` | `uuid.UUID` | Required | Micello map id |
+| `DefaultLevelId` | `int` | Required | Micello default floor or level identifier |
+| `MapId` | `uuid.UUID` | Required | Micello map identifier to import |
 | `VendorName` | `string` | Required, Constant | The vendor ‘micello’. enum: `micello`<br><br>**Value**: `"micello"` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "account_key": null,
-  "default_level_id": 5,
-  "map_id": "6f4bf402-45f9-2a56-6c8b-7f83d3bc98e9",
-  "vendor_name": "micello"
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    mapMicello := models.MapMicello{
+        AccountKey:           "",
+        DefaultLevelId:       5,
+        MapId:                uuid.MustParse("6f4bf402-45f9-2a56-6c8b-7f83d3bc98e9"),
+        VendorName:           "micello",
+    }
+
 }
 ```
 

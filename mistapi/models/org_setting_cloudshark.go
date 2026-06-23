@@ -8,9 +8,11 @@ import (
 )
 
 // OrgSettingCloudshark represents a OrgSettingCloudshark struct.
+// Packet capture integration settings for CloudShark
 type OrgSettingCloudshark struct {
+	// Token used by Mist to access the CloudShark integration
 	Apitoken *string `json:"apitoken,omitempty"`
-	// If using CS Enterprise
+	// CloudShark Enterprise URL, if using a self-hosted CS Enterprise instance
 	Url                  *string                `json:"url,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,18 +8,19 @@ import (
 )
 
 // UtilsShowArp represents a UtilsShowArp struct.
+// ARP table lookup request for device command output
 type UtilsShowArp struct {
-	// Duration in sec for which refresh is enabled. Should be set only if interval is configured to non-zero value.
+	// Refresh duration in seconds; set only when `interval` is nonzero
 	Duration *int `json:"duration,omitempty"`
-	// Rate at which output will refresh
+	// Refresh interval in seconds for repeated command output
 	Interval *int `json:"interval,omitempty"`
-	// IP Address
+	// Address filter for the ARP table lookup
 	Ip *string `json:"ip,omitempty"`
-	// HA cluster node to run the command on, required for Gateways
-	Node *HaClusterNodeEnum1Enum `json:"node,omitempty"`
-	// Device Port ID
+	// HA cluster node selector. enum: `node0`, `node1`
+	Node *HaClusterNodeEnum `json:"node,omitempty"`
+	// Device port identifier filter for the ARP table lookup
 	PortId *string `json:"port_id,omitempty"`
-	// VRF Name
+	// Routing instance or VRF filter for the ARP table lookup
 	Vrf                  *string                `json:"vrf,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -94,10 +95,10 @@ func (u *UtilsShowArp) UnmarshalJSON(input []byte) error {
 
 // tempUtilsShowArp is a temporary struct used for validating the fields of UtilsShowArp.
 type tempUtilsShowArp struct {
-	Duration *int                    `json:"duration,omitempty"`
-	Interval *int                    `json:"interval,omitempty"`
-	Ip       *string                 `json:"ip,omitempty"`
-	Node     *HaClusterNodeEnum1Enum `json:"node,omitempty"`
-	PortId   *string                 `json:"port_id,omitempty"`
-	Vrf      *string                 `json:"vrf,omitempty"`
+	Duration *int               `json:"duration,omitempty"`
+	Interval *int               `json:"interval,omitempty"`
+	Ip       *string            `json:"ip,omitempty"`
+	Node     *HaClusterNodeEnum `json:"node,omitempty"`
+	PortId   *string            `json:"port_id,omitempty"`
+	Vrf      *string            `json:"vrf,omitempty"`
 }

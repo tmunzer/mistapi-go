@@ -11,6 +11,29 @@ import (
 	"testing"
 )
 
+// TestSitesMapsAutoPlacementTestAcceptSiteApLocalizationData tests the behavior of the SitesMapsAutoPlacement
+func TestSitesMapsAutoPlacementTestAcceptSiteApLocalizationData(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	mapId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	var body models.AutoplacementLocalizationSelector
+	errBody := json.Unmarshal([]byte(`{"for":"placement","macs":["5c5b35000001"]}`), &body)
+	if errBody != nil {
+		t.Errorf("Cannot parse the model object.")
+	}
+	resp, err := sitesMapsAutoPlacement.AcceptSiteApLocalizationData(ctx, siteId, mapId, &body)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+}
+
 // TestSitesMapsAutoPlacementTestDeleteSiteApAutoOrientation tests the behavior of the SitesMapsAutoPlacement
 func TestSitesMapsAutoPlacementTestDeleteSiteApAutoOrientation(t *testing.T) {
 	ctx := context.Background()
@@ -273,8 +296,12 @@ func TestSitesMapsAutoPlacementTestClearSiteApAutoplacement(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-
-	resp, err := sitesMapsAutoPlacement.ClearSiteApAutoplacement(ctx, siteId, mapId, nil)
+	var body models.AutoplacementLocalizationSelector
+	errBody := json.Unmarshal([]byte(`{"for":"placement","macs":["5c5b35000001"]}`), &body)
+	if errBody != nil {
+		t.Errorf("Cannot parse the model object.")
+	}
+	resp, err := sitesMapsAutoPlacement.ClearSiteApAutoplacement(ctx, siteId, mapId, &body)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

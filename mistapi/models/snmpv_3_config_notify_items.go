@@ -8,10 +8,13 @@ import (
 )
 
 // Snmpv3ConfigNotifyItems represents a Snmpv3ConfigNotifyItems struct.
+// SNMPv3 notification definition for traps or informs
 type Snmpv3ConfigNotifyItems struct {
+	// Identifier for this SNMPv3 notification definition
 	Name *string `json:"name,omitempty"`
-	Tag  *string `json:"tag,omitempty"`
-	// enum: `inform`, `trap`
+	// Notification tag used to select target addresses
+	Tag *string `json:"tag,omitempty"`
+	// Delivery mode for this SNMPv3 notification, such as trap or inform. enum: `inform`, `trap`
 	Type                 *Snmpv3ConfigNotifyTypeEnum `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}      `json:"_"`
 }

@@ -9,7 +9,7 @@ import (
 )
 
 // TuntermPortConfigUpstreamPortVlanId represents a TuntermPortConfigUpstreamPortVlanId struct.
-// Native VLAN id for upstream ports
+// Native VLAN ID for upstream ports
 type TuntermPortConfigUpstreamPortVlanId struct {
 	value    any
 	isString bool
@@ -75,7 +75,7 @@ func (t *TuntermPortConfigUpstreamPortVlanId) AsNumber() (
 }
 
 // internalTuntermPortConfigUpstreamPortVlanId represents a tuntermPortConfigUpstreamPortVlanId struct.
-// Native VLAN id for upstream ports
+// Native VLAN ID for upstream ports
 type internalTuntermPortConfigUpstreamPortVlanId struct{}
 
 var TuntermPortConfigUpstreamPortVlanIdContainer internalTuntermPortConfigUpstreamPortVlanId

@@ -27,7 +27,7 @@ func NewOrgsRFTemplates(baseController baseController) *OrgsRFTemplates {
 // ListOrgRfTemplates takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.RfTemplate data and
 // an error if there was an issue with the request or response.
-// Get List of Org RF Template
+// List organization RF templates used by RRM to apply radio settings across sites.
 func (o *OrgsRFTemplates) ListOrgRfTemplates(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -40,19 +40,15 @@ func (o *OrgsRFTemplates) ListOrgRfTemplates(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if limit != nil {
 		req.QueryParam("limit", *limit)
@@ -74,7 +70,10 @@ func (o *OrgsRFTemplates) ListOrgRfTemplates(
 // CreateOrgRfTemplate takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.RfTemplate data and
 // an error if there was an issue with the request or response.
-// Create Org RF Template
+// Create an organization RF template with 2.4, 5, and 6 GHz radio
+// settings, country code, scanning behavior, antenna gain, and model-specific
+// overrides.
+// To assign a RF template to a site, use the [Update Site]($e/Sites/updateSiteInfo) endpoint and specify the RF template ID in the `rftemplate_id` field of the request body.
 func (o *OrgsRFTemplates) CreateOrgRfTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -86,19 +85,15 @@ func (o *OrgsRFTemplates) CreateOrgRfTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -118,7 +113,7 @@ func (o *OrgsRFTemplates) CreateOrgRfTemplate(
 // DeleteOrgRfTemplate takes context, orgId, rftemplateId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete Org RF Template
+// Delete an organization RF template by template ID so it can no longer be applied to sites.
 func (o *OrgsRFTemplates) DeleteOrgRfTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -130,19 +125,15 @@ func (o *OrgsRFTemplates) DeleteOrgRfTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -155,7 +146,7 @@ func (o *OrgsRFTemplates) DeleteOrgRfTemplate(
 // GetOrgRfTemplate takes context, orgId, rftemplateId as parameters and
 // returns an models.ApiResponse with models.RfTemplate data and
 // an error if there was an issue with the request or response.
-// Get Org RF Template Details
+// Retrieve details for a specific organization RF template, including radio settings, country code, scanning behavior, antenna gain, and model-specific overrides.
 func (o *OrgsRFTemplates) GetOrgRfTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -167,19 +158,15 @@ func (o *OrgsRFTemplates) GetOrgRfTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.RfTemplate
@@ -195,7 +182,7 @@ func (o *OrgsRFTemplates) GetOrgRfTemplate(
 // UpdateOrgRfTemplate takes context, orgId, rftemplateId, body as parameters and
 // returns an models.ApiResponse with models.RfTemplate data and
 // an error if there was an issue with the request or response.
-// Update Org RF Template
+// Update an organization RF template, including radio settings, country code, scanning behavior, antenna gain, and model-specific overrides.
 func (o *OrgsRFTemplates) UpdateOrgRfTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -208,19 +195,15 @@ func (o *OrgsRFTemplates) UpdateOrgRfTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

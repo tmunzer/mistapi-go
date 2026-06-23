@@ -1,6 +1,8 @@
 
 # Sle Summary Impact
 
+AP and user impact counts for an SLE summary window
+
 ## Structure
 
 `SleSummaryImpact`
@@ -9,19 +11,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `NumAps` | `float64` | Required | - |
-| `NumUsers` | `float64` | Required | - |
-| `TotalAps` | `float64` | Required | - |
-| `TotalUsers` | `float64` | Required | - |
+| `NumAps` | `float64` | Required | Number of APs affected by degraded SLE experience |
+| `NumUsers` | `float64` | Required | Number of users affected by degraded SLE experience |
+| `TotalAps` | `float64` | Required | Total number of APs considered in the summary window |
+| `TotalUsers` | `float64` | Required | Total number of users considered in the summary window |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "num_aps": 9.92,
-  "num_users": 245.16,
-  "total_aps": 228.44,
-  "total_users": 19.54
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    sleSummaryImpact := models.SleSummaryImpact{
+        NumAps:               float64(199.82),
+        NumUsers:             float64(55.26),
+        TotalAps:             float64(38.54),
+        TotalUsers:           float64(209.44),
+    }
+
 }
 ```
 

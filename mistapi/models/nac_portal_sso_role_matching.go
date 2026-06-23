@@ -8,8 +8,11 @@ import (
 )
 
 // NacPortalSsoRoleMatching represents a NacPortalSsoRoleMatching struct.
+// Mapping rule from an SSO role claim value to a NAC portal role
 type NacPortalSsoRoleMatching struct {
-	Assigned             *string                `json:"assigned,omitempty"`
+	// NAC portal role assigned when the SSO role value matches
+	Assigned *string `json:"assigned,omitempty"`
+	// SSO role value to match from the SAML assertion
 	Match                *string                `json:"match,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

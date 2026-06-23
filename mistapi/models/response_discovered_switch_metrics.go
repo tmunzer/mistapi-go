@@ -10,14 +10,21 @@ import (
 )
 
 // ResponseDiscoveredSwitchMetrics represents a ResponseDiscoveredSwitchMetrics struct.
+// Paginated response for discovered switch metric search results
 type ResponseDiscoveredSwitchMetrics struct {
-	End                  float64                  `json:"end"`
-	Limit                int                      `json:"limit"`
-	Next                 *string                  `json:"next,omitempty"`
-	Results              []DiscoveredSwitchMetric `json:"results"`
-	Start                float64                  `json:"start"`
-	Total                int                      `json:"total"`
-	AdditionalProperties map[string]interface{}   `json:"_"`
+	// Epoch timestamp, in seconds, for the end of the metric search window
+	End float64 `json:"end"`
+	// Maximum number of discovered switch metric records returned in this page
+	Limit int `json:"limit"`
+	// Pagination cursor or URL for retrieving the next page of discovered switch metric records
+	Next *string `json:"next,omitempty"`
+	// Discovered switch metric records returned by a search response
+	Results []DiscoveredSwitchMetric `json:"results"`
+	// Epoch timestamp, in seconds, for the start of the metric search window
+	Start float64 `json:"start"`
+	// Number of discovered switch metric records matching the search filters across all pages
+	Total                int                    `json:"total"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseDiscoveredSwitchMetrics,

@@ -10,12 +10,19 @@ import (
 )
 
 // VpnPeerStatSearch represents a VpnPeerStatSearch struct.
+// Search response containing VPN peer path statistics
 type VpnPeerStatSearch struct {
-	End                  float64                `json:"end"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []VpnPeerStat          `json:"results"`
-	Start                float64                `json:"start"`
+	// Search window end timestamp, in epoch seconds
+	End float64 `json:"end"`
+	// Maximum number of VPN peer statistics returned
+	Limit int `json:"limit"`
+	// URL for the next page of VPN peer statistics, when more results are available
+	Next *string `json:"next,omitempty"`
+	// VPN peer statistic rows returned by a search response
+	Results []VpnPeerStat `json:"results"`
+	// Search window start timestamp, in epoch seconds
+	Start float64 `json:"start"`
+	// Number of VPN peer statistics matching the search
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

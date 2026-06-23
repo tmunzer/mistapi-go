@@ -8,7 +8,9 @@ import (
 )
 
 // OrgSettingSwitch represents a OrgSettingSwitch struct.
+// Configuration defaults for switches in this organization
 type OrgSettingSwitch struct {
+	// Switch firmware auto-upgrade settings
 	AutoUpgrade          *SwitchAutoUpgrade     `json:"auto_upgrade,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

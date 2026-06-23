@@ -9,34 +9,37 @@ import (
 )
 
 // WebhookNacAccountingEvent represents a WebhookNacAccountingEvent struct.
+// NAC accounting event for a client session with traffic counters
 type WebhookNacAccountingEvent struct {
 	// MAC address of the AP the client roamed or disconnected from
 	Ap *string `json:"ap,omitempty"`
 	// enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `eap-peap`
 	AuthType *NacAuthTypeEnum `json:"auth_type,omitempty"`
-	// MAC physical address of the access point
+	// Wireless BSSID used for the NAC accounting session
 	Bssid *string `json:"bssid,omitempty"`
-	// IP Address of client
+	// Client IP address observed for the NAC accounting session
 	ClientIp *string `json:"client_ip,omitempty"`
 	// Client type E.g. "wired", "wireless", "vty"
 	ClientType *string `json:"client_type,omitempty"`
-	// Client's MAC Address
+	// Client MAC address for the NAC accounting session
 	Mac *string `json:"mac,omitempty"`
 	// NAS Device vendor name E.g. "Juniper", "Cisco"
-	NasVendor *string    `json:"nas_vendor,omitempty"`
-	OrgId     *uuid.UUID `json:"org_id,omitempty"`
+	NasVendor *string `json:"nas_vendor,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Amount of packets received since connection
 	RxPkts Optional[int64] `json:"rx_pkts"`
-	SiteId *uuid.UUID      `json:"site_id,omitempty"`
-	// ESSID
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Wireless SSID used for the NAC accounting session
 	Ssid *string `json:"ssid,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
 	// Amount of packets sent since connection
 	TxPkts Optional[int64] `json:"tx_pkts"`
-	// Type of event. E.g. "ACCOUNTING_START", "ACCOUNTING_UPDATE", "ACCOUNTING_STOP"
+	// NAC accounting event type, such as `ACCOUNTING_START`, `ACCOUNTING_UPDATE`, or `ACCOUNTING_STOP`
 	Type *string `json:"type,omitempty"`
-	// Username authenticated with
+	// Client-presented username for NAC authentication
 	Username             *string                `json:"username,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

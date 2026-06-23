@@ -8,22 +8,23 @@ import (
 )
 
 // RrmBand represents a RrmBand struct.
+// RRM proposed and current radio settings for an AP band
 type RrmBand struct {
 	// channel width for the band.enum: `0`(disabled, response only), `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
 	Bandwidth *Dot11BandwidthEnum `json:"bandwidth,omitempty"`
-	// proposed channel
+	// Proposed RF channel for the radio band
 	Channel *int `json:"channel,omitempty"`
 	// channel width for the band.enum: `0`(disabled, response only), `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
 	CurrBandwidth *Dot11BandwidthEnum `json:"curr_bandwidth,omitempty"`
-	// Current channel
+	// Current RF channel for the radio band
 	CurrChannel *int `json:"curr_channel,omitempty"`
-	// Current tx power
+	// Current transmit power for the radio band
 	CurrPower *int `json:"curr_power,omitempty"`
-	// Current radio band
+	// Current radio usage band for the AP radio
 	CurrUsage *string `json:"curr_usage,omitempty"`
-	// proposed tx power
+	// Proposed transmit power for the radio band
 	Power *int `json:"power,omitempty"`
-	// proposed radio band
+	// Proposed radio usage band for the AP radio
 	Usage                *string                `json:"usage,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

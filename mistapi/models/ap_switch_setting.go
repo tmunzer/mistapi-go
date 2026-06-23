@@ -8,11 +8,13 @@ import (
 )
 
 // ApSwitchSetting represents a ApSwitchSetting struct.
+// VLAN settings for one deprecated AP switch-config port
 type ApSwitchSetting struct {
+	// Whether VLAN tagging is enabled for this AP switch-config port
 	EnableVlan *bool `json:"enable_vlan,omitempty"`
-	// Native VLAN id, optional
+	// Native VLAN ID, optional
 	PortVlanId *ApSwitchSettingPortVlanId `json:"port_vlan_id,omitempty"`
-	// List of VLAN ids
+	// List of VLAN IDs
 	VlanIds              []int                  `json:"vlan_ids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

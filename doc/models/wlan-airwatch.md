@@ -1,7 +1,7 @@
 
 # Wlan Airwatch
 
-Airwatch wlan settings
+AirWatch integration settings for the WLAN
 
 ## Structure
 
@@ -11,21 +11,30 @@ Airwatch wlan settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ApiKey` | `*string` | Optional | API Key |
-| `ConsoleUrl` | `*string` | Optional | Console URL |
-| `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `Password` | `*string` | Optional | Password |
-| `Username` | `*string` | Optional | Username |
+| `ApiKey` | `*string` | Optional | API key used to authenticate to the AirWatch service |
+| `ConsoleUrl` | `*string` | Optional | Base console URL of the AirWatch deployment |
+| `Enabled` | `*bool` | Optional | Whether AirWatch integration is enabled for the WLAN<br><br>**Default**: `false` |
+| `Password` | `*string` | Optional | AirWatch integration account password for this WLAN |
+| `Username` | `*string` | Optional | AirWatch integration account username for this WLAN |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "api_key": "aHhlbGxvYXNkZmFzZGZhc2Rmc2RmCg==\"",
-  "console_url": "https://hs1.airwatchportals.com",
-  "enabled": false,
-  "password": "user1",
-  "username": "test123"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanAirwatch := models.WlanAirwatch{
+        ApiKey:               models.ToPointer("aHhlbGxvYXNkZmFzZGZhc2Rmc2RmCg==\""),
+        ConsoleUrl:           models.ToPointer("https://hs1.airwatchportals.com"),
+        Enabled:              models.ToPointer(false),
+        Password:             models.ToPointer("user1"),
+        Username:             models.ToPointer("test123"),
+    }
+
 }
 ```
 

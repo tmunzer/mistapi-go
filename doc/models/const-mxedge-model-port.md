@@ -1,6 +1,8 @@
 
 # Const Mxedge Model Port
 
+Mist Edge model port metadata
+
 ## Structure
 
 `ConstMxedgeModelPort`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Display` | `*string` | Optional | - |
-| `Speed` | `*int` | Optional | - |
+| `Display` | `*string` | Optional | User-facing interface name for this Mist Edge port |
+| `Speed` | `*int` | Optional | Port speed for the Mist Edge interface, in Mbps |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "display": "xe0",
-  "speed": 10000
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constMxedgeModelPort := models.ConstMxedgeModelPort{
+        Display:              models.ToPointer("xe0"),
+        Speed:                models.ToPointer(10000),
+    }
+
 }
 ```
 

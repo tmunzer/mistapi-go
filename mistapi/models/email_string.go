@@ -10,7 +10,9 @@ import (
 )
 
 // EmailString represents a EmailString struct.
+// Request body containing an email address
 type EmailString struct {
+	// Request email address provided in the payload
 	Email                string                 `json:"email"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

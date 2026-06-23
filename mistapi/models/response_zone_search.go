@@ -8,14 +8,21 @@ import (
 )
 
 // ResponseZoneSearch represents a ResponseZoneSearch struct.
+// Paginated response for site zone visit search results
 type ResponseZoneSearch struct {
-	End                  *float64                 `json:"end,omitempty"`
-	Limit                *int                     `json:"limit,omitempty"`
-	Next                 *string                  `json:"next,omitempty"`
-	Results              []ResponseZoneSearchItem `json:"results,omitempty"`
-	Start                *float64                 `json:"start,omitempty"`
-	Total                *int                     `json:"total,omitempty"`
-	AdditionalProperties map[string]interface{}   `json:"_"`
+	// Epoch timestamp, in seconds, for the end of the zone visit search window
+	End *float64 `json:"end,omitempty"`
+	// Maximum number of zone visit records returned in this page
+	Limit *int `json:"limit,omitempty"`
+	// URL for retrieving the next page of zone visit search results
+	Next *string `json:"next,omitempty"`
+	// Zone visit records returned by search
+	Results []ResponseZoneSearchItem `json:"results,omitempty"`
+	// Epoch timestamp, in seconds, for the start of the zone visit search window
+	Start *float64 `json:"start,omitempty"`
+	// Number of zone visit records matching the search filters across all pages
+	Total                *int                   `json:"total,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseZoneSearch,

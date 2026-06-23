@@ -12,8 +12,9 @@ import (
 // WebhookDeviceEvents represents a WebhookDeviceEvents struct.
 // Sample of the `device-events` webhook payload.
 type WebhookDeviceEvents struct {
+	// List of device event payloads
 	Events []DeviceEvent `json:"events"`
-	// enum: `device-events`
+	// Webhook topic name for device event deliveries. enum: `device-events`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

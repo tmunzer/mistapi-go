@@ -8,13 +8,13 @@ import (
 )
 
 // TuntermPortConfig represents a TuntermPortConfig struct.
-// Ethernet port configurations
+// Ethernet port configuration for tunnel termination interfaces
 type TuntermPortConfig struct {
 	// List of ports to be used for downstream (to AP) purpose
 	DownstreamPorts []string `json:"downstream_ports,omitempty"`
 	// Whether to separate upstream / downstream ports. default is false where all ports will be used.
 	SeparateUpstreamDownstream *bool `json:"separate_upstream_downstream,omitempty"`
-	// Native VLAN id for upstream ports
+	// Native VLAN ID for upstream ports
 	UpstreamPortVlanId *TuntermPortConfigUpstreamPortVlanId `json:"upstream_port_vlan_id,omitempty"`
 	// List of ports to be used for upstream purpose (to LAN)
 	UpstreamPorts        []string               `json:"upstream_ports,omitempty"`

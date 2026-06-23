@@ -10,8 +10,11 @@ import (
 )
 
 // DevicesGbpTag represents a DevicesGbpTag struct.
+// Request body for assigning a GBP tag to multiple devices
 type DevicesGbpTag struct {
-	GbpTag               int                    `json:"gbp_tag"`
+	// Group-Based Policy tag value to apply to the devices
+	GbpTag int `json:"gbp_tag"`
+	// Unique MAC addresses included in a request
 	Macs                 []string               `json:"macs"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

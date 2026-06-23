@@ -9,27 +9,43 @@ import (
 )
 
 // MxedgeEvent represents a MxedgeEvent struct.
+// Event reported for a Mist Edge appliance or service
 type MxedgeEvent struct {
 	// Unique ID of the object instance in the Mist Organization
-	AuditId   *uuid.UUID       `json:"audit_id,omitempty"`
+	AuditId *uuid.UUID `json:"audit_id,omitempty"`
+	// Mist Edge component that reported the event, such as a power supply or fan
 	Component Optional[string] `json:"component"`
-	// Device id
-	DeviceId     Optional[uuid.UUID] `json:"device_id"`
-	DeviceType   *string             `json:"device_type,omitempty"`
-	FromVersion  *string             `json:"from_version,omitempty"`
-	Mac          *string             `json:"mac,omitempty"`
-	MxclusterId  *string             `json:"mxcluster_id,omitempty"`
-	MxedgeId     *string             `json:"mxedge_id,omitempty"`
-	MxedgeName   *string             `json:"mxedge_name,omitempty"`
-	OrgId        *uuid.UUID          `json:"org_id,omitempty"`
-	Package      *string             `json:"package,omitempty"`
-	Service      *string             `json:"service,omitempty"`
-	Severity     *EventSeverityEnum  `json:"severity,omitempty"`
+	// Identifier of the device associated with the event, when available
+	DeviceId Optional[uuid.UUID] `json:"device_id"`
+	// Device type associated with the event
+	DeviceType *string `json:"device_type,omitempty"`
+	// Service version before an upgrade-related event
+	FromVersion *string `json:"from_version,omitempty"`
+	// Mist Edge MAC address associated with the event
+	Mac *string `json:"mac,omitempty"`
+	// Mist Edge cluster identifier associated with the event
+	MxclusterId *string `json:"mxcluster_id,omitempty"`
+	// Mist Edge identifier associated with the event
+	MxedgeId *string `json:"mxedge_id,omitempty"`
+	// Display name of the Mist Edge associated with the event
+	MxedgeName *string `json:"mxedge_name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Software package associated with the event
+	Package *string `json:"package,omitempty"`
+	// Mist Edge service associated with the event
+	Service *string `json:"service,omitempty"`
+	// Severity level for an event. enum: `normal`, `critical`, `high`, `warning`
+	Severity *EventSeverityEnum `json:"severity,omitempty"`
+	// System resource details for a Mist Edge event
 	SysInfoUsage *MxedgeEventSysInfo `json:"sys_info.usage,omitempty"`
-	Text         *string             `json:"text,omitempty"`
-	// Epoch (seconds)
-	Timestamp            *float64               `json:"timestamp,omitempty"`
-	ToVersion            *string                `json:"to_version,omitempty"`
+	// Human-readable message describing the Mist Edge event
+	Text *string `json:"text,omitempty"`
+	// Epoch timestamp, in seconds
+	Timestamp *float64 `json:"timestamp,omitempty"`
+	// Service version after an upgrade-related event
+	ToVersion *string `json:"to_version,omitempty"`
+	// Mist Edge event type code
 	Type                 *string                `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

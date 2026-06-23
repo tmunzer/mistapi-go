@@ -8,13 +8,21 @@ import (
 )
 
 // SleImpactedGatewaysGateway represents a SleImpactedGatewaysGateway struct.
+// SLE impact row for a gateway
 type SleImpactedGatewaysGateway struct {
-	Degraded             *float64               `json:"degraded,omitempty"`
-	Duration             *int                   `json:"duration,omitempty"`
-	GatewayMac           *string                `json:"gateway_mac,omitempty"`
-	GatewayModel         *string                `json:"gateway_model,omitempty"`
-	GatewayVersion       *string                `json:"gateway_version,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
+	// Portion of the SLE total that was degraded for this gateway
+	Degraded *float64 `json:"degraded,omitempty"`
+	// Observation time represented by this gateway impact row
+	Duration *int `json:"duration,omitempty"`
+	// MAC address of the gateway represented by this impacted row
+	GatewayMac *string `json:"gateway_mac,omitempty"`
+	// Model of the gateway represented by this impacted row
+	GatewayModel *string `json:"gateway_model,omitempty"`
+	// Firmware version of the gateway represented by this impacted row
+	GatewayVersion *string `json:"gateway_version,omitempty"`
+	// Display name for the gateway impact row
+	Name *string `json:"name,omitempty"`
+	// Overall SLE total measured for this gateway impact row
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

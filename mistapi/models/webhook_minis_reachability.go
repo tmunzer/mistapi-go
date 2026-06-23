@@ -12,8 +12,9 @@ import (
 // WebhookMinisReachability represents a WebhookMinisReachability struct.
 // Sample of the `minis-reachability` webhook payload.
 type WebhookMinisReachability struct {
+	// Marvis Minis reachability test events included in a webhook delivery
 	Events []WebhookMinisReachabilityEvent `json:"events"`
-	// enum: `minis-reachability`
+	// Webhook topic name for Minis reachability test deliveries. enum: `minis-reachability`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

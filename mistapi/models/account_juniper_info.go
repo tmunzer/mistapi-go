@@ -8,7 +8,9 @@ import (
 )
 
 // AccountJuniperInfo represents a AccountJuniperInfo struct.
+// Linked Juniper account information returned by the integration
 type AccountJuniperInfo struct {
+	// Linked Juniper accounts available to the organization
 	Accounts             []JuniperAccount       `json:"accounts,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

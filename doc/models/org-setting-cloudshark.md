@@ -1,6 +1,8 @@
 
 # Org Setting Cloudshark
 
+Packet capture integration settings for CloudShark
+
 ## Structure
 
 `OrgSettingCloudshark`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Apitoken` | `*string` | Optional | - |
-| `Url` | `*string` | Optional | If using CS Enterprise |
+| `Apitoken` | `*string` | Optional | Token used by Mist to access the CloudShark integration |
+| `Url` | `*string` | Optional | CloudShark Enterprise URL, if using a self-hosted CS Enterprise instance |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "apitoken": "accbd6f10c6d05c3",
-  "url": "https://cloudshark.hosted.domain"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingCloudshark := models.OrgSettingCloudshark{
+        Apitoken:             models.ToPointer("accbd6f10c6d05c3"),
+        Url:                  models.ToPointer("https://cloudshark.hosted.domain"),
+    }
+
 }
 ```
 

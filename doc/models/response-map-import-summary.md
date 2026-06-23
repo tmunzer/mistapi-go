@@ -1,6 +1,8 @@
 
 # Response Map Import Summary
 
+Counts summarizing assignments made during the map import
+
 ## Structure
 
 `ResponseMapImportSummary`
@@ -9,17 +11,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `NumApAssigned` | `int` | Required | - |
-| `NumInvAssigned` | `int` | Required | - |
-| `NumMapAssigned` | `int` | Required | - |
+| `NumApAssigned` | `int` | Required | Number of AP placements assigned during the map import |
+| `NumInvAssigned` | `int` | Required | Number of inventory records assigned to the site during the map import |
+| `NumMapAssigned` | `int` | Required | Number of map floorplans assigned during the map import |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "num_ap_assigned": 120,
-  "num_inv_assigned": 228,
-  "num_map_assigned": 218
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseMapImportSummary := models.ResponseMapImportSummary{
+        NumApAssigned:        100,
+        NumInvAssigned:       208,
+        NumMapAssigned:       198,
+    }
+
 }
 ```
 

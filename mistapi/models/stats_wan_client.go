@@ -9,20 +9,33 @@ import (
 )
 
 // StatsWanClient represents a StatsWanClient struct.
+// WAN client record returned by WAN client search
 type StatsWanClient struct {
-	DhcpExpireTime *float64   `json:"dhcp_expire_time,omitempty"`
-	DhcpStartTime  *float64   `json:"dhcp_start_time,omitempty"`
-	Hostname       []string   `json:"hostname,omitempty"`
-	Ip             []string   `json:"ip,omitempty"`
-	IpSrc          *string    `json:"ip_src,omitempty"`
-	LastHostname   *string    `json:"last_hostname,omitempty"`
-	LastIp         *string    `json:"last_ip,omitempty"`
-	Mfg            *string    `json:"mfg,omitempty"`
-	Network        *string    `json:"network,omitempty"`
-	OrgId          *uuid.UUID `json:"org_id,omitempty"`
-	SiteId         *uuid.UUID `json:"site_id,omitempty"`
-	// Epoch (seconds)
-	Timestamp            *float64               `json:"timestamp,omitempty"`
+	// DHCP lease expiration time for the WAN client, in epoch seconds
+	DhcpExpireTime *float64 `json:"dhcp_expire_time,omitempty"`
+	// DHCP lease start time for the WAN client, in epoch seconds
+	DhcpStartTime *float64 `json:"dhcp_start_time,omitempty"`
+	// Hostnames observed for a WAN client
+	Hostname []string `json:"hostname,omitempty"`
+	// IP addresses observed for a WAN client
+	Ip []string `json:"ip,omitempty"`
+	// Source used to learn the WAN client IP address, such as dhcp
+	IpSrc *string `json:"ip_src,omitempty"`
+	// Most recent hostname observed for the WAN client
+	LastHostname *string `json:"last_hostname,omitempty"`
+	// Most recent IP address observed for the WAN client
+	LastIp *string `json:"last_ip,omitempty"`
+	// Manufacturer inferred for the WAN client
+	Mfg *string `json:"mfg,omitempty"`
+	// Mist network name associated with the WAN client
+	Network *string `json:"network,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Epoch timestamp, in seconds
+	Timestamp *float64 `json:"timestamp,omitempty"`
+	// WAN client identifier associated with the record
 	Wcid                 *string                `json:"wcid,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

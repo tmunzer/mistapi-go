@@ -16,3 +16,18 @@ enum: `mgmt_addr`, `model`, `system_name`, `version`
 | `system_name` |
 | `version` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteDiscoveredSwitchesCountDistinct := models.SiteDiscoveredSwitchesCountDistinctEnum_SYSTEMNAME
+
+}
+```
+

@@ -8,8 +8,11 @@ import (
 )
 
 // UsernamePassword represents a UsernamePassword struct.
+// Credential payload used to validate an identity provider login
 type UsernamePassword struct {
-	Password             *string                `json:"password,omitempty"`
+	// Credential password used for the validation attempt
+	Password *string `json:"password,omitempty"`
+	// Credential username used for the validation attempt
 	Username             *string                `json:"username,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

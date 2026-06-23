@@ -15,7 +15,6 @@ type Configuration struct {
 	environment          Environment
 	httpConfiguration    HttpConfiguration
 	apiTokenCredentials  ApiTokenCredentials
-	basicAuthCredentials BasicAuthCredentials
 	csrfTokenCredentials CsrfTokenCredentials
 	loggerConfiguration  LoggerConfiguration
 }
@@ -66,13 +65,6 @@ func WithApiTokenCredentials(apiTokenCredentials ApiTokenCredentials) Configurat
 	}
 }
 
-// WithBasicAuthCredentials is an option that sets the BasicAuthCredentials in the Configuration.
-func WithBasicAuthCredentials(basicAuthCredentials BasicAuthCredentials) ConfigurationOptions {
-	return func(c *Configuration) {
-		c.basicAuthCredentials = basicAuthCredentials
-	}
-}
-
 // WithCsrfTokenCredentials is an option that sets the CsrfTokenCredentials in the Configuration.
 func WithCsrfTokenCredentials(csrfTokenCredentials CsrfTokenCredentials) ConfigurationOptions {
 	return func(c *Configuration) {
@@ -107,11 +99,6 @@ func (c Configuration) ApiTokenCredentials() ApiTokenCredentials {
 	return c.apiTokenCredentials
 }
 
-// BasicAuthCredentials returns the basicAuthCredentials from the Configuration.
-func (c Configuration) BasicAuthCredentials() BasicAuthCredentials {
-	return c.basicAuthCredentials
-}
-
 // CsrfTokenCredentials returns the csrfTokenCredentials from the Configuration.
 func (c Configuration) CsrfTokenCredentials() CsrfTokenCredentials {
 	return c.csrfTokenCredentials
@@ -133,14 +120,6 @@ func CreateConfigurationFromEnvironment(options ...ConfigurationOptions) Configu
 	authorization := os.Getenv("MISTAPI_AUTHORIZATION")
 	if authorization != "" {
 		config.apiTokenCredentials.authorization = authorization
-	}
-	username := os.Getenv("MISTAPI_USERNAME")
-	if username != "" {
-		config.basicAuthCredentials.username = username
-	}
-	password := os.Getenv("MISTAPI_PASSWORD")
-	if password != "" {
-		config.basicAuthCredentials.password = password
 	}
 	xCSRFToken := os.Getenv("MISTAPI_X_CSRF_TOKEN")
 	if xCSRFToken != "" {

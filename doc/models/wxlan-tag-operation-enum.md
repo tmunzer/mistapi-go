@@ -14,3 +14,18 @@ required if `type`==`match`, type of tag (inclusive/exclusive). enum: `in`, `not
 | `in` |
 | `not_in` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wxlanTagOperation := models.WxlanTagOperationEnum_IN
+
+}
+```
+

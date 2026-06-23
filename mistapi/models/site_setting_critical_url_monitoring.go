@@ -8,9 +8,11 @@ import (
 )
 
 // SiteSettingCriticalUrlMonitoring represents a SiteSettingCriticalUrlMonitoring struct.
-// You can define some URLs that's critical to site operations the latency will be captured and considered for site health
+// Critical URLs whose latency is measured and included in site health
 type SiteSettingCriticalUrlMonitoring struct {
-	Enabled              *bool                                     `json:"enabled,omitempty"`
+	// Whether critical URL monitoring is enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// Critical URL monitor definitions for site health
 	Monitors             []SiteSettingCriticalUrlMonitoringMonitor `json:"monitors,omitempty"`
 	AdditionalProperties map[string]interface{}                    `json:"_"`
 }

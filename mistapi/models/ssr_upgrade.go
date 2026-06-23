@@ -10,6 +10,7 @@ import (
 )
 
 // SsrUpgrade represents a SsrUpgrade struct.
+// Request to upgrade a single SSR device
 type SsrUpgrade struct {
 	// upgrade channel to follow. enum: `alpha`, `beta`, `stable`
 	Channel *SsrUpgradeChannelEnum `json:"channel,omitempty"`

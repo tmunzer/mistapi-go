@@ -8,6 +8,7 @@ import (
 )
 
 // RemoteSyslogContent represents a RemoteSyslogContent struct.
+// Syslog message content selector for remote logging
 type RemoteSyslogContent struct {
 	// enum: `any`, `authorization`, `change-log`, `config`, `conflict-log`, `daemon`, `dfc`, `external`, `firewall`, `ftp`, `interactive-commands`, `kernel`, `ntp`, `pfe`, `security`, `user`
 	Facility *RemoteSyslogFacilityEnum `json:"facility,omitempty"`

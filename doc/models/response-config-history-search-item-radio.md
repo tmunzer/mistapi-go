@@ -1,6 +1,8 @@
 
 # Response Config History Search Item Radio
 
+Radio config history detail
+
 ## Structure
 
 `ResponseConfigHistorySearchItemRadio`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Band` | `string` | Required | - |
-| `Channel` | `int` | Required | - |
+| `Band` | `string` | Required | Radio band for this config history detail |
+| `Channel` | `int` | Required | Configured channel for this radio |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "band": "band6",
-  "channel": 72
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseConfigHistorySearchItemRadio := models.ResponseConfigHistorySearchItemRadio{
+        Band:                 "band6",
+        Channel:              80,
+    }
+
 }
 ```
 

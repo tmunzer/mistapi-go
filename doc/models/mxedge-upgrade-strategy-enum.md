@@ -19,3 +19,18 @@ enum:
 | `big_bang` |
 | `serial` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxedgeUpgradeStrategy := models.MxedgeUpgradeStrategyEnum_CANARY
+
+}
+```
+

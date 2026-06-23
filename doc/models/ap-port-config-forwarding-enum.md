@@ -25,7 +25,16 @@ enum:
 
 ## Example
 
-```
-all
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    apPortConfigForwarding := models.ApPortConfigForwardingEnum_SITEMXEDGE
+
+}
 ```
 

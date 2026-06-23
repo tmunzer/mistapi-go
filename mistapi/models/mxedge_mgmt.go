@@ -8,16 +8,21 @@ import (
 )
 
 // MxedgeMgmt represents a MxedgeMgmt struct.
+// Management settings for a Mist Edge appliance
 type MxedgeMgmt struct {
-	ConfigAutoRevert *bool   `json:"config_auto_revert,omitempty"`
-	FipsEnabled      *bool   `json:"fips_enabled,omitempty"`
-	MistPassword     *string `json:"mist_password,omitempty"`
+	// Whether the Mist Edge automatically reverts configuration changes if connectivity is lost
+	ConfigAutoRevert *bool `json:"config_auto_revert,omitempty"`
+	// Whether FIPS mode is enabled on the Mist Edge
+	FipsEnabled *bool `json:"fips_enabled,omitempty"`
+	// Password for the Mist service account on the Mist Edge
+	MistPassword *string `json:"mist_password,omitempty"`
 	// enum: `dhcp`, `disabled`, `static`
 	OobIpType *MxedgeMgmtOobIpTypeEnum `json:"oob_ip_type,omitempty"`
 	// enum: `autoconf`, `dhcp`, `disabled`, `static`
-	OobIpType6           *MxedgeMgmtOobIpType6Enum `json:"oob_ip_type6,omitempty"`
-	RootPassword         *string                   `json:"root_password,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"_"`
+	OobIpType6 *MxedgeMgmtOobIpType6Enum `json:"oob_ip_type6,omitempty"`
+	// Root account password for the Mist Edge
+	RootPassword         *string                `json:"root_password,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for MxedgeMgmt,

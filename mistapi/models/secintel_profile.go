@@ -8,8 +8,11 @@ import (
 )
 
 // SecintelProfile represents a SecintelProfile struct.
+// SecIntel profile containing category-specific threat intelligence actions
 type SecintelProfile struct {
-	Name                 *string                  `json:"name,omitempty"`
+	// Display name of the SecIntel profile
+	Name *string `json:"name,omitempty"`
+	// Category-specific SecIntel action settings
 	Profiles             []SecintelProfileProfile `json:"profiles,omitempty"`
 	AdditionalProperties map[string]interface{}   `json:"_"`
 }

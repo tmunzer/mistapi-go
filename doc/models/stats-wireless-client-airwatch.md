@@ -1,7 +1,7 @@
 
 # Stats Wireless Client Airwatch
 
-Information if airwatch enabled
+AirWatch authorization information reported for a wireless client
 
 ## Structure
 
@@ -11,13 +11,22 @@ Information if airwatch enabled
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Authorized` | `bool` | Required | - |
+| `Authorized` | `bool` | Required | Whether the wireless client is authorized by AirWatch |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "authorized": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsWirelessClientAirwatch := models.StatsWirelessClientAirwatch{
+        Authorized:           false,
+    }
+
 }
 ```
 

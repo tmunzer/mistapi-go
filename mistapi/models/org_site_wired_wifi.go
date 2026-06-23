@@ -10,15 +10,23 @@ import (
 )
 
 // OrgSiteWiredWifi represents a OrgSiteWiredWifi struct.
+// Paginated wired SLE results for organization sites
 type OrgSiteWiredWifi struct {
-	End                  float64                 `json:"end"`
-	Interval             int                     `json:"interval"`
-	Limit                int                     `json:"limit"`
-	Page                 int                     `json:"page"`
-	Results              []OrgSiteSleWiredResult `json:"results"`
-	Start                float64                 `json:"start"`
-	Total                int                     `json:"total"`
-	AdditionalProperties map[string]interface{}  `json:"_"`
+	// Query end timestamp for the returned SLE window
+	End float64 `json:"end"`
+	// Aggregation interval, in seconds, used for the SLE query
+	Interval int `json:"interval"`
+	// Maximum number of site results returned per page
+	Limit int `json:"limit"`
+	// Result page number returned by the query
+	Page int `json:"page"`
+	// Wired SLE results returned for organization sites
+	Results []OrgSiteSleWiredResult `json:"results"`
+	// Query start timestamp for the returned SLE window
+	Start float64 `json:"start"`
+	// Number of matching site results available for the query
+	Total                int                    `json:"total"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for OrgSiteWiredWifi,

@@ -1,6 +1,8 @@
 
 # Stats Ap Auto Placement
 
+Auto placement result and status for an AP
+
 ## Structure
 
 `StatsApAutoPlacement`
@@ -9,35 +11,44 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Info` | [`*models.StatsApAutoPlacementInfo`](../../doc/models/stats-ap-auto-placement-info.md) | Optional | Additional information about auto placements AP data |
+| `Info` | [`*models.StatsApAutoPlacementInfo`](../../doc/models/stats-ap-auto-placement-info.md) | Optional | Additional diagnostics for AP auto placement |
 | `RecommendedAnchor` | `*bool` | Optional | Flag to represent if AP is recommended as an anchor by auto placement service |
-| `Status` | `*string` | Optional | Basic Placement Status |
+| `Status` | `*string` | Optional | Current auto placement status for the AP |
 | `StatusDetail` | `*string` | Optional | Additional info about placement status |
-| `X` | `*float64` | Optional | X Autoplaced Position in pixels |
-| `XM` | `*float64` | Optional | X Autoplaced Position in meters |
-| `Y` | `*float64` | Optional | Y Autoplaced Position in pixels |
-| `YM` | `*float64` | Optional | X Autoplaced Position in meters |
+| `X` | `*float64` | Optional | Auto-placed X coordinate, in pixels |
+| `XM` | `*float64` | Optional | Auto-placed X coordinate, in meters |
+| `Y` | `*float64` | Optional | Auto-placed Y coordinate, in pixels |
+| `YM` | `*float64` | Optional | Auto-placed Y coordinate, in meters |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "status": "localized",
-  "status_detail": "localized",
-  "x": 53.5,
-  "x_m": 5.35,
-  "y": 173.1,
-  "y_m": 17.31,
-  "info": {
-    "cluster_number": 112,
-    "orientation_stats": 90,
-    "probability_surface": {
-      "radius": 74.96,
-      "radius_m": 19.46,
-      "x": 93.54
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsApAutoPlacement := models.StatsApAutoPlacement{
+        Info:                 models.ToPointer(models.StatsApAutoPlacementInfo{
+            ClusterNumber:        models.ToPointer(112),
+            OrientationStats:     models.ToPointer(90),
+            ProbabilitySurface:   models.ToPointer(models.StatsApAutoPlacementInfoProbabilitySurface{
+                Radius:               models.ToPointer(float64(74.96)),
+                RadiusM:              models.ToPointer(float64(19.46)),
+                X:                    models.ToPointer(float64(93.54)),
+            }),
+        }),
+        RecommendedAnchor:    models.ToPointer(false),
+        Status:               models.ToPointer("localized"),
+        StatusDetail:         models.ToPointer("localized"),
+        X:                    models.ToPointer(float64(53.5)),
+        XM:                   models.ToPointer(float64(5.35)),
+        Y:                    models.ToPointer(float64(173.1)),
+        YM:                   models.ToPointer(float64(17.31)),
     }
-  },
-  "recommended_anchor": false
+
 }
 ```
 

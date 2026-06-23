@@ -1,6 +1,8 @@
 
 # Webhook Sdkclient Scan Data Event
 
+SDK client connection state and background Wi-Fi scan observations
+
 ## Structure
 
 `WebhookSdkclientScanDataEvent`
@@ -11,55 +13,56 @@
 |  --- | --- | --- | --- |
 | `ConnectionAp` | `string` | Required | MAC address of the AP the client is connected to |
 | `ConnectionBand` | `string` | Required | 5GHz or 2.4GHz band, of the BSSID the client is connected to |
-| `ConnectionBssid` | `string` | Required | BSSID of the AP the client is connected to |
+| `ConnectionBssid` | `string` | Required | Connected AP BSSID for the SDK client |
 | `ConnectionChannel` | `int` | Required | Channel of the band the client is connected to |
 | `ConnectionRssi` | `float64` | Required | RSSI of the client’s connection to the AP/BSSID |
-| `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
-| `Mac` | `string` | Required | Client's MAC Address |
-| `ScanData` | [`[]models.WebhookSdkclientScanDataEventScanDataItem`](../../doc/models/webhook-sdkclient-scan-data-event-scan-data-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `SiteId` | `uuid.UUID` | Required | - |
+| `LastSeen` | `models.Optional[float64]` | Optional, Read-only | Timestamp indicating when the entity was last seen |
+| `Mac` | `string` | Required | SDK client MAC address |
+| `ScanData` | [`[]models.WebhookSdkclientScanDataEventScanDataItem`](../../doc/models/webhook-sdkclient-scan-data-event-scan-data-item.md) | Optional | Background Wi-Fi scan observations reported by an SDK client<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `SiteId` | `uuid.UUID` | Required, Read-only | Unique identifier of a Mist site |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "connection_ap": "connection_ap4",
-  "connection_band": "connection_band8",
-  "connection_bssid": "connection_bssid4",
-  "connection_channel": 154,
-  "connection_rssi": 55.12,
-  "last_seen": 1470417522.0,
-  "mac": "mac0",
-  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "scan_data": [
-    {
-      "ap": "ap6",
-      "band": "2.4",
-      "bssid": "bssid2",
-      "channel": 72,
-      "rssi": 228.1,
-      "ssid": "ssid4",
-      "timestamp": 102.06
-    },
-    {
-      "ap": "ap6",
-      "band": "2.4",
-      "bssid": "bssid2",
-      "channel": 72,
-      "rssi": 228.1,
-      "ssid": "ssid4",
-      "timestamp": 102.06
-    },
-    {
-      "ap": "ap6",
-      "band": "2.4",
-      "bssid": "bssid2",
-      "channel": 72,
-      "rssi": 228.1,
-      "ssid": "ssid4",
-      "timestamp": 102.06
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    webhookSdkclientScanDataEvent := models.WebhookSdkclientScanDataEvent{
+        ConnectionAp:         "connection_ap6",
+        ConnectionBand:       "connection_band6",
+        ConnectionBssid:      "connection_bssid2",
+        ConnectionChannel:    192,
+        ConnectionRssi:       float64(200.5),
+        LastSeen:             models.NewOptional(models.ToPointer(float64(1470417522))),
+        Mac:                  "mac8",
+        ScanData:             []models.WebhookSdkclientScanDataEventScanDataItem{
+            models.WebhookSdkclientScanDataEventScanDataItem{
+                Ap:                   "ap6",
+                Band:                 models.ScanDataItemBandEnum_ENUM24,
+                Bssid:                "bssid2",
+                Channel:              72,
+                Rssi:                 float64(228.1),
+                Ssid:                 "ssid4",
+                Timestamp:            float64(102.06),
+            },
+            models.WebhookSdkclientScanDataEventScanDataItem{
+                Ap:                   "ap6",
+                Band:                 models.ScanDataItemBandEnum_ENUM24,
+                Bssid:                "bssid2",
+                Channel:              72,
+                Rssi:                 float64(228.1),
+                Ssid:                 "ssid4",
+                Timestamp:            float64(102.06),
+            },
+        },
+        SiteId:               uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6"),
     }
-  ]
+
 }
 ```
 

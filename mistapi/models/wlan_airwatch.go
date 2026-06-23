@@ -8,16 +8,17 @@ import (
 )
 
 // WlanAirwatch represents a WlanAirwatch struct.
-// Airwatch wlan settings
+// AirWatch integration settings for the WLAN
 type WlanAirwatch struct {
-	// API Key
+	// API key used to authenticate to the AirWatch service
 	ApiKey *string `json:"api_key,omitempty"`
-	// Console URL
+	// Base console URL of the AirWatch deployment
 	ConsoleUrl *string `json:"console_url,omitempty"`
-	Enabled    *bool   `json:"enabled,omitempty"`
-	// Password
+	// Whether AirWatch integration is enabled for the WLAN
+	Enabled *bool `json:"enabled,omitempty"`
+	// AirWatch integration account password for this WLAN
 	Password *string `json:"password,omitempty"`
-	// Username
+	// AirWatch integration account username for this WLAN
 	Username             *string                `json:"username,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

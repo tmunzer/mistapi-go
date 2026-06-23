@@ -1,7 +1,7 @@
 
 # Alarm Group Enum
 
-Alarm group. enum: `infrastructure`, `marvis`, `security`
+Alarm group. enum: `certificate_expiry`, `infrastructure`, `marvis`, `security`
 
 ## Enumeration
 
@@ -11,7 +11,23 @@ Alarm group. enum: `infrastructure`, `marvis`, `security`
 
 | Name |
 |  --- |
+| `certificate_expiry` |
 | `infrastructure` |
 | `marvis` |
 | `security` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    alarmGroup := models.AlarmGroupEnum_CERTIFICATEEXPIRY
+
+}
+```
 

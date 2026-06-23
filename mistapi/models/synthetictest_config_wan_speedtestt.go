@@ -8,7 +8,9 @@ import (
 )
 
 // SynthetictestConfigWanSpeedtest represents a SynthetictestConfigWanSpeedtest struct.
+// WAN speedtest scheduling settings for synthetic tests
 type SynthetictestConfigWanSpeedtest struct {
+	// Whether scheduled WAN speedtests are enabled
 	Enabled *bool `json:"enabled,omitempty"`
 	// `any` / HH:MM (24-hour format)
 	TimeOfDay            *string                `json:"time_of_day,omitempty"`

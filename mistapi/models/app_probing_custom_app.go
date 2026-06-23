@@ -8,21 +8,27 @@ import (
 )
 
 // AppProbingCustomApp represents a AppProbingCustomApp struct.
+// User-defined application probe definition
 type AppProbingCustomApp struct {
-	// Required if `protocol`==`icmp`
+	// Required if `protocol`==`icmp`. IP address probed by the ICMP custom app
 	Address *string `json:"address,omitempty"`
+	// Category label used for this custom application probe
 	AppType *string `json:"app_type,omitempty"`
-	// If `protocol`==`http`
+	// If `protocol`==`http`. HTTP hostnames or URLs probed by the custom app
 	Hostnames []string `json:"hostnames,omitempty"`
-	Key       *string  `json:"key,omitempty"`
-	Name      *string  `json:"name,omitempty"`
-	Network   *string  `json:"network,omitempty"`
-	// If `protocol`==`icmp`
+	// Stable key used to identify this custom application probe
+	Key *string `json:"key,omitempty"`
+	// Display name for this custom application probe
+	Name *string `json:"name,omitempty"`
+	// Gateway network used as the source context for this probe
+	Network *string `json:"network,omitempty"`
+	// If `protocol`==`icmp`. ICMP packet size used by this custom app probe
 	PacketSize *int `json:"packetSize,omitempty"`
-	// enum: `http`, `icmp`
+	// Probe protocol for a custom application. enum: `http`, `icmp`
 	Protocol *AppProbingCustomAppProtocolEnum `json:"protocol,omitempty"`
-	// If `protocol`==`http`
-	Url                  *string                `json:"url,omitempty"`
+	// If `protocol`==`http`. HTTP URL or hostname probed by this custom app
+	Url *string `json:"url,omitempty"`
+	// Gateway VRF used as the source context for this probe
 	Vrf                  *string                `json:"vrf,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

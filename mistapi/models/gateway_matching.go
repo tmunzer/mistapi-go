@@ -8,9 +8,11 @@ import (
 )
 
 // GatewayMatching represents a GatewayMatching struct.
-// Gateway matching
+// Gateway matching configuration used to apply gateway-specific settings
 type GatewayMatching struct {
-	Enable               *bool                  `json:"enable,omitempty"`
+	// Whether gateway matching is enabled
+	Enable *bool `json:"enable,omitempty"`
+	// Gateway matching rules used by a gateway matching configuration
 	Rules                []GatewayMatchingRule  `json:"rules,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

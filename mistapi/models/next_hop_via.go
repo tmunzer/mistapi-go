@@ -9,7 +9,7 @@ import (
 )
 
 // NextHopVia represents a NextHopVia struct.
-// Next-hop IP Address. Can be a single IP address or an array of IP addresses for ECMP (Equal-Cost Multi-Path) load balancing across multiple next-hops.
+// Next-hop IP address. Can be a single IP address or an array of IP addresses for ECMP (Equal-Cost Multi-Path) load balancing across multiple next-hops.
 type NextHopVia struct {
 	value           any
 	isString        bool
@@ -75,7 +75,7 @@ func (n *NextHopVia) AsArrayOfString() (
 }
 
 // internalNextHopVia represents a nextHopVia struct.
-// Next-hop IP Address. Can be a single IP address or an array of IP addresses for ECMP (Equal-Cost Multi-Path) load balancing across multiple next-hops.
+// Next-hop IP address. Can be a single IP address or an array of IP addresses for ECMP (Equal-Cost Multi-Path) load balancing across multiple next-hops.
 type internalNextHopVia struct{}
 
 var NextHopViaContainer internalNextHopVia

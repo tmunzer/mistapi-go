@@ -15,3 +15,18 @@ enum: `all`, `v1`, `v2`
 | `v1` |
 | `v2` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    snmpConfigTrapVersion := models.SnmpConfigTrapVersionEnum_ALL
+
+}
+```
+

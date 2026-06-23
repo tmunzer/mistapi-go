@@ -16,10 +16,14 @@ type Secpolicy struct {
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime         *float64               `json:"modified_time,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
-	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Display name of the security policy
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// WLAN configurations audited by a security policy
 	Wlans                []Wlan                 `json:"wlans,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

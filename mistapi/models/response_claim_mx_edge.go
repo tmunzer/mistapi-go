@@ -11,9 +11,11 @@ import (
 )
 
 // ResponseClaimMxEdge represents a ResponseClaimMxEdge struct.
+// Mist Edge claim response
 type ResponseClaimMxEdge struct {
 	// Unique ID of the object instance in the Mist Organization
-	Id                   uuid.UUID              `json:"id"`
+	Id uuid.UUID `json:"id"`
+	// Claim magic token returned for the Mist Edge
 	Magic                string                 `json:"magic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

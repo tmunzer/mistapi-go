@@ -8,14 +8,22 @@ import (
 )
 
 // StatsMxedgeOobIpStat represents a StatsMxedgeOobIpStat struct.
+// Observed out-of-band management IP settings for a Mist Edge
 type StatsMxedgeOobIpStat struct {
-	Dns      []string `json:"dns,omitempty"`
-	Gateway  *string  `json:"gateway,omitempty"`
-	Gateway6 *string  `json:"gateway6,omitempty"`
-	Ip       *string  `json:"ip,omitempty"`
-	Ip6      *string  `json:"ip6,omitempty"`
-	Netmask  *string  `json:"netmask,omitempty"`
-	Netmask6 *string  `json:"netmask6,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Dns []string `json:"dns,omitempty"`
+	// IPv4 default gateway for out-of-band management
+	Gateway *string `json:"gateway,omitempty"`
+	// IPv6 default gateway for out-of-band management
+	Gateway6 *string `json:"gateway6,omitempty"`
+	// Out-of-band management IPv4 address
+	Ip *string `json:"ip,omitempty"`
+	// Out-of-band management IPv6 address
+	Ip6 *string `json:"ip6,omitempty"`
+	// IPv4 netmask for the out-of-band management interface
+	Netmask *string `json:"netmask,omitempty"`
+	// IPv6 prefix length for the out-of-band management interface
+	Netmask6 *string `json:"netmask6,omitempty"`
 	// enum: `dhcp`, `disabled`, `static`
 	Type *MxedgeMgmtOobIpTypeEnum `json:"type,omitempty"`
 	// enum: `autoconf`, `dhcp`, `disabled`, `static`

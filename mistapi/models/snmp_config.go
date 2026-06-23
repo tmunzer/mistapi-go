@@ -8,22 +8,35 @@ import (
 )
 
 // SnmpConfig represents a SnmpConfig struct.
+// SNMP configuration for managed network devices
 type SnmpConfig struct {
-	ClientList  []SnmpConfigClientList `json:"client_list,omitempty"`
-	Contact     *string                `json:"contact,omitempty"`
-	Description *string                `json:"description,omitempty"`
-	Enabled     *bool                  `json:"enabled,omitempty"`
-	EngineId    *string                `json:"engine_id,omitempty"`
-	// enum: `local`, `use_mac_address`
-	EngineIdType         *SnmpConfigEngineIdTypeEnum `json:"engine_id_type,omitempty"`
-	Location             *string                     `json:"location,omitempty"`
-	Name                 *string                     `json:"name,omitempty"`
-	Network              *string                     `json:"network,omitempty"`
-	TrapGroups           []SnmpConfigTrapGroup       `json:"trap_groups,omitempty"`
-	V2cConfig            []SnmpConfigV2cConfig       `json:"v2c_config,omitempty"`
-	V3Config             *Snmpv3Config               `json:"v3_config,omitempty"`
-	Views                []SnmpConfigView            `json:"views,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"_"`
+	// SNMP client allowlists that can be referenced by communities
+	ClientList []SnmpConfigClientList `json:"client_list,omitempty"`
+	// Administrative contact string advertised through SNMP
+	Contact *string `json:"contact,omitempty"`
+	// Device description string advertised through SNMP
+	Description *string `json:"description,omitempty"`
+	// Whether SNMP is enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// SNMP engine ID value used for SNMPv3
+	EngineId *string `json:"engine_id,omitempty"`
+	// Method used to derive the SNMP engine ID. enum: `local`, `use_mac_address`
+	EngineIdType *SnmpConfigEngineIdTypeEnum `json:"engine_id_type,omitempty"`
+	// Physical location string advertised through SNMP
+	Location *string `json:"location,omitempty"`
+	// System name advertised through SNMP
+	Name *string `json:"name,omitempty"`
+	// Management network used for SNMP traffic
+	Network *string `json:"network,omitempty"`
+	// SNMP trap group definitions
+	TrapGroups []SnmpConfigTrapGroup `json:"trap_groups,omitempty"`
+	// SNMPv2c community configuration entries for this SNMP profile
+	V2cConfig []SnmpConfigV2cConfig `json:"v2c_config,omitempty"`
+	// SNMPv3 notification, target, USM, and VACM configuration
+	V3Config *Snmpv3Config `json:"v3_config,omitempty"`
+	// SNMP MIB view definitions
+	Views                []SnmpConfigView       `json:"views,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SnmpConfig,

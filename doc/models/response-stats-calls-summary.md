@@ -1,6 +1,8 @@
 
 # Response Stats Calls Summary
 
+Aggregated site call statistics summary
+
 ## Structure
 
 `ResponseStatsCallsSummary`
@@ -9,25 +11,34 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `BadMinutes` | `*float64` | Optional | - |
-| `BadMinutesClient` | `*float64` | Optional | - |
-| `BadMinutesSiteWan` | `*float64` | Optional | - |
-| `BadMinutesWireless` | `*float64` | Optional | - |
-| `NumAps` | `*int` | Optional | - |
-| `NumUsers` | `*int` | Optional | - |
-| `TotalMinutes` | `*float64` | Optional | - |
+| `BadMinutes` | `*float64` | Optional | Total call minutes classified as bad across all quality categories |
+| `BadMinutesClient` | `*float64` | Optional | Call minutes classified as bad due to client-side issues |
+| `BadMinutesSiteWan` | `*float64` | Optional | Call minutes classified as bad due to site WAN issues |
+| `BadMinutesWireless` | `*float64` | Optional | Call minutes classified as bad due to wireless issues |
+| `NumAps` | `*int` | Optional | Number of APs represented in the call statistics summary |
+| `NumUsers` | `*int` | Optional | Number of users represented in the call statistics summary |
+| `TotalMinutes` | `*float64` | Optional | Total call minutes represented in the summary |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "bad_minutes": 5566.0,
-  "bad_minutes_client": 526.0,
-  "bad_minutes_site_wan": 3612.0,
-  "bad_minutes_wireless": 1428.0,
-  "num_aps": 1,
-  "num_users": 3,
-  "total_minutes": 5566
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseStatsCallsSummary := models.ResponseStatsCallsSummary{
+        BadMinutes:           models.ToPointer(float64(5566)),
+        BadMinutesClient:     models.ToPointer(float64(526)),
+        BadMinutesSiteWan:    models.ToPointer(float64(3612)),
+        BadMinutesWireless:   models.ToPointer(float64(1428)),
+        NumAps:               models.ToPointer(1),
+        NumUsers:             models.ToPointer(3),
+        TotalMinutes:         models.ToPointer(float64(5566)),
+    }
+
 }
 ```
 

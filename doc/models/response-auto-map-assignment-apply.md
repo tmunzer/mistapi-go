@@ -1,6 +1,8 @@
 
 # Response Auto Map Assignment Apply
 
+Result returned after applying accepted auto map assignments
+
 ## Structure
 
 `ResponseAutoMapAssignmentApply`
@@ -12,16 +14,25 @@
 | `AcceptedMaps` | `[]uuid.UUID` | Required | List of map IDs that were successfully accepted |
 | `Message` | `string` | Required | Human-readable description of the operation result |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "accepted_maps": [
-    "00002229-0000-0000-0000-000000000000",
-    "00002228-0000-0000-0000-000000000000",
-    "00002227-0000-0000-0000-000000000000"
-  ],
-  "message": "message0"
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    responseAutoMapAssignmentApply := models.ResponseAutoMapAssignmentApply{
+        AcceptedMaps:         []uuid.UUID{
+            uuid.MustParse("000013ff-0000-0000-0000-000000000000"),
+            uuid.MustParse("000013fe-0000-0000-0000-000000000000"),
+        },
+        Message:              "message6",
+    }
+
 }
 ```
 

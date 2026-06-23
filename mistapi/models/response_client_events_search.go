@@ -10,12 +10,19 @@ import (
 )
 
 // ResponseClientEventsSearch represents a ResponseClientEventsSearch struct.
+// Paginated client event search response
 type ResponseClientEventsSearch struct {
-	End                  int                    `json:"end"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []EventsClient         `json:"results"`
-	Start                int                    `json:"start"`
+	// Search window end timestamp for client events, in epoch seconds
+	End int `json:"end"`
+	// Maximum number of client event results requested
+	Limit int `json:"limit"`
+	// URL for the next page of client event results
+	Next *string `json:"next,omitempty"`
+	// Client event records returned by a search response
+	Results []EventsClient `json:"results"`
+	// Search window start timestamp for client events, in epoch seconds
+	Start int `json:"start"`
+	// Number of client event records matching the search
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

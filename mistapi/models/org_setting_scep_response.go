@@ -8,14 +8,20 @@ import (
 )
 
 // OrgSettingScepResponse represents a OrgSettingScepResponse struct.
+// Read-only Mist SCEP settings returned for the organization
 type OrgSettingScepResponse struct {
 	// List of SCEP cert providers, e.g. `intune`, `jamf`, `byod`
-	CertProviders   []OrgSettingScepCertProviderEnum `json:"cert_providers,omitempty"`
-	Enabled         *bool                            `json:"enabled,omitempty"`
-	IntuneScepUrl   *string                          `json:"intune_scep_url,omitempty"`
-	JamfAccessToken *string                          `json:"jamf_access_token,omitempty"`
-	JamfScepUrl     *string                          `json:"jamf_scep_url,omitempty"`
-	JamfWebhookUrl  *string                          `json:"jamf_webhook_url,omitempty"`
+	CertProviders []OrgSettingScepCertProviderEnum `json:"cert_providers,omitempty"`
+	// Whether Mist SCEP is enabled for this organization
+	Enabled *bool `json:"enabled,omitempty"`
+	// Intune SCEP enrollment URL for this organization
+	IntuneScepUrl *string `json:"intune_scep_url,omitempty"`
+	// Access token used by Jamf to call Mist SCEP
+	JamfAccessToken *string `json:"jamf_access_token,omitempty"`
+	// Jamf SCEP enrollment URL for this organization
+	JamfScepUrl *string `json:"jamf_scep_url,omitempty"`
+	// Jamf webhook URL for SCEP status callbacks
+	JamfWebhookUrl *string `json:"jamf_webhook_url,omitempty"`
 	// Whether SCEP is suspended for this org
 	Suspended            *bool                  `json:"suspended,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`

@@ -8,7 +8,9 @@ import (
 )
 
 // ConstDeviceSwitchDefault represents a ConstDeviceSwitchDefault struct.
+// Default switch port ranges for a model
 type ConstDeviceSwitchDefault struct {
+	// Default switch port range list for this model
 	Ports                *string                `json:"_ports,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

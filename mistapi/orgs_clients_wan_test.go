@@ -179,18 +179,18 @@ func TestOrgsClientsWanTestSearchOrgWanClients(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	hostname := "my-everest-client"
-	ip := "10.100.10.54"
+	hostname := "my-everest-client,my-everest*"
+	ip := "10.100.10.54,10.100.10.*"
 	ipSrc := "dhcp"
-	mac := "5c5b53010101"
-
-	network := "my-corp-network"
+	mac := "5c5b53010101,5c5b53020202"
+	mfg := "Unknown,Juniper Networks"
+	network := "my-corp-network,my-corp*"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, &siteId, &hostname, &ip, &ipSrc, &mac, nil, &network, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, &siteId, &hostname, &ip, &ipSrc, &mac, &mfg, &network, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -214,18 +214,18 @@ func TestOrgsClientsWanTestSearchOrgWanClients1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	hostname := "my-everest-client"
-	ip := "10.100.10.54"
+	hostname := "my-everest-client,my-everest*"
+	ip := "10.100.10.54,10.100.10.*"
 	ipSrc := "dhcp"
-	mac := "5c5b53010101"
-
-	network := "my-corp-network"
+	mac := "5c5b53010101,5c5b53020202"
+	mfg := "Unknown,Juniper Networks"
+	network := "my-corp-network,my-corp*"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, &siteId, &hostname, &ip, &ipSrc, &mac, nil, &network, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, &siteId, &hostname, &ip, &ipSrc, &mac, &mfg, &network, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

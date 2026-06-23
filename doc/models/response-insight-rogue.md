@@ -1,6 +1,8 @@
 
 # Response Insight Rogue
 
+Paginated response for rogue or neighbor AP insight results
+
 ## Structure
 
 `ResponseInsightRogue`
@@ -9,34 +11,43 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `End` | `int` | Required | - |
-| `Limit` | `int` | Required | - |
-| `Next` | `*string` | Optional | Link to next set of results. If more results aren’t present, next is null. |
-| `Results` | [`[]models.InsightRogueAp`](../../doc/models/insight-rogue-ap.md) | Required | **Constraints**: *Unique Items Required* |
-| `Start` | `int` | Required | - |
+| `End` | `int` | Required | Epoch timestamp for the end of the rogue AP insight window |
+| `Limit` | `int` | Required | Maximum number of rogue or neighbor AP observations returned in this page |
+| `Next` | `*string` | Optional | Pagination cursor or URL for retrieving the next page of rogue or neighbor AP observations; null when no next page exists |
+| `Results` | [`[]models.InsightRogueAp`](../../doc/models/insight-rogue-ap.md) | Required | Rogue or neighbor AP insight observations returned by a query<br><br>**Constraints**: *Unique Items Required* |
+| `Start` | `int` | Required | Epoch timestamp for the start of the rogue AP insight window |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "end": 108,
-  "limit": 62,
-  "results": [
-    {
-      "ap_mac": "ap_mac8",
-      "avg_rssi": 170.84,
-      "bssid": "bssid0",
-      "channel": "channel8",
-      "delta_x": 25.74,
-      "delta_y": 53.12,
-      "num_aps": 140,
-      "seen_on_lan": false,
-      "ssid": "ssid6",
-      "times_heard": 110
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseInsightRogue := models.ResponseInsightRogue{
+        End:                  176,
+        Limit:                250,
+        Next:                 models.ToPointer("next6"),
+        Results:              []models.InsightRogueAp{
+            models.InsightRogueAp{
+                ApMac:                "ap_mac8",
+                AvgRssi:              float64(170.84),
+                Bssid:                "bssid0",
+                Channel:              "channel8",
+                DeltaX:               models.ToPointer(float64(25.74)),
+                DeltaY:               models.ToPointer(float64(53.12)),
+                NumAps:               140,
+                SeenOnLan:            models.ToPointer(false),
+                Ssid:                 models.ToPointer("ssid6"),
+                TimesHeard:           models.ToPointer(110),
+            },
+        },
+        Start:                134,
     }
-  ],
-  "start": 66,
-  "next": "next6"
+
 }
 ```
 

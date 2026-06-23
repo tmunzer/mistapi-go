@@ -10,11 +10,15 @@ import (
 )
 
 // MapImportJson represents a MapImportJson struct.
+// Options for importing map data from Ekahau or iBwave JSON
 type MapImportJson struct {
+	// Whether to import all floorplans from the uploaded map JSON
 	ImportAllFloorplans *bool `json:"import_all_floorplans,omitempty"`
-	ImportHeight        *bool `json:"import_height,omitempty"`
-	ImportOrientation   *bool `json:"import_orientation,omitempty"`
-	// enum: `ekahau`, `ibwave`
+	// Whether to import height metadata from the uploaded map JSON
+	ImportHeight *bool `json:"import_height,omitempty"`
+	// Whether to import orientation metadata from the uploaded map JSON
+	ImportOrientation *bool `json:"import_orientation,omitempty"`
+	// Map import vendor for the uploaded JSON. enum: `ekahau`, `ibwave`
 	VendorName           MapImportJsonVendorNameEnum `json:"vendor_name"`
 	AdditionalProperties map[string]interface{}      `json:"_"`
 }

@@ -8,13 +8,21 @@ import (
 )
 
 // DiscoveredSwitchMetricAp represents a DiscoveredSwitchMetricAp struct.
+// AP attachment details included in a discovered switch metric
 type DiscoveredSwitchMetricAp struct {
-	Hostname             *string                `json:"hostname,omitempty"`
-	Mac                  *string                `json:"mac,omitempty"`
-	PoeStatus            *bool                  `json:"poe_status,omitempty"`
-	Port                 *string                `json:"port,omitempty"`
-	PortId               *string                `json:"port_id,omitempty"`
-	PowerDraw            *int                   `json:"power_draw,omitempty"`
+	// AP hostname included in the discovered switch metric
+	Hostname *string `json:"hostname,omitempty"`
+	// AP MAC address included in the discovered switch metric
+	Mac *string `json:"mac,omitempty"`
+	// Whether the upstream switch port provides PoE for this AP
+	PoeStatus *bool `json:"poe_status,omitempty"`
+	// Switch port name connected to this AP
+	Port *string `json:"port,omitempty"`
+	// LLDP port identifier for this AP uplink
+	PortId *string `json:"port_id,omitempty"`
+	// Power draw reported for this AP connection
+	PowerDraw *int `json:"power_draw,omitempty"`
+	// Timestamp when this AP attachment metric was observed
 	When                 *string                `json:"when,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

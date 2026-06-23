@@ -8,6 +8,7 @@ import (
 )
 
 // AutoMapAssignment represents a AutoMapAssignment struct.
+// Request options for validating or starting automatic AP map assignment
 type AutoMapAssignment struct {
 	// If `true`, validates the site's APs without starting the map assignment process. Returns device validity and estimated runtime.
 	Dryrun *bool `json:"dryrun,omitempty"`

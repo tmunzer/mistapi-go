@@ -8,8 +8,9 @@ import (
 )
 
 // SwitchDhcpdConfig represents a SwitchDhcpdConfig struct.
+// Switch DHCP server or relay configuration keyed by network name
 type SwitchDhcpdConfig struct {
-	// If set to `true`, enable the DHCP server
+	// Whether switch DHCP server or relay configuration is enabled
 	Enabled              *bool                                `json:"enabled,omitempty"`
 	AdditionalProperties map[string]SwitchDhcpdConfigProperty `json:"_"`
 }

@@ -1,7 +1,7 @@
 
 # Zone Type Enum
 
-enum: `rssizones`, `zones`
+Zone collection type, either regular zones or RSSI zones. enum: `rssizones`, `zones`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `rssizones`, `zones`
 |  --- |
 | `rssizones` |
 | `zones` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    zoneType := models.ZoneTypeEnum_RSSIZONES
+
+}
+```
 

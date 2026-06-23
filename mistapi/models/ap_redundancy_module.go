@@ -8,8 +8,11 @@ import (
 )
 
 // ApRedundancyModule represents a ApRedundancyModule struct.
+// AP switch redundancy counts for one VC member
 type ApRedundancyModule struct {
-	NumAps                     *int                   `json:"num_aps,omitempty"`
+	// Total number of APs connected through this VC member
+	NumAps *int `json:"num_aps,omitempty"`
+	// Number of APs on this VC member with switch redundancy coverage
 	NumApsWithSwitchRedundancy *int                   `json:"num_aps_with_switch_redundancy,omitempty"`
 	AdditionalProperties       map[string]interface{} `json:"_"`
 }

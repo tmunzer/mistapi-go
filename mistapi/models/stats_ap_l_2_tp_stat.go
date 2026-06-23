@@ -9,14 +9,15 @@ import (
 )
 
 // StatsApL2tpStat represents a StatsApL2tpStat struct.
+// L2TP tunnel status reported by an AP
 type StatsApL2tpStat struct {
-	// List of sessions
+	// L2TP tunnel sessions reported by an AP
 	Sessions []StatsApL2tpStatSession `json:"sessions,omitempty"`
 	// enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
 	State *L2tpStateEnum `json:"state,omitempty"`
-	// Uptime
+	// Tunnel uptime, in seconds
 	Uptime Optional[int] `json:"uptime"`
-	// WxlanTunnel ID
+	// Identifier of the associated WxLAN tunnel
 	WxtunnelId           Optional[uuid.UUID]    `json:"wxtunnel_id"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

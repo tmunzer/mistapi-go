@@ -11,31 +11,45 @@ import (
 )
 
 // StatsMxtunnel represents a StatsMxtunnel struct.
-// MxTunnels statistics
+// WxLAN or Mist tunnel statistics record
 type StatsMxtunnel struct {
-	Ap       *string       `json:"ap,omitempty"`
-	ForSite  *bool         `json:"for_site,omitempty"`
+	// MAC address of the AP associated with the tunnel statistics
+	Ap *string `json:"ap,omitempty"`
+	// Whether the tunnel statistics are scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
+	// Firmware update status for a device
 	Fwupdate *FwupdateStat `json:"fwupdate,omitempty"`
-	// Last seen timestamp
-	LastSeen    Optional[float64] `json:"last_seen"`
-	Mtu         *int              `json:"mtu,omitempty"`
-	MxclusterId *uuid.UUID        `json:"mxcluster_id,omitempty"`
-	MxedgeId    *uuid.UUID        `json:"mxedge_id,omitempty"`
-	MxtunnelId  *uuid.UUID        `json:"mxtunnel_id,omitempty"`
-	OrgId       *uuid.UUID        `json:"org_id,omitempty"`
+	// Timestamp indicating when the entity was last seen
+	LastSeen Optional[float64] `json:"last_seen"`
+	// Maximum transmission unit reported for the tunnel path
+	Mtu *int `json:"mtu,omitempty"`
+	// Mist Edge cluster identifier associated with the tunnel statistics
+	MxclusterId *uuid.UUID `json:"mxcluster_id,omitempty"`
+	// Mist Edge identifier for the tunnel endpoint
+	MxedgeId *uuid.UUID `json:"mxedge_id,omitempty"`
+	// Mist tunnel identifier associated with the tunnel statistics
+	MxtunnelId *uuid.UUID `json:"mxtunnel_id,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// MxEdge ID of the peer(mist edge to mist edge tunnel)
-	PeerMxedgeId  *uuid.UUID `json:"peer_mxedge_id,omitempty"`
-	RemoteIp      string     `json:"remote_ip"`
-	RemotePort    *int       `json:"remote_port,omitempty"`
-	RxControlPkts *int       `json:"rx_control_pkts,omitempty"`
-	// List of sessions
+	PeerMxedgeId *uuid.UUID `json:"peer_mxedge_id,omitempty"`
+	// Remote endpoint IP address for the tunnel
+	RemoteIp string `json:"remote_ip"`
+	// Remote endpoint port for the tunnel
+	RemotePort *int `json:"remote_port,omitempty"`
+	// Number of control packets received for the tunnel
+	RxControlPkts *int `json:"rx_control_pkts,omitempty"`
+	// Tunnel sessions reported for a WxLAN or Mist tunnel
 	Sessions []StatsMxtunnelSession `json:"sessions,omitempty"`
-	SiteId   *uuid.UUID             `json:"site_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// enum: `established`, `established_with_sessions`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
-	State                *StatsMxtunnelStateEnum `json:"state,omitempty"`
-	TxControlPkts        *int                    `json:"tx_control_pkts,omitempty"`
-	Uptime               *int                    `json:"uptime,omitempty"`
-	AdditionalProperties map[string]interface{}  `json:"_"`
+	State *StatsMxtunnelStateEnum `json:"state,omitempty"`
+	// Number of control packets transmitted for the tunnel
+	TxControlPkts *int `json:"tx_control_pkts,omitempty"`
+	// Duration, in seconds, that the tunnel has been up
+	Uptime               *int                   `json:"uptime,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for StatsMxtunnel,

@@ -8,19 +8,19 @@ import (
 )
 
 // JsiPbnSearch represents a JsiPbnSearch struct.
-// PBN search response
+// Juniper Security Intelligence PBN search response with result metadata
 type JsiPbnSearch struct {
-	// End timestamp
+	// Upper bound timestamp for the PBN search window
 	End *int `json:"end,omitempty"`
 	// Number of results to return
 	Limit *int `json:"limit,omitempty"`
-	// Next page URL
+	// Pagination URL for the next page of PBN advisories
 	Next *string `json:"next,omitempty"`
 	// List of PBN advisories
 	Results []JsiPbnItem `json:"results,omitempty"`
-	// Start timestamp
+	// Lower bound timestamp for the PBN search window
 	Start *int `json:"start,omitempty"`
-	// Total number of results
+	// Count of PBN advisories matching the search
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -20,7 +20,7 @@ orgsClientsWireless := client.OrgsClientsWireless()
 
 # Count Org Wireless Client Events
 
-Count by Distinct Attributes of Client-Events
+Count wireless client event records across the organization, optionally grouped by event attributes and filtered by event type, WLAN, radio, site, and time range.
 
 ```go
 CountOrgWirelessClientEvents(
@@ -43,26 +43,32 @@ CountOrgWirelessClientEvents(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.SiteClientEventsCountDistinctEnum`](../../doc/models/site-client-events-count-distinct-enum.md) | Query, Optional | - |
-| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
-| `reasonCode` | `*int` | Query, Optional | For assoc/disassoc events |
-| `ssid` | `*string` | Query, Optional | SSID Name |
-| `ap` | `*string` | Query, Optional | AP MAC |
-| `proto` | [`*models.Dot11ProtoEnum`](../../doc/models/dot-11-proto-enum.md) | Query, Optional | a / b / g / n / ac / ax |
-| `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
-| `wlanId` | `*string` | Query, Optional | WLAN ID |
-| `siteId` | `*uuid.UUID` | Query, Optional | Site ID |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `distinct` | [`*models.SiteClientEventsCountDistinctEnum`](../../doc/models/site-client-events-count-distinct-enum.md) | Query, Optional | Field used to group this count response. enum: `band`, `channel`, `proto`, `ssid`, `type`, `wlan_id` |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions). Accepts multiple comma-separated values. |
+| `reasonCode` | `*int` | Query, Optional | Reason code filter for association and disassociation events |
+| `ssid` | `*string` | Query, Optional | Filter results by SSID |
+| `ap` | `*string` | Query, Optional | Filter results by AP MAC address |
+| `proto` | [`*models.Dot11ProtoEnum`](../../doc/models/dot-11-proto-enum.md) | Query, Optional | 802.11 protocol used to filter results. enum: `a`, `ac`, `ax`, `b`, `be`, `g`, `n` |
+| `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 band used to filter radio results. enum: `24`, `5`, `5-dedicated`, `5-selectable`, `6`, `6-dedicated`, `6-selectable` |
+| `wlanId` | `*string` | Query, Optional | Filter results by WLAN identifier |
+| `siteId` | `*uuid.UUID` | Query, Optional | Filter results by site identifier |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
+
+**200**: Result of Count
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
@@ -75,25 +81,27 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteClientEventsCountDistinctEnum_ENUMTYPE
 
+mType := "MARVIS_EVENT_CLIENT_AUTH_FAILURE,CLIENT_DEAUTHENTICATION"
+
 siteId := uuid.MustParse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
 
 duration := "10m"
 
 limit := 100
 
-apiResponse, err := orgsClientsWireless.CountOrgWirelessClientEvents(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, nil, &siteId, nil, nil, &duration, &limit)
+apiResponse, err := orgsClientsWireless.CountOrgWirelessClientEvents(ctx, orgId, &distinct, &mType, nil, nil, nil, nil, nil, nil, &siteId, nil, nil, &duration, &limit)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -127,15 +135,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Count Org Wireless Clients
 
-Count by Distinct Attributes of Org Wireless Clients
+Count wireless client records across the organization, optionally grouped by `distinct` and filtered by client identity, AP, SSID, VLAN, IP, and time range.
 
 ```go
 CountOrgWirelessClients(
@@ -159,27 +167,33 @@ CountOrgWirelessClients(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.OrgClientsCountDistinctEnum`](../../doc/models/org-clients-count-distinct-enum.md) | Query, Optional | **Default**: `"device"` |
-| `mac` | `*string` | Query, Optional | Partial / full Client MAC Address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `aabbcc*` and `*bbcc*` match `aabbccddeeff`). Suffix-only wildcards (e.g. `*bccddeeff`) are not supported |
-| `hostname` | `*string` | Query, Optional | Partial / full Client hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `everest*` and `*rest*` match `my-everest-client`). Suffix-only wildcards (e.g. `*everest`) are not supported |
-| `device` | `*string` | Query, Optional | Device type, e.g. Mac, Nvidia, iPhone |
-| `os` | `*string` | Query, Optional | OS, e.g. Sierra, Yosemite, Windows 10 |
-| `model` | `*string` | Query, Optional | Model, e.g. "MBP 15 late 2013", 6, 6s, "8+ GSM" |
-| `ap` | `*string` | Query, Optional | AP mac where the client has connected to |
-| `vlan` | `*string` | Query, Optional | VLAN |
-| `ssid` | `*string` | Query, Optional | SSID |
-| `ip` | `*string` | Query, Optional | - |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `distinct` | [`*models.OrgClientsCountDistinctEnum`](../../doc/models/org-clients-count-distinct-enum.md) | Query, Optional | Field used to group this count response. enum: `ap`, `device`, `hostname`, `ip`, `mac`, `model`, `os`, `ssid`, `vlan`<br><br>**Default**: `"device"` |
+| `mac` | `*string` | Query, Optional | Partial / full Client MAC address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `aabbcc*` and `*bbcc*` match `aabbccddeeff`). Suffix-only wildcards (e.g. `*bccddeeff`) are not supported. Accepts multiple comma-separated values. |
+| `hostname` | `*string` | Query, Optional | Partial / full Client hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `everest*` and `*rest*` match `my-everest-client`). Suffix-only wildcards (e.g. `*everest`) are not supported. Accepts multiple comma-separated values. |
+| `device` | `*string` | Query, Optional | Filter results by device type |
+| `os` | `*string` | Query, Optional | Filter results by operating system |
+| `model` | `*string` | Query, Optional | Filter results by device model |
+| `ap` | `*string` | Query, Optional | Filter results by AP MAC address |
+| `vlan` | `*string` | Query, Optional | Filter results by VLAN ID |
+| `ssid` | `*string` | Query, Optional | Filter results by SSID |
+| `ip` | `*string` | Query, Optional | Filter results by IPv4 address |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
+
+**200**: Result of Count
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
@@ -192,9 +206,9 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.OrgClientsCountDistinctEnum_DEVICE
 
-mac := "aabbccddeeff"
+mac := "aabbccddeeff,aabbcc*"
 
-hostname := "my-everest-client"
+hostname := "my-everest-client,my-everest*"
 
 device := "iPhone"
 
@@ -219,14 +233,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -260,15 +274,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Count Org Wireless Clients Sessions
 
-Count by Distinct Attributes of Org Wireless Clients Sessions
+Count historical wireless client sessions across the organization, optionally grouped by `distinct` and filtered by AP, band, client attributes, SSID, WLAN, and time range.
 
 ```go
 CountOrgWirelessClientsSessions(
@@ -291,26 +305,32 @@ CountOrgWirelessClientsSessions(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.OrgClientSessionsCountDistinctEnum`](../../doc/models/org-client-sessions-count-distinct-enum.md) | Query, Optional | **Default**: `"device"` |
-| `ap` | `*string` | Query, Optional | AP MAC |
-| `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
+| `distinct` | [`*models.OrgClientSessionsCountDistinctEnum`](../../doc/models/org-client-sessions-count-distinct-enum.md) | Query, Optional | Field used to group this count response. enum: `ap`, `device`, `hostname`, `ip`, `model`, `os`, `ssid`, `vlan`<br><br>**Default**: `"device"` |
+| `ap` | `*string` | Query, Optional | Filter results by AP MAC address |
+| `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 band used to filter radio results. enum: `24`, `5`, `5-dedicated`, `5-selectable`, `6`, `6-dedicated`, `6-selectable` |
 | `clientFamily` | `*string` | Query, Optional | E.g. "Mac", "iPhone", "Apple watch" |
-| `clientManufacture` | `*string` | Query, Optional | E.g. "Apple" |
-| `clientModel` | `*string` | Query, Optional | E.g. "8+", "XS" |
+| `clientManufacture` | `*string` | Query, Optional | Filter results by client manufacturer, e.g. "Apple" |
+| `clientModel` | `*string` | Query, Optional | Filter results by client model, e.g. "8+", "XS" |
 | `clientOs` | `*string` | Query, Optional | E.g. "Mojave", "Windows 10", "Linux" |
-| `ssid` | `*string` | Query, Optional | SSID |
-| `wlanId` | `*uuid.UUID` | Query, Optional | WLAN_id |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `ssid` | `*string` | Query, Optional | Filter results by SSID |
+| `wlanId` | `*uuid.UUID` | Query, Optional | Filter results by WLAN identifier |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
+
+**200**: Result of Count
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
@@ -346,14 +366,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -387,27 +407,27 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Search Org Wireless Client Events
 
-Get Org Clients Events
+Search wireless client event records across the organization with filters for event type, reason code, SSID, AP, key management, protocol, band, WLAN, NAC rule, and time range.
 
 ```go
 SearchOrgWirelessClientEvents(
     ctx context.Context,
     orgId uuid.UUID,
     mType *string,
-    reasonCode *int,
+    reasonCode *string,
     ssid *string,
     ap *string,
-    keyMgmt *models.ClientKeyMgmtEnum,
-    proto *models.Dot11ProtoEnum,
-    band *models.Dot11BandEnum,
+    keyMgmt *string,
+    proto *string,
+    band *string,
     wlanId *uuid.UUID,
     nacruleId *uuid.UUID,
     start *string,
@@ -420,28 +440,34 @@ SearchOrgWirelessClientEvents(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
-| `reasonCode` | `*int` | Query, Optional | For assoc/disassoc events |
-| `ssid` | `*string` | Query, Optional | SSID Name |
-| `ap` | `*string` | Query, Optional | AP MAC |
-| `keyMgmt` | [`*models.ClientKeyMgmtEnum`](../../doc/models/client-key-mgmt-enum.md) | Query, Optional | Key Management Protocol, e.g. WPA2-PSK, WPA3-SAE, WPA2-Enterprise |
-| `proto` | [`*models.Dot11ProtoEnum`](../../doc/models/dot-11-proto-enum.md) | Query, Optional | a / b / g / n / ac / ax |
-| `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
-| `wlanId` | `*uuid.UUID` | Query, Optional | WLAN_id |
-| `nacruleId` | `*uuid.UUID` | Query, Optional | Nacrule_id |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions). Accepts multiple comma-separated values. |
+| `reasonCode` | `*string` | Query, Optional | Reason code filter for association and disassociation events. Accepts multiple comma-separated integer values. |
+| `ssid` | `*string` | Query, Optional | Filter results by SSID. Accepts multiple comma-separated values. |
+| `ap` | `*string` | Query, Optional | Filter results by AP MAC address. Accepts multiple comma-separated values. |
+| `keyMgmt` | `*string` | Query, Optional | Key management protocol used to filter client events. enum: `WPA2-PSK`, `WPA2-PSK/CCMP`, `WPA2-PSK-FT`, `WPA2-PSK-SHA256`, `WPA3-EAP-SHA256`, `WPA3-EAP-SHA256/CCMP`, `WPA3-EAP-FT/GCMP256`, `WPA3-SAE-FT`, `WPA3-SAE-PSK`. Accepts multiple comma-separated values. |
+| `proto` | `*string` | Query, Optional | 802.11 protocol used to filter results. enum: `a`, `ac`, `ax`, `b`, `be`, `g`, `n`. Accepts multiple comma-separated values. |
+| `band` | `*string` | Query, Optional | 802.11 band used to filter radio results. enum: `24`, `5`, `5-dedicated`, `5-selectable`, `6`, `6-dedicated`, `6-selectable`. Accepts multiple comma-separated values. |
+| `wlanId` | `*uuid.UUID` | Query, Optional | Filter results by WLAN identifier |
+| `nacruleId` | `*uuid.UUID` | Query, Optional | Filter results by NAC rule identifier. Accepts multiple comma-separated values. |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseEventsSearch](../../doc/models/response-events-search.md).
 
@@ -452,13 +478,19 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-reasonCode := 7
+mType := "CLIENT_IP_ASSIGNED,CLIENT_DEAUTHENTICATION"
 
-ssid := "MySSID"
+reasonCode := "0,14"
 
-ap := "5c5b53010101"
+ssid := "Corp,Guest"
 
-keyMgmt := models.ClientKeyMgmtEnum_WPA2PSK
+ap := "5c5b53010101,5c5b53020202"
+
+keyMgmt := "WPA2-PSK,WPA2-PSK/CCMP"
+
+proto := "ax,ac"
+
+band := "6,5"
 
 wlanId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
@@ -470,19 +502,19 @@ sort := "-site_id"
 
 limit := 100
 
-apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, &keyMgmt, nil, nil, &wlanId, &nacruleId, nil, nil, &duration, &sort, &limit, nil)
+apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, &mType, &reasonCode, &ssid, &ap, &keyMgmt, &proto, &band, &wlanId, &nacruleId, nil, nil, &duration, &sort, &limit, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -524,22 +556,22 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Search Org Wireless Client Sessions
 
-Search Org Wireless Clients Sessions
+Search historical wireless client sessions across the organization with filters for AP, band, client family, manufacturer, model, OS, username, SSID, WLAN, PPSK, and time range.
 
 ```go
 SearchOrgWirelessClientSessions(
     ctx context.Context,
     orgId uuid.UUID,
     ap *string,
-    band *models.Dot11BandEnum,
+    band *string,
     clientFamily *string,
     clientManufacture *string,
     clientModel *string,
@@ -559,30 +591,36 @@ SearchOrgWirelessClientSessions(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `ap` | `*string` | Query, Optional | AP MAC |
-| `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
-| `clientFamily` | `*string` | Query, Optional | E.g. "Mac", "iPhone", "Apple watch" |
-| `clientManufacture` | `*string` | Query, Optional | E.g. "Apple" |
-| `clientModel` | `*string` | Query, Optional | E.g. "8+", "XS" |
-| `clientUsername` | `*string` | Query, Optional | Username |
-| `clientOs` | `*string` | Query, Optional | E.g. "Mojave", "Windows 10", "Linux" |
-| `ssid` | `*string` | Query, Optional | SSID |
-| `wlanId` | `*uuid.UUID` | Query, Optional | WLAN_id |
-| `pskId` | `*string` | Query, Optional | PSK ID |
-| `pskName` | `*string` | Query, Optional | PSK Name |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `ap` | `*string` | Query, Optional | Filter results by AP MAC address |
+| `band` | `*string` | Query, Optional | 802.11 band used to filter radio results. enum: `24`, `5`, `5-dedicated`, `5-selectable`, `6`, `6-dedicated`, `6-selectable`. Accepts multiple comma-separated values. |
+| `clientFamily` | `*string` | Query, Optional | E.g. "Mac", "iPhone", "Apple watch". Accepts multiple comma-separated values. |
+| `clientManufacture` | `*string` | Query, Optional | Filter results by client manufacturer, e.g. "Apple". Accepts multiple comma-separated values. |
+| `clientModel` | `*string` | Query, Optional | Filter results by client model, e.g. "8+", "XS". Accepts multiple comma-separated values. |
+| `clientUsername` | `*string` | Query, Optional | Filter results by client username. Accepts multiple comma-separated values. |
+| `clientOs` | `*string` | Query, Optional | E.g. "Mojave", "Windows 10", "Linux". Accepts multiple comma-separated values. |
+| `ssid` | `*string` | Query, Optional | Filter results by SSID. Accepts multiple comma-separated values. |
+| `wlanId` | `*uuid.UUID` | Query, Optional | Filter results by WLAN identifier |
+| `pskId` | `*string` | Query, Optional | PSK identifier used to filter the results |
+| `pskName` | `*string` | Query, Optional | Filter results by PSK name. Accepts multiple comma-separated values. |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SearchWirelessClientSession](../../doc/models/search-wireless-client-session.md).
 
@@ -595,23 +633,25 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 ap := "5c5b53010101"
 
-clientFamily := "iPhone"
+band := "5,6"
 
-clientManufacture := "Apple"
+clientFamily := "Phone/Tablet/Wearable,Monitoring Device"
 
-clientModel := "iPhone 8"
+clientManufacture := "Hewlett Packard Enterprise,Unknown"
 
-clientUsername := "john.doe"
+clientModel := "iPhone 8,Aruba S0U52A"
 
-clientOs := "Windows 10"
+clientUsername := "john.doe,jane.doe"
 
-ssid := "MySSID"
+clientOs := "iOS 16.7.16,Unknown"
+
+ssid := "Corp,Guest"
 
 wlanId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
 pskId := "000000ab-00ab-00ab-00ab-0000000000ab"
 
-pskName := "MyPPSK"
+pskName := "psk-a,psk-b"
 
 limit := 100
 
@@ -619,19 +659,19 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientSessions(ctx, orgId, &ap, nil, &clientFamily, &clientManufacture, &clientModel, &clientUsername, &clientOs, &ssid, &wlanId, &pskId, &pskName, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientSessions(ctx, orgId, &ap, &band, &clientFamily, &clientManufacture, &clientModel, &clientUsername, &clientOs, &ssid, &wlanId, &pskId, &pskName, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -677,15 +717,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Search Org Wireless Clients
 
-Search Org Wireless Clients
+Search wireless client records across the organization with filters for site, AP, band, device identity, hostname, IP, MAC address, username, SSID, PPSK, VLAN, and time range.
 
 ```go
 SearchOrgWirelessClients(
@@ -716,34 +756,40 @@ SearchOrgWirelessClients(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `siteId` | `*uuid.UUID` | Query, Optional | Site ID |
-| `ap` | `*string` | Query, Optional | AP MAC address where the client has connected to |
+| `siteId` | `*uuid.UUID` | Query, Optional | Filter results by site identifier |
+| `ap` | `*string` | Query, Optional | Filter results by AP MAC address |
 | `band` | `*string` | Query, Optional | Comma separated list of Radio band (e.g. `24,5`). enum: `24`, `5`, `6` |
 | `device` | `*string` | Query, Optional | Comma separated list of Device type (e.g. `Mac,iPhone`). Case sensitive |
-| `hostname` | `*string` | Query, Optional | Partial / full Client hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `everest*` and `*rest*` match `my-everest-client`). Suffix-only wildcards (e.g. `*everest`) are not supported |
-| `ip` | `*string` | Query, Optional | Partial / full Client IP Address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `10.100.10.*` and `*100.10.*` match `10.100.10.54`). Suffix-only wildcards (e.g. `*.54`) are not supported |
-| `mac` | `*string` | Query, Optional | Partial / full Client MAC Address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `aabbcc*` and `*bbcc*` match `aabbccddeeff`). Suffix-only wildcards (e.g. `*bccddeeff`) are not supported |
+| `hostname` | `*string` | Query, Optional | Partial / full Client hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `everest*` and `*rest*` match `my-everest-client`). Suffix-only wildcards (e.g. `*everest`) are not supported. Accepts multiple comma-separated values. |
+| `ip` | `*string` | Query, Optional | Partial / full Client IP address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `10.100.10.*` and `*100.10.*` match `10.100.10.54`). Suffix-only wildcards (e.g. `*.54`) are not supported. Accepts multiple comma-separated values. |
+| `mac` | `*string` | Query, Optional | Partial / full Client MAC address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `aabbcc*` and `*bbcc*` match `aabbccddeeff`). Suffix-only wildcards (e.g. `*bccddeeff`) are not supported. Accepts multiple comma-separated values. |
 | `model` | `*string` | Query, Optional | Only available for clients running the Marvis Client app, model, e.g. "MBP 15 late 2013", 6, 6s, "8+ GSM" |
 | `os` | `*string` | Query, Optional | Only available for clients running the Marvis Client app, os, e.g. Sierra, Yosemite, Windows 10 |
-| `pskId` | `*string` | Query, Optional | PSK ID |
+| `pskId` | `*string` | Query, Optional | PSK identifier used to filter the results |
 | `pskName` | `*string` | Query, Optional | Only available for clients using PPSK authentication, the Name of the PSK |
-| `ssid` | `*string` | Query, Optional | SSID |
+| `ssid` | `*string` | Query, Optional | Filter results by SSID |
 | `text` | `*string` | Query, Optional | Partial / full MAC address, hostname, username, psk_name or ip. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `everest*` and `*rest*` match `my-everest-client`). Suffix-only wildcards (e.g. `*everest`) are not supported |
-| `username` | `*string` | Query, Optional | Partial / full username. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `johndoe*` and `*mycorp*` match `johndoe@mycorp.com`). Suffix-only wildcards (e.g. `*mycorp.com`) are not supported |
-| `vlan` | `*string` | Query, Optional | VLAN |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `username` | `*string` | Query, Optional | Partial / full username. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `johndoe*` and `*mycorp*` match `johndoe@mycorp.com`). Suffix-only wildcards (e.g. `*mycorp.com`) are not supported. Accepts multiple comma-separated values. |
+| `vlan` | `*string` | Query, Optional | Filter results by VLAN ID |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseClientSearch](../../doc/models/response-client-search.md).
 
@@ -758,15 +804,15 @@ siteId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
 ap := "5c5b53010101"
 
-band := "5"
+band := "5,6"
 
 device := "iPhone"
 
-hostname := "my-everest-client"
+hostname := "my-everest-client,my-everest*"
 
-ip := "10.100.10.54"
+ip := "10.100.10.54,10.100.10.*"
 
-mac := "aabbccddeeff"
+mac := "aabbccddeeff,aabbcc*"
 
 model := "iPhone 8"
 
@@ -780,7 +826,7 @@ ssid := "MySSID"
 
 text := "5c5b530"
 
-username := "johndoe"
+username := "johndoe,johnd*"
 
 vlan := "10"
 
@@ -795,14 +841,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -903,8 +949,8 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 

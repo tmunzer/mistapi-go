@@ -1,7 +1,7 @@
 
 # Remote Syslog Server Protocol Enum
 
-enum: `tcp`, `udp`
+Transport protocol used for this remote syslog server. enum: `tcp`, `udp`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `tcp`, `udp`
 |  --- |
 | `tcp` |
 | `udp` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    remoteSyslogServerProtocol := models.RemoteSyslogServerProtocolEnum_TCP
+
+}
+```
 

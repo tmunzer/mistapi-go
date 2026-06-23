@@ -10,7 +10,9 @@ import (
 // SsrProxy represents a SsrProxy struct.
 // SSR proxy configuration to talk to Mist
 type SsrProxy struct {
-	Disabled             *bool                  `json:"disabled,omitempty"`
+	// Whether the SSR proxy configuration is disabled
+	Disabled *bool `json:"disabled,omitempty"`
+	// Proxy URL that SSR devices use to reach Mist
 	Url                  *string                `json:"url,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

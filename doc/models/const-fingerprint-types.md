@@ -1,6 +1,8 @@
 
 # Const Fingerprint Types
 
+Supported client fingerprint values for NAC matching
+
 ## Structure
 
 `ConstFingerprintTypes`
@@ -9,29 +11,38 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Family` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `Mfg` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `Model` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `Os` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `Family` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
+| `Mfg` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
+| `Model` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
+| `Os` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "family": [
-    "family9",
-    "family0"
-  ],
-  "mfg": [
-    "mfg2"
-  ],
-  "model": [
-    "model8",
-    "model9"
-  ],
-  "os": [
-    "os3"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constFingerprintTypes := models.ConstFingerprintTypes{
+        Family:               []string{
+            "family9",
+            "family0",
+        },
+        Mfg:                  []string{
+            "mfg2",
+        },
+        Model:                []string{
+            "model8",
+            "model9",
+        },
+        Os:                   []string{
+            "os3",
+        },
+    }
+
 }
 ```
 

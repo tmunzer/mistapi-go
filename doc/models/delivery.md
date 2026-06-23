@@ -16,18 +16,27 @@ Delivery object to configure the alarm delivery
 | `ToOrgAdmins` | `*bool` | Optional | Whether to deliver the alarms via emails to Org admins or not |
 | `ToSiteAdmins` | `*bool` | Optional | Whether to deliver the alarms via emails to Site admins or not |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": true,
-  "to_org_admins": true,
-  "to_site_admins": false,
-  "additional_emails": [
-    "additional_emails9",
-    "additional_emails0",
-    "additional_emails1"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    delivery := models.Delivery{
+        AdditionalEmails:     []string{
+            "additional_emails9",
+            "additional_emails0",
+            "additional_emails1",
+        },
+        Enabled:              true,
+        ToOrgAdmins:          models.ToPointer(true),
+        ToSiteAdmins:         models.ToPointer(false),
+    }
+
 }
 ```
 

@@ -8,9 +8,11 @@ import (
 )
 
 // TunnelProviderOptions represents a TunnelProviderOptions struct.
+// Provider-specific options for gateway tunnel auto provisioning
 type TunnelProviderOptions struct {
 	// For jse-ipsec, this allows provisioning of adequate resource on JSE. Make sure adequate licenses are added
-	Jse    *TunnelProviderOptionsJse    `json:"jse,omitempty"`
+	Jse *TunnelProviderOptionsJse `json:"jse,omitempty"`
+	// Prisma Access provider options for tunnel auto provisioning
 	Prisma *TunnelProviderOptionsPrisma `json:"prisma,omitempty"`
 	// For zscaler-ipsec and zscaler-gre
 	Zscaler              *TunnelProviderOptionsZscaler `json:"zscaler,omitempty"`

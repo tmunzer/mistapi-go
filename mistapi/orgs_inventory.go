@@ -24,7 +24,7 @@ func NewOrgsInventory(baseController baseController) *OrgsInventory {
 	return &orgsInventory
 }
 
-// GetOrgInventory takes context, orgId, serial, model, mType, mac, siteId, vcMac, vc, unassigned, modifiedAfter, limit, page as parameters and
+// GetOrgInventory takes context, orgId, serial, model, mType, mac, siteId, vcMac, vc, unassigned, modifiedAfter, disconnectedBefore, limit, page as parameters and
 // returns an models.ApiResponse with []models.Inventory data and
 // an error if there was an issue with the request or response.
 // Get Org Inventory
@@ -48,13 +48,14 @@ func (o *OrgsInventory) GetOrgInventory(
 	orgId uuid.UUID,
 	serial *string,
 	model *string,
-	mType *models.DeviceTypeEnum,
+	mType *string,
 	mac *string,
 	siteId *uuid.UUID,
 	vcMac *string,
 	vc *bool,
 	unassigned *bool,
 	modifiedAfter *int,
+	disconnectedBefore *int,
 	limit *int,
 	page *int) (
 	models.ApiResponse[[]models.Inventory],
@@ -64,19 +65,15 @@ func (o *OrgsInventory) GetOrgInventory(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if serial != nil {
 		req.QueryParam("serial", *serial)
@@ -105,6 +102,9 @@ func (o *OrgsInventory) GetOrgInventory(
 	if modifiedAfter != nil {
 		req.QueryParam("modified_after", *modifiedAfter)
 	}
+	if disconnectedBefore != nil {
+		req.QueryParam("disconnected_before", *disconnectedBefore)
+	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)
 	}
@@ -125,7 +125,7 @@ func (o *OrgsInventory) GetOrgInventory(
 // AddOrgInventory takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.ResponseInventory data and
 // an error if there was an issue with the request or response.
-// Add Device to Org Inventory with the device claim codes
+// Claim devices into the organization inventory using order activation codes or device claim codes.
 func (o *OrgsInventory) AddOrgInventory(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -137,19 +137,15 @@ func (o *OrgsInventory) AddOrgInventory(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "OK - if any of entries are valid or there’s no errors", Unmarshaller: errors.NewResponseInventoryError},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -169,7 +165,7 @@ func (o *OrgsInventory) AddOrgInventory(
 // UpdateOrgInventoryAssignment takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.ResponseOrgInventoryChange data and
 // an error if there was an issue with the request or response.
-// Update Org Inventory
+// Update inventory assignment for one or more devices, such as assigning them to a site, unassigning them, or deleting inventory records by MAC address or serial number.
 func (o *OrgsInventory) UpdateOrgInventoryAssignment(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -181,19 +177,15 @@ func (o *OrgsInventory) UpdateOrgInventoryAssignment(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -213,7 +205,7 @@ func (o *OrgsInventory) UpdateOrgInventoryAssignment(
 // CountOrgInventory takes context, orgId, distinct, mType, siteId, model, version, status, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of in the Org Inventory
+// Count organization inventory records, optionally grouped by `distinct` and filtered by device type, site, model, version, and status.
 func (o *OrgsInventory) CountOrgInventory(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -231,19 +223,15 @@ func (o *OrgsInventory) CountOrgInventory(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -280,7 +268,7 @@ func (o *OrgsInventory) CountOrgInventory(
 // CreateOrgGatewayHaCluster takes context, orgId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Create HA Cluster from unassigned Gateways
+// Create a gateway HA cluster from unassigned gateway inventory nodes and assign the cluster to the specified site.
 func (o *OrgsInventory) CreateOrgGatewayHaCluster(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -296,19 +284,15 @@ func (o *OrgsInventory) CreateOrgGatewayHaCluster(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -342,19 +326,15 @@ func (o *OrgsInventory) DeleteOrgGatewayHaCluster(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -371,7 +351,7 @@ func (o *OrgsInventory) DeleteOrgGatewayHaCluster(
 // ReevaluateOrgAutoAssignment takes context, orgId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Reevaluate Auto Assignment
+// Re-run organization inventory auto-assignment rules against devices that are eligible for automatic site assignment.
 func (o *OrgsInventory) ReevaluateOrgAutoAssignment(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -386,19 +366,15 @@ func (o *OrgsInventory) ReevaluateOrgAutoAssignment(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -427,19 +403,15 @@ func (o *OrgsInventory) ReplaceOrgDevices(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -459,7 +431,7 @@ func (o *OrgsInventory) ReplaceOrgDevices(
 // SearchOrgInventory takes context, orgId, mType, mac, model, name, siteId, serial, master, sku, version, status, text, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.InventorySearch data and
 // an error if there was an issue with the request or response.
-// Search in the Org Inventory
+// Search organization inventory records with filters for type, MAC address, model, name, site, serial number, Virtual Chassis master state, SKU, version, status, and text.
 func (o *OrgsInventory) SearchOrgInventory(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -472,7 +444,7 @@ func (o *OrgsInventory) SearchOrgInventory(
 	master *string,
 	sku *string,
 	version *string,
-	status *models.DeviceStatusFilterEnum,
+	status *string,
 	text *string,
 	limit *int,
 	sort *string,
@@ -484,19 +456,15 @@ func (o *OrgsInventory) SearchOrgInventory(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if mType != nil {
 		req.QueryParam("type", *mType)

@@ -1,7 +1,7 @@
 
 # Capture Switch Type Enum
 
-enum: `switch`
+Packet capture type discriminator for switch captures. enum: `switch`
 
 ## Enumeration
 
@@ -15,7 +15,16 @@ enum: `switch`
 
 ## Example
 
-```
-switch
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureSwitchType := models.CaptureSwitchTypeEnum_ENUMSWITCH
+
+}
 ```
 

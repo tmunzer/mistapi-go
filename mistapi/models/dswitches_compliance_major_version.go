@@ -10,9 +10,13 @@ import (
 )
 
 // DswitchesComplianceMajorVersion represents a DswitchesComplianceMajorVersion struct.
+// Version-compliance grouping for one discovered switch model
 type DswitchesComplianceMajorVersion struct {
-	MajorCount           float64                `json:"major_count"`
-	Model                string                 `json:"model"`
+	// Number of major software versions observed for this switch model
+	MajorCount float64 `json:"major_count"`
+	// Switch model represented by this version-compliance grouping
+	Model string `json:"model"`
+	// Unique string values returned or accepted by this schema
 	SystemNames          []string               `json:"system_names,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

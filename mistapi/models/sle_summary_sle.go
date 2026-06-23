@@ -10,11 +10,17 @@ import (
 )
 
 // SleSummarySle represents a SleSummarySle struct.
+// Time-series SLE metric samples for a summary response
 type SleSummarySle struct {
-	Interval             float64                `json:"interval"`
-	Name                 string                 `json:"name"`
-	Samples              SleSummarySleSamples   `json:"samples"`
-	XLabel               string                 `json:"x_label"`
+	// Sample interval in seconds for SLE summary data
+	Interval float64 `json:"interval"`
+	// SLE metric name represented by the summary samples
+	Name string `json:"name"`
+	// Per-interval sample arrays for an SLE summary
+	Samples SleSummarySleSamples `json:"samples"`
+	// Label for the SLE summary x-axis
+	XLabel string `json:"x_label"`
+	// Label for the SLE summary y-axis
 	YLabel               string                 `json:"y_label"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

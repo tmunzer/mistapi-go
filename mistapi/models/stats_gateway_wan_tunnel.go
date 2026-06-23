@@ -8,43 +8,45 @@ import (
 )
 
 // StatsGatewayWanTunnel represents a StatsGatewayWanTunnel struct.
+// WAN tunnel statistics reported by a gateway
 type StatsGatewayWanTunnel struct {
-	// Authentication algorithm
+	// Authentication algorithm negotiated for the tunnel
 	AuthAlgo *string `json:"auth_algo,omitempty"`
-	// Encryption algorithm
+	// Encryption algorithm negotiated for the tunnel
 	EncryptAlgo *string `json:"encrypt_algo,omitempty"`
-	// IKE version
+	// IKE version used to establish the tunnel
 	IkeVersion *string `json:"ike_version,omitempty"`
-	// IP Address
+	// Local IP address used by the tunnel
 	Ip *string `json:"ip,omitempty"`
-	// Reason of why the tunnel is down
+	// Most recent reason the tunnel went down
 	LastEvent *string `json:"last_event,omitempty"`
-	// Indicates when the port was last flapped
+	// Indicates when the tunnel last flapped
 	LastFlapped *float64 `json:"last_flapped,omitempty"`
-	// Node0/node1
+	// HA node handling the tunnel, such as node0 or node1
 	Node *string `json:"node,omitempty"`
-	// Peer host
+	// Hostname or configured peer host of the remote tunnel endpoint
 	PeerHost *string `json:"peer_host,omitempty"`
-	// Peer ip address
+	// IP address of the remote tunnel endpoint
 	PeerIp *string `json:"peer_ip,omitempty"`
-	// enum: `primary`, `secondary`
+	// Relative preference assigned to the tunnel. enum: `primary`, `secondary`
 	Priority *TunnelPriorityEnum `json:"priority,omitempty"`
-	// enum: `gre`, `ipsec`
+	// Tunnel protocol used for the connection. enum: `gre`, `ipsec`
 	Protocol *WanTunnelProtocolEnum `json:"protocol,omitempty"`
 	// Amount of traffic received since connection
 	RxBytes Optional[int64] `json:"rx_bytes"`
 	// Amount of packets received since connection
 	RxPkts Optional[int64] `json:"rx_pkts"`
-	// Mist Tunnel Name
+	// Name of the Mist-managed WAN tunnel
 	TunnelName *string `json:"tunnel_name,omitempty"`
 	// Amount of traffic sent since connection
 	TxBytes Optional[int64] `json:"tx_bytes"`
 	// Amount of packets sent since connection
 	TxPkts Optional[int64] `json:"tx_pkts"`
-	Up     *bool           `json:"up,omitempty"`
-	// Duration from first (or last) SA was established
+	// Indicates whether the tunnel is currently up
+	Up *bool `json:"up,omitempty"`
+	// Duration since the tunnel security association was established
 	Uptime *int `json:"uptime,omitempty"`
-	// WAN interface name
+	// Name of the WAN interface carrying the tunnel
 	WanName              *string                `json:"wan_name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

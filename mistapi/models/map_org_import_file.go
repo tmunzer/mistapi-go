@@ -8,13 +8,15 @@ import (
 )
 
 // MapOrgImportFile represents a MapOrgImportFile struct.
+// Multipart payload for importing map files at organization scope
 type MapOrgImportFile struct {
 	// Whether to auto assign device to deviceprofile by name
 	AutoDeviceprofileAssignment *bool `json:"auto_deviceprofile_assignment,omitempty"`
-	// CSV file for ap name mapping, optional
+	// Optional AP name-mapping CSV file
 	Csv *[]byte `json:"csv,omitempty"`
-	// Ekahau or ibwave file
-	File                 *[]byte                `json:"file,omitempty"`
+	// Ekahau or iBwave floorplan file to import
+	File *[]byte `json:"file,omitempty"`
+	// Options for importing map files at organization scope
 	Json                 *MapOrgImportFileJson  `json:"json,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

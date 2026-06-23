@@ -10,14 +10,21 @@ import (
 )
 
 // ResponseConfigHistorySearch represents a ResponseConfigHistorySearch struct.
+// Paginated device config history search response
 type ResponseConfigHistorySearch struct {
-	End                  int                               `json:"end"`
-	Limit                int                               `json:"limit"`
-	Next                 *string                           `json:"next,omitempty"`
-	Results              []ResponseConfigHistorySearchItem `json:"results"`
-	Start                int                               `json:"start"`
-	Total                int                               `json:"total"`
-	AdditionalProperties map[string]interface{}            `json:"_"`
+	// Search window end timestamp for config history, in epoch seconds
+	End int `json:"end"`
+	// Maximum number of config history entries requested
+	Limit int `json:"limit"`
+	// URL for the next page of config history results
+	Next *string `json:"next,omitempty"`
+	// Device config history entries returned by a search response
+	Results []ResponseConfigHistorySearchItem `json:"results"`
+	// Search window start timestamp for config history, in epoch seconds
+	Start int `json:"start"`
+	// Number of config history entries matching the search
+	Total                int                    `json:"total"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseConfigHistorySearch,

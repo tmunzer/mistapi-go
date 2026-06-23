@@ -8,6 +8,7 @@ import (
 )
 
 // ConstInsightMetricsPropertyExampleAnyOf represents a ConstInsightMetricsPropertyExampleAnyOf struct.
+// Example values for an insight metric property, as an array or keyed object
 type ConstInsightMetricsPropertyExampleAnyOf struct {
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -15,3 +15,18 @@ if `enable_mac_auth`==`true`, allows user to select an authentication protocol. 
 | `eap-peap` |
 | `pap` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    apPortConfigMacAuthProtocol := models.ApPortConfigMacAuthProtocolEnum_PAP
+
+}
+```
+

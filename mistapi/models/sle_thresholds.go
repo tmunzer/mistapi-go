@@ -8,12 +8,13 @@ import (
 )
 
 // SleThresholds represents a SleThresholds struct.
+// Site SLE threshold overrides for capacity, coverage, throughput, and time to connect
 type SleThresholds struct {
-	// Capacity, in %
+	// Threshold percentage for capacity SLE scoring
 	Capacity *int `json:"capacity,omitempty"`
-	// Coverage, in dBm
+	// RSSI threshold for coverage SLE scoring, in dBm
 	Coverage *int `json:"coverage,omitempty"`
-	// Throughput, in Mbps
+	// Minimum throughput threshold for SLE scoring, in Mbps
 	Throughput *int `json:"throughput,omitempty"`
 	// Time to connect, in seconds
 	TimeToConnect        *int                   `json:"time-to-connect,omitempty"`

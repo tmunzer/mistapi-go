@@ -10,7 +10,9 @@ import (
 )
 
 // RootPasswordString represents a RootPasswordString struct.
+// Temporary root password response for device ZTP recovery
 type RootPasswordString struct {
+	// Temporary root password returned for ZTP recovery
 	RootPassword         string                 `json:"root_password"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

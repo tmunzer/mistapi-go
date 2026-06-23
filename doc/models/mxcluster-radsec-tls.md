@@ -1,6 +1,8 @@
 
 # Mxcluster Radsec Tls
 
+TLS settings for RadSec on a Mist Edge cluster
+
 ## Structure
 
 `MxclusterRadsecTls`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Keypair` | `*string` | Optional | - |
+| `Keypair` | `*string` | Optional | Name or identifier of the TLS keypair used by RadSec |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "keypair": "keypair0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxclusterRadsecTls := models.MxclusterRadsecTls{
+        Keypair:              models.ToPointer("keypair8"),
+    }
+
 }
 ```
 

@@ -10,12 +10,19 @@ import (
 )
 
 // SleSummary represents a SleSummary struct.
+// Deprecated SLE summary response for a metric window
 type SleSummary struct {
-	Classifiers          []SleClassifier        `json:"classifiers"`
-	End                  float64                `json:"end"`
-	Events               []interface{}          `json:"events"`
-	Impact               SleSummaryImpact       `json:"impact"`
-	Sle                  SleSummarySle          `json:"sle"`
+	// SLE classifier details included in a summary response
+	Classifiers []SleClassifier `json:"classifiers"`
+	// Last timestamp in the SLE summary window
+	End float64 `json:"end"`
+	// Event records included in an SLE summary response
+	Events []interface{} `json:"events"`
+	// AP and user impact counts for an SLE summary window
+	Impact SleSummaryImpact `json:"impact"`
+	// Time-series SLE metric samples for a summary response
+	Sle SleSummarySle `json:"sle"`
+	// First timestamp in the SLE summary window
 	Start                float64                `json:"start"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

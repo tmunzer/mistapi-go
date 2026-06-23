@@ -14,3 +14,18 @@ by default, NAS devices(switches/aps) and proxies(mxedge) are configured to reac
 | `v4` |
 | `v6` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingMistNacIpVersion := models.OrgSettingMistNacIpVersionEnum_V4
+
+}
+```
+

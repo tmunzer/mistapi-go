@@ -1,6 +1,8 @@
 
 # Const Insight Metrics Property Interval
 
+Interval definition for an insight metric
+
 ## Structure
 
 `ConstInsightMetricsPropertyInterval`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Interval` | `*int` | Optional | - |
-| `MaxAge` | `*int` | Optional | - |
+| `Interval` | `*int` | Optional | Sampling interval length, in seconds |
+| `MaxAge` | `*int` | Optional | Maximum lookback age for this interval, in seconds |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "interval": 108,
-  "max_age": 128
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constInsightMetricsPropertyInterval := models.ConstInsightMetricsPropertyInterval{
+        Interval:             models.ToPointer(158),
+        MaxAge:               models.ToPointer(78),
+    }
+
 }
 ```
 

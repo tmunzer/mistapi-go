@@ -1,6 +1,8 @@
 
 # Const State
 
+State or territory definition returned by the constants API
+
 ## Structure
 
 `ConstState`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `IsoCode` | `*string` | Optional | - |
-| `Name` | `*string` | Optional | - |
+| `IsoCode` | `*string` | Optional | ISO subdivision code for the state or territory |
+| `Name` | `*string` | Optional | State or territory display name |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "iso_code": "AK",
-  "name": "Alaska"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constState := models.ConstState{
+        IsoCode:              models.ToPointer("AK"),
+        Name:                 models.ToPointer("Alaska"),
+    }
+
 }
 ```
 

@@ -10,8 +10,11 @@ import (
 )
 
 // DswitchesMetricsSwitchApAffinityDetails represents a DswitchesMetricsSwitchApAffinityDetails struct.
+// Detail values used by the switch/AP affinity metric
 type DswitchesMetricsSwitchApAffinityDetails struct {
-	SystemName           []string               `json:"system_name"`
+	// Unique string values returned or accepted by this schema
+	SystemName []string `json:"system_name"`
+	// APs-per-switch threshold used for the affinity metric
 	Threshold            float64                `json:"threshold"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

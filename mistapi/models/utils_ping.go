@@ -10,18 +10,21 @@ import (
 )
 
 // UtilsPing represents a UtilsPing struct.
+// Request body for running a ping utility command
 type UtilsPing struct {
+	// Number of echo requests to send
 	Count *int `json:"count,omitempty"`
-	// Interface through which packet needs to egress
+	// Interface through which ping packets should egress
 	EgressInterface *string `json:"egress_interface,omitempty"`
-	// can be ip, ipv6, hostname
+	// Destination IP address, IPv6 address, or hostname to ping
 	Host string `json:"host"`
-	// only for HA. enum: `node0`, `node1`
+	// HA cluster node selector. enum: `node0`, `node1`
 	Node *HaClusterNodeEnum `json:"node,omitempty"`
-	Size *int               `json:"size,omitempty"`
+	// ICMP payload size, in bytes
+	Size *int `json:"size,omitempty"`
 	// applicable when host is hostname
 	UseIpv6 *bool `json:"use_ipv6,omitempty"`
-	// VRF/Routing instance through which the packet needs to be sent
+	// Routing instance or VRF through which ping packets are sent
 	Vrf                  *string                `json:"vrf,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

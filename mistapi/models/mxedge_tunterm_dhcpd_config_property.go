@@ -8,11 +8,13 @@ import (
 )
 
 // MxedgeTuntermDhcpdConfigProperty represents a MxedgeTuntermDhcpdConfigProperty struct.
+// Per-VLAN DHCP relay settings for a Mist Tunneled VLAN
 type MxedgeTuntermDhcpdConfigProperty struct {
+	// Whether DHCP relay is enabled for this tunneled VLAN
 	Enabled *bool `json:"enabled,omitempty"`
 	// List of DHCP servers; required if `type`==`relay`
 	Servers []string `json:"servers,omitempty"`
-	// enum: `relay`
+	// DHCP handling mode for this tunneled VLAN. enum: `relay`
 	Type                 *MxedgeTuntermDhcpdConfigTypeEnum `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}            `json:"_"`
 }

@@ -1,7 +1,7 @@
 
 # Capture Gateway Type Enum
 
-enum: `gateway`
+Packet capture type discriminator for gateway captures. enum: `gateway`
 
 ## Enumeration
 
@@ -15,7 +15,16 @@ enum: `gateway`
 
 ## Example
 
-```
-gateway
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureGatewayType := models.CaptureGatewayTypeEnum_GATEWAY
+
+}
 ```
 

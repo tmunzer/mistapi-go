@@ -1,7 +1,7 @@
 
 # Synthetictest Protocol Enum
 
-enum: `ping`, `traceroute`
+Protocol used by a synthetic test probe. enum: `ping`, `traceroute`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `ping`, `traceroute`
 |  --- |
 | `ping` |
 | `traceroute` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    synthetictestProtocol := models.SynthetictestProtocolEnum_PING
+
+}
+```
 

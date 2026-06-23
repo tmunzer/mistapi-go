@@ -15,3 +15,18 @@ upgrade channel to follow. enum: `alpha`, `beta`, `stable`
 | `beta` |
 | `stable` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ssrUpgradeChannel := models.SsrUpgradeChannelEnum_BETA
+
+}
+```
+

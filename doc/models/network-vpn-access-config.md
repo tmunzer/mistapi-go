@@ -1,6 +1,8 @@
 
 # Network Vpn Access Config
 
+VPN access settings for a network and VPN pair
+
 ## Structure
 
 `NetworkVpnAccessConfig`
@@ -19,35 +21,49 @@
 | `OtherVrfs` | `[]string` | Optional | By default, the routes are only readvertised toward the same vrf on spoke. To allow it to be leaked to other vrfs |
 | `Routed` | `*bool` | Optional | Whether this network is routable |
 | `SourceNat` | [`*models.NetworkSourceNat`](../../doc/models/network-source-nat.md) | Optional | If `routed`==`false` (usually at Spoke), but some hosts needs to be reachable from Hub |
-| `StaticNat` | [`map[string]models.NetworkVpnAccessStaticNatProperty`](../../doc/models/network-vpn-access-static-nat-property.md) | Optional | Property key may be an External IP Address (i.e. "63.16.0.3"), a CIDR (i.e. "63.16.0.12/20") or a Variable (i.e. "{{myvar}}") |
+| `StaticNat` | [`map[string]models.NetworkVpnAccessStaticNatProperty`](../../doc/models/network-vpn-access-static-nat-property.md) | Optional | Property key may be an External IP address (i.e. "63.16.0.3"), a CIDR (i.e. "63.16.0.12/20") or a Variable (i.e. "{{myvar}}") |
 | `SummarizedSubnet` | `*string` | Optional | toward overlay, how HUB should deal with routes it received from Spokes |
 | `SummarizedSubnetToLanBgp` | `*string` | Optional | toward LAN-side BGP peers |
 | `SummarizedSubnetToLanOspf` | `*string` | Optional | toward LAN-side OSPF peers |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "advertised_subnet": "172.16.0.0/24",
-  "nat_pool": "172.16.0.0/26",
-  "no_readvertise_to_lan_bgp": false,
-  "no_readvertise_to_lan_ospf": false,
-  "summarized_subnet": "172.16.0.0/16",
-  "summarized_subnet_to_lan_bgp": "172.16.0.0/16",
-  "summarized_subnet_to_lan_ospf": "172.16.0.0/16",
-  "allow_ping": false,
-  "destination_nat": {
-    "key0": {
-      "internal_ip": "internal_ip0",
-      "name": "name4",
-      "port": "port4"
-    },
-    "key1": {
-      "internal_ip": "internal_ip0",
-      "name": "name4",
-      "port": "port4"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    networkVpnAccessConfig := models.NetworkVpnAccessConfig{
+        AdvertisedSubnet:          models.ToPointer("172.16.0.0/24"),
+        AllowPing:                 models.ToPointer(false),
+        DestinationNat:            map[string]models.NetworkVpnAccessDestinationNatProperty{
+            "key0": models.NetworkVpnAccessDestinationNatProperty{
+                InternalIp:           models.ToPointer("internal_ip0"),
+                Name:                 models.ToPointer("name4"),
+                Port:                 models.ToPointer("port4"),
+            },
+            "key1": models.NetworkVpnAccessDestinationNatProperty{
+                InternalIp:           models.ToPointer("internal_ip0"),
+                Name:                 models.ToPointer("name4"),
+                Port:                 models.ToPointer("port4"),
+            },
+            "key2": models.NetworkVpnAccessDestinationNatProperty{
+                InternalIp:           models.ToPointer("internal_ip0"),
+                Name:                 models.ToPointer("name4"),
+                Port:                 models.ToPointer("port4"),
+            },
+        },
+        NatPool:                   models.ToPointer("172.16.0.0/26"),
+        NoReadvertiseToLanBgp:     models.ToPointer(false),
+        NoReadvertiseToLanOspf:    models.ToPointer(false),
+        SummarizedSubnet:          models.ToPointer("172.16.0.0/16"),
+        SummarizedSubnetToLanBgp:  models.ToPointer("172.16.0.0/16"),
+        SummarizedSubnetToLanOspf: models.ToPointer("172.16.0.0/16"),
     }
-  }
+
 }
 ```
 

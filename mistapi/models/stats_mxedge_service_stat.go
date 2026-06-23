@@ -8,18 +8,19 @@ import (
 )
 
 // StatsMxedgeServiceStat represents a StatsMxedgeServiceStat struct.
+// Runtime and package state for one Mist Edge service
 type StatsMxedgeServiceStat struct {
 	// External IP from ep-terminator’s point of view. valid only for service having its own cloud connection
 	ExtIp *string `json:"ext_ip,omitempty"`
-	// Timestamp when the last stats is seen (cloud unix time, in second). valid only for service having its own stats or whole system (last among last_seen of all services)
+	// Cloud Unix time, in seconds, when stats were last seen for this service, or the latest service last_seen time for whole-system records
 	LastSeen *float64 `json:"last_seen,omitempty"`
-	// Package/service installation state.
+	// Installation state of the Mist Edge service package
 	PackageState *string `json:"package_state,omitempty"`
-	// Package/service installation state.
+	// Installed version of the Mist Edge service package
 	PackageVersion *string `json:"package_version,omitempty"`
-	// Service running state.
+	// Runtime state reported by the Mist Edge service
 	RunningState *string `json:"running_state,omitempty"`
-	// Service uptime.
+	// Elapsed running time reported by the Mist Edge service, in seconds
 	Uptime               *int                   `json:"uptime,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

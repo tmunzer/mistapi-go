@@ -8,7 +8,9 @@ import (
 )
 
 // EvpnOptionsVsInstance represents a EvpnOptionsVsInstance struct.
+// EVPN virtual-switch instance network mapping
 type EvpnOptionsVsInstance struct {
+	// Unique string values returned or accepted by this schema
 	Networks             []string               `json:"networks,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

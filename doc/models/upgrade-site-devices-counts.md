@@ -1,6 +1,8 @@
 
 # Upgrade Site Devices Counts
 
+Device counts grouped by status for a site upgrade job
+
 ## Structure
 
 `UpgradeSiteDevicesCounts`
@@ -19,15 +21,24 @@
 | `Total` | `*int` | Optional | Count of devices part of this upgrade |
 | `Upgraded` | `*int` | Optional | Count of devices which have upgraded successfully |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "download_requested": 212,
-  "downloaded": 112,
-  "failed": 240,
-  "reboot_in_progress": 94,
-  "rebooted": 2
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    upgradeSiteDevicesCounts := models.UpgradeSiteDevicesCounts{
+        DownloadRequested:    models.ToPointer(70),
+        Downloaded:           models.ToPointer(254),
+        Failed:               models.ToPointer(98),
+        RebootInProgress:     models.ToPointer(236),
+        Rebooted:             models.ToPointer(144),
+    }
+
 }
 ```
 

@@ -22,3 +22,18 @@ enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `
 | `username_attr` |
 | `vlan` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    nacTagType := models.NacTagTypeEnum_EGRESSVLANNAMES
+
+}
+```
+

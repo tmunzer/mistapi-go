@@ -8,8 +8,11 @@ import (
 )
 
 // DhcpdStatLan represents a DhcpdStatLan struct.
+// DHCP lease statistics for one network
 type DhcpdStatLan struct {
-	NumIps               *int                   `json:"num_ips,omitempty"`
+	// Total number of IP addresses in the DHCP pool
+	NumIps *int `json:"num_ips,omitempty"`
+	// Number of DHCP pool addresses currently leased
 	NumLeased            *int                   `json:"num_leased,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

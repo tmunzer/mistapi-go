@@ -16,3 +16,18 @@ enum: `device_mac`, `mac`, `threat_level`, `type`
 | `threat_level` |
 | `type` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteSkyAtpEventsCountDistinct := models.SiteSkyAtpEventsCountDistinctEnum_THREATLEVEL
+
+}
+```
+

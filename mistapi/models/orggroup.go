@@ -11,16 +11,19 @@ import (
 )
 
 // Orggroup represents a Orggroup struct.
-// Organizations Group
+// MSP organization group containing related organizations
 type Orggroup struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime         *float64               `json:"modified_time,omitempty"`
-	MspId                *uuid.UUID             `json:"msp_id,omitempty"`
-	Name                 string                 `json:"name"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Managed service provider identifier
+	MspId *uuid.UUID `json:"msp_id,omitempty"`
+	// Display name of the organization group
+	Name string `json:"name"`
+	// List of organization identifiers included in an organization group
 	OrgIds               []uuid.UUID            `json:"org_ids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -9,33 +9,41 @@ import (
 )
 
 // ApStatMeshDownlink represents a ApStatMeshDownlink struct.
+// Runtime statistics for a mesh downlink from this AP
 type ApStatMeshDownlink struct {
-	Band     *string `json:"band,omitempty"`
-	Channel  *int    `json:"channel,omitempty"`
-	IdleTime *int    `json:"idle_time,omitempty"`
-	// Last seen timestamp
+	// Radio band used by this mesh downlink
+	Band *string `json:"band,omitempty"`
+	// Radio channel used by this mesh downlink
+	Channel *int `json:"channel,omitempty"`
+	// Seconds since traffic was last observed on this mesh downlink
+	IdleTime *int `json:"idle_time,omitempty"`
+	// Timestamp indicating when the entity was last seen
 	LastSeen Optional[float64] `json:"last_seen"`
-	Proto    *string           `json:"proto,omitempty"`
-	Rssi     *int              `json:"rssi,omitempty"`
+	// 802.11 protocol reported for this mesh downlink
+	Proto *string `json:"proto,omitempty"`
+	// Received signal strength for this mesh downlink, in dBm
+	Rssi *int `json:"rssi,omitempty"`
 	// Rate of receiving traffic, bits/seconds, last known
 	RxBps Optional[int64] `json:"rx_bps"`
 	// Amount of traffic received since connection
 	RxBytes Optional[int64] `json:"rx_bytes"`
 	// Amount of packets received since connection
 	RxPackets Optional[int64] `json:"rx_packets"`
-	// RX Rate, Mbps
+	// Receive data rate reported for a wireless or mesh link, in Mbps
 	RxRate Optional[float64] `json:"rx_rate"`
 	// Amount of rx retries
 	RxRetries Optional[int] `json:"rx_retries"`
-	SiteId    *uuid.UUID    `json:"site_id,omitempty"`
-	Snr       *int          `json:"snr,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Signal-to-noise ratio for this mesh downlink, in dB
+	Snr *int `json:"snr,omitempty"`
 	// Rate of transmitting traffic, bits/seconds, last known
 	TxBps Optional[int64] `json:"tx_bps"`
 	// Amount of traffic sent since connection
 	TxBytes Optional[int64] `json:"tx_bytes"`
 	// Amount of packets sent since connection
 	TxPackets Optional[int64] `json:"tx_packets"`
-	// TX Rate, Mbps
+	// Transmit data rate reported for a wireless or mesh link, in Mbps
 	TxRate Optional[float64] `json:"tx_rate"`
 	// Amount of tx retries
 	TxRetries            Optional[int]          `json:"tx_retries"`

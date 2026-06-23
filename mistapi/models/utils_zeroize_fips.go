@@ -10,8 +10,9 @@ import (
 )
 
 // UtilsZeroizeFips represents a UtilsZeroizeFips struct.
+// Request body for confirming FIPS AP zeroize operations
 type UtilsZeroizeFips struct {
-	// FIPS zeroize password
+	// Confirmation password for the FIPS zeroize operation
 	Password             string                 `json:"password"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

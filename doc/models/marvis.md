@@ -1,6 +1,8 @@
 
 # Marvis
 
+Marvis automation and client settings
+
 ## Structure
 
 `Marvis`
@@ -9,19 +11,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AutoOperations` | [`*models.MarvisAutoOperations`](../../doc/models/marvis-auto-operations.md) | Optional | - |
+| `AutoOperations` | [`*models.MarvisAutoOperations`](../../doc/models/marvis-auto-operations.md) | Optional | Marvis automatic remediation operation toggles |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "auto_operations": {
-    "ap_insufficient_capacity": false,
-    "ap_loop": false,
-    "ap_non_compliant": false,
-    "bounce_port_for_abnormal_poe_client": false,
-    "disable_port_when_ddos_protocol_violation": false
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    marvis := models.Marvis{
+        AutoOperations:       models.ToPointer(models.MarvisAutoOperations{
+            ApInsufficientCapacity:                 models.ToPointer(false),
+            ApLoop:                                 models.ToPointer(false),
+            ApNonCompliant:                         models.ToPointer(false),
+            BouncePortForAbnormalPoeClient:         models.ToPointer(false),
+            DisablePortWhenDdosProtocolViolation:   models.ToPointer(false),
+        }),
+    }
+
 }
 ```
 

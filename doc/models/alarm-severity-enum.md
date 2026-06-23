@@ -15,3 +15,18 @@ Severity of the alarm. enum: `critical`, `info`, `warn`
 | `info` |
 | `warn` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    alarmSeverity := models.AlarmSeverityEnum_WARN
+
+}
+```
+

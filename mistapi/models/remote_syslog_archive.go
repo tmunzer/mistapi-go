@@ -8,10 +8,13 @@ import (
 )
 
 // RemoteSyslogArchive represents a RemoteSyslogArchive struct.
+// Syslog file archive retention settings
 type RemoteSyslogArchive struct {
-	Files                *RemoteSyslogArchiveFiles `json:"files,omitempty"`
-	Size                 *string                   `json:"size,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"_"`
+	// Number of archived syslog files to retain
+	Files *RemoteSyslogArchiveFiles `json:"files,omitempty"`
+	// Maximum size of each archived syslog file, such as 5m
+	Size                 *string                `json:"size,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for RemoteSyslogArchive,

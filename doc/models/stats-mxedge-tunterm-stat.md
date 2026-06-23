@@ -1,6 +1,8 @@
 
 # Stats Mxedge Tunterm Stat
 
+Tunnel termination monitoring status reported by a Mist Edge
+
 ## Structure
 
 `StatsMxedgeTuntermStat`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `MonitoringFailed` | `*bool` | Optional | - |
+| `MonitoringFailed` | `*bool` | Optional | Whether tunnel termination monitoring is currently failing |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "monitoring_failed": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsMxedgeTuntermStat := models.StatsMxedgeTuntermStat{
+        MonitoringFailed:     models.ToPointer(false),
+    }
+
 }
 ```
 

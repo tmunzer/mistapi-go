@@ -8,6 +8,7 @@ import (
 )
 
 // UtilsClearBpdu represents a UtilsClearBpdu struct.
+// Request to clear detected BPDU errors on switch ports
 type UtilsClearBpdu struct {
 	// List of ports on which to clear the detected BPDU error, or `all` for all ports
 	Ports                []string               `json:"ports,omitempty"`

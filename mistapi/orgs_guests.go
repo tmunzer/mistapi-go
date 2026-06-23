@@ -27,7 +27,7 @@ func NewOrgsGuests(baseController baseController) *OrgsGuests {
 // ListOrgGuestAuthorizations takes context, orgId as parameters and
 // returns an models.ApiResponse with []models.Guest data and
 // an error if there was an issue with the request or response.
-// Get List of Org Guest Authorizations
+// List guest authorization records across the organization, including WLAN, SSID, authentication method, expiration, and guest identity details.
 func (o *OrgsGuests) ListOrgGuestAuthorizations(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -38,19 +38,15 @@ func (o *OrgsGuests) ListOrgGuestAuthorizations(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result []models.Guest
@@ -66,7 +62,7 @@ func (o *OrgsGuests) ListOrgGuestAuthorizations(
 // CountOrgGuestAuthorizations takes context, orgId, distinct, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of Org Authorized Guest
+// Count organization guest authorization records, optionally grouped by `distinct` and filtered by time range.
 func (o *OrgsGuests) CountOrgGuestAuthorizations(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -82,19 +78,15 @@ func (o *OrgsGuests) CountOrgGuestAuthorizations(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -125,7 +117,7 @@ func (o *OrgsGuests) CountOrgGuestAuthorizations(
 // SearchOrgGuestAuthorization takes context, orgId, wlanId, authMethod, ssid, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseGuestSearch data and
 // an error if there was an issue with the request or response.
-// Search Authorized Guest
+// Search organization guest authorization records with filters for WLAN, SSID, authentication method, and time range.
 func (o *OrgsGuests) SearchOrgGuestAuthorization(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -144,19 +136,15 @@ func (o *OrgsGuests) SearchOrgGuestAuthorization(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if wlanId != nil {
 		req.QueryParam("wlan_id", *wlanId)
@@ -196,7 +184,7 @@ func (o *OrgsGuests) SearchOrgGuestAuthorization(
 // DeleteOrgGuestAuthorization takes context, orgId, guestMac as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete Guest Authorization
+// Delete a guest authorization record by guest MAC address.
 func (o *OrgsGuests) DeleteOrgGuestAuthorization(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -208,19 +196,15 @@ func (o *OrgsGuests) DeleteOrgGuestAuthorization(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -233,7 +217,7 @@ func (o *OrgsGuests) DeleteOrgGuestAuthorization(
 // GetOrgGuestAuthorization takes context, orgId, guestMac as parameters and
 // returns an models.ApiResponse with models.Guest data and
 // an error if there was an issue with the request or response.
-// Get Guest Authorization
+// Retrieve the guest authorization record associated with a guest MAC address.
 func (o *OrgsGuests) GetOrgGuestAuthorization(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -245,19 +229,15 @@ func (o *OrgsGuests) GetOrgGuestAuthorization(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.Guest
@@ -273,7 +253,7 @@ func (o *OrgsGuests) GetOrgGuestAuthorization(
 // UpdateOrgGuestAuthorization takes context, orgId, guestMac, body as parameters and
 // returns an models.ApiResponse with models.Guest data and
 // an error if there was an issue with the request or response.
-// Update Guest Authorization
+// Update the organization guest authorization record for a guest MAC address, including authorization state, duration, WLAN, and guest identity fields.
 func (o *OrgsGuests) UpdateOrgGuestAuthorization(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -286,19 +266,15 @@ func (o *OrgsGuests) UpdateOrgGuestAuthorization(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

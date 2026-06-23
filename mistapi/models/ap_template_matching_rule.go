@@ -8,9 +8,12 @@ import (
 )
 
 // ApTemplateMatchingRule represents a ApTemplateMatchingRule struct.
+// Model and name match criteria for an AP template port configuration
 type ApTemplateMatchingRule struct {
+	// Access point model matched by this AP template rule
 	MatchModel *string `json:"match_model,omitempty"`
-	Name       *string `json:"name,omitempty"`
+	// Display label for this AP template matching rule
+	Name *string `json:"name,omitempty"`
 	// Property key is the interface(s) name (e.g. "eth1,eth2")
 	PortConfig           map[string]ApPortConfig `json:"port_config,omitempty"`
 	AdditionalProperties map[string]interface{}  `json:"_"`

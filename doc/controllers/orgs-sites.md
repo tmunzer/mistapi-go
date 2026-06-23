@@ -18,7 +18,7 @@ orgsSites := client.OrgsSites()
 
 # Count Org Sites
 
-Count by Distinct Attributes of Sites
+Count organization sites grouped by a distinct site attribute, such as country code, site name, feature flags, or enabled services.
 
 ```go
 CountOrgSites(
@@ -33,18 +33,24 @@ CountOrgSites(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.OrgSitesCountDistinctEnum`](../../doc/models/org-sites-count-distinct-enum.md) | Query, Optional | **Default**: `"id"` |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `distinct` | [`*models.OrgSitesCountDistinctEnum`](../../doc/models/org-sites-count-distinct-enum.md) | Query, Optional | Field used to group this count response. enum: `analytic_enabled`, `app_waking`, `asset_enabled`, `auto_upgrade_enabled`, `auto_upgrade_version`, `country_code`, `honeypot_enabled`, `id`, `locate_unconnected`, `mesh_enabled`, `name`, `remote_syslog_enabled`, `rogue_enabled`, `rtsa_enabled`, `vna_enabled`, `wifi_enabled`<br><br>**Default**: `"id"` |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
+
+**200**: Result of Count
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
@@ -66,14 +72,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -107,15 +113,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Create Org Site
 
-Create Org Site
+Create a site in the organization with location metadata, timezone, site group membership, and optional template or policy associations.
 
 ```go
 CreateOrgSite(
@@ -126,6 +132,10 @@ CreateOrgSite(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -134,6 +144,8 @@ CreateOrgSite(
 | `body` | [`*models.Site`](../../doc/models/site.md) | Body, Optional | Request Body |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Site](../../doc/models/site.md).
 
@@ -170,14 +182,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -222,15 +234,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # List Org Sites
 
-Get List of Org Sites
+List sites in the organization. Site records include location metadata, timezone, site group membership, and template or policy associations.
 
 ```go
 ListOrgSites(
@@ -242,15 +254,21 @@ ListOrgSites(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | Select the page number to return when using page-based pagination; starts at `1`<br><br>**Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Site](../../doc/models/site.md).
 
@@ -270,14 +288,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -324,15 +342,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Search Org Sites
 
-Search Sites
+Search organization sites with filters for feature flags, country code, identifiers, names, upgrade settings, and other site attributes. Supports pagination and sorting.
 
 ```go
 SearchOrgSites(
@@ -364,35 +382,41 @@ SearchOrgSites(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `analyticEnabled` | `*bool` | Query, Optional | If Advanced Analytic feature is enabled |
+| `analyticEnabled` | `*bool` | Query, Optional | If Advanced Analytic feature is enabled. Accepts multiple comma-separated boolean values. |
 | `appWaking` | `*bool` | Query, Optional | If App Waking feature is enabled |
-| `assetEnabled` | `*bool` | Query, Optional | If Asset Tracking is enabled |
-| `autoUpgradeEnabled` | `*bool` | Query, Optional | If Auto Upgrade feature is enabled |
-| `autoUpgradeVersion` | `*string` | Query, Optional | If Auto Upgrade feature is enabled |
-| `countryCode` | `*string` | Query, Optional | Site country code |
-| `honeypotEnabled` | `*bool` | Query, Optional | If Honeypot detection is enabled |
-| `id` | `*string` | Query, Optional | Site id |
-| `locateUnconnected` | `*bool` | Query, Optional | If unconnected client are located |
-| `meshEnabled` | `*bool` | Query, Optional | If Mesh feature is enabled |
-| `name` | `*string` | Query, Optional | Partial / full Site name. Case insensitive. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `my-site*` and `*site*` match `my-site-01`). Suffix-only wildcards (e.g. `*site-01`) are not supported |
-| `rogueEnabled` | `*bool` | Query, Optional | If Rogue detection is enabled |
+| `assetEnabled` | `*bool` | Query, Optional | If Asset Tracking is enabled. Accepts multiple comma-separated boolean values. |
+| `autoUpgradeEnabled` | `*bool` | Query, Optional | Filter results by whether automatic upgrades are enabled |
+| `autoUpgradeVersion` | `*string` | Query, Optional | Filter results by automatic upgrade version. Accepts multiple comma-separated values. |
+| `countryCode` | `*string` | Query, Optional | Filter results by country code. Accepts multiple comma-separated values. |
+| `honeypotEnabled` | `*bool` | Query, Optional | If Honeypot detection is enabled. Accepts multiple comma-separated boolean values. |
+| `id` | `*string` | Query, Optional | Filter results by identifier. Accepts multiple comma-separated values. |
+| `locateUnconnected` | `*bool` | Query, Optional | If unconnected client are located. Accepts multiple comma-separated boolean values. |
+| `meshEnabled` | `*bool` | Query, Optional | If Mesh feature is enabled. Accepts multiple comma-separated boolean values. |
+| `name` | `*string` | Query, Optional | Partial / full Site name. Case insensitive. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `my-site*` and `*site*` match `my-site-01`). Suffix-only wildcards (e.g. `*site-01`) are not supported. Accepts multiple comma-separated values. |
+| `rogueEnabled` | `*bool` | Query, Optional | If Rogue detection is enabled. Accepts multiple comma-separated boolean values. |
 | `remoteSyslogEnabled` | `*bool` | Query, Optional | If Remote Syslog is enabled |
-| `rtsaEnabled` | `*bool` | Query, Optional | If managed mobility feature is enabled |
-| `vnaEnabled` | `*bool` | Query, Optional | If Virtual Network Assistant is enabled |
+| `rtsaEnabled` | `*bool` | Query, Optional | If managed mobility feature is enabled. Accepts multiple comma-separated boolean values. |
+| `vnaEnabled` | `*bool` | Query, Optional | If Virtual Network Assistant is enabled. Accepts multiple comma-separated boolean values. |
 | `wifiEnabled` | `*bool` | Query, Optional | If Wi-Fi feature is enabled |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSiteSearch](../../doc/models/response-site-search.md).
 
@@ -403,7 +427,13 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-name := "my-site-01"
+autoUpgradeVersion := "custom,stable"
+
+countryCode := "CA,FR"
+
+id := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+
+name := "my-site-01,my-site*"
 
 limit := 100
 
@@ -411,19 +441,19 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsSites.SearchOrgSites(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &name, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := orgsSites.SearchOrgSites(ctx, orgId, nil, nil, nil, nil, &autoUpgradeVersion, &countryCode, nil, &id, nil, nil, &name, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -467,8 +497,8 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 

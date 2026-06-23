@@ -8,23 +8,35 @@ import (
 )
 
 // SynthetictestInfo represents a SynthetictestInfo struct.
+// Synthetic test status or result record
 type SynthetictestInfo struct {
+	// Actor that triggered the synthetic test
 	By *string `json:"by,omitempty"`
 	// enum: `ap`, `gateway`, `switch`
 	DeviceType *DeviceTypeEnum `json:"device_type,omitempty"`
-	Failed     *bool           `json:"failed,omitempty"`
-	Latency    *int            `json:"latency,omitempty"`
-	Mac        *string         `json:"mac,omitempty"`
-	PortId     *string         `json:"port_id,omitempty"`
-	Reason     *string         `json:"reason,omitempty"`
-	RxMbps     *int            `json:"rx_mbps,omitempty"`
-	StartTime  *int            `json:"start_time,omitempty"`
-	Status     *string         `json:"status,omitempty"`
-	// Epoch (seconds)
+	// Whether the synthetic test failed
+	Failed *bool `json:"failed,omitempty"`
+	// Measured latency for the synthetic test, in milliseconds
+	Latency *int `json:"latency,omitempty"`
+	// Device MAC address that ran the synthetic test
+	Mac *string `json:"mac,omitempty"`
+	// Interface identifier used to run the synthetic test
+	PortId *string `json:"port_id,omitempty"`
+	// Failure reason reported for the synthetic test, when available
+	Reason *string `json:"reason,omitempty"`
+	// Receive throughput measured by the synthetic speed test, in Mbps
+	RxMbps *int `json:"rx_mbps,omitempty"`
+	// Epoch timestamp, in seconds, when the synthetic test started
+	StartTime *int `json:"start_time,omitempty"`
+	// Current execution status of the synthetic test
+	Status *string `json:"status,omitempty"`
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
-	TxMbps    *int     `json:"tx_mbps,omitempty"`
+	// Transmit throughput measured by the synthetic speed test, in Mbps
+	TxMbps *int `json:"tx_mbps,omitempty"`
 	// enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `lan_connectivity`, `radius`, `speedtest`
-	Type                 *SynthetictestTypeEnum `json:"type,omitempty"`
+	Type *SynthetictestTypeEnum `json:"type,omitempty"`
+	// Identifier of the VLAN used by the synthetic test
 	VlanId               *int                   `json:"vlan_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

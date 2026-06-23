@@ -8,7 +8,9 @@ import (
 )
 
 // OrgSettingWiredPma represents a OrgSettingWiredPma struct.
+// PMA feature settings for Wired Assurance
 type OrgSettingWiredPma struct {
+	// Whether PMA is enabled for Wired Assurance
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

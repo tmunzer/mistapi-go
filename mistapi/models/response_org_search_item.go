@@ -9,35 +9,55 @@ import (
 )
 
 // ResponseOrgSearchItem represents a ResponseOrgSearchItem struct.
+// Organization record returned by MSP organization search
 type ResponseOrgSearchItem struct {
+	// Managed service provider identifier
 	MspId *uuid.UUID `json:"msp_id,omitempty"`
-	// org name
-	Name             *string    `json:"name,omitempty"`
-	NumAps           *int       `json:"num_aps,omitempty"`
-	NumGateways      *int       `json:"num_gateways,omitempty"`
-	NumSites         *int       `json:"num_sites,omitempty"`
-	NumSwitches      *int       `json:"num_switches,omitempty"`
-	NumUnassignedAps *int       `json:"num_unassigned_aps,omitempty"`
-	OrgId            *uuid.UUID `json:"org_id,omitempty"`
-	SubAnaEntitled   *int       `json:"sub_ana_entitled,omitempty"`
-	SubAnaRequired   *int       `json:"sub_ana_required,omitempty"`
-	SubAstEntitled   *int       `json:"sub_ast_entitled,omitempty"`
-	SubAstRequired   *int       `json:"sub_ast_required,omitempty"`
-	SubEngEntitled   *int       `json:"sub_eng_entitled,omitempty"`
-	SubEngRequired   *int       `json:"sub_eng_required,omitempty"`
-	SubEx12Required  *int       `json:"sub_ex12_required,omitempty"`
+	// Display name of the organization
+	Name *string `json:"name,omitempty"`
+	// Number of APs in the organization
+	NumAps *int `json:"num_aps,omitempty"`
+	// Number of gateways in the organization
+	NumGateways *int `json:"num_gateways,omitempty"`
+	// Number of sites in the organization
+	NumSites *int `json:"num_sites,omitempty"`
+	// Number of switches in the organization
+	NumSwitches *int `json:"num_switches,omitempty"`
+	// Number of APs in organization inventory that are not assigned to a site
+	NumUnassignedAps *int `json:"num_unassigned_aps,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Number of SUB-ANA subscriptions entitled for the organization
+	SubAnaEntitled *int `json:"sub_ana_entitled,omitempty"`
+	// Number of SUB-ANA subscriptions required by the organization
+	SubAnaRequired *int `json:"sub_ana_required,omitempty"`
+	// Number of SUB-AST subscriptions entitled for the organization
+	SubAstEntitled *int `json:"sub_ast_entitled,omitempty"`
+	// Number of SUB-AST subscriptions required by the organization
+	SubAstRequired *int `json:"sub_ast_required,omitempty"`
+	// Number of SUB-ENG subscriptions entitled for the organization
+	SubEngEntitled *int `json:"sub_eng_entitled,omitempty"`
+	// Number of SUB-ENG subscriptions required by the organization
+	SubEngRequired *int `json:"sub_eng_required,omitempty"`
+	// Number of SUB-EX12 subscriptions required by the organization
+	SubEx12Required *int `json:"sub_ex12_required,omitempty"`
 	// If this org has sufficient subscription
 	SubInsufficient *bool `json:"sub_insufficient,omitempty"`
-	SubManEntitled  *int  `json:"sub_man_entitled,omitempty"`
-	SubManRequired  *int  `json:"sub_man_required,omitempty"`
-	SubMeEntitled   *int  `json:"sub_me_entitled,omitempty"`
-	SubVnaEntitled  *int  `json:"sub_vna_entitled,omitempty"`
-	SubVnaRequired  *int  `json:"sub_vna_required,omitempty"`
-	// Epoch (seconds)
+	// Number of SUB-MAN subscriptions entitled for the organization
+	SubManEntitled *int `json:"sub_man_entitled,omitempty"`
+	// Number of SUB-MAN subscriptions required by the organization
+	SubManRequired *int `json:"sub_man_required,omitempty"`
+	// Number of SUB-ME subscriptions entitled for the organization
+	SubMeEntitled *int `json:"sub_me_entitled,omitempty"`
+	// Number of SUB-VNA subscriptions entitled for the organization
+	SubVnaEntitled *int `json:"sub_vna_entitled,omitempty"`
+	// Number of SUB-VNA subscriptions required by the organization
+	SubVnaRequired *int `json:"sub_vna_required,omitempty"`
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
 	// If this org is under trial period
 	TrialEnabled *bool `json:"trial_enabled,omitempty"`
-	// a list of types that enabled by usage
+	// Subscription usage type codes enabled for an organization
 	UsageTypes           []string               `json:"usage_types,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

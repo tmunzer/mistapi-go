@@ -11,26 +11,43 @@ import (
 )
 
 // ResponsePcapStart represents a ResponsePcapStart struct.
+// Packet capture session created by a start request
 type ResponsePcapStart struct {
-	ApCount   *int             `json:"ap_count,omitempty"`
-	Aps       []string         `json:"aps,omitempty"`
+	// Number of APs targeted by the packet capture
+	ApCount *int `json:"ap_count,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Aps []string `json:"aps,omitempty"`
+	// Client MAC address filter applied to the packet capture, or null when no client filter is used
 	ClientMac Optional[string] `json:"client_mac"`
-	Duration  *float64         `json:"duration,omitempty"`
-	Enabled   *bool            `json:"enabled,omitempty"`
-	Expiry    *float64         `json:"expiry,omitempty"`
-	Format    *string          `json:"format,omitempty"`
+	// Packet capture duration in seconds
+	Duration *float64 `json:"duration,omitempty"`
+	// Whether the packet capture session is enabled after the start request
+	Enabled *bool `json:"enabled,omitempty"`
+	// Epoch timestamp, in seconds, when the capture session expires
+	Expiry *float64 `json:"expiry,omitempty"`
+	// Output format for packet capture data
+	Format *string `json:"format,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id                      uuid.UUID        `json:"id"`
-	IncludeMcast            *bool            `json:"include_mcast,omitempty"`
-	MaxPktLen               *int             `json:"max_pkt_len,omitempty"`
-	NumPackets              *int             `json:"num_packets,omitempty"`
-	OrgId                   uuid.UUID        `json:"org_id"`
-	Raw                     *bool            `json:"raw,omitempty"`
-	SiteId                  uuid.UUID        `json:"site_id"`
-	Ssid                    Optional[string] `json:"ssid"`
+	Id uuid.UUID `json:"id"`
+	// Whether multicast traffic is included in the packet capture
+	IncludeMcast *bool `json:"include_mcast,omitempty"`
+	// Maximum number of bytes captured from each packet
+	MaxPktLen *int `json:"max_pkt_len,omitempty"`
+	// Maximum number of packets to capture; use 0 for unlimited
+	NumPackets *int `json:"num_packets,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId uuid.UUID `json:"org_id"`
+	// Whether raw packet data is included in the capture output
+	Raw *bool `json:"raw,omitempty"`
+	// Site associated with the packet capture session, when site-scoped
+	SiteId *string `json:"site_id"`
+	// Wireless network SSID filter applied to the packet capture, or null when no SSID filter is used
+	Ssid Optional[string] `json:"ssid"`
+	// Tcpdump parser expression applied to the packet capture, or null when no parser expression is used
 	TcpdumpParserExpression Optional[string] `json:"tcpdump_parser_expression"`
-	// Epoch (seconds)
-	Timestamp            float64                `json:"timestamp"`
+	// Epoch timestamp, in seconds
+	Timestamp float64 `json:"timestamp"`
+	// Packet capture type requested by the start operation
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -98,7 +115,11 @@ func (r ResponsePcapStart) toMap() map[string]any {
 	if r.Raw != nil {
 		structMap["raw"] = r.Raw
 	}
-	structMap["site_id"] = r.SiteId
+	if r.SiteId != nil {
+		structMap["site_id"] = r.SiteId
+	} else {
+		structMap["site_id"] = nil
+	}
 	if r.Ssid.IsValueSet() {
 		if r.Ssid.Value() != nil {
 			structMap["ssid"] = r.Ssid.Value()
@@ -149,7 +170,7 @@ func (r *ResponsePcapStart) UnmarshalJSON(input []byte) error {
 	r.NumPackets = temp.NumPackets
 	r.OrgId = *temp.OrgId
 	r.Raw = temp.Raw
-	r.SiteId = *temp.SiteId
+	r.SiteId = temp.SiteId
 	r.Ssid = temp.Ssid
 	r.TcpdumpParserExpression = temp.TcpdumpParserExpression
 	r.Timestamp = *temp.Timestamp
@@ -172,7 +193,7 @@ type tempResponsePcapStart struct {
 	NumPackets              *int             `json:"num_packets,omitempty"`
 	OrgId                   *uuid.UUID       `json:"org_id"`
 	Raw                     *bool            `json:"raw,omitempty"`
-	SiteId                  *uuid.UUID       `json:"site_id"`
+	SiteId                  *string          `json:"site_id"`
 	Ssid                    Optional[string] `json:"ssid"`
 	TcpdumpParserExpression Optional[string] `json:"tcpdump_parser_expression"`
 	Timestamp               *float64         `json:"timestamp"`
@@ -186,9 +207,6 @@ func (r *tempResponsePcapStart) validate() error {
 	}
 	if r.OrgId == nil {
 		errs = append(errs, "required field `org_id` is missing for type `response_pcap_start`")
-	}
-	if r.SiteId == nil {
-		errs = append(errs, "required field `site_id` is missing for type `response_pcap_start`")
 	}
 	if r.Timestamp == nil {
 		errs = append(errs, "required field `timestamp` is missing for type `response_pcap_start`")

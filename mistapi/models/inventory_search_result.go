@@ -9,22 +9,35 @@ import (
 )
 
 // InventorySearchResult represents a InventorySearchResult struct.
+// Inventory record returned by inventory search
 type InventorySearchResult struct {
-	Mac     *string                       `json:"mac,omitempty"`
-	Master  *bool                         `json:"master,omitempty"`
+	// Device MAC address for this inventory search result
+	Mac *string `json:"mac,omitempty"`
+	// Whether this search result represents the master member of a Virtual Chassis
+	Master *bool `json:"master,omitempty"`
+	// Virtual Chassis members included in an inventory search result
 	Members []InventorySearchResultMember `json:"members,omitempty"`
-	Model   *string                       `json:"model,omitempty"`
-	Name    *string                       `json:"name,omitempty"`
-	OrgId   *uuid.UUID                    `json:"org_id,omitempty"`
-	Serial  *string                       `json:"serial,omitempty"`
-	SiteId  *uuid.UUID                    `json:"site_id,omitempty"`
-	Sku     *string                       `json:"sku,omitempty"`
-	Status  *string                       `json:"status,omitempty"`
+	// Device model for this inventory search result
+	Model *string `json:"model,omitempty"`
+	// Configured device name in this inventory search result
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Device serial number for this inventory search result
+	Serial *string `json:"serial,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Device SKU for this inventory search result
+	Sku *string `json:"sku,omitempty"`
+	// Current inventory status for the device
+	Status *string `json:"status,omitempty"`
 	// enum: `ap`, `gateway`, `switch`
-	Type                 *DeviceTypeDefaultApEnum `json:"type,omitempty"`
-	VcMac                *string                  `json:"vc_mac,omitempty"`
-	Version              *string                  `json:"version,omitempty"`
-	AdditionalProperties map[string]interface{}   `json:"_"`
+	Type *DeviceTypeDefaultApEnum `json:"type,omitempty"`
+	// Virtual Chassis MAC address for this inventory search result
+	VcMac *string `json:"vc_mac,omitempty"`
+	// Software version reported for this inventory search result
+	Version              *string                `json:"version,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for InventorySearchResult,

@@ -1,6 +1,8 @@
 
 # Mxtunnel Ipsec Extra Route
 
+Extra route advertised for an IPsec tunnel
+
 ## Structure
 
 `MxtunnelIpsecExtraRoute`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Dest` | `*string` | Optional | - |
-| `NextHop` | `*string` | Optional | - |
+| `Dest` | `*string` | Optional | Route destination CIDR for the IPsec extra route |
+| `NextHop` | `*string` | Optional | Route next-hop IPv4 address for the IPsec extra route |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "dest": "dest2",
-  "next_hop": "next_hop2"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxtunnelIpsecExtraRoute := models.MxtunnelIpsecExtraRoute{
+        Dest:                 models.ToPointer("dest4"),
+        NextHop:              models.ToPointer("next_hop4"),
+    }
+
 }
 ```
 

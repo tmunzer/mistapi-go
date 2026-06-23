@@ -8,9 +8,13 @@ import (
 )
 
 // GwRoutingPolicyTermMatchingVpnPathSla represents a GwRoutingPolicyTermMatchingVpnPathSla struct.
+// SLA thresholds used when matching VPN paths
 type GwRoutingPolicyTermMatchingVpnPathSla struct {
-	MaxJitter            Optional[int]          `json:"max_jitter"`
-	MaxLatency           Optional[int]          `json:"max_latency"`
+	// Maximum jitter threshold allowed for the VPN path
+	MaxJitter Optional[int] `json:"max_jitter"`
+	// Maximum latency threshold allowed for the VPN path
+	MaxLatency Optional[int] `json:"max_latency"`
+	// Maximum packet-loss threshold allowed for the VPN path
 	MaxLoss              Optional[int]          `json:"max_loss"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

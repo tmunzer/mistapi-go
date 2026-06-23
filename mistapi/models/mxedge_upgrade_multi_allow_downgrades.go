@@ -10,10 +10,15 @@ import (
 // MxedgeUpgradeMultiAllowDowngrades represents a MxedgeUpgradeMultiAllowDowngrades struct.
 // Whether downgrade is allowed when running version is higher than expected version for each service
 type MxedgeUpgradeMultiAllowDowngrades struct {
-	Mxagent              *bool                  `json:"mxagent,omitempty"`
-	Mxdas                *bool                  `json:"mxdas,omitempty"`
-	Mxocproxy            *bool                  `json:"mxocproxy,omitempty"`
-	Radsecproxy          *bool                  `json:"radsecproxy,omitempty"`
+	// Whether downgrades are allowed for the mxagent service
+	Mxagent *bool `json:"mxagent,omitempty"`
+	// Whether downgrades are allowed for the mxdas service
+	Mxdas *bool `json:"mxdas,omitempty"`
+	// Whether downgrades are allowed for the mxocproxy service
+	Mxocproxy *bool `json:"mxocproxy,omitempty"`
+	// Whether downgrades are allowed for the radsecproxy service
+	Radsecproxy *bool `json:"radsecproxy,omitempty"`
+	// Whether downgrades are allowed for the tunterm service
 	Tunterm              *bool                  `json:"tunterm,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

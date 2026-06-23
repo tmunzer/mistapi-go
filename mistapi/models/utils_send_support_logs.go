@@ -8,6 +8,7 @@ import (
 )
 
 // UtilsSendSupportLogs represents a UtilsSendSupportLogs struct.
+// Request to upload support files from a device
 type UtilsSendSupportLogs struct {
 	// Optional, enum:
 	// * `code-dumps`: Upload all core dump files, if any found. Uploads for all members of VC on switches.
@@ -17,9 +18,9 @@ type UtilsSendSupportLogs struct {
 	// * `process`: Upload 1 file with output of show `system processes extensive``
 	// * `var-logs`: Upload all non-empty files in the `/var/log/` directory
 	Info *UtilsSendSupportLogsInfoEnum `json:"info,omitempty"`
-	// optional: for SSR, if node is not present, both nodes support files are uploaded
+	// Optional for SSR: if node is not present, both nodes support files are uploaded
 	Node *string `json:"node,omitempty"`
-	// optional: number of most recent messages files to upload.
+	// Number of most recent messages files to upload when `info`==`messages`
 	NumMessagesFiles     *int                   `json:"num_messages_files,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

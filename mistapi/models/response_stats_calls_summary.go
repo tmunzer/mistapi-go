@@ -8,13 +8,21 @@ import (
 )
 
 // ResponseStatsCallsSummary represents a ResponseStatsCallsSummary struct.
+// Aggregated site call statistics summary
 type ResponseStatsCallsSummary struct {
-	BadMinutes           *float64               `json:"bad_minutes,omitempty"`
-	BadMinutesClient     *float64               `json:"bad_minutes_client,omitempty"`
-	BadMinutesSiteWan    *float64               `json:"bad_minutes_site_wan,omitempty"`
-	BadMinutesWireless   *float64               `json:"bad_minutes_wireless,omitempty"`
-	NumAps               *int                   `json:"num_aps,omitempty"`
-	NumUsers             *int                   `json:"num_users,omitempty"`
+	// Total call minutes classified as bad across all quality categories
+	BadMinutes *float64 `json:"bad_minutes,omitempty"`
+	// Call minutes classified as bad due to client-side issues
+	BadMinutesClient *float64 `json:"bad_minutes_client,omitempty"`
+	// Call minutes classified as bad due to site WAN issues
+	BadMinutesSiteWan *float64 `json:"bad_minutes_site_wan,omitempty"`
+	// Call minutes classified as bad due to wireless issues
+	BadMinutesWireless *float64 `json:"bad_minutes_wireless,omitempty"`
+	// Number of APs represented in the call statistics summary
+	NumAps *int `json:"num_aps,omitempty"`
+	// Number of users represented in the call statistics summary
+	NumUsers *int `json:"num_users,omitempty"`
+	// Total call minutes represented in the summary
 	TotalMinutes         *float64               `json:"total_minutes,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

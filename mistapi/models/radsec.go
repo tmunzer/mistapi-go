@@ -9,23 +9,25 @@ import (
 )
 
 // Radsec represents a Radsec struct.
-// RadSec settings
+// RadSec settings for sending RADIUS traffic over TLS
 type Radsec struct {
+	// Whether RADIUS Change of Authorization (CoA) is enabled for RadSec traffic
 	CoaEnabled *bool `json:"coa_enabled,omitempty"`
-	Enabled    *bool `json:"enabled,omitempty"`
-	// Radsec Idle Timeout in seconds. Default is 60
+	// Whether RadSec is enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// RadSec idle timeout in seconds. Default is 60
 	IdleTimeout *RadsecIdleTimeout `json:"idle_timeout,omitempty"`
-	// To use Org mxedges when this WLAN does not use mxtunnel, specify their mxcluster_ids. Org mxedge(s) identified by mxcluster_ids
+	// To use Org Mist Edges when this WLAN does not use mxtunnel, specify their mxcluster_ids. Org Mist Edge(s) identified by mxcluster_ids
 	MxclusterIds []uuid.UUID `json:"mxcluster_ids,omitempty"`
-	// Default is site.mxedge.radsec.proxy_hosts which must be a superset of all `wlans[*].radsec.proxy_hosts`. When `radsec.proxy_hosts` are not used, tunnel peers (org or site mxedges) are used irrespective of `use_site_mxedge`
+	// Default is site.mxedge.radsec.proxy_hosts which must be a superset of all `wlans[*].radsec.proxy_hosts`. When `radsec.proxy_hosts` are not used, tunnel peers (org or site Mist Edges) are used irrespective of `use_site_mxedge`
 	ProxyHosts []string `json:"proxy_hosts,omitempty"`
-	// Name of the server to verify (against the cacerts in Org Setting). Only if not Mist Edge.
+	// TLS server name to verify against the CA certificates in Org Setting. Only if not Mist Edge.
 	ServerName *string `json:"server_name,omitempty"`
-	// List of RadSec Servers. Only if not Mist Edge.
+	// External RadSec servers. Only if not Mist Edge.
 	Servers []RadsecServer `json:"servers,omitempty"`
-	// use mxedge(s) as RadSec Proxy
+	// Whether to use organization Mist Edge instances as RadSec proxies
 	UseMxedge *bool `json:"use_mxedge,omitempty"`
-	// To use Site mxedges when this WLAN does not use mxtunnel
+	// Whether to use site Mist Edge instances when this WLAN does not use mxtunnel
 	UseSiteMxedge        *bool                  `json:"use_site_mxedge,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

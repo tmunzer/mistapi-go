@@ -1,6 +1,8 @@
 
 # Org Setting Celona
 
+Integration settings for Celona
+
 ## Structure
 
 `OrgSettingCelona`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ApiKey` | `*string` | Optional | - |
-| `ApiPrefix` | `*string` | Optional | - |
+| `ApiKey` | `*string` | Optional | Credential used by Mist for the Celona integration |
+| `ApiPrefix` | `*string` | Optional | Celona API prefix configured for the integration |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "api_key": "$2a$04$OkaLCoJn6rDjR8ha.oduQVDST3.kJNIrte",
-  "api_prefix": "cc3273fcb016470e"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingCelona := models.OrgSettingCelona{
+        ApiKey:               models.ToPointer("$2a$04$OkaLCoJn6rDjR8ha.oduQVDST3.kJNIrte"),
+        ApiPrefix:            models.ToPointer("cc3273fcb016470e"),
+    }
+
 }
 ```
 

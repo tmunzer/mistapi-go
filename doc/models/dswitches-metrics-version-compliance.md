@@ -1,6 +1,8 @@
 
 # Dswitches Metrics Version Compliance
 
+Version compliance metric for discovered switches
+
 ## Structure
 
 `DswitchesMetricsVersionCompliance`
@@ -9,27 +11,36 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Details` | [`models.DswitchesMetricsVersionComplianceDetails`](../../doc/models/dswitches-metrics-version-compliance-details.md) | Required | - |
-| `Score` | `float64` | Required | - |
+| `Details` | [`models.DswitchesMetricsVersionComplianceDetails`](../../doc/models/dswitches-metrics-version-compliance-details.md) | Required | Detail values used by the discovered-switch version compliance metric |
+| `Score` | `float64` | Required | Compliance score for the discovered-switch version metric |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "details": {
-    "major_versions": [
-      {
-        "major_count": 47.78,
-        "model": "model6",
-        "system_names": [
-          "system_names6",
-          "system_names7"
-        ]
-      }
-    ],
-    "total_switch_count": 14
-  },
-  "score": 9.44
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    dswitchesMetricsVersionCompliance := models.DswitchesMetricsVersionCompliance{
+        Details:              models.DswitchesMetricsVersionComplianceDetails{
+            MajorVersions:        []models.DswitchesComplianceMajorVersion{
+                models.DswitchesComplianceMajorVersion{
+                    MajorCount:           float64(47.78),
+                    Model:                "model6",
+                    SystemNames:          []string{
+                        "system_names6",
+                        "system_names7",
+                    },
+                },
+            },
+            TotalSwitchCount:     14,
+        },
+        Score:                float64(252.04),
+    }
+
 }
 ```
 

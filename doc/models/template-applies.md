@@ -11,24 +11,33 @@ Where this template should be applied to, can be org_id, site_ids, sitegroup_ids
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `OrgId` | `*uuid.UUID` | Optional | - |
+| `OrgId` | `*uuid.UUID` | Optional | Organization included in the WLAN template application scope |
 | `SiteIds` | `[]uuid.UUID` | Optional | List of site ids |
 | `SitegroupIds` | `[]uuid.UUID` | Optional | List of sitegroup ids |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "site_ids": [
-    "00000a84-0000-0000-0000-000000000000",
-    "00000a83-0000-0000-0000-000000000000",
-    "00000a82-0000-0000-0000-000000000000"
-  ],
-  "sitegroup_ids": [
-    "000020da-0000-0000-0000-000000000000",
-    "000020db-0000-0000-0000-000000000000"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    templateApplies := models.TemplateApplies{
+        OrgId:                models.ToPointer(uuid.MustParse("00001ce6-0000-0000-0000-000000000000")),
+        SiteIds:              []uuid.UUID{
+            uuid.MustParse("00001114-0000-0000-0000-000000000000"),
+            uuid.MustParse("00001113-0000-0000-0000-000000000000"),
+            uuid.MustParse("00001112-0000-0000-0000-000000000000"),
+        },
+        SitegroupIds:         []uuid.UUID{
+            uuid.MustParse("0000073e-0000-0000-0000-000000000000"),
+        },
+    }
+
 }
 ```
 

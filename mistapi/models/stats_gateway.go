@@ -11,36 +11,53 @@ import (
 )
 
 // StatsGateway represents a StatsGateway struct.
-// Gateway statistics
+// Gateway statistics reported by Mist for a site or organization stats response
 type StatsGateway struct {
-	ApRedundancy    *ApRedundancy       `json:"ap_redundancy,omitempty"`
-	ArpTableStats   *ArpTableStats      `json:"arp_table_stats,omitempty"`
+	// AP switch redundancy coverage summary
+	ApRedundancy *ApRedundancy `json:"ap_redundancy,omitempty"`
+	// ARP table usage and capacity statistics
+	ArpTableStats *ArpTableStats `json:"arp_table_stats,omitempty"`
+	// Auto-upgrade status for an AP
 	AutoUpgradeStat *StatsApAutoUpgrade `json:"auto_upgrade_stat,omitempty"`
 	// Only present when `bgp_peers` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/bgp_peers/search` result object, except that org_id, site_id, mac, model are removed
-	BgpPeers        []BgpPeer            `json:"bgp_peers,omitempty"`
-	CertExpiry      *int64               `json:"cert_expiry,omitempty"`
-	ClusterConfig   *StatsClusterConfig  `json:"cluster_config,omitempty"`
-	ClusterStat     *StatsGatewayCluster `json:"cluster_stat,omitempty"`
-	ConductorName   *string              `json:"conductor_name,omitempty"`
-	ConfigStatus    *string              `json:"config_status,omitempty"`
-	ConfigTimestamp *int                 `json:"config_timestamp,omitempty"`
-	ConfigVersion   *int                 `json:"config_version,omitempty"`
-	Cpu2Stat        *CpuStat             `json:"cpu2_stat,omitempty"`
-	CpuStat         *CpuStat             `json:"cpu_stat,omitempty"`
+	BgpPeers []BgpPeer `json:"bgp_peers,omitempty"`
+	// Time when the gateway certificate expires, in epoch seconds
+	CertExpiry *int64 `json:"cert_expiry,omitempty"`
+	// High-availability cluster configuration and health reported by a gateway
+	ClusterConfig *StatsClusterConfig `json:"cluster_config,omitempty"`
+	// High-availability cluster state reported by a gateway
+	ClusterStat *StatsGatewayCluster `json:"cluster_stat,omitempty"`
+	// SSR conductor name associated with the gateway, when applicable
+	ConductorName *string `json:"conductor_name,omitempty"`
+	// Configuration synchronization status reported for the gateway
+	ConfigStatus *string `json:"config_status,omitempty"`
+	// Time when the gateway configuration status was last updated, in epoch seconds
+	ConfigTimestamp *int `json:"config_timestamp,omitempty"`
+	// Currently applied configuration version for the gateway
+	ConfigVersion *int `json:"config_version,omitempty"`
+	// CPU utilization breakdown for a device
+	Cpu2Stat *CpuStat `json:"cpu2_stat,omitempty"`
+	// CPU utilization breakdown for a device
+	CpuStat *CpuStat `json:"cpu_stat,omitempty"`
 	// When the object has been created, in epoch
-	CreatedTime       *float64            `json:"created_time,omitempty"`
-	DeviceprofileId   Optional[uuid.UUID] `json:"deviceprofile_id"`
-	DeviceprofileName *string             `json:"deviceprofile_name,omitempty"`
+	CreatedTime *float64 `json:"created_time,omitempty"`
+	// Applied device profile identifier for the gateway, when present
+	DeviceprofileId Optional[uuid.UUID] `json:"deviceprofile_id"`
+	// Applied device profile name for the gateway
+	DeviceprofileName *string `json:"deviceprofile_name,omitempty"`
 	// Property key is the network name
 	Dhcpd2Stat map[string]DhcpdStatLan `json:"dhcpd2_stat,omitempty"`
 	// Property key is the network name
-	DhcpdStat  map[string]DhcpdStatLan `json:"dhcpd_stat,omitempty"`
-	EvpntopoId Optional[uuid.UUID]     `json:"evpntopo_id"`
-	// IP address
-	ExtIp    Optional[string] `json:"ext_ip"`
-	Fwupdate *FwupdateStat    `json:"fwupdate,omitempty"`
-	HasPcap  Optional[bool]   `json:"has_pcap"`
-	// Hostname reported by the device
+	DhcpdStat map[string]DhcpdStatLan `json:"dhcpd_stat,omitempty"`
+	// Associated EVPN topology identifier for the gateway, when present
+	EvpntopoId Optional[uuid.UUID] `json:"evpntopo_id"`
+	// Public IP address observed for the gateway
+	ExtIp Optional[string] `json:"ext_ip"`
+	// Firmware update status for a device
+	Fwupdate *FwupdateStat `json:"fwupdate,omitempty"`
+	// Whether packet capture is available for the gateway
+	HasPcap Optional[bool] `json:"has_pcap"`
+	// Device-reported hostname for the gateway
 	Hostname *string `json:"hostname,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
@@ -48,54 +65,74 @@ type StatsGateway struct {
 	If2Stat map[string]IfStatProperty `json:"if2_stat,omitempty"`
 	// Property key is the interface name
 	IfStat map[string]IfStatProperty `json:"if_stat,omitempty"`
-	// IP address
-	Ip      Optional[string] `json:"ip"`
-	Ip2Stat *IpStat          `json:"ip2_stat,omitempty"`
-	IpStat  *IpStat          `json:"ip_stat,omitempty"`
-	IsHa    Optional[bool]   `json:"is_ha"`
-	// Last seen timestamp
+	// Management IP address reported for the gateway
+	Ip Optional[string] `json:"ip"`
+	// Read-only IP addressing status reported by a device interface
+	Ip2Stat *IpStat `json:"ip2_stat,omitempty"`
+	// Read-only IP addressing status reported by a device interface
+	IpStat *IpStat `json:"ip_stat,omitempty"`
+	// Whether the gateway is part of an HA cluster
+	IsHa Optional[bool] `json:"is_ha"`
+	// Timestamp indicating when the entity was last seen
 	LastSeen Optional[float64] `json:"last_seen"`
-	// Device mac
-	Mac           string                     `json:"mac"`
+	// Gateway MAC address reported by Mist
+	Mac string `json:"mac"`
+	// Gateway MAC table utilization counters
 	MacTableStats *StatsGatewayMacTableStats `json:"mac_table_stats,omitempty"`
-	// Serial Number
+	// Placement map identifier associated with the gateway, when present
 	MapId Optional[uuid.UUID] `json:"map_id"`
-	// Memory usage stat (for virtual chassis, memory usage of master RE)
+	// Memory utilization statistics for a device; in a virtual chassis, this reports the master Routing Engine
 	Memory2Stat *MemoryStat `json:"memory2_stat,omitempty"`
-	// Memory usage stat (for virtual chassis, memory usage of master RE)
+	// Memory utilization statistics for a device; in a virtual chassis, this reports the master Routing Engine
 	MemoryStat *MemoryStat `json:"memory_stat,omitempty"`
-	// Device model
+	// Gateway model name reported by Mist
 	Model *string `json:"model,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64                     `json:"modified_time,omitempty"`
-	Module2Stat  []StatsGatewayModuleStatItem `json:"module2_stat,omitempty"`
-	ModuleStat   []StatsGatewayModuleStatItem `json:"module_stat,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Hardware module statistics reported by a gateway
+	Module2Stat []StatsGatewayModuleStatItem `json:"module2_stat,omitempty"`
+	// Hardware module statistics reported by a gateway
+	ModuleStat []StatsGatewayModuleStatItem `json:"module_stat,omitempty"`
 	// Device name if configured
-	Name     *string    `json:"name,omitempty"`
-	NodeName *string    `json:"node_name,omitempty"`
-	OrgId    *uuid.UUID `json:"org_id,omitempty"`
+	Name *string `json:"name,omitempty"`
+	// HA node name for the gateway, such as node0 or node1
+	NodeName *string `json:"node_name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Only present when `ports` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/ports/search` result object, except that org_id, site_id, mac, model are removed
-	Ports             []StatsGatewayPort `json:"ports,omitempty"`
+	Ports []StatsGatewayPort `json:"ports,omitempty"`
+	// Route table capacity and usage summary
 	RouteSummaryStats *RouteSummaryStats `json:"route_summary_stats,omitempty"`
 	// Device name if configured
 	RouterName *string `json:"router_name,omitempty"`
-	// Serial Number
-	Serial        *string                        `json:"serial,omitempty"`
-	Service2Stat  map[string]ServiceStatProperty `json:"service2_stat,omitempty"`
-	ServiceStat   map[string]ServiceStatProperty `json:"service_stat,omitempty"`
-	ServiceStatus *StatsGatewayServiceStatus     `json:"service_status,omitempty"`
-	SiteId        *uuid.UUID                     `json:"site_id,omitempty"`
-	Spu2Stat      []StatsGatewaySpuItem          `json:"spu2_stat,omitempty"`
-	SpuStat       []StatsGatewaySpuItem          `json:"spu_stat,omitempty"`
-	Status        *string                        `json:"status,omitempty"`
-	TagId         *int                           `json:"tag_id,omitempty"`
-	TagUuid       *uuid.UUID                     `json:"tag_uuid,omitempty"`
+	// Gateway serial number reported by Mist
+	Serial *string `json:"serial,omitempty"`
+	// Service version information keyed by service name
+	Service2Stat map[string]ServiceStatProperty `json:"service2_stat,omitempty"`
+	// Service version information keyed by service name
+	ServiceStat map[string]ServiceStatProperty `json:"service_stat,omitempty"`
+	// Gateway security service installation and runtime status
+	ServiceStatus *StatsGatewayServiceStatus `json:"service_status,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Services Processing Unit statistics reported by a gateway
+	Spu2Stat []StatsGatewaySpuItem `json:"spu2_stat,omitempty"`
+	// Services Processing Unit statistics reported by a gateway
+	SpuStat []StatsGatewaySpuItem `json:"spu_stat,omitempty"`
+	// Connection status reported for the gateway, such as connected
+	Status *string `json:"status,omitempty"`
+	// Numeric inventory tag identifier associated with the gateway
+	TagId *int `json:"tag_id,omitempty"`
+	// Inventory tag UUID associated with the gateway
+	TagUuid *uuid.UUID `json:"tag_uuid,omitempty"`
 	// Only present when `tunnels` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/tunnels/search` result object, except that org_id, site_id, mac, model are removed
 	Tunnels []StatsGatewayWanTunnel `json:"tunnels,omitempty"`
 	// Device Type. enum: `gateway`
-	Type    string            `json:"type"`
-	Uptime  Optional[float64] `json:"uptime"`
-	Version Optional[string]  `json:"version"`
+	Type string `json:"type"`
+	// Elapsed time since the gateway last booted, in seconds
+	Uptime Optional[float64] `json:"uptime"`
+	// Software version running on the gateway
+	Version Optional[string] `json:"version"`
 	// Only present when `vpn_peers` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/vpn_peers/search` result object, except that org_id, site_id, mac, model are removed
 	VpnPeers             []StatsGatewayVpnPeer  `json:"vpn_peers,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`

@@ -11,26 +11,33 @@ import (
 )
 
 // NacRule represents a NacRule struct.
+// NAC authentication policy rule that matches request criteria and applies an allow or block action
 type NacRule struct {
-	// enum: `allow`, `block`
+	// Allow or block decision applied when the NAC rule matches. enum: `allow`, `block`
 	Action NacRuleActionEnum `json:"action"`
 	// All optional, this goes into Access-Accept
 	ApplyTags []string `json:"apply_tags,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	// Enabled or not
+	// Whether the NAC rule is in dry-run mode, where matches are logged but the action is not enforced
+	DryRun *bool `json:"dry_run,omitempty"`
+	// Whether the NAC rule is evaluated during policy matching
 	Enabled *bool `json:"enabled,omitempty"`
 	// Guest portal authorization state. enum: `authorized`, `unknown`
 	GuestAuthState *NacRuleGuestAuthStateEnum `json:"guest_auth_state,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id       *uuid.UUID       `json:"id,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Criteria used to include or exclude a NAC authentication request from a rule
 	Matching *NacRuleMatching `json:"matching,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64         `json:"modified_time,omitempty"`
-	Name         string           `json:"name"`
-	NotMatching  *NacRuleMatching `json:"not_matching,omitempty"`
-	// Order of the rule, lower value implies higher priority
-	Order                *int                   `json:"order,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Human-readable name of the NAC rule
+	Name string `json:"name"`
+	// Criteria used to include or exclude a NAC authentication request from a rule
+	NotMatching *NacRuleMatching `json:"not_matching,omitempty"`
+	// Rule priority; lower values are evaluated with higher priority
+	Order *int `json:"order,omitempty"`
+	// Unique identifier of a Mist organization
 	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -39,8 +46,8 @@ type NacRule struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (n NacRule) String() string {
 	return fmt.Sprintf(
-		"NacRule[Action=%v, ApplyTags=%v, CreatedTime=%v, Enabled=%v, GuestAuthState=%v, Id=%v, Matching=%v, ModifiedTime=%v, Name=%v, NotMatching=%v, Order=%v, OrgId=%v, AdditionalProperties=%v]",
-		n.Action, n.ApplyTags, n.CreatedTime, n.Enabled, n.GuestAuthState, n.Id, n.Matching, n.ModifiedTime, n.Name, n.NotMatching, n.Order, n.OrgId, n.AdditionalProperties)
+		"NacRule[Action=%v, ApplyTags=%v, CreatedTime=%v, DryRun=%v, Enabled=%v, GuestAuthState=%v, Id=%v, Matching=%v, ModifiedTime=%v, Name=%v, NotMatching=%v, Order=%v, OrgId=%v, AdditionalProperties=%v]",
+		n.Action, n.ApplyTags, n.CreatedTime, n.DryRun, n.Enabled, n.GuestAuthState, n.Id, n.Matching, n.ModifiedTime, n.Name, n.NotMatching, n.Order, n.OrgId, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacRule.
@@ -49,7 +56,7 @@ func (n NacRule) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(n.AdditionalProperties,
-		"action", "apply_tags", "created_time", "enabled", "guest_auth_state", "id", "matching", "modified_time", "name", "not_matching", "order", "org_id"); err != nil {
+		"action", "apply_tags", "created_time", "dry_run", "enabled", "guest_auth_state", "id", "matching", "modified_time", "name", "not_matching", "order", "org_id"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(n.toMap())
@@ -65,6 +72,9 @@ func (n NacRule) toMap() map[string]any {
 	}
 	if n.CreatedTime != nil {
 		structMap["created_time"] = n.CreatedTime
+	}
+	if n.DryRun != nil {
+		structMap["dry_run"] = n.DryRun
 	}
 	if n.Enabled != nil {
 		structMap["enabled"] = n.Enabled
@@ -106,7 +116,7 @@ func (n *NacRule) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "apply_tags", "created_time", "enabled", "guest_auth_state", "id", "matching", "modified_time", "name", "not_matching", "order", "org_id")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "apply_tags", "created_time", "dry_run", "enabled", "guest_auth_state", "id", "matching", "modified_time", "name", "not_matching", "order", "org_id")
 	if err != nil {
 		return err
 	}
@@ -115,6 +125,7 @@ func (n *NacRule) UnmarshalJSON(input []byte) error {
 	n.Action = *temp.Action
 	n.ApplyTags = temp.ApplyTags
 	n.CreatedTime = temp.CreatedTime
+	n.DryRun = temp.DryRun
 	n.Enabled = temp.Enabled
 	n.GuestAuthState = temp.GuestAuthState
 	n.Id = temp.Id
@@ -132,6 +143,7 @@ type tempNacRule struct {
 	Action         *NacRuleActionEnum         `json:"action"`
 	ApplyTags      []string                   `json:"apply_tags,omitempty"`
 	CreatedTime    *float64                   `json:"created_time,omitempty"`
+	DryRun         *bool                      `json:"dry_run,omitempty"`
 	Enabled        *bool                      `json:"enabled,omitempty"`
 	GuestAuthState *NacRuleGuestAuthStateEnum `json:"guest_auth_state,omitempty"`
 	Id             *uuid.UUID                 `json:"id,omitempty"`

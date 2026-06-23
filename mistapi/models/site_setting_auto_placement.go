@@ -8,10 +8,13 @@ import (
 )
 
 // SiteSettingAutoPlacement represents a SiteSettingAutoPlacement struct.
-// If we're able to determine its x/y/orientation, this will be populated
+// Automatically determined AP placement coordinates and orientation
 type SiteSettingAutoPlacement struct {
-	Orientation          *int                   `json:"orientation,omitempty"`
-	X                    *float64               `json:"x,omitempty"`
+	// AP orientation angle in degrees on the map
+	Orientation *int `json:"orientation,omitempty"`
+	// Map x-coordinate determined by auto placement
+	X *float64 `json:"x,omitempty"`
+	// Map y-coordinate determined by auto placement
 	Y                    *float64               `json:"y,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

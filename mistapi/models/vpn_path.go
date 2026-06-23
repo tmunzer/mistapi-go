@@ -8,18 +8,21 @@ import (
 )
 
 // VpnPath represents a VpnPath struct.
+// VPN path settings used by an organization VPN
 type VpnPath struct {
-	// enum: `broadband`, `lte`
+	// BFD profile used for this VPN path. enum: `broadband`, `lte`
 	BfdProfile *VpnPathBfdProfileEnum `json:"bfd_profile,omitempty"`
 	// If `type`==`mesh` and for SSR only, whether to use tunnel mode
 	BfdUseTunnelMode *bool `json:"bfd_use_tunnel_mode,omitempty"`
-	// If different from the wan port
+	// Source IP address for this VPN path, if different from the WAN port IP
 	Ip *string `json:"ip,omitempty"`
-	// If `type`==`mesh`, Property key is the Peer Interface name
-	PeerPaths            map[string]VpnPathPeerPathsPeer `json:"peer_paths,omitempty"`
-	Pod                  *int                            `json:"pod,omitempty"`
-	TrafficShaping       *VpnPathTrafficShaping          `json:"traffic_shaping,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"_"`
+	// If `type`==`mesh`, property key is the peer interface name
+	PeerPaths map[string]VpnPathPeerPathsPeer `json:"peer_paths,omitempty"`
+	// Grouping index used to place this VPN path into a pod
+	Pod *int `json:"pod,omitempty"`
+	// Traffic shaping settings for a VPN path
+	TrafficShaping       *VpnPathTrafficShaping `json:"traffic_shaping,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for VpnPath,

@@ -17,7 +17,16 @@ Only Single value allowed, default value gets applied when user provides wrong v
 
 ## Example
 
-```
-24
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureScanBand := models.CaptureScanBandEnum_ENUM5
+
+}
 ```
 

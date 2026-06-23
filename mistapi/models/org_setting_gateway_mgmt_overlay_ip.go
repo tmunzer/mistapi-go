@@ -8,6 +8,7 @@ import (
 )
 
 // OrgSettingGatewayMgmtOverlayIp represents a OrgSettingGatewayMgmtOverlayIp struct.
+// Overlay IP configuration used for gateway management traffic
 type OrgSettingGatewayMgmtOverlayIp struct {
 	// When it's going overlay, a routable IP to overlay will be required
 	Ip *string `json:"ip,omitempty"`

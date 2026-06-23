@@ -27,7 +27,7 @@ func NewOrgsPskPortals(baseController baseController) *OrgsPskPortals {
 // ListOrgPskPortals takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.PskPortal data and
 // an error if there was an issue with the request or response.
-// Get List of Org Psk Portals
+// List self-service PSK Portal configurations in the organization, including portal mode, SSID, authentication, expiry, and passphrase rules.
 func (o *OrgsPskPortals) ListOrgPskPortals(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -40,19 +40,15 @@ func (o *OrgsPskPortals) ListOrgPskPortals(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if limit != nil {
 		req.QueryParam("limit", *limit)
@@ -74,7 +70,7 @@ func (o *OrgsPskPortals) ListOrgPskPortals(
 // CreateOrgPskPortal takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.PskPortal data and
 // an error if there was an issue with the request or response.
-// Create Org Psk Portal
+// Create a self-service PSK Portal configuration for issuing personal PSKs, including SSID, BYOD or admin mode, SSO or sponsor authentication, passphrase rules, and expiry settings.
 func (o *OrgsPskPortals) CreateOrgPskPortal(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -86,19 +82,15 @@ func (o *OrgsPskPortals) CreateOrgPskPortal(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -118,7 +110,7 @@ func (o *OrgsPskPortals) CreateOrgPskPortal(
 // ListOrgPskPortalLogs takes context, orgId, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponsePskPortalLogsSearch data and
 // an error if there was an issue with the request or response.
-// Get the list of PSK Portals Logs
+// List PSK Portal log entries in the organization for the selected time range.
 func (o *OrgsPskPortals) ListOrgPskPortalLogs(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -134,19 +126,15 @@ func (o *OrgsPskPortals) ListOrgPskPortalLogs(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if start != nil {
 		req.QueryParam("start", *start)
@@ -177,7 +165,7 @@ func (o *OrgsPskPortals) ListOrgPskPortalLogs(
 // CountOrgPskPortalLogs takes context, orgId, distinct, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of PskPortal Logs
+// Count PSK Portal log entries across the organization, optionally grouped by `distinct` and filtered by time range.
 func (o *OrgsPskPortals) CountOrgPskPortalLogs(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -193,19 +181,15 @@ func (o *OrgsPskPortals) CountOrgPskPortalLogs(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -236,7 +220,7 @@ func (o *OrgsPskPortals) CountOrgPskPortalLogs(
 // SearchOrgPskPortalLogs takes context, orgId, pskName, pskId, pskportalId, id, adminName, adminId, nameId, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponsePskPortalLogsSearch data and
 // an error if there was an issue with the request or response.
-// Search Org PSK Portal Logs
+// Search PSK Portal log entries across the organization with filters for PSK, portal, admin, SSO NameID, and time range.
 func (o *OrgsPskPortals) SearchOrgPskPortalLogs(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -260,19 +244,15 @@ func (o *OrgsPskPortals) SearchOrgPskPortalLogs(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if pskName != nil {
 		req.QueryParam("psk_name", *pskName)
@@ -327,7 +307,7 @@ func (o *OrgsPskPortals) SearchOrgPskPortalLogs(
 // DeleteOrgPskPortal takes context, orgId, pskportalId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete Org Psk Portal
+// Delete a PSK Portal configuration by portal ID, removing the self-service entry point for issuing PSKs through that portal.
 func (o *OrgsPskPortals) DeleteOrgPskPortal(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -339,19 +319,15 @@ func (o *OrgsPskPortals) DeleteOrgPskPortal(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -364,7 +340,7 @@ func (o *OrgsPskPortals) DeleteOrgPskPortal(
 // GetOrgPskPortal takes context, orgId, pskportalId as parameters and
 // returns an models.ApiResponse with models.PskPortal data and
 // an error if there was an issue with the request or response.
-// Get Org Psk Portal Details
+// Retrieve PSK Portal configuration details, including SSID, mode, authentication, SSO, passphrase, expiry, notification, and template URLs.
 func (o *OrgsPskPortals) GetOrgPskPortal(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -376,19 +352,15 @@ func (o *OrgsPskPortals) GetOrgPskPortal(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.PskPortal
@@ -404,7 +376,7 @@ func (o *OrgsPskPortals) GetOrgPskPortal(
 // UpdateOrgPskPortal takes context, orgId, pskportalId, body as parameters and
 // returns an models.ApiResponse with models.PskPortal data and
 // an error if there was an issue with the request or response.
-// Update Org Psk Portal
+// Update a PSK Portal configuration, including SSID, mode, authentication, SSO, passphrase, expiry, notification, and template settings.
 func (o *OrgsPskPortals) UpdateOrgPskPortal(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -417,19 +389,15 @@ func (o *OrgsPskPortals) UpdateOrgPskPortal(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -449,8 +417,7 @@ func (o *OrgsPskPortals) UpdateOrgPskPortal(
 // DeleteOrgPskPortalImage takes context, orgId, pskportalId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete background image for PskPortal
-// If image is not uploaded or is deleted, PskPortal will use default image.
+// Delete the custom background image for a PSK Portal. If no image is configured, the PSK Portal uses the default background image.
 func (o *OrgsPskPortals) DeleteOrgPskPortalImage(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -466,19 +433,15 @@ func (o *OrgsPskPortals) DeleteOrgPskPortalImage(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -491,7 +454,7 @@ func (o *OrgsPskPortals) DeleteOrgPskPortalImage(
 // UploadOrgPskPortalImage takes context, orgId, pskportalId, file, json as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Upload background image for PskPortal
+// Upload a custom background image for a PSK Portal.
 func (o *OrgsPskPortals) UploadOrgPskPortalImage(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -509,19 +472,15 @@ func (o *OrgsPskPortals) UploadOrgPskPortalImage(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	formFields := []https.FormParam{}
 	if file != nil {
@@ -544,7 +503,7 @@ func (o *OrgsPskPortals) UploadOrgPskPortalImage(
 // UpdateOrgPskPortalTemplate takes context, orgId, pskportalId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Update Org Psk Portal Template
+// Update PSK Portal UI template settings, including alignment, color, logo, Powered by visibility, and Terms of Service text.
 func (o *OrgsPskPortals) UpdateOrgPskPortalTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -561,19 +520,15 @@ func (o *OrgsPskPortals) UpdateOrgPskPortalTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

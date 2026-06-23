@@ -8,17 +8,17 @@ import (
 )
 
 // SiteEngagement represents a SiteEngagement struct.
-// **Note**: if hours does not exist, it's treated as everyday of the week, 00:00-23:59. Currently, we don't allow multiple ranges for the same day
+// Engagement analytics dwell-time rules for classifying site visits. If hours is omitted, rules apply every day from 00:00 to 23:59. Multiple ranges for the same day are not supported.
 type SiteEngagement struct {
-	// Name associated to each tag
+	// Display labels for engagement dwell-time categories
 	DwellTagNames *SiteEngagementDwellTagNames `json:"dwell_tag_names,omitempty"`
-	// add tags to visits within the duration (in seconds)
+	// Visit duration ranges in seconds used to assign engagement tags
 	DwellTags *SiteEngagementDwellTags `json:"dwell_tags,omitempty"`
-	// Days/Hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun)
+	// Day-of-week operating hour filters using hour ranges such as 09:00-17:00
 	Hours *Hours `json:"hours,omitempty"`
-	// Max time, default is 43200(12h), max is 68400 (18h)
+	// Maximum dwell time in seconds considered by engagement analytics
 	MaxDwell *int `json:"max_dwell,omitempty"`
-	// min time
+	// Minimum dwell time in seconds for engagement analytics
 	MinDwell             *int                   `json:"min_dwell,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

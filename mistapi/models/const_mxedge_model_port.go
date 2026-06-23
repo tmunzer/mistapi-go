@@ -8,8 +8,11 @@ import (
 )
 
 // ConstMxedgeModelPort represents a ConstMxedgeModelPort struct.
+// Mist Edge model port metadata
 type ConstMxedgeModelPort struct {
-	Display              *string                `json:"display,omitempty"`
+	// User-facing interface name for this Mist Edge port
+	Display *string `json:"display,omitempty"`
+	// Port speed for the Mist Edge interface, in Mbps
 	Speed                *int                   `json:"speed,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

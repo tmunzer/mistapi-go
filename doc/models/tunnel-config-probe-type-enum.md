@@ -1,7 +1,7 @@
 
 # Tunnel Config Probe Type Enum
 
-enum: `http`, `icmp`
+Protocol used by the custom IPsec tunnel health probe. enum: `http`, `icmp`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `http`, `icmp`
 |  --- |
 | `http` |
 | `icmp` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    tunnelConfigProbeType := models.TunnelConfigProbeTypeEnum_HTTP
+
+}
+```
 

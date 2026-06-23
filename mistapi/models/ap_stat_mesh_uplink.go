@@ -9,36 +9,45 @@ import (
 )
 
 // ApStatMeshUplink represents a ApStatMeshUplink struct.
+// Runtime statistics for this AP's mesh uplink
 type ApStatMeshUplink struct {
-	Band     *string `json:"band,omitempty"`
-	Channel  *int    `json:"channel,omitempty"`
-	IdleTime *int    `json:"idle_time,omitempty"`
-	// Last seen timestamp
+	// Radio band used by this mesh uplink
+	Band *string `json:"band,omitempty"`
+	// Radio channel used by this mesh uplink
+	Channel *int `json:"channel,omitempty"`
+	// Seconds since traffic was last observed on this mesh uplink
+	IdleTime *int `json:"idle_time,omitempty"`
+	// Timestamp indicating when the entity was last seen
 	LastSeen Optional[float64] `json:"last_seen"`
-	Proto    *string           `json:"proto,omitempty"`
-	Rssi     *int              `json:"rssi,omitempty"`
+	// 802.11 protocol reported for this mesh uplink
+	Proto *string `json:"proto,omitempty"`
+	// Received signal strength for this mesh uplink, in dBm
+	Rssi *int `json:"rssi,omitempty"`
 	// Rate of receiving traffic, bits/seconds, last known
 	RxBps Optional[int64] `json:"rx_bps"`
 	// Amount of traffic received since connection
 	RxBytes Optional[int64] `json:"rx_bytes"`
 	// Amount of packets received since connection
 	RxPackets Optional[int64] `json:"rx_packets"`
-	// RX Rate, Mbps
+	// Receive data rate reported for a wireless or mesh link, in Mbps
 	RxRate Optional[float64] `json:"rx_rate"`
 	// Amount of rx retries
 	RxRetries Optional[int] `json:"rx_retries"`
-	SiteId    *uuid.UUID    `json:"site_id,omitempty"`
-	Snr       *int          `json:"snr,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Signal-to-noise ratio for this mesh uplink, in dB
+	Snr *int `json:"snr,omitempty"`
 	// Rate of transmitting traffic, bits/seconds, last known
 	TxBps Optional[int64] `json:"tx_bps"`
 	// Amount of traffic sent since connection
 	TxBytes Optional[int64] `json:"tx_bytes"`
 	// Amount of packets sent since connection
 	TxPackets Optional[int64] `json:"tx_packets"`
-	// TX Rate, Mbps
+	// Transmit data rate reported for a wireless or mesh link, in Mbps
 	TxRate Optional[float64] `json:"tx_rate"`
 	// Amount of tx retries
-	TxRetries            Optional[int]          `json:"tx_retries"`
+	TxRetries Optional[int] `json:"tx_retries"`
+	// Identifier of the upstream AP for this mesh uplink
 	UplinkApId           *uuid.UUID             `json:"uplink_ap_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

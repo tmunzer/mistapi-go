@@ -8,6 +8,7 @@ import (
 )
 
 // EvpnTopologySwitchConfigDhcpdConfig represents a EvpnTopologySwitchConfigDhcpdConfig struct.
+// DHCP server enablement for an EVPN topology switch override
 type EvpnTopologySwitchConfigDhcpdConfig struct {
 	// If DHCPD is enabled on the switch
 	Enabled              *bool                  `json:"enabled,omitempty"`

@@ -27,3 +27,18 @@ enum: `ap`, `band`, `chassis`, `client`, `device_os`, `device_type`, `gateway`, 
 | `vlan` |
 | `wlan` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteSleImpactSummaryFieldsParameter := models.SiteSleImpactSummaryFieldsParameterEnum_SERVER
+
+}
+```
+

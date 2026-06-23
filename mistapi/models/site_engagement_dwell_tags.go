@@ -8,11 +8,15 @@ import (
 )
 
 // SiteEngagementDwellTags represents a SiteEngagementDwellTags struct.
-// add tags to visits within the duration (in seconds)
+// Visit duration ranges in seconds used to assign engagement tags
 type SiteEngagementDwellTags struct {
-	Bounce               Optional[string]       `json:"bounce"`
-	Engaged              Optional[string]       `json:"engaged"`
-	Passerby             Optional[string]       `json:"passerby"`
+	// Visit duration range for bounce visits, in seconds
+	Bounce Optional[string] `json:"bounce"`
+	// Visit duration range for engaged visits, in seconds
+	Engaged Optional[string] `json:"engaged"`
+	// Visit duration range for passerby visits, in seconds
+	Passerby Optional[string] `json:"passerby"`
+	// Visit duration range for stationed visits, in seconds
 	Stationed            Optional[string]       `json:"stationed"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

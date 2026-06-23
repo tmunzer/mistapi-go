@@ -8,8 +8,11 @@ import (
 )
 
 // SiteSettingApMatching represents a SiteSettingApMatching struct.
+// Rules for applying AP port configuration by AP model or name
 type SiteSettingApMatching struct {
-	Enabled              *bool                       `json:"enabled,omitempty"`
+	// Whether AP matching rules are enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// Ordered AP matching rules for applying port configuration
 	Rules                []SiteSettingApMatchingRule `json:"rules,omitempty"`
 	AdditionalProperties map[string]interface{}      `json:"_"`
 }

@@ -1,7 +1,7 @@
 
 # Synthetictest Device Protocol Enum
 
-if `type`==`lan_connectivity`. enum: `ping`, `traceroute`, `ping+traceroute`
+If `type`==`lan_connectivity`. Protocol or protocol combination used by the LAN connectivity test. enum: `ping`, `traceroute`, `ping+traceroute`
 
 ## Enumeration
 
@@ -14,4 +14,19 @@ if `type`==`lan_connectivity`. enum: `ping`, `traceroute`, `ping+traceroute`
 | `ping` |
 | `ping+traceroute` |
 | `traceroute` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    synthetictestDeviceProtocol := models.SynthetictestDeviceProtocolEnum_PING
+
+}
+```
 

@@ -9,16 +9,19 @@ import (
 )
 
 // SsoMxedgeProxy represents a SsoMxedgeProxy struct.
-// If `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster
+// Mist Edge proxy settings for NAC SSO. If `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster
 type SsoMxedgeProxy struct {
+	// RADIUS accounting servers used by the Mist Edge SSO proxy
 	AcctServers []SsoMxedgeProxyAcctServer `json:"acct_servers,omitempty"`
+	// RADIUS authentication servers used by the Mist Edge SSO proxy
 	AuthServers []SsoMxedgeProxyAuthServer `json:"auth_servers,omitempty"`
-	MxclusterId *uuid.UUID                 `json:"mxcluster_id,omitempty"`
-	// Operator name as Radius attribute while proxying
+	// Mist Edge cluster identifier that provides the SSO proxy
+	MxclusterId *uuid.UUID `json:"mxcluster_id,omitempty"`
+	// Operator name as RADIUS attribute while proxying
 	OperatorName *string `json:"operator_name,omitempty"`
-	// Public hostname/IPs
+	// Public hostnames or IP addresses for the Mist Edge SSO proxy
 	ProxyHosts []string `json:"proxy_hosts,omitempty"`
-	// SSIDs that support eduroam
+	// Eduroam SSID names handled by the Mist Edge SSO proxy
 	Ssids                []string               `json:"ssids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

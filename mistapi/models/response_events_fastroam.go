@@ -10,12 +10,17 @@ import (
 )
 
 // ResponseEventsFastroam represents a ResponseEventsFastroam struct.
+// Paginated response for fast roaming event results
 type ResponseEventsFastroam struct {
-	End   int `json:"end"`
+	// Epoch timestamp for the end of the roaming event search window
+	End int `json:"end"`
+	// Maximum number of roaming event records returned in this page
 	Limit int `json:"limit"`
-	// Link to query next set of results. value is null if no next page exists.
-	Next                 *string                `json:"next,omitempty"`
-	Results              []EventFastroam        `json:"results"`
+	// Pagination cursor or URL for retrieving the next page of roaming event records; null when no next page exists
+	Next *string `json:"next,omitempty"`
+	// Fast roaming event records returned by a search response
+	Results []EventFastroam `json:"results"`
+	// Epoch timestamp for the start of the roaming event search window
 	Start                int                    `json:"start"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

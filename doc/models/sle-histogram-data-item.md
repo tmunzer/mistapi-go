@@ -1,6 +1,8 @@
 
 # Sle Histogram Data Item
 
+Single bucket in an SLE histogram
+
 ## Structure
 
 `SleHistogramDataItem`
@@ -9,18 +11,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Range` | `[]float64` | Optional | - |
-| `Value` | `float64` | Required | - |
+| `Range` | `[]float64` | Optional | Lower and upper boundary values for an SLE histogram bucket |
+| `Value` | `float64` | Required | Measured amount for this histogram bucket |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "range": [
-    63.23,
-    63.22
-  ],
-  "value": 25.36
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    sleHistogramDataItem := models.SleHistogramDataItem{
+        Range:                []float64{
+            float64(31.17),
+        },
+        Value:                float64(57.42),
+    }
+
 }
 ```
 

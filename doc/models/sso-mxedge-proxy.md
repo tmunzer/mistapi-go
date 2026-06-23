@@ -1,7 +1,7 @@
 
 # Sso Mxedge Proxy
 
-If `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster
+Mist Edge proxy settings for NAC SSO. If `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster
 
 ## Structure
 
@@ -11,66 +11,64 @@ If `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxc
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AcctServers` | [`[]models.SsoMxedgeProxyAcctServer`](../../doc/models/sso-mxedge-proxy-acct-server.md) | Optional | - |
-| `AuthServers` | [`[]models.SsoMxedgeProxyAuthServer`](../../doc/models/sso-mxedge-proxy-auth-server.md) | Optional | - |
-| `MxclusterId` | `*uuid.UUID` | Optional | - |
-| `OperatorName` | `*string` | Optional | Operator name as Radius attribute while proxying |
-| `ProxyHosts` | `[]string` | Optional | Public hostname/IPs |
-| `Ssids` | `[]string` | Optional | SSIDs that support eduroam |
+| `AcctServers` | [`[]models.SsoMxedgeProxyAcctServer`](../../doc/models/sso-mxedge-proxy-acct-server.md) | Optional | RADIUS accounting servers used by the Mist Edge SSO proxy |
+| `AuthServers` | [`[]models.SsoMxedgeProxyAuthServer`](../../doc/models/sso-mxedge-proxy-auth-server.md) | Optional | RADIUS authentication servers used by the Mist Edge SSO proxy |
+| `MxclusterId` | `*uuid.UUID` | Optional | Mist Edge cluster identifier that provides the SSO proxy |
+| `OperatorName` | `*string` | Optional | Operator name as RADIUS attribute while proxying |
+| `ProxyHosts` | `[]string` | Optional | Public hostnames or IP addresses for the Mist Edge SSO proxy |
+| `Ssids` | `[]string` | Optional | Eduroam SSID names handled by the Mist Edge SSO proxy |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mxcluster_id": "572586b7-f97b-a22b-526c-8b97a3f609c4",
-  "proxy_hosts": [
-    "mxedge1.corp.com",
-    "63.1.3.5"
-  ],
-  "ssids": [
-    "eduroam_test, eduroam_main"
-  ],
-  "acct_servers": [
-    {
-      "host": "host4",
-      "port": 254,
-      "secret": "secret0"
-    },
-    {
-      "host": "host4",
-      "port": 254,
-      "secret": "secret0"
-    },
-    {
-      "host": "host4",
-      "port": 254,
-      "secret": "secret0"
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    ssoMxedgeProxy := models.SsoMxedgeProxy{
+        AcctServers:          []models.SsoMxedgeProxyAcctServer{
+            models.SsoMxedgeProxyAcctServer{
+                Host:                 models.ToPointer("host4"),
+                Port:                 models.ToPointer(254),
+                Secret:               models.ToPointer("secret0"),
+            },
+            models.SsoMxedgeProxyAcctServer{
+                Host:                 models.ToPointer("host4"),
+                Port:                 models.ToPointer(254),
+                Secret:               models.ToPointer("secret0"),
+            },
+        },
+        AuthServers:          []models.SsoMxedgeProxyAuthServer{
+            models.SsoMxedgeProxyAuthServer{
+                Host:                        models.ToPointer("host0"),
+                Port:                        models.ToPointer(114),
+                RequireMessageAuthenticator: models.ToPointer(false),
+                Retry:                       models.ToPointer(126),
+                Secret:                      models.ToPointer("secret4"),
+            },
+            models.SsoMxedgeProxyAuthServer{
+                Host:                        models.ToPointer("host0"),
+                Port:                        models.ToPointer(114),
+                RequireMessageAuthenticator: models.ToPointer(false),
+                Retry:                       models.ToPointer(126),
+                Secret:                      models.ToPointer("secret4"),
+            },
+        },
+        MxclusterId:          models.ToPointer(uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4")),
+        OperatorName:         models.ToPointer("operator_name8"),
+        ProxyHosts:           []string{
+            "mxedge1.corp.com",
+            "63.1.3.5",
+        },
+        Ssids:                []string{
+            "eduroam_test, eduroam_main",
+        },
     }
-  ],
-  "auth_servers": [
-    {
-      "host": "host0",
-      "port": 114,
-      "require_message_authenticator": false,
-      "retry": 126,
-      "secret": "secret4"
-    },
-    {
-      "host": "host0",
-      "port": 114,
-      "require_message_authenticator": false,
-      "retry": 126,
-      "secret": "secret4"
-    },
-    {
-      "host": "host0",
-      "port": 114,
-      "require_message_authenticator": false,
-      "retry": 126,
-      "secret": "secret4"
-    }
-  ],
-  "operator_name": "operator_name2"
+
 }
 ```
 

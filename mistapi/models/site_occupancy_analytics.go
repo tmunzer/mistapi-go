@@ -8,13 +8,13 @@ import (
 )
 
 // SiteOccupancyAnalytics represents a SiteOccupancyAnalytics struct.
-// Occupancy Analytics settings
+// Analytics settings for site occupancy
 type SiteOccupancyAnalytics struct {
 	// Indicate whether named BLE assets should be included in the zone occupancy calculation
 	AssetsEnabled *bool `json:"assets_enabled,omitempty"`
 	// Indicate whether connected Wi-Fi clients should be included in the zone occupancy calculation
 	ClientsEnabled *bool `json:"clients_enabled,omitempty"`
-	// Minimum duration
+	// Minimum dwell duration before a client or asset is counted in occupancy analytics
 	MinDuration *int `json:"min_duration,omitempty"`
 	// Indicate whether SDK clients should be included in the zone occupancy calculation
 	SdkclientsEnabled *bool `json:"sdkclients_enabled,omitempty"`

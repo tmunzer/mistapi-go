@@ -8,13 +8,21 @@ import (
 )
 
 // UiSettingsTileTimeRange represents a UiSettingsTileTimeRange struct.
+// Time range override for a site UI databoard tile
 type UiSettingsTileTimeRange struct {
-	End                  *float64               `json:"end,omitempty"`
-	EndDate              *string                `json:"endDate,omitempty"`
-	Interval             *string                `json:"interval,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
-	ShortName            *string                `json:"shortName,omitempty"`
-	Start                *int                   `json:"start,omitempty"`
+	// Upper bound of the tile time range, in epoch seconds
+	End *float64 `json:"end,omitempty"`
+	// Display date for the end of the tile time range
+	EndDate *string `json:"endDate,omitempty"`
+	// Bucket interval used for the tile time range
+	Interval *string `json:"interval,omitempty"`
+	// Display name for the tile time range
+	Name *string `json:"name,omitempty"`
+	// Compact display label for the tile time range
+	ShortName *string `json:"shortName,omitempty"`
+	// Lower bound of the tile time range, in epoch seconds
+	Start *int `json:"start,omitempty"`
+	// Whether the tile time range uses a named preset
 	UsePreset            *bool                  `json:"usePreset,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

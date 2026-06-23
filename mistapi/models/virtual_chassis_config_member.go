@@ -10,13 +10,16 @@ import (
 )
 
 // VirtualChassisConfigMember represents a VirtualChassisConfigMember struct.
+// Virtual Chassis member configuration
 type VirtualChassisConfigMember struct {
+	// Whether this Virtual Chassis member is currently in locate mode
 	Locating *bool `json:"locating,omitempty"`
-	// fpc0, same as the mac of device_id
+	// Member MAC address; for FPC0 this matches the device MAC address
 	Mac string `json:"mac"`
-	// For preprovisionned virtual chassis
-	MemberId *int     `json:"member_id,omitempty"`
-	VcPorts  []string `json:"vc_ports,omitempty"`
+	// Member ID used for a pre-provisioned Virtual Chassis
+	MemberId *int `json:"member_id,omitempty"`
+	// Unique string values returned or accepted by this schema
+	VcPorts []string `json:"vc_ports,omitempty"`
 	// enum: `backup`, `linecard`, `master`
 	VcRole               VirtualChassisConfigMemberVcRoleEnum `json:"vc_role"`
 	AdditionalProperties map[string]interface{}               `json:"_"`

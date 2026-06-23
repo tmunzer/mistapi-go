@@ -11,36 +11,61 @@ import (
 )
 
 // GatewaySearch represents a GatewaySearch struct.
+// Gateway record returned by device search endpoints
 type GatewaySearch struct {
-	Clustered            *bool    `json:"clustered,omitempty"`
-	EvpnMissingLinks     *bool    `json:"evpn_missing_links,omitempty"`
-	EvpntopoId           *string  `json:"evpntopo_id,omitempty"`
-	ExtIp                *string  `json:"ext_ip,omitempty"`
-	Hostname             []string `json:"hostname,omitempty"`
-	Ip                   *string  `json:"ip,omitempty"`
-	LastConfigStatus     *string  `json:"last_config_status,omitempty"`
-	LastHostname         *string  `json:"last_hostname,omitempty"`
-	LastTroubleCode      *string  `json:"last_trouble_code,omitempty"`
-	LastTroubleTimestamp *int     `json:"last_trouble_timestamp,omitempty"`
-	Mac                  *string  `json:"mac,omitempty"`
-	Managed              *bool    `json:"managed,omitempty"` // Deprecated
-	// whether the device can be configured by Mist or not. This deprecates `managed` (for adopted device) and `disable_auto_config` for claimed device)
-	MistConfigured   *bool      `json:"mist_configured,omitempty"`
-	Model            *string    `json:"model,omitempty"`
-	Node             *string    `json:"node,omitempty"`
-	Node0Mac         *string    `json:"node0_mac,omitempty"`
-	Node1Mac         *string    `json:"node1_mac,omitempty"`
-	NumMembers       *int       `json:"num_members,omitempty"`
-	OrgId            *uuid.UUID `json:"org_id,omitempty"`
-	Role             *string    `json:"role,omitempty"`
-	SiteId           *uuid.UUID `json:"site_id,omitempty"`
-	T128agentVersion *string    `json:"t128agent_version,omitempty"`
-	TimeDrifted      *bool      `json:"time_drifted,omitempty"`
-	// Epoch (seconds)
+	// Whether the gateway is part of a gateway cluster
+	Clustered *bool `json:"clustered,omitempty"`
+	// Whether EVPN topology links are missing for this gateway
+	EvpnMissingLinks *bool `json:"evpn_missing_links,omitempty"`
+	// EVPN topology ID associated with this gateway
+	EvpntopoId *string `json:"evpntopo_id,omitempty"`
+	// External IP address observed for gateway management traffic
+	ExtIp *string `json:"ext_ip,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Hostname []string `json:"hostname,omitempty"`
+	// Management IP address currently reported for the gateway
+	Ip *string `json:"ip,omitempty"`
+	// Most recent configuration status reported for the gateway
+	LastConfigStatus *string `json:"last_config_status,omitempty"`
+	// Most recent hostname detected for the gateway
+	LastHostname *string `json:"last_hostname,omitempty"`
+	// Most recent trouble code reported for the gateway
+	LastTroubleCode *string `json:"last_trouble_code,omitempty"`
+	// Timestamp when the most recent gateway trouble code was reported
+	LastTroubleTimestamp *int `json:"last_trouble_timestamp,omitempty"`
+	// Gateway MAC address reported in search results
+	Mac *string `json:"mac,omitempty"`
+	// Whether the gateway is managed by Mist. Deprecated in favor of `mist_configured`
+	Managed *bool `json:"managed,omitempty"` // Deprecated
+	// Whether the gateway can be configured by Mist. Replaces `managed` for adopted devices and `disable_auto_config` for claimed devices
+	MistConfigured *bool `json:"mist_configured,omitempty"`
+	// Gateway model reported for this search result
+	Model *string `json:"model,omitempty"`
+	// Gateway cluster node associated with this search result
+	Node *string `json:"node,omitempty"`
+	// Cluster node0 MAC address reported for an HA gateway
+	Node0Mac *string `json:"node0_mac,omitempty"`
+	// Cluster node1 MAC address reported for an HA gateway
+	Node1Mac *string `json:"node1_mac,omitempty"`
+	// Number of members in the gateway cluster
+	NumMembers *int `json:"num_members,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Gateway cluster role reported for this search result
+	Role *string `json:"role,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Session Smart Router agent version reported by the gateway
+	T128agentVersion *string `json:"t128agent_version,omitempty"`
+	// Whether the gateway clock has drifted from the expected time
+	TimeDrifted *bool `json:"time_drifted,omitempty"`
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
 	// Device Type. enum: `gateway`
-	Type                 string                 `json:"type"`
-	Uptime               *int                   `json:"uptime,omitempty"`
+	Type string `json:"type"`
+	// Device uptime for the gateway, in seconds
+	Uptime *int `json:"uptime,omitempty"`
+	// Software version currently running on the gateway
 	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

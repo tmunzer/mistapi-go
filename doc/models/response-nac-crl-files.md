@@ -1,6 +1,8 @@
 
 # Response Nac Crl Files
 
+Response containing uploaded NAC CRL file metadata
+
 ## Structure
 
 `ResponseNacCrlFiles`
@@ -9,28 +11,37 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Results` | [`[]models.NacCrlFile`](../../doc/models/nac-crl-file.md) | Optional | - |
+| `Results` | [`[]models.NacCrlFile`](../../doc/models/nac-crl-file.md) | Optional | List of uploaded NAC CRL file metadata |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "results": [
-    {
-      "created_time": 73.76,
-      "id": "id6",
-      "modified_time": 5.2,
-      "name": "name6",
-      "url": "url0"
-    },
-    {
-      "created_time": 73.76,
-      "id": "id6",
-      "modified_time": 5.2,
-      "name": "name6",
-      "url": "url0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseNacCrlFiles := models.ResponseNacCrlFiles{
+        Results:              []models.NacCrlFile{
+            models.NacCrlFile{
+                CreatedTime:          models.ToPointer(float64(73.76)),
+                Id:                   models.ToPointer("id6"),
+                ModifiedTime:         models.ToPointer(float64(5.2)),
+                Name:                 models.ToPointer("name6"),
+                Url:                  models.ToPointer("url0"),
+            },
+            models.NacCrlFile{
+                CreatedTime:          models.ToPointer(float64(73.76)),
+                Id:                   models.ToPointer("id6"),
+                ModifiedTime:         models.ToPointer(float64(5.2)),
+                Name:                 models.ToPointer("name6"),
+                Url:                  models.ToPointer("url0"),
+            },
+        },
     }
-  ]
+
 }
 ```
 

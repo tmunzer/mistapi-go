@@ -9,7 +9,7 @@ import (
 )
 
 // Service represents a Service struct.
-// Applications used for the Gateway configurations
+// Traffic service definition for applications or destinations used by gateway and SSR policies
 type Service struct {
 	// If `type`==`custom`, IPv4 and/or IPv6 subnets (e.g. 10.0.0.0/8, fd28::/128)
 	Addresses []string `json:"addresses,omitempty"`
@@ -28,7 +28,8 @@ type Service struct {
 	ClientLimitUp *int `json:"client_limit_up,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	Description *string  `json:"description,omitempty"`
+	// Free-form description of the service definition
+	Description *string `json:"description,omitempty"`
 	// For SSR only, when `traffic_type`==`custom`. 0-63 or variable
 	Dscp *ServiceDscp `json:"dscp,omitempty"`
 	// enum: `non_revertible`, `none`, `revertible`
@@ -44,9 +45,11 @@ type Service struct {
 	// For SSR only, when `traffic_type`==`custom`, for uplink selection. 0-100 or variable
 	MaxLoss *ServiceMaxLoss `json:"max_loss,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64   `json:"modified_time,omitempty"`
-	Name         *string    `json:"name,omitempty"`
-	OrgId        *uuid.UUID `json:"org_id,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Display name of the service definition
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// 0 means unlimited, value from 0 to 107374182
 	ServiceLimitDown *int `json:"service_limit_down,omitempty"`
 	// 0 means unlimited, value from 0 to 107374182
@@ -54,8 +57,9 @@ type Service struct {
 	// Whether to enable measure SLE
 	SleEnabled *bool `json:"sle_enabled,omitempty"`
 	// When `type`==`custom`, optional, if it doesn't exist, http and https is assumed
-	Specs                         []ServiceSpec `json:"specs,omitempty"`
-	SsrRelaxedTcpStateEnforcement *bool         `json:"ssr_relaxed_tcp_state_enforcement,omitempty"`
+	Specs []ServiceSpec `json:"specs,omitempty"`
+	// Whether SSR relaxes TCP state enforcement for this service
+	SsrRelaxedTcpStateEnforcement *bool `json:"ssr_relaxed_tcp_state_enforcement,omitempty"`
 	// when `traffic_type`==`custom`. enum: `best_effort`, `high`, `low`, `medium`
 	TrafficClass *ServiceTrafficClassEnum `json:"traffic_class,omitempty"`
 	// values from [List Traffic Types]($e/Constants%20Definitions/listTrafficTypes)

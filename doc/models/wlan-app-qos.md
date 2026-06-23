@@ -11,38 +11,54 @@ APP qos wlan settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Apps` | [`map[string]models.WlanAppQosAppsProperties`](../../doc/models/wlan-app-qos-apps-properties.md) | Optional | - |
-| `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `Others` | [`[]models.WlanAppQosOthersItem`](../../doc/models/wlan-app-qos-others-item.md) | Optional | **Constraints**: *Unique Items Required* |
+| `Apps` | [`map[string]models.WlanAppQosAppsProperties`](../../doc/models/wlan-app-qos-apps-properties.md) | Optional | Map of application keys to QoS rewrite settings |
+| `Enabled` | `*bool` | Optional | Whether application QoS rewrite rules are enabled for this WLAN<br><br>**Default**: `false` |
+| `Others` | [`[]models.WlanAppQosOthersItem`](../../doc/models/wlan-app-qos-others-item.md) | Optional | Custom application QoS rules for traffic matched by subnet, port, and protocol<br><br>**Constraints**: *Unique Items Required* |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "apps": {
-    "skype-business-video": {
-      "dscp": 32,
-      "dst_subnet": "10.2.0.0/16",
-      "src_subnet": "10.2.0.0/16"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanAppQos := models.WlanAppQos{
+        Apps:                 map[string]models.WlanAppQosAppsProperties{
+            "skype-business-video": models.WlanAppQosAppsProperties{
+                Dscp:                 models.ToPointer(models.DscpContainer.FromNumber(32)),
+                DstSubnet:            models.ToPointer("10.2.0.0/16"),
+                SrcSubnet:            models.ToPointer("10.2.0.0/16"),
+            },
+        },
+        Enabled:              models.ToPointer(false),
+        Others:               []models.WlanAppQosOthersItem{
+            models.WlanAppQosOthersItem{
+                Dscp:                 models.ToPointer(models.DscpContainer.FromString("String7")),
+                DstSubnet:            models.ToPointer("dst_subnet2"),
+                PortRanges:           models.ToPointer("port_ranges6"),
+                Protocol:             models.ToPointer("protocol2"),
+                SrcSubnet:            models.ToPointer("src_subnet0"),
+            },
+            models.WlanAppQosOthersItem{
+                Dscp:                 models.ToPointer(models.DscpContainer.FromString("String7")),
+                DstSubnet:            models.ToPointer("dst_subnet2"),
+                PortRanges:           models.ToPointer("port_ranges6"),
+                Protocol:             models.ToPointer("protocol2"),
+                SrcSubnet:            models.ToPointer("src_subnet0"),
+            },
+            models.WlanAppQosOthersItem{
+                Dscp:                 models.ToPointer(models.DscpContainer.FromString("String7")),
+                DstSubnet:            models.ToPointer("dst_subnet2"),
+                PortRanges:           models.ToPointer("port_ranges6"),
+                Protocol:             models.ToPointer("protocol2"),
+                SrcSubnet:            models.ToPointer("src_subnet0"),
+            },
+        },
     }
-  },
-  "enabled": false,
-  "others": [
-    {
-      "dscp": "String7",
-      "dst_subnet": "dst_subnet2",
-      "port_ranges": "port_ranges6",
-      "protocol": "protocol2",
-      "src_subnet": "src_subnet0"
-    },
-    {
-      "dscp": "String7",
-      "dst_subnet": "dst_subnet2",
-      "port_ranges": "port_ranges6",
-      "protocol": "protocol2",
-      "src_subnet": "src_subnet0"
-    }
-  ]
+
 }
 ```
 

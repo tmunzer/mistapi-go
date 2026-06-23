@@ -16,3 +16,18 @@ enum: `mxcluster_id`, `mxedge_id`, `package`, `type`
 | `package` |
 | `type` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteMxedgeEventsCountDistinct := models.SiteMxedgeEventsCountDistinctEnum_MXCLUSTERID
+
+}
+```
+

@@ -1,6 +1,8 @@
 
 # Const App Category Definition
 
+Application category definition returned by the constants API
+
 ## Structure
 
 `ConstAppCategoryDefinition`
@@ -10,31 +12,41 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Display` | `string` | Required | Description of the app category |
-| `Filters` | [`*models.ConstAppCategoryDefinitionFilters`](../../doc/models/const-app-category-definition-filters.md) | Optional | - |
+| `Filters` | [`*models.ConstAppCategoryDefinitionFilters`](../../doc/models/const-app-category-definition-filters.md) | Optional | Platform-specific application category filters |
 | `Includes` | `[]string` | Optional | List of other App Categories contained by this one |
-| `Key` | `string` | Required | Key name of the app category |
+| `Key` | `string` | Required | Machine-readable application category key |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "display": "Images",
-  "filters": {
-    "srx": [
-      "Enhanced_Images_Media",
-      "Enhanced_Web_Images",
-      "Enhanced_Image_Servers"
-    ],
-    "ssr": [
-      "ssr6",
-      "ssr5",
-      "ssr4"
-    ]
-  },
-  "key": "Images",
-  "includes": [
-    "includes5"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constAppCategoryDefinition := models.ConstAppCategoryDefinition{
+        Display:              "Images",
+        Filters:              models.ToPointer(models.ConstAppCategoryDefinitionFilters{
+            Srx:                  []string{
+                "Enhanced_Images_Media",
+                "Enhanced_Web_Images",
+                "Enhanced_Image_Servers",
+            },
+            Ssr:                  []string{
+                "ssr6",
+                "ssr5",
+                "ssr4",
+            },
+        }),
+        Includes:             []string{
+            "includes9",
+            "includes0",
+        },
+        Key:                  "Images",
+    }
+
 }
 ```
 

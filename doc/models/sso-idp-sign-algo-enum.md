@@ -16,3 +16,18 @@ Required if `idp_type`==`saml`, Signing algorithm for SAML Assertion. enum: `sha
 | `sha384` |
 | `sha512` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ssoIdpSignAlgo := models.SsoIdpSignAlgoEnum_SHA384
+
+}
+```
+

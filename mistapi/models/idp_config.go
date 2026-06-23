@@ -9,9 +9,12 @@ import (
 )
 
 // IdpConfig represents a IdpConfig struct.
+// Intrusion detection and prevention settings for a service policy
 type IdpConfig struct {
+	// Whether to alert without enforcing IDP prevention actions
 	AlertOnly *bool `json:"alert_only,omitempty"`
-	Enabled   *bool `json:"enabled,omitempty"`
+	// Whether IDP inspection is enabled for the policy
+	Enabled *bool `json:"enabled,omitempty"`
 	// org_level IDP Profile can be used, this takes precedence over `profile`
 	IdpprofileId *uuid.UUID `json:"idpprofile_id,omitempty"`
 	// enum: `Custom`, `strict` (default), `standard` or keys from idp_profiles

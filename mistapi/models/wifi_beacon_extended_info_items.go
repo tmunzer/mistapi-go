@@ -8,6 +8,7 @@ import (
 )
 
 // WifiBeaconExtendedInfoItems represents a WifiBeaconExtendedInfoItems struct.
+// Extended Wi-Fi beacon packet metadata with frame and sequence control fields
 type WifiBeaconExtendedInfoItems struct {
 	// Frame control field of 802.11 header
 	FrameCtrl *int `json:"frame_ctrl,omitempty"`

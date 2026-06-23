@@ -8,10 +8,13 @@ import (
 )
 
 // SnmpConfigView represents a SnmpConfigView struct.
+// SNMP MIB view definition
 type SnmpConfigView struct {
-	// If the root oid configured is included
-	Include              *bool                  `json:"include,omitempty"`
-	Oid                  *string                `json:"oid,omitempty"`
+	// Whether the root OID is included in this SNMP view
+	Include *bool `json:"include,omitempty"`
+	// Root OID for this SNMP view
+	Oid *string `json:"oid,omitempty"`
+	// Name of the SNMP MIB view definition
 	ViewName             *string                `json:"view_name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,12 +8,15 @@ import (
 )
 
 // AccountSkyatpInfo represents a AccountSkyatpInfo struct.
+// Linked Sky ATP account and realm information
 type AccountSkyatpInfo struct {
 	// Sky ATP cloud name. enum: `www.amerskyatp.com`, `www.apacskyatp.com`, `www.euroskyatp.com`, `www.canadaskyatp.com`
-	CloudName            *AccountSkyatpCloudNameEnum `json:"cloud_name,omitempty"`
-	Realm                *string                     `json:"realm,omitempty"`
-	Username             *string                     `json:"username,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"_"`
+	CloudName *AccountSkyatpCloudNameEnum `json:"cloud_name,omitempty"`
+	// Sky ATP realm linked with this Mist organization
+	Realm *string `json:"realm,omitempty"`
+	// Sky ATP username configured for the linked realm
+	Username             *string                `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for AccountSkyatpInfo,

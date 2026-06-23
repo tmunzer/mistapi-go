@@ -16,3 +16,18 @@ enum: `mac`, `site_id`, `type`, `vendor`
 | `type` |
 | `vendor` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteOtherDeviceEventsCountDistinct := models.SiteOtherDeviceEventsCountDistinctEnum_MAC
+
+}
+```
+

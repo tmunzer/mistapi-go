@@ -10,9 +10,13 @@ import (
 )
 
 // SiteApp represents a SiteApp struct.
+// Application summary returned by the site applications endpoint
 type SiteApp struct {
-	Group                string                 `json:"group"`
-	Key                  string                 `json:"key"`
+	// Application category group for the site app
+	Group string `json:"group"`
+	// Stable application key for the site app
+	Key string `json:"key"`
+	// Display name of the site app
 	Name                 string                 `json:"name"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

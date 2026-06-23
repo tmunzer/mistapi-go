@@ -11,19 +11,29 @@ import (
 )
 
 // StatsBeacon represents a StatsBeacon struct.
+// BLE beacon runtime statistics and placement data
 type StatsBeacon struct {
 	// Battery voltage, in mV
-	BatteryVoltage     *float64 `json:"battery_voltage,omitempty"`
-	EddystoneInstance  *string  `json:"eddystone_instance,omitempty"`
-	EddystoneNamespace *string  `json:"eddystone_namespace,omitempty"`
-	// Last seen timestamp
-	LastSeen             Optional[float64]      `json:"last_seen"`
-	Mac                  string                 `json:"mac"`
-	MapId                uuid.UUID              `json:"map_id"`
-	Name                 string                 `json:"name"`
-	Power                int                    `json:"power"`
-	Type                 string                 `json:"type"`
-	X                    float64                `json:"x"`
+	BatteryVoltage *float64 `json:"battery_voltage,omitempty"`
+	// Eddystone-UID instance value advertised by the beacon
+	EddystoneInstance *string `json:"eddystone_instance,omitempty"`
+	// Eddystone-UID namespace value advertised by the beacon
+	EddystoneNamespace *string `json:"eddystone_namespace,omitempty"`
+	// Timestamp indicating when the entity was last seen
+	LastSeen Optional[float64] `json:"last_seen"`
+	// Beacon MAC address observed by Mist
+	Mac string `json:"mac"`
+	// Map identifier where the beacon is placed
+	MapId uuid.UUID `json:"map_id"`
+	// Display name of the beacon
+	Name string `json:"name"`
+	// Transmit power configured for the beacon
+	Power int `json:"power"`
+	// Advertisement protocol type used by the beacon, such as iBeacon or Eddystone
+	Type string `json:"type"`
+	// Map X coordinate of the beacon placement, in pixels
+	X float64 `json:"x"`
+	// Map Y coordinate of the beacon placement, in pixels
 	Y                    float64                `json:"y"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

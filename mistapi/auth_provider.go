@@ -10,7 +10,6 @@ import (
 func createAuthenticationFromConfig(config Configuration) map[string]https.AuthInterface {
 	return map[string]https.AuthInterface{
 		"apiToken":  config.ApiTokenCredentials(),
-		"basicAuth": config.BasicAuthCredentials(),
 		"csrfToken": config.CsrfTokenCredentials(),
 	}
 }

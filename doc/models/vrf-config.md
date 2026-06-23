@@ -1,6 +1,8 @@
 
 # Vrf Config
 
+VRF enablement settings applied when supported on the device
+
 ## Structure
 
 `VrfConfig`
@@ -11,11 +13,20 @@
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | Whether to enable VRF (when supported on the device) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    vrfConfig := models.VrfConfig{
+        Enabled:              models.ToPointer(false),
+    }
+
 }
 ```
 

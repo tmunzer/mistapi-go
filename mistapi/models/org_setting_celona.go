@@ -8,8 +8,11 @@ import (
 )
 
 // OrgSettingCelona represents a OrgSettingCelona struct.
+// Integration settings for Celona
 type OrgSettingCelona struct {
-	ApiKey               *string                `json:"api_key,omitempty"`
+	// Credential used by Mist for the Celona integration
+	ApiKey *string `json:"api_key,omitempty"`
+	// Celona API prefix configured for the integration
 	ApiPrefix            *string                `json:"api_prefix,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,19 +8,23 @@ import (
 )
 
 // SwitchVrfInstance represents a SwitchVrfInstance struct.
+// Switch VRF instance routing and network membership settings
 type SwitchVrfInstance struct {
 	// Property key is the destination subnet (e.g. "172.16.3.0/24")
 	AggregateRoutes map[string]AggregateRoute `json:"aggregate_routes,omitempty"`
 	// Property key is the destination subnet (e.g. "2a02:1234:420a:10c9::/64")
-	AggregateRoutes6        map[string]AggregateRoute `json:"aggregate_routes6,omitempty"`
-	EvpnAutoLoopbackSubnet  *string                   `json:"evpn_auto_loopback_subnet,omitempty"`
-	EvpnAutoLoopbackSubnet6 *string                   `json:"evpn_auto_loopback_subnet6,omitempty"`
+	AggregateRoutes6 map[string]AggregateRoute `json:"aggregate_routes6,omitempty"`
+	// IPv4 subnet used for automatic EVPN loopback addresses in this VRF instance
+	EvpnAutoLoopbackSubnet *string `json:"evpn_auto_loopback_subnet,omitempty"`
+	// IPv6 subnet used for automatic EVPN loopback addresses in this VRF instance
+	EvpnAutoLoopbackSubnet6 *string `json:"evpn_auto_loopback_subnet6,omitempty"`
 	// Property key is the destination CIDR (e.g. "10.0.0.0/8")
 	ExtraRoutes map[string]VrfExtraRoute `json:"extra_routes,omitempty"`
 	// Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
-	ExtraRoutes6         map[string]VrfExtraRoute `json:"extra_routes6,omitempty"`
-	Networks             []string                 `json:"networks,omitempty"`
-	AdditionalProperties map[string]interface{}   `json:"_"`
+	ExtraRoutes6 map[string]VrfExtraRoute6 `json:"extra_routes6,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Networks             []string               `json:"networks,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SwitchVrfInstance,
@@ -102,6 +106,6 @@ type tempSwitchVrfInstance struct {
 	EvpnAutoLoopbackSubnet  *string                   `json:"evpn_auto_loopback_subnet,omitempty"`
 	EvpnAutoLoopbackSubnet6 *string                   `json:"evpn_auto_loopback_subnet6,omitempty"`
 	ExtraRoutes             map[string]VrfExtraRoute  `json:"extra_routes,omitempty"`
-	ExtraRoutes6            map[string]VrfExtraRoute  `json:"extra_routes6,omitempty"`
+	ExtraRoutes6            map[string]VrfExtraRoute6 `json:"extra_routes6,omitempty"`
 	Networks                []string                  `json:"networks,omitempty"`
 }

@@ -8,10 +8,14 @@ import (
 )
 
 // ServicePolicyEwfRule represents a ServicePolicyEwfRule struct.
+// Enhanced web filtering rule applied by a service policy
 type ServicePolicyEwfRule struct {
-	AlertOnly    *bool   `json:"alert_only,omitempty"`
+	// Whether matching enhanced web filtering traffic is logged without being blocked
+	AlertOnly *bool `json:"alert_only,omitempty"`
+	// Message returned when enhanced web filtering blocks a request
 	BlockMessage *string `json:"block_message,omitempty"`
-	Enabled      *bool   `json:"enabled,omitempty"`
+	// Whether this enhanced web filtering rule is enabled
+	Enabled *bool `json:"enabled,omitempty"`
 	// enum: `critical`, `standard`, `strict`
 	Profile              *ServicePolicyEwfRuleProfileEnum `json:"profile,omitempty"`
 	AdditionalProperties map[string]interface{}           `json:"_"`

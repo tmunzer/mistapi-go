@@ -1,7 +1,7 @@
 
 # Edr Provider Enum
 
-`enum: `sentinelone`, `crowdstrike`
+EDR provider associated with the NAC client. enum: `crowdstrike`, `sentinelone`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@
 |  --- |
 | `crowdstrike` |
 | `sentinelone` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    edrProvider := models.EdrProviderEnum_CROWDSTRIKE
+
+}
+```
 

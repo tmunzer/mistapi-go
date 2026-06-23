@@ -10,6 +10,7 @@ import (
 // NetworkSourceNat represents a NetworkSourceNat struct.
 // If `routed`==`false` (usually at Spoke), but some hosts needs to be reachable from Hub
 type NetworkSourceNat struct {
+	// External source NAT IP or subnet used when spoke hosts must be reachable from the hub
 	ExternalIp           *string                `json:"external_ip,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

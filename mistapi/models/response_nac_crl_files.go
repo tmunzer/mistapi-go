@@ -8,7 +8,9 @@ import (
 )
 
 // ResponseNacCrlFiles represents a ResponseNacCrlFiles struct.
+// Response containing uploaded NAC CRL file metadata
 type ResponseNacCrlFiles struct {
+	// List of uploaded NAC CRL file metadata
 	Results              []NacCrlFile           `json:"results,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

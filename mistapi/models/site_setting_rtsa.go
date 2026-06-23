@@ -8,13 +8,17 @@ import (
 )
 
 // SiteSettingRtsa represents a SiteSettingRtsa struct.
-// Managed mobility
+// Managed mobility and asset tracking settings
 type SiteSettingRtsa struct {
-	AppWaking             *bool `json:"app_waking,omitempty"`
-	DisableDeadReckoning  *bool `json:"disable_dead_reckoning,omitempty"`
+	// Whether app wake-up support is enabled for managed mobility
+	AppWaking *bool `json:"app_waking,omitempty"`
+	// Whether dead reckoning is disabled for managed mobility
+	DisableDeadReckoning *bool `json:"disable_dead_reckoning,omitempty"`
+	// Whether pressure sensor use is disabled for managed mobility
 	DisablePressureSensor *bool `json:"disable_pressure_sensor,omitempty"`
-	Enabled               *bool `json:"enabled,omitempty"`
-	// Asset tracking related
+	// Whether managed mobility features are enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// Whether BLE asset tracking is enabled for managed mobility
 	TrackAsset           *bool                  `json:"track_asset,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

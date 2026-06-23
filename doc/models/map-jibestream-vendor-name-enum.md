@@ -13,3 +13,18 @@ The vendor ‘jibestream’. enum: `jibestream`
 |  --- |
 | `jibestream` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mapJibestreamVendorName := models.MapJibestreamVendorNameEnum_JIBESTREAM
+
+}
+```
+

@@ -1,6 +1,8 @@
 
 # Utils Devices Restart
 
+Request to restart a device or device node
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,20 +13,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Member` | `*int` | Optional | Optional for VC member<br><br>**Constraints**: `>= 0`, `<= 9` |
-| `Node` | [`*models.UtilsDevicesRestartNodeEnum`](../../doc/models/utils-devices-restart-node-enum.md) | Optional | only for SRX/SSR: if node is not present, both nodes are restarted. For other devices: node should not be present |
+| `Member` | `*int` | Optional | Virtual Chassis member number to restart<br><br>**Constraints**: `>= 0`, `<= 9` |
+| `Node` | [`*models.UtilsDevicesRestartNodeEnum`](../../doc/models/utils-devices-restart-node-enum.md) | Optional | only for SRX/SSR: if node is not present, both nodes are restarted. For other devices: node should not be present. enum: `node0`, `node1` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "member": 9,
-  "node": "node0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    utilsDevicesRestart := models.UtilsDevicesRestart{
+        Member:               models.ToPointer(9),
+        Node:                 models.ToPointer(models.UtilsDevicesRestartNodeEnum_NODE0),
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

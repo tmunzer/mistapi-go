@@ -1,7 +1,7 @@
 
 # Org Setting Gateway Mgmt Host Out Policies
 
-optional, for some of the host-out traffic, the path preference can be specified by default, ECMP will be used from all available route/path available services: dns/mist/ntp/pim
+Optional path preferences for gateway-originated management traffic; ECMP is used across available paths when no preference is specified
 
 ## Structure
 
@@ -11,30 +11,39 @@ optional, for some of the host-out traffic, the path preference can be specified
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Dns` | [`*models.GatewayMgmtHostOutPolicy`](../../doc/models/gateway-mgmt-host-out-policy.md) | Optional | - |
-| `Ntp` | [`*models.GatewayMgmtHostOutPolicy`](../../doc/models/gateway-mgmt-host-out-policy.md) | Optional | - |
-| `Syslog` | [`*models.GatewayMgmtHostOutPolicySyslog`](../../doc/models/gateway-mgmt-host-out-policy-syslog.md) | Optional | - |
+| `Dns` | [`*models.GatewayMgmtHostOutPolicy`](../../doc/models/gateway-mgmt-host-out-policy.md) | Optional | Host-out path policy for gateway-originated management traffic |
+| `Ntp` | [`*models.GatewayMgmtHostOutPolicy`](../../doc/models/gateway-mgmt-host-out-policy.md) | Optional | Host-out path policy for gateway-originated management traffic |
+| `Syslog` | [`*models.GatewayMgmtHostOutPolicySyslog`](../../doc/models/gateway-mgmt-host-out-policy-syslog.md) | Optional | Host-out path policy for gateway syslog traffic |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "dns": {
-    "path_preference": "path_preference8"
-  },
-  "ntp": {
-    "path_preference": "path_preference4"
-  },
-  "syslog": {
-    "path_preference": "path_preference2",
-    "servers": [
-      {
-        "host": "host4",
-        "path_preference": "path_preference8",
-        "server_name": "server_name8"
-      }
-    ]
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingGatewayMgmtHostOutPolicies := models.OrgSettingGatewayMgmtHostOutPolicies{
+        Dns:                  models.ToPointer(models.GatewayMgmtHostOutPolicy{
+            PathPreference:       models.ToPointer("path_preference8"),
+        }),
+        Ntp:                  models.ToPointer(models.GatewayMgmtHostOutPolicy{
+            PathPreference:       models.ToPointer("path_preference4"),
+        }),
+        Syslog:               models.ToPointer(models.GatewayMgmtHostOutPolicySyslog{
+            PathPreference:       models.ToPointer("path_preference2"),
+            Servers:              []models.GatewayMgmtHostOutPolicySyslogServer{
+                models.GatewayMgmtHostOutPolicySyslogServer{
+                    Host:                 models.ToPointer("host4"),
+                    PathPreference:       models.ToPointer("path_preference8"),
+                    ServerName:           models.ToPointer("server_name8"),
+                },
+            },
+        }),
+    }
+
 }
 ```
 

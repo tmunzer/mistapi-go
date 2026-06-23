@@ -18,7 +18,16 @@ enum: `24`, `24,5,6`, `5`, `6`
 
 ## Example
 
-```
-24
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureRadiotapBand := models.CaptureRadiotapBandEnum_ENUM5
+
+}
 ```
 

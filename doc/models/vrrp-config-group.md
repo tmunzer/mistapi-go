@@ -1,6 +1,8 @@
 
 # Vrrp Config Group
 
+VRRP group behavior settings
+
 ## Structure
 
 `VrrpConfigGroup`
@@ -10,14 +12,23 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Preempt` | `*bool` | Optional | If `true`, allow preemption (a backup router can preempt a primary router)<br><br>**Default**: `false` |
-| `Priority` | `*int` | Optional | - |
+| `Priority` | `*int` | Optional | VRRP priority for this router in the group |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "preempt": false,
-  "priority": 24
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    vrrpConfigGroup := models.VrrpConfigGroup{
+        Preempt:              models.ToPointer(false),
+        Priority:             models.ToPointer(64),
+    }
+
 }
 ```
 

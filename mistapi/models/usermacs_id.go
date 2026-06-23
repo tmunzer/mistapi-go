@@ -9,7 +9,9 @@ import (
 )
 
 // UsermacsId represents a UsermacsId struct.
+// Request body for deleting multiple user MAC entries
 type UsermacsId struct {
+	// UUID string values used as identifiers
 	UsermacIds           []uuid.UUID            `json:"usermac_ids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -16,7 +16,16 @@ standard (using Tunnel-Private-Group-ID, widely supported), airespace-interface-
 
 ## Example
 
-```
-airespace-interface-name
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanDynamicVlanType := models.WlanDynamicVlanTypeEnum_AIRESPACEINTERFACENAME
+
+}
 ```
 

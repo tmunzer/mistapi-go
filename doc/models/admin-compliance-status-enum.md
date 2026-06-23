@@ -14,3 +14,18 @@ trade compliance status. enum: `blocked`, `restricted`
 | `blocked` |
 | `restricted` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    adminComplianceStatus := models.AdminComplianceStatusEnum_BLOCKED
+
+}
+```
+

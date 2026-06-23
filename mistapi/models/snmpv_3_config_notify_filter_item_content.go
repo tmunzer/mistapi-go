@@ -8,8 +8,11 @@ import (
 )
 
 // Snmpv3ConfigNotifyFilterItemContent represents a Snmpv3ConfigNotifyFilterItemContent struct.
+// OID filter rule for an SNMPv3 notification profile
 type Snmpv3ConfigNotifyFilterItemContent struct {
-	Include              *bool                  `json:"include,omitempty"`
+	// Whether the matching OID subtree is included
+	Include *bool `json:"include,omitempty"`
+	// Matched OID subtree for this notification filter rule
 	Oid                  *string                `json:"oid,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

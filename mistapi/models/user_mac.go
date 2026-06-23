@@ -11,15 +11,21 @@ import (
 )
 
 // UserMac represents a UserMac struct.
+// Organization user MAC entry
 type UserMac struct {
 	// Unique ID of the object instance in the Mist Organization
-	Id     *uuid.UUID `json:"id,omitempty"`
-	Labels []string   `json:"labels,omitempty"`
-	// Only non-local-admin MAC is accepted
-	Mac                  string                 `json:"mac"`
-	Name                 *string                `json:"name,omitempty"`
-	Notes                *string                `json:"notes,omitempty"`
-	RadiusGroup          *string                `json:"radius_group,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Labels applied to a user MAC entry
+	Labels []string `json:"labels,omitempty"`
+	// Client MAC address for this entry. Only non-local-admin MAC addresses are accepted
+	Mac string `json:"mac"`
+	// Display name for this user MAC entry
+	Name *string `json:"name,omitempty"`
+	// Free-form notes about this user MAC entry
+	Notes *string `json:"notes,omitempty"`
+	// RADIUS group associated with this user MAC entry
+	RadiusGroup *string `json:"radius_group,omitempty"`
+	// Network VLAN value associated with this user MAC entry
 	Vlan                 *string                `json:"vlan,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,7 +8,7 @@ import (
 )
 
 // ApRadioStat represents a ApRadioStat struct.
-// Radio stat
+// Runtime radio statistics for an access point radio
 type ApRadioStat struct {
 	// channel width for the band.enum: `0`(disabled, response only), `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
 	Bandwidth *Dot11BandwidthEnum `json:"bandwidth,omitempty"`
@@ -16,10 +16,12 @@ type ApRadioStat struct {
 	Channel Optional[int] `json:"channel"`
 	// Use dynamic chaining for downlink
 	DynamicChainingEnabled Optional[bool] `json:"dynamic_chaining_enabled"`
-	// Radio (base) mac, it can have 16 bssids (e.g. 5c5b350001a0-5c5b350001af)
-	Mac        Optional[string] `json:"mac"`
-	NoiseFloor Optional[int]    `json:"noise_floor"`
-	NumClients Optional[int]    `json:"num_clients"`
+	// Radio base MAC address; a base radio MAC can represent up to 16 BSSIDs (e.g. 5c5b350001a0-5c5b350001af)
+	Mac Optional[string] `json:"mac"`
+	// Measured noise floor for this radio, in dBm
+	NoiseFloor Optional[int] `json:"noise_floor"`
+	// Number of clients currently connected on this radio
+	NumClients Optional[int] `json:"num_clients"`
 	// How many WLANs are applied to the radio
 	NumWlans *int `json:"num_wlans,omitempty"`
 	// Transmit power (in dBm)
@@ -31,8 +33,9 @@ type ApRadioStat struct {
 	// Amount of traffic sent since connection
 	TxBytes Optional[int64] `json:"tx_bytes"`
 	// Amount of packets sent since connection
-	TxPkts Optional[int64]  `json:"tx_pkts"`
-	Usage  Optional[string] `json:"usage"`
+	TxPkts Optional[int64] `json:"tx_pkts"`
+	// Operating band reported for this radio, such as 24, 5, or 6
+	Usage Optional[string] `json:"usage"`
 	// All utilization in percentage
 	UtilAll Optional[int] `json:"util_all"`
 	// Reception of "No Packets" utilization in percentage, received frames with invalid PLCPs and CRS glitches as noise

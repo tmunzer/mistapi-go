@@ -8,14 +8,15 @@ import (
 )
 
 // GatewayOobIpConfigNode1 represents a GatewayOobIpConfigNode1 struct.
-// For HA Cluster, node1 can have different IP Config
+// Node1-specific out-of-band management IP configuration for HA clusters
 type GatewayOobIpConfigNode1 struct {
-	// If `type`==`static`
+	// Default gateway for the node1 out-of-band management interface when `type`==`static`
 	Gateway *string `json:"gateway,omitempty"`
-	Ip      *string `json:"ip,omitempty"`
-	// Used only if `subnet` is not specified in `networks`
+	// Static IPv4 address for the node1 out-of-band management interface when `type`==`static`
+	Ip *string `json:"ip,omitempty"`
+	// IPv4 netmask or prefix length for the node1 out-of-band management interface when `type`==`static`; used only if `subnet` is not specified in `networks`
 	Netmask *string `json:"netmask,omitempty"`
-	// enum: `dhcp`, `static`
+	// IP address assignment mode, either DHCP or static. enum: `dhcp`, `static`
 	Type *IpTypeEnum `json:"type,omitempty"`
 	// If supported on the platform. If enabled, DNS will be using this routing-instance, too
 	UseMgmtVrf *bool `json:"use_mgmt_vrf,omitempty"`

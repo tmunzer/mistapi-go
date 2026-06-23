@@ -10,12 +10,19 @@ import (
 )
 
 // ResponseClientSearch represents a ResponseClientSearch struct.
+// Paginated wireless client search response
 type ResponseClientSearch struct {
-	End                  float64                `json:"end"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []ClientWireless       `json:"results"`
-	Start                float64                `json:"start"`
+	// Search window end timestamp for wireless clients, in epoch seconds
+	End float64 `json:"end"`
+	// Maximum number of wireless client results requested
+	Limit int `json:"limit"`
+	// URL for the next page of wireless client results
+	Next *string `json:"next,omitempty"`
+	// Wireless client records returned by a search response
+	Results []ClientWireless `json:"results"`
+	// Search window start timestamp for wireless clients, in epoch seconds
+	Start float64 `json:"start"`
+	// Number of wireless client records matching the search
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

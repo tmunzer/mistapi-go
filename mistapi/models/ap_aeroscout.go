@@ -8,14 +8,15 @@ import (
 )
 
 // ApAeroscout represents a ApAeroscout struct.
-// Aeroscout AP settings
+// AeroScout location integration settings applied to an AP or AP profile
 type ApAeroscout struct {
 	// Whether to enable aeroscout config
 	Enabled *bool `json:"enabled,omitempty"`
 	// Required if enabled, aeroscout server host
 	Host Optional[string] `json:"host"`
 	// Whether to enable the feature to allow wireless clients data received and sent to AES server for location calculation
-	LocateConnected      *bool                  `json:"locate_connected,omitempty"`
+	LocateConnected *bool `json:"locate_connected,omitempty"`
+	// Optional if enabled, Aeroscout server port. Defaults to 1144
 	Port                 Optional[int]          `json:"port"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -12,8 +12,9 @@ import (
 // WebhookSdkclientScanData represents a WebhookSdkclientScanData struct.
 // Sample of the `sdkclient-scan-data` webhook payload.
 type WebhookSdkclientScanData struct {
+	// SDK client scan data events included in a webhook delivery
 	Events []WebhookSdkclientScanDataEvent `json:"events"`
-	// enum: `sdkclient-scan-data`
+	// Webhook topic name for SDK client scan data deliveries. enum: `sdkclient-scan-data`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

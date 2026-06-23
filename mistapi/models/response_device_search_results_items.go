@@ -9,6 +9,7 @@ import (
 )
 
 // ResponseDeviceSearchResultsItems represents a ResponseDeviceSearchResultsItems struct.
+// Device search record for an AP, switch, or gateway
 type ResponseDeviceSearchResultsItems struct {
 	value           any
 	isApSearch      bool
@@ -87,6 +88,7 @@ func (r *ResponseDeviceSearchResultsItems) AsGatewaySearch() (
 }
 
 // internalResponseDeviceSearchResultsItems represents a responseDeviceSearchResultsItems struct.
+// Device search record for an AP, switch, or gateway
 type internalResponseDeviceSearchResultsItems struct{}
 
 var ResponseDeviceSearchResultsItemsContainer internalResponseDeviceSearchResultsItems

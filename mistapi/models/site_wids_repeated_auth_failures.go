@@ -8,6 +8,7 @@ import (
 )
 
 // SiteWidsRepeatedAuthFailures represents a SiteWidsRepeatedAuthFailures struct.
+// Detection settings for repeated authentication failures
 type SiteWidsRepeatedAuthFailures struct {
 	// Window where a trigger will be detected and action to be taken (in seconds)
 	Duration *int `json:"duration,omitempty"`

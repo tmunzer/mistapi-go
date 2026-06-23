@@ -8,6 +8,7 @@ import (
 )
 
 // CpuStat represents a CpuStat struct.
+// CPU utilization breakdown for a device
 type CpuStat struct {
 	// Percentage of CPU time that is idle
 	Idle Optional[float64] `json:"idle"`
@@ -17,7 +18,7 @@ type CpuStat struct {
 	LoadAvg []float64 `json:"load_avg,omitempty"`
 	// Percentage of CPU time being used by system processes
 	System Optional[float64] `json:"system"`
-	// CPU usage
+	// Overall CPU usage percentage
 	Usage Optional[float64] `json:"usage"`
 	// Percentage of CPU time being used by user processes
 	User                 Optional[float64]      `json:"user"`

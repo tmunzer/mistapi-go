@@ -11,22 +11,27 @@ import (
 )
 
 // Asset represents a Asset struct.
-// Asset
+// Named Bluetooth Low Energy asset record
 type Asset struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	ForSite     *bool    `json:"for_site,omitempty"`
+	// Whether this asset is scoped directly to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
-	// Bluetooth MAC
-	Mac   string     `json:"mac"`
+	// Bluetooth MAC address used to identify the BLE asset
+	Mac string `json:"mac"`
+	// Identifier of the map associated with this asset, when specified
 	MapId *uuid.UUID `json:"map_id,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// Name / label of the device
-	Name                 string                 `json:"name"`
-	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+	// Display name or label for the BLE asset
+	Name string `json:"name"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// BLE tag identifier associated with this asset
 	TagId                *uuid.UUID             `json:"tag_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

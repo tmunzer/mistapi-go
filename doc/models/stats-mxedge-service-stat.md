@@ -1,6 +1,8 @@
 
 # Stats Mxedge Service Stat
 
+Runtime and package state for one Mist Edge service
+
 ## Structure
 
 `StatsMxedgeServiceStat`
@@ -10,21 +12,30 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ExtIp` | `*string` | Optional | External IP from ep-terminator’s point of view. valid only for service having its own cloud connection |
-| `LastSeen` | `*float64` | Optional | Timestamp when the last stats is seen (cloud unix time, in second). valid only for service having its own stats or whole system (last among last_seen of all services) |
-| `PackageState` | `*string` | Optional | Package/service installation state. |
-| `PackageVersion` | `*string` | Optional | Package/service installation state. |
-| `RunningState` | `*string` | Optional | Service running state. |
-| `Uptime` | `*int` | Optional | Service uptime. |
+| `LastSeen` | `*float64` | Optional | Cloud Unix time, in seconds, when stats were last seen for this service, or the latest service last_seen time for whole-system records |
+| `PackageState` | `*string` | Optional | Installation state of the Mist Edge service package |
+| `PackageVersion` | `*string` | Optional | Installed version of the Mist Edge service package |
+| `RunningState` | `*string` | Optional | Runtime state reported by the Mist Edge service |
+| `Uptime` | `*int` | Optional | Elapsed running time reported by the Mist Edge service, in seconds |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "ext_ip": "ext_ip0",
-  "last_seen": 97.42,
-  "package_state": "package_state6",
-  "package_version": "package_version4",
-  "running_state": "running_state6"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsMxedgeServiceStat := models.StatsMxedgeServiceStat{
+        ExtIp:                models.ToPointer("ext_ip8"),
+        LastSeen:             models.ToPointer(float64(239.4)),
+        PackageState:         models.ToPointer("package_state4"),
+        PackageVersion:       models.ToPointer("package_version2"),
+        RunningState:         models.ToPointer("running_state2"),
+    }
+
 }
 ```
 

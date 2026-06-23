@@ -9,10 +9,15 @@ import (
 )
 
 // OrgSettingInstaller represents a OrgSettingInstaller struct.
+// Organization-level permissions and grace period for installer workflows
 type OrgSettingInstaller struct {
-	AllowAllDevices      *bool                  `json:"allow_all_devices,omitempty"`
-	AllowAllSites        *bool                  `json:"allow_all_sites,omitempty"`
-	ExtraSiteIds         []uuid.UUID            `json:"extra_site_ids,omitempty"`
+	// Whether installers may work with all eligible devices
+	AllowAllDevices *bool `json:"allow_all_devices,omitempty"`
+	// Whether installers may work with all sites
+	AllowAllSites *bool `json:"allow_all_sites,omitempty"`
+	// Additional site IDs that installers may access
+	ExtraSiteIds []uuid.UUID `json:"extra_site_ids,omitempty"`
+	// Grace period, in days, during which installers can modify recent sites or devices
 	GracePeriod          *int                   `json:"grace_period,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

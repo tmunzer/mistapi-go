@@ -8,8 +8,11 @@ import (
 )
 
 // RadsecServer represents a RadsecServer struct.
+// External RadSec server settings
 type RadsecServer struct {
-	Host                 *string                `json:"host,omitempty"`
+	// Address or hostname of the RadSec server
+	Host *string `json:"host,omitempty"`
+	// TCP port used by the RadSec server
 	Port                 *int                   `json:"port,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

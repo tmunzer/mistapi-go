@@ -1,7 +1,7 @@
 
 # Stats Mxedge Ip Stat
 
-IP stats
+IP address statistics reported by a Mist Edge
 
 ## Structure
 
@@ -11,27 +11,36 @@ IP stats
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Ip` | `*string` | Optional | - |
-| `Ip6` | `*string` | Optional | - |
-| `Ips` | `map[string]string` | Optional | Property key is the interface name. IPs for each net interface |
-| `Macs` | `map[string]string` | Optional | Property key is the interface name. MAC for each net interface |
-| `Netmask` | `*string` | Optional | - |
-| `Netmask6` | `*string` | Optional | - |
+| `Ip` | `*string` | Optional | Primary IPv4 address reported for the Mist Edge |
+| `Ip6` | `*string` | Optional | Primary IPv6 address reported for the Mist Edge |
+| `Ips` | `map[string]string` | Optional | Interface IP addresses keyed by interface name |
+| `Macs` | `map[string]string` | Optional | Interface MAC addresses keyed by interface name |
+| `Netmask` | `*string` | Optional | IPv4 netmask reported for the primary Mist Edge address |
+| `Netmask6` | `*string` | Optional | IPv6 prefix length reported for the primary Mist Edge address |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "ip": "192.168.1.244",
-  "ip6": "fd4e:c615:b27d:5555::45",
-  "ips": {
-    "ens18": "92.168.1.244/24,fd4e:c615:b27d:5555::45/128,fd4e:c615:b27d:5555:20c:29ff:fe44:af25/64,fe80::104c:ffff:fee0:caf8/64"
-  },
-  "macs": {
-    "ens18": "e4434b217044"
-  },
-  "netmask": "255.255.255.0",
-  "netmask6": "/128"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsMxedgeIpStat := models.StatsMxedgeIpStat{
+        Ip:                   models.ToPointer("192.168.1.244"),
+        Ip6:                  models.ToPointer("fd4e:c615:b27d:5555::45"),
+        Ips:                  map[string]string{
+            "ens18": "92.168.1.244/24,fd4e:c615:b27d:5555::45/128,fd4e:c615:b27d:5555:20c:29ff:fe44:af25/64,fe80::104c:ffff:fee0:caf8/64",
+        },
+        Macs:                 map[string]string{
+            "ens18": "e4434b217044",
+        },
+        Netmask:              models.ToPointer("255.255.255.0"),
+        Netmask6:             models.ToPointer("/128"),
+    }
+
 }
 ```
 

@@ -11,17 +11,23 @@ import (
 )
 
 // ApTemplate represents a ApTemplate struct.
+// Access point template configuration
 type ApTemplate struct {
+	// Rules that select which AP template port configuration applies
 	ApMatching ApTemplateMatching `json:"ap_matching"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	ForSite     *bool    `json:"for_site,omitempty"`
+	// Whether the AP template is scoped to a site rather than the organization
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime         *float64               `json:"modified_time,omitempty"`
-	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Wi-Fi behavior settings applied by an AP template
 	Wifi                 *ApTemplateWifi        `json:"wifi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

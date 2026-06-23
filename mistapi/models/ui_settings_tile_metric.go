@@ -8,7 +8,9 @@ import (
 )
 
 // UiSettingsTileMetric represents a UiSettingsTileMetric struct.
+// Metric selected for a site UI databoard tile
 type UiSettingsTileMetric struct {
+	// Metric API name requested by this tile
 	ApiName              *string                `json:"apiName,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

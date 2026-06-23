@@ -1,7 +1,7 @@
 
 # Org Ui Settings Purpose Enum
 
-enum: `marvisdashboard`
+UI surface or purpose for this databoard. enum: `marvisdashboard`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `marvisdashboard`
 | Name |
 |  --- |
 | `marvisdashboard` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgUiSettingsPurpose := models.OrgUiSettingsPurposeEnum_MARVISDASHBOARD
+
+}
+```
 

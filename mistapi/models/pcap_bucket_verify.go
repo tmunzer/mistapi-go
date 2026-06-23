@@ -10,8 +10,11 @@ import (
 )
 
 // PcapBucketVerify represents a PcapBucketVerify struct.
+// Request to verify ownership of a custom packet capture bucket
 type PcapBucketVerify struct {
-	Bucket               string                 `json:"bucket"`
+	// Customer bucket name being verified for packet capture storage
+	Bucket string `json:"bucket"`
+	// Token read from the MIST_TOKEN file written during bucket setup
 	VerifyToken          string                 `json:"verify_token"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

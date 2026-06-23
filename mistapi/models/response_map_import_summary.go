@@ -10,9 +10,13 @@ import (
 )
 
 // ResponseMapImportSummary represents a ResponseMapImportSummary struct.
+// Counts summarizing assignments made during the map import
 type ResponseMapImportSummary struct {
-	NumApAssigned        int                    `json:"num_ap_assigned"`
-	NumInvAssigned       int                    `json:"num_inv_assigned"`
+	// Number of AP placements assigned during the map import
+	NumApAssigned int `json:"num_ap_assigned"`
+	// Number of inventory records assigned to the site during the map import
+	NumInvAssigned int `json:"num_inv_assigned"`
+	// Number of map floorplans assigned during the map import
 	NumMapAssigned       int                    `json:"num_map_assigned"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

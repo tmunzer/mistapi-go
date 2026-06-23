@@ -8,7 +8,9 @@ import (
 )
 
 // ServicePolicySkyatpDnsDgaDetection represents a ServicePolicySkyatpDnsDgaDetection struct.
+// Sky ATP DNS DGA detection settings
 type ServicePolicySkyatpDnsDgaDetection struct {
+	// Whether Sky ATP DNS DGA detection is enabled
 	Enabled *bool `json:"enabled,omitempty"`
 	// enum: `default`, `standard`, `strict`
 	Profile              *ServicePolicySkyatpDnsDgaDetectionProfileEnum `json:"profile,omitempty"`

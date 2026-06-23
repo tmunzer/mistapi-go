@@ -1,6 +1,8 @@
 
 # Troubleshoot Call Item
 
+Per-sample call troubleshooting metrics
+
 ## Structure
 
 `TroubleshootCallItem`
@@ -9,88 +11,97 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ApNumClients` | `*float64` | Optional | - |
-| `ApRtt` | `*float64` | Optional | - |
-| `AudioIn` | [`*models.CallTroubleshootData`](../../doc/models/call-troubleshoot-data.md) | Optional | - |
-| `AudioOut` | [`*models.CallTroubleshootData`](../../doc/models/call-troubleshoot-data.md) | Optional | - |
-| `ClientCpu` | `*float64` | Optional | - |
-| `ClientNStreams` | `*float64` | Optional | - |
-| `ClientRadioBand` | `*float64` | Optional | - |
-| `ClientRssi` | `*float64` | Optional | - |
-| `ClientRxBytes` | `*float64` | Optional | - |
-| `ClientRxRates` | `*float64` | Optional | - |
-| `ClientRxRetries` | `*float64` | Optional | - |
-| `ClientTxBytes` | `*float64` | Optional | - |
-| `ClientTxRates` | `*float64` | Optional | - |
-| `ClientTxRetries` | `*float64` | Optional | - |
-| `ClientVpnDistance` | `*float64` | Optional | - |
-| `ClientWifiVersion` | `*float64` | Optional | - |
-| `Expected` | `*float64` | Optional | - |
-| `RadioApChange` | `*float64` | Optional | - |
-| `RadioBandwidth` | `*float64` | Optional | - |
-| `RadioChannel` | `*float64` | Optional | - |
-| `RadioRxFailed` | `*float64` | Optional | - |
-| `RadioTxPower` | `*float64` | Optional | - |
-| `RadioUtil` | `*float64` | Optional | - |
-| `RadioUtilInterference` | `*float64` | Optional | - |
-| `SiteNumClients` | `*float64` | Optional | - |
-| `SiteWanAvgDownloadMbps` | `*float64` | Optional | - |
-| `SiteWanAvgUploadMbps` | `*float64` | Optional | - |
-| `SiteWanDownloadMbps` | `*float64` | Optional | - |
-| `SiteWanJitter` | `*float64` | Optional | - |
-| `SiteWanRtt` | `*float64` | Optional | - |
-| `SiteWanUploadMbps` | `*float64` | Optional | - |
-| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
-| `VideoIn` | [`*models.CallTroubleshootData`](../../doc/models/call-troubleshoot-data.md) | Optional | - |
-| `VideoOut` | [`*models.CallTroubleshootData`](../../doc/models/call-troubleshoot-data.md) | Optional | - |
+| `ApNumClients` | `*float64` | Optional | Troubleshooting metric value for AP client count |
+| `ApRtt` | `*float64` | Optional | Troubleshooting metric value for AP round-trip time |
+| `AudioIn` | [`*models.CallTroubleshootData`](../../doc/models/call-troubleshoot-data.md) | Optional | Per-media call troubleshooting metric values |
+| `AudioOut` | [`*models.CallTroubleshootData`](../../doc/models/call-troubleshoot-data.md) | Optional | Per-media call troubleshooting metric values |
+| `ClientCpu` | `*float64` | Optional | Troubleshooting metric value for client CPU load |
+| `ClientNStreams` | `*float64` | Optional | Troubleshooting metric value for the number of client spatial streams |
+| `ClientRadioBand` | `*float64` | Optional | Troubleshooting metric value for the client radio band |
+| `ClientRssi` | `*float64` | Optional | Troubleshooting metric value for client RSSI |
+| `ClientRxBytes` | `*float64` | Optional | Troubleshooting metric value for bytes received by the client |
+| `ClientRxRates` | `*float64` | Optional | Troubleshooting metric value for client receive data rates |
+| `ClientRxRetries` | `*float64` | Optional | Troubleshooting metric value for client receive retries |
+| `ClientTxBytes` | `*float64` | Optional | Troubleshooting metric value for bytes transmitted by the client |
+| `ClientTxRates` | `*float64` | Optional | Troubleshooting metric value for client transmit data rates |
+| `ClientTxRetries` | `*float64` | Optional | Troubleshooting metric value for client transmit retries |
+| `ClientVpnDistance` | `*float64` | Optional | Troubleshooting metric value for client VPN distance |
+| `ClientWifiVersion` | `*float64` | Optional | Troubleshooting metric value for the client Wi-Fi version |
+| `Expected` | `*float64` | Optional | Model baseline value expected for this call sample |
+| `RadioApChange` | `*float64` | Optional | Troubleshooting metric value for AP changes on the radio path |
+| `RadioBandwidth` | `*float64` | Optional | Troubleshooting metric value for radio channel bandwidth |
+| `RadioChannel` | `*float64` | Optional | Troubleshooting metric value for the radio channel |
+| `RadioRxFailed` | `*float64` | Optional | Troubleshooting metric value for failed radio receive attempts |
+| `RadioTxPower` | `*float64` | Optional | Troubleshooting metric value for radio transmit power |
+| `RadioUtil` | `*float64` | Optional | Troubleshooting metric value for radio utilization |
+| `RadioUtilInterference` | `*float64` | Optional | Troubleshooting metric value for radio interference utilization |
+| `SiteNumClients` | `*float64` | Optional | Troubleshooting metric value for the number of clients at the site |
+| `SiteWanAvgDownloadMbps` | `*float64` | Optional | Troubleshooting metric value for site WAN average download throughput |
+| `SiteWanAvgUploadMbps` | `*float64` | Optional | Troubleshooting metric value for site WAN average upload throughput |
+| `SiteWanDownloadMbps` | `*float64` | Optional | Troubleshooting metric value for site WAN download throughput |
+| `SiteWanJitter` | `*float64` | Optional | Troubleshooting metric value for site WAN jitter |
+| `SiteWanRtt` | `*float64` | Optional | Troubleshooting metric value for site WAN round-trip time |
+| `SiteWanUploadMbps` | `*float64` | Optional | Troubleshooting metric value for site WAN upload throughput |
+| `Timestamp` | `*float64` | Optional, Read-only | Epoch timestamp, in seconds |
+| `VideoIn` | [`*models.CallTroubleshootData`](../../doc/models/call-troubleshoot-data.md) | Optional | Per-media call troubleshooting metric values |
+| `VideoOut` | [`*models.CallTroubleshootData`](../../doc/models/call-troubleshoot-data.md) | Optional | Per-media call troubleshooting metric values |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "ap_num_clients": -0.08802365511655807,
-  "ap_rtt": 0.09924473613500595,
-  "client_cpu": 0.00834270566701889,
-  "client_n_streams": 0.00734270566701889,
-  "client_radio_band": 0.5841414928436279,
-  "client_rssi": 0.7594696879386902,
-  "client_rx_bytes": 2.365511655807E-05,
-  "client_rx_rates": 0.02441493794322014,
-  "client_rx_retries": -0.14325742423534393,
-  "client_tx_bytes": 0.00102365511655807,
-  "client_tx_rates": 0.22236637771129608,
-  "client_tx_retries": 0.3308201730251312,
-  "client_vpn_distance": -0.0001660545531194657,
-  "client_wifi_version": 7.0566701889E-07,
-  "expected": -2.8630001056670187,
-  "radio_ap_change": 0.01850946433842182,
-  "radio_bandwidth": -0.021175479516386986,
-  "radio_channel": 0.11686426401138306,
-  "radio_rx_failed": 1.1782013177871704,
-  "radio_tx_power": 0.121039018034935,
-  "radio_util": 0.2452986091375351,
-  "radio_util_interference": 3.4367904663085938,
-  "site_num_clients": 0.055026158690452576,
-  "site_wan_avg_download_mbps": 3.0566701889E-07,
-  "site_wan_avg_upload_mbps": 5.566701889E-08,
-  "site_wan_download_mbps": 8.0566701889E-07,
-  "site_wan_jitter": 1.00566701889E-06,
-  "site_wan_rtt": 4.0566701889E-07,
-  "site_wan_upload_mbps": 2.0566701889E-07,
-  "audio_in": {
-    "ap_num_clients": 152.32,
-    "ap_rtt": 133.36,
-    "client_cpu": 164.78,
-    "client_n_streams": 206.36,
-    "client_radio_band": 43.4
-  },
-  "audio_out": {
-    "ap_num_clients": 71.16,
-    "ap_rtt": 52.2,
-    "client_cpu": 245.94,
-    "client_n_streams": 125.2,
-    "client_radio_band": 218.24
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    troubleshootCallItem := models.TroubleshootCallItem{
+        ApNumClients:           models.ToPointer(float64(-0.08802365511655807)),
+        ApRtt:                  models.ToPointer(float64(0.09924473613500595)),
+        AudioIn:                models.ToPointer(models.CallTroubleshootData{
+            ApNumClients:          models.ToPointer(float64(152.32)),
+            ApRtt:                 models.ToPointer(float64(133.36)),
+            ClientCpu:             models.ToPointer(float64(164.78)),
+            ClientNStreams:        models.ToPointer(float64(206.36)),
+            ClientRadioBand:       models.ToPointer(float64(43.4)),
+        }),
+        AudioOut:               models.ToPointer(models.CallTroubleshootData{
+            ApNumClients:          models.ToPointer(float64(71.16)),
+            ApRtt:                 models.ToPointer(float64(52.2)),
+            ClientCpu:             models.ToPointer(float64(245.94)),
+            ClientNStreams:        models.ToPointer(float64(125.2)),
+            ClientRadioBand:       models.ToPointer(float64(218.24)),
+        }),
+        ClientCpu:              models.ToPointer(float64(0.00834270566701889)),
+        ClientNStreams:         models.ToPointer(float64(0.00734270566701889)),
+        ClientRadioBand:        models.ToPointer(float64(0.5841414928436279)),
+        ClientRssi:             models.ToPointer(float64(0.7594696879386902)),
+        ClientRxBytes:          models.ToPointer(float64(2.365511655807E-05)),
+        ClientRxRates:          models.ToPointer(float64(0.02441493794322014)),
+        ClientRxRetries:        models.ToPointer(float64(-0.14325742423534393)),
+        ClientTxBytes:          models.ToPointer(float64(0.00102365511655807)),
+        ClientTxRates:          models.ToPointer(float64(0.22236637771129608)),
+        ClientTxRetries:        models.ToPointer(float64(0.3308201730251312)),
+        ClientVpnDistance:      models.ToPointer(float64(-0.0001660545531194657)),
+        ClientWifiVersion:      models.ToPointer(float64(7.0566701889E-07)),
+        Expected:               models.ToPointer(float64(-2.8630001056670187)),
+        RadioApChange:          models.ToPointer(float64(0.01850946433842182)),
+        RadioBandwidth:         models.ToPointer(float64(-0.021175479516386986)),
+        RadioChannel:           models.ToPointer(float64(0.11686426401138306)),
+        RadioRxFailed:          models.ToPointer(float64(1.1782013177871704)),
+        RadioTxPower:           models.ToPointer(float64(0.121039018034935)),
+        RadioUtil:              models.ToPointer(float64(0.2452986091375351)),
+        RadioUtilInterference:  models.ToPointer(float64(3.4367904663085938)),
+        SiteNumClients:         models.ToPointer(float64(0.055026158690452576)),
+        SiteWanAvgDownloadMbps: models.ToPointer(float64(3.0566701889E-07)),
+        SiteWanAvgUploadMbps:   models.ToPointer(float64(5.566701889E-08)),
+        SiteWanDownloadMbps:    models.ToPointer(float64(8.0566701889E-07)),
+        SiteWanJitter:          models.ToPointer(float64(1.00566701889E-06)),
+        SiteWanRtt:             models.ToPointer(float64(4.0566701889E-07)),
+        SiteWanUploadMbps:      models.ToPointer(float64(2.0566701889E-07)),
+    }
+
 }
 ```
 

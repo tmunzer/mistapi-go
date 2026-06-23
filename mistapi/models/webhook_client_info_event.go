@@ -9,16 +9,19 @@ import (
 )
 
 // WebhookClientInfoEvent represents a WebhookClientInfoEvent struct.
+// Client identity and addressing details delivered by a `client-info` webhook
 type WebhookClientInfoEvent struct {
-	// Hostname of client
+	// Client hostname reported in the event
 	Hostname *string `json:"hostname,omitempty"`
-	// IP address of client
+	// Client IP address reported in the event
 	Ip *string `json:"ip,omitempty"`
-	// client's MAC Address
-	Mac    *string    `json:"mac,omitempty"`
-	OrgId  *uuid.UUID `json:"org_id,omitempty"`
+	// Client MAC address reported in the event
+	Mac *string `json:"mac,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp            *float64               `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

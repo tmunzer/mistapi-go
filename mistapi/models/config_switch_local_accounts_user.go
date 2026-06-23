@@ -8,7 +8,9 @@ import (
 )
 
 // ConfigSwitchLocalAccountsUser represents a ConfigSwitchLocalAccountsUser struct.
+// Local switch user account credentials and access role
 type ConfigSwitchLocalAccountsUser struct {
+	// Local password for the switch user account
 	Password *string `json:"password,omitempty"`
 	// enum: `admin`, `helpdesk`, `none`, `read`
 	Role                 *ConfigSwitchLocalAccountsUserRoleEnum `json:"role,omitempty"`

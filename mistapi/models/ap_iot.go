@@ -8,7 +8,7 @@ import (
 )
 
 // ApIot represents a ApIot struct.
-// IoT AP settings
+// Digital and analog IoT port settings applied to an AP or AP profile
 type ApIot struct {
 	// IoT output AP settings
 	A1 *ApIotOutput `json:"A1,omitempty"`

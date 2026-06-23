@@ -16,3 +16,18 @@ if `type`==`google`. enum: `hybrid`, `roadmap`, `satellite`, `terrain`
 | `satellite` |
 | `terrain` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mapView := models.MapViewEnum_SATELLITE
+
+}
+```
+

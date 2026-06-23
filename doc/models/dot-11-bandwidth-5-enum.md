@@ -18,7 +18,16 @@ channel width for the 5GHz band. enum: `0`(disabled, response only), `20`, `40`,
 
 ## Example
 
-```
-40
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    dot11Bandwidth5 := models.Dot11Bandwidth5Enum_ENUM0
+
+}
 ```
 

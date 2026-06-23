@@ -8,13 +8,13 @@ import (
 )
 
 // StatsApAutoPlacementInfo represents a StatsApAutoPlacementInfo struct.
-// Additional information about auto placements AP data
+// Additional diagnostics for AP auto placement
 type StatsApAutoPlacementInfo struct {
 	// All APs sharing a given cluster number can be placed relative to each other
 	ClusterNumber *int `json:"cluster_number,omitempty"`
 	// The orientation of an AP
 	OrientationStats *int `json:"orientation_stats,omitempty"`
-	// Coordinates representing a circle where the AP is most likely exists in the event of an inaccurate placement result
+	// Circular uncertainty area for an AP auto placement result
 	ProbabilitySurface   *StatsApAutoPlacementInfoProbabilitySurface `json:"probability_surface,omitempty"`
 	AdditionalProperties map[string]interface{}                      `json:"_"`
 }

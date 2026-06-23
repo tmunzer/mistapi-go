@@ -1,6 +1,8 @@
 
 # Response Http 400 Webhook Exception
 
+Webhook-specific HTTP 400 bad request error response
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,20 +13,20 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Detail` | `*string` | Optional | - |
-| `Reason` | `*string` | Optional | - |
+| `Detail` | `*string` | Optional | Human-readable explanation of the invalid webhook request |
+| `Reason` | `*string` | Optional | Additional reason explaining why the webhook request was invalid |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "detail": "invalid field: assetfilter_ids",
-  "reason": "contains duplicate uuids",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+if err != nil {
+    switch typedErr := err.(type) {
+    case *errors.ResponseHttp400WebhookException:
+        log.Fatalln(typedErr)
+    default:
+        log.Fatalln(err)
+    }
 }
 ```
 

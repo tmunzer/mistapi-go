@@ -10,8 +10,11 @@ import (
 )
 
 // ConfigVcPortMember represents a ConfigVcPortMember struct.
+// Virtual Chassis member and port list for a VC port operation
 type ConfigVcPortMember struct {
-	Member               float64                `json:"member"`
+	// Virtual Chassis member ID whose VC ports are being configured
+	Member float64 `json:"member"`
+	// Unique string values returned or accepted by this schema
 	VcPorts              []string               `json:"vc_ports,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

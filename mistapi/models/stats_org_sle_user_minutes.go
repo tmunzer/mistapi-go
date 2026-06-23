@@ -10,8 +10,11 @@ import (
 )
 
 // StatsOrgSleUserMinutes represents a StatsOrgSleUserMinutes struct.
+// User-minute totals for an organization SLE summary
 type StatsOrgSleUserMinutes struct {
-	Ok                   float64                `json:"ok"`
+	// User minutes that met the SLE target
+	Ok float64 `json:"ok"`
+	// Observed total user minutes for the SLE path
 	Total                float64                `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

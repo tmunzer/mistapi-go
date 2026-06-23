@@ -1,6 +1,8 @@
 
 # Stats Cluster Config Redundancy Group Info Item
 
+Redundancy group monitoring entry for a gateway cluster
+
 ## Structure
 
 `StatsClusterConfigRedundancyGroupInfoItem`
@@ -9,17 +11,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Id` | `*int` | Optional | - |
-| `MonitoringFailure` | `*string` | Optional | - |
-| `Threshold` | `*int` | Optional | - |
+| `Id` | `*int` | Optional | Redundancy group identifier reported by the gateway |
+| `MonitoringFailure` | `*string` | Optional | Detected monitoring failure condition for the redundancy group |
+| `Threshold` | `*int` | Optional | Configured monitoring threshold for the redundancy group |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "Id": 212,
-  "MonitoringFailure": "MonitoringFailure2",
-  "Threshold": 150
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsClusterConfigRedundancyGroupInfoItem := models.StatsClusterConfigRedundancyGroupInfoItem{
+        Id:                   models.ToPointer(0),
+        MonitoringFailure:    models.ToPointer("MonitoringFailure0"),
+        Threshold:            models.ToPointer(194),
+    }
+
 }
 ```
 

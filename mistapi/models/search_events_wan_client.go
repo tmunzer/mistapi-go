@@ -8,12 +8,19 @@ import (
 )
 
 // SearchEventsWanClient represents a SearchEventsWanClient struct.
+// Paginated response for WAN client event searches
 type SearchEventsWanClient struct {
-	End                  *int                   `json:"end,omitempty"`
-	Limit                *int                   `json:"limit,omitempty"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              *EventsClientWan       `json:"results,omitempty"`
-	Start                *int                   `json:"start,omitempty"`
+	// Upper bound timestamp of the WAN client event search window, in epoch seconds
+	End *int `json:"end,omitempty"`
+	// Maximum number of WAN client event results returned by this page
+	Limit *int `json:"limit,omitempty"`
+	// URL for the next page of WAN client event results, when more results are available
+	Next *string `json:"next,omitempty"`
+	// WAN client event returned by WAN client event search APIs
+	Results *EventsClientWan `json:"results,omitempty"`
+	// Lower bound timestamp of the WAN client event search window, in epoch seconds
+	Start *int `json:"start,omitempty"`
+	// Count of WAN client event results matching the search
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

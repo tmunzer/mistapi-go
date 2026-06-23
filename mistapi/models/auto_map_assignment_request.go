@@ -9,6 +9,7 @@ import (
 )
 
 // AutoMapAssignmentRequest represents a AutoMapAssignmentRequest struct.
+// Request body for accepting or clearing pending map assignments
 type AutoMapAssignmentRequest struct {
 	// Optional list of specific map IDs to apply/clear. If not provided or empty, all pending map assignments are accepted/rejected.
 	MapIds               []uuid.UUID            `json:"map_ids,omitempty"`

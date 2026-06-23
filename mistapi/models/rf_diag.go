@@ -11,15 +11,15 @@ import (
 )
 
 // RfDiag represents a RfDiag struct.
-// RF Diag
+// RF diagnostic recording request
 type RfDiag struct {
-	// recording length in seconds, max is 180. Default value is also 180.
+	// Recording length, in seconds; maximum and default are 180
 	Duration *int `json:"duration,omitempty"`
-	// If `type`==`client` or `asset`, mac of the device
+	// If `type`==`client` or `asset`, MAC address of the device being recorded
 	Mac *string `json:"mac,omitempty"`
-	// Name of the recording, the name of the sdk client would be a good default choice
+	// Recording name; the SDK client name is a good default for SDK-client recordings
 	Name string `json:"name"`
-	// If `type`==`sdkclient`, sdkclient_id of this recording
+	// If `type`==`sdkclient`, SDK client identifier for this recording
 	SdkclientId *uuid.UUID `json:"sdkclient_id,omitempty"`
 	// enum: `asset`, `client`, `sdkclient`
 	Type                 RfClientTypeEnum       `json:"type"`

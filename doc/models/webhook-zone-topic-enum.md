@@ -1,7 +1,7 @@
 
 # Webhook Zone Topic Enum
 
-enum: `zone`
+Webhook topic name for zone transition deliveries. enum: `zone`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `zone`
 | Name |
 |  --- |
 | `zone` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookZoneTopic := models.WebhookZoneTopicEnum_ZONE
+
+}
+```
 

@@ -8,7 +8,9 @@ import (
 )
 
 // ResponseSsrExportIdTokens represents a ResponseSsrExportIdTokens struct.
+// Response containing SSR ID tokens exported for device onboarding
 type ResponseSsrExportIdTokens struct {
+	// Exported SSR ID token records
 	Results              []ResponseSsrExportIdTokensResultsItem `json:"results,omitempty"`
 	AdditionalProperties map[string]interface{}                 `json:"_"`
 }

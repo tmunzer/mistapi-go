@@ -8,9 +8,11 @@ import (
 )
 
 // EvpnOptionsUnderlay represents a EvpnOptionsUnderlay struct.
+// EVPN underlay BGP and subnet settings
 type EvpnOptionsUnderlay struct {
 	// Underlay BGP Base AS Number
-	AsBase         *int    `json:"as_base,omitempty"`
+	AsBase *int `json:"as_base,omitempty"`
+	// Prefix length used for automatically derived underlay router identifiers
 	RoutedIdPrefix *string `json:"routed_id_prefix,omitempty"`
 	// Underlay subnet, by default, `10.255.240.0/20`, or `fd31:5700::/64` for ipv6
 	Subnet *string `json:"subnet,omitempty"`

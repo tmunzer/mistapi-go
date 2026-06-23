@@ -16,3 +16,18 @@ port usage name. enum: `ha_control`, `ha_data`, `lan`, `wan`
 | `lan` |
 | `wan` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayPortUsage := models.GatewayPortUsageEnum_LAN
+
+}
+```
+

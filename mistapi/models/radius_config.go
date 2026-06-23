@@ -8,21 +8,25 @@ import (
 )
 
 // RadiusConfig represents a RadiusConfig struct.
-// Junos Radius config
+// Junos RADIUS authentication and accounting configuration
 type RadiusConfig struct {
-	// How frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the radius server, 600 and up is recommended when enabled
-	AcctInterimInterval *int               `json:"acct_interim_interval,omitempty"`
-	AcctServers         []RadiusAcctServer `json:"acct_servers,omitempty"`
-	AuthServers         []RadiusAuthServer `json:"auth_servers,omitempty"`
-	// radius auth session retries
+	// How frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the RADIUS server, 600 and up is recommended when enabled
+	AcctInterimInterval *int `json:"acct_interim_interval,omitempty"`
+	// List of RADIUS accounting servers
+	AcctServers []RadiusAcctServer `json:"acct_servers,omitempty"`
+	// List of RADIUS authentication servers
+	AuthServers []RadiusAuthServer `json:"auth_servers,omitempty"`
+	// Number of RADIUS authentication request retries before failover
 	AuthServersRetries *int `json:"auth_servers_retries,omitempty"`
-	// radius auth session timeout
-	AuthServersTimeout *int  `json:"auth_servers_timeout,omitempty"`
-	CoaEnabled         *bool `json:"coa_enabled,omitempty"`
-	CoaPort            *int  `json:"coa_port,omitempty"`
-	// use `network`or `source_ip`, which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip
+	// RADIUS authentication server timeout, in seconds
+	AuthServersTimeout *int `json:"auth_servers_timeout,omitempty"`
+	// Whether RADIUS Change of Authorization (CoA) is enabled
+	CoaEnabled *bool `json:"coa_enabled,omitempty"`
+	// UDP port used for RADIUS Change of Authorization (CoA)
+	CoaPort *int `json:"coa_port,omitempty"`
+	// Use `network` or `source_ip`. Network where the RADIUS server resides; if the network has a static IP, Mist uses it as the source IP
 	Network *string `json:"network,omitempty"`
-	// use `network`or `source_ip`
+	// Use `network` or `source_ip`. Explicit source IP address for RADIUS traffic
 	SourceIp             *string                `json:"source_ip,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -26,7 +26,7 @@ func NewSitesClientsWireless(baseController baseController) *SitesClientsWireles
 // CountSiteWirelessClients takes context, siteId, distinct, ssid, ap, ip, vlan, hostname, os, model, device, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of Clients
+// Count wireless clients for a site, optionally grouped by the `distinct` field and filtered by client attributes and time range. Use [Count Org Wireless Clients]($e/Orgs%20Clients%20-%20Wireless/countOrgWirelessClients) to count wireless clients across the organization.
 func (s *SitesClientsWireless) CountSiteWirelessClients(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -50,19 +50,15 @@ func (s *SitesClientsWireless) CountSiteWirelessClients(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -117,7 +113,7 @@ func (s *SitesClientsWireless) CountSiteWirelessClients(
 // CountSiteWirelessClientEvents takes context, siteId, distinct, mType, reasonCode, ssid, ap, proto, band, wlanId, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of Client-Events
+// Count wireless client events for a site, optionally grouped by the `distinct` field and filtered by event attributes and time range. Use [Count Org Wireless Client Events]($e/Orgs%20Clients%20-%20Wireless/countOrgWirelessClientEvents) to count wireless client events across the organization.
 func (s *SitesClientsWireless) CountSiteWirelessClientEvents(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -140,19 +136,15 @@ func (s *SitesClientsWireless) CountSiteWirelessClientEvents(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -204,7 +196,7 @@ func (s *SitesClientsWireless) CountSiteWirelessClientEvents(
 // SearchSiteWirelessClientEvents takes context, siteId, mType, reasonCode, ssid, ap, proto, band, wlanId, nacruleId, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseEventsSearch data and
 // an error if there was an issue with the request or response.
-// Get Site Clients Events
+// Search wireless client events for a site with filters for event type, AP, SSID, WLAN, radio band, and time range. Use [Search Org Wireless Client Events]($e/Orgs%20Clients%20-%20Wireless/searchOrgWirelessClientEvents) to search wireless client events across the organization.
 func (s *SitesClientsWireless) SearchSiteWirelessClientEvents(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -229,19 +221,15 @@ func (s *SitesClientsWireless) SearchSiteWirelessClientEvents(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if mType != nil {
 		req.QueryParam("type", *mType)
@@ -299,8 +287,7 @@ func (s *SitesClientsWireless) SearchSiteWirelessClientEvents(
 // SearchSiteWirelessClients takes context, siteId, ap, band, device, hostname, ip, mac, model, os, pskId, pskName, ssid, text, username, vlan, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseClientSearch data and
 // an error if there was an issue with the request or response.
-// Search Wireless Clients
-// **NOTE**: fuzzy logic can be used with ‘*’, supported filters: mac, hostname, device, os, model. E.g. /clients/search?device=Mac*&hostname=jerry
+// Search wireless clients connected to a site with filters for client identity, AP, SSID, VLAN, radio band, and time range. Fuzzy matching with `*` is supported on `mac`, `hostname`, `device`, `os`, and `model`, for example `/clients/search?device=Mac*&hostname=jerry`. Use [Search Org Wireless Clients]($e/Orgs%20Clients%20-%20Wireless/searchOrgWirelessClients) to search wireless clients across the organization.
 func (s *SitesClientsWireless) SearchSiteWirelessClients(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -331,19 +318,15 @@ func (s *SitesClientsWireless) SearchSiteWirelessClients(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if ap != nil {
 		req.QueryParam("ap", *ap)
@@ -419,7 +402,7 @@ func (s *SitesClientsWireless) SearchSiteWirelessClients(
 // CountSiteWirelessClientSessions takes context, siteId, distinct, ap, band, clientFamily, clientManufacture, clientModel, clientOs, ssid, wlanId, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of Client Sessions
+// Count wireless client sessions for a site, optionally grouped by the `distinct` field and filtered by AP, SSID, WLAN, client attributes, and time range. Use [Count Org Wireless Client Sessions]($e/Orgs%20Clients%20-%20Wireless/countOrgWirelessClientsSessions) to count wireless client sessions across the organization.
 func (s *SitesClientsWireless) CountSiteWirelessClientSessions(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -443,19 +426,15 @@ func (s *SitesClientsWireless) CountSiteWirelessClientSessions(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -510,7 +489,7 @@ func (s *SitesClientsWireless) CountSiteWirelessClientSessions(
 // SearchSiteWirelessClientSessions takes context, siteId, ap, band, clientFamily, clientManufacture, clientModel, clientUsername, clientOs, ssid, wlanId, pskId, pskName, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseClientSessionsSearch data and
 // an error if there was an issue with the request or response.
-// Search Client Sessions
+// Search wireless client sessions for a site with filters for AP, SSID, WLAN, client attributes, PSK, and time range. Use [Search Org Wireless Client Sessions]($e/Orgs%20Clients%20-%20Wireless/searchOrgWirelessClientSessions) to search wireless client sessions across the organization.
 func (s *SitesClientsWireless) SearchSiteWirelessClientSessions(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -538,19 +517,15 @@ func (s *SitesClientsWireless) SearchSiteWirelessClientSessions(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if ap != nil {
 		req.QueryParam("ap", *ap)
@@ -640,19 +615,15 @@ func (s *SitesClientsWireless) GetSiteEventsForClient(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if mType != nil {
 		req.QueryParam("type", *mType)

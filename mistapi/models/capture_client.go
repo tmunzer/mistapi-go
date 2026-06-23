@@ -12,18 +12,21 @@ import (
 // CaptureClient represents a CaptureClient struct.
 // Initiate a Client Packet Capture
 type CaptureClient struct {
+	// AP MAC address used to target the client packet capture
 	ApMac Optional[string] `json:"ap_mac"`
-	// Client mac, required if `type`==`client`; optional otherwise
+	// Client MAC address, required if `type`==`client`; optional otherwise
 	ClientMac Optional[string] `json:"client_mac"`
 	// Duration of the capture, in seconds
-	Duration      Optional[int] `json:"duration"`
-	IncludesMcast *bool         `json:"includes_mcast,omitempty"`
-	MaxPktLen     Optional[int] `json:"max_pkt_len"`
+	Duration Optional[int] `json:"duration"`
+	// Whether to include multicast traffic in the packet capture
+	IncludesMcast *bool `json:"includes_mcast,omitempty"`
+	// Maximum bytes captured from each packet, or null to use the default
+	MaxPktLen Optional[int] `json:"max_pkt_len"`
 	// number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
 	NumPackets Optional[int] `json:"num_packets"`
-	// Optional filter by ssid
+	// Optional SSID filter for the packet capture
 	Ssid Optional[string] `json:"ssid"`
-	// enum: `client`
+	// Packet capture type discriminator for client captures. enum: `client`
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

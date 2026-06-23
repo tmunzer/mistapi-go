@@ -9,14 +9,17 @@ import (
 )
 
 // HaClusterConfig represents a HaClusterConfig struct.
+// Request to create an HA cluster from unassigned gateway inventory nodes
 type HaClusterConfig struct {
 	// This disables the default behavior of a cloud-ready switch/gateway being managed/configured by Mist. Setting this to `true` means you want to disable the default behavior and do not want the device to be Mist-managed.
 	DisableAutoConfig *bool `json:"disable_auto_config,omitempty"` // Deprecated
 	// An adopted switch/gateway will not be managed/configured by Mist by default. Setting this parameter to `true` enables the adopted switch/gateway to be managed/configured by Mist.
 	Managed *bool `json:"managed,omitempty"` // Deprecated
 	// whether the device can be configured by Mist or not. This deprecates `managed` (for adopted device) and `disable_auto_config` for claimed device)
-	MistConfigured       *bool                  `json:"mist_configured,omitempty"`
-	Nodes                []HaClusterConfigNode  `json:"nodes,omitempty"`
+	MistConfigured *bool `json:"mist_configured,omitempty"`
+	// Gateway inventory nodes used to create an HA cluster
+	Nodes []HaClusterConfigNode `json:"nodes,omitempty"`
+	// Site where the HA cluster should be created
 	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

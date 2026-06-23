@@ -15,13 +15,22 @@ OAuth linked CrowdStrike apps account details
 | `ClientSecret` | `string` | Required | Customer account api client Secret |
 | `CustomerId` | `string` | Required | Customer id of an admin |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "client_id": "client_id4",
-  "client_secret": "client_secret0",
-  "customer_id": "customer_id0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    accountCrowdstrikeConfig := models.AccountCrowdstrikeConfig{
+        ClientId:             "client_id0",
+        ClientSecret:         "client_secret6",
+        CustomerId:           "customer_id6",
+    }
+
 }
 ```
 

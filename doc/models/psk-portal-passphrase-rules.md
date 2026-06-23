@@ -1,6 +1,8 @@
 
 # Psk Portal Passphrase Rules
 
+Passphrase generation rules for PSKs created through a portal
+
 ## Structure
 
 `PskPortalPassphraseRules`
@@ -9,25 +11,34 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AlphabetsEnabled` | `*bool` | Optional | **Default**: `true` |
-| `Length` | `*int` | Optional | **Constraints**: `>= 8`, `<= 63` |
-| `MaxLength` | `*int` | Optional | For valid `max_length` and `min_length`, passphrase size is set randomly from that range.<br><br>- if `max_length` and/or `min_length` are invalid, passphrase size is equal to `length` parameter<br>- if `length` is not set or is invalid, default passphrase size is 8.<br>- valid `max_length`, `min_length`, `length` should be an integer between 8 to 63. Also, `max_length` > `min_length`<br><br>**Constraints**: `>= 8`, `<= 63` |
-| `MinLength` | `*int` | Optional | Ror valid `max_length` and `min_length`, passphrase size is set randomly from that range.<br><br>- if `max_length` and/or `min_length` are invalid, passphrase size is equal to `length` parameter<br>- if `length` is not set or is invalid, default passphrase size is 8.<br>- valid `max_length`, `min_length`, `length` should be an integer between 8 to 63. Also, `max_length` > `min_length`<br><br>**Constraints**: `>= 8`, `<= 63` |
-| `NumericsEnabled` | `*bool` | Optional | **Default**: `true` |
-| `Symbols` | `*string` | Optional | - |
-| `SymbolsEnabled` | `*bool` | Optional | **Default**: `true` |
+| `AlphabetsEnabled` | `*bool` | Optional | Whether generated passphrases may include alphabetic characters<br><br>**Default**: `true` |
+| `Length` | `*int` | Optional | Fixed generated passphrase length used when min and max length are not both valid<br><br>**Constraints**: `>= 8`, `<= 63` |
+| `MaxLength` | `*int` | Optional | Maximum generated passphrase length when paired with a valid `min_length`. If `max_length` or `min_length` is invalid, the portal uses `length`; if `length` is unset or invalid, it uses 8. Valid values are integers from 8 through 63, and `max_length` must be greater than `min_length`<br><br>**Constraints**: `>= 8`, `<= 63` |
+| `MinLength` | `*int` | Optional | Minimum generated passphrase length when paired with a valid `max_length`. If `max_length` or `min_length` is invalid, the portal uses `length`; if `length` is unset or invalid, it uses 8. Valid values are integers from 8 through 63, and `max_length` must be greater than `min_length`<br><br>**Constraints**: `>= 8`, `<= 63` |
+| `NumericsEnabled` | `*bool` | Optional | Whether generated passphrases may include numeric characters<br><br>**Default**: `true` |
+| `Symbols` | `*string` | Optional | Allowed symbol characters for generated passphrases |
+| `SymbolsEnabled` | `*bool` | Optional | Whether generated passphrases may include symbols<br><br>**Default**: `true` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "alphabets_enabled": true,
-  "numerics_enabled": true,
-  "symbols": "()[]{}_%@#&$",
-  "symbols_enabled": true,
-  "length": 63,
-  "max_length": 63,
-  "min_length": 63
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    pskPortalPassphraseRules := models.PskPortalPassphraseRules{
+        AlphabetsEnabled:     models.ToPointer(true),
+        Length:               models.ToPointer(63),
+        MaxLength:            models.ToPointer(63),
+        MinLength:            models.ToPointer(63),
+        NumericsEnabled:      models.ToPointer(true),
+        Symbols:              models.ToPointer("()[]{}_%@#&$"),
+        SymbolsEnabled:       models.ToPointer(true),
+    }
+
 }
 ```
 

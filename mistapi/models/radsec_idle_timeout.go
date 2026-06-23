@@ -9,7 +9,7 @@ import (
 )
 
 // RadsecIdleTimeout represents a RadsecIdleTimeout struct.
-// Radsec Idle Timeout in seconds. Default is 60
+// RadSec idle timeout in seconds. Default is 60
 type RadsecIdleTimeout struct {
 	value    any
 	isNumber bool
@@ -75,7 +75,7 @@ func (r *RadsecIdleTimeout) AsString() (
 }
 
 // internalRadsecIdleTimeout represents a radsecIdleTimeout struct.
-// Radsec Idle Timeout in seconds. Default is 60
+// RadSec idle timeout in seconds. Default is 60
 type internalRadsecIdleTimeout struct{}
 
 var RadsecIdleTimeoutContainer internalRadsecIdleTimeout

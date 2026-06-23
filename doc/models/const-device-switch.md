@@ -1,6 +1,8 @@
 
 # Const Device Switch
 
+Switch model capability definition returned by the constants API
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,71 +13,79 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Alias` | `*string` | Optional | - |
-| `Defaults` | [`*models.ConstDeviceSwitchDefault`](../../doc/models/const-device-switch-default.md) | Optional | - |
-| `Description` | `*string` | Optional | - |
-| `Display` | `*string` | Optional | - |
-| `EvolvedOs` | `*bool` | Optional | **Default**: `false` |
-| `EvpnRiType` | `*string` | Optional | - |
-| `Experimental` | `*bool` | Optional | **Default**: `false` |
-| `FansPluggable` | `*bool` | Optional | **Default**: `false` |
-| `HasBgp` | `*bool` | Optional | **Default**: `false` |
-| `HasEts` | `*bool` | Optional | **Default**: `false` |
-| `HasEvpn` | `*bool` | Optional | **Default**: `false` |
-| `HasIrb` | `*bool` | Optional | **Default**: `false` |
-| `HasPoeOut` | `*bool` | Optional | **Default**: `false` |
-| `HasSnapshot` | `*bool` | Optional | **Default**: `true` |
-| `HasVc` | `*bool` | Optional | **Default**: `true` |
-| `Model` | `*string` | Optional | - |
-| `Modular` | `*bool` | Optional | **Default**: `false` |
-| `NoShapingRate` | `*bool` | Optional | **Default**: `false` |
-| `NumberFans` | `*int` | Optional | - |
-| `OcDevice` | `*bool` | Optional | **Default**: `false` |
-| `OobInterface` | `*string` | Optional | - |
-| `PacketActionDropOnly` | `*bool` | Optional | **Default**: `false` |
+| `Alias` | `*string` | Optional | Alternate model identifier for chassis-based switch definitions |
+| `Defaults` | [`*models.ConstDeviceSwitchDefault`](../../doc/models/const-device-switch-default.md) | Optional | Default switch port ranges for a model |
+| `Description` | `*string` | Optional | Product description for the switch model |
+| `Display` | `*string` | Optional | User-facing model name shown for the switch |
+| `EvolvedOs` | `*bool` | Optional | Whether the switch model runs Junos Evolved<br><br>**Default**: `false` |
+| `EvpnRiType` | `*string` | Optional | EVPN routing-instance type used by this switch model |
+| `Experimental` | `*bool` | Optional | Whether this switch model is marked experimental in the constants catalog<br><br>**Default**: `false` |
+| `FansPluggable` | `*bool` | Optional | Whether the switch model has field-replaceable fans<br><br>**Default**: `false` |
+| `HasBgp` | `*bool` | Optional | Whether the switch model supports BGP<br><br>**Default**: `false` |
+| `HasEts` | `*bool` | Optional | Whether the switch model supports Enhanced Transmission Selection (ETS)<br><br>**Default**: `false` |
+| `HasEvpn` | `*bool` | Optional | Whether the switch model supports EVPN<br><br>**Default**: `false` |
+| `HasIrb` | `*bool` | Optional | Whether the switch model supports IRB interfaces<br><br>**Default**: `false` |
+| `HasPoeOut` | `*bool` | Optional | Whether the switch model supports PoE output<br><br>**Default**: `false` |
+| `HasSnapshot` | `*bool` | Optional | Whether the switch model supports configuration snapshots<br><br>**Default**: `true` |
+| `HasVc` | `*bool` | Optional | Whether the switch model supports Virtual Chassis<br><br>**Default**: `true` |
+| `Model` | `*string` | Optional | Switch model identifier for this capability definition |
+| `Modular` | `*bool` | Optional | Whether the switch model has modular hardware<br><br>**Default**: `false` |
+| `NoShapingRate` | `*bool` | Optional | Whether the switch model omits shaping-rate support<br><br>**Default**: `false` |
+| `NumberFans` | `*int` | Optional | Number of fans in the switch model |
+| `OcDevice` | `*bool` | Optional | Whether this switch model is identified as an OpenConfig-managed device<br><br>**Default**: `false` |
+| `OobInterface` | `*string` | Optional | Out-of-band management interface names for this switch model |
+| `PacketActionDropOnly` | `*bool` | Optional | Whether packet action support is limited to drop-only behavior<br><br>**Default**: `false` |
 | `Pic` | `map[string]string` | Optional | Object Key is the PIC number |
-| `SubRequired` | `*string` | Optional | - |
-| `Type` | `string` | Required, Constant | Device Type. enum: `switch`<br><br>**Value**: `"switch"` |
+| `SubRequired` | `*string` | Optional | Subscription type required for this switch model |
+| `Type` | `string` | Required, Constant, Read-only | Device Type. enum: `switch`<br><br>**Value**: `"switch"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "alias": "EX4100-48P-CHAS",
-  "description": "Juniper EX4100 Series",
-  "display": "EX4100-48P",
-  "evolved_os": false,
-  "evpn_ri_type": "mac-vrf",
-  "experimental": false,
-  "fans_pluggable": true,
-  "has_bgp": true,
-  "has_ets": false,
-  "has_evpn": true,
-  "has_irb": true,
-  "has_poe_out": true,
-  "has_snapshot": true,
-  "has_vc": true,
-  "model": "EX4100-48P",
-  "modular": false,
-  "no_shaping_rate": false,
-  "number_fans": 2,
-  "oc_device": true,
-  "oob_interface": "re0:mgmt-0, re1:mgmt-0",
-  "packet_action_drop_only": false,
-  "pic": {
-    "0": "ge*48",
-    "1": "qsfp+*4",
-    "2": "sfp+*4 (uplink)"
-  },
-  "type": "switch",
-  "defaults": {
-    "_ports": "_ports6"
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constDeviceSwitch := models.ConstDeviceSwitch{
+        Alias:                models.ToPointer("EX4100-48P-CHAS"),
+        Defaults:             models.ToPointer(models.ConstDeviceSwitchDefault{
+            Ports:                models.ToPointer("_ports6"),
+        }),
+        Description:          models.ToPointer("Juniper EX4100 Series"),
+        Display:              models.ToPointer("EX4100-48P"),
+        EvolvedOs:            models.ToPointer(false),
+        EvpnRiType:           models.ToPointer("mac-vrf"),
+        Experimental:         models.ToPointer(false),
+        FansPluggable:        models.ToPointer(true),
+        HasBgp:               models.ToPointer(true),
+        HasEts:               models.ToPointer(false),
+        HasEvpn:              models.ToPointer(true),
+        HasIrb:               models.ToPointer(true),
+        HasPoeOut:            models.ToPointer(true),
+        HasSnapshot:          models.ToPointer(true),
+        HasVc:                models.ToPointer(true),
+        Model:                models.ToPointer("EX4100-48P"),
+        Modular:              models.ToPointer(false),
+        NoShapingRate:        models.ToPointer(false),
+        NumberFans:           models.ToPointer(2),
+        OcDevice:             models.ToPointer(true),
+        OobInterface:         models.ToPointer("re0:mgmt-0, re1:mgmt-0"),
+        PacketActionDropOnly: models.ToPointer(false),
+        Pic:                  map[string]string{
+            "0": "ge*48",
+            "1": "qsfp+*4",
+            "2": "sfp+*4 (uplink)",
+        },
+        Type:                 "switch",
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

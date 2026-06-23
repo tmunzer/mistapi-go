@@ -1,7 +1,7 @@
 
 # Ap Switch
 
-For people who want to fully control the vlans (advanced)
+Deprecated AP switch VLAN control settings for advanced per-port configuration
 
 ## Structure
 
@@ -11,54 +11,63 @@ For people who want to fully control the vlans (advanced)
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `Eth0` | [`*models.ApSwitchSetting`](../../doc/models/ap-switch-setting.md) | Optional | - |
-| `Eth1` | [`*models.ApSwitchSetting`](../../doc/models/ap-switch-setting.md) | Optional | - |
-| `Eth2` | [`*models.ApSwitchSetting`](../../doc/models/ap-switch-setting.md) | Optional | - |
-| `Eth3` | [`*models.ApSwitchSetting`](../../doc/models/ap-switch-setting.md) | Optional | - |
-| `Module` | [`*models.ApSwitchSetting`](../../doc/models/ap-switch-setting.md) | Optional | - |
-| `Wds` | [`*models.ApSwitchSetting`](../../doc/models/ap-switch-setting.md) | Optional | - |
+| `Enabled` | `*bool` | Optional | Whether deprecated AP switch VLAN control is enabled<br><br>**Default**: `false` |
+| `Eth0` | [`*models.ApSwitchSetting`](../../doc/models/ap-switch-setting.md) | Optional | VLAN settings for one deprecated AP switch-config port |
+| `Eth1` | [`*models.ApSwitchSetting`](../../doc/models/ap-switch-setting.md) | Optional | VLAN settings for one deprecated AP switch-config port |
+| `Eth2` | [`*models.ApSwitchSetting`](../../doc/models/ap-switch-setting.md) | Optional | VLAN settings for one deprecated AP switch-config port |
+| `Eth3` | [`*models.ApSwitchSetting`](../../doc/models/ap-switch-setting.md) | Optional | VLAN settings for one deprecated AP switch-config port |
+| `Module` | [`*models.ApSwitchSetting`](../../doc/models/ap-switch-setting.md) | Optional | VLAN settings for one deprecated AP switch-config port |
+| `Wds` | [`*models.ApSwitchSetting`](../../doc/models/ap-switch-setting.md) | Optional | VLAN settings for one deprecated AP switch-config port |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "eth0": {
-    "enable_vlan": false,
-    "port_vlan_id": 28,
-    "vlan_ids": [
-      114,
-      115,
-      116
-    ]
-  },
-  "eth1": {
-    "enable_vlan": false,
-    "port_vlan_id": 60,
-    "vlan_ids": [
-      146,
-      147,
-      148
-    ]
-  },
-  "eth2": {
-    "enable_vlan": false,
-    "port_vlan_id": 32,
-    "vlan_ids": [
-      118,
-      119,
-      120
-    ]
-  },
-  "eth3": {
-    "enable_vlan": false,
-    "port_vlan_id": 150,
-    "vlan_ids": [
-      236,
-      237
-    ]
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    apSwitch := models.ApSwitch{
+        Enabled:              models.ToPointer(false),
+        Eth0:                 models.ToPointer(models.ApSwitchSetting{
+            EnableVlan:           models.ToPointer(false),
+            PortVlanId:           models.ToPointer(models.ApSwitchSettingPortVlanIdContainer.FromNumber(28)),
+            VlanIds:              []int{
+                114,
+                115,
+                116,
+            },
+        }),
+        Eth1:                 models.ToPointer(models.ApSwitchSetting{
+            EnableVlan:           models.ToPointer(false),
+            PortVlanId:           models.ToPointer(models.ApSwitchSettingPortVlanIdContainer.FromNumber(60)),
+            VlanIds:              []int{
+                146,
+                147,
+                148,
+            },
+        }),
+        Eth2:                 models.ToPointer(models.ApSwitchSetting{
+            EnableVlan:           models.ToPointer(false),
+            PortVlanId:           models.ToPointer(models.ApSwitchSettingPortVlanIdContainer.FromNumber(32)),
+            VlanIds:              []int{
+                118,
+                119,
+                120,
+            },
+        }),
+        Eth3:                 models.ToPointer(models.ApSwitchSetting{
+            EnableVlan:           models.ToPointer(false),
+            PortVlanId:           models.ToPointer(models.ApSwitchSettingPortVlanIdContainer.FromNumber(150)),
+            VlanIds:              []int{
+                236,
+                237,
+            },
+        }),
+    }
+
 }
 ```
 

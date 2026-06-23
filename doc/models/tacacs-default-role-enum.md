@@ -16,3 +16,18 @@ enum: `admin`, `helpdesk`, `none`, `read`
 | `none` |
 | `read` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    tacacsDefaultRole := models.TacacsDefaultRoleEnum_NONE
+
+}
+```
+

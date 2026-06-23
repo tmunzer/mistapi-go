@@ -9,6 +9,7 @@ import (
 )
 
 // ConstDeviceModel represents a ConstDeviceModel struct.
+// Device model definition returned by the constants API
 type ConstDeviceModel struct {
 	value                any
 	isConstDeviceAp      bool
@@ -87,6 +88,7 @@ func (c *ConstDeviceModel) AsConstDeviceGateway() (
 }
 
 // internalConstDeviceModel represents a constDeviceModel struct.
+// Device model definition returned by the constants API
 type internalConstDeviceModel struct{}
 
 var ConstDeviceModelContainer internalConstDeviceModel

@@ -15,3 +15,18 @@ how bonjour services should be discovered for the same WLAN. enum: `same_ap`, `s
 | `same_map` |
 | `same_site` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanBonjourServicePropertiesScope := models.WlanBonjourServicePropertiesScopeEnum_SAMESITE
+
+}
+```
+

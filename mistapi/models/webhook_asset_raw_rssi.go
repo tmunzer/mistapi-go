@@ -20,8 +20,9 @@ import (
 // In order to get the location data for a client please see our location webhooks.
 // Clients can be identified uniquely across these client raw data topics and location webhook topic using MAC address as the Unique identifier (client identifier).
 type WebhookAssetRawRssi struct {
+	// Asset raw RSSI events included in a webhook delivery
 	Events []WebhookAssetRawRssiEvent `json:"events"`
-	// enum: `asset-raw-rssi`
+	// Webhook topic name for asset raw RSSI deliveries. enum: `asset-raw-rssi`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

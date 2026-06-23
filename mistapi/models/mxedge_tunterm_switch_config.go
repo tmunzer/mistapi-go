@@ -8,8 +8,11 @@ import (
 )
 
 // MxedgeTuntermSwitchConfig represents a MxedgeTuntermSwitchConfig struct.
+// Switch VLAN settings for one tunnel termination port
 type MxedgeTuntermSwitchConfig struct {
-	PortVlanId           *int                   `json:"port_vlan_id,omitempty"`
+	// Untagged VLAN ID for this tunnel termination switch port
+	PortVlanId *int `json:"port_vlan_id,omitempty"`
+	// Tagged VLAN IDs allowed on a tunnel termination switch port
 	VlanIds              []VlanIdWithVariable   `json:"vlan_ids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

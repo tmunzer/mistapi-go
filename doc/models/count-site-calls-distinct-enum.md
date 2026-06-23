@@ -1,7 +1,7 @@
 
 # Count Site Calls Distinct Enum
 
-enum: `mac`
+Distinct field used when counting site call statistics. enum: `mac`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `mac`
 | Name |
 |  --- |
 | `mac` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    countSiteCallsDistinct := models.CountSiteCallsDistinctEnum_MAC
+
+}
+```
 

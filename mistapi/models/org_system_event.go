@@ -9,14 +9,21 @@ import (
 )
 
 // OrgSystemEvent represents a OrgSystemEvent struct.
+// Organization system event record
 type OrgSystemEvent struct {
-	ChangeCat *string    `json:"change_cat,omitempty"`
-	Metadata  *string    `json:"metadata,omitempty"`
-	OrgId     *uuid.UUID `json:"org_id,omitempty"`
-	Scope     *string    `json:"scope,omitempty"`
-	SiteId    *uuid.UUID `json:"site_id,omitempty"`
-	// Epoch (seconds)
-	Timestamp            *float64               `json:"timestamp,omitempty"`
+	// Category of configuration or administrative change for the event
+	ChangeCat *string `json:"change_cat,omitempty"`
+	// JSON-encoded event metadata, such as affected object IDs and admin details
+	Metadata *string `json:"metadata,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Event scope, such as organization or site
+	Scope *string `json:"scope,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Epoch timestamp, in seconds
+	Timestamp *float64 `json:"timestamp,omitempty"`
+	// System event type, such as `add-wlan` or `delete-wlan`
 	Type                 *string                `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

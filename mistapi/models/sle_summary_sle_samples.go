@@ -10,9 +10,13 @@ import (
 )
 
 // SleSummarySleSamples represents a SleSummarySleSamples struct.
+// Per-interval sample arrays for an SLE summary
 type SleSummarySleSamples struct {
-	Degraded             []NumberOrNull         `json:"degraded"`
-	Total                []NumberOrNull         `json:"total"`
+	// Per-interval degraded SLE values for a summary
+	Degraded []NumberOrNull `json:"degraded"`
+	// Per-interval total SLE values for a summary
+	Total []NumberOrNull `json:"total"`
+	// Per-interval SLE score values for a summary
 	Value                []NumberOrNull         `json:"value"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -28,3 +28,18 @@ enum: `ap`, `client`, `device`, `gateway`, `map`, `msp`, `mxcluster`, `mxedge`, 
 | `wlan` |
 | `zone` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constInsightMetricsPropertyScope := models.ConstInsightMetricsPropertyScopeEnum_ORG
+
+}
+```
+

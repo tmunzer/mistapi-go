@@ -16,3 +16,18 @@ PCAP format. enum:
 | `stream` |
 | `tzsp` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureMxedgeFormat := models.CaptureMxedgeFormatEnum_STREAM
+
+}
+```
+

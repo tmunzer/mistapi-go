@@ -11,17 +11,26 @@ OAuth linked Zscaler apps account details
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CloudName` | `*string` | Optional | - |
-| `PartnerKey` | `*string` | Optional | - |
-| `Username` | `*string` | Optional | Customer account user name |
+| `CloudName` | `*string` | Optional | Zscaler Internet Access cloud name configured for the integration |
+| `PartnerKey` | `*string` | Optional | Zscaler partner key configured for the Mist integration |
+| `Username` | `*string` | Optional | Zscaler partner administrator username configured for Mist |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "cloud_name": "zscalerbeta.net",
-  "partner_key": "K35vrZcK3JvrZc",
-  "username": "john@nmo.com"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    accountZscalerInfo := models.AccountZscalerInfo{
+        CloudName:            models.ToPointer("zscalerbeta.net"),
+        PartnerKey:           models.ToPointer("K35vrZcK3JvrZc"),
+        Username:             models.ToPointer("john@nmo.com"),
+    }
+
 }
 ```
 

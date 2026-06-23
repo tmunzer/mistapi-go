@@ -8,8 +8,9 @@ import (
 )
 
 // EvpnConfig represents a EvpnConfig struct.
-// EVPN Junos settings
+// EVPN configuration settings applied to a Junos switch
 type EvpnConfig struct {
+	// Whether EVPN configuration is enabled on the switch
 	Enabled *bool `json:"enabled,omitempty"`
 	// enum: `access`, `border`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
 	Role                 *EvpnConfigRoleEnum    `json:"role,omitempty"`

@@ -9,6 +9,7 @@ import (
 )
 
 // UpgradeOrgDevices represents a UpgradeOrgDevices struct.
+// Organization-wide device upgrade request
 type UpgradeOrgDevices struct {
 	// If `true`, will upgrade all sites in this org
 	AllSites *bool `json:"all_sites,omitempty"`
@@ -68,7 +69,8 @@ type UpgradeOrgDevices struct {
 	// Upgrade start time in epoch seconds, default is now
 	StartTime *int `json:"start_time,omitempty"` // Deprecated
 	// enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)
-	Strategy             *UpgradeDeviceStrategyEnum `json:"strategy,omitempty"`
+	Strategy *UpgradeDeviceStrategyEnum `json:"strategy,omitempty"`
+	// Target firmware version entries for an organization upgrade request
 	Versions             []UpgradeOrgDevicesVersion `json:"versions,omitempty"`
 	AdditionalProperties map[string]interface{}     `json:"_"`
 }

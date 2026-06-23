@@ -8,18 +8,29 @@ import (
 )
 
 // StatsApRadioConfigBand represents a StatsApRadioConfigBand struct.
+// Per-band radio configuration reported by an AP
 type StatsApRadioConfigBand struct {
-	AllowRrmDisable        Optional[bool]         `json:"allow_rrm_disable"`
-	Bandwidth              Optional[float64]      `json:"bandwidth"`
-	Channel                *int                   `json:"channel,omitempty"`
-	Disabled               Optional[bool]         `json:"disabled"`
-	DynamicChainingEnabled Optional[bool]         `json:"dynamic_chaining_enabled"`
-	Power                  Optional[float64]      `json:"power"`
-	PowerMax               Optional[float64]      `json:"power_max"`
-	PowerMin               Optional[float64]      `json:"power_min"`
-	RxChain                Optional[int]          `json:"rx_chain"`
-	TxChain                Optional[int]          `json:"tx_chain"`
-	AdditionalProperties   map[string]interface{} `json:"_"`
+	// Whether RRM disablement is allowed for this radio band
+	AllowRrmDisable Optional[bool] `json:"allow_rrm_disable"`
+	// Channel bandwidth configured for this radio band
+	Bandwidth Optional[float64] `json:"bandwidth"`
+	// Operating channel configured for this radio band
+	Channel *int `json:"channel,omitempty"`
+	// Whether this radio band is disabled
+	Disabled Optional[bool] `json:"disabled"`
+	// Whether dynamic chaining is enabled for this radio band
+	DynamicChainingEnabled Optional[bool] `json:"dynamic_chaining_enabled"`
+	// Transmit power configured for this radio band
+	Power Optional[float64] `json:"power"`
+	// Maximum transmit power allowed for this radio band
+	PowerMax Optional[float64] `json:"power_max"`
+	// Minimum transmit power allowed for this radio band
+	PowerMin Optional[float64] `json:"power_min"`
+	// Number of receive chains enabled for this radio band
+	RxChain Optional[int] `json:"rx_chain"`
+	// Number of transmit chains enabled for this radio band
+	TxChain              Optional[int]          `json:"tx_chain"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for StatsApRadioConfigBand,

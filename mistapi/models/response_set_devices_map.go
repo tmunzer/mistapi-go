@@ -8,8 +8,11 @@ import (
 )
 
 // ResponseSetDevicesMap represents a ResponseSetDevicesMap struct.
+// Result of assigning APs to a site map
 type ResponseSetDevicesMap struct {
-	Locked               []string               `json:"locked,omitempty"`
+	// AP MAC addresses that were locked during map assignment
+	Locked []string `json:"locked,omitempty"`
+	// AP MAC addresses moved during map assignment
 	Moved                []string               `json:"moved,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -9,6 +9,7 @@ import (
 )
 
 // NacRuleMatching represents a NacRuleMatching struct.
+// Criteria used to include or exclude a NAC authentication request from a rule
 type NacRuleMatching struct {
 	// enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `eap-peap`
 	AuthType *NacAuthTypeEnum `json:"auth_type,omitempty"`
@@ -17,10 +18,12 @@ type NacRuleMatching struct {
 	// List of client device models to match. Refer to [List Fingerprint Types]]($e/Constants%20Definitions/listFingerprintTypes) for allowed model values
 	Mfg []string `json:"mfg,omitempty"`
 	// List of client device manufacturers to match. Refer to [List Fingerprint Types]]($e/Constants%20Definitions/listFingerprintTypes) for allowed mfg values
-	Model   []string `json:"model,omitempty"`
+	Model []string `json:"model,omitempty"`
+	// NAC tag identifiers used as rule-matching criteria
 	Nactags []string `json:"nactags,omitempty"`
 	// List of client device os types to match. Refer to [List Fingerprint Types]]($e/Constants%20Definitions/listFingerprintTypes) for allowed os_type values
-	OsType    []string                      `json:"os_type,omitempty"`
+	OsType []string `json:"os_type,omitempty"`
+	// Wired or wireless access types used as NAC rule-matching criteria
 	PortTypes []NacRuleMatchingPortTypeEnum `json:"port_types,omitempty"`
 	// List of site ids to match
 	SiteIds []uuid.UUID `json:"site_ids,omitempty"`

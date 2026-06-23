@@ -21,13 +21,13 @@ import (
 // * `network`
 // * if network or port_id is specified and macs is empty, it means all clients under network or port_id
 type UtilsReleaseDhcpLeases struct {
-	// A list of client macs to be released
+	// Client MAC addresses whose DHCP leases should be released
 	Macs []string `json:"macs,omitempty"`
-	// The network for the leases IPs to be released
+	// DHCP network containing the leases to release
 	Network *string `json:"network,omitempty"`
-	// only for HA. enum: `node0`, `node1`
+	// HA cluster node selector. enum: `node0`, `node1`
 	Node *HaClusterNodeEnum `json:"node,omitempty"`
-	// The network interface on which to release the current DHCP release
+	// Network interface containing the DHCP leases to release
 	PortId               string                 `json:"port_id"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

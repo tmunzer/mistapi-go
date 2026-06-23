@@ -63,7 +63,7 @@ func TestSitesServicesTestCountSiteServicePathEvents(t *testing.T) {
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := sitesServices.CountSiteServicePathEvents(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+	apiResponse, err := sitesServices.CountSiteServicePathEvents(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -87,7 +87,7 @@ func TestSitesServicesTestCountSiteServicePathEvents1(t *testing.T) {
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := sitesServices.CountSiteServicePathEvents(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+	apiResponse, err := sitesServices.CountSiteServicePathEvents(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -113,7 +113,7 @@ func TestSitesServicesTestSearchSiteServicePathEvents(t *testing.T) {
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := sitesServices.SearchSiteServicePathEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := sitesServices.SearchSiteServicePathEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -139,7 +139,7 @@ func TestSitesServicesTestSearchSiteServicePathEvents1(t *testing.T) {
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := sitesServices.SearchSiteServicePathEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := sitesServices.SearchSiteServicePathEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

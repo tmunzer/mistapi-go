@@ -8,8 +8,9 @@ import (
 )
 
 // VpnPathPeerPathsPeer represents a VpnPathPeerPathsPeer struct.
-// Preference indicates which outgoing wan should be preferred
+// Peer path preference settings for mesh VPN routing
 type VpnPathPeerPathsPeer struct {
+	// Lower numeric value makes this outgoing WAN path more preferred
 	Preference           *int                   `json:"preference,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

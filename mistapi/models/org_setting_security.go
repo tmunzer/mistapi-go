@@ -8,6 +8,7 @@ import (
 )
 
 // OrgSettingSecurity represents a OrgSettingSecurity struct.
+// Organization security controls for local SSH and FIPS zeroize access
 type OrgSettingSecurity struct {
 	// Whether to disable local SSH (by default, local SSH is enabled with allow_mist in Org is enabled
 	DisableLocalSsh *bool `json:"disable_local_ssh,omitempty"`

@@ -8,11 +8,15 @@ import (
 )
 
 // ResponseSwitchMetricsActivePortsSummary represents a ResponseSwitchMetricsActivePortsSummary struct.
+// Active-port summary metric for switches in the requested scope
 type ResponseSwitchMetricsActivePortsSummary struct {
-	Details              *SwitchMetricsActivePortsSummaryDetails `json:"details,omitempty"`
-	Score                *int                                    `json:"score,omitempty"`
-	TotalSwitchCount     *int                                    `json:"total_switch_count,omitempty"`
-	AdditionalProperties map[string]interface{}                  `json:"_"`
+	// Port counts used by the active-port switch metric
+	Details *SwitchMetricsActivePortsSummaryDetails `json:"details,omitempty"`
+	// Reported metric score for active switch ports
+	Score *int `json:"score,omitempty"`
+	// Number of switches included in the active-port summary metric
+	TotalSwitchCount     *int                   `json:"total_switch_count,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseSwitchMetricsActivePortsSummary,

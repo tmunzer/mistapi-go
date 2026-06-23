@@ -10,8 +10,11 @@ import (
 )
 
 // SkyatpListDomain represents a SkyatpListDomain struct.
+// Domain entry in a Sky ATP SecIntel list
 type SkyatpListDomain struct {
-	Comment              *string                `json:"comment,omitempty"`
+	// Optional note describing the domain list entry
+	Comment *string `json:"comment,omitempty"`
+	// Domain name included in the Sky ATP SecIntel list
 	Value                string                 `json:"value"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -12,7 +12,7 @@ import (
 // AccountPrismaConfig represents a AccountPrismaConfig struct.
 // OAuth linked CrowdStrike apps account details
 type AccountPrismaConfig struct {
-	// Required If `enable_probe`==`true`. This field will accept an IPv4 cidr and an IP address will be picked from this range to be used as tunnel probe source ip address and as well as BGP neighbour IP address. The subnet should be big enough for num_devices * num_tunnel * 2
+	// Required If `enable_probe`==`true`. This field will accept an IPv4 cidr and an IP address will be picked from this range to be used as tunnel probe source IP address and as well as BGP neighbour IP address. The subnet should be big enough for num_devices * num_tunnel * 2
 	AutoProbeSubnet *string `json:"auto_probe_subnet,omitempty"`
 	// Customer account api client ID
 	ClientId string `json:"client_id"`

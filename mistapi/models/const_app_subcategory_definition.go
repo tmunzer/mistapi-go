@@ -10,10 +10,11 @@ import (
 )
 
 // ConstAppSubcategoryDefinition represents a ConstAppSubcategoryDefinition struct.
+// Application subcategory definition returned by the constants API
 type ConstAppSubcategoryDefinition struct {
 	// Description of the app subcategory
 	Display string `json:"display"`
-	// Key name of the app subcategory
+	// Machine-readable application subcategory key
 	Key string `json:"key"`
 	// Type of traffic (QoS) of the app subcategory
 	TrafficType          string                 `json:"traffic_type"`

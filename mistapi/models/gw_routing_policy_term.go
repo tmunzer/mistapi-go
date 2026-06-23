@@ -8,10 +8,11 @@ import (
 )
 
 // GwRoutingPolicyTerm represents a GwRoutingPolicyTerm struct.
+// Gateway routing policy term with match criteria and actions
 type GwRoutingPolicyTerm struct {
-	// When used as import policy
+	// Actions applied to routes matched by a gateway routing policy term
 	Actions *GwRoutingPolicyTermAction `json:"actions,omitempty"`
-	// zero or more criteria/filter can be specified to match the term, all criteria have to be met
+	// Route match criteria for a gateway routing policy term; all specified criteria must match
 	Matching             *GwRoutingPolicyTermMatching `json:"matching,omitempty"`
 	AdditionalProperties map[string]interface{}       `json:"_"`
 }

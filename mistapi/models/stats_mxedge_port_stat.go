@@ -8,24 +8,35 @@ import (
 )
 
 // StatsMxedgePortStat represents a StatsMxedgePortStat struct.
+// Mist Edge port traffic and link status statistics
 type StatsMxedgePortStat struct {
-	FullDuplex *bool                         `json:"full_duplex,omitempty"`
-	Lacp       *StatsMxedgePortStatLacp      `json:"lacp,omitempty"`
-	LldpStats  *StatsMxedgePortStatLldpStats `json:"lldp_stats,omitempty"`
-	Mac        *string                       `json:"mac,omitempty"`
+	// Whether the port is operating in full-duplex mode
+	FullDuplex *bool `json:"full_duplex,omitempty"`
+	// LACP state and counters for a Mist Edge port
+	Lacp *StatsMxedgePortStatLacp `json:"lacp,omitempty"`
+	// LLDP neighbor information reported for a Mist Edge port
+	LldpStats *StatsMxedgePortStatLldpStats `json:"lldp_stats,omitempty"`
+	// Mist Edge port MAC address reported by Mist
+	Mac *string `json:"mac,omitempty"`
 	// Amount of traffic received since connection
-	RxBytes  Optional[int64] `json:"rx_bytes"`
-	RxErrors *int            `json:"rx_errors,omitempty"`
+	RxBytes Optional[int64] `json:"rx_bytes"`
+	// Number of receive errors observed on the port
+	RxErrors *int `json:"rx_errors,omitempty"`
 	// Amount of packets received since connection
-	RxPkts Optional[int64]         `json:"rx_pkts"`
-	Sfp    *StatsMxedgePortStatSfp `json:"sfp,omitempty"`
-	Speed  *int                    `json:"speed,omitempty"`
-	State  *string                 `json:"state,omitempty"`
+	RxPkts Optional[int64] `json:"rx_pkts"`
+	// SFP transceiver details reported for a Mist Edge port
+	Sfp *StatsMxedgePortStatSfp `json:"sfp,omitempty"`
+	// Current link speed of the port, in Mbps
+	Speed *int `json:"speed,omitempty"`
+	// Forwarding or operational state reported for the port
+	State *string `json:"state,omitempty"`
 	// Amount of traffic sent since connection
-	TxBytes  Optional[int64] `json:"tx_bytes"`
-	TxErrors *int            `json:"tx_errors,omitempty"`
+	TxBytes Optional[int64] `json:"tx_bytes"`
+	// Number of transmit errors observed on the port
+	TxErrors *int `json:"tx_errors,omitempty"`
 	// Amount of packets sent since connection
-	TxPkts               Optional[int64]        `json:"tx_pkts"`
+	TxPkts Optional[int64] `json:"tx_pkts"`
+	// Whether the Mist Edge port link is up
 	Up                   *bool                  `json:"up,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

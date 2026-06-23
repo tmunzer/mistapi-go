@@ -8,17 +8,27 @@ import (
 )
 
 // MarvisAutoOperations represents a MarvisAutoOperations struct.
+// Marvis automatic remediation operation toggles
 type MarvisAutoOperations struct {
-	ApInsufficientCapacity                 *bool                  `json:"ap_insufficient_capacity,omitempty"`
-	ApLoop                                 *bool                  `json:"ap_loop,omitempty"`
-	ApNonCompliant                         *bool                  `json:"ap_non_compliant,omitempty"`
-	BouncePortForAbnormalPoeClient         *bool                  `json:"bounce_port_for_abnormal_poe_client,omitempty"`
-	DisablePortWhenDdosProtocolViolation   *bool                  `json:"disable_port_when_ddos_protocol_violation,omitempty"`
-	DisablePortWhenRogueDhcpServerDetected *bool                  `json:"disable_port_when_rogue_dhcp_server_detected,omitempty"`
-	GatewayNonCompliant                    *bool                  `json:"gateway_non_compliant,omitempty"`
-	SwitchMisconfiguredPort                *bool                  `json:"switch_misconfigured_port,omitempty"`
-	SwitchPortStuck                        *bool                  `json:"switch_port_stuck,omitempty"`
-	AdditionalProperties                   map[string]interface{} `json:"_"`
+	// Whether Marvis may remediate AP insufficient-capacity issues automatically
+	ApInsufficientCapacity *bool `json:"ap_insufficient_capacity,omitempty"`
+	// Whether Marvis may remediate AP loop issues automatically
+	ApLoop *bool `json:"ap_loop,omitempty"`
+	// Whether Marvis may remediate AP non-compliance automatically
+	ApNonCompliant *bool `json:"ap_non_compliant,omitempty"`
+	// Whether Marvis may bounce switch ports for abnormal PoE clients
+	BouncePortForAbnormalPoeClient *bool `json:"bounce_port_for_abnormal_poe_client,omitempty"`
+	// Whether Marvis may disable a port when DDOS protocol violations are detected
+	DisablePortWhenDdosProtocolViolation *bool `json:"disable_port_when_ddos_protocol_violation,omitempty"`
+	// Whether Marvis may disable a port when a rogue DHCP server is detected
+	DisablePortWhenRogueDhcpServerDetected *bool `json:"disable_port_when_rogue_dhcp_server_detected,omitempty"`
+	// Whether Marvis may remediate non-compliant gateways automatically
+	GatewayNonCompliant *bool `json:"gateway_non_compliant,omitempty"`
+	// Whether Marvis may remediate misconfigured switch ports automatically
+	SwitchMisconfiguredPort *bool `json:"switch_misconfigured_port,omitempty"`
+	// Whether Marvis may remediate stuck switch ports automatically
+	SwitchPortStuck      *bool                  `json:"switch_port_stuck,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for MarvisAutoOperations,

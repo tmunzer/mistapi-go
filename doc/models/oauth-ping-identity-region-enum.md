@@ -17,3 +17,18 @@ enum: `us` (United States, default), `ca` (Canada), `eu` (Europe), `asia` (Asia)
 | `eu` |
 | `us` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    oauthPingIdentityRegion := models.OauthPingIdentityRegionEnum_AU
+
+}
+```
+

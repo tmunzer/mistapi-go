@@ -1,7 +1,7 @@
 
 # Org Tunnel Type Count Enum
 
-enum: `wan`, `wxtunnel`
+Tunnel type used when counting organization tunnels. enum: `wan`, `wxtunnel`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `wan`, `wxtunnel`
 |  --- |
 | `wan` |
 | `wxtunnel` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgTunnelTypeCount := models.OrgTunnelTypeCountEnum_WAN
+
+}
+```
 

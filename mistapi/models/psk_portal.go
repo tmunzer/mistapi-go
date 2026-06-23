@@ -11,47 +11,57 @@ import (
 )
 
 // PskPortal represents a PskPortal struct.
+// Self-service portal configuration for issuing personal PSKs
 type PskPortal struct {
-	// enum: `sponsor`, `sso`
-	Auth       *PskPortalAuthEnum `json:"auth,omitempty"`
-	BgImageUrl *string            `json:"bg_image_url,omitempty"`
-	// Used to cleanup exited psk when portal delete or ssid changed
+	// Portal access method for guest authentication, either `sponsor` or `sso`. enum: `sponsor`, `sso`
+	Auth *PskPortalAuthEnum `json:"auth,omitempty"`
+	// URL of the background image used by the PSK portal
+	BgImageUrl *string `json:"bg_image_url,omitempty"`
+	// Whether to clean up existing PSKs when the portal is deleted or its SSID changes
 	CleanupPsk *bool `json:"cleanup_psk,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	// unit min
+	// PSK lifetime, in minutes, for keys created through this portal
 	ExpireTime *int `json:"expire_time,omitempty"`
-	// Number of days before psk is expired. Used as to when to start sending reminder notification when the psk is about to expire
+	// Number of days before PSK expiration to start sending reminder notifications
 	ExpiryNotificationTime *int `json:"expiry_notification_time,omitempty"`
-	// Only if `type`==`admin`
+	// Only if `type`==`admin`, hide PSKs created by other PSK admins
 	HidePsksCreatedByOtherAdmins *bool `json:"hide_psks_created_by_other_admins,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
-	// `max_usage`==`0` means unlimited
+	// Maximum concurrent clients for each PSK created through this portal; `0` means unlimited
 	MaxUsage *int `json:"max_usage,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	Name         string   `json:"name"`
-	// Optional, will include the link in the notification email the customer can either provide their own url or use the one generate from mist, or do a url shorterner against either
+	// Display name of the PSK portal
+	Name string `json:"name"`
+	// Optional renewal URL included in notification emails. Use a custom URL, a Mist-generated URL, or a shortened URL pointing to either
 	NotificationRenewUrl *string `json:"notification_renew_url,omitempty"`
-	// If set to true, reminder notification will be sent when psk is about to expire
-	NotifyExpiry         *bool                     `json:"notify_expiry,omitempty"`
-	NotifyOnCreateOrEdit *bool                     `json:"notify_on_create_or_edit,omitempty"`
-	OrgId                *uuid.UUID                `json:"org_id,omitempty"`
-	PassphraseRules      *PskPortalPassphraseRules `json:"passphrase_rules,omitempty"`
-	// what information to ask for (email is required by default)
+	// Whether to send reminder notifications before PSKs created through this portal expire
+	NotifyExpiry *bool `json:"notify_expiry,omitempty"`
+	// Whether to send notifications when a PSK is created or edited through this portal
+	NotifyOnCreateOrEdit *bool `json:"notify_on_create_or_edit,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Passphrase generation rules for PSKs created through a portal
+	PassphraseRules *PskPortalPassphraseRules `json:"passphrase_rules,omitempty"`
+	// User information fields requested by the portal; email is required by default
 	RequiredFields []string `json:"required_fields,omitempty"`
-	Role           *string  `json:"role,omitempty"`
-	// intended SSID
+	// Client role assigned to PSKs created through this portal
+	Role *string `json:"role,omitempty"`
+	// WLAN SSID for PSKs created through this portal
 	Ssid string `json:"ssid"`
-	// If `auth`==`sso`
+	// Single sign-on settings used when `auth`==`sso`
 	Sso *PskPortalSso `json:"sso,omitempty"`
-	// UI customization
-	TemplateUrl  *string `json:"template_url,omitempty"`
+	// URL of the UI customization template for this portal
+	TemplateUrl *string `json:"template_url,omitempty"`
+	// URL of the thumbnail image used by the PSK portal
 	ThumbnailUrl *string `json:"thumbnail_url,omitempty"`
 	// for personal psk portal. enum: `admin`, `byod`
-	Type                 *PskPortalTypeEnum     `json:"type,omitempty"`
-	UiUrl                *string                `json:"ui_url,omitempty"`
+	Type *PskPortalTypeEnum `json:"type,omitempty"`
+	// Public URL where users access the PSK portal
+	UiUrl *string `json:"ui_url,omitempty"`
+	// VLAN ID, either numeric or expressed as a template variable string
 	VlanId               *VlanIdWithVariable    `json:"vlan_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

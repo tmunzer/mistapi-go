@@ -8,9 +8,13 @@ import (
 )
 
 // ModuleStatItemVcLinksItem represents a ModuleStatItemVcLinksItem struct.
+// Virtual chassis link endpoint for a device module
 type ModuleStatItemVcLinksItem struct {
-	NeighborModuleIdx    *int                   `json:"neighbor_module_idx,omitempty"`
-	NeighborPortId       *string                `json:"neighbor_port_id,omitempty"`
+	// Index of the neighboring module connected through this virtual chassis link
+	NeighborModuleIdx *int `json:"neighbor_module_idx,omitempty"`
+	// Port identifier on the neighboring module for this virtual chassis link
+	NeighborPortId *string `json:"neighbor_port_id,omitempty"`
+	// Local port identifier for this virtual chassis link
 	PortId               *string                `json:"port_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

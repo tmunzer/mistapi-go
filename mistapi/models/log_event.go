@@ -11,8 +11,9 @@ import (
 )
 
 // LogEvent represents a LogEvent struct.
+// Audit log event recorded for an organization or site
 type LogEvent struct {
-	// admin id
+	// Admin user identifier associated with the log event
 	AdminId Optional[uuid.UUID] `json:"admin_id"`
 	// Name of the admin that performs the action
 	AdminName Optional[string] `json:"admin_name"`
@@ -20,18 +21,21 @@ type LogEvent struct {
 	After *interface{} `json:"after,omitempty"`
 	// field values prior to the change
 	Before *interface{} `json:"before,omitempty"`
-	// Device id
+	// Device identifier associated with the log event
 	DeviceId Optional[uuid.UUID] `json:"device_id"`
-	ForSite  *bool               `json:"for_site,omitempty"`
+	// Whether this log event is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
-	// log message
-	Message string              `json:"message"`
-	OrgId   uuid.UUID           `json:"org_id"`
-	SiteId  Optional[uuid.UUID] `json:"site_id"`
-	// sender source ip address
+	// Human-readable log message describing the event
+	Message string `json:"message"`
+	// Unique identifier of a Mist organization
+	OrgId uuid.UUID `json:"org_id"`
+	// Site associated with the log event, if any
+	SiteId Optional[uuid.UUID] `json:"site_id"`
+	// sender source IP address
 	SrcIp *string `json:"src_ip,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp            float64                `json:"timestamp"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

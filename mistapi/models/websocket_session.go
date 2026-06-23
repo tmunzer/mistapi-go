@@ -10,7 +10,9 @@ import (
 )
 
 // WebsocketSession represents a WebsocketSession struct.
+// Response containing the WebSocket session handle for asynchronous command output
 type WebsocketSession struct {
+	// Identifier used to correlate output on the WebSocket stream
 	Session              string                 `json:"session"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

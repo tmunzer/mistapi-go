@@ -8,6 +8,7 @@ import (
 )
 
 // WlanAppQosAppsProperties represents a WlanAppQosAppsProperties struct.
+// QoS rewrite settings for traffic matching a named application
 type WlanAppQosAppsProperties struct {
 	// DSCP value range between 0 and 63
 	Dscp *Dscp `json:"dscp,omitempty"`

@@ -8,11 +8,14 @@ import (
 )
 
 // SnmpConfigTrapGroup represents a SnmpConfigTrapGroup struct.
+// SNMP trap group definition
 type SnmpConfigTrapGroup struct {
+	// Trap categories included in an SNMP trap group
 	Categories []string `json:"categories,omitempty"`
-	// Categories list can refer to https://www.juniper.net/documentation/software/topics/task/configuration/snmp_trap-groups-configuring-junos-nm.html
-	GroupName *string  `json:"group_name,omitempty"`
-	Targets   []string `json:"targets,omitempty"`
+	// Trap group name for this SNMP trap group
+	GroupName *string `json:"group_name,omitempty"`
+	// Trap target addresses for an SNMP trap group
+	Targets []string `json:"targets,omitempty"`
 	// enum: `all`, `v1`, `v2`
 	Version              *SnmpConfigTrapVersionEnum `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{}     `json:"_"`

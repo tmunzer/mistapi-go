@@ -17,7 +17,16 @@ enum: `11r`, `OKC`, `NONE`
 
 ## Example
 
-```
-NONE
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanRoamMode := models.WlanRoamModeEnum_ENUM11R
+
+}
 ```
 

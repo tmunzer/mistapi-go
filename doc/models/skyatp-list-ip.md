@@ -1,6 +1,8 @@
 
 # Skyatp List Ip
 
+IP address entry in a Sky ATP SecIntel list
+
 ## Structure
 
 `SkyatpListIp`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Comment` | `*string` | Optional | - |
-| `Value` | `string` | Required | - |
+| `Comment` | `*string` | Optional | Optional note describing the IP address list entry |
+| `Value` | `string` | Required | IP address included in the Sky ATP SecIntel list |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "comment": "nas",
-  "value": "10.1.3.5"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    skyatpListIp := models.SkyatpListIp{
+        Comment:              models.ToPointer("nas"),
+        Value:                "10.1.3.5",
+    }
+
 }
 ```
 

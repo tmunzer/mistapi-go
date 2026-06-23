@@ -14,3 +14,18 @@ Required if `provider`==`zscaler-gre`, `provider`==`jse-ipsec`. enum: `active-ac
 | `active-active` |
 | `active-standby` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    tunnelConfigTunnelMode := models.TunnelConfigTunnelModeEnum_ACTIVEACTIVE
+
+}
+```
+

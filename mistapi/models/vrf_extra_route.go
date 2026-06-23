@@ -8,8 +8,9 @@ import (
 )
 
 // VrfExtraRoute represents a VrfExtraRoute struct.
+// Additional IPv4 static route for a VRF instance
 type VrfExtraRoute struct {
-	// Next-hop address
+	// IPv4 next-hop address for this VRF extra route
 	Via                  *string                `json:"via,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

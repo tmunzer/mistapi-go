@@ -10,6 +10,7 @@ import (
 // TunnelProviderOptionsZscaler represents a TunnelProviderOptionsZscaler struct.
 // For zscaler-ipsec and zscaler-gre
 type TunnelProviderOptionsZscaler struct {
+	// Whether Zscaler blocks internet access until the Acceptable Use Policy is accepted
 	AupBlockInternetUntilAccepted *bool `json:"aup_block_internet_until_accepted,omitempty"`
 	// Can only be `true` when `auth_required`==`false`, display Acceptable Use Policy (AUP)
 	AupEnabled *bool `json:"aup_enabled,omitempty"`

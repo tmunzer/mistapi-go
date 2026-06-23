@@ -19,3 +19,18 @@ EDR Status of the NAC client. enum: `sentinelone_healthy`, `sentinelone_infected
 | `crowdstrike_critical` |
 | `crowdstrike_informational` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    edrStatus := models.EdrStatusEnum_CROWDSTRIKECRITICAL
+
+}
+```
+

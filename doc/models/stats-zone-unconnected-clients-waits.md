@@ -16,14 +16,23 @@ Unconnected Wi-Fi client wait time right now
 | `Min` | `*float64` | Optional | Shortest wait time in seconds |
 | `P95` | `*float64` | Optional | 95th percentile of all the wait time(s) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "avg": 0.0,
-  "max": 0.0,
-  "min": 0.0,
-  "p95": 0.0
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsZoneUnconnectedClientsWaits := models.StatsZoneUnconnectedClientsWaits{
+        Avg:                  models.ToPointer(float64(0)),
+        Max:                  models.ToPointer(float64(0)),
+        Min:                  models.ToPointer(float64(0)),
+        P95:                  models.ToPointer(float64(0)),
+    }
+
 }
 ```
 

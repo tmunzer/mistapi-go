@@ -8,10 +8,11 @@ import (
 )
 
 // UtilsDevicesRestart represents a UtilsDevicesRestart struct.
+// Request to restart a device or device node
 type UtilsDevicesRestart struct {
-	// Optional for VC member
+	// Virtual Chassis member number to restart
 	Member *int `json:"member,omitempty"`
-	// only for SRX/SSR: if node is not present, both nodes are restarted. For other devices: node should not be present
+	// only for SRX/SSR: if node is not present, both nodes are restarted. For other devices: node should not be present. enum: `node0`, `node1`
 	Node                 *UtilsDevicesRestartNodeEnum `json:"node,omitempty"`
 	AdditionalProperties map[string]interface{}       `json:"_"`
 }

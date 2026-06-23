@@ -1,6 +1,8 @@
 
 # Response Discovered Switches
 
+Paginated response for discovered switch search results
+
 ## Structure
 
 `ResponseDiscoveredSwitches`
@@ -9,69 +11,79 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `End` | `float64` | Required | - |
-| `Limit` | `int` | Required | - |
-| `Next` | `*string` | Optional | - |
-| `Results` | [`[]models.DiscoveredSwitch`](../../doc/models/discovered-switch.md) | Required | **Constraints**: *Unique Items Required* |
-| `Start` | `float64` | Required | - |
-| `Total` | `int` | Required | - |
+| `End` | `float64` | Required | Epoch timestamp, in seconds, for the end of the discovered switch search window |
+| `Limit` | `int` | Required | Maximum number of discovered switch records returned in this page |
+| `Next` | `*string` | Optional | Pagination cursor or URL for retrieving the next page of discovered switch records |
+| `Results` | [`[]models.DiscoveredSwitch`](../../doc/models/discovered-switch.md) | Required | Discovered switch records returned by a search response<br><br>**Constraints**: *Unique Items Required* |
+| `Start` | `float64` | Required | Epoch timestamp, in seconds, for the start of the discovered switch search window |
+| `Total` | `int` | Required | Number of discovered switch records matching the search filters across all pages |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "end": 93.54,
-  "limit": 224,
-  "results": [
-    {
-      "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-      "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-      "adopted": false,
-      "ap_redundancy": {
-        "modules": {
-          "key0": {
-            "num_aps": 2,
-            "num_aps_with_switch_redundancy": 254
-          }
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    responseDiscoveredSwitches := models.ResponseDiscoveredSwitches{
+        End:                  float64(164.74),
+        Limit:                80,
+        Next:                 models.ToPointer("next4"),
+        Results:              []models.DiscoveredSwitch{
+            models.DiscoveredSwitch{
+                Adopted:              models.ToPointer(false),
+                ApRedundancy:         models.ToPointer(models.ApRedundancy{
+                    Modules:                    map[string]models.ApRedundancyModule{
+                        "key0": models.ApRedundancyModule{
+                            NumAps:                     models.ToPointer(2),
+                            NumApsWithSwitchRedundancy: models.ToPointer(254),
+                        },
+                    },
+                    NumAps:                     models.ToPointer(246),
+                    NumApsWithSwitchRedundancy: models.ToPointer(10),
+                }),
+                Aps:                  []models.DiscoveredSwitchAp{
+                    models.DiscoveredSwitchAp{
+                        Hostname:             models.ToPointer("hostname0"),
+                        InactiveWiredVlans:   []int{
+                            168,
+                            169,
+                            170,
+                        },
+                        Mac:                  models.ToPointer("mac8"),
+                        PoeStatus:            models.ToPointer(false),
+                        Port:                 models.ToPointer("port4"),
+                    },
+                    models.DiscoveredSwitchAp{
+                        Hostname:             models.ToPointer("hostname0"),
+                        InactiveWiredVlans:   []int{
+                            168,
+                            169,
+                            170,
+                        },
+                        Mac:                  models.ToPointer("mac8"),
+                        PoeStatus:            models.ToPointer(false),
+                        Port:                 models.ToPointer("port4"),
+                    },
+                },
+                ChassisId:            []string{
+                    "chassis_id0",
+                    "chassis_id1",
+                    "chassis_id2",
+                },
+                ForSite:              models.ToPointer(false),
+                OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
+                SiteId:               models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
+            },
         },
-        "num_aps": 246,
-        "num_aps_with_switch_redundancy": 10
-      },
-      "aps": [
-        {
-          "hostname": "hostname0",
-          "inactive_wired_vlans": [
-            168,
-            169,
-            170
-          ],
-          "mac": "mac8",
-          "poe_status": false,
-          "port": "port4"
-        },
-        {
-          "hostname": "hostname0",
-          "inactive_wired_vlans": [
-            168,
-            169,
-            170
-          ],
-          "mac": "mac8",
-          "poe_status": false,
-          "port": "port4"
-        }
-      ],
-      "chassis_id": [
-        "chassis_id0",
-        "chassis_id1",
-        "chassis_id2"
-      ],
-      "for_site": false
+        Start:                float64(120.8),
+        Total:                82,
     }
-  ],
-  "start": 49.6,
-  "total": 130,
-  "next": "next4"
+
 }
 ```
 

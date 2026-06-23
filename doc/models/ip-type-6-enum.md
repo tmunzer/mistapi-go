@@ -18,7 +18,16 @@ enum: `autoconf`, `dhcp`, `disabled`, `static`
 
 ## Example
 
-```
-static
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ipType6 := models.IpType6Enum_AUTOCONF
+
+}
 ```
 

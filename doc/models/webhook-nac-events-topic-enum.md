@@ -1,7 +1,7 @@
 
 # Webhook Nac Events Topic Enum
 
-enum: `nac-events`
+Webhook topic name for NAC event deliveries. enum: `nac-events`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `nac-events`
 | Name |
 |  --- |
 | `nac-events` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookNacEventsTopic := models.WebhookNacEventsTopicEnum_NACEVENTS
+
+}
+```
 

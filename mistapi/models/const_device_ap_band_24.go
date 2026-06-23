@@ -8,10 +8,15 @@ import (
 )
 
 // ConstDeviceApBand24 represents a ConstDeviceApBand24 struct.
+// 2.4 GHz radio capability limits for an AP model
 type ConstDeviceApBand24 struct {
-	Band5ChannelsOp      *string                `json:"band5_channels_op,omitempty"`
-	MaxClients           *int                   `json:"max_clients,omitempty"`
-	MaxPower             *int                   `json:"max_power,omitempty"`
+	// 5 GHz channel set used when this radio operates on 5 GHz
+	Band5ChannelsOp *string `json:"band5_channels_op,omitempty"`
+	// Maximum client count supported on the 2.4 GHz radio
+	MaxClients *int `json:"max_clients,omitempty"`
+	// Maximum transmit power for the 2.4 GHz radio, in dBm
+	MaxPower *int `json:"max_power,omitempty"`
+	// Minimum transmit power for the 2.4 GHz radio, in dBm
 	MinPower             *int                   `json:"min_power,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,9 +8,13 @@ import (
 )
 
 // ConstDeviceApVble represents a ConstDeviceApVble struct.
+// Virtual BLE (vBLE) capability settings for an AP model
 type ConstDeviceApVble struct {
-	BeaconRate           *int                   `json:"beacon_rate,omitempty"`
-	Beams                *int                   `json:"beams,omitempty"`
+	// Advertisement rate for the virtual BLE beacon
+	BeaconRate *int `json:"beacon_rate,omitempty"`
+	// Number of virtual BLE beams supported by the AP model
+	Beams *int `json:"beams,omitempty"`
+	// Transmit power for virtual BLE beacons, in dBm
 	Power                *int                   `json:"power,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

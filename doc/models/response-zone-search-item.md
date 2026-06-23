@@ -1,6 +1,8 @@
 
 # Response Zone Search Item
 
+Zone visit record for a client, asset, or SDK client
+
 ## Structure
 
 `ResponseZoneSearchItem`
@@ -9,19 +11,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enter` | `*int` | Optional | - |
-| `Scope` | `*string` | Optional | - |
-| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
-| `User` | `*string` | Optional | - |
+| `Enter` | `*int` | Optional | Epoch timestamp, in seconds, when the zone visit started |
+| `Scope` | `*string` | Optional | Zone scope represented by this visit record |
+| `Timestamp` | `*float64` | Optional, Read-only | Epoch timestamp, in seconds |
+| `User` | `*string` | Optional | Client, asset, or SDK client identifier for the visit |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enter": 1541705254,
-  "scope": "map",
-  "user": "c4b301c81166",
-  "timestamp": 133.0
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseZoneSearchItem := models.ResponseZoneSearchItem{
+        Enter:                models.ToPointer(1541705254),
+        Scope:                models.ToPointer("map"),
+        Timestamp:            models.ToPointer(float64(253.96)),
+        User:                 models.ToPointer("c4b301c81166"),
+    }
+
 }
 ```
 

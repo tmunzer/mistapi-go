@@ -1,7 +1,7 @@
 
 # Vpn Path Bfd Profile Enum
 
-enum: `broadband`, `lte`
+BFD profile used for this VPN path. enum: `broadband`, `lte`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `broadband`, `lte`
 |  --- |
 | `broadband` |
 | `lte` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    vpnPathBfdProfile := models.VpnPathBfdProfileEnum_BROADBAND
+
+}
+```
 

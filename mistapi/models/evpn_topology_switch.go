@@ -11,15 +11,24 @@ import (
 )
 
 // EvpnTopologySwitch represents a EvpnTopologySwitch struct.
+// Switch member of an EVPN topology, including role and link relationships
 type EvpnTopologySwitch struct {
-	Config          *EvpnTopologySwitchConfig `json:"config,omitempty"`
-	DeviceprofileId *uuid.UUID                `json:"deviceprofile_id,omitempty"`
-	DownlinkIps     []string                  `json:"downlink_ips,omitempty"`
-	Downlinks       []string                  `json:"downlinks,omitempty"`
-	Esilaglinks     []string                  `json:"esilaglinks,omitempty"`
-	EvpnId          *int                      `json:"evpn_id,omitempty"`
-	Mac             string                    `json:"mac"`
-	Model           *string                   `json:"model,omitempty"`
+	// Per-switch configuration used by an EVPN topology member
+	Config *EvpnTopologySwitchConfig `json:"config,omitempty"`
+	// Associated device profile identifier for the switch. Use the [Assign Org Device Profile]($e/Orgs%20Device%20Profiles/assignOrgDeviceProfile) endpoint to assign a Device Profile to the switch.
+	DeviceprofileId *uuid.UUID `json:"deviceprofile_id,omitempty"`
+	// Downlink IP addresses used by an EVPN topology switch
+	DownlinkIps []string `json:"downlink_ips,omitempty"`
+	// Downlink switch MAC addresses for an EVPN topology switch
+	Downlinks []string `json:"downlinks,omitempty"`
+	// ESI-LAG switch MAC addresses for an EVPN topology switch
+	Esilaglinks []string `json:"esilaglinks,omitempty"`
+	// Topology identifier number for this EVPN switch member
+	EvpnId *int `json:"evpn_id,omitempty"`
+	// Switch MAC address used to identify the topology member
+	Mac string `json:"mac"`
+	// Switch model for this topology member
+	Model *string `json:"model,omitempty"`
 	// Optionally, for distribution / access / esilag-access, they can be placed into different pods. e.g.
 	// * for CLOS, to group dist / access switches into pods
 	// * for ERB/CRB, to group dist / esilag-access into pods
@@ -28,14 +37,20 @@ type EvpnTopologySwitch struct {
 	// if you want to limit the pods, you can specify pods.
 	Pods []int `json:"pods,omitempty"`
 	// use `role`==`none` to remove a switch from the topology. enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
-	Role                 EvpnTopologySwitchRoleEnum `json:"role"`
-	RouterId             *string                    `json:"router_id,omitempty"`
-	SiteId               *uuid.UUID                 `json:"site_id,omitempty"`
-	SuggestedDownlinks   []string                   `json:"suggested_downlinks,omitempty"`
-	SuggestedEsilaglinks []string                   `json:"suggested_esilaglinks,omitempty"`
-	SuggestedUplinks     []string                   `json:"suggested_uplinks,omitempty"`
-	Uplinks              []string                   `json:"uplinks,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"_"`
+	Role EvpnTopologySwitchRoleEnum `json:"role"`
+	// Routing identifier used by this switch for EVPN routing
+	RouterId *string `json:"router_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Builder-suggested downlink switch MAC addresses for an EVPN topology switch
+	SuggestedDownlinks []string `json:"suggested_downlinks,omitempty"`
+	// Builder-suggested ESI-LAG switch MAC addresses for an EVPN topology switch
+	SuggestedEsilaglinks []string `json:"suggested_esilaglinks,omitempty"`
+	// Builder-suggested uplink switch MAC addresses for an EVPN topology switch
+	SuggestedUplinks []string `json:"suggested_uplinks,omitempty"`
+	// Uplink switch MAC addresses for an EVPN topology switch
+	Uplinks              []string               `json:"uplinks,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for EvpnTopologySwitch,

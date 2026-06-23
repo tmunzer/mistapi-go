@@ -17,3 +17,18 @@ enum: `automatic`, `cn`, `dns`, `email`, `upn`
 | `email` |
 | `upn` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    nacTagUsernameAttr := models.NacTagUsernameAttrEnum_DNS
+
+}
+```
+

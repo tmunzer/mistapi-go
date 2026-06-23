@@ -14,18 +14,28 @@ Where this template should not be applied to (takes precedence)
 | `SiteIds` | `[]uuid.UUID` | Optional | List of site ids |
 | `SitegroupIds` | `[]uuid.UUID` | Optional | List of sitegroup ids |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "site_ids": [
-    "00000d74-0000-0000-0000-000000000000",
-    "00000d73-0000-0000-0000-000000000000",
-    "00000d72-0000-0000-0000-000000000000"
-  ],
-  "sitegroup_ids": [
-    "0000039e-0000-0000-0000-000000000000"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    templateExceptions := models.TemplateExceptions{
+        SiteIds:              []uuid.UUID{
+            uuid.MustParse("0000238e-0000-0000-0000-000000000000"),
+            uuid.MustParse("0000238f-0000-0000-0000-000000000000"),
+            uuid.MustParse("00002390-0000-0000-0000-000000000000"),
+        },
+        SitegroupIds:         []uuid.UUID{
+            uuid.MustParse("000020bc-0000-0000-0000-000000000000"),
+        },
+    }
+
 }
 ```
 

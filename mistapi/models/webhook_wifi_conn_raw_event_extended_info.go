@@ -8,9 +8,13 @@ import (
 )
 
 // WebhookWifiConnRawEventExtendedInfo represents a WebhookWifiConnRawEventExtendedInfo struct.
+// Extended telemetry details decoded from a connected Wi-Fi packet
 type WebhookWifiConnRawEventExtendedInfo struct {
-	FrameCtrl            *int                   `json:"frame_ctrl,omitempty"`
-	Payload              *string                `json:"payload,omitempty"`
+	// IEEE 802.11 frame control value from the telemetry packet
+	FrameCtrl *int `json:"frame_ctrl,omitempty"`
+	// Raw telemetry payload carried by the connected Wi-Fi packet
+	Payload *string `json:"payload,omitempty"`
+	// IEEE 802.11 sequence control value from the telemetry packet
 	SequenceCtrl         *int                   `json:"sequence_ctrl,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

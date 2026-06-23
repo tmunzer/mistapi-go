@@ -8,13 +8,21 @@ import (
 )
 
 // SleThreshold represents a SleThreshold struct.
+// Threshold metadata and configured value for an SLE metric
 type SleThreshold struct {
-	Default              *float64               `json:"default,omitempty"`
-	Direction            *string                `json:"direction,omitempty"`
-	Maximum              *float64               `json:"maximum,omitempty"`
-	Metric               *string                `json:"metric,omitempty"`
-	Minimum              *float64               `json:"minimum,omitempty"`
-	Threshold            *string                `json:"threshold,omitempty"`
+	// Built-in threshold value for this SLE metric
+	Default *float64 `json:"default,omitempty"`
+	// Comparison direction used for SLE threshold evaluation
+	Direction *string `json:"direction,omitempty"`
+	// Highest allowed threshold value for this SLE metric
+	Maximum *float64 `json:"maximum,omitempty"`
+	// SLE metric name associated with this threshold
+	Metric *string `json:"metric,omitempty"`
+	// Lowest allowed threshold value for this SLE metric
+	Minimum *float64 `json:"minimum,omitempty"`
+	// Configured threshold value for this SLE metric
+	Threshold *string `json:"threshold,omitempty"`
+	// Measurement units for this SLE threshold
 	Units                *string                `json:"units,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

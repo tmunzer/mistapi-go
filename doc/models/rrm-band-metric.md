@@ -1,6 +1,8 @@
 
 # Rrm Band Metric
 
+Aggregate RRM metrics for a radio band
+
 ## Structure
 
 `RrmBandMetric`
@@ -19,32 +21,42 @@
 | `Neighbors` | `float64` | Required | Average number of neighbors |
 | `Noise` | `float64` | Required | Average noise in dBm |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "cochannel_neighbors": 110.94,
-  "density": 1.0,
-  "interferences": {
-    "149": {
-      "radar": 0.3
-    },
-    "153": {
-      "radar": 0.2
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    rrmBandMetric := models.RrmBandMetric{
+        AvgApsPerChannel:              models.ToPointer(float64(59.66)),
+        ChannelDistributionUniformity: models.ToPointer(float64(43.3)),
+        CochannelNeighbors:            float64(40.06),
+        Density:                       float64(1),
+        Interferences:                 map[string]models.RrmBandMetricInterference{
+            "149": models.RrmBandMetricInterference{
+                Radar:                models.ToPointer(float64(0.3)),
+            },
+            "153": models.RrmBandMetricInterference{
+                Radar:                models.ToPointer(float64(0.2)),
+            },
+        },
+        NapsByChannel:                 map[string]float64{
+            "key0": float64(123.11),
+            "key1": float64(123.12),
+        },
+        NapsByPower:                   map[string]float64{
+            "key0": float64(5.9),
+            "key1": float64(5.91),
+            "key2": float64(5.92),
+        },
+        Neighbors:                     float64(146.68),
+        Noise:                         float64(131.38),
     }
-  },
-  "neighbors": 217.56,
-  "noise": 202.26,
-  "avg_aps_per_channel": 125.46,
-  "channel_distribution_uniformity": 141.82,
-  "naps_by_channel": {
-    "key0": 62.01,
-    "key1": 62.0,
-    "key2": 61.99
-  },
-  "naps_by_power": {
-    "key0": 179.22
-  }
+
 }
 ```
 

@@ -1,6 +1,8 @@
 
 # Response Http 404 Exception
 
+Standard HTTP 404 not found error response
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,18 +13,19 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Id` | `*string` | Optional | - |
+| `Id` | `*string` | Optional | Missing resource identifier, when the API includes one |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+if err != nil {
+    switch typedErr := err.(type) {
+    case *errors.ResponseHttp404Exception:
+        log.Fatalln(typedErr)
+    default:
+        log.Fatalln(err)
+    }
 }
 ```
 

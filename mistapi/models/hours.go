@@ -8,7 +8,7 @@ import (
 )
 
 // Hours represents a Hours struct.
-// Days/Hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun)
+// Day-of-week operating hour filters using hour ranges such as 09:00-17:00
 type Hours struct {
 	// Hour range of the day (e.g. `09:00-17:00`). If the hour is not defined then it's treated as 00:00-23:59.
 	Fri *string `json:"fri,omitempty"`

@@ -10,11 +10,11 @@ import (
 // ResponsePastSpectrumAnalysisFftSample represents a ResponsePastSpectrumAnalysisFftSample struct.
 // FFT sample data for a specific frequency
 type ResponsePastSpectrumAnalysisFftSample struct {
-	// Frequency in MHz
+	// Sample frequency, in MHz, for this FFT point
 	Frequency *float64 `json:"frequency,omitempty"`
-	// RSSI in dBm
+	// Received signal strength, in dBm, for this FFT sample
 	Rssi *float64 `json:"rssi,omitempty"`
-	// RSSI in dBm
+	// Additional signal level, in dBm, reported for this FFT sample
 	Signal7              *float64               `json:"signal7,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -10,15 +10,15 @@ import (
 // UserMacsCount represents a UserMacsCount struct.
 // User MACs count response
 type UserMacsCount struct {
-	// End timestamp
+	// Query end timestamp for user MAC counts
 	End *int `json:"end,omitempty"`
-	// Number of results to return
+	// Maximum number of distinct count results to return
 	Limit *int `json:"limit,omitempty"`
-	// List of user MAC entries
+	// User MAC entries returned by the count query
 	Results []UserMac `json:"results,omitempty"`
-	// Start timestamp
+	// Query start timestamp for user MAC counts
 	Start *int `json:"start,omitempty"`
-	// Total number of results
+	// Overall number of user MAC count results
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

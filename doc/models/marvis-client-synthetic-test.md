@@ -1,6 +1,8 @@
 
 # Marvis Client Synthetic Test
 
+Synthetic test settings for Marvis Client
+
 ## Structure
 
 `MarvisClientSyntheticTest`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | - |
+| `Enabled` | `*bool` | Optional | Whether synthetic testing is enabled for Marvis Client |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    marvisClientSyntheticTest := models.MarvisClientSyntheticTest{
+        Enabled:              models.ToPointer(false),
+    }
+
 }
 ```
 

@@ -11,17 +11,26 @@ Object Key is the interface name (e.g. "ge-0/0/1", ...)
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Display` | `*string` | Optional | - |
-| `PciAddress` | `*string` | Optional | - |
-| `Speed` | `*int` | Optional | - |
+| `Display` | `*string` | Optional | User-facing interface name for the gateway port |
+| `PciAddress` | `*string` | Optional | PCI address for the gateway port |
+| `Speed` | `*int` | Optional | Port speed for the gateway interface, in Mbps |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "display": "display8",
-  "pci_address": "pci_address8",
-  "speed": 146
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constDeviceGatewayPorts := models.ConstDeviceGatewayPorts{
+        Display:              models.ToPointer("display2"),
+        PciAddress:           models.ToPointer("pci_address4"),
+        Speed:                models.ToPointer(252),
+    }
+
 }
 ```
 

@@ -1,7 +1,7 @@
 
 # Psk Portal Auth Enum
 
-enum: `sponsor`, `sso`
+Portal access method for guest authentication, either `sponsor` or `sso`. enum: `sponsor`, `sso`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `sponsor`, `sso`
 |  --- |
 | `sponsor` |
 | `sso` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    pskPortalAuth := models.PskPortalAuthEnum_SPONSOR
+
+}
+```
 

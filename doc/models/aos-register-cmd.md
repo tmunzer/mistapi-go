@@ -13,11 +13,20 @@ AOS Brownfield Registration Commands
 |  --- | --- | --- | --- |
 | `CliCommands` | `*string` | Optional | AOS-specific CLI commands that can be copied and pasted directly into an AOS device to register it with Mist. Includes registration code and configuration commands. |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "cli_commands": "cli_commands2"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    aosRegisterCmd := models.AosRegisterCmd{
+        CliCommands:          models.ToPointer("cli_commands2"),
+    }
+
 }
 ```
 

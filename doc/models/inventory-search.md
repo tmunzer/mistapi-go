@@ -1,6 +1,8 @@
 
 # Inventory Search
 
+Paginated inventory search response
+
 ## Structure
 
 `InventorySearch`
@@ -9,42 +11,87 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `End` | `*int` | Optional | - |
-| `Limit` | `*int` | Optional | - |
-| `Next` | `*string` | Optional | - |
-| `Results` | [`[]models.InventorySearchResult`](../../doc/models/inventory-search-result.md) | Optional | - |
-| `Start` | `*int` | Optional | - |
-| `Total` | `*int` | Optional | - |
+| `End` | `*int` | Optional | Page ending index for this inventory search response |
+| `Limit` | `*int` | Optional | Maximum number of inventory search results requested |
+| `Next` | `*string` | Optional | URL for the next page of inventory search results |
+| `Results` | [`[]models.InventorySearchResult`](../../doc/models/inventory-search-result.md) | Optional | Inventory records returned by an inventory search |
+| `Start` | `*int` | Optional | Page starting index for this inventory search response |
+| `Total` | `*int` | Optional | Number of inventory records matching the search |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "limit": 1000,
-  "total": 1,
-  "end": 206,
-  "next": "next6",
-  "results": [
-    {
-      "mac": "mac0",
-      "master": false,
-      "members": [
-        {
-          "mac": "mac2",
-          "model": "model6",
-          "serial": "serial8"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    inventorySearch := models.InventorySearch{
+        End:                  models.ToPointer(36),
+        Limit:                models.ToPointer(1000),
+        Next:                 models.ToPointer("next0"),
+        Results:              []models.InventorySearchResult{
+            models.InventorySearchResult{
+                Mac:                  models.ToPointer("mac0"),
+                Master:               models.ToPointer(false),
+                Members:              []models.InventorySearchResultMember{
+                    models.InventorySearchResultMember{
+                        Mac:                  models.ToPointer("mac2"),
+                        Model:                models.ToPointer("model6"),
+                        Serial:               models.ToPointer("serial8"),
+                    },
+                    models.InventorySearchResultMember{
+                        Mac:                  models.ToPointer("mac2"),
+                        Model:                models.ToPointer("model6"),
+                        Serial:               models.ToPointer("serial8"),
+                    },
+                },
+                Model:                models.ToPointer("model4"),
+                Name:                 models.ToPointer("name6"),
+            },
+            models.InventorySearchResult{
+                Mac:                  models.ToPointer("mac0"),
+                Master:               models.ToPointer(false),
+                Members:              []models.InventorySearchResultMember{
+                    models.InventorySearchResultMember{
+                        Mac:                  models.ToPointer("mac2"),
+                        Model:                models.ToPointer("model6"),
+                        Serial:               models.ToPointer("serial8"),
+                    },
+                    models.InventorySearchResultMember{
+                        Mac:                  models.ToPointer("mac2"),
+                        Model:                models.ToPointer("model6"),
+                        Serial:               models.ToPointer("serial8"),
+                    },
+                },
+                Model:                models.ToPointer("model4"),
+                Name:                 models.ToPointer("name6"),
+            },
+            models.InventorySearchResult{
+                Mac:                  models.ToPointer("mac0"),
+                Master:               models.ToPointer(false),
+                Members:              []models.InventorySearchResultMember{
+                    models.InventorySearchResultMember{
+                        Mac:                  models.ToPointer("mac2"),
+                        Model:                models.ToPointer("model6"),
+                        Serial:               models.ToPointer("serial8"),
+                    },
+                    models.InventorySearchResultMember{
+                        Mac:                  models.ToPointer("mac2"),
+                        Model:                models.ToPointer("model6"),
+                        Serial:               models.ToPointer("serial8"),
+                    },
+                },
+                Model:                models.ToPointer("model4"),
+                Name:                 models.ToPointer("name6"),
+            },
         },
-        {
-          "mac": "mac2",
-          "model": "model6",
-          "serial": "serial8"
-        }
-      ],
-      "model": "model4",
-      "name": "name6"
+        Start:                models.ToPointer(250),
+        Total:                models.ToPointer(1),
     }
-  ],
-  "start": 164
+
 }
 ```
 

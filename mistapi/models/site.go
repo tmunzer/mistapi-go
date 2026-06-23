@@ -11,7 +11,7 @@ import (
 )
 
 // Site represents a Site struct.
-// Site
+// Site configuration and metadata within an organization
 type Site struct {
 	// full address of the site
 	Address Optional[string] `json:"address"`
@@ -26,28 +26,32 @@ type Site struct {
 	// Gateway Template ID, used by gateways
 	GatewaytemplateId Optional[uuid.UUID] `json:"gatewaytemplate_id"`
 	// Unique ID of the object instance in the Mist Organization
-	Id     *uuid.UUID `json:"id,omitempty"`
-	Latlng *LatLng    `json:"latlng,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Geographic latitude and longitude coordinate pair
+	Latlng *LatLng `json:"latlng,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	Name         string   `json:"name"`
+	// Display name of the site
+	Name string `json:"name"`
 	// Network Template ID, this takes precedence over Site Settings
 	NetworktemplateId Optional[uuid.UUID] `json:"networktemplate_id"`
 	// Optional, any notes about the site
 	Notes Optional[string] `json:"notes"`
-	OrgId *uuid.UUID       `json:"org_id,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// RF Template ID, this takes precedence over Site Settings
 	RftemplateId Optional[uuid.UUID] `json:"rftemplate_id"`
 	// Router Template ID, used by gateways
 	RoutertemplateId Optional[uuid.UUID] `json:"routertemplate_id"`
-	// SecPolicy ID
+	// Security policy identifier applied to this site
 	SecpolicyId Optional[uuid.UUID] `json:"secpolicy_id"`
-	// Sitegroups this site belongs to
+	// Site group identifiers for groups this site belongs to
 	SitegroupIds []uuid.UUID `json:"sitegroup_ids,omitempty"`
-	// Site Template ID
+	// Site template identifier applied to this site
 	SitetemplateId Optional[uuid.UUID] `json:"sitetemplate_id"`
-	// Timezone the site is at
-	Timezone             *string                `json:"timezone,omitempty"`
+	// IANA time zone name for the site
+	Timezone *string `json:"timezone,omitempty"`
+	// Time zone offset value derived from the site's timezone
 	Tzoffset             *int                   `json:"tzoffset,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

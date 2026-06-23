@@ -15,3 +15,18 @@ enum: `access`, `inet`, `trunk`
 | `inet` |
 | `trunk` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchPortLocalUsageMode := models.SwitchPortLocalUsageModeEnum_TRUNK
+
+}
+```
+

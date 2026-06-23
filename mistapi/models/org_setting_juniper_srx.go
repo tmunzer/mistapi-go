@@ -8,8 +8,9 @@ import (
 )
 
 // OrgSettingJuniperSrx represents a OrgSettingJuniperSrx struct.
+// Organization settings for Juniper SRX devices
 type OrgSettingJuniperSrx struct {
-	// auto_upgrade device first time it is onboarded
+	// SRX firmware auto-upgrade settings applied when a device is first onboarded
 	AutoUpgrade          *JuniperSrxAutoUpgrade `json:"auto_upgrade,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

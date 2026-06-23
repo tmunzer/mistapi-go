@@ -16,3 +16,18 @@ the status of autoplacement for a given map. enum: `done`, `error`, `inprogress`
 | `inprogress` |
 | `pending` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    autoPlacementInfoStatus := models.AutoPlacementInfoStatusEnum_DONE
+
+}
+```
+

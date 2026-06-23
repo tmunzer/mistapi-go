@@ -8,12 +8,15 @@ import (
 )
 
 // ApRedundancy represents a ApRedundancy struct.
+// AP switch redundancy coverage summary
 type ApRedundancy struct {
 	// Property key is the node id
-	Modules                    map[string]ApRedundancyModule `json:"modules,omitempty"`
-	NumAps                     *int                          `json:"num_aps,omitempty"`
-	NumApsWithSwitchRedundancy *int                          `json:"num_aps_with_switch_redundancy,omitempty"`
-	AdditionalProperties       map[string]interface{}        `json:"_"`
+	Modules map[string]ApRedundancyModule `json:"modules,omitempty"`
+	// Total number of APs considered for switch redundancy
+	NumAps *int `json:"num_aps,omitempty"`
+	// Number of APs that have switch redundancy coverage
+	NumApsWithSwitchRedundancy *int                   `json:"num_aps_with_switch_redundancy,omitempty"`
+	AdditionalProperties       map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ApRedundancy,

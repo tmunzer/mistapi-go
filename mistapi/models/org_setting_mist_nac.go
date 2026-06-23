@@ -8,6 +8,7 @@ import (
 )
 
 // OrgSettingMistNac represents a OrgSettingMistNac struct.
+// Organization-level Mist NAC configuration
 type OrgSettingMistNac struct {
 	// allow clients to connect even when the user cert failed. TEAP authenticates both Machine Cert and User Cert. When enabled, clients who only succeed Machine Cert authentication will be accepted.
 	AllowTeapMachineAuthOnly *bool `json:"allow_teap_machine_auth_only,omitempty"`
@@ -19,18 +20,19 @@ type OrgSettingMistNac struct {
 	DisableRsaeAlgorithms *bool `json:"disable_rsae_algorithms,omitempty"`
 	// eap ssl security level, see https://www.openssl.org/docs/man1.1.1/man3/SSL_CTX_set_security_level.html#DEFAULT-CALLBACK-BEHAVIOUR
 	EapSslSecurityLevel *int `json:"eap_ssl_security_level,omitempty"`
-	// By default, NAC POD failover considers all NAC pods available around the globe, i.e. EU, US, or APAC based, failover happens based on geo IP of the originating site. For strict GDPR compliance NAC POD failover would only happen between the PODs located within the EU environment, and no authentication would take place outside of EU. This is an org setting that is applicable to WLANs, switch templates, mxedge clusters that have mist_nac enabled
+	// By default, NAC POD failover considers all NAC pods available around the globe, i.e. EU, US, or APAC based, failover happens based on geo IP of the originating site. For strict GDPR compliance NAC POD failover would only happen between the PODs located within the EU environment, and no authentication would take place outside of EU. This is an org setting that is applicable to WLANs, switch templates, Mist Edge clusters that have mist_nac enabled
 	EuOnly *bool `json:"eu_only,omitempty"`
-	// Allows customer to enable client fingerprinting for policy enforcement
+	// Client fingerprinting settings used for Mist NAC policy enforcement
 	Fingerprinting *OrgSettingMistNacFingerprinting `json:"fingerprinting,omitempty"`
 	// allow customer to choose the EAP-TLS client certificate's field to use for IDP Machine Groups lookup. enum: `automatic`, `cn`, `dns`
 	IdpMachineCertLookupField *IdpMachineCertLookupFieldEnum `json:"idp_machine_cert_lookup_field,omitempty"`
 	// allow customer to choose the EAP-TLS client certificate's field. To use for IDP User Groups lookup. enum: `automatic`, `cn`, `email`, `upn`
 	IdpUserCertLookupField *IdpUserCertLookupFieldEnum `json:"idp_user_cert_lookup_field,omitempty"`
-	Idps                   []OrgSettingMistNacIdp      `json:"idps,omitempty"`
+	// Identity provider realm mappings used by Mist NAC
+	Idps []OrgSettingMistNacIdp `json:"idps,omitempty"`
 	// MDM (Mobile Device Management) CoA configuration
 	Mdm *OrgSettingMistNacMdm `json:"mdm,omitempty"`
-	// radius server cert to be presented in EAP TLS
+	// RADIUS server certificate presented by Mist NAC during EAP-TLS
 	ServerCert *OrgSettingMistNacServerCert `json:"server_cert,omitempty"`
 	// by default, NAS devices(switches/aps) and proxies(mxedge) are configured to reach mist-nac via IPv4. enum: `v4`, `v6`
 	UseIpVersion *OrgSettingMistNacIpVersionEnum `json:"use_ip_version,omitempty"`

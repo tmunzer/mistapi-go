@@ -11,36 +11,45 @@ import (
 )
 
 // WebhookLocationEvent represents a WebhookLocationEvent struct.
+// Generic location update with map coordinates and optional BLE or Wi-Fi metadata
 type WebhookLocationEvent struct {
-	BatteryVoltage        *int    `json:"battery_voltage,omitempty"`
-	EddystoneUidInstance  *string `json:"eddystone_uid_instance,omitempty"`
+	// Battery voltage value reported by the located entity
+	BatteryVoltage *int `json:"battery_voltage,omitempty"`
+	// Eddystone UID instance value advertised by the located entity
+	EddystoneUidInstance *string `json:"eddystone_uid_instance,omitempty"`
+	// Eddystone UID namespace value advertised by the located entity
 	EddystoneUidNamespace *string `json:"eddystone_uid_namespace,omitempty"`
-	EddystoneUrlUrl       *string `json:"eddystone_url_url,omitempty"`
+	// Eddystone URL advertised by the located entity
+	EddystoneUrlUrl *string `json:"eddystone_url_url,omitempty"`
 	// Major number for iBeacon
 	IbeaconMajor Optional[int] `json:"ibeacon_major"`
 	// Minor number for iBeacon
-	IbeaconMinor Optional[int]       `json:"ibeacon_minor"`
-	IbeaconUuid  Optional[uuid.UUID] `json:"ibeacon_uuid"`
+	IbeaconMinor Optional[int] `json:"ibeacon_minor"`
+	// iBeacon UUID value, or null when no iBeacon UUID is configured
+	IbeaconUuid Optional[uuid.UUID] `json:"ibeacon_uuid"`
 	// Unique ID of the object instance in the Mist Organization
-	Id  uuid.UUID `json:"id"`
-	Mac *string   `json:"mac,omitempty"`
-	// Map id
+	Id uuid.UUID `json:"id"`
+	// Located entity MAC address for this location event
+	Mac *string `json:"mac,omitempty"`
+	// Identifier of the map where the location was calculated
 	MapId uuid.UUID `json:"map_id"`
 	// Optional, BLE manufacturing company ID
 	MfgCompanyId *int `json:"mfg_company_id,omitempty"`
 	// Optional, BLE manufacturing data in hex byte-string format (ie "112233AABBCC")
 	MfgData *string `json:"mfg_data,omitempty"`
-	// Name of the client, may be empty
-	Name   *string   `json:"name,omitempty"`
+	// Client or asset display name, when available
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId uuid.UUID `json:"site_id"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp float64 `json:"timestamp"`
-	Type      string  `json:"type"`
+	// Location object type for this event
+	Type string `json:"type"`
 	// Optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload
 	WifiBeaconExtendedInfo []WifiBeaconExtendedInfoItems `json:"wifi_beacon_extended_info,omitempty"`
-	// x, in meter
+	// Horizontal map coordinate of the located entity, in meters
 	X float64 `json:"x"`
-	// y, in meter
+	// Vertical map coordinate of the located entity, in meters
 	Y                    float64                `json:"y"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

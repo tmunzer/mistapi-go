@@ -1,7 +1,7 @@
 
 # Map Org Import File Json Vendor Name Enum
 
-enum: `ekahau`, `ibwave`
+Map import vendor for the uploaded file. enum: `ekahau`, `ibwave`
 
 ## Enumeration
 
@@ -16,7 +16,16 @@ enum: `ekahau`, `ibwave`
 
 ## Example
 
-```
-ekahau
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mapOrgImportFileJsonVendorName := models.MapOrgImportFileJsonVendorNameEnum_EKAHAU
+
+}
 ```
 

@@ -1,6 +1,8 @@
 
 # Remote Syslog File Config
 
+Generated syslog file output settings
+
 ## Structure
 
 `RemoteSyslogFileConfig`
@@ -9,36 +11,41 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Archive` | [`*models.RemoteSyslogArchive`](../../doc/models/remote-syslog-archive.md) | Optional | - |
-| `Contents` | [`[]models.RemoteSyslogContent`](../../doc/models/remote-syslog-content.md) | Optional | - |
-| `EnableTls` | `*bool` | Optional | Only if `protocol`==`tcp` |
-| `ExplicitPriority` | `*bool` | Optional | - |
-| `File` | `*string` | Optional | - |
-| `Match` | `*string` | Optional | - |
-| `StructuredData` | `*bool` | Optional | - |
+| `Archive` | [`*models.RemoteSyslogArchive`](../../doc/models/remote-syslog-archive.md) | Optional | Syslog file archive retention settings |
+| `Contents` | [`[]models.RemoteSyslogContent`](../../doc/models/remote-syslog-content.md) | Optional | List of syslog content selectors |
+| `EnableTls` | `*bool` | Optional | Only if `protocol`==`tcp`, enable TLS for this syslog file destination |
+| `ExplicitPriority` | `*bool` | Optional | Whether to include explicit syslog priority values in file output |
+| `File` | `*string` | Optional | Generated syslog file name |
+| `Match` | `*string` | Optional | Expression used to filter log messages written to this file |
+| `StructuredData` | `*bool` | Optional | Whether to include structured syslog data in file output |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "file": "file-name",
-  "match": "!alarm|ntp|errors.crc_error[chan]",
-  "archive": {
-    "files": "String5",
-    "size": "size8"
-  },
-  "contents": [
-    {
-      "facility": "ntp",
-      "severity": "error"
-    },
-    {
-      "facility": "ntp",
-      "severity": "error"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    remoteSyslogFileConfig := models.RemoteSyslogFileConfig{
+        Archive:              models.ToPointer(models.RemoteSyslogArchive{
+            Files:                models.ToPointer(models.RemoteSyslogArchiveFilesContainer.FromString("String5")),
+            Size:                 models.ToPointer("size8"),
+        }),
+        Contents:             []models.RemoteSyslogContent{
+            models.RemoteSyslogContent{
+                Facility:             models.ToPointer(models.RemoteSyslogFacilityEnum_NTP),
+                Severity:             models.ToPointer(models.RemoteSyslogSeverityEnum_ENUMERROR),
+            },
+        },
+        EnableTls:            models.ToPointer(false),
+        ExplicitPriority:     models.ToPointer(false),
+        File:                 models.ToPointer("file-name"),
+        Match:                models.ToPointer("!alarm|ntp|errors.crc_error[chan]"),
     }
-  ],
-  "enable_tls": false,
-  "explicit_priority": false
+
 }
 ```
 

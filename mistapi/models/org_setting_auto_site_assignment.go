@@ -8,8 +8,11 @@ import (
 )
 
 // OrgSettingAutoSiteAssignment represents a OrgSettingAutoSiteAssignment struct.
+// Automatic site assignment configuration for claimed devices
 type OrgSettingAutoSiteAssignment struct {
-	Enable               *bool                                    `json:"enable,omitempty"`
+	// Whether automatic site assignment is enabled
+	Enable *bool `json:"enable,omitempty"`
+	// Automatic site assignment rules, or null when automatic assignment is not configured
 	Rules                Optional[[]OrgSettingAutoAssignmentRule] `json:"rules"`
 	AdditionalProperties map[string]interface{}                   `json:"_"`
 }

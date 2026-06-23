@@ -8,12 +8,15 @@ import (
 )
 
 // SynthetictestConfigVlan represents a SynthetictestConfigVlan struct.
+// Deprecated VLAN-based synthetic test settings
 type SynthetictestConfigVlan struct {
+	// Deprecated custom URLs tested by VLAN-based synthetic probes
 	CustomTestUrls []string `json:"custom_test_urls,omitempty"` // Deprecated
 	// For some vlans where we don't want this to run
 	Disabled *bool `json:"disabled,omitempty"`
 	// app name comes from `custom_probes` above or /const/synthetic_test_probes
-	Probes               []string               `json:"probes,omitempty"`
+	Probes []string `json:"probes,omitempty"`
+	// VLAN identifiers where deprecated VLAN-based synthetic probes run
 	VlanIds              []VlanIdWithVariable   `json:"vlan_ids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

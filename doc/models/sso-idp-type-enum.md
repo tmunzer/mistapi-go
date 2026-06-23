@@ -20,3 +20,18 @@ SSO IDP Type:
 | `saml` |
 | `openroaming` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ssoIdpType := models.SsoIdpTypeEnum_MXEDGEPROXY
+
+}
+```
+

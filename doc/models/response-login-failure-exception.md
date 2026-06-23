@@ -1,6 +1,8 @@
 
 # Response Login Failure Exception
 
+Login failure response returned when authentication cannot continue locally
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,20 +13,20 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Detail` | `string` | Required | - |
-| `ForwardUrl` | `*string` | Optional | - |
+| `Detail` | `string` | Required | Human-readable login failure message returned by the API |
+| `ForwardUrl` | `*string` | Optional | SSO URL where the user should continue login, when provided |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "detail": "detail0",
-  "forward_url": "forward_url2",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+if err != nil {
+    switch typedErr := err.(type) {
+    case *errors.ResponseLoginFailureException:
+        log.Fatalln(typedErr)
+    default:
+        log.Fatalln(err)
+    }
 }
 ```
 

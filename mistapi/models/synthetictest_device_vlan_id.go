@@ -9,7 +9,7 @@ import (
 )
 
 // SynthetictestDeviceVlanId represents a SynthetictestDeviceVlanId struct.
-// Required for AP
+// Required for AP. VLAN ID used by the synthetic test when the target device is an AP
 type SynthetictestDeviceVlanId struct {
 	value    any
 	isString bool
@@ -75,7 +75,7 @@ func (s *SynthetictestDeviceVlanId) AsNumber() (
 }
 
 // internalSynthetictestDeviceVlanId represents a synthetictestDeviceVlanId struct.
-// Required for AP
+// Required for AP. VLAN ID used by the synthetic test when the target device is an AP
 type internalSynthetictestDeviceVlanId struct{}
 
 var SynthetictestDeviceVlanIdContainer internalSynthetictestDeviceVlanId

@@ -8,10 +8,15 @@ import (
 )
 
 // StatsSwitchClientItem represents a StatsSwitchClientItem struct.
+// Client observed on a switch port in switch statistics
 type StatsSwitchClientItem struct {
-	DeviceMac            *string                `json:"device_mac,omitempty"`
-	Hostname             *string                `json:"hostname,omitempty"`
-	Mac                  *string                `json:"mac,omitempty"`
+	// Switch MAC address for the device reporting this client entry
+	DeviceMac *string `json:"device_mac,omitempty"`
+	// Reported client hostname, when known
+	Hostname *string `json:"hostname,omitempty"`
+	// Client MAC address observed on the switch port
+	Mac *string `json:"mac,omitempty"`
+	// Switch port identifier where the client was observed
 	PortId               *string                `json:"port_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

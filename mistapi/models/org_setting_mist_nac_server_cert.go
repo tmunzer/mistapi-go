@@ -8,11 +8,13 @@ import (
 )
 
 // OrgSettingMistNacServerCert represents a OrgSettingMistNacServerCert struct.
-// radius server cert to be presented in EAP TLS
+// RADIUS server certificate presented by Mist NAC during EAP-TLS
 type OrgSettingMistNacServerCert struct {
+	// PEM-encoded RADIUS server certificate presented during EAP-TLS
 	Cert *string `json:"cert,omitempty"`
-	Key  *string `json:"key,omitempty"`
-	// private key password (optional)
+	// Private key paired with the Mist NAC RADIUS server certificate
+	Key *string `json:"key,omitempty"`
+	// Optional password for the private key
 	Password             *string                `json:"password,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -10,14 +10,19 @@ import (
 )
 
 // EventsRogue represents a EventsRogue struct.
-// Rogue events
+// Rogue wireless network event detected by a site AP
 type EventsRogue struct {
-	Ap      string `json:"ap"`
-	Bssid   string `json:"bssid"`
-	Channel int    `json:"channel"`
-	Rssi    int    `json:"rssi"`
-	Ssid    string `json:"ssid"`
-	// Epoch (seconds)
+	// Access point MAC address that detected the rogue BSSID
+	Ap string `json:"ap"`
+	// Rogue BSSID observed by the AP
+	Bssid string `json:"bssid"`
+	// Radio channel where the rogue BSSID was observed
+	Channel int `json:"channel"`
+	// Received signal strength of the rogue BSSID, in dBm
+	Rssi int `json:"rssi"`
+	// Wireless network SSID advertised by the rogue BSSID
+	Ssid string `json:"ssid"`
+	// Epoch timestamp, in seconds
 	Timestamp            float64                `json:"timestamp"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

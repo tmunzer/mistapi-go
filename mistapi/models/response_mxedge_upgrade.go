@@ -11,13 +11,19 @@ import (
 )
 
 // ResponseMxedgeUpgrade represents a ResponseMxedgeUpgrade struct.
+// Mist Edge upgrade details response
 type ResponseMxedgeUpgrade struct {
-	Channel string                      `json:"channel"`
-	Counts  MxedgeUpgradeResponseCounts `json:"counts"`
+	// Upgrade channel used to select Mist Edge package versions
+	Channel string `json:"channel"`
+	// Counts of Mist Edge upgrades by current status
+	Counts MxedgeUpgradeResponseCounts `json:"counts"`
 	// Unique ID of the object instance in the Mist Organization
-	Id                   uuid.UUID              `json:"id"`
-	Status               string                 `json:"status"`
-	Strategy             string                 `json:"strategy"`
+	Id uuid.UUID `json:"id"`
+	// Current status of the Mist Edge upgrade
+	Status string `json:"status"`
+	// Rollout strategy used for the Mist Edge upgrade
+	Strategy string `json:"strategy"`
+	// Per-service target versions for this Mist Edge upgrade
 	Versions             interface{}            `json:"versions"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

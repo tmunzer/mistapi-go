@@ -9,6 +9,7 @@ import (
 )
 
 // ResponseUpgradeOrgDevices represents a ResponseUpgradeOrgDevices struct.
+// Organization AP upgrade job details
 type ResponseUpgradeOrgDevices struct {
 	// Whether to allow local AP-to-AP FW upgrade
 	EnableP2p *bool `json:"enable_p2p,omitempty"`
@@ -18,8 +19,9 @@ type ResponseUpgradeOrgDevices struct {
 	Id *uuid.UUID `json:"id,omitempty"`
 	// enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)
 	Strategy *UpgradeDeviceStrategyEnum `json:"strategy,omitempty"`
-	// Version to upgrade to
-	TargetVersion        *string                    `json:"target_version,omitempty"`
+	// Firmware version targeted by the organization AP upgrade
+	TargetVersion *string `json:"target_version,omitempty"`
+	// Per-site upgrade entries created for an organization device upgrade
 	Upgrades             []UpgradeOrgDevicesUpgrade `json:"upgrades,omitempty"`
 	AdditionalProperties map[string]interface{}     `json:"_"`
 }

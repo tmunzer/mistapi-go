@@ -11,8 +11,11 @@ import (
 )
 
 // MxedgesAssign represents a MxedgesAssign struct.
+// Request to assign Mist Edges to a site
 type MxedgesAssign struct {
-	MxedgeIds            []uuid.UUID            `json:"mxedge_ids"`
+	// Mist Edge identifiers to assign to a site
+	MxedgeIds []uuid.UUID `json:"mxedge_ids"`
+	// Identifier of the site that receives the Mist Edges
 	SiteId               uuid.UUID              `json:"site_id"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

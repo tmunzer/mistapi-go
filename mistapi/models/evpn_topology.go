@@ -11,25 +11,31 @@ import (
 )
 
 // EvpnTopology represents a EvpnTopology struct.
+// EVPN topology create or update payload
 type EvpnTopology struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	// EVPN Options
+	// EVPN topology generation options for campus fabric configuration
 	EvpnOptions *EvpnOptions `json:"evpn_options,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64   `json:"modified_time,omitempty"`
-	Name         *string    `json:"name,omitempty"`
-	OrgId        *uuid.UUID `json:"org_id,omitempty"`
-	Overwrite    *bool      `json:"overwrite,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Display name for the EVPN topology
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Whether to apply generated EVPN configuration changes automatically
+	Overwrite *bool `json:"overwrite,omitempty"`
 	// Property key is the pod number
 	PodNames map[string]string `json:"pod_names,omitempty"`
-	SiteId   *uuid.UUID        `json:"site_id,omitempty"`
-	// Property key is the switch mac
-	SwitchConfigs        map[string]EvpnTopologySwitchConfig `json:"switch_configs,omitempty"`
-	Switches             []EvpnTopologySwitch                `json:"switches"`
-	AdditionalProperties map[string]interface{}              `json:"_"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Property key is the switch MAC address
+	SwitchConfigs map[string]EvpnTopologySwitchConfig `json:"switch_configs,omitempty"`
+	// Switch members included in an EVPN topology
+	Switches             []EvpnTopologySwitch   `json:"switches"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for EvpnTopology,

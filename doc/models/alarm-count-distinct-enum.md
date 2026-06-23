@@ -16,3 +16,18 @@ enum: `acked`, `group`, `severity`, `type`
 | `severity` |
 | `type` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    alarmCountDistinct := models.AlarmCountDistinctEnum_SEVERITY
+
+}
+```
+

@@ -26,7 +26,7 @@ func NewSitesClientsWired(baseController baseController) *SitesClientsWired {
 // CountSiteWiredClients takes context, siteId, distinct, mac, deviceMac, portId, vlan, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of Clients
+// Count wired clients for a site, optionally grouped by the `distinct` field and filtered by MAC address, switch port, VLAN, and time range. Use [Count Org Wired Clients]($e/Orgs%20Clients%20-%20Wired/countOrgWiredClients) to count wired clients across the organization.
 func (s *SitesClientsWired) CountSiteWiredClients(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -46,19 +46,15 @@ func (s *SitesClientsWired) CountSiteWiredClients(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -101,7 +97,7 @@ func (s *SitesClientsWired) CountSiteWiredClients(
 // SearchSiteWiredClients takes context, siteId, deviceMac, mac, ip, portId, source, vlan, manufacture, text, nacruleId, dhcpHostname, dhcpFqdn, dhcpClientIdentifier, dhcpVendorClassIdentifier, dhcpRequestParams, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.SearchWiredClient data and
 // an error if there was an issue with the request or response.
-// Search Wired Clients
+// Search wired clients for a site with filters for device MAC address, client MAC address, IP address, switch port, VLAN, manufacturer, DHCP attributes, NAC rule, and time range. Use [Search Org Wired Clients]($e/Orgs%20Clients%20-%20Wired/searchOrgWiredClients) to search wired clients across the organization.
 func (s *SitesClientsWired) SearchSiteWiredClients(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -132,19 +128,15 @@ func (s *SitesClientsWired) SearchSiteWiredClients(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if deviceMac != nil {
 		req.QueryParam("device_mac", *deviceMac)

@@ -11,38 +11,42 @@ import (
 )
 
 // StatsRssiZone represents a StatsRssiZone struct.
-// Zone statistics
+// RSSI-based zone statistics for a site
 type StatsRssiZone struct {
 	// BLE asset wait time right now
 	AssetsWait *StatsZoneAssetsWaits `json:"assets_wait,omitempty"`
 	// Client wait time right now
 	ClientsWait *StatsZoneClientsWaits `json:"clients_wait,omitempty"`
 	// When the object has been created, in epoch
-	CreatedTime *float64               `json:"created_time,omitempty"`
-	Devices     []StatsRssiZonesDevice `json:"devices"`
+	CreatedTime *float64 `json:"created_time,omitempty"`
+	// AP devices and RSSI thresholds that define an RSSI zone
+	Devices []StatsRssiZonesDevice `json:"devices"`
 	// Discovered asset wait time right now
 	DiscoveredAssetsWait *StatsZoneDiscoveredAssetsWaits `json:"discovered_assets_wait,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id uuid.UUID `json:"id"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// Name of the zone
+	// Display name of the RSSI zone
 	Name string `json:"name"`
-	// Number of assets
+	// Number of BLE assets currently counted in the RSSI zone
 	NumAssets *int `json:"num_assets,omitempty"`
 	// Number of Wi-Fi clients (unconnected + connected)
 	NumClients *int `json:"num_clients,omitempty"`
-	// Number of discoveredassets
+	// Number of discovered BLE assets currently counted in the RSSI zone
 	NumDiscoveredAssets *int `json:"num_discovered_assets,omitempty"`
-	// Number of sdk clients
+	// Number of SDK clients currently counted in the RSSI zone
 	NumSdkclients *int `json:"num_sdkclients,omitempty"`
 	// Number of unconnected Wi-Fi clients
-	NumUnconnectedClients *int       `json:"num_unconnected_clients,omitempty"`
-	OccupancyLimit        *int       `json:"occupancy_limit,omitempty"`
-	OrgId                 *uuid.UUID `json:"org_id,omitempty"`
+	NumUnconnectedClients *int `json:"num_unconnected_clients,omitempty"`
+	// Configured occupancy limit for the RSSI zone
+	OccupancyLimit *int `json:"occupancy_limit,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// SDK client wait time right now
 	SdkclientsWait *StatsZoneSdkclientsWaits `json:"sdkclients_wait,omitempty"`
-	SiteId         *uuid.UUID                `json:"site_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// Unconnected Wi-Fi client wait time right now
 	UnconnectedClientsWait *StatsZoneUnconnectedClientsWaits `json:"unconnected_clients_wait,omitempty"`
 	AdditionalProperties   map[string]interface{}            `json:"_"`

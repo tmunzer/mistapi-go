@@ -9,29 +9,39 @@ import (
 )
 
 // WebhookLocationAssetEvent represents a WebhookLocationAssetEvent struct.
+// Asset location update with map coordinates and optional BLE beacon metadata
 type WebhookLocationAssetEvent struct {
-	BatteryVoltage        *int    `json:"battery_voltage,omitempty"`
-	EddystoneUidInstance  *string `json:"eddystone_uid_instance,omitempty"`
+	// Battery voltage value reported by the asset tag
+	BatteryVoltage *int `json:"battery_voltage,omitempty"`
+	// Eddystone UID instance value advertised by the asset tag
+	EddystoneUidInstance *string `json:"eddystone_uid_instance,omitempty"`
+	// Eddystone UID namespace value advertised by the asset tag
 	EddystoneUidNamespace *string `json:"eddystone_uid_namespace,omitempty"`
-	EddystoneUrlUrl       *string `json:"eddystone_url_url,omitempty"`
+	// Eddystone URL advertised by the asset tag
+	EddystoneUrlUrl *string `json:"eddystone_url_url,omitempty"`
 	// Major number for iBeacon
 	IbeaconMajor Optional[int] `json:"ibeacon_major"`
 	// Minor number for iBeacon
-	IbeaconMinor Optional[int]       `json:"ibeacon_minor"`
-	IbeaconUuid  Optional[uuid.UUID] `json:"ibeacon_uuid"`
-	Mac          *string             `json:"mac,omitempty"`
-	MapId        *uuid.UUID          `json:"map_id,omitempty"`
+	IbeaconMinor Optional[int] `json:"ibeacon_minor"`
+	// iBeacon UUID value, or null when no iBeacon UUID is configured
+	IbeaconUuid Optional[uuid.UUID] `json:"ibeacon_uuid"`
+	// Asset MAC address used as the location identifier
+	Mac *string `json:"mac,omitempty"`
+	// Map where the asset location was calculated
+	MapId *uuid.UUID `json:"map_id,omitempty"`
 	// Optional, BLE manufacturing company ID
 	MfgCompanyId *int `json:"mfg_company_id,omitempty"`
 	// Optional, BLE manufacturing data in hex byte-string format (ie: "112233AABBCC")
-	MfgData *string    `json:"mfg_data,omitempty"`
-	SiteId  *uuid.UUID `json:"site_id,omitempty"`
-	// Epoch (seconds)
+	MfgData *string `json:"mfg_data,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
-	Type      *string  `json:"type,omitempty"`
-	// x, in meter
+	// Location object type for the asset event; defaults to `asset`
+	Type *string `json:"type,omitempty"`
+	// Horizontal map coordinate of the asset position, in meters
 	X *float64 `json:"x,omitempty"`
-	// y, in meter
+	// Vertical map coordinate of the asset position, in meters
 	Y                    *float64               `json:"y,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

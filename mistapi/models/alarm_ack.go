@@ -11,7 +11,9 @@ import (
 )
 
 // AlarmAck represents a AlarmAck struct.
+// Request body for acknowledging or unacknowledging alarms
 type AlarmAck struct {
+	// Alarm identifiers included in an alarm acknowledgement request
 	AlarmIds []uuid.UUID `json:"alarm_ids"`
 	// Some text note describing the intent
 	Note                 *string                `json:"note,omitempty"`

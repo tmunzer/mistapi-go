@@ -8,14 +8,21 @@ import (
 )
 
 // ApSwitch represents a ApSwitch struct.
-// For people who want to fully control the vlans (advanced)
+// Deprecated AP switch VLAN control settings for advanced per-port configuration
 type ApSwitch struct {
-	Enabled              *bool                  `json:"enabled,omitempty"`
-	Eth0                 *ApSwitchSetting       `json:"eth0,omitempty"`
-	Eth1                 *ApSwitchSetting       `json:"eth1,omitempty"`
-	Eth2                 *ApSwitchSetting       `json:"eth2,omitempty"`
-	Eth3                 *ApSwitchSetting       `json:"eth3,omitempty"`
-	Module               *ApSwitchSetting       `json:"module,omitempty"`
+	// Whether deprecated AP switch VLAN control is enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// VLAN settings for one deprecated AP switch-config port
+	Eth0 *ApSwitchSetting `json:"eth0,omitempty"`
+	// VLAN settings for one deprecated AP switch-config port
+	Eth1 *ApSwitchSetting `json:"eth1,omitempty"`
+	// VLAN settings for one deprecated AP switch-config port
+	Eth2 *ApSwitchSetting `json:"eth2,omitempty"`
+	// VLAN settings for one deprecated AP switch-config port
+	Eth3 *ApSwitchSetting `json:"eth3,omitempty"`
+	// VLAN settings for one deprecated AP switch-config port
+	Module *ApSwitchSetting `json:"module,omitempty"`
+	// VLAN settings for one deprecated AP switch-config port
 	Wds                  *ApSwitchSetting       `json:"wds,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

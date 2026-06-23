@@ -10,7 +10,7 @@ import (
 // SwitchMatchingRuleOobIpConfig represents a SwitchMatchingRuleOobIpConfig struct.
 // Out-of-Band Management interface configuration
 type SwitchMatchingRuleOobIpConfig struct {
-	// enum: `dhcp`, `static`
+	// IP address assignment mode, either DHCP or static. enum: `dhcp`, `static`
 	Type *IpTypeEnum `json:"type,omitempty"`
 	// If supported on the platform. If enabled, DNS will be using this routing-instance, too
 	UseMgmtVrf *bool `json:"use_mgmt_vrf,omitempty"`

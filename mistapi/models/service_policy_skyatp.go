@@ -8,13 +8,17 @@ import (
 )
 
 // ServicePolicySkyatp represents a ServicePolicySkyatp struct.
-// SRX only
+// SRX Sky ATP threat inspection settings for a service policy
 type ServicePolicySkyatp struct {
-	DnsDgaDetection      *ServicePolicySkyatpDnsDgaDetection    `json:"dns_dga_detection,omitempty"`
-	DnsTunnelDetection   *ServicePolicySkyatpDnsTunnelDetection `json:"dns_tunnel_detection,omitempty"`
-	HttpInspection       *ServicePolicySkyatpHttpInspection     `json:"http_inspection,omitempty"`
-	IotDevicePolicy      *ServicePolicySkyatpIotDevicePolicy    `json:"iot_device_policy,omitempty"`
-	AdditionalProperties map[string]interface{}                 `json:"_"`
+	// Sky ATP DNS DGA detection settings
+	DnsDgaDetection *ServicePolicySkyatpDnsDgaDetection `json:"dns_dga_detection,omitempty"`
+	// Sky ATP DNS tunneling detection settings
+	DnsTunnelDetection *ServicePolicySkyatpDnsTunnelDetection `json:"dns_tunnel_detection,omitempty"`
+	// Sky ATP HTTP inspection settings
+	HttpInspection *ServicePolicySkyatpHttpInspection `json:"http_inspection,omitempty"`
+	// Sky ATP IoT device policy settings
+	IotDevicePolicy      *ServicePolicySkyatpIotDevicePolicy `json:"iot_device_policy,omitempty"`
+	AdditionalProperties map[string]interface{}              `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ServicePolicySkyatp,

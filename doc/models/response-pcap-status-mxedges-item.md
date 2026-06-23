@@ -1,6 +1,8 @@
 
 # Response Pcap Status Mxedges Item
 
+Mist Edge interface settings for a packet capture
+
 ## Structure
 
 `ResponsePcapStatusMxedgesItem`
@@ -11,21 +13,24 @@
 |  --- | --- | --- | --- |
 | `Interfaces` | [`map[string]models.CaptureMxedgeMxedgesInterfaces`](../../doc/models/capture-mxedge-mxedges-interfaces.md) | Optional | Dict of interfaces to capture on, property key is the port name |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "interfaces": {
-    "key0": {
-      "tcpdump_expression": "tcpdump_expression4"
-    },
-    "key1": {
-      "tcpdump_expression": "tcpdump_expression4"
-    },
-    "key2": {
-      "tcpdump_expression": "tcpdump_expression4"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responsePcapStatusMxedgesItem := models.ResponsePcapStatusMxedgesItem{
+        Interfaces:           map[string]models.CaptureMxedgeMxedgesInterfaces{
+            "key0": models.CaptureMxedgeMxedgesInterfaces{
+                TcpdumpExpression:    models.ToPointer("tcpdump_expression4"),
+            },
+        },
     }
-  }
+
 }
 ```
 

@@ -11,42 +11,49 @@ import (
 )
 
 // StatsWirelessClient represents a StatsWirelessClient struct.
+// Wireless client connection, traffic, and location statistics
 type StatsWirelessClient struct {
 	// Estimated client location accuracy, in meter
-	Accuracy        *int    `json:"accuracy,omitempty"`
+	Accuracy *int `json:"accuracy,omitempty"`
+	// RADIUS Airespace interface name reported for the wireless client, when available
 	AirespaceIfname *string `json:"airespace_ifname,omitempty"`
-	// Information if airwatch enabled
-	Airwatch   *StatsWirelessClientAirwatch `json:"airwatch,omitempty"`
-	Annotation *string                      `json:"annotation,omitempty"`
+	// AirWatch authorization information reported for a wireless client
+	Airwatch *StatsWirelessClientAirwatch `json:"airwatch,omitempty"`
+	// User-visible annotation label applied to the wireless client
+	Annotation *string `json:"annotation,omitempty"`
 	// AP ID the client is connected to
 	ApId uuid.UUID `json:"ap_id"`
 	// AP the client is connected to
-	ApMac     string `json:"ap_mac"`
-	AssocTime *int   `json:"assoc_time,omitempty"`
+	ApMac string `json:"ap_mac"`
+	// Time when the wireless client associated to the AP, in epoch seconds
+	AssocTime *int `json:"assoc_time,omitempty"`
 	// enum: `24`, `5`, `5-dedicated`, `5-selectable`, `6`, `6-dedicated`, `6-selectable`
-	Band  Dot11BandEnum `json:"band"`
-	Bssid *string       `json:"bssid,omitempty"`
-	// Current channel
+	Band Dot11BandEnum `json:"band"`
+	// AP radio BSSID serving the wireless client connection
+	Bssid *string `json:"bssid,omitempty"`
+	// Radio channel used by the wireless client connection
 	Channel int `json:"channel"`
 	// Whether the client is dual_band capable (determined by whether we’ve seen probe requests from both bands)
 	DualBand *bool `json:"dual_band,omitempty"`
 	// Device family, through fingerprinting. iPod / Nexus Galaxy / Windows Mobile or CE …
 	Family *string `json:"family,omitempty"`
-	Group  *string `json:"group,omitempty"`
-	// Guest
+	// Client group label reported for the wireless client
+	Group *string `json:"group,omitempty"`
+	// Guest authorization record at site scope
 	Guest *Guest `json:"guest,omitempty"`
-	// Hostname that we learned from sniffing DHCP
+	// DHCP hostname learned for the wireless client
 	Hostname *string `json:"hostname,omitempty"`
 	// How long, in seconds, has the client been idle (since the last RX packet)
 	IdleTime *float64 `json:"idle_time,omitempty"`
-	Ip       *string  `json:"ip,omitempty"`
+	// Current IP address reported for the wireless client
+	Ip *string `json:"ip,omitempty"`
 	// Whether this is a guest
 	IsGuest bool `json:"is_guest"`
-	// E.g. WPA2-PSK/CCMP
+	// Security key-management and cipher suite used by the wireless client
 	KeyMgmt string `json:"key_mgmt"`
-	// Last seen timestamp
+	// Timestamp indicating when the entity was last seen
 	LastSeen Optional[float64] `json:"last_seen"`
-	// Client mac
+	// Wireless client MAC address observed by Mist
 	Mac string `json:"mac"`
 	// Device manufacture, through fingerprinting or OUI
 	Manufacture *string `json:"manufacture,omitempty"`
@@ -64,9 +71,9 @@ type StatsWirelessClient struct {
 	Proto Dot11ProtoEnum `json:"proto"`
 	// PSK id (if multi-psk is used)
 	PskId *uuid.UUID `json:"psk_id,omitempty"`
-	// Signal strength
+	// Received signal strength indicator for the wireless client, in dBm
 	Rssi float64 `json:"rssi"`
-	// List of rssizone_id’s where client is in and since when (if known)
+	// RSSI zone memberships for the wireless client, including when each membership began
 	Rssizones []StatsWirelessClientRssiZone `json:"rssizones,omitempty"`
 	// Rate of receiving traffic, bits/seconds, last known
 	RxBps Optional[int64] `json:"rx_bps"`
@@ -74,14 +81,15 @@ type StatsWirelessClient struct {
 	RxBytes Optional[int64] `json:"rx_bytes"`
 	// Amount of packets received since connection
 	RxPkts Optional[int64] `json:"rx_pkts"`
-	// RX Rate, Mbps
+	// Receive data rate reported for a wireless or mesh link, in Mbps
 	RxRate Optional[float64] `json:"rx_rate"`
 	// Amount of rx retries
 	RxRetries Optional[int] `json:"rx_retries"`
-	SiteId    *uuid.UUID    `json:"site_id,omitempty"`
-	// Signal over noise
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Signal-to-noise ratio for the wireless client connection
 	Snr float64 `json:"snr"`
-	// SSID the client is connected to
+	// Wireless SSID used by the client connection
 	Ssid string `json:"ssid"`
 	// Rate of transmitting traffic, bits/seconds, last known
 	TxBps Optional[int64] `json:"tx_bps"`
@@ -89,7 +97,7 @@ type StatsWirelessClient struct {
 	TxBytes Optional[int64] `json:"tx_bytes"`
 	// Amount of packets sent since connection
 	TxPkts Optional[int64] `json:"tx_pkts"`
-	// TX Rate, Mbps
+	// Transmit data rate reported for a wireless or mesh link, in Mbps
 	TxRate Optional[float64] `json:"tx_rate"`
 	// Amount of tx retries
 	TxRetries Optional[int] `json:"tx_retries"`
@@ -97,17 +105,17 @@ type StatsWirelessClient struct {
 	Type *string `json:"type,omitempty"`
 	// How long, in seconds, has the client been connected
 	Uptime *float64 `json:"uptime,omitempty"`
-	// Username that we learned from 802.1X exchange or Per_user PSK or User Portal
+	// User identity learned from 802.1X, per-user PSK, or user portal authentication
 	Username *string `json:"username,omitempty"`
-	// List of beacon_id’s where the client is in and since when (if known)
+	// Virtual beacon associations for the wireless client, including when each began
 	Vbeacons []StatsWirelessClientVbeacon `json:"vbeacons,omitempty"`
-	// VLAN id, could be empty (from older AP)
+	// VLAN ID, could be empty (from older AP)
 	VlanId *string `json:"vlan_id,omitempty"`
 	// WLAN ID the client is connected to
 	WlanId uuid.UUID `json:"wlan_id"`
 	// Current WxlanRule using for a Client or an authorized Guest (portal user). null if default rule is matched.
 	WxruleId *uuid.UUID `json:"wxrule_id,omitempty"`
-	// Current WxlanRule usage per tag_id
+	// Current WxLAN rule usage counters keyed by wireless tag
 	WxruleUsage []StatsWirelessClientWxruleUsage `json:"wxrule_usage,omitempty"`
 	// Estimated client location in pixels
 	X *float64 `json:"x,omitempty"`
@@ -117,7 +125,7 @@ type StatsWirelessClient struct {
 	Y *float64 `json:"y,omitempty"`
 	// Estimated client location in meter
 	YM *float64 `json:"y_m,omitempty"`
-	// List of zone_id’s where client is in and since when (if known)
+	// Zone memberships for the wireless client, including when each membership began
 	Zones                []StatsWirelessClientZone `json:"zones,omitempty"`
 	AdditionalProperties map[string]interface{}    `json:"_"`
 }

@@ -11,14 +11,15 @@ import (
 )
 
 // NacTag represents a NacTag struct.
+// NAC tag used as a rule-matching classifier or as a result attribute for allowed users
 type NacTag struct {
-	// Can be set to true to allow the override by usermac result
+	// Whether usermac result values can override this NAC tag when the result type is also supported by usermac
 	AllowUsermacOverride *bool `json:"allow_usermac_override,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
 	// If `type`==`egress_vlan_names`, list of egress vlans to return
 	EgressVlanNames []string `json:"egress_vlan_names,omitempty"`
-	// If `type`==`gbp_tag`
+	// If `type`==`gbp_tag`, GBP tag value returned by the NAC rule
 	GbpTag *NacTagGbpTag `json:"gbp_tag,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
@@ -33,27 +34,29 @@ type NacTag struct {
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
 	// If `type`==`redirect_nacportal_id`, the ID of the NAC portal to redirect to
 	NacportalId *uuid.UUID `json:"nacportal_id,omitempty"`
-	Name        string     `json:"name"`
-	OrgId       *uuid.UUID `json:"org_id,omitempty"`
+	// Human-readable name of the NAC tag
+	Name string `json:"name"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// If `type`==`radius_attrs`, user can specify a list of one or more standard attributes in the field "radius_attrs".
 	// It is the responsibility of the user to provide a syntactically correct string, otherwise it may not work as expected.
 	// Note that it is allowed to have more than one radius_attrs in the result of a given rule.
 	RadiusAttrs []string `json:"radius_attrs,omitempty"`
-	// If `type`==`radius_group`
+	// If `type`==`radius_group`, RADIUS group value returned by the NAC rule
 	RadiusGroup *string `json:"radius_group,omitempty"`
 	// If `type`==`radius_vendor_attrs`, user can specify a list of one or more vendor-specific attributes in the field "radius_vendor_attrs".
 	// It is the responsibility of the user to provide a syntactically correct string, otherwise it may not work as expected.
 	// Note that it is allowed to have more than one radius_vendor_attrs in the result of a given rule.
 	RadiusVendorAttrs []string `json:"radius_vendor_attrs,omitempty"`
-	// If `type`==`session_timeout, in seconds
+	// If `type`==`session_timeout`, session timeout returned by the NAC rule, in seconds
 	SessionTimeout *int `json:"session_timeout,omitempty"`
 	// enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `redirect_nacportal_id`, `session_timeout`, `username_attr`, `vlan`
 	Type NacTagTypeEnum `json:"type"`
 	// enum: `automatic`, `cn`, `dns`, `email`, `upn`
 	UsernameAttr *NacTagUsernameAttrEnum `json:"username_attr,omitempty"`
-	// If `type`==`match`
+	// If `type`==`match`, attribute values used by the NAC tag matcher
 	Values []string `json:"values,omitempty"`
-	// If `type`==`vlan`
+	// If `type`==`vlan`, VLAN name or ID returned by the NAC rule
 	Vlan                 *string                `json:"vlan,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

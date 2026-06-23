@@ -1,6 +1,8 @@
 
 # Org Setting Gateway Mgmt
 
+Organization-level gateway management settings
+
 ## Structure
 
 `OrgSettingGatewayMgmt`
@@ -9,56 +11,65 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AppProbing` | [`*models.OrgSettingGatewayMgmtAppProbing`](../../doc/models/org-setting-gateway-mgmt-app-probing.md) | Optional | - |
-| `AppUsage` | `*bool` | Optional | consumes uplink bandwidth, requires WA license |
-| `FipsEnabled` | `*bool` | Optional | **Default**: `false` |
-| `HostInPolicies` | [`*models.OrgSettingGatewayMgmtHostInPolicies`](../../doc/models/org-setting-gateway-mgmt-host-in-policies.md) | Optional | - |
-| `HostOutPolicies` | [`*models.OrgSettingGatewayMgmtHostOutPolicies`](../../doc/models/org-setting-gateway-mgmt-host-out-policies.md) | Optional | optional, for some of the host-out traffic, the path preference can be specified by default, ECMP will be used from all available route/path available services: dns/mist/ntp/pim |
-| `OverlayIp` | [`*models.OrgSettingGatewayMgmtOverlayIp`](../../doc/models/org-setting-gateway-mgmt-overlay-ip.md) | Optional | - |
+| `AppProbing` | [`*models.OrgSettingGatewayMgmtAppProbing`](../../doc/models/org-setting-gateway-mgmt-app-probing.md) | Optional | Application probing settings for organization gateway management |
+| `AppUsage` | `*bool` | Optional | For SRX only, whether gateway application usage collection is enabled; requires App Track license |
+| `FipsEnabled` | `*bool` | Optional | Whether FIPS mode is enabled for managed gateways<br><br>**Default**: `false` |
+| `HostInPolicies` | [`*models.OrgSettingGatewayMgmtHostInPolicies`](../../doc/models/org-setting-gateway-mgmt-host-in-policies.md) | Optional | Host-in access policies for gateway management services |
+| `HostOutPolicies` | [`*models.OrgSettingGatewayMgmtHostOutPolicies`](../../doc/models/org-setting-gateway-mgmt-host-out-policies.md) | Optional | Optional path preferences for gateway-originated management traffic; ECMP is used across available paths when no preference is specified |
+| `OverlayIp` | [`*models.OrgSettingGatewayMgmtOverlayIp`](../../doc/models/org-setting-gateway-mgmt-overlay-ip.md) | Optional | Overlay IP configuration used for gateway management traffic |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "fips_enabled": false,
-  "app_probing": {
-    "apps": [
-      "apps8",
-      "apps9",
-      "apps0"
-    ]
-  },
-  "app_usage": false,
-  "host_in_policies": {
-    "icmp": {
-      "tenants": [
-        "tenants3"
-      ]
-    },
-    "snmp": {
-      "tenants": [
-        "tenants5"
-      ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingGatewayMgmt := models.OrgSettingGatewayMgmt{
+        AppProbing:           models.ToPointer(models.OrgSettingGatewayMgmtAppProbing{
+            Apps:                 []string{
+                "apps8",
+                "apps9",
+                "apps0",
+            },
+        }),
+        AppUsage:             models.ToPointer(false),
+        FipsEnabled:          models.ToPointer(false),
+        HostInPolicies:       models.ToPointer(models.OrgSettingGatewayMgmtHostInPolicies{
+            Icmp:                 models.ToPointer(models.OrgSettingGatewayMgmtHostInPolicy{
+                Tenants:              []string{
+                    "tenants3",
+                },
+            }),
+            Snmp:                 models.ToPointer(models.OrgSettingGatewayMgmtHostInPolicy{
+                Tenants:              []string{
+                    "tenants5",
+                },
+            }),
+        }),
+        HostOutPolicies:      models.ToPointer(models.OrgSettingGatewayMgmtHostOutPolicies{
+            Dns:                  models.ToPointer(models.GatewayMgmtHostOutPolicy{
+                PathPreference:       models.ToPointer("path_preference8"),
+            }),
+            Ntp:                  models.ToPointer(models.GatewayMgmtHostOutPolicy{
+                PathPreference:       models.ToPointer("path_preference4"),
+            }),
+            Syslog:               models.ToPointer(models.GatewayMgmtHostOutPolicySyslog{
+                PathPreference:       models.ToPointer("path_preference2"),
+                Servers:              []models.GatewayMgmtHostOutPolicySyslogServer{
+                    models.GatewayMgmtHostOutPolicySyslogServer{
+                        Host:                 models.ToPointer("host4"),
+                        PathPreference:       models.ToPointer("path_preference8"),
+                        ServerName:           models.ToPointer("server_name8"),
+                    },
+                },
+            }),
+        }),
     }
-  },
-  "host_out_policies": {
-    "dns": {
-      "path_preference": "path_preference8"
-    },
-    "ntp": {
-      "path_preference": "path_preference4"
-    },
-    "syslog": {
-      "path_preference": "path_preference2",
-      "servers": [
-        {
-          "host": "host4",
-          "path_preference": "path_preference8",
-          "server_name": "server_name8"
-        }
-      ]
-    }
-  }
+
 }
 ```
 

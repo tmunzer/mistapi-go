@@ -8,8 +8,11 @@ import (
 )
 
 // RrmNeighbors represents a RrmNeighbors struct.
+// RRM neighbor observations for one AP
 type RrmNeighbors struct {
-	Mac                  *string                `json:"mac,omitempty"`
+	// AP MAC address whose neighbors are reported
+	Mac *string `json:"mac,omitempty"`
+	// Neighbor AP observations heard by an AP
 	Neighbors            []RrmNeighborsNeighbor `json:"neighbors,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -10,11 +10,17 @@ import (
 )
 
 // ConstEvent represents a ConstEvent struct.
+// Device event definition returned by the constants API
 type ConstEvent struct {
-	Description          *string                `json:"description,omitempty"`
-	Display              string                 `json:"display"`
-	Example              *interface{}           `json:"example,omitempty"`
-	Group                *string                `json:"group,omitempty"`
+	// Narrative description of the device event type
+	Description *string `json:"description,omitempty"`
+	// Human-readable label for the device event type
+	Display string `json:"display"`
+	// Sample device event payload for this event type
+	Example *interface{} `json:"example,omitempty"`
+	// Device event group for this definition
+	Group *string `json:"group,omitempty"`
+	// Machine-readable device event key
 	Key                  string                 `json:"key"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

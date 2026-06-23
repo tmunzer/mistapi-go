@@ -1,7 +1,7 @@
 
 # Junos Ip Config
 
-Junos IP Config
+Junos management IP configuration
 
 ## Structure
 
@@ -11,28 +11,41 @@ Junos IP Config
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Dns` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `DnsSuffix` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `Gateway` | `*string` | Optional | - |
-| `Ip` | `*string` | Optional | - |
+| `Dns` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
+| `DnsSuffix` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
+| `Gateway` | `*string` | Optional | Default gateway IPv4 address for this Junos IP configuration |
+| `Ip` | `*string` | Optional | Configured IPv4 address for this Junos IP configuration |
 | `Netmask` | `*string` | Optional | Used only if `subnet` is not specified in `networks` |
-| `Network` | `*string` | Optional | Network where this mgmt IP reside, this will be used as default network for outbound-ssh, dns, ntp, dns, tacplus, radius, syslog, snmp |
-| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br><br>**Default**: `"dhcp"` |
+| `Network` | `*string` | Optional | Management network for this IP configuration; used as the default source network for outbound SSH, DNS, NTP, TACACS+, RADIUS, syslog, and SNMP |
+| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | IP address assignment mode, either DHCP or static. enum: `dhcp`, `static`<br><br>**Default**: `"dhcp"` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "type": "static",
-  "dns": [
-    "dns5"
-  ],
-  "dns_suffix": [
-    "dns_suffix1"
-  ],
-  "gateway": "gateway6",
-  "ip": "ip0",
-  "netmask": "netmask6"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    junosIpConfig := models.JunosIpConfig{
+        Dns:                  []string{
+            "dns5",
+            "dns4",
+            "dns3",
+        },
+        DnsSuffix:            []string{
+            "dns_suffix3",
+            "dns_suffix2",
+            "dns_suffix1",
+        },
+        Gateway:              models.ToPointer("gateway8"),
+        Ip:                   models.ToPointer("ip2"),
+        Netmask:              models.ToPointer("netmask8"),
+        Type:                 models.ToPointer(models.IpTypeEnum_STATIC),
+    }
+
 }
 ```
 

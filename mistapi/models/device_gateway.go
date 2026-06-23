@@ -11,15 +11,18 @@ import (
 )
 
 // DeviceGateway represents a DeviceGateway struct.
-// Device gateway
+// Gateway configuration and placement data
 type DeviceGateway struct {
 	// additional CLI commands to append to the generated Junos config. **Note**: no check is done
-	AdditionalConfigCmds []string             `json:"additional_config_cmds,omitempty"`
-	BgpConfig            map[string]BgpConfig `json:"bgp_config,omitempty"`
+	AdditionalConfigCmds []string `json:"additional_config_cmds,omitempty"`
+	// BGP routing configuration for this gateway. Property key is the BGP session name
+	BgpConfig map[string]BgpConfig `json:"bgp_config,omitempty"`
 	// When the object has been created, in epoch
-	CreatedTime     *float64     `json:"created_time,omitempty"`
-	DeviceprofileId *uuid.UUID   `json:"deviceprofile_id,omitempty"`
-	DhcpdConfig     *DhcpdConfig `json:"dhcpd_config,omitempty"`
+	CreatedTime *float64 `json:"created_time,omitempty"`
+	// Device profile associated with this gateway
+	DeviceprofileId *uuid.UUID `json:"deviceprofile_id,omitempty"`
+	// DHCP server configuration map with a global enable flag
+	DhcpdConfig *DhcpdConfig `json:"dhcpd_config,omitempty"`
 	// Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
 	DnsServers []string `json:"dns_servers,omitempty"`
 	// Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
@@ -27,20 +30,24 @@ type DeviceGateway struct {
 	// Property key is the destination CIDR (e.g. "10.0.0.0/8"), the destination Network name or a variable (e.g. "{{myvar}}")
 	ExtraRoutes map[string]GatewayExtraRoute `json:"extra_routes,omitempty"`
 	// Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64"), the destination Network name or a variable (e.g. "{{myvar}}")
-	ExtraRoutes6 map[string]GatewayExtraRoute `json:"extra_routes6,omitempty"`
-	ForSite      *bool                        `json:"for_site,omitempty"`
-	// Gateway Management settings
+	ExtraRoutes6 map[string]GatewayExtraRoute6 `json:"extra_routes6,omitempty"`
+	// Whether the gateway configuration is scoped directly to a site
+	ForSite *bool `json:"for_site,omitempty"`
+	// Gateway management-plane and access settings
 	GatewayMgmt *GatewayMgmt `json:"gateway_mgmt,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// Property key is the profile name
 	IdpProfiles map[string]IdpProfile `json:"idp_profiles,omitempty"`
-	Image1Url   Optional[string]      `json:"image1_url"`
-	Image2Url   Optional[string]      `json:"image2_url"`
-	Image3Url   Optional[string]      `json:"image3_url"`
+	// First custom image URL associated with the gateway
+	Image1Url Optional[string] `json:"image1_url"`
+	// Second custom image URL associated with the gateway
+	Image2Url Optional[string] `json:"image2_url"`
+	// Third custom image URL associated with the gateway
+	Image3Url Optional[string] `json:"image3_url"`
 	// Property key is the network name
 	IpConfigs map[string]GatewayIpConfigProperty `json:"ip_configs,omitempty"`
-	// Device MAC address
+	// Gateway MAC address used to identify the device
 	Mac *string `json:"mac,omitempty"`
 	// Whether the device is managed by Mist. Deprecated in favour of mist_configured.
 	Managed *bool `json:"managed,omitempty"` // Deprecated
@@ -48,46 +55,57 @@ type DeviceGateway struct {
 	MapId *uuid.UUID `json:"map_id,omitempty"`
 	// whether the device can be configured by Mist or not. This deprecates `managed` for adopted devices.
 	MistConfigured *bool `json:"mist_configured,omitempty"`
-	// Device Model
+	// Gateway model reported for the device
 	Model *string `json:"model,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64   `json:"modified_time,omitempty"`
-	MspId        *uuid.UUID `json:"msp_id,omitempty"`
-	Name         *string    `json:"name,omitempty"`
-	Networks     []Network  `json:"networks,omitempty"`
-	Notes        *string    `json:"notes,omitempty"`
-	NtpServers   []string   `json:"ntp_servers,omitempty"`
-	// Out-of-band (vme/em0/fxp0) IP config
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Managed service provider identifier
+	MspId *uuid.UUID `json:"msp_id,omitempty"`
+	// Friendly display name assigned to the gateway
+	Name *string `json:"name,omitempty"`
+	// List of organization network definitions
+	Networks []Network `json:"networks,omitempty"`
+	// Free-form administrative notes for this gateway
+	Notes *string `json:"notes,omitempty"`
+	// Unique string values returned or accepted by this schema
+	NtpServers []string `json:"ntp_servers,omitempty"`
+	// Out-of-band management IP configuration for gateway interfaces such as vme, em0, or fxp0
 	OobIpConfig *GatewayOobIpConfig `json:"oob_ip_config,omitempty"`
-	OrgId       *uuid.UUID          `json:"org_id,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Property key is the path name
 	PathPreferences map[string]GatewayPathPreferences `json:"path_preferences,omitempty"`
 	// Property key is the port name or range (e.g. "ge-0/0/0-10")
-	PortConfig    map[string]GatewayPortConfig `json:"port_config,omitempty"`
-	PortMirroring *GatewayPortMirroring        `json:"port_mirroring,omitempty"`
+	PortConfig map[string]GatewayPortConfig `json:"port_config,omitempty"`
+	// Port mirroring settings for a gateway interface
+	PortMirroring *GatewayPortMirroring `json:"port_mirroring,omitempty"`
 	// Auto assigned if not set
 	RouterId *string `json:"router_id,omitempty"`
 	// Property key is the routing policy name
 	RoutingPolicies map[string]GwRoutingPolicy `json:"routing_policies,omitempty"`
-	// Device Serial
-	Serial          *string         `json:"serial,omitempty"`
+	// Manufacturer serial number for the gateway
+	Serial *string `json:"serial,omitempty"`
+	// Service policies returned by derived site configuration
 	ServicePolicies []ServicePolicy `json:"service_policies,omitempty"`
-	SiteId          *uuid.UUID      `json:"site_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// Property key is the tunnel name
-	TunnelConfigs         map[string]TunnelConfig `json:"tunnel_configs,omitempty"`
-	TunnelProviderOptions *TunnelProviderOptions  `json:"tunnel_provider_options,omitempty"`
+	TunnelConfigs map[string]TunnelConfig `json:"tunnel_configs,omitempty"`
+	// Provider-specific options for gateway tunnel auto provisioning
+	TunnelProviderOptions *TunnelProviderOptions `json:"tunnel_provider_options,omitempty"`
 	// Device Type. enum: `gateway`
 	Type string `json:"type"`
 	// When a service policy denies a app_category, what message to show in user's browser
 	UrlFilteringDenyMsg *string `json:"url_filtering_deny_msg,omitempty"`
 	// Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
-	Vars      map[string]string `json:"vars,omitempty"`
-	VrfConfig *VrfConfig        `json:"vrf_config,omitempty"`
-	// Property key is the network name
+	Vars map[string]string `json:"vars,omitempty"`
+	// VRF enablement settings applied when supported on the device
+	VrfConfig *VrfConfig `json:"vrf_config,omitempty"`
+	// Property key is the VRF instance name
 	VrfInstances map[string]GatewayVrfInstance `json:"vrf_instances,omitempty"`
-	// X in pixel
+	// Horizontal map position of the gateway, in pixels
 	X *float64 `json:"x,omitempty"`
-	// Y in pixel
+	// Vertical map position of the gateway, in pixels
 	Y *float64 `json:"y,omitempty"`
 	// additional CLI commands to append to the generated SSR config. **Note**: no check is done
 	SsrAdditionalConfigCmds []string               `json:"ssr_additional_config_cmds,omitempty"`
@@ -354,7 +372,7 @@ type tempDeviceGateway struct {
 	DnsServers              []string                           `json:"dns_servers,omitempty"`
 	DnsSuffix               []string                           `json:"dns_suffix,omitempty"`
 	ExtraRoutes             map[string]GatewayExtraRoute       `json:"extra_routes,omitempty"`
-	ExtraRoutes6            map[string]GatewayExtraRoute       `json:"extra_routes6,omitempty"`
+	ExtraRoutes6            map[string]GatewayExtraRoute6      `json:"extra_routes6,omitempty"`
 	ForSite                 *bool                              `json:"for_site,omitempty"`
 	GatewayMgmt             *GatewayMgmt                       `json:"gateway_mgmt,omitempty"`
 	Id                      *uuid.UUID                         `json:"id,omitempty"`

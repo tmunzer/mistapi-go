@@ -8,8 +8,11 @@ import (
 )
 
 // ConstState represents a ConstState struct.
+// State or territory definition returned by the constants API
 type ConstState struct {
-	IsoCode              *string                `json:"iso_code,omitempty"`
+	// ISO subdivision code for the state or territory
+	IsoCode *string `json:"iso_code,omitempty"`
+	// State or territory display name
 	Name                 *string                `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

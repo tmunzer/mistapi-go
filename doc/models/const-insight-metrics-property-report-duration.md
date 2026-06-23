@@ -1,6 +1,8 @@
 
 # Const Insight Metrics Property Report Duration
 
+Report duration definition for an insight metric
+
 ## Structure
 
 `ConstInsightMetricsPropertyReportDuration`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Duration` | `*int` | Optional | - |
-| `Interval` | `*int` | Optional | - |
+| `Duration` | `*int` | Optional | Report duration length, in seconds |
+| `Interval` | `*int` | Optional | Sampling interval used for this report duration, in seconds |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "duration": 226,
-  "interval": 22
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constInsightMetricsPropertyReportDuration := models.ConstInsightMetricsPropertyReportDuration{
+        Duration:             models.ToPointer(32),
+        Interval:             models.ToPointer(84),
+    }
+
 }
 ```
 

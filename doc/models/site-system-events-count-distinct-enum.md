@@ -1,7 +1,7 @@
 
 # Site System Events Count Distinct Enum
 
-enum: `type`
+Distinct field used when counting site system events. enum: `type`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `type`
 | Name |
 |  --- |
 | `type` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteSystemEventsCountDistinct := models.SiteSystemEventsCountDistinctEnum_ENUMTYPE
+
+}
+```
 

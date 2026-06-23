@@ -8,12 +8,19 @@ import (
 )
 
 // StatsMxedgePortStatSfp represents a StatsMxedgePortStatSfp struct.
+// SFP transceiver details reported for a Mist Edge port
 type StatsMxedgePortStatSfp struct {
-	Codes                *string                `json:"codes,omitempty"`
-	Mbps                 *int                   `json:"mbps,omitempty"`
-	PartNo               *string                `json:"part_no,omitempty"`
-	SerialNo             *string                `json:"serial_no,omitempty"`
-	Type                 *int                   `json:"type,omitempty"`
+	// Transceiver capability codes reported by the SFP module
+	Codes *string `json:"codes,omitempty"`
+	// Nominal transceiver speed, in Mbps
+	Mbps *int `json:"mbps,omitempty"`
+	// Manufacturer part number reported by the SFP module
+	PartNo *string `json:"part_no,omitempty"`
+	// Manufacturer serial number reported by the SFP module
+	SerialNo *string `json:"serial_no,omitempty"`
+	// Transceiver type code reported by the SFP module
+	Type *int `json:"type,omitempty"`
+	// Manufacturer name reported by the SFP module
 	Vendor               *string                `json:"vendor,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

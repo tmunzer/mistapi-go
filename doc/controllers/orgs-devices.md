@@ -24,7 +24,7 @@ orgsDevices := client.OrgsDevices()
 
 # Count Org Device Events
 
-Count by Distinct Attributes of Org Devices Events
+Count device event records across the organization, optionally grouped by `distinct` and filtered by site, AP, firmware, model, event text, event type, and time range.
 
 ```go
 CountOrgDeviceEvents(
@@ -36,7 +36,6 @@ CountOrgDeviceEvents(
     apfw *string,
     model *string,
     text *string,
-    timestamp *string,
     mType *string,
     start *string,
     end *string,
@@ -46,25 +45,30 @@ CountOrgDeviceEvents(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.OrgDevicesEventsCountDistinctEnum`](../../doc/models/org-devices-events-count-distinct-enum.md) | Query, Optional | **Default**: `"model"` |
-| `siteId` | `*uuid.UUID` | Query, Optional | Site id |
-| `ap` | `*string` | Query, Optional | AP mac |
-| `apfw` | `*string` | Query, Optional | AP Firmware |
-| `model` | `*string` | Query, Optional | Device model |
-| `text` | `*string` | Query, Optional | Event message |
-| `timestamp` | `*string` | Query, Optional | Event time |
+| `distinct` | [`*models.OrgDevicesEventsCountDistinctEnum`](../../doc/models/org-devices-events-count-distinct-enum.md) | Query, Optional | Field used to group this count response. enum: `ap`, `apfw`, `model`, `org_id`, `site_id`, `text`, `timestamp`, `type`<br><br>**Default**: `"model"` |
+| `siteId` | `*uuid.UUID` | Query, Optional | Filter results by site identifier |
+| `ap` | `*string` | Query, Optional | Filter results by AP MAC address |
+| `apfw` | `*string` | Query, Optional | Filter results by AP firmware version |
+| `model` | `*string` | Query, Optional | Filter results by device model |
+| `text` | `*string` | Query, Optional | Filter results by event message text |
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
+
+**200**: Result of Count
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
@@ -87,25 +91,23 @@ model := "AP43"
 
 text := "Device connected"
 
-timestamp := "1703003296"
-
 duration := "10m"
 
 limit := 100
 
-apiResponse, err := orgsDevices.CountOrgDeviceEvents(ctx, orgId, &distinct, &siteId, &ap, &apfw, &model, &text, &timestamp, nil, nil, nil, &duration, &limit)
+apiResponse, err := orgsDevices.CountOrgDeviceEvents(ctx, orgId, &distinct, &siteId, &ap, &apfw, &model, &text, nil, nil, nil, &duration, &limit)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -139,15 +141,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Count Org Device Last Configs
 
-Counts the number of entries in device config history for distinct field with given filters
+Count device config history records across the organization, optionally grouped by `distinct` and filtered by device type and time range.
 
 ```go
 CountOrgDeviceLastConfigs(
@@ -163,19 +165,25 @@ CountOrgDeviceLastConfigs(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
-| `distinct` | [`*models.OrgDevicesLastConfigsCountDistinctEnum`](../../doc/models/org-devices-last-configs-count-distinct-enum.md) | Query, Optional | - |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | Filter results by type. enum: `ap`, `gateway`, `switch`<br><br>**Default**: `"ap"` |
+| `distinct` | [`*models.OrgDevicesLastConfigsCountDistinctEnum`](../../doc/models/org-devices-last-configs-count-distinct-enum.md) | Query, Optional | Field used to group this count response. enum: `mac`, `name`, `site_id`, `version` |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
+
+**200**: Result of Count
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
@@ -197,14 +205,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -238,15 +246,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Count Org Devices
 
-Count by Distinct Attributes of Org Devices
+Count organization device records, optionally grouped by `distinct` and filtered by device identifiers, model, LLDP attributes, Mist Edge, tunnel status, device type, and time range.
 
 ```go
 CountOrgDevices(
@@ -275,32 +283,38 @@ CountOrgDevices(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.OrgDevicesCountDistinctEnum`](../../doc/models/org-devices-count-distinct-enum.md) | Query, Optional | **Default**: `"model"` |
+| `distinct` | [`*models.OrgDevicesCountDistinctEnum`](../../doc/models/org-devices-count-distinct-enum.md) | Query, Optional | Field used to group this count response. enum: `hostname`, `ip`, `lldp_mgmt_addr`, `lldp_port_id`, `lldp_system_desc`, `lldp_system_name`, `mac`, `model`, `mxedge_id`, `mxtunnel_status`, `site_id`, `version`<br><br>**Default**: `"model"` |
 | `hostname` | `*string` | Query, Optional | Partial / full hostname |
-| `siteId` | `*uuid.UUID` | Query, Optional | Site id |
-| `model` | `*string` | Query, Optional | Device model |
+| `siteId` | `*uuid.UUID` | Query, Optional | Filter results by site identifier |
+| `model` | `*string` | Query, Optional | Filter results by device model. Accepts multiple comma-separated values. |
 | `managed` | `*string` | Query, Optional | for switches and gateways, to filter on managed/unmanaged devices. Deprecated in favour of mist_configured. enum: `true`, `false` |
-| `mac` | `*string` | Query, Optional | AP mac |
-| `version` | `*string` | Query, Optional | Version |
-| `ip` | `*string` | Query, Optional | - |
+| `mac` | `*string` | Query, Optional | Filter results by MAC address |
+| `version` | `*string` | Query, Optional | Filter results by software version |
+| `ip` | `*string` | Query, Optional | Filter results by IPv4 address |
 | `mxtunnelStatus` | [`*models.CountOrgDevicesMxtunnelStatusEnum`](../../doc/models/count-org-devices-mxtunnel-status-enum.md) | Query, Optional | MxTunnel status, enum: `up`, `down` |
 | `mxedgeId` | `*uuid.UUID` | Query, Optional | Mist Edge id, if AP is connecting to a Mist Edge |
-| `lldpSystemName` | `*string` | Query, Optional | LLDP system name |
-| `lldpSystemDesc` | `*string` | Query, Optional | LLDP system description |
-| `lldpPortId` | `*string` | Query, Optional | LLDP port id |
-| `lldpMgmtAddr` | `*string` | Query, Optional | LLDP management ip address |
-| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `lldpSystemName` | `*string` | Query, Optional | Filter results by LLDP system name |
+| `lldpSystemDesc` | `*string` | Query, Optional | Filter results by LLDP system description |
+| `lldpPortId` | `*string` | Query, Optional | Filter results by LLDP port identifier |
+| `lldpMgmtAddr` | `*string` | Query, Optional | LLDP management IP address |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | Filter results by type. enum: `ap`, `gateway`, `switch`<br><br>**Default**: `"ap"` |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
+
+**200**: Result of Count
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
@@ -317,7 +331,7 @@ hostname := "my-hostname"
 
 siteId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
-model := "MR84"
+model := "AP45,AP47D"
 
 managed := "true"
 
@@ -348,14 +362,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -389,10 +403,10 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Get Org Juniper Devices Command
@@ -411,14 +425,20 @@ GetOrgJuniperDevicesCommand(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `siteId` | `*string` | Query, Optional | Site_id would be used for proxy config check of the site and automatic site assignment |
+| `siteId` | `*string` | Query, Optional | Filter results by site identifier |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceConfigCmd](../../doc/models/response-device-config-cmd.md).
 
@@ -434,14 +454,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -465,17 +485,17 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # List Org Aps Macs
 
 For some scenarios like E911 or security systems, the BSSIDs are required to identify which AP the client is connecting to. Then the location of the AP can be used as the approximate location of the client.
 
-Each radio MAC can have 16 BSSIDs (enumerate the last octet from 0-F)
+Each radio MAC can have up to 16 BSSIDs. These are derived by incrementing the least significant hexadecimal digit (last nibble) of the MAC address from 0 to F, while keeping the remaining bits unchanged.
 
 ```go
 ListOrgApsMacs(
@@ -487,15 +507,21 @@ ListOrgApsMacs(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | Select the page number to return when using page-based pagination; starts at `1`<br><br>**Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ApRadioMac](../../doc/models/ap-radio-mac.md).
 
@@ -515,14 +541,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -561,15 +587,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # List Org Devices
 
-Get List of Org Devices
+List devices in the organization, including APs, switches and gateways managed or monitored by Mist.
 
 ```go
 ListOrgDevices(
@@ -579,6 +605,10 @@ ListOrgDevices(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -586,6 +616,8 @@ ListOrgDevices(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseOrgDevices](../../doc/models/response-org-devices.md).
 
@@ -601,14 +633,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -637,15 +669,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # List Org Devices Summary
 
-Get Org Devices Summary
+Return aggregate organization device counts by device category and assignment state.
 
 ```go
 ListOrgDevicesSummary(
@@ -655,6 +687,10 @@ ListOrgDevicesSummary(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -662,6 +698,8 @@ ListOrgDevicesSummary(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseOrgDevicesSummary](../../doc/models/response-org-devices-summary.md).
 
@@ -677,14 +715,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -714,15 +752,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Search Org Device Events
 
-Search Org Devices Events
+Search device event records across the organization with filters for MAC address, model, device type, event text, event type, additional event indices, and time range.
 
 ```go
 SearchOrgDeviceEvents(
@@ -732,7 +770,6 @@ SearchOrgDeviceEvents(
     model *string,
     deviceType *string,
     text *string,
-    timestamp *string,
     mType *string,
     lastBy *string,
     includes *string,
@@ -746,27 +783,32 @@ SearchOrgDeviceEvents(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mac` | `*string` | Query, Optional | Device mac |
-| `model` | `*string` | Query, Optional | Device model |
-| `deviceType` | `*string` | Query, Optional | **Default**: `"ap"` |
-| `text` | `*string` | Query, Optional | Event message |
-| `timestamp` | `*string` | Query, Optional | Event time |
-| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `mac` | `*string` | Query, Optional | Filter results by MAC address. Accepts multiple comma-separated values. |
+| `model` | `*string` | Query, Optional | Filter results by device model. Accepts multiple comma-separated values. |
+| `deviceType` | `*string` | Query, Optional | Filter results by device type. Accepts multiple comma-separated values.<br><br>**Default**: `"ap"` |
+| `text` | `*string` | Query, Optional | Filter results by event message text |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions). Accepts multiple comma-separated values. |
 | `lastBy` | `*string` | Query, Optional | Return last/recent event for passed in field |
 | `includes` | `*string` | Query, Optional | Keyword to include events from additional indices (e.g. ext_tunnel for prisma events) |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceEventsSearch](../../doc/models/response-device-events-search.md).
 
@@ -777,15 +819,15 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mac := "5c5b53010101"
+mac := "5c5b53010101,5c5b53020202"
 
-model := "AP43"
+model := "EX4100-48MP,AP17"
 
-deviceType := "ap"
+deviceType := "switch,ap"
 
 text := "Device connected"
 
-timestamp := "1703003296"
+mType := "SW_PORT_DOWN,AP_CONFIGURED"
 
 lastBy := "port_id"
 
@@ -797,19 +839,19 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &timestamp, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &mType, &lastBy, &includes, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -849,15 +891,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Search Org Device Last Configs
 
-Search Device Last Configs
+Search device config history records across the organization with filters for device type, MAC address, name, software version, certificate-expiry duration, and time range.
 
 ```go
 SearchOrgDeviceLastConfigs(
@@ -878,24 +920,30 @@ SearchOrgDeviceLastConfigs(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `deviceType` | [`*models.LastConfigDeviceTypeEnum`](../../doc/models/last-config-device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
-| `mac` | `*string` | Query, Optional | Device MAC address |
-| `name` | `*string` | Query, Optional | Devices Name |
-| `version` | `*string` | Query, Optional | Device Version |
+| `deviceType` | [`*models.LastConfigDeviceTypeEnum`](../../doc/models/last-config-device-type-enum.md) | Query, Optional | Filter results by device type. enum: `ap`, `gateway`, `switch`, `mxedge`<br><br>**Default**: `"ap"` |
+| `mac` | `*string` | Query, Optional | Filter results by MAC address. Accepts multiple comma-separated values. |
+| `name` | `*string` | Query, Optional | Filter results by name. Accepts multiple comma-separated values. |
+| `version` | `*string` | Query, Optional | Filter results by software version. Accepts multiple comma-separated values. |
 | `certExpiryDuration` | `*string` | Query, Optional | Duration for expiring cert queries (format: 2d/3h/172800 seconds) |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseConfigHistorySearch](../../doc/models/response-config-history-search.md).
 
@@ -908,11 +956,11 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceType := models.LastConfigDeviceTypeEnum_AP
 
-mac := "5c5b53010101"
+mac := "5c5b53010101,5c5b53020202"
 
-name := "My AP"
+name := "name-a,name-b"
 
-version := "10.0.0"
+version := "apfw-0.15.34615-noro-0a3c,apfw-0.15.34436-noro-d810"
 
 certExpiryDuration := "2d"
 
@@ -927,14 +975,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -1019,15 +1067,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Search Org Devices
 
-Search Org Devices
+Search organization devices with filters for AP radio attributes, gateway HA attributes, switch EVPN attributes, LLDP data, MAC address, IP address, model, software version, site, Mist Edge, and time range. Set `stats=true` to include device stats in the response.
 
 ```go
 SearchOrgDevices(
@@ -1079,55 +1127,61 @@ SearchOrgDevices(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `band24Channel` | `*int` | Query, Optional | When `type`==`ap`, Channel of band_24 |
-| `band5Channel` | `*int` | Query, Optional | When `type`==`ap`, Channel of band_5 |
-| `band6Channel` | `*int` | Query, Optional | When `type`==`ap`, Channel of band_6 |
-| `band24Bandwidth` | `*int` | Query, Optional | When `type`==`ap`, Bandwidth of band_24 |
-| `band5Bandwidth` | `*int` | Query, Optional | When `type`==`ap`, Bandwidth of band_5 |
-| `band6Bandwidth` | `*int` | Query, Optional | When `type`==`ap`, Bandwidth of band_6 |
-| `band24Power` | `*int` | Query, Optional | When `type`==`ap`, Power of band_24 |
-| `band5Power` | `*int` | Query, Optional | When `type`==`ap`, Power of band_5 |
-| `band6Power` | `*int` | Query, Optional | When `type`==`ap`, Power of band_6 |
+| `band24Channel` | `*int` | Query, Optional | When `type`==`ap`, Channel of band_24. Accepts multiple comma-separated integer values. |
+| `band5Channel` | `*int` | Query, Optional | When `type`==`ap`, Channel of band_5. Accepts multiple comma-separated integer values. |
+| `band6Channel` | `*int` | Query, Optional | When `type`==`ap`, Channel of band_6. Accepts multiple comma-separated integer values. |
+| `band24Bandwidth` | `*int` | Query, Optional | When `type`==`ap`, Bandwidth of band_24. Accepts multiple comma-separated integer values. |
+| `band5Bandwidth` | `*int` | Query, Optional | When `type`==`ap`, Bandwidth of band_5. Accepts multiple comma-separated integer values. |
+| `band6Bandwidth` | `*int` | Query, Optional | When `type`==`ap`, Bandwidth of band_6. Accepts multiple comma-separated integer values. |
+| `band24Power` | `*int` | Query, Optional | When `type`==`ap`, Power of band_24. Accepts multiple comma-separated integer values. |
+| `band5Power` | `*int` | Query, Optional | When `type`==`ap`, Power of band_5. Accepts multiple comma-separated integer values. |
+| `band6Power` | `*int` | Query, Optional | When `type`==`ap`, Power of band_6. Accepts multiple comma-separated integer values. |
 | `clustered` | `*bool` | Query, Optional | When `type`==`gateway`, true / false |
-| `eth0PortSpeed` | `*int` | Query, Optional | When `type`==`ap`, Port speed of eth0 |
+| `eth0PortSpeed` | `*int` | Query, Optional | When `type`==`ap`, Port speed of eth0. Accepts multiple comma-separated integer values. |
 | `evpntopoId` | `*uuid.UUID` | Query, Optional | When `type`==`switch`, EVPN topology id |
-| `extIp` | `*string` | Query, Optional | Partial / full Device external ip. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `1.2.3.*` and `*.2.3.*` match `1.2.3.4`). Suffix-only wildcards (e.g. `*.2.3.4`) are not supported |
-| `hostname` | `*string` | Query, Optional | Partial / full Device hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `my-london*` and `*london*` match `my-london-1`). Suffix-only wildcards (e.g. `*london-1`) are not supported |
-| `ip` | `*string` | Query, Optional | Partial / full Device IP Address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `10.100.10.*` and `*100.10.*` match `10.100.10.54`). Suffix-only wildcards (e.g. `*.54`) are not supported |
+| `extIp` | `*string` | Query, Optional | Partial / full Device external ip. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `1.2.3.*` and `*.2.3.*` match `1.2.3.4`). Suffix-only wildcards (e.g. `*.2.3.4`) are not supported. Accepts multiple comma-separated values. |
+| `hostname` | `*string` | Query, Optional | Partial / full Device hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `my-london*` and `*london*` match `my-london-1`). Suffix-only wildcards (e.g. `*london-1`) are not supported. Accepts multiple comma-separated values. |
+| `ip` | `*string` | Query, Optional | Partial / full Device IP address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `10.100.10.*` and `*100.10.*` match `10.100.10.54`). Suffix-only wildcards (e.g. `*.54`) are not supported. Accepts multiple comma-separated values. |
 | `lastConfigStatus` | `*string` | Query, Optional | When `type`==`switch` or `type`==`gateway`, last configuration status |
-| `lastHostname` | `*string` | Query, Optional | Last hostname of the device. |
-| `lldpMgmtAddr` | `*string` | Query, Optional | When `type`==`ap`, LLDP management ip address |
-| `lldpPortId` | `*string` | Query, Optional | When `type`==`ap`, LLDP port id. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `ge-0/0/*` and `*-0/0/*` match `ge-0/0/30`). Suffix-only wildcards (e.g. `*switch-01`) are not supported |
+| `lastHostname` | `*string` | Query, Optional | Last hostname of the device. Accepts multiple comma-separated values. |
+| `lldpMgmtAddr` | `*string` | Query, Optional | When `type`==`ap`, LLDP management IP address. Accepts multiple comma-separated values. |
+| `lldpPortId` | `*string` | Query, Optional | When `type`==`ap`, LLDP port id. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `ge-0/0/*` and `*-0/0/*` match `ge-0/0/30`). Suffix-only wildcards (e.g. `*switch-01`) are not supported. Accepts multiple comma-separated values. |
 | `lldpSystemDesc` | `*string` | Query, Optional | When `type`==`ap`, LLDP system description. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `Juniper Networks*` and `*Networks*` match `Juniper Networks, Inc.`). Suffix-only wildcards (e.g. `*switch-01`) are not supported |
-| `lldpSystemName` | `*string` | Query, Optional | When `type`==`ap`, LLDP system name. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `my-switch*` and `*switch*` match `my-switch-01`). Suffix-only wildcards (e.g. `*switch-01`) are not supported |
-| `mac` | `*string` | Query, Optional | Partial / full Device MAC address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `001122*` and `*1122*` match `001122334455`). Suffix-only wildcards (e.g. `*4455`) are not supported |
-| `model` | `*string` | Query, Optional | Partial / full Device model. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `AP4*` and `*P4*` match `AP43`). Suffix-only wildcards (e.g. `*43`) are not supported |
-| `mxedgeId` | `*uuid.UUID` | Query, Optional | When `type`==`ap`, Mist Edge id, if AP is connecting to a Mist Edge |
+| `lldpSystemName` | `*string` | Query, Optional | When `type`==`ap`, LLDP system name. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `my-switch*` and `*switch*` match `my-switch-01`). Suffix-only wildcards (e.g. `*switch-01`) are not supported. Accepts multiple comma-separated values. |
+| `mac` | `*string` | Query, Optional | Partial / full Device MAC address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `001122*` and `*1122*` match `001122334455`). Suffix-only wildcards (e.g. `*4455`) are not supported. Accepts multiple comma-separated values. |
+| `model` | `*string` | Query, Optional | Partial / full Device model. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `AP4*` and `*P4*` match `AP43`). Suffix-only wildcards (e.g. `*43`) are not supported. Accepts multiple comma-separated values. |
+| `mxedgeId` | `*uuid.UUID` | Query, Optional | When `type`==`ap`, Mist Edge id, if AP is connecting to a Mist Edge. Accepts multiple comma-separated values. |
 | `mxedgeIds` | `*string` | Query, Optional | When `type`==`ap`, Comma separated list of Mist Edge id, if AP is connecting to a Mist Edge |
-| `mxtunnelStatus` | [`*models.SearchOrgDevicesMxtunnelStatusEnum`](../../doc/models/search-org-devices-mxtunnel-status-enum.md) | Query, Optional | When `type`==`ap`, MxTunnel status, up / down. |
+| `mxtunnelStatus` | [`*models.SearchOrgDevicesMxtunnelStatusEnum`](../../doc/models/search-org-devices-mxtunnel-status-enum.md) | Query, Optional | When `type`==`ap`, Mist Tunnel status used to filter results. enum: `down`, `up` |
 | `node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Query, Optional | When `type`==`gateway`. enum: `node0`, `node1` |
-| `node0Mac` | `*string` | Query, Optional | When `type`==`gateway`, node0 MAC Address |
-| `node1Mac` | `*string` | Query, Optional | When `type`==`gateway`, node1 MAC Address |
-| `powerConstrained` | `*bool` | Query, Optional | When `type`==`ap`, whether the AP is power constrained |
+| `node0Mac` | `*string` | Query, Optional | When `type`==`gateway`, node0 MAC address |
+| `node1Mac` | `*string` | Query, Optional | When `type`==`gateway`, node1 MAC address |
+| `powerConstrained` | `*bool` | Query, Optional | When `type`==`ap`, whether the AP is power constrained. |
 | `radiusStats` | `*string` | Query, Optional | When `type`==`switch` or `type`==`gateway`, Key-value pairs where the key<br>is the RADIUS server address and the value contains authentication statistics:<br><br>* <server_address> (string): IP address of the RADIUS server as the key<br>* `auth_accepts` (long): Number of accepted authentication requests<br>* `auth_rejects` (long): Number of rejected authentication requests<br>* `auth_timeouts` (long): Number of authentication timeouts<br>* `auth_server_status` (string): Status of the server. Possible values: `up`, `down`, `unreachable` |
-| `siteId` | `*string` | Query, Optional | Site id |
+| `siteId` | `*string` | Query, Optional | Filter results by site identifier |
 | `stats` | `*bool` | Query, Optional | Whether to return device stats<br><br>**Default**: `false` |
 | `t128agentVersion` | `*string` | Query, Optional | When `type`==`gateway` (SSR only), version of 128T agent |
-| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | Type of device. enum: `ap`, `gateway`, `switch`<br><br>**Default**: `"ap"` |
-| `version` | `*string` | Query, Optional | Version |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | Device type used to filter results. enum: `ap`, `gateway`, `switch`<br><br>**Default**: `"ap"` |
+| `version` | `*string` | Query, Optional | Filter results by software version. Accepts multiple comma-separated values. |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceSearch](../../doc/models/response-device-search.md).
 
@@ -1140,17 +1194,25 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 eth0PortSpeed := 100
 
-extIp := "1.2.3.4"
+extIp := "1.2.3.4,1.2.3.*"
 
-hostname := "my-london-1"
+hostname := "my-london-1,my-london*"
 
-ip := "10.100.10.54"
+ip := "10.100.10.54,10.100.10.*"
 
 lastConfigStatus := "success"
 
-mac := "aabbccddeeff"
+lastHostname := "ap-01,ap-02"
 
-model := "AP43"
+lldpMgmtAddr := "192.0.2.10,192.0.2.11"
+
+lldpPortId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+
+lldpSystemName := "richmond-hill-switch,Phoenix_Switch"
+
+mac := "aabbccddeeff,aabbcc*"
+
+model := "AP43,AP4*"
 
 siteId := "7dae216d-7c98-a51b-e068-dd7d477b7216"
 
@@ -1158,25 +1220,27 @@ stats := false
 
 mType := models.DeviceTypeDefaultApEnum_AP
 
+version := "0.15.34615,0.14.29967"
+
 limit := 100
 
 duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &eth0PortSpeed, nil, &extIp, &hostname, &ip, &lastConfigStatus, nil, nil, nil, nil, nil, &mac, &model, nil, nil, nil, nil, nil, nil, nil, nil, &siteId, &stats, nil, &mType, nil, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &eth0PortSpeed, nil, &extIp, &hostname, &ip, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, nil, &lldpSystemName, &mac, &model, nil, nil, nil, nil, nil, nil, nil, nil, &siteId, &stats, nil, &mType, &version, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -1242,8 +1306,8 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 

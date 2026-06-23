@@ -9,14 +9,19 @@ import (
 )
 
 // ResponseSearchVarItem represents a ResponseSearchVarItem struct.
+// Organization variable record returned by search
 type ResponseSearchVarItem struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime         *float64               `json:"modified_time,omitempty"`
-	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-	Src                  *string                `json:"src,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Source scope for the variable, such as `site` or `deviceprofile`
+	Src *string `json:"src,omitempty"`
+	// Name of the variable matched by the search
 	Var                  *string                `json:"var,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

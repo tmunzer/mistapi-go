@@ -10,38 +10,39 @@ import (
 )
 
 // SynthetictestDevice represents a SynthetictestDevice struct.
+// Request body for triggering a synthetic test on a device
 type SynthetictestDevice struct {
-	// If `type`==`lan_connectivity`
+	// If `type`==`lan_connectivity`. Hostname or IP address to probe for LAN connectivity testing
 	Host *string `json:"host,omitempty"`
-	// If `type`==`dns`
+	// If `type`==`dns`. Hostname to resolve during the DNS synthetic test
 	Hostname *string `json:"hostname,omitempty"`
-	// If `type`==`arp`
+	// If `type`==`arp`. IP address to resolve through ARP during the synthetic test
 	Ip *string `json:"ip,omitempty"`
-	// If `type`==`radius`
+	// If `type`==`radius`. Password used for RADIUS authentication testing
 	Password *string `json:"password,omitempty"`
-	// If `type`==`lan_connectivity`
+	// If `type`==`lan_connectivity`. Number of ping probes to send during the LAN connectivity test
 	PingCount *int `json:"ping_count,omitempty"`
-	// If `type`==`lan_connectivity`
+	// If `type`==`lan_connectivity`. Whether to include per-ping results in the LAN connectivity test output
 	PingDetails *bool `json:"ping_details,omitempty"`
-	// If `type`==`lan_connectivity`
+	// If `type`==`lan_connectivity`. Payload size, in bytes, for each ping probe
 	PingSize *int `json:"ping_size,omitempty"`
 	// If `type`==`speedtest`, required for ssr
 	PortId *string `json:"port_id,omitempty"`
-	// if `type`==`lan_connectivity`. enum: `ping`, `traceroute`, `ping+traceroute`
+	// If `type`==`lan_connectivity`. Protocol or protocol combination used by the LAN connectivity test. enum: `ping`, `traceroute`, `ping+traceroute`
 	Protocol *SynthetictestDeviceProtocolEnum `json:"protocol,omitempty"`
 	// If `type`==`curl` or `type`==`lan_connectivity`
 	Tenant *string `json:"tenant,omitempty"`
-	// If `type`==`curl`
+	// If `type`==`curl`. Timeout, in seconds, for the HTTP request
 	Timeout *int `json:"timeout,omitempty"`
 	// SRX only, traceroute udp port
 	TracerouteUdpPort *int `json:"traceroute_udp_port,omitempty"`
 	// enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `lan_connectivity`, `radius`, `speedtest`
 	Type SynthetictestTypeEnum `json:"type"`
-	// If `type`==`curl`
+	// If `type`==`curl`. URL requested during the HTTP synthetic test
 	Url *string `json:"url,omitempty"`
-	// If `type`==`radius`
+	// If `type`==`radius`. Username used for RADIUS authentication testing
 	Username *string `json:"username,omitempty"`
-	// Required for AP
+	// Required for AP. VLAN ID used by the synthetic test when the target device is an AP
 	VlanId               *SynthetictestDeviceVlanId `json:"vlan_id,omitempty"`
 	AdditionalProperties map[string]interface{}     `json:"_"`
 }

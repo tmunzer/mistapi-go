@@ -8,17 +8,17 @@ import (
 )
 
 // GatewayPortConfigIpConfig represents a GatewayPortConfigIpConfig struct.
-// Junos IP Config
+// Junos IP configuration for a gateway port interface
 type GatewayPortConfigIpConfig struct {
 	// Except for out-of_band interface (vme/em0/fxp0)
 	Dns []string `json:"dns,omitempty"`
 	// Except for out-of_band interface (vme/em0/fxp0)
 	DnsSuffix []string `json:"dns_suffix,omitempty"`
-	// Except for out-of_band interface (vme/em0/fxp0). Interface Default Gateway IP Address (i.e. "192.168.1.1") or a Variable (i.e. "{{myvar}}")
+	// Except for out-of_band interface (vme/em0/fxp0). Interface Default Gateway IP address (i.e. "192.168.1.1") or a Variable (i.e. "{{myvar}}")
 	Gateway *string `json:"gateway,omitempty"`
 	// Except for out-of_band interface (vme/em0/fxp0). Interface Default Gateway IPv6 Address (i.e. "2001:db8::1") or a Variable (i.e. "{{myvar}}")
 	Gateway6 *string `json:"gateway6,omitempty"`
-	// Interface IP Address (i.e. "192.168.1.8") or a Variable (i.e. "{{myvar}}")
+	// Interface IP address (i.e. "192.168.1.8") or a Variable (i.e. "{{myvar}}")
 	Ip *string `json:"ip,omitempty"`
 	// Interface IPv6 Address (i.e. "2001:db8::123") or a Variable (i.e. "{{myvar}}")
 	Ip6 *string `json:"ip6,omitempty"`
@@ -28,11 +28,11 @@ type GatewayPortConfigIpConfig struct {
 	Netmask6 *string `json:"netmask6,omitempty"`
 	// Optional, the network to be used for mgmt
 	Network *string `json:"network,omitempty"`
-	// If `type`==`pppoe`
+	// Password used for PPPoE when `type`==`pppoe`
 	PoserPassword *string `json:"poser_password,omitempty"`
 	// if `type`==`pppoe`. enum: `chap`, `none`, `pap`
 	PppoeAuth *GatewayWanPpoeAuthEnum `json:"pppoe_auth,omitempty"`
-	// If `type`==`pppoe`
+	// Username used for PPPoE when `type`==`pppoe`
 	PppoeUsername *string `json:"pppoe_username,omitempty"`
 	// enum: `dhcp`, `pppoe`, `static`
 	Type *GatewayWanTypeEnum `json:"type,omitempty"`

@@ -1,6 +1,8 @@
 
 # Auto Orient
 
+Request options for validating or starting AP auto-orientation
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -17,22 +19,29 @@
 | `Override` | `*bool` | Optional | Set to `true` to run auto orient even if there are invalid APs in the selected APs. |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "force_collection": false,
-  "dryrun": false,
-  "macs": [
-    "macs3",
-    "macs4",
-    "macs5"
-  ],
-  "override": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    autoOrient := models.AutoOrient{
+        Dryrun:               models.ToPointer(false),
+        ForceCollection:      models.ToPointer(false),
+        Macs:                 []string{
+            "macs5",
+            "macs6",
+        },
+        Override:             models.ToPointer(false),
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

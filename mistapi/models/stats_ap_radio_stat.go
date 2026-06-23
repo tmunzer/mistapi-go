@@ -8,12 +8,13 @@ import (
 )
 
 // StatsApRadioStat represents a StatsApRadioStat struct.
+// Per-band radio statistics reported by an AP
 type StatsApRadioStat struct {
-	// Radio stat
+	// Runtime radio statistics for an access point radio
 	Band24 *ApRadioStat `json:"band_24,omitempty"`
-	// Radio stat
+	// Runtime radio statistics for an access point radio
 	Band5 *ApRadioStat `json:"band_5,omitempty"`
-	// Radio stat
+	// Runtime radio statistics for an access point radio
 	Band6                *ApRadioStat           `json:"band_6,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

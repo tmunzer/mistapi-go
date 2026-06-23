@@ -9,14 +9,15 @@ import (
 )
 
 // UpgradeBiosMulti represents a UpgradeBiosMulti struct.
+// BIOS upgrade request for multiple devices
 type UpgradeBiosMulti struct {
-	// List of device id to upgrade bios
+	// Device IDs selected for a multi-device BIOS upgrade
 	DeviceIds []uuid.UUID `json:"device_ids,omitempty"`
-	// List of device model to upgrade bios
+	// Device models selected for a multi-device BIOS upgrade
 	Models []string `json:"models,omitempty"`
-	// Reboot device immediately after upgrade is completed
+	// Whether to restart the selected devices immediately after the upgrade completes
 	Reboot *bool `json:"reboot,omitempty"`
-	// Specific bios version
+	// BIOS version to install on the selected devices
 	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -9,17 +9,22 @@ import (
 )
 
 // ResponseRunningSpectrumAnalysis represents a ResponseRunningSpectrumAnalysis struct.
+// Running spectrum analysis session for a site
 type ResponseRunningSpectrumAnalysis struct {
-	// Band on which the spectrum analysis is running (e.g., 24, 5, 6)
+	// Radio band currently being scanned by spectrum analysis, such as 24, 5, or 6
 	Band *string `json:"band,omitempty"`
+	// List of channels being scanned in the spectrum analysis
+	Channels []int `json:"channels,omitempty"`
 	// Device ID of the AP that is running spectrum analysis
 	DeviceId *uuid.UUID `json:"device_id,omitempty"`
-	// Duration of the spectrum analysis in seconds
+	// Length of the running spectrum analysis session, in seconds
 	Duration *int `json:"duration,omitempty"`
-	// Format of the spectrum analysis data (e.g., json, stream)
+	// Output format for the running spectrum analysis data, such as json or stream
 	Format *string `json:"format,omitempty"`
-	// Time when the spectrum analysis was started
-	StartedTime          *int                   `json:"started_time,omitempty"`
+	// Timestamp when the spectrum analysis was started
+	StartedTime *int `json:"started_time,omitempty"`
+	// Channel width used during the spectrum analysis scan, in MHz
+	Width                *int                   `json:"width,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -27,8 +32,8 @@ type ResponseRunningSpectrumAnalysis struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseRunningSpectrumAnalysis) String() string {
 	return fmt.Sprintf(
-		"ResponseRunningSpectrumAnalysis[Band=%v, DeviceId=%v, Duration=%v, Format=%v, StartedTime=%v, AdditionalProperties=%v]",
-		r.Band, r.DeviceId, r.Duration, r.Format, r.StartedTime, r.AdditionalProperties)
+		"ResponseRunningSpectrumAnalysis[Band=%v, Channels=%v, DeviceId=%v, Duration=%v, Format=%v, StartedTime=%v, Width=%v, AdditionalProperties=%v]",
+		r.Band, r.Channels, r.DeviceId, r.Duration, r.Format, r.StartedTime, r.Width, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseRunningSpectrumAnalysis.
@@ -37,7 +42,7 @@ func (r ResponseRunningSpectrumAnalysis) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"band", "device_id", "duration", "format", "started_time"); err != nil {
+		"band", "channels", "device_id", "duration", "format", "started_time", "width"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -49,6 +54,9 @@ func (r ResponseRunningSpectrumAnalysis) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, r.AdditionalProperties)
 	if r.Band != nil {
 		structMap["band"] = r.Band
+	}
+	if r.Channels != nil {
+		structMap["channels"] = r.Channels
 	}
 	if r.DeviceId != nil {
 		structMap["device_id"] = r.DeviceId
@@ -62,6 +70,9 @@ func (r ResponseRunningSpectrumAnalysis) toMap() map[string]any {
 	if r.StartedTime != nil {
 		structMap["started_time"] = r.StartedTime
 	}
+	if r.Width != nil {
+		structMap["width"] = r.Width
+	}
 	return structMap
 }
 
@@ -73,25 +84,29 @@ func (r *ResponseRunningSpectrumAnalysis) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "device_id", "duration", "format", "started_time")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "channels", "device_id", "duration", "format", "started_time", "width")
 	if err != nil {
 		return err
 	}
 	r.AdditionalProperties = additionalProperties
 
 	r.Band = temp.Band
+	r.Channels = temp.Channels
 	r.DeviceId = temp.DeviceId
 	r.Duration = temp.Duration
 	r.Format = temp.Format
 	r.StartedTime = temp.StartedTime
+	r.Width = temp.Width
 	return nil
 }
 
 // tempResponseRunningSpectrumAnalysis is a temporary struct used for validating the fields of ResponseRunningSpectrumAnalysis.
 type tempResponseRunningSpectrumAnalysis struct {
 	Band        *string    `json:"band,omitempty"`
+	Channels    []int      `json:"channels,omitempty"`
 	DeviceId    *uuid.UUID `json:"device_id,omitempty"`
 	Duration    *int       `json:"duration,omitempty"`
 	Format      *string    `json:"format,omitempty"`
 	StartedTime *int       `json:"started_time,omitempty"`
+	Width       *int       `json:"width,omitempty"`
 }

@@ -8,10 +8,11 @@ import (
 )
 
 // UpgradeBios represents a UpgradeBios struct.
+// BIOS upgrade request for a single device
 type UpgradeBios struct {
-	// Reboot device immediately after upgrade is completed
+	// Whether to restart the device immediately after the upgrade completes
 	Reboot *bool `json:"reboot,omitempty"`
-	// Specific bios version
+	// BIOS version to install on the device
 	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

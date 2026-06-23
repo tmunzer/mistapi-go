@@ -8,10 +8,15 @@ import (
 )
 
 // SearchWanUsage represents a SearchWanUsage struct.
+// Paginated response for WAN usage searches
 type SearchWanUsage struct {
-	End                  *float64               `json:"end,omitempty"`
-	Limit                *int                   `json:"limit,omitempty"`
-	Results              []WanUsages            `json:"results,omitempty"`
+	// Upper bound timestamp of the WAN usage search window, in epoch seconds
+	End *float64 `json:"end,omitempty"`
+	// Maximum number of WAN usage records returned by this page
+	Limit *int `json:"limit,omitempty"`
+	// WAN usage records returned by a search response
+	Results []WanUsages `json:"results,omitempty"`
+	// Lower bound timestamp of the WAN usage search window, in epoch seconds
 	Start                *float64               `json:"start,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

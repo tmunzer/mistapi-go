@@ -18,3 +18,18 @@ use `role`==`none` to remove a switch from the topology. enum: `access`, `collap
 | `esilag-access` |
 | `none` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    evpnTopologySwitchRole := models.EvpnTopologySwitchRoleEnum_ESILAGACCESS
+
+}
+```
+

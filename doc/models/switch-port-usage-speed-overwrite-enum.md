@@ -22,3 +22,18 @@ Port Speed, default is auto to automatically negotiate speed enum: `100m`, `10m`
 | `100g` |
 | `auto` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchPortUsageSpeedOverwrite := models.SwitchPortUsageSpeedOverwriteEnum_ENUM10M
+
+}
+```
+

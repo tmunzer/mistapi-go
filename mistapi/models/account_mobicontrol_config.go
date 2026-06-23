@@ -10,6 +10,7 @@ import (
 )
 
 // AccountMobicontrolConfig represents a AccountMobicontrolConfig struct.
+// MobiControl account credentials used for OAuth application linking
 type AccountMobicontrolConfig struct {
 	// Customer account Client ID
 	ClientId string `json:"client_id"`
@@ -19,7 +20,7 @@ type AccountMobicontrolConfig struct {
 	InstanceUrl string `json:"instance_url"`
 	// Customer account password instance URL
 	Password string `json:"password"`
-	// Customer account username
+	// Login username used to authenticate to the MobiControl account
 	Username             string                 `json:"username"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

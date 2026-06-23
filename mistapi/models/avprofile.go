@@ -11,25 +11,31 @@ import (
 )
 
 // Avprofile represents a Avprofile struct.
+// Antivirus scanning profile with protocols, limits, and whitelist settings
 type Avprofile struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	// enum: `block`, `log-and-permit`, `permit`
+	// Action applied when antivirus scanning cannot complete. enum: `block`, `log-and-permit`, `permit`
 	FallbackAction *AvprofileFallbackActionEnum `json:"fallback_action,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
-	// In KB
-	MaxFilesize   *int     `json:"max_filesize,omitempty"`
+	// Maximum file size scanned by this antivirus profile, in KB
+	MaxFilesize *int `json:"max_filesize,omitempty"`
+	// Unique string values returned or accepted by this schema
 	MimeWhitelist []string `json:"mime_whitelist,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64   `json:"modified_time,omitempty"`
-	Name         string     `json:"name"`
-	OrgId        *uuid.UUID `json:"org_id,omitempty"`
-	// List of protocols to monitor. enum: `ftp`, `http`, `imap`, `pop3`, `smtp`
-	Protocols            []AvprofileProtocolEnum `json:"protocols,omitempty"`
-	SiteId               *uuid.UUID              `json:"site_id,omitempty"`
-	UrlWhitelist         []string                `json:"url_whitelist,omitempty"`
-	AdditionalProperties map[string]interface{}  `json:"_"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Display name of the antivirus profile
+	Name string `json:"name"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// List of network protocols monitored by the antivirus profile. enum: `ftp`, `http`, `imap`, `pop3`, `smtp`
+	Protocols []AvprofileProtocolEnum `json:"protocols,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Unique string values returned or accepted by this schema
+	UrlWhitelist         []string               `json:"url_whitelist,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for Avprofile,

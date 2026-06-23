@@ -26,3 +26,18 @@ enum: `ameriband`, `att`, `boingo`, `charter`, `eduroam`, `global_reach`, `googl
 | `tmobile` |
 | `verizon` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanHotspot20OperatorsItem := models.WlanHotspot20OperatorsItemEnum_BOINGO
+
+}
+```
+

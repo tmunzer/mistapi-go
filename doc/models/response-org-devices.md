@@ -1,6 +1,8 @@
 
 # Response Org Devices
 
+Response containing organization device records
+
 ## Structure
 
 `ResponseOrgDevices`
@@ -9,18 +11,27 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Results` | [`[]models.OrgDevice`](../../doc/models/org-device.md) | Required | **Constraints**: *Unique Items Required* |
+| `Results` | [`[]models.OrgDevice`](../../doc/models/org-device.md) | Required | List of organization device identifiers<br><br>**Constraints**: *Unique Items Required* |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "results": [
-    {
-      "mac": "mac0",
-      "name": "name6"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseOrgDevices := models.ResponseOrgDevices{
+        Results:              []models.OrgDevice{
+            models.OrgDevice{
+                Mac:                  "mac0",
+                Name:                 "name6",
+            },
+        },
     }
-  ]
+
 }
 ```
 

@@ -27,7 +27,7 @@ func NewOrgsSDKTemplates(baseController baseController) *OrgsSDKTemplates {
 // ListSdkTemplates takes context, orgId as parameters and
 // returns an models.ApiResponse with []models.Sdktemplate data and
 // an error if there was an issue with the request or response.
-// Get List of Org SDK Templates
+// List SDK templates configured for the organization. SDK templates define visual customization for the mobile SDK experience, including branding images, colors, header text, and welcome messages.
 func (o *OrgsSDKTemplates) ListSdkTemplates(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -38,19 +38,15 @@ func (o *OrgsSDKTemplates) ListSdkTemplates(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result []models.Sdktemplate
@@ -66,7 +62,7 @@ func (o *OrgsSDKTemplates) ListSdkTemplates(
 // CreateSdkTemplate takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.Sdktemplate data and
 // an error if there was an issue with the request or response.
-// Create SDK Template
+// Create an SDK template that defines visual customization for the mobile SDK experience, including branding images, colors, header text, and welcome messages.
 func (o *OrgsSDKTemplates) CreateSdkTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -78,19 +74,15 @@ func (o *OrgsSDKTemplates) CreateSdkTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -110,7 +102,7 @@ func (o *OrgsSDKTemplates) CreateSdkTemplate(
 // DeleteSdkTemplate takes context, orgId, sdktemplateId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete SDK Template
+// Delete an SDK visual customization template from the organization.
 func (o *OrgsSDKTemplates) DeleteSdkTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -122,19 +114,15 @@ func (o *OrgsSDKTemplates) DeleteSdkTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -147,7 +135,7 @@ func (o *OrgsSDKTemplates) DeleteSdkTemplate(
 // GetSdkTemplate takes context, orgId, sdktemplateId as parameters and
 // returns an models.ApiResponse with models.Sdktemplate data and
 // an error if there was an issue with the request or response.
-// Get SDK Template Details
+// Return the visual customization settings for an SDK template, including branding text, image URLs, colors, default state, and site scope.
 func (o *OrgsSDKTemplates) GetSdkTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -159,19 +147,15 @@ func (o *OrgsSDKTemplates) GetSdkTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.Sdktemplate
@@ -187,7 +171,7 @@ func (o *OrgsSDKTemplates) GetSdkTemplate(
 // UpdateSdkTemplate takes context, orgId, sdktemplateId, body as parameters and
 // returns an models.ApiResponse with models.Sdktemplate data and
 // an error if there was an issue with the request or response.
-// Update SDK Template
+// Update an SDK template's visual customization settings, such as branding images, colors, header text, welcome message, default state, or site association.
 func (o *OrgsSDKTemplates) UpdateSdkTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -200,19 +184,15 @@ func (o *OrgsSDKTemplates) UpdateSdkTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

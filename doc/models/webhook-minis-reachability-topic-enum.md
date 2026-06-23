@@ -1,7 +1,7 @@
 
 # Webhook Minis Reachability Topic Enum
 
-enum: `minis-reachability`
+Webhook topic name for Minis reachability test deliveries. enum: `minis-reachability`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `minis-reachability`
 | Name |
 |  --- |
 | `minis-reachability` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookMinisReachabilityTopic := models.WebhookMinisReachabilityTopicEnum_MINISREACHABILITY
+
+}
+```
 

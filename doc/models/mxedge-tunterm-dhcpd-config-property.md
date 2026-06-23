@@ -1,6 +1,8 @@
 
 # Mxedge Tunterm Dhcpd Config Property
 
+Per-VLAN DHCP relay settings for a Mist Tunneled VLAN
+
 ## Structure
 
 `MxedgeTuntermDhcpdConfigProperty`
@@ -9,20 +11,30 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | **Default**: `false` |
+| `Enabled` | `*bool` | Optional | Whether DHCP relay is enabled for this tunneled VLAN<br><br>**Default**: `false` |
 | `Servers` | `[]string` | Optional | List of DHCP servers; required if `type`==`relay` |
-| `Type` | [`*models.MxedgeTuntermDhcpdConfigTypeEnum`](../../doc/models/mxedge-tunterm-dhcpd-config-type-enum.md) | Optional | enum: `relay`<br><br>**Default**: `"relay"` |
+| `Type` | [`*models.MxedgeTuntermDhcpdConfigTypeEnum`](../../doc/models/mxedge-tunterm-dhcpd-config-type-enum.md) | Optional | DHCP handling mode for this tunneled VLAN. enum: `relay`<br><br>**Default**: `"relay"` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "type": "relay",
-  "servers": [
-    "servers3",
-    "servers4"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxedgeTuntermDhcpdConfigProperty := models.MxedgeTuntermDhcpdConfigProperty{
+        Enabled:              models.ToPointer(false),
+        Servers:              []string{
+            "servers5",
+            "servers6",
+            "servers7",
+        },
+        Type:                 models.ToPointer(models.MxedgeTuntermDhcpdConfigTypeEnum_RELAY),
+    }
+
 }
 ```
 

@@ -27,3 +27,18 @@ required if `type`==`match`. enum: `ap_id`, `app`, `asset_mac`, `client_mac`, `h
 | `sdkclient_uuid` |
 | `wlan_id` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wxlanTagMatch := models.WxlanTagMatchEnum_RADIUSCLASS
+
+}
+```
+

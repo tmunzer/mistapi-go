@@ -8,7 +8,7 @@ import (
 )
 
 // OrgSettingMistNacFingerprinting represents a OrgSettingMistNacFingerprinting struct.
-// Allows customer to enable client fingerprinting for policy enforcement
+// Client fingerprinting settings used for Mist NAC policy enforcement
 type OrgSettingMistNacFingerprinting struct {
 	// enable/disable writes to NAC DDB fingerprint table
 	Enabled *bool `json:"enabled,omitempty"`
@@ -16,7 +16,7 @@ type OrgSettingMistNacFingerprinting struct {
 	GenerateCoa *bool `json:"generate_coa,omitempty"`
 	// enable/disable CoA triggers on fingerprint change for wireless clients
 	GenerateWirelessCoa *bool `json:"generate_wireless_coa,omitempty"`
-	// enum: `reauth`, `disconnect`
+	// Change of Authorization action sent to wireless clients when fingerprints change. enum: `reauth`, `disconnect`
 	WirelessCoaType      *OrgSettingMistNacFingerprintingWirelessCoaEnum `json:"wireless_coa_type,omitempty"`
 	AdditionalProperties map[string]interface{}                          `json:"_"`
 }

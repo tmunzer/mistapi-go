@@ -8,6 +8,7 @@ import (
 )
 
 // ServicePacket represents a ServicePacket struct.
+// Service data packet observed from an asset or beacon
 type ServicePacket struct {
 	// ata from service data
 	ServiceData *string `json:"service_data,omitempty"`

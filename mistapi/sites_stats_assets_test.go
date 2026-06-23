@@ -21,7 +21,7 @@ func TestSitesStatsAssetsTestListSiteAssetsStats(t *testing.T) {
 	duration := "1d"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := sitesStatsAssets.ListSiteAssetsStats(ctx, siteId, nil, nil, &duration, &limit, &page)
+	apiResponse, err := sitesStatsAssets.ListSiteAssetsStats(ctx, siteId, nil, nil, nil, &duration, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -45,7 +45,7 @@ func TestSitesStatsAssetsTestListSiteAssetsStats1(t *testing.T) {
 	duration := "1d"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := sitesStatsAssets.ListSiteAssetsStats(ctx, siteId, nil, nil, &duration, &limit, &page)
+	apiResponse, err := sitesStatsAssets.ListSiteAssetsStats(ctx, siteId, nil, nil, nil, &duration, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

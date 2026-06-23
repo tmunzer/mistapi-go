@@ -23,10 +23,10 @@ func NewSitesClientsNAC(baseController baseController) *SitesClientsNAC {
 	return &sitesClientsNAC
 }
 
-// CountSiteNacClients takes context, siteId, distinct, lastNacruleId, nacruleMatched, authType, lastVlanId, lastNasVendor, idpId, lastSsid, lastUsername, timestamp, lastAp, mac, lastStatus, mType, mdmComplianceStatus, mdmProvider, start, end, duration, limit as parameters and
+// CountSiteNacClients takes context, siteId, distinct, lastNacruleId, nacruleMatched, authType, lastVlanId, lastNasVendor, idpId, lastSsid, lastUsername, lastAp, mac, lastStatus, mType, mdmComplianceStatus, mdmProvider, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of NAC Clients
+// Count NAC clients for a site, optionally grouped by the `distinct` field and filtered by authentication, identity, endpoint, network, and time attributes. Use [Count Org NAC Clients]($e/Orgs%20Clients%20-%20NAC/countOrgNacClients) to count NAC clients across the organization.
 func (s *SitesClientsNAC) CountSiteNacClients(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -39,7 +39,6 @@ func (s *SitesClientsNAC) CountSiteNacClients(
 	idpId *string,
 	lastSsid *string,
 	lastUsername *string,
-	timestamp *float64,
 	lastAp *string,
 	mac *string,
 	lastStatus *string,
@@ -57,19 +56,15 @@ func (s *SitesClientsNAC) CountSiteNacClients(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -97,9 +92,6 @@ func (s *SitesClientsNAC) CountSiteNacClients(
 	}
 	if lastUsername != nil {
 		req.QueryParam("last_username", *lastUsername)
-	}
-	if timestamp != nil {
-		req.QueryParam("timestamp", *timestamp)
 	}
 	if lastAp != nil {
 		req.QueryParam("last_ap", *lastAp)
@@ -145,7 +137,7 @@ func (s *SitesClientsNAC) CountSiteNacClients(
 // CountSiteNacClientEvents takes context, siteId, distinct, mType, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of NAC Client-Events
+// Count NAC client events for a site, optionally grouped by the `distinct` field and filtered by event type and time range. Use [Count Org NAC Client Events]($e/Orgs%20Clients%20-%20NAC/countOrgNacClientEvents) to count NAC client events across the organization.
 func (s *SitesClientsNAC) CountSiteNacClientEvents(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -162,19 +154,15 @@ func (s *SitesClientsNAC) CountSiteNacClientEvents(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -205,10 +193,10 @@ func (s *SitesClientsNAC) CountSiteNacClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteNacClientEvents takes context, siteId, mType, nacruleId, nacruleMatched, dryrunNacruleId, dryrunNacruleMatched, authType, vlan, nasVendor, bssid, idpId, idpRole, idpUsername, respAttrs, ssid, username, ap, randomMac, mac, timestamp, usermacLabel, text, nasIp, ingressVlan, start, end, duration, limit, sort, searchAfter as parameters and
+// SearchSiteNacClientEvents takes context, siteId, mType, nacruleId, nacruleMatched, dryrunNacruleId, dryrunNacruleMatched, authType, vlan, nasVendor, bssid, idpId, idpRole, idpUsername, respAttrs, ssid, username, ap, randomMac, mac, usermacLabel, text, nasIp, ingressVlan, start, end, duration, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseEventsNacClientSearch data and
 // an error if there was an issue with the request or response.
-// Search NAC Client Events
+// Search NAC client events for a site with filters for authentication, NAC rule, identity provider, RADIUS, network, endpoint, and time attributes. Use [Search Org NAC Client Events]($e/Orgs%20Clients%20-%20NAC/searchOrgNacClientEvents) to search NAC client events across the organization.
 func (s *SitesClientsNAC) SearchSiteNacClientEvents(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -230,7 +218,6 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
 	ap *string,
 	randomMac *bool,
 	mac *string,
-	timestamp *float64,
 	usermacLabel *string,
 	text *string,
 	nasIp *string,
@@ -248,19 +235,15 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if mType != nil {
 		req.QueryParam("type", *mType)
@@ -316,9 +299,6 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
 	if mac != nil {
 		req.QueryParam("mac", *mac)
 	}
-	if timestamp != nil {
-		req.QueryParam("timestamp", *timestamp)
-	}
 	if usermacLabel != nil {
 		req.QueryParam("usermac_label", *usermacLabel)
 	}
@@ -360,10 +340,10 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteNacClients takes context, siteId, ap, authType, certExpiryDuration, edrManaged, edrProvider, edrStatus, family, hostname, idpId, mac, mdmCompliance, mdmProvider, mdmManaged, mfg, model, nacruleName, nacruleId, nacruleMatched, nasVendor, nasIp, ingressVlan, os, ssid, status, text, timestamp, mType, usermacLabel, username, vlan, limit, start, end, duration, sort, searchAfter as parameters and
+// SearchSiteNacClients takes context, siteId, ap, authType, certExpiryDuration, edrManaged, edrProvider, edrStatus, family, hostname, idpId, mac, mdmCompliance, mdmProvider, mdmManaged, mfg, model, nacruleName, nacruleId, nacruleMatched, nasVendor, nasIp, ingressVlan, os, ssid, status, text, mType, usermacLabel, username, vlan, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseClientNacSearch data and
 // an error if there was an issue with the request or response.
-// Search Site NAC Clients
+// Search NAC clients for a site with filters for authentication, endpoint posture, identity, network, NAC rule, and time attributes. Use [Search Org NAC Clients]($e/Orgs%20Clients%20-%20NAC/searchOrgNacClients) to search NAC clients across the organization.
 func (s *SitesClientsNAC) SearchSiteNacClients(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -392,7 +372,6 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
 	ssid *string,
 	status *models.NacClientLastStatusEnum,
 	text *string,
-	timestamp *float64,
 	mType *string,
 	usermacLabel []string,
 	username *string,
@@ -410,19 +389,15 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if ap != nil {
 		req.QueryParam("ap", *ap)
@@ -499,9 +474,6 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
 	if text != nil {
 		req.QueryParam("text", *text)
 	}
-	if timestamp != nil {
-		req.QueryParam("timestamp", *timestamp)
-	}
 	if mType != nil {
 		req.QueryParam("type", *mType)
 	}
@@ -559,19 +531,15 @@ func (s *SitesClientsNAC) SendSiteNacClientCoA(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

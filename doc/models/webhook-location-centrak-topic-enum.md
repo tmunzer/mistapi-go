@@ -1,7 +1,7 @@
 
 # Webhook Location Centrak Topic Enum
 
-enum: `location-centrak`
+Webhook topic name for CenTrak location deliveries. enum: `location-centrak`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `location-centrak`
 | Name |
 |  --- |
 | `location-centrak` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookLocationCentrakTopic := models.WebhookLocationCentrakTopicEnum_LOCATIONCENTRAK
+
+}
+```
 

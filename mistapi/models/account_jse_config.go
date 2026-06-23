@@ -10,9 +10,13 @@ import (
 )
 
 // AccountJseConfig represents a AccountJseConfig struct.
+// Juniper Security Exchange account credentials used for integration
 type AccountJseConfig struct {
-	CloudName            *string                `json:"cloud_name,omitempty"`
-	Password             string                 `json:"password"`
+	// JSE cloud hostname used for the integration
+	CloudName *string `json:"cloud_name,omitempty"`
+	// Credential password for the JSE integration user
+	Password string `json:"password"`
+	// JSE integration username with access to service location, site, and IPsec profile APIs
 	Username             string                 `json:"username"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

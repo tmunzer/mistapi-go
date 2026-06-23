@@ -12,7 +12,7 @@ import (
 // AccountSentineloneConfig represents a AccountSentineloneConfig struct.
 // OAuth linked CrowdStrike apps account details
 type AccountSentineloneConfig struct {
-	// Customer account api_token
+	// Access token used to authenticate to the SentinelOne account
 	ApiToken string `json:"api_token"`
 	// Customer account SentinelOne instance URL
 	InstanceUrl          string                 `json:"instance_url"`

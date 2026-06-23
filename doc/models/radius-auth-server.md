@@ -1,7 +1,7 @@
 
 # Radius Auth Server
 
-Authentication Server
+RADIUS authentication server settings
 
 ## Structure
 
@@ -11,27 +11,36 @@ Authentication Server
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Host` | `string` | Required | IP/ hostname of RADIUS server |
-| `KeywrapEnabled` | `*bool` | Optional | - |
-| `KeywrapFormat` | [`*models.RadiusKeywrapFormatEnum`](../../doc/models/radius-keywrap-format-enum.md) | Optional | enum: `ascii`, `hex` |
-| `KeywrapKek` | `*string` | Optional | - |
-| `KeywrapMack` | `*string` | Optional | - |
-| `Port` | [`*models.RadiusAuthPort`](../../doc/models/containers/radius-auth-port.md) | Optional | Radius Auth Port, value from 1 to 65535, default is 1812 |
+| `Host` | `string` | Required | Address or hostname of the RADIUS authentication server |
+| `KeywrapEnabled` | `*bool` | Optional | Whether RADIUS keywrap is enabled for messages sent to this authentication server |
+| `KeywrapFormat` | [`*models.RadiusKeywrapFormatEnum`](../../doc/models/radius-keywrap-format-enum.md) | Optional | Encoding format for RADIUS keywrap KEK and MACK values. enum: `ascii`, `hex` |
+| `KeywrapKek` | `*string` | Optional | RADIUS keywrap key encryption key (KEK) |
+| `KeywrapMack` | `*string` | Optional | RADIUS keywrap message authentication code key (MACK) |
+| `Port` | [`*models.RadiusAuthPort`](../../doc/models/containers/radius-auth-port.md) | Optional | RADIUS Auth Port, value from 1 to 65535, default is 1812 |
 | `RequireMessageAuthenticator` | `*bool` | Optional | Whether to require Message-Authenticator in requests<br><br>**Default**: `false` |
-| `Secret` | `string` | Required | Secret of RADIUS server |
+| `Secret` | `string` | Required | Shared secret used with this RADIUS authentication server |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "host": "1.2.3.4",
-  "keywrap_kek": "1122334455",
-  "keywrap_mack": "1122334455",
-  "require_message_authenticator": false,
-  "secret": "testing123",
-  "keywrap_enabled": false,
-  "keywrap_format": "ascii",
-  "port": 150
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    radiusAuthServer := models.RadiusAuthServer{
+        Host:                        "1.2.3.4",
+        KeywrapEnabled:              models.ToPointer(false),
+        KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum_ASCII),
+        KeywrapKek:                  models.ToPointer("1122334455"),
+        KeywrapMack:                 models.ToPointer("1122334455"),
+        Port:                        models.ToPointer(models.RadiusAuthPortContainer.FromNumber(182)),
+        RequireMessageAuthenticator: models.ToPointer(false),
+        Secret:                      "testing123",
+    }
+
 }
 ```
 

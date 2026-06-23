@@ -8,7 +8,7 @@ import (
 )
 
 // SiteZoneOccupancyAlert represents a SiteZoneOccupancyAlert struct.
-// Zone Occupancy alert site settings
+// Zone occupancy alert settings for a site
 type SiteZoneOccupancyAlert struct {
 	// List of email addresses to send email notifications when the alert threshold is reached
 	EmailNotifiers []string `json:"email_notifiers,omitempty"`

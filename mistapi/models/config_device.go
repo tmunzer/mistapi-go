@@ -9,6 +9,7 @@ import (
 )
 
 // ConfigDevice represents a ConfigDevice struct.
+// Device configuration object for an AP, switch, or gateway
 type ConfigDevice struct {
 	value           any
 	isDeviceAp      bool
@@ -87,6 +88,7 @@ func (c *ConfigDevice) AsDeviceGateway() (
 }
 
 // internalConfigDevice represents a configDevice struct.
+// Device configuration object for an AP, switch, or gateway
 type internalConfigDevice struct{}
 
 var ConfigDeviceContainer internalConfigDevice

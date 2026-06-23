@@ -11,13 +11,17 @@ import (
 )
 
 // WebhookOccupancyAlertsEvent represents a WebhookOccupancyAlertsEvent struct.
+// Site-level occupancy alert batch containing one or more zone alerts
 type WebhookOccupancyAlertsEvent struct {
 	// List of occupancy alerts for non-compliance zones within the site detected around the same time
-	AlertEvents          []WebhookOccupancyAlertsEventAlertEventsItems `json:"alert_events,omitempty"`
-	ForSite              *bool                                         `json:"for_site,omitempty"`
-	SiteId               uuid.UUID                                     `json:"site_id"`
-	SiteName             string                                        `json:"site_name"`
-	AdditionalProperties map[string]interface{}                        `json:"_"`
+	AlertEvents []WebhookOccupancyAlertsEventAlertEventsItems `json:"alert_events,omitempty"`
+	// Whether this occupancy alert batch is scoped to a site rather than only to the organization
+	ForSite *bool `json:"for_site,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId uuid.UUID `json:"site_id"`
+	// Site name associated with the occupancy alert batch
+	SiteName             string                 `json:"site_name"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookOccupancyAlertsEvent,

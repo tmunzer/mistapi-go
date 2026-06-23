@@ -8,12 +8,13 @@ import (
 )
 
 // OrgSettingJcloud represents a OrgSettingJcloud struct.
+// JCloud integration settings for this Mist organization
 type OrgSettingJcloud struct {
-	// JCloud Org Token
+	// JCloud organization API token used by this Mist organization
 	OrgApitoken *string `json:"org_apitoken,omitempty"`
-	// JCloud Org Token Name
+	// Display name for the JCloud organization API token
 	OrgApitokenName *string `json:"org_apitoken_name,omitempty"`
-	// JCloud Org ID
+	// JCloud organization identifier linked to this Mist organization
 	OrgId                *string                `json:"org_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

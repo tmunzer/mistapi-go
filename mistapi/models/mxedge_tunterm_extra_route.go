@@ -8,7 +8,9 @@ import (
 )
 
 // MxedgeTuntermExtraRoute represents a MxedgeTuntermExtraRoute struct.
+// Extra route for Mist Tunnel traffic on a Mist Edge
 type MxedgeTuntermExtraRoute struct {
+	// Next-hop IP address for this Mist Tunnel extra route
 	Via                  *string                `json:"via,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

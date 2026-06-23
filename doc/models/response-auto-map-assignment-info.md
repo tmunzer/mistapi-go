@@ -1,6 +1,8 @@
 
 # Response Auto Map Assignment Info
 
+Auto map assignment status response
+
 ## Structure
 
 `ResponseAutoMapAssignmentInfo`
@@ -15,15 +17,24 @@
 | `StopTime` | `*float64` | Optional | Only when `status`==`completed`, Unix timestamp when auto map assignment stopped |
 | `TimeUpdated` | `*float64` | Optional | Unix timestamp when status was last updated |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "est_time_left": 164.66,
-  "start_time": 135.86,
-  "status": "completed",
-  "stop_time": 188.64,
-  "time_updated": 207.0
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseAutoMapAssignmentInfo := models.ResponseAutoMapAssignmentInfo{
+        EstTimeLeft:          models.ToPointer(float64(78.96)),
+        StartTime:            models.ToPointer(float64(148.24)),
+        Status:               models.ResponseAutoMapAssignmentInfoStatusEnum_NOTSTARTED,
+        StopTime:             models.ToPointer(float64(201.02)),
+        TimeUpdated:          models.ToPointer(float64(219.38)),
+    }
+
 }
 ```
 

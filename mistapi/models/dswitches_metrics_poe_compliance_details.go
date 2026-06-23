@@ -10,8 +10,11 @@ import (
 )
 
 // DswitchesMetricsPoeComplianceDetails represents a DswitchesMetricsPoeComplianceDetails struct.
+// Detail values used by the discovered-switch PoE compliance metric
 type DswitchesMetricsPoeComplianceDetails struct {
-	TotalAps             int                    `json:"total_aps"`
+	// Number of APs evaluated for PoE compliance
+	TotalAps int `json:"total_aps"`
+	// Aggregate AP PoE power demand across evaluated APs, in mW
 	TotalPower           float64                `json:"total_power"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -12,9 +12,9 @@ import (
 // WebhookLocationAsset represents a WebhookLocationAsset struct.
 // Sample of the `location_asset` webhook payload.
 type WebhookLocationAsset struct {
-	// List of events
+	// Asset location events included in this webhook delivery
 	Events []WebhookLocationAssetEvent `json:"events"`
-	// enum: `location-asset`
+	// Webhook topic name for asset location deliveries. enum: `location-asset`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -15,3 +15,18 @@ enum: `auth_method`, `company`, `ssid`
 | `company` |
 | `ssid` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteGuestsCountDistinct := models.SiteGuestsCountDistinctEnum_SSID
+
+}
+```
+

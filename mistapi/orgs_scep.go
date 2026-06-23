@@ -27,7 +27,7 @@ func NewOrgsSCEP(baseController baseController) *OrgsSCEP {
 // DisableOrgMistScep takes context, orgId as parameters and
 // returns an models.ApiResponse with models.OrgSettingScepResponse data and
 // an error if there was an issue with the request or response.
-// Disable Mist SCEP Org setting
+// Disable Mist SCEP for the organization and return the updated read-only SCEP settings.
 func (o *OrgsSCEP) DisableOrgMistScep(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -38,19 +38,15 @@ func (o *OrgsSCEP) DisableOrgMistScep(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.OrgSettingScepResponse
@@ -66,7 +62,7 @@ func (o *OrgsSCEP) DisableOrgMistScep(
 // GetOrgMistScep takes context, orgId as parameters and
 // returns an models.ApiResponse with models.OrgSettingScepResponse data and
 // an error if there was an issue with the request or response.
-// Get Mist SCEP Org setting
+// Return Mist SCEP settings for the organization, including enabled and suspended status, configured certificate providers, and generated enrollment or webhook URLs.
 func (o *OrgsSCEP) GetOrgMistScep(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -77,19 +73,15 @@ func (o *OrgsSCEP) GetOrgMistScep(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.OrgSettingScepResponse
@@ -105,7 +97,7 @@ func (o *OrgsSCEP) GetOrgMistScep(
 // UpdateOrgMistScep takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.OrgSettingScepResponse data and
 // an error if there was an issue with the request or response.
-// Update Mist SCEP Org setting
+// Update Mist SCEP settings for the organization, including enabled state, suspension state, and certificate providers.
 func (o *OrgsSCEP) UpdateOrgMistScep(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -117,19 +109,15 @@ func (o *OrgsSCEP) UpdateOrgMistScep(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -146,16 +134,21 @@ func (o *OrgsSCEP) UpdateOrgMistScep(
 	return models.NewApiResponse(result, resp), err
 }
 
-// ListOrgIssuedClientCertificates takes context, orgId, ssoNameId, serialNumber, deviceId as parameters and
+// ListOrgIssuedClientCertificates takes context, orgId, commonName, certProvider, serialNumber, deviceId, expireTime, createdTime, limit, page as parameters and
 // returns an models.ApiResponse with models.IssuedClientCertificatesResults data and
 // an error if there was an issue with the request or response.
-// Get Issued Client Certificates
+// List Mist SCEP client certificates issued for the organization. Results can be filtered by common name, certificate provider, serial number, device ID, or time range.
 func (o *OrgsSCEP) ListOrgIssuedClientCertificates(
 	ctx context.Context,
 	orgId uuid.UUID,
-	ssoNameId *string,
+	commonName *string,
+	certProvider *string,
 	serialNumber *string,
-	deviceId *string) (
+	deviceId *string,
+	expireTime *int,
+	createdTime *int,
+	limit *int,
+	page *int) (
 	models.ApiResponse[models.IssuedClientCertificatesResults],
 	error) {
 	req := o.prepareRequest(
@@ -167,28 +160,39 @@ func (o *OrgsSCEP) ListOrgIssuedClientCertificates(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
-	if ssoNameId != nil {
-		req.QueryParam("sso_name_id", *ssoNameId)
+	if commonName != nil {
+		req.QueryParam("common_name", *commonName)
+	}
+	if certProvider != nil {
+		req.QueryParam("cert_provider", *certProvider)
 	}
 	if serialNumber != nil {
 		req.QueryParam("serial_number", *serialNumber)
 	}
 	if deviceId != nil {
 		req.QueryParam("device_id", *deviceId)
+	}
+	if expireTime != nil {
+		req.QueryParam("expire_time", *expireTime)
+	}
+	if createdTime != nil {
+		req.QueryParam("created_time", *createdTime)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
 	}
 
 	var result models.IssuedClientCertificatesResults
@@ -204,7 +208,7 @@ func (o *OrgsSCEP) ListOrgIssuedClientCertificates(
 // RevokeOrgIssuedClientCertificates takes context, orgId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Revoke Issued Client Certificates
+// Revoke issued Mist SCEP client certificates by certificate serial number.
 func (o *OrgsSCEP) RevokeOrgIssuedClientCertificates(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -220,19 +224,15 @@ func (o *OrgsSCEP) RevokeOrgIssuedClientCertificates(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

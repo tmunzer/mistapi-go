@@ -8,6 +8,7 @@ import (
 )
 
 // SwitchStpConfig represents a SwitchStpConfig struct.
+// Switch spanning-tree protocol configuration
 type SwitchStpConfig struct {
 	// Switch STP priority. Range [0, 4k, 8k.. 60k] in steps of 4k. Bridge priority applies to both VSTP and RSTP.
 	BridgePriority       *string                `json:"bridge_priority,omitempty"`

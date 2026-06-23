@@ -8,6 +8,7 @@ import (
 )
 
 // ResponsePcapStatusMxedgesItem represents a ResponsePcapStatusMxedgesItem struct.
+// Mist Edge interface settings for a packet capture
 type ResponsePcapStatusMxedgesItem struct {
 	// Dict of interfaces to capture on, property key is the port name
 	Interfaces           map[string]CaptureMxedgeMxedgesInterfaces `json:"interfaces,omitempty"`

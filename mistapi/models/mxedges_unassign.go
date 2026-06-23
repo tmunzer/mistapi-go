@@ -11,7 +11,9 @@ import (
 )
 
 // MxedgesUnassign represents a MxedgesUnassign struct.
+// Request to unassign Mist Edges from their site
 type MxedgesUnassign struct {
+	// Mist Edge identifiers to unassign from their site
 	MxedgeIds            []uuid.UUID            `json:"mxedge_ids"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

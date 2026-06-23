@@ -16,14 +16,23 @@ E911 AP BSSID report status for the organization
 | `Status` | [`*models.OrgE911ReportStatusEnum`](../../doc/models/org-e911-report-status-enum.md) | Optional | Current status of E911 report generation. enum: `disabled`, `scheduled`, `available` |
 | `Url` | `*string` | Optional | Presigned URL to download the CSV file. Only present when `status` is `available`. |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "detail": "detail2",
-  "last_generated": 248,
-  "status": "available",
-  "url": "url0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgE911Report := models.OrgE911Report{
+        Detail:               models.ToPointer("detail2"),
+        LastGenerated:        models.ToPointer(16),
+        Status:               models.ToPointer(models.OrgE911ReportStatusEnum_AVAILABLE),
+        Url:                  models.ToPointer("url0"),
+    }
+
 }
 ```
 

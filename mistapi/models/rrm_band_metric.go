@@ -10,6 +10,7 @@ import (
 )
 
 // RrmBandMetric represents a RrmBandMetric struct.
+// Aggregate RRM metrics for a radio band
 type RrmBandMetric struct {
 	// Average number of APs per channel
 	AvgApsPerChannel *float64 `json:"avg_aps_per_channel,omitempty"`

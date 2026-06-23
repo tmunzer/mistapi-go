@@ -9,7 +9,7 @@ import (
 )
 
 // MxedgeTuntermIgmpSnoopingConfigVlanIds represents a MxedgeTuntermIgmpSnoopingConfigVlanIds struct.
-// List of vlans on which tunterm performs IGMP snooping
+// List of VLAN IDs where tunnel termination performs IGMP snooping
 type MxedgeTuntermIgmpSnoopingConfigVlanIds struct {
 	value           any
 	isArrayOfNumber bool
@@ -75,7 +75,7 @@ func (m *MxedgeTuntermIgmpSnoopingConfigVlanIds) AsString() (
 }
 
 // internalMxedgeTuntermIgmpSnoopingConfigVlanIds represents a mxedgeTuntermIgmpSnoopingConfigVlanIds struct.
-// List of vlans on which tunterm performs IGMP snooping
+// List of VLAN IDs where tunnel termination performs IGMP snooping
 type internalMxedgeTuntermIgmpSnoopingConfigVlanIds struct{}
 
 var MxedgeTuntermIgmpSnoopingConfigVlanIdsContainer internalMxedgeTuntermIgmpSnoopingConfigVlanIds

@@ -8,9 +8,13 @@ import (
 )
 
 // MapWayfindingMicello represents a MapWayfindingMicello struct.
+// Micello wayfinding integration settings
 type MapWayfindingMicello struct {
-	AccountKey           *string                `json:"account_key,omitempty"`
-	DefaultLevelId       *int                   `json:"default_level_id,omitempty"`
+	// Micello account key used for wayfinding
+	AccountKey *string `json:"account_key,omitempty"`
+	// Default Micello floor or level identifier for wayfinding
+	DefaultLevelId *int `json:"default_level_id,omitempty"`
+	// Micello map identifier used for wayfinding
 	MapId                *string                `json:"map_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

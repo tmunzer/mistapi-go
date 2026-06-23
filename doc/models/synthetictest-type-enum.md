@@ -20,3 +20,18 @@ enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `lan_connectivity`, `radius`, `spee
 | `radius` |
 | `speedtest` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    synthetictestType := models.SynthetictestTypeEnum_ARP
+
+}
+```
+

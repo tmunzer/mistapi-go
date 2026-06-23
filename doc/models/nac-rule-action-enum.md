@@ -1,7 +1,7 @@
 
 # Nac Rule Action Enum
 
-enum: `allow`, `block`
+Allow or block decision applied when the NAC rule matches. enum: `allow`, `block`
 
 ## Enumeration
 
@@ -16,7 +16,16 @@ enum: `allow`, `block`
 
 ## Example
 
-```
-allow
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    nacRuleAction := models.NacRuleActionEnum_ALLOW
+
+}
 ```
 

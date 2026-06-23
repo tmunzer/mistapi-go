@@ -27,7 +27,7 @@ func NewOrgsIntegrationCradlepoint(baseController baseController) *OrgsIntegrati
 // DeleteOrgCradlepointConnection takes context, orgId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// This deletes the Cradlepoint integration in Mist
+// Remove the Cradlepoint integration configuration from the organization.
 func (o *OrgsIntegrationCradlepoint) DeleteOrgCradlepointConnection(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -42,19 +42,15 @@ func (o *OrgsIntegrationCradlepoint) DeleteOrgCradlepointConnection(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -67,7 +63,7 @@ func (o *OrgsIntegrationCradlepoint) DeleteOrgCradlepointConnection(
 // TestOrgCradlepointConnection takes context, orgId as parameters and
 // returns an models.ApiResponse with models.TestCradlepoint data and
 // an error if there was an issue with the request or response.
-// This tests the Cradlepoint integration in Mist
+// Test the current Cradlepoint integration configuration and return whether the most recent integration status is active or inactive.
 func (o *OrgsIntegrationCradlepoint) TestOrgCradlepointConnection(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -78,19 +74,15 @@ func (o *OrgsIntegrationCradlepoint) TestOrgCradlepointConnection(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.TestCradlepoint
@@ -106,7 +98,7 @@ func (o *OrgsIntegrationCradlepoint) TestOrgCradlepointConnection(
 // SetupOrgCradlepointConnectionToMist takes context, orgId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// This sets up cradlepoint webhooks to send events to Mist
+// Configure the Cradlepoint integration by storing Cradlepoint API and ECM credentials and setting up Cradlepoint webhooks to send events to Mist.
 func (o *OrgsIntegrationCradlepoint) SetupOrgCradlepointConnectionToMist(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -118,19 +110,15 @@ func (o *OrgsIntegrationCradlepoint) SetupOrgCradlepointConnectionToMist(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -147,7 +135,7 @@ func (o *OrgsIntegrationCradlepoint) SetupOrgCradlepointConnectionToMist(
 // UpdateOrgCradlepointConnectionToMist takes context, orgId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// This updates the Cradlepoint integration settings in Mist
+// Update the stored Cradlepoint API and ECM credentials and the LLDP-based device linking option used by Mist.
 func (o *OrgsIntegrationCradlepoint) UpdateOrgCradlepointConnectionToMist(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -159,19 +147,15 @@ func (o *OrgsIntegrationCradlepoint) UpdateOrgCradlepointConnectionToMist(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -188,7 +172,7 @@ func (o *OrgsIntegrationCradlepoint) UpdateOrgCradlepointConnectionToMist(
 // SyncOrgCradlepointRouters takes context, orgId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// This syncs cradlepoint devices with Mist. We’ll also attempt to use the LLDP data from cradlepoint to identify the linkage against Mist Site / Device
+// Trigger a Cradlepoint device synchronization with Mist. When LLDP linking is enabled, Mist also uses Cradlepoint LLDP data to associate routers with Mist sites and devices.
 func (o *OrgsIntegrationCradlepoint) SyncOrgCradlepointRouters(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -199,19 +183,15 @@ func (o *OrgsIntegrationCradlepoint) SyncOrgCradlepointRouters(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()

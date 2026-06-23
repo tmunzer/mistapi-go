@@ -13,21 +13,25 @@ import (
 // CaptureRadiotap represents a CaptureRadiotap struct.
 // Initiate a Radiotap Packet Capture
 type CaptureRadiotap struct {
+	// AP MAC address used to target the radiotap packet capture
 	ApMac *string `json:"ap_mac,omitempty"`
 	// enum: `24`, `24,5,6`, `5`, `6`
-	Band      *CaptureRadiotapBandEnum `json:"band,omitempty"`
-	ClientMac *string                  `json:"client_mac,omitempty"`
+	Band *CaptureRadiotapBandEnum `json:"band,omitempty"`
+	// Client MAC address used to filter the radiotap packet capture
+	ClientMac *string `json:"client_mac,omitempty"`
 	// Duration of the capture, in seconds
 	Duration Optional[int] `json:"duration"`
-	// enum: `pcap`, `stream`
-	Format    *CaptureRadiotapFormatEnum `json:"format,omitempty"`
-	MaxPktLen Optional[int]              `json:"max_pkt_len"`
+	// Output format for the radiotap packet capture. enum: `pcap`, `stream`
+	Format *CaptureRadiotapFormatEnum `json:"format,omitempty"`
+	// Maximum bytes captured from each packet, or null to use the default
+	MaxPktLen Optional[int] `json:"max_pkt_len"`
 	// number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
 	NumPackets Optional[int] `json:"num_packets"`
-	Ssid       *string       `json:"ssid,omitempty"`
-	// tcpdump expression
+	// Wireless network SSID used to filter the radiotap packet capture
+	Ssid *string `json:"ssid,omitempty"`
+	// tcpdump filter expression applied to packet capture traffic
 	TcpdumpExpression Optional[string] `json:"tcpdump_expression"`
-	// enum: `radiotap`
+	// Packet capture type discriminator for radiotap captures. enum: `radiotap`
 	Type string `json:"type"`
 	// WLAN id associated with the respective ssid.
 	WlanId               *uuid.UUID             `json:"wlan_id,omitempty"`

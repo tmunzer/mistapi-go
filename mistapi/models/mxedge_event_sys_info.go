@@ -8,8 +8,11 @@ import (
 )
 
 // MxedgeEventSysInfo represents a MxedgeEventSysInfo struct.
+// System resource details for a Mist Edge event
 type MxedgeEventSysInfo struct {
-	Resource             *string                `json:"resource,omitempty"`
+	// System resource referenced by the event
+	Resource *string `json:"resource,omitempty"`
+	// Severity level for an event. enum: `normal`, `critical`, `high`, `warning`
 	Severity             *EventSeverityEnum     `json:"severity,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

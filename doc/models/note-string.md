@@ -1,6 +1,8 @@
 
 # Note String
 
+Request body containing a note value
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -14,15 +16,23 @@
 | `Note` | `*string` | Optional | Some text note describing the intent |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "note": "maintenance window",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    noteString := models.NoteString{
+        Note:                 models.ToPointer("maintenance window"),
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

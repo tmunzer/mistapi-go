@@ -11,7 +11,9 @@ import (
 )
 
 // Alarms represents a Alarms struct.
+// Alarm identifiers and optional note used for bulk alarm state changes
 type Alarms struct {
+	// List of alarm identifiers
 	AlarmIds []uuid.UUID `json:"alarm_ids"`
 	// Some text note describing the intent
 	Note                 *string                `json:"note,omitempty"`

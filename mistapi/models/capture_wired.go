@@ -12,17 +12,19 @@ import (
 // CaptureWired represents a CaptureWired struct.
 // Initiate a Wired Packet Capture
 type CaptureWired struct {
+	// AP MAC address used to target the wired packet capture
 	ApMac Optional[string] `json:"ap_mac"`
 	// Duration of the capture, in seconds
 	Duration Optional[int] `json:"duration"`
 	// pcap format. enum: `pcap`, `stream`
-	Format    *CaptureWiredFormatEnum `json:"format,omitempty"`
-	MaxPktLen Optional[int]           `json:"max_pkt_len"`
+	Format *CaptureWiredFormatEnum `json:"format,omitempty"`
+	// Maximum bytes captured from each packet, or null to use the default
+	MaxPktLen Optional[int] `json:"max_pkt_len"`
 	// number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
 	NumPackets Optional[int] `json:"num_packets"`
-	// tcpdump expression
+	// tcpdump filter expression applied to packet capture traffic
 	TcpdumpExpression Optional[string] `json:"tcpdump_expression"`
-	// enum: `wired`
+	// Packet capture type discriminator for wired captures. enum: `wired`
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

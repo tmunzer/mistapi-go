@@ -25,8 +25,8 @@ func NewConstantsEvents(baseController baseController) *ConstantsEvents {
 // ListAlarmDefinitions takes context as parameters and
 // returns an models.ApiResponse with []models.ConstAlarmDefinition data and
 // an error if there was an issue with the request or response.
-// Get List of brief definitions of all the supported alarm types. The example field contains an example payload as you would receive in the alarm webhook output.
-// HA cluster node names will be specified in the `node` field, if applicable.
+// Return alarm type definitions used by alarm search results, alarm templates, and the `alarm` webhook topic. The `example` field shows representative webhook payload content.
+// HA cluster node names are returned in the `node` field, when applicable.
 func (c *ConstantsEvents) ListAlarmDefinitions(ctx context.Context) (
 	models.ApiResponse[[]models.ConstAlarmDefinition],
 	error) {
@@ -35,19 +35,15 @@ func (c *ConstantsEvents) ListAlarmDefinitions(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstAlarmDefinition
 	decoder, resp, err := req.CallAsJson()
@@ -62,7 +58,7 @@ func (c *ConstantsEvents) ListAlarmDefinitions(ctx context.Context) (
 // ListClientEventsDefinitions takes context as parameters and
 // returns an models.ApiResponse with []models.ConstEvent data and
 // an error if there was an issue with the request or response.
-// Get List of List of available Client Events
+// Return client event definitions used by client event search and count APIs, including event keys and metadata.
 func (c *ConstantsEvents) ListClientEventsDefinitions(ctx context.Context) (
 	models.ApiResponse[[]models.ConstEvent],
 	error) {
@@ -71,19 +67,15 @@ func (c *ConstantsEvents) ListClientEventsDefinitions(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstEvent
 	decoder, resp, err := req.CallAsJson()
@@ -98,7 +90,7 @@ func (c *ConstantsEvents) ListClientEventsDefinitions(ctx context.Context) (
 // ListDeviceEventsDefinitions takes context as parameters and
 // returns an models.ApiResponse with []models.ConstEvent data and
 // an error if there was an issue with the request or response.
-// Get list of available Device Events
+// Return device event definitions used by device event search and count APIs and the `device-events` webhook topic, including event keys and metadata.
 func (c *ConstantsEvents) ListDeviceEventsDefinitions(ctx context.Context) (
 	models.ApiResponse[[]models.ConstEvent],
 	error) {
@@ -107,19 +99,15 @@ func (c *ConstantsEvents) ListDeviceEventsDefinitions(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstEvent
 	decoder, resp, err := req.CallAsJson()
@@ -134,7 +122,7 @@ func (c *ConstantsEvents) ListDeviceEventsDefinitions(ctx context.Context) (
 // ListMxEdgeEventsDefinitions takes context as parameters and
 // returns an models.ApiResponse with []models.ConstEvent data and
 // an error if there was an issue with the request or response.
-// Get List of available MX Edge Events
+// Return Mist Edge event definitions used by Mist Edge event search and count APIs, and `mexedge-events` webhook topic.
 func (c *ConstantsEvents) ListMxEdgeEventsDefinitions(ctx context.Context) (
 	models.ApiResponse[[]models.ConstEvent],
 	error) {
@@ -143,19 +131,15 @@ func (c *ConstantsEvents) ListMxEdgeEventsDefinitions(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstEvent
 	decoder, resp, err := req.CallAsJson()
@@ -170,7 +154,7 @@ func (c *ConstantsEvents) ListMxEdgeEventsDefinitions(ctx context.Context) (
 // ListNacEventsDefinitions takes context as parameters and
 // returns an models.ApiResponse with []models.ConstNacEvent data and
 // an error if there was an issue with the request or response.
-// Get List of List of available NAC Client Events
+// Return NAC client event definitions used by NAC client event search and count APIs, and `nac-events` webhook topic.
 func (c *ConstantsEvents) ListNacEventsDefinitions(ctx context.Context) (
 	models.ApiResponse[[]models.ConstNacEvent],
 	error) {
@@ -179,19 +163,15 @@ func (c *ConstantsEvents) ListNacEventsDefinitions(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstNacEvent
 	decoder, resp, err := req.CallAsJson()
@@ -206,7 +186,7 @@ func (c *ConstantsEvents) ListNacEventsDefinitions(ctx context.Context) (
 // ListOtherDeviceEventsDefinitions takes context as parameters and
 // returns an models.ApiResponse with []models.ConstEvent data and
 // an error if there was an issue with the request or response.
-// Supported Events Type
+// Return event definitions for other or third-party devices managed or monitored by Mist.
 func (c *ConstantsEvents) ListOtherDeviceEventsDefinitions(ctx context.Context) (
 	models.ApiResponse[[]models.ConstEvent],
 	error) {
@@ -215,19 +195,15 @@ func (c *ConstantsEvents) ListOtherDeviceEventsDefinitions(ctx context.Context) 
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstEvent
 	decoder, resp, err := req.CallAsJson()
@@ -242,7 +218,7 @@ func (c *ConstantsEvents) ListOtherDeviceEventsDefinitions(ctx context.Context) 
 // ListSystemEventsDefinitions takes context as parameters and
 // returns an models.ApiResponse with []models.ConstEvent data and
 // an error if there was an issue with the request or response.
-// Get List of List of available System Events
+// Return system event definitions used by system event search APIs.
 func (c *ConstantsEvents) ListSystemEventsDefinitions(ctx context.Context) (
 	models.ApiResponse[[]models.ConstEvent],
 	error) {
@@ -251,19 +227,15 @@ func (c *ConstantsEvents) ListSystemEventsDefinitions(ctx context.Context) (
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	var result []models.ConstEvent
 	decoder, resp, err := req.CallAsJson()

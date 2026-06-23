@@ -9,17 +9,29 @@ import (
 )
 
 // StatsCall represents a StatsCall struct.
+// Statistics record for a detected collaboration call, such as Zoom or Teams
 type StatsCall struct {
-	App                  *string                `json:"app,omitempty"`
-	AudioQuality         *int                   `json:"audio_quality,omitempty"`
-	EndTime              *int                   `json:"end_time,omitempty"`
-	Mac                  *string                `json:"mac,omitempty"`
-	MeetingId            *string                `json:"meeting_id,omitempty"`
-	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-	Rating               *int                   `json:"rating,omitempty"`
-	ScreenShareQuality   *int                   `json:"screen_share_quality,omitempty"`
-	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-	StartTime            *int                   `json:"start_time,omitempty"`
+	// Third-party collaboration application that reported the call statistics
+	App *string `json:"app,omitempty"`
+	// Quality score reported for the call audio stream
+	AudioQuality *int `json:"audio_quality,omitempty"`
+	// Time when the call ended, in epoch seconds
+	EndTime *int `json:"end_time,omitempty"`
+	// Client MAC address associated with the call statistics record
+	Mac *string `json:"mac,omitempty"`
+	// Collaboration meeting identifier reported for the call
+	MeetingId *string `json:"meeting_id,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Overall call rating reported by the collaboration application, when available
+	Rating *int `json:"rating,omitempty"`
+	// Quality score reported for screen sharing during the call
+	ScreenShareQuality *int `json:"screen_share_quality,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Time when the call started, in epoch seconds
+	StartTime *int `json:"start_time,omitempty"`
+	// Quality score reported for the call video stream
 	VideoQuality         *int                   `json:"video_quality,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

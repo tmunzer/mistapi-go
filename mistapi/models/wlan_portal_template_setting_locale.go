@@ -8,6 +8,7 @@ import (
 )
 
 // WlanPortalTemplateSettingLocale represents a WlanPortalTemplateSettingLocale struct.
+// Localized portal template strings for a specific language
 type WlanPortalTemplateSettingLocale struct {
 	// Label for Amazon auth button
 	AuthButtonAmazon *string `json:"authButtonAmazon,omitempty"`
@@ -27,28 +28,37 @@ type WlanPortalTemplateSettingLocale struct {
 	AuthButtonSms *string `json:"authButtonSms,omitempty"`
 	// Label for Sponsor auth button
 	AuthButtonSponsor *string `json:"authButtonSponsor,omitempty"`
-	AuthLabel         *string `json:"authLabel,omitempty"`
+	// Localized heading text displayed above portal authentication options
+	AuthLabel *string `json:"authLabel,omitempty"`
 	// Label of the link to go back to /logon
 	BackLink *string `json:"backLink,omitempty"`
 	// Error message when company not provided
 	CompanyError *string `json:"companyError,omitempty"`
-	// Label of company field
+	// Localized label displayed for the company input field
 	CompanyLabel *string `json:"companyLabel,omitempty"`
 	// Error message when a user has valid social login but doesn't match specified email domains.
 	EmailAccessDomainError *string `json:"emailAccessDomainError,omitempty"`
 	// Label for cancel confirmation code submission using email auth
-	EmailCancel         *string `json:"emailCancel,omitempty"`
-	EmailCodeCancel     *string `json:"emailCodeCancel,omitempty"`
-	EmailCodeError      *string `json:"emailCodeError,omitempty"`
+	EmailCancel *string `json:"emailCancel,omitempty"`
+	// Localized link text for requesting help when the email access code was not received
+	EmailCodeCancel *string `json:"emailCodeCancel,omitempty"`
+	// Localized error message shown when the alternate email address for access-code delivery is invalid
+	EmailCodeError *string `json:"emailCodeError,omitempty"`
+	// Localized label for the email access-code input field
 	EmailCodeFieldLabel *string `json:"emailCodeFieldLabel,omitempty"`
-	EmailCodeMessage    *string `json:"emailCodeMessage,omitempty"`
-	EmailCodeSubmit     *string `json:"emailCodeSubmit,omitempty"`
-	EmailCodeTitle      *string `json:"emailCodeTitle,omitempty"`
+	// Localized instructional text shown before entering the email access code
+	EmailCodeMessage *string `json:"emailCodeMessage,omitempty"`
+	// Localized button label for submitting the email access code
+	EmailCodeSubmit *string `json:"emailCodeSubmit,omitempty"`
+	// Localized title shown on the email access-code entry page
+	EmailCodeTitle *string `json:"emailCodeTitle,omitempty"`
 	// Error message when email not provided
-	EmailError      *string `json:"emailError,omitempty"`
+	EmailError *string `json:"emailError,omitempty"`
+	// Localized label for the email address input field
 	EmailFieldLabel *string `json:"emailFieldLabel,omitempty"`
-	// Label of email field
-	EmailLabel   *string `json:"emailLabel,omitempty"`
+	// Localized label displayed for the email input field
+	EmailLabel *string `json:"emailLabel,omitempty"`
+	// Localized instructional text explaining email access-code delivery
 	EmailMessage *string `json:"emailMessage,omitempty"`
 	// Label for confirmation code submit button using email auth
 	EmailSubmit *string `json:"emailSubmit,omitempty"`
@@ -56,19 +66,19 @@ type WlanPortalTemplateSettingLocale struct {
 	EmailTitle *string `json:"emailTitle,omitempty"`
 	// Error message when field1 not provided
 	Field1Error *string `json:"field1Error,omitempty"`
-	// Label of field1
+	// Localized label for custom field 1 input
 	Field1Label *string `json:"field1Label,omitempty"`
 	// Error message when field2 not provided
 	Field2Error *string `json:"field2Error,omitempty"`
-	// Label of field2
+	// Localized label for custom field 2 input
 	Field2Label *string `json:"field2Label,omitempty"`
 	// Error message when field3 not provided
 	Field3Error *string `json:"field3Error,omitempty"`
-	// Label of field3
+	// Localized label for custom field 3 input
 	Field3Label *string `json:"field3Label,omitempty"`
 	// Error message when field4 not provided
 	Field4Error *string `json:"field4Error,omitempty"`
-	// Label of field4
+	// Localized label for custom field 4 input
 	Field4Label *string `json:"field4Label,omitempty"`
 	// label of the link to go to /marketing_policy
 	MarketingPolicyLink *string `json:"marketingPolicyLink,omitempty"`
@@ -76,22 +86,25 @@ type WlanPortalTemplateSettingLocale struct {
 	MarketingPolicyOptIn *bool `json:"marketingPolicyOptIn,omitempty"`
 	// label for marketing optin
 	MarketingPolicyOptInLabel *string `json:"marketingPolicyOptInLabel,omitempty"`
-	// marketing policy text
+	// Localized text of the marketing policy opt-in content
 	MarketingPolicyOptInText *string `json:"marketingPolicyOptInText,omitempty"`
-	Message                  *string `json:"message,omitempty"`
+	// Localized main message displayed on the guest portal sign-in page
+	Message *string `json:"message,omitempty"`
 	// Error message when name not provided
 	NameError *string `json:"nameError,omitempty"`
-	// Label of name field
+	// Localized label displayed for the name input field
 	NameLabel *string `json:"nameLabel,omitempty"`
 	// Label for Do Not Store My Personal Information
 	OptoutLabel *string `json:"optoutLabel,omitempty"`
-	PageTitle   *string `json:"pageTitle,omitempty"`
+	// Localized browser or page title shown for the guest portal
+	PageTitle *string `json:"pageTitle,omitempty"`
 	// Label for the Passphrase cancel button
 	PassphraseCancel *string `json:"passphraseCancel,omitempty"`
 	// Error message when invalid passphrase is provided
 	PassphraseError *string `json:"passphraseError,omitempty"`
-	// Passphrase
-	PassphraseLabel   *string `json:"passphraseLabel,omitempty"`
+	// Localized label for the passphrase input field
+	PassphraseLabel *string `json:"passphraseLabel,omitempty"`
+	// Localized instructional text shown on the passphrase sign-in page
 	PassphraseMessage *string `json:"passphraseMessage,omitempty"`
 	// Label for the Passphrase submit button
 	PassphraseSubmit *string `json:"passphraseSubmit,omitempty"`
@@ -105,52 +118,71 @@ type WlanPortalTemplateSettingLocale struct {
 	PrivacyPolicyLink *string `json:"privacyPolicyLink,omitempty"`
 	// Text of the Privacy Policy
 	PrivacyPolicyText *string `json:"privacyPolicyText,omitempty"`
-	// Label to denote required field
+	// Localized text used to mark a form field as required
 	RequiredFieldLabel *string `json:"requiredFieldLabel,omitempty"`
 	// Label of the button to signin
-	SignInLabel       *string `json:"signInLabel,omitempty"`
+	SignInLabel *string `json:"signInLabel,omitempty"`
+	// Localized default option text shown in the SMS carrier selector
 	SmsCarrierDefault *string `json:"smsCarrierDefault,omitempty"`
-	SmsCarrierError   *string `json:"smsCarrierError,omitempty"`
+	// Localized error message shown when no mobile carrier is selected
+	SmsCarrierError *string `json:"smsCarrierError,omitempty"`
 	// Label for mobile carrier drop-down list
 	SmsCarrierFieldLabel *string `json:"smsCarrierFieldLabel,omitempty"`
 	// Label for cancel confirmation code submission
 	SmsCodeCancel *string `json:"smsCodeCancel,omitempty"`
 	// Error message when confirmation code is invalid
-	SmsCodeError      *string `json:"smsCodeError,omitempty"`
+	SmsCodeError *string `json:"smsCodeError,omitempty"`
+	// Localized label for the SMS confirmation-code input field
 	SmsCodeFieldLabel *string `json:"smsCodeFieldLabel,omitempty"`
-	SmsCodeMessage    *string `json:"smsCodeMessage,omitempty"`
+	// Localized instructional text shown before entering the SMS access code
+	SmsCodeMessage *string `json:"smsCodeMessage,omitempty"`
 	// Label for confirmation code submit button
-	SmsCodeSubmit        *string `json:"smsCodeSubmit,omitempty"`
-	SmsCodeTitle         *string `json:"smsCodeTitle,omitempty"`
+	SmsCodeSubmit *string `json:"smsCodeSubmit,omitempty"`
+	// Localized title shown on the SMS access-code entry page
+	SmsCodeTitle *string `json:"smsCodeTitle,omitempty"`
+	// Localized label for the SMS country-code input field
 	SmsCountryFieldLabel *string `json:"smsCountryFieldLabel,omitempty"`
-	SmsCountryFormat     *string `json:"smsCountryFormat,omitempty"`
+	// Localized example country code format shown for SMS authentication
+	SmsCountryFormat *string `json:"smsCountryFormat,omitempty"`
 	// Label for checkbox to specify that the user has access code
 	SmsHaveAccessCode *string `json:"smsHaveAccessCode,omitempty"`
 	// Format of access code sms message. {{code}} and {{duration}} are placeholders and should be retained as is.
 	SmsMessageFormat *string `json:"smsMessageFormat,omitempty"`
 	// Label for canceling mobile details for SMS auth
 	SmsNumberCancel *string `json:"smsNumberCancel,omitempty"`
-	SmsNumberError  *string `json:"smsNumberError,omitempty"`
+	// Localized error message shown when the mobile number is invalid
+	SmsNumberError *string `json:"smsNumberError,omitempty"`
 	// Label for field to provide mobile number
 	SmsNumberFieldLabel *string `json:"smsNumberFieldLabel,omitempty"`
-	SmsNumberFormat     *string `json:"smsNumberFormat,omitempty"`
-	SmsNumberMessage    *string `json:"smsNumberMessage,omitempty"`
+	// Localized example mobile number format shown for SMS authentication
+	SmsNumberFormat *string `json:"smsNumberFormat,omitempty"`
+	// Localized instructional text explaining SMS access-code delivery
+	SmsNumberMessage *string `json:"smsNumberMessage,omitempty"`
 	// Label for submit button for code generation
 	SmsNumberSubmit *string `json:"smsNumberSubmit,omitempty"`
 	// Title for phone number details
-	SmsNumberTitle    *string `json:"smsNumberTitle,omitempty"`
+	SmsNumberTitle *string `json:"smsNumberTitle,omitempty"`
+	// Localized example username format shown for SMS authentication
 	SmsUsernameFormat *string `json:"smsUsernameFormat,omitempty"`
-	SponsorBackLink   *string `json:"sponsorBackLink,omitempty"`
-	SponsorCancel     *string `json:"sponsorCancel,omitempty"`
+	// Localized link text for returning to edit the sponsor request form
+	SponsorBackLink *string `json:"sponsorBackLink,omitempty"`
+	// Localized button label for canceling sponsor authentication
+	SponsorCancel *string `json:"sponsorCancel,omitempty"`
 	// Label for Sponsor Email
-	SponsorEmail        *string `json:"sponsorEmail,omitempty"`
-	SponsorEmailError   *string `json:"sponsorEmailError,omitempty"`
+	SponsorEmail *string `json:"sponsorEmail,omitempty"`
+	// Localized error message shown when the sponsor email address is invalid
+	SponsorEmailError *string `json:"sponsorEmailError,omitempty"`
+	// Localized status message prefix shown when a sponsor approves the request
 	SponsorInfoApproved *string `json:"sponsorInfoApproved,omitempty"`
-	SponsorInfoDenied   *string `json:"sponsorInfoDenied,omitempty"`
-	SponsorInfoPending  *string `json:"sponsorInfoPending,omitempty"`
+	// Localized status message prefix shown when a sponsor denies the request
+	SponsorInfoDenied *string `json:"sponsorInfoDenied,omitempty"`
+	// Localized status message prefix shown after a sponsor notification is sent
+	SponsorInfoPending *string `json:"sponsorInfoPending,omitempty"`
 	// Label for Sponsor Name
-	SponsorName        *string `json:"sponsorName,omitempty"`
-	SponsorNameError   *string `json:"sponsorNameError,omitempty"`
+	SponsorName *string `json:"sponsorName,omitempty"`
+	// Localized error message shown when the sponsor name is missing
+	SponsorNameError *string `json:"sponsorNameError,omitempty"`
+	// Localized additional status text shown while sponsor approval is pending
 	SponsorNotePending *string `json:"sponsorNotePending,omitempty"`
 	// Submit button label request Wifi Access and notify sponsor about guest request
 	SponsorRequestAccess *string `json:"sponsorRequestAccess,omitempty"`
@@ -161,8 +193,10 @@ type WlanPortalTemplateSettingLocale struct {
 	// Text to display if request is still pending
 	SponsorStatusPending *string `json:"sponsorStatusPending,omitempty"`
 	// Submit button label to notify sponsor about guest request
-	SponsorSubmit      *string `json:"sponsorSubmit,omitempty"`
-	SponsorsError      *string `json:"sponsorsError,omitempty"`
+	SponsorSubmit *string `json:"sponsorSubmit,omitempty"`
+	// Localized error message shown when no sponsor is selected
+	SponsorsError *string `json:"sponsorsError,omitempty"`
+	// Localized label for the sponsor selection field
 	SponsorsFieldLabel *string `json:"sponsorsFieldLabel,omitempty"`
 	// Prefix of the label of the link to go to tos
 	TosAcceptLabel *string `json:"tosAcceptLabel,omitempty"`

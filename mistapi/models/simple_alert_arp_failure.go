@@ -8,10 +8,13 @@ import (
 )
 
 // SimpleAlertArpFailure represents a SimpleAlertArpFailure struct.
+// Thresholds for ARP failure heuristic alerts
 type SimpleAlertArpFailure struct {
+	// Number of distinct clients that must encounter ARP failures before alerting
 	ClientCount *int `json:"client_count,omitempty"`
-	// failing within minutes
-	Duration             *int                   `json:"duration,omitempty"`
+	// Time window in minutes for evaluating ARP failures
+	Duration *int `json:"duration,omitempty"`
+	// Number of ARP failure incidents required within the duration window
 	IncidentCount        *int                   `json:"incident_count,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

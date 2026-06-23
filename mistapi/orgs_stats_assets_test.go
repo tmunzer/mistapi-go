@@ -109,12 +109,22 @@ func TestOrgsStatsAssetsTestSearchOrgAssets(t *testing.T) {
 		t.Error(errUUID)
 	}
 
+	mac := "5c5b53010101,5c5b53020202"
+
+	name := "name-a,name-b"
+
+	ibeaconUuid := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+	ibeaconMajor := "59788,902"
+	ibeaconMinor := "8385,4432"
+
+	apMac := "5c5b53010101,5c5b53020202"
+
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsStatsAssets.SearchOrgAssets(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsStatsAssets.SearchOrgAssets(ctx, orgId, nil, &mac, nil, &name, nil, &ibeaconUuid, &ibeaconMajor, &ibeaconMinor, nil, nil, nil, &apMac, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -135,12 +145,22 @@ func TestOrgsStatsAssetsTestSearchOrgAssets1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
+	mac := "5c5b53010101,5c5b53020202"
+
+	name := "name-a,name-b"
+
+	ibeaconUuid := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+	ibeaconMajor := "59788,902"
+	ibeaconMinor := "8385,4432"
+
+	apMac := "5c5b53010101,5c5b53020202"
+
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsStatsAssets.SearchOrgAssets(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsStatsAssets.SearchOrgAssets(ctx, orgId, nil, &mac, nil, &name, nil, &ibeaconUuid, &ibeaconMajor, &ibeaconMinor, nil, nil, nil, &apMac, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

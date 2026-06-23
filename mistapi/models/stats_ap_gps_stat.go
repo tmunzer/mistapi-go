@@ -8,6 +8,7 @@ import (
 )
 
 // StatsApGpsStat represents a StatsApGpsStat struct.
+// GPS location data reported by an AP
 type StatsApGpsStat struct {
 	// The estimated accuracy or accuracy of the GPS coordinates, measured in meters.
 	Accuracy *float64 `json:"accuracy,omitempty"`
@@ -19,7 +20,7 @@ type StatsApGpsStat struct {
 	Longitude *float64 `json:"longitude,omitempty"`
 	// The origin of the GPS data. enum: `gps`: from this device GPS estimates, `other_ap` from neighboring device GPS estimates. Note: API responses may return `other_aps` which should be treated as `other_ap`
 	Src *StatsApGpsStatSrcEnum `json:"src,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp            *float64               `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

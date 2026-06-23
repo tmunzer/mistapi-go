@@ -10,7 +10,9 @@ import (
 )
 
 // CodeString represents a CodeString struct.
+// Request body containing a single authorization or claim code
 type CodeString struct {
+	// Request-supplied authorization or claim code value
 	Code                 string                 `json:"code"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

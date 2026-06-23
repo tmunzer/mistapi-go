@@ -9,6 +9,7 @@ import (
 )
 
 // OrgSettingMistNacIdp represents a OrgSettingMistNacIdp struct.
+// Mist NAC identity provider realm mapping
 type OrgSettingMistNacIdp struct {
 	// When the IDP of mxedge_proxy type, exclude the following realms from proxying in addition to other valid home realms in this org
 	ExcludeRealms []string `json:"exclude_realms,omitempty"`

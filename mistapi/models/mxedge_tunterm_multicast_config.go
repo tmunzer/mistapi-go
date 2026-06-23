@@ -8,8 +8,11 @@ import (
 )
 
 // MxedgeTuntermMulticastConfig represents a MxedgeTuntermMulticastConfig struct.
+// Multicast forwarding settings for tunnel termination
 type MxedgeTuntermMulticastConfig struct {
-	Mdns                 *MxedgeTuntermMulticastMdns `json:"mdns,omitempty"`
+	// mDNS forwarding settings for tunnel termination
+	Mdns *MxedgeTuntermMulticastMdns `json:"mdns,omitempty"`
+	// SSDP forwarding settings for tunnel termination
 	Ssdp                 *MxedgeTuntermMulticastSsdp `json:"ssdp,omitempty"`
 	AdditionalProperties map[string]interface{}      `json:"_"`
 }

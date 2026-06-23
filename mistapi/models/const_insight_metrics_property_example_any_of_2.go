@@ -9,6 +9,7 @@ import (
 )
 
 // ConstInsightMetricsPropertyExampleAnyOf2 represents a ConstInsightMetricsPropertyExampleAnyOf2 struct.
+// Example values for an insight metric property, as an array or keyed object
 type ConstInsightMetricsPropertyExampleAnyOf2 struct {
 	value                                             any
 	isArrayOfConstInsightMetricsPropertyExample       bool
@@ -74,6 +75,7 @@ func (c *ConstInsightMetricsPropertyExampleAnyOf2) AsMapOfArrayOfConstInsightMet
 }
 
 // internalConstInsightMetricsPropertyExampleAnyOf2 represents a constInsightMetricsPropertyExampleAnyOf2 struct.
+// Example values for an insight metric property, as an array or keyed object
 type internalConstInsightMetricsPropertyExampleAnyOf2 struct{}
 
 var ConstInsightMetricsPropertyExampleAnyOf2Container internalConstInsightMetricsPropertyExampleAnyOf2

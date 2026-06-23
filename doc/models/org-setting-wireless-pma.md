@@ -1,6 +1,8 @@
 
 # Org Setting Wireless Pma
 
+PMA feature settings for Wireless Assurance
+
 ## Structure
 
 `OrgSettingWirelessPma`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | **Default**: `true` |
+| `Enabled` | `*bool` | Optional | Whether PMA is enabled for Wireless Assurance<br><br>**Default**: `true` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": true
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingWirelessPma := models.OrgSettingWirelessPma{
+        Enabled:              models.ToPointer(true),
+    }
+
 }
 ```
 

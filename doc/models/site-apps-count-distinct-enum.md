@@ -22,3 +22,18 @@ enum: `ap`, `app`, `category`, `device_mac`, `port_id`, `service`, `src_ip`, `ss
 | `wcid` |
 | `wlan_id app` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteAppsCountDistinct := models.SiteAppsCountDistinctEnum_WCID
+
+}
+```
+

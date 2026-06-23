@@ -10,14 +10,21 @@ import (
 )
 
 // EventFastroam represents a EventFastroam struct.
+// Fast-roaming event observed for a wireless client
 type EventFastroam struct {
-	ApMac     string  `json:"ap_mac"`
-	ClientMac string  `json:"client_mac"`
-	Fromap    string  `json:"fromap"`
-	Latency   float64 `json:"latency"`
-	Ssid      string  `json:"ssid"`
-	Subtype   *string `json:"subtype,omitempty"`
-	// Epoch (seconds)
+	// Destination AP MAC address for the roam
+	ApMac string `json:"ap_mac"`
+	// Roaming client MAC address for the event
+	ClientMac string `json:"client_mac"`
+	// Source AP MAC address reported for the roam
+	Fromap string `json:"fromap"`
+	// Roaming latency measured for the client event, in seconds
+	Latency float64 `json:"latency"`
+	// Wireless network SSID involved in the roam
+	Ssid string `json:"ssid"`
+	// Detailed roaming event subtype
+	Subtype *string `json:"subtype,omitempty"`
+	// Epoch timestamp, in seconds
 	Timestamp float64 `json:"timestamp"`
 	// enum: `fail`, `none`, `pingpong`, `poor`, `slow`, `success`
 	Type                 *EventFastroamTypeEnum `json:"type,omitempty"`

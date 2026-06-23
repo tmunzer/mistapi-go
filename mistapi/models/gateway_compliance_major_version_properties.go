@@ -8,8 +8,11 @@ import (
 )
 
 // GatewayComplianceMajorVersionProperties represents a GatewayComplianceMajorVersionProperties struct.
+// Version-compliance details for one gateway model
 type GatewayComplianceMajorVersionProperties struct {
-	MajorCount           *int                   `json:"major_count,omitempty"`
+	// Number of gateways counted in this major-version compliance entry
+	MajorCount *int `json:"major_count,omitempty"`
+	// Gateway software major version represented by this compliance entry
 	MajorVersion         *string                `json:"major_version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -16,14 +16,23 @@ If `transform` is provided, all the locations of the objects on the map (AP, Zon
 | `X` | `*float64` | Optional | Where the (0, 0) of the new image is relative to the original map<br><br>**Default**: `0` |
 | `Y` | `*float64` | Optional | Where the (0, 0) of the new image is relative to the original map<br><br>**Default**: `0` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "rotation": 0.0,
-  "scale": 0.98,
-  "x": 3.16,
-  "y": 12.0
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mapSiteReplaceFileJsonTransform := models.MapSiteReplaceFileJsonTransform{
+        Rotation:             models.ToPointer(float64(0)),
+        Scale:                models.ToPointer(float64(0.98)),
+        X:                    models.ToPointer(float64(3.16)),
+        Y:                    models.ToPointer(float64(12)),
+    }
+
 }
 ```
 

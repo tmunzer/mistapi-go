@@ -1,6 +1,8 @@
 
 # Stats Ap Radio Stat
 
+Per-band radio statistics reported by an AP
+
 ## Structure
 
 `StatsApRadioStat`
@@ -9,35 +11,44 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Band24` | [`*models.ApRadioStat`](../../doc/models/ap-radio-stat.md) | Optional | Radio stat |
-| `Band5` | [`*models.ApRadioStat`](../../doc/models/ap-radio-stat.md) | Optional | Radio stat |
-| `Band6` | [`*models.ApRadioStat`](../../doc/models/ap-radio-stat.md) | Optional | Radio stat |
+| `Band24` | [`*models.ApRadioStat`](../../doc/models/ap-radio-stat.md) | Optional | Runtime radio statistics for an access point radio |
+| `Band5` | [`*models.ApRadioStat`](../../doc/models/ap-radio-stat.md) | Optional | Runtime radio statistics for an access point radio |
+| `Band6` | [`*models.ApRadioStat`](../../doc/models/ap-radio-stat.md) | Optional | Runtime radio statistics for an access point radio |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "band_24": {
-    "bandwidth": 160,
-    "channel": 80,
-    "dynamic_chaining_enabled": false,
-    "mac": "mac4",
-    "noise_floor": 180
-  },
-  "band_5": {
-    "bandwidth": 20,
-    "channel": 132,
-    "dynamic_chaining_enabled": false,
-    "mac": "mac6",
-    "noise_floor": 128
-  },
-  "band_6": {
-    "bandwidth": 80,
-    "channel": 200,
-    "dynamic_chaining_enabled": false,
-    "mac": "mac8",
-    "noise_floor": 60
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsApRadioStat := models.StatsApRadioStat{
+        Band24:               models.ToPointer(models.ApRadioStat{
+            Bandwidth:              models.ToPointer(models.Dot11BandwidthEnum_ENUM160),
+            Channel:                models.NewOptional(models.ToPointer(80)),
+            DynamicChainingEnabled: models.NewOptional(models.ToPointer(false)),
+            Mac:                    models.NewOptional(models.ToPointer("mac4")),
+            NoiseFloor:             models.NewOptional(models.ToPointer(180)),
+        }),
+        Band5:                models.ToPointer(models.ApRadioStat{
+            Bandwidth:              models.ToPointer(models.Dot11BandwidthEnum_ENUM20),
+            Channel:                models.NewOptional(models.ToPointer(132)),
+            DynamicChainingEnabled: models.NewOptional(models.ToPointer(false)),
+            Mac:                    models.NewOptional(models.ToPointer("mac6")),
+            NoiseFloor:             models.NewOptional(models.ToPointer(128)),
+        }),
+        Band6:                models.ToPointer(models.ApRadioStat{
+            Bandwidth:              models.ToPointer(models.Dot11BandwidthEnum_ENUM80),
+            Channel:                models.NewOptional(models.ToPointer(200)),
+            DynamicChainingEnabled: models.NewOptional(models.ToPointer(false)),
+            Mac:                    models.NewOptional(models.ToPointer("mac8")),
+            NoiseFloor:             models.NewOptional(models.ToPointer(60)),
+        }),
+    }
+
 }
 ```
 

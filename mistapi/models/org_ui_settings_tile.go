@@ -9,17 +9,19 @@ import (
 )
 
 // OrgUiSettingsTile represents a OrgUiSettingsTile struct.
+// Tile shown on an organization UI databoard
 type OrgUiSettingsTile struct {
-	// Description of the tile
+	// Text describing the databoard tile
 	Description *string `json:"description,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// Whether the tile title is auto generated or not
 	IsAutoTitle *bool `json:"isAutoTitle,omitempty"`
-	// Name of the tile
+	// Display name of the databoard tile
 	Name *string `json:"name,omitempty"`
 	// Natural Language query for the tile
-	NlQuery              *string                    `json:"nl_query,omitempty"`
+	NlQuery *string `json:"nl_query,omitempty"`
+	// Grid position for a databoard tile
 	Position             *OrgUiSettingsTilePosition `json:"position,omitempty"`
 	AdditionalProperties map[string]interface{}     `json:"_"`
 }

@@ -1,6 +1,8 @@
 
 # Ap Radio Mac
 
+Access point MAC address and its related radio MAC addresses
+
 ## Structure
 
 `ApRadioMac`
@@ -9,18 +11,27 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mac` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
-| `RadioMacs` | `[]string` | Required | - |
+| `Mac` | `string` | Required | Access point MAC address for this radio MAC mapping<br><br>**Constraints**: *Minimum Length*: `1` |
+| `RadioMacs` | `[]string` | Required | Radio MAC addresses associated with an access point |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mac": "5c5b350001a0",
-  "radio_macs": [
-    "5c5b350001a0",
-    "5c5b350001a1"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    apRadioMac := models.ApRadioMac{
+        Mac:                  "5c5b350001a0",
+        RadioMacs:            []string{
+            "5c5b350001a0",
+            "5c5b350001a1",
+        },
+    }
+
 }
 ```
 

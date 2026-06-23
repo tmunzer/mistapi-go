@@ -1,6 +1,8 @@
 
 # Response Router Ssr Register Cmd
 
+SSR registration token and commands used to register the router with Mist
+
 ## Structure
 
 `ResponseRouterSsrRegisterCmd`
@@ -9,17 +11,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ConductorCmd` | `*string` | Optional | - |
-| `RegistrationCode` | `*string` | Optional | - |
-| `RouterShellCmd` | `*string` | Optional | - |
+| `ConductorCmd` | `*string` | Optional | Command to run in the SSR conductor CLI for Mist registration |
+| `RegistrationCode` | `*string` | Optional | Registration token used by the SSR registration commands |
+| `RouterShellCmd` | `*string` | Optional | Shell command to run on the SSR router for Mist registration |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "conductor_cmd": "conductor_cmd6",
-  "registration_code": "registration_code0",
-  "router_shell_cmd": "router_shell_cmd4"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseRouterSsrRegisterCmd := models.ResponseRouterSsrRegisterCmd{
+        ConductorCmd:         models.ToPointer("conductor_cmd0"),
+        RegistrationCode:     models.ToPointer("registration_code6"),
+        RouterShellCmd:       models.ToPointer("router_shell_cmd0"),
+    }
+
 }
 ```
 

@@ -8,19 +8,19 @@ import (
 )
 
 // JsiSirtSearch represents a JsiSirtSearch struct.
-// SIRT search response
+// Juniper Security Intelligence SIRT search response with result metadata
 type JsiSirtSearch struct {
-	// End timestamp
+	// Upper bound timestamp for the SIRT search window
 	End *int `json:"end,omitempty"`
 	// Number of results to return
 	Limit *int `json:"limit,omitempty"`
-	// Next page URL
+	// Pagination URL for the next page of SIRT advisories
 	Next *string `json:"next,omitempty"`
 	// List of SIRT advisories
 	Results []JsiSirtItem `json:"results,omitempty"`
-	// Start timestamp
+	// Lower bound timestamp for the SIRT search window
 	Start *int `json:"start,omitempty"`
-	// Total number of results
+	// Count of SIRT advisories matching the search
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

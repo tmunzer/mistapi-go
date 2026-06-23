@@ -10,15 +10,25 @@ import (
 )
 
 // SleImpactedAps represents a SleImpactedAps struct.
+// Paginated list of APs impacted by an SLE metric
 type SleImpactedAps struct {
-	Aps                  []SleImpactedApsAp     `json:"aps"`
-	Classifier           string                 `json:"classifier"`
-	End                  float64                `json:"end"`
-	Failure              string                 `json:"failure"`
-	Limit                float64                `json:"limit"`
-	Metric               string                 `json:"metric"`
-	Page                 float64                `json:"page"`
-	Start                float64                `json:"start"`
+	// Impacted AP rows returned for an SLE query
+	Aps []SleImpactedApsAp `json:"aps"`
+	// Requested SLE classifier filter applied to the query
+	Classifier string `json:"classifier"`
+	// Last timestamp in the impacted APs window
+	End float64 `json:"end"`
+	// Requested SLE failure filter applied to the query
+	Failure string `json:"failure"`
+	// Maximum number of impacted AP rows returned per page
+	Limit float64 `json:"limit"`
+	// SLE metric name used for the impacted APs query
+	Metric string `json:"metric"`
+	// Current page number for impacted AP results
+	Page float64 `json:"page"`
+	// First timestamp in the impacted APs window
+	Start float64 `json:"start"`
+	// Number of impacted AP rows matching the query
 	TotalCount           float64                `json:"total_count"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

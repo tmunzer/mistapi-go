@@ -8,25 +8,37 @@ import (
 )
 
 // ConstInsightMetricsProperty represents a ConstInsightMetricsProperty struct.
+// Definition of an insight metric returned by the constants API
 type ConstInsightMetricsProperty struct {
-	Ctype       []string                                  `json:"ctype,omitempty"`
-	Description *string                                   `json:"description,omitempty"`
-	Example     *ConstInsightMetricsPropertyExampleAnyOf2 `json:"example,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Ctype []string `json:"ctype,omitempty"`
+	// Human-readable description of the insight metric
+	Description *string `json:"description,omitempty"`
+	// Example values for an insight metric property, as an array or keyed object
+	Example *ConstInsightMetricsPropertyExampleAnyOf2 `json:"example,omitempty"`
 	// Property key is the interval (e.g. 10m, 1h, ...)
 	Intervals map[string]ConstInsightMetricsPropertyInterval `json:"intervals,omitempty"`
-	Keys      *interface{}                                   `json:"keys,omitempty"`
+	// Additional key metadata for an insight metric property
+	Keys *interface{} `json:"keys,omitempty"`
 	// Property key is the parameter name
 	Params map[string]ConstInsightMetricsPropertyParam `json:"params,omitempty"`
 	// Property key is the duration (e.g. 1d, 1w, ...)
-	ReportDurations      map[string]ConstInsightMetricsPropertyReportDuration `json:"report_durations,omitempty"`
-	ReportScopes         []string                                             `json:"report_scopes,omitempty"`
-	Scopes               []ConstInsightMetricsPropertyScopeEnum               `json:"scopes,omitempty"`
-	SleBaselined         *bool                                                `json:"sle_baselined,omitempty"`
-	SleClassifiers       []string                                             `json:"sle_classifiers,omitempty"`
-	Type                 *string                                              `json:"type,omitempty"`
-	Unit                 *string                                              `json:"unit,omitempty"`
-	Values               *interface{}                                         `json:"values,omitempty"`
-	AdditionalProperties map[string]interface{}                               `json:"_"`
+	ReportDurations map[string]ConstInsightMetricsPropertyReportDuration `json:"report_durations,omitempty"`
+	// Unique string values returned or accepted by this schema
+	ReportScopes []string `json:"report_scopes,omitempty"`
+	// Entity scopes supported by an insight metric property
+	Scopes []ConstInsightMetricsPropertyScopeEnum `json:"scopes,omitempty"`
+	// Whether the insight metric uses an SLE baseline
+	SleBaselined *bool `json:"sle_baselined,omitempty"`
+	// Unique string values returned or accepted by this schema
+	SleClassifiers []string `json:"sle_classifiers,omitempty"`
+	// Metric data type, such as timeseries
+	Type *string `json:"type,omitempty"`
+	// Measurement unit for values returned by this metric
+	Unit *string `json:"unit,omitempty"`
+	// Enumerated or structured value metadata for an insight metric property
+	Values               *interface{}           `json:"values,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ConstInsightMetricsProperty,

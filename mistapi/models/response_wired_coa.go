@@ -9,9 +9,13 @@ import (
 )
 
 // ResponseWiredCoa represents a ResponseWiredCoa struct.
+// Response returned after triggering wired client CoA reauthentication
 type ResponseWiredCoa struct {
-	DeviceMac            *string                `json:"device_mac,omitempty"`
-	PortId               *string                `json:"port_id,omitempty"`
+	// MAC address of the switch or gateway hosting the wired client session
+	DeviceMac *string `json:"device_mac,omitempty"`
+	// Interface identifier for the wired client session
+	PortId *string `json:"port_id,omitempty"`
+	// RADIUS session identifier used for the CoA request
 	Session              *uuid.UUID             `json:"session,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

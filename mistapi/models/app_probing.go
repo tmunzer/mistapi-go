@@ -8,10 +8,13 @@ import (
 )
 
 // AppProbing represents a AppProbing struct.
+// Application reachability probing settings for gateway management
 type AppProbing struct {
-	// APp-keys from [List Applications]($e/Constants%20Definitions/listApplications)
-	Apps                 []string               `json:"apps,omitempty"`
-	CustomApps           []AppProbingCustomApp  `json:"custom_apps,omitempty"`
+	// Application keys from [List Applications]($e/Constants%20Definitions/listApplications)
+	Apps []string `json:"apps,omitempty"`
+	// User-defined application probe definitions
+	CustomApps []AppProbingCustomApp `json:"custom_apps,omitempty"`
+	// Whether gateway application probing is enabled
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

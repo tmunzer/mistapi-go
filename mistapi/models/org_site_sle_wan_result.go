@@ -11,12 +11,19 @@ import (
 )
 
 // OrgSiteSleWanResult represents a OrgSiteSleWanResult struct.
+// WAN SLE scores and counts for one site
 type OrgSiteSleWanResult struct {
-	ApplicationHealth    *float64               `json:"application_health,omitempty"`
-	GatewayHealth        float64                `json:"gateway-health"`
-	NumClients           *float64               `json:"num_clients,omitempty"`
-	NumGateways          *float64               `json:"num_gateways,omitempty"`
-	SiteId               uuid.UUID              `json:"site_id"`
+	// Application health SLE score for this site
+	ApplicationHealth *float64 `json:"application_health,omitempty"`
+	// Gateway health SLE score for this site
+	GatewayHealth float64 `json:"gateway-health"`
+	// Number of WAN clients included in this site result
+	NumClients *float64 `json:"num_clients,omitempty"`
+	// Number of gateways included in this site result
+	NumGateways *float64 `json:"num_gateways,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId uuid.UUID `json:"site_id"`
+	// WAN link health SLE score for this site
 	WanLinkHealth        *float64               `json:"wan-link-health,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

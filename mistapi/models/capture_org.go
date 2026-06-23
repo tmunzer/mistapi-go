@@ -9,6 +9,7 @@ import (
 )
 
 // CaptureOrg represents a CaptureOrg struct.
+// Packet capture request payload for organization-level captures
 type CaptureOrg struct {
 	value           any
 	isCaptureMxedge bool
@@ -61,6 +62,7 @@ func (c *CaptureOrg) AsCaptureMxedge() (
 }
 
 // internalCaptureOrg represents a captureOrg struct.
+// Packet capture request payload for organization-level captures
 type internalCaptureOrg struct{}
 
 var CaptureOrgContainer internalCaptureOrg

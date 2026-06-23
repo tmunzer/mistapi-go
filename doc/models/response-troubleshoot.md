@@ -1,6 +1,8 @@
 
 # Response Troubleshoot
 
+Organization troubleshooting response for the requested time window
+
 ## Structure
 
 `ResponseTroubleshoot`
@@ -9,24 +11,33 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `End` | `*int` | Optional | - |
-| `Results` | [`[]models.ResponseTroubleshootItem`](../../doc/models/response-troubleshoot-item.md) | Optional | - |
-| `Start` | `*int` | Optional | - |
+| `End` | `*int` | Optional | Epoch timestamp, in seconds, for the end of the troubleshooting window |
+| `Results` | [`[]models.ResponseTroubleshootItem`](../../doc/models/response-troubleshoot-item.md) | Optional | Troubleshooting findings returned by the organization troubleshoot API |
+| `Start` | `*int` | Optional | Epoch timestamp, in seconds, for the start of the troubleshooting window |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "end": 1655151856,
-  "start": 1655065456,
-  "results": [
-    {
-      "category": "category4",
-      "reason": "reason8",
-      "recommendation": "recommendation8",
-      "text": "text4"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseTroubleshoot := models.ResponseTroubleshoot{
+        End:                  models.ToPointer(1655151856),
+        Results:              []models.ResponseTroubleshootItem{
+            models.ResponseTroubleshootItem{
+                Category:             models.ToPointer("category4"),
+                Reason:               models.ToPointer("reason8"),
+                Recommendation:       models.ToPointer("recommendation8"),
+                Text:                 models.ToPointer("text4"),
+            },
+        },
+        Start:                models.ToPointer(1655065456),
     }
-  ]
+
 }
 ```
 

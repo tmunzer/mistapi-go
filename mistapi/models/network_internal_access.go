@@ -8,7 +8,9 @@ import (
 )
 
 // NetworkInternalAccess represents a NetworkInternalAccess struct.
+// Internal access settings for an organization network
 type NetworkInternalAccess struct {
+	// Whether internal access is enabled for this network
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

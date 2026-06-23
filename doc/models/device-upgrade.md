@@ -1,6 +1,8 @@
 
 # Device Upgrade
 
+Device firmware upgrade request options
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -18,19 +20,27 @@
 | `Version` | `string` | Required | Specific version / `stable`, default is to use the latest<br><br>**Default**: `"stable"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "reboot": false,
-  "snapshot": false,
-  "version": "stable",
-  "reboot_at": 212,
-  "start_time": 26,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    deviceUpgrade := models.DeviceUpgrade{
+        Reboot:               models.ToPointer(false),
+        RebootAt:             models.ToPointer(74),
+        Snapshot:             models.ToPointer(false),
+        StartTime:            models.ToPointer(144),
+        Version:              "stable",
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

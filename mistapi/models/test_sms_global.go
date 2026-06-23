@@ -10,11 +10,14 @@ import (
 )
 
 // TestSmsGlobal represents a TestSmsGlobal struct.
+// Request body for validating SMSGlobal SMS gateway credentials
 type TestSmsGlobal struct {
-	// SMSGlobal api key
+	// SMSGlobal API key used to send the test SMS
 	SmsglobalApiKey string `json:"smsglobal_api_key"`
-	// SMSGlobal api secret
+	// SMSGlobal API secret used to send the test SMS
 	SmsglobalApiSecret string `json:"smsglobal_api_secret"`
+	// Optional sender's number or sender ID. If not provided, uses the default number associated with the account
+	SmsglobalSender *string `json:"smsglobal_sender,omitempty"`
 	// Phone number of the recipient of SMS with country code
 	To                   string                 `json:"to"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -24,8 +27,8 @@ type TestSmsGlobal struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (t TestSmsGlobal) String() string {
 	return fmt.Sprintf(
-		"TestSmsGlobal[SmsglobalApiKey=%v, SmsglobalApiSecret=%v, To=%v, AdditionalProperties=%v]",
-		t.SmsglobalApiKey, t.SmsglobalApiSecret, t.To, t.AdditionalProperties)
+		"TestSmsGlobal[SmsglobalApiKey=%v, SmsglobalApiSecret=%v, SmsglobalSender=%v, To=%v, AdditionalProperties=%v]",
+		t.SmsglobalApiKey, t.SmsglobalApiSecret, t.SmsglobalSender, t.To, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TestSmsGlobal.
@@ -34,7 +37,7 @@ func (t TestSmsGlobal) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(t.AdditionalProperties,
-		"smsglobal_api_key", "smsglobal_api_secret", "to"); err != nil {
+		"smsglobal_api_key", "smsglobal_api_secret", "smsglobal_sender", "to"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(t.toMap())
@@ -46,6 +49,9 @@ func (t TestSmsGlobal) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, t.AdditionalProperties)
 	structMap["smsglobal_api_key"] = t.SmsglobalApiKey
 	structMap["smsglobal_api_secret"] = t.SmsglobalApiSecret
+	if t.SmsglobalSender != nil {
+		structMap["smsglobal_sender"] = t.SmsglobalSender
+	}
 	structMap["to"] = t.To
 	return structMap
 }
@@ -62,7 +68,7 @@ func (t *TestSmsGlobal) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "smsglobal_api_key", "smsglobal_api_secret", "to")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "smsglobal_api_key", "smsglobal_api_secret", "smsglobal_sender", "to")
 	if err != nil {
 		return err
 	}
@@ -70,6 +76,7 @@ func (t *TestSmsGlobal) UnmarshalJSON(input []byte) error {
 
 	t.SmsglobalApiKey = *temp.SmsglobalApiKey
 	t.SmsglobalApiSecret = *temp.SmsglobalApiSecret
+	t.SmsglobalSender = temp.SmsglobalSender
 	t.To = *temp.To
 	return nil
 }
@@ -78,6 +85,7 @@ func (t *TestSmsGlobal) UnmarshalJSON(input []byte) error {
 type tempTestSmsGlobal struct {
 	SmsglobalApiKey    *string `json:"smsglobal_api_key"`
 	SmsglobalApiSecret *string `json:"smsglobal_api_secret"`
+	SmsglobalSender    *string `json:"smsglobal_sender,omitempty"`
 	To                 *string `json:"to"`
 }
 

@@ -10,8 +10,11 @@ import (
 )
 
 // WebsocketSessionWithUrl represents a WebsocketSessionWithUrl struct.
+// Response containing a WebSocket session handle and connection URL
 type WebsocketSessionWithUrl struct {
-	Session              string                 `json:"session"`
+	// Identifier used to correlate output on the WebSocket stream
+	Session string `json:"session"`
+	// WebSocket URL returned for connecting to this session
 	Url                  string                 `json:"url"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

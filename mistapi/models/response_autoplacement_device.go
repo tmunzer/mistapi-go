@@ -8,6 +8,7 @@ import (
 )
 
 // ResponseAutoplacementDevice represents a ResponseAutoplacementDevice struct.
+// Per-AP validation result for autoplacement
 type ResponseAutoplacementDevice struct {
 	// Provides the reason for the status if the AP is invalid.
 	Reason *string `json:"reason,omitempty"`

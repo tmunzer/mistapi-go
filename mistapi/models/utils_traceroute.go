@@ -8,12 +8,13 @@ import (
 )
 
 // UtilsTraceroute represents a UtilsTraceroute struct.
+// Request body for running a traceroute utility command
 type UtilsTraceroute struct {
-	// can be ip, ipv6, hostname
+	// Destination IP address, IPv6 address, or hostname for traceroute
 	Host *string `json:"host,omitempty"`
-	// For SSR, optional, the source to initiate traceroute from
+	// For SSR, source network from which to initiate traceroute
 	Network *string `json:"network,omitempty"`
-	// only for HA. enum: `node0`, `node1`
+	// HA cluster node selector. enum: `node0`, `node1`
 	Node *HaClusterNodeEnum `json:"node,omitempty"`
 	// When `protocol`==`udp`, not supported in SSR. The udp port to use
 	Port *int `json:"port,omitempty"`
@@ -21,9 +22,9 @@ type UtilsTraceroute struct {
 	Protocol *UtilsTracerouteProtocolEnum `json:"protocol,omitempty"`
 	// Not supported in SSR. Maximum time in seconds to wait for the response
 	Timeout *int `json:"timeout,omitempty"`
-	// applicable when host is hostname
+	// Whether to resolve hostname targets over IPv6
 	UseIpv6 *bool `json:"use_ipv6,omitempty"`
-	// For SRX, optional, the source to initiate traceroute from. by default, master VRF/RI is assumed
+	// For SRX, routing instance or VRF from which to initiate traceroute; master VRF/RI is used by default
 	Vrf                  *string                `json:"vrf,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

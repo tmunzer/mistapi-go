@@ -1,7 +1,7 @@
 
 # Webhook Ping Topic Enum
 
-enum: `ping`
+Webhook topic name for ping deliveries. enum: `ping`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `ping`
 | Name |
 |  --- |
 | `ping` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookPingTopic := models.WebhookPingTopicEnum_PING
+
+}
+```
 

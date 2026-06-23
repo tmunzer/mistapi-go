@@ -8,8 +8,11 @@ import (
 )
 
 // SiteSettingStatusPortal represents a SiteSettingStatusPortal struct.
+// End-user status portal settings for the site
 type SiteSettingStatusPortal struct {
-	Enabled              *bool                  `json:"enabled,omitempty"`
+	// Whether the site status portal is enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// Hostnames served by the site status portal
 	Hostnames            []string               `json:"hostnames,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

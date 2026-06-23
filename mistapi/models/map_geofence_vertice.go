@@ -8,10 +8,11 @@ import (
 )
 
 // MapGeofenceVertice represents a MapGeofenceVertice struct.
+// Vertex coordinate for a map geofence polygon
 type MapGeofenceVertice struct {
-	// X coordinate
+	// Geofence vertex X coordinate in map units
 	X *float64 `json:"X,omitempty"`
-	// Y coordinate
+	// Geofence vertex Y coordinate in map units
 	Y                    *float64               `json:"Y,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

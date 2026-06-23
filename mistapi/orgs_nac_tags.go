@@ -27,13 +27,13 @@ func NewOrgsNACTags(baseController baseController) *OrgsNACTags {
 // ListOrgNacTags takes context, orgId, mType, name, match, limit, page as parameters and
 // returns an models.ApiResponse with []models.NacTag data and
 // an error if there was an issue with the request or response.
-// Get List of Org NAC Tags
+// List organization NAC tags, optionally filtering by tag type, name, or match attribute.
 func (o *OrgsNACTags) ListOrgNacTags(
 	ctx context.Context,
 	orgId uuid.UUID,
-	mType *models.NacTagTypeEnum,
+	mType *string,
 	name *string,
-	match *models.NacTagMatchEnum,
+	match *string,
 	limit *int,
 	page *int) (
 	models.ApiResponse[[]models.NacTag],
@@ -43,19 +43,15 @@ func (o *OrgsNACTags) ListOrgNacTags(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if mType != nil {
 		req.QueryParam("type", *mType)
@@ -86,7 +82,7 @@ func (o *OrgsNACTags) ListOrgNacTags(
 // CreateOrgNacTag takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.NacTag data and
 // an error if there was an issue with the request or response.
-// Create Org NAC Tag
+// Create a NAC tag used either as rule-matching criteria or as a result attribute returned when NAC allows access.
 func (o *OrgsNACTags) CreateOrgNacTag(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -98,19 +94,15 @@ func (o *OrgsNACTags) CreateOrgNacTag(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -130,7 +122,7 @@ func (o *OrgsNACTags) CreateOrgNacTag(
 // DeleteOrgNacTag takes context, orgId, nactagId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete Org NAC Tag
+// Delete an organization NAC tag by tag ID so it can no longer be used by NAC rules.
 func (o *OrgsNACTags) DeleteOrgNacTag(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -142,19 +134,15 @@ func (o *OrgsNACTags) DeleteOrgNacTag(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -167,7 +155,7 @@ func (o *OrgsNACTags) DeleteOrgNacTag(
 // GetOrgNacTag takes context, orgId, nactagId as parameters and
 // returns an models.ApiResponse with models.NacTag data and
 // an error if there was an issue with the request or response.
-// Get Org NAC Tag
+// Retrieve configuration details for a specific NAC tag, including type, match values, RADIUS attributes, VLAN or session results, and portal redirection settings.
 func (o *OrgsNACTags) GetOrgNacTag(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -179,19 +167,15 @@ func (o *OrgsNACTags) GetOrgNacTag(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.NacTag
@@ -207,7 +191,7 @@ func (o *OrgsNACTags) GetOrgNacTag(
 // UpdateOrgNacTag takes context, orgId, nactagId, body as parameters and
 // returns an models.ApiResponse with models.NacTag data and
 // an error if there was an issue with the request or response.
-// Update Org NAC Tag
+// Update a NAC tag, including matcher values or result attributes such as RADIUS attributes, VLAN, session timeout, username attribute, or portal redirection.
 func (o *OrgsNACTags) UpdateOrgNacTag(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -220,19 +204,15 @@ func (o *OrgsNACTags) UpdateOrgNacTag(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

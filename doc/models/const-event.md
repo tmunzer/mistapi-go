@@ -1,6 +1,8 @@
 
 # Const Event
 
+Device event definition returned by the constants API
+
 ## Structure
 
 `ConstEvent`
@@ -9,24 +11,30 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Description` | `*string` | Optional | - |
-| `Display` | `string` | Required | - |
-| `Example` | `*interface{}` | Optional | - |
-| `Group` | `*string` | Optional | - |
-| `Key` | `string` | Required | - |
+| `Description` | `*string` | Optional | Narrative description of the device event type |
+| `Display` | `string` | Required | Human-readable label for the device event type |
+| `Example` | `*interface{}` | Optional | Sample device event payload for this event type |
+| `Group` | `*string` | Optional | Device event group for this definition |
+| `Key` | `string` | Required | Machine-readable device event key |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "description": "description4",
-  "display": "display6",
-  "example": {
-    "key1": "val1",
-    "key2": "val2"
-  },
-  "group": "group2",
-  "key": "key4"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constEvent := models.ConstEvent{
+        Description:          models.ToPointer("description2"),
+        Display:              "display4",
+        Example:              models.ToPointer(interface{}("[key1, val1][key2, val2]")),
+        Group:                models.ToPointer("group0"),
+        Key:                  "key2",
+    }
+
 }
 ```
 

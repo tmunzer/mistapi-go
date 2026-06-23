@@ -1,6 +1,8 @@
 
 # Notes String
 
+Request body containing notes text
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,18 +13,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Notes` | `*string` | Optional | - |
+| `Notes` | `*string` | Optional | Text to attach to the target resource as notes |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "notes": "wired pcap test",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    notesString := models.NotesString{
+        Notes:                models.ToPointer("wired pcap test"),
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

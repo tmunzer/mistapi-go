@@ -15,21 +15,30 @@ Bonjour gateway wlan settings
 | `Enabled` | `*bool` | Optional | Whether to enable bonjour for this WLAN. Once enabled, limit_bcast is assumed true, allow_mdns is assumed false<br><br>**Default**: `false` |
 | `Services` | [`map[string]models.WlanBonjourServiceProperties`](../../doc/models/wlan-bonjour-service-properties.md) | Optional | What services are allowed.<br>Property key is the service name |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "services": {
-    "airplay": {
-      "radius_groups": [
-        "teachers"
-      ],
-      "scope": "same_ap",
-      "disable_local": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanBonjour := models.WlanBonjour{
+        AdditionalVlanIds:    models.ToPointer(models.AdditionalVlanIds2Container.FromString("String1")),
+        Enabled:              models.ToPointer(false),
+        Services:             map[string]models.WlanBonjourServiceProperties{
+            "airplay": models.WlanBonjourServiceProperties{
+                DisableLocal:         models.ToPointer(false),
+                RadiusGroups:         []string{
+                    "teachers",
+                },
+                Scope:                models.ToPointer(models.WlanBonjourServicePropertiesScopeEnum_SAMEAP),
+            },
+        },
     }
-  },
-  "additional_vlan_ids": "String1"
+
 }
 ```
 

@@ -15,3 +15,18 @@ Type of client. enum: `asset` (BLE Tag), `sdk`, `wifi`
 | `sdk` |
 | `wifi` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookZoneEventType := models.WebhookZoneEventTypeEnum_ASSET
+
+}
+```
+

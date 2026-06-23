@@ -10,10 +10,11 @@ import (
 )
 
 // ZoneVertexM represents a ZoneVertexM struct.
+// Zone polygon vertex expressed in meters
 type ZoneVertexM struct {
-	// X in pixel
+	// Horizontal coordinate of the zone vertex, in meters
 	X float64 `json:"x"`
-	// Y in pixel
+	// Vertical coordinate of the zone vertex, in meters
 	Y                    float64                `json:"y"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

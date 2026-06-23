@@ -1,7 +1,7 @@
 
 # Tunnel Priority Enum
 
-enum: `primary`, `secondary`
+Relative preference assigned to the tunnel. enum: `primary`, `secondary`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `primary`, `secondary`
 |  --- |
 | `primary` |
 | `secondary` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    tunnelPriority := models.TunnelPriorityEnum_PRIMARY
+
+}
+```
 

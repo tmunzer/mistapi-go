@@ -8,9 +8,12 @@ import (
 )
 
 // SiteTemplate represents a SiteTemplate struct.
+// Site template containing auto-upgrade settings and template variables
 type SiteTemplate struct {
+	// Automatic upgrade settings applied by a site template
 	AutoUpgrade *SiteTemplateAutoUpgrade `json:"auto_upgrade,omitempty"`
-	Name        *string                  `json:"name,omitempty"`
+	// Display name of the site template
+	Name *string `json:"name,omitempty"`
 	// Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
 	Vars                 map[string]string      `json:"vars,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`

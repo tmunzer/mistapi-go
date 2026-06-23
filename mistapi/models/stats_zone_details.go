@@ -11,7 +11,7 @@ import (
 )
 
 // StatsZoneDetails represents a StatsZoneDetails struct.
-// Zone details statistics
+// Detailed zone statistics and occupants for a site map zone
 type StatsZoneDetails struct {
 	// List of ble assets currently in the zone and when they entered
 	Assets []string `json:"assets,omitempty"`
@@ -21,12 +21,13 @@ type StatsZoneDetails struct {
 	Clients []string `json:"clients,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id uuid.UUID `json:"id"`
-	// Map_id of the zone
+	// Map identifier for the zone
 	MapId uuid.UUID `json:"map_id"`
-	// Name of the zone
-	Name       string `json:"name"`
-	NumClients int    `json:"num_clients"`
-	// SDK client wait time right now
+	// Display name of the zone
+	Name string `json:"name"`
+	// Number of Wi-Fi clients currently counted in the zone
+	NumClients int `json:"num_clients"`
+	// Number of SDK clients currently counted in the zone
 	NumSdkclients int `json:"num_sdkclients"`
 	// List of SDK Clients currently in the zone and when they entered
 	Sdkclients           []string               `json:"sdkclients,omitempty"`

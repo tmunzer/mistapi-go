@@ -10,13 +10,17 @@ import (
 )
 
 // Anomaly represents a Anomaly struct.
-// Anomaly
+// SLE anomaly data point with baseline, deviation, and contributing events
 type Anomaly struct {
-	Events       []string `json:"events"`
-	Since        *float64 `json:"since,omitempty"`
-	SleBaseline  float64  `json:"sle_baseline"`
-	SleDeviation float64  `json:"sle_deviation"`
-	// Epoch (seconds)
+	// Event names associated with an anomaly record
+	Events []string `json:"events"`
+	// Timestamp when the anomalous period began
+	Since *float64 `json:"since,omitempty"`
+	// Expected SLE value used as the anomaly baseline
+	SleBaseline float64 `json:"sle_baseline"`
+	// Difference between the observed SLE value and the baseline
+	SleDeviation float64 `json:"sle_deviation"`
+	// Epoch timestamp, in seconds
 	Timestamp            float64                `json:"timestamp"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

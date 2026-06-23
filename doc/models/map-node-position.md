@@ -1,6 +1,8 @@
 
 # Map Node Position
 
+Position of a map path node
+
 ## Structure
 
 `MapNodePosition`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `X` | `float64` | Required | - |
-| `Y` | `float64` | Required | - |
+| `X` | `float64` | Required | Horizontal coordinate of the map node |
+| `Y` | `float64` | Required | Vertical coordinate of the map node |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "x": 746.0,
-  "y": 104.0
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mapNodePosition := models.MapNodePosition{
+        X:                    float64(746),
+        Y:                    float64(104),
+    }
+
 }
 ```
 

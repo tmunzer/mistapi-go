@@ -8,9 +8,9 @@ import (
 )
 
 // SiteSettingAutoUpgrade represents a SiteSettingAutoUpgrade struct.
-// Auto Upgrade Settings
+// Automatic AP firmware upgrade policy
 type SiteSettingAutoUpgrade struct {
-	// Custom versions for different models. Property key is the model name (e.g. "AP41")
+	// Per-AP-model firmware versions or channels used for auto-upgrade. Property key is the AP model name (e.g. "AP41"), value is the firmware version or release channel (e.g. `stable`)
 	CustomVersions map[string]string `json:"custom_versions,omitempty"`
 	// enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed`
 	DayOfWeek *DayOfWeekEnum `json:"day_of_week,omitempty"`

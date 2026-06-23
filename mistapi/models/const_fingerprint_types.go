@@ -8,10 +8,15 @@ import (
 )
 
 // ConstFingerprintTypes represents a ConstFingerprintTypes struct.
+// Supported client fingerprint values for NAC matching
 type ConstFingerprintTypes struct {
-	Family               []string               `json:"family,omitempty"`
-	Mfg                  []string               `json:"mfg,omitempty"`
-	Model                []string               `json:"model,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Family []string `json:"family,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Mfg []string `json:"mfg,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Model []string `json:"model,omitempty"`
+	// Unique string values returned or accepted by this schema
 	Os                   []string               `json:"os,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

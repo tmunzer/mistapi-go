@@ -9,33 +9,39 @@ import (
 )
 
 // Mxtunnel represents a Mxtunnel struct.
-// MxTunnel
+// Mist Tunnel configuration for tunneling AP user VLANs to Mist Edge clusters
 type Mxtunnel struct {
 	// List of anchor mxtunnels used for forming edge to edge tunnels
 	AnchorMxtunnelIds []uuid.UUID `json:"anchor_mxtunnel_ids,omitempty"`
-	// Schedule to preempt ap’s which are not connected to preferred peer
+	// Schedule to preempt AP tunnels that are not connected to their preferred peer
 	AutoPreemption *AutoPreemption `json:"auto_preemption,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	ForSite     *bool    `json:"for_site,omitempty"`
+	// Whether this Mist Tunnel is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// In seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by `hello_retries`.
 	HelloInterval Optional[int] `json:"hello_interval"`
-	HelloRetries  Optional[int] `json:"hello_retries"`
+	// Number of missed hello heartbeats before an AP tries another tunnel peer
+	HelloRetries Optional[int] `json:"hello_retries"`
 	// Unique ID of the object instance in the Mist Organization
-	Id    *uuid.UUID     `json:"id,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// IPsec settings for a Mist Tunnel
 	Ipsec *MxtunnelIpsec `json:"ipsec,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
 	// 0 to enable PMTU, 552-1500 to start PMTU with a lower MTU
 	Mtu *int `json:"mtu,omitempty"`
-	// List of mxclusters to deploy this tunnel to
-	MxclusterIds []uuid.UUID      `json:"mxcluster_ids,omitempty"`
-	Name         Optional[string] `json:"name"`
-	OrgId        *uuid.UUID       `json:"org_id,omitempty"`
-	// enum: `ip`, `udp`
+	// Mist Edge cluster IDs that host this Mist Tunnel
+	MxclusterIds []uuid.UUID `json:"mxcluster_ids,omitempty"`
+	// Display name of the Mist Tunnel
+	Name Optional[string] `json:"name"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Encapsulation protocol used for Mist Tunnel traffic. enum: `ip`, `udp`
 	Protocol *MxtunnelProtocolEnum `json:"protocol,omitempty"`
-	SiteId   *uuid.UUID            `json:"site_id,omitempty"`
-	// List of vlan_ids that will be used
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// List of VLAN IDs carried by this Mist Tunnel
 	VlanIds              []int                  `json:"vlan_ids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -14,3 +14,18 @@ pcap format. enum: `pcap`, `stream`
 | `pcap` |
 | `stream` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureWirelessFormat := models.CaptureWirelessFormatEnum_PCAP
+
+}
+```
+

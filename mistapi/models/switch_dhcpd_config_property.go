@@ -8,23 +8,23 @@ import (
 )
 
 // SwitchDhcpdConfigProperty represents a SwitchDhcpdConfigProperty struct.
-// the Property key is the network name. In case of DHCP relay, it's common for many networks to use the same dhcp relay, comma-separated network names can be used here (e.g. "net1,net2")
+// DHCP server or relay configuration for one switch network. The property key is the network name. In case of DHCP relay, it's common for many networks to use the same dhcp relay, comma-separated network names can be used here (e.g. "net1,net2")
 type SwitchDhcpdConfigProperty struct {
 	// If `type`==`server` or `type6`==`server` - optional, if not defined, system one will be used
 	DnsServers []string `json:"dns_servers,omitempty"`
 	// If `type`==`server` or `type6`==`server` - optional, if not defined, system one will be used
 	DnsSuffix []string `json:"dns_suffix,omitempty"`
-	// If `type`==`server` or `type6`==`server`. Property key is the MAC Address. Format is `[0-9a-f]{12}` (e.g. "5684dae9ac8b")
+	// If `type`==`server` or `type6`==`server`. Property key is the MAC address. Format is `[0-9a-f]{12}` (e.g. "5684dae9ac8b")
 	FixedBindings map[string]DhcpdConfigFixedBinding `json:"fixed_bindings,omitempty"`
 	// If `type`==`server` - optional, `ip` will be used if not provided
 	Gateway *string `json:"gateway,omitempty"`
-	// If `type`==`server`
+	// If `type`==`server`, ending IPv4 address for the DHCP lease pool
 	IpEnd *string `json:"ip_end,omitempty"`
-	// If `type6`==`server`
+	// If `type6`==`server`, ending IPv6 address for the DHCP lease pool
 	IpEnd6 *string `json:"ip_end6,omitempty"`
-	// If `type`==`server`
+	// If `type`==`server`, starting IPv4 address for the DHCP lease pool
 	IpStart *string `json:"ip_start,omitempty"`
-	// If `type6`==`server`
+	// If `type6`==`server`, starting IPv6 address for the DHCP lease pool
 	IpStart6 *string `json:"ip_start6,omitempty"`
 	// In seconds, lease time has to be between 3600 [1hr] - 604800 [1 week], default is 86400 [1 day]
 	LeaseTime *int `json:"lease_time,omitempty"`
@@ -33,9 +33,9 @@ type SwitchDhcpdConfigProperty struct {
 	// `server_id_override`==`true` means the device, when acts as DHCP relay and forwards DHCP responses from DHCP server to clients,
 	// should overwrite the Sever Identifier option (i.e. DHCP option 54) in DHCP responses with its own IP address.
 	ServerIdOverride *bool `json:"server_id_override,omitempty"`
-	// If `type`==`relay`
+	// If `type`==`relay`, upstream IPv4 DHCP servers
 	Servers []string `json:"servers,omitempty"`
-	// If `type6`==`relay`
+	// If `type6`==`relay`, upstream IPv6 DHCP servers
 	Servers6 []string `json:"servers6,omitempty"`
 	// enum: `none`, `relay` (DHCP Relay), `server` (DHCP Server)
 	Type *SwitchDhcpdConfigTypeEnum `json:"type,omitempty"`

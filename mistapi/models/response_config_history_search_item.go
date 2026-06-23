@@ -10,18 +10,29 @@ import (
 )
 
 // ResponseConfigHistorySearchItem represents a ResponseConfigHistorySearchItem struct.
+// Device config history entry
 type ResponseConfigHistorySearchItem struct {
-	Channel24         int                                    `json:"channel_24"`
-	Channel5          int                                    `json:"channel_5"`
-	RadioMacs         []string                               `json:"radio_macs,omitempty"`
-	Radios            []ResponseConfigHistorySearchItemRadio `json:"radios,omitempty"`
-	SecpolicyViolated bool                                   `json:"secpolicy_violated"`
-	Ssids             []string                               `json:"ssids,omitempty"`
-	Ssids24           []string                               `json:"ssids_24,omitempty"`
-	Ssids5            []string                               `json:"ssids_5,omitempty"`
-	// Epoch (seconds)
-	Timestamp            float64                               `json:"timestamp"`
-	Version              string                                `json:"version"`
+	// 2.4 GHz channel configured in this history entry
+	Channel24 int `json:"channel_24"`
+	// 5 GHz channel configured in this history entry
+	Channel5 int `json:"channel_5"`
+	// Unique string values returned or accepted by this schema
+	RadioMacs []string `json:"radio_macs,omitempty"`
+	// Radio config history details
+	Radios []ResponseConfigHistorySearchItemRadio `json:"radios,omitempty"`
+	// Whether the device configuration violated a security policy
+	SecpolicyViolated bool `json:"secpolicy_violated"`
+	// Unique string values returned or accepted by this schema
+	Ssids []string `json:"ssids,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Ssids24 []string `json:"ssids_24,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Ssids5 []string `json:"ssids_5,omitempty"`
+	// Epoch timestamp, in seconds
+	Timestamp float64 `json:"timestamp"`
+	// Configuration version associated with this history entry
+	Version string `json:"version"`
+	// WLAN config history details
 	Wlans                []ResponseConfigHistorySearchItemWlan `json:"wlans,omitempty"`
 	AdditionalProperties map[string]interface{}                `json:"_"`
 }

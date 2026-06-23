@@ -1,6 +1,8 @@
 
 # Dswitches Metrics Poe Compliance Details
 
+Detail values used by the discovered-switch PoE compliance metric
+
 ## Structure
 
 `DswitchesMetricsPoeComplianceDetails`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `TotalAps` | `int` | Required | - |
-| `TotalPower` | `float64` | Required | - |
+| `TotalAps` | `int` | Required | Number of APs evaluated for PoE compliance |
+| `TotalPower` | `float64` | Required | Aggregate AP PoE power demand across evaluated APs, in mW |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "total_aps": 180,
-  "total_power": 204.58
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    dswitchesMetricsPoeComplianceDetails := models.DswitchesMetricsPoeComplianceDetails{
+        TotalAps:             118,
+        TotalPower:           float64(60.6),
+    }
+
 }
 ```
 

@@ -1,6 +1,8 @@
 
 # Account Mobicontrol Config
 
+MobiControl account credentials used for OAuth application linking
+
 ## Structure
 
 `AccountMobicontrolConfig`
@@ -13,17 +15,26 @@
 | `ClientSecret` | `string` | Required | Customer account Client Secret |
 | `InstanceUrl` | `string` | Required | Customer account MobiControl instance URL |
 | `Password` | `string` | Required | Customer account password instance URL |
-| `Username` | `string` | Required | Customer account username |
+| `Username` | `string` | Required | Login username used to authenticate to the MobiControl account |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "client_id": "client_id0",
-  "client_secret": "client_secret6",
-  "instance_url": "instance_url2",
-  "password": "password2",
-  "username": "username2"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    accountMobicontrolConfig := models.AccountMobicontrolConfig{
+        ClientId:             "client_id4",
+        ClientSecret:         "client_secret0",
+        InstanceUrl:          "instance_url8",
+        Password:             "password6",
+        Username:             "username2",
+    }
+
 }
 ```
 

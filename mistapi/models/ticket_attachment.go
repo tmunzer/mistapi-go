@@ -8,7 +8,9 @@ import (
 )
 
 // TicketAttachment represents a TicketAttachment struct.
+// Download information for a support ticket attachment
 type TicketAttachment struct {
+	// Download URL for the support ticket attachment
 	ContentUrl           *string                `json:"content_url,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

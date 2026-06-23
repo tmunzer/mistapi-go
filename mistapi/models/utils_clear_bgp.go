@@ -10,14 +10,15 @@ import (
 )
 
 // UtilsClearBgp represents a UtilsClearBgp struct.
+// Request to clear BGP sessions on a device
 type UtilsClearBgp struct {
 	// can be ip, ipv6, all
 	Neighbor string `json:"neighbor"`
-	// only for HA. enum: `node0`, `node1`
+	// HA cluster node selector. enum: `node0`, `node1`
 	Node *HaClusterNodeEnum `json:"node,omitempty"`
 	// enum: `hard`, `in`, `out`, `soft`
 	Type UtilsClearBgpTypeEnum `json:"type"`
-	// VRF name
+	// Routing instance or VRF containing the BGP session
 	Vrf                  *string                `json:"vrf,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

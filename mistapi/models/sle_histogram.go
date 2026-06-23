@@ -10,12 +10,19 @@ import (
 )
 
 // SleHistogram represents a SleHistogram struct.
+// Histogram response for an SLE metric
 type SleHistogram struct {
-	Data                 []SleHistogramDataItem `json:"data"`
-	End                  float64                `json:"end"`
-	Metric               string                 `json:"metric"`
-	Start                float64                `json:"start"`
-	XLabel               string                 `json:"x_label"`
+	// Histogram buckets for an SLE metric
+	Data []SleHistogramDataItem `json:"data"`
+	// Last timestamp in the histogram window
+	End float64 `json:"end"`
+	// SLE metric name represented by the histogram
+	Metric string `json:"metric"`
+	// First timestamp in the histogram window
+	Start float64 `json:"start"`
+	// Label for the histogram x-axis
+	XLabel string `json:"x_label"`
+	// Label for the histogram y-axis
 	YLabel               string                 `json:"y_label"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

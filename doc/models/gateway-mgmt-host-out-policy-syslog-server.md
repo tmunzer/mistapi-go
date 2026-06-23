@@ -1,7 +1,7 @@
 
 # Gateway Mgmt Host Out Policy Syslog Server
 
-Allows to define the host_out_policy per Syslog Server. The Property key is the Syslog name
+Per-syslog-server host-out path policy override
 
 ## Structure
 
@@ -11,17 +11,26 @@ Allows to define the host_out_policy per Syslog Server. The Property key is the 
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Host` | `*string` | Optional | - |
-| `PathPreference` | `*string` | Optional | - |
-| `ServerName` | `*string` | Optional | - |
+| `Host` | `*string` | Optional | Syslog server hostname or IP address |
+| `PathPreference` | `*string` | Optional | Preferred path name used for this syslog server |
+| `ServerName` | `*string` | Optional | Remote syslog server name referenced by the policy |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "host": "103.35.3.5",
-  "path_preference": "dc_only",
-  "server_name": "dc_syslog_server"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayMgmtHostOutPolicySyslogServer := models.GatewayMgmtHostOutPolicySyslogServer{
+        Host:                 models.ToPointer("103.35.3.5"),
+        PathPreference:       models.ToPointer("dc_only"),
+        ServerName:           models.ToPointer("dc_syslog_server"),
+    }
+
 }
 ```
 

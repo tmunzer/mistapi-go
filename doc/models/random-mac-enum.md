@@ -1,7 +1,7 @@
 
 # Random Mac Enum
 
-Whether the client is using randomized MAC Address or not
+Whether the client is using randomized MAC address or not. enum: `true`, `false`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ Whether the client is using randomized MAC Address or not
 |  --- |
 | `true` |
 | `false` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    randomMac := models.RandomMacEnum_TRUE
+
+}
+```
 

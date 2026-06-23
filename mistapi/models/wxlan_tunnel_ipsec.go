@@ -14,7 +14,7 @@ import (
 type WxlanTunnelIpsec struct {
 	// Whether ipsec is enabled, requires DMVPN be enabled
 	Enabled *bool `json:"enabled,omitempty"`
-	// IPSec pre-shared key
+	// Pre-shared key used for IPsec on this WxLAN tunnel
 	Psk                  string                 `json:"psk"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

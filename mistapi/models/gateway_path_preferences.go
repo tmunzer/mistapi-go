@@ -8,7 +8,9 @@ import (
 )
 
 // GatewayPathPreferences represents a GatewayPathPreferences struct.
+// Gateway path preference that selects among one or more local, WAN, VPN, or tunnel paths
 type GatewayPathPreferences struct {
+	// Candidate paths evaluated by a gateway path preference
 	Paths []GatewayPathPreferencesPath `json:"paths,omitempty"`
 	// enum: `ecmp`, `ordered`, `weighted`
 	Strategy             *GatewayPathStrategyEnum `json:"strategy,omitempty"`

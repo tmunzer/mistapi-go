@@ -11,23 +11,32 @@ Self-driving network automation settings per domain
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Wan` | [`*models.MarvisSelfDrivingDomain`](../../doc/models/marvis-self-driving-domain.md) | Optional | - |
-| `Wired` | [`*models.MarvisSelfDrivingDomain`](../../doc/models/marvis-self-driving-domain.md) | Optional | - |
-| `Wireless` | [`*models.MarvisSelfDrivingDomain`](../../doc/models/marvis-self-driving-domain.md) | Optional | - |
+| `Wan` | [`*models.MarvisSelfDrivingDomain`](../../doc/models/marvis-self-driving-domain.md) | Optional | Self-driving automation settings for one Marvis domain |
+| `Wired` | [`*models.MarvisSelfDrivingDomain`](../../doc/models/marvis-self-driving-domain.md) | Optional | Self-driving automation settings for one Marvis domain |
+| `Wireless` | [`*models.MarvisSelfDrivingDomain`](../../doc/models/marvis-self-driving-domain.md) | Optional | Self-driving automation settings for one Marvis domain |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "wan": {
-    "enabled": false
-  },
-  "wired": {
-    "enabled": false
-  },
-  "wireless": {
-    "enabled": false
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    marvisSelfDriving := models.MarvisSelfDriving{
+        Wan:                  models.ToPointer(models.MarvisSelfDrivingDomain{
+            Enabled:              models.ToPointer(false),
+        }),
+        Wired:                models.ToPointer(models.MarvisSelfDrivingDomain{
+            Enabled:              models.ToPointer(false),
+        }),
+        Wireless:             models.ToPointer(models.MarvisSelfDrivingDomain{
+            Enabled:              models.ToPointer(false),
+        }),
+    }
+
 }
 ```
 

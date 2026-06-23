@@ -11,18 +11,23 @@ import (
 )
 
 // SsoRoleOrg represents a SsoRoleOrg struct.
-// SSO Role response
+// Organization SSO role definition
 type SsoRoleOrg struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	ForSite     *bool    `json:"for_site,omitempty"`
+	// Whether this organization SSO role is scoped for site-level access
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime         *float64               `json:"modified_time,omitempty"`
-	MspId                *uuid.UUID             `json:"msp_id,omitempty"`
-	Name                 string                 `json:"name"`
-	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Managed service provider identifier
+	MspId *uuid.UUID `json:"msp_id,omitempty"`
+	// Display name of the organization SSO role
+	Name string `json:"name"`
+	// Owning organization identifier for this SSO role
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Access privileges granted by an organization SSO role
 	Privileges           []PrivilegeOrg         `json:"privileges"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

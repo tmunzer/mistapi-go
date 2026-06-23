@@ -8,11 +8,15 @@ import (
 )
 
 // SiteEngagementDwellTagNames represents a SiteEngagementDwellTagNames struct.
-// Name associated to each tag
+// Display labels for engagement dwell-time categories
 type SiteEngagementDwellTagNames struct {
-	Bounce               *string                `json:"bounce,omitempty"`
-	Engaged              *string                `json:"engaged,omitempty"`
-	Passerby             *string                `json:"passerby,omitempty"`
+	// Display label for bounce visits
+	Bounce *string `json:"bounce,omitempty"`
+	// Display label for engaged visits
+	Engaged *string `json:"engaged,omitempty"`
+	// Display label for passerby visits
+	Passerby *string `json:"passerby,omitempty"`
+	// Display label for stationed visits
 	Stationed            *string                `json:"stationed,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

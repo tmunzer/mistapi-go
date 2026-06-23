@@ -8,11 +8,13 @@ import (
 )
 
 // SnmpUsm represents a SnmpUsm struct.
+// SNMPv3 User-based Security Model configuration
 type SnmpUsm struct {
-	// enum: `local_engine`, `remote_engine`
+	// SNMP engine type used for this USM configuration. enum: `local_engine`, `remote_engine`
 	EngineType *SnmpUsmEngineTypeEnum `json:"engine_type,omitempty"`
 	// Required only if `engine_type`==`remote_engine`
-	RemoteEngineId       *string                `json:"remote_engine_id,omitempty"`
+	RemoteEngineId *string `json:"remote_engine_id,omitempty"`
+	// SNMPv3 USM user definitions
 	Users                []SnmpUsmUser          `json:"users,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

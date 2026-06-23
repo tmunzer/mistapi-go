@@ -14,3 +14,18 @@ For APs only and if `strategy`==`rrm`. Used in rrm to determine whether to start
 | `center_to_fringe` |
 | `fringe_to_center` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    upgradeDeviceRrmNodeOrder := models.UpgradeDeviceRrmNodeOrderEnum_CENTERTOFRINGE
+
+}
+```
+

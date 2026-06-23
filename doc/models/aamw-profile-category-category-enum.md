@@ -23,3 +23,18 @@ enum: `archive`, `document`, `pdf`, `executable`, `rich_application`, `library`,
 | `configuration` |
 | `script` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    aamwProfileCategoryCategory := models.AamwProfileCategoryCategoryEnum_CONFIGURATION
+
+}
+```
+

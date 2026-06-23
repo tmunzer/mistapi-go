@@ -8,7 +8,9 @@ import (
 )
 
 // Synthetictest represents a Synthetictest struct.
+// Request body for triggering a site synthetic test
 type Synthetictest struct {
+	// Contact email address supplied when triggering the site synthetic test
 	Email                *string                `json:"email,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

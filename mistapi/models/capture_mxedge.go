@@ -12,7 +12,7 @@ import (
 // CaptureMxedge represents a CaptureMxedge struct.
 // Initiate a Mist Edge Packet Capture
 type CaptureMxedge struct {
-	// Duration of the capture, in seconds. Default is 600, minimum is 60 and maximum is 10800 (3h)
+	// Packet capture duration, in seconds. Default is 600, minimum is 60 and maximum is 10800 (3h)
 	Duration *int `json:"duration,omitempty"`
 	// PCAP format. enum:
 	// * `stream`: to Mist cloud
@@ -20,13 +20,13 @@ type CaptureMxedge struct {
 	Format *CaptureMxedgeFormatEnum `json:"format,omitempty"`
 	// Max_len of each packet to capture. Default is 512, minimum is 64 and maximum is 2048
 	MaxPktLen *int `json:"max_pkt_len,omitempty"`
-	// Dict of Mist Edges to capture on, property key is the Mist Edge ID. Property value is a dict of interfaces to capture for the given mxedge (e.g. port1, kni0, lacp0, ipsec, drop, oobm)
+	// Dict of Mist Edges to capture on, property key is the Mist Edge ID. Property value is a dict of interfaces to capture for the given Mist Edge (e.g. port1, kni0, lacp0, ipsec, drop, oobm)
 	Mxedges map[string]CaptureMxedgeMxedges `json:"mxedges,omitempty"`
 	// Number of packets to capture. Default is 1024, maximum is 10000, minimum 1, or 0 for unlimited (local/remote streaming only)
 	NumPackets *int `json:"num_packets,omitempty"`
 	// tcpdump expression, applicable across all interfaces if specified at top level. An interface-specific value (under the `interfaces` dict) overrides this top-level value.
 	TcpdumpExpression *string `json:"tcpdump_expression,omitempty"`
-	// enum: `mxedge`
+	// Packet capture type discriminator for Mist Edge captures. enum: `mxedge`
 	Type string `json:"type"`
 	// Required if `format`==`tzsp`. Remote host accessible to mxedges over the network for receiving the captured packets
 	TzspHost *string `json:"tzsp_host,omitempty"`

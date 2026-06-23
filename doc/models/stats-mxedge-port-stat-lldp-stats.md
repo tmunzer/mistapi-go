@@ -1,6 +1,8 @@
 
 # Stats Mxedge Port Stat Lldp Stats
 
+LLDP neighbor information reported for a Mist Edge port
+
 ## Structure
 
 `StatsMxedgePortStatLldpStats`
@@ -9,22 +11,31 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ChassisId` | `*string` | Optional | - |
-| `MgmtAddr` | `*string` | Optional | - |
-| `PortDesc` | `*string` | Optional | - |
-| `PortId` | `*string` | Optional | - |
-| `SystemDesc` | `*string` | Optional | - |
-| `SystemName` | `*string` | Optional | - |
+| `ChassisId` | `*string` | Optional | LLDP chassis identifier advertised by the neighbor |
+| `MgmtAddr` | `*string` | Optional | Management address advertised by the LLDP neighbor |
+| `PortDesc` | `*string` | Optional | Port description advertised by the LLDP neighbor |
+| `PortId` | `*string` | Optional | Port identifier advertised by the LLDP neighbor |
+| `SystemDesc` | `*string` | Optional | System description advertised by the LLDP neighbor |
+| `SystemName` | `*string` | Optional | System name advertised by the LLDP neighbor |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "chassis_id": "chassis_id4",
-  "mgmt_addr": "mgmt_addr2",
-  "port_desc": "port_desc8",
-  "port_id": "port_id8",
-  "system_desc": "system_desc8"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsMxedgePortStatLldpStats := models.StatsMxedgePortStatLldpStats{
+        ChassisId:            models.ToPointer("chassis_id0"),
+        MgmtAddr:             models.ToPointer("mgmt_addr8"),
+        PortDesc:             models.ToPointer("port_desc6"),
+        PortId:               models.ToPointer("port_id6"),
+        SystemDesc:           models.ToPointer("system_desc2"),
+    }
+
 }
 ```
 

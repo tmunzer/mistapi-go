@@ -8,7 +8,9 @@ import (
 )
 
 // ServicePolicySkyatpDnsTunnelDetection represents a ServicePolicySkyatpDnsTunnelDetection struct.
+// Sky ATP DNS tunneling detection settings
 type ServicePolicySkyatpDnsTunnelDetection struct {
+	// Whether Sky ATP DNS tunneling detection is enabled
 	Enabled *bool `json:"enabled,omitempty"`
 	// enum: `default`, `standard`, `strict`
 	Profile              *ServicePolicySkyatpDnsTunnelDetectionProfileEnum `json:"profile,omitempty"`

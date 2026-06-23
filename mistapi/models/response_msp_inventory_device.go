@@ -11,13 +11,21 @@ import (
 )
 
 // ResponseMspInventoryDevice represents a ResponseMspInventoryDevice struct.
+// Inventory device record returned by MSP device MAC lookup
 type ResponseMspInventoryDevice struct {
-	ForSite              *bool                  `json:"for_site,omitempty"`
-	Mac                  string                 `json:"mac"`
-	Model                string                 `json:"model"`
-	OrgId                uuid.UUID              `json:"org_id"`
-	Serial               string                 `json:"serial"`
-	SiteId               uuid.UUID              `json:"site_id"`
+	// Whether this inventory device is associated with a site
+	ForSite *bool `json:"for_site,omitempty"`
+	// Device MAC address for the inventory device
+	Mac string `json:"mac"`
+	// Device model for the inventory device
+	Model string `json:"model"`
+	// Unique identifier of a Mist organization
+	OrgId uuid.UUID `json:"org_id"`
+	// Device serial number for the inventory device
+	Serial string `json:"serial"`
+	// Unique identifier of a Mist site
+	SiteId uuid.UUID `json:"site_id"`
+	// Device type for the inventory device
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

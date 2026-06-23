@@ -8,10 +8,11 @@ import (
 )
 
 // UtilsShowOspfSummary represents a UtilsShowOspfSummary struct.
+// OSPF summary command request for SSR and SRX devices
 type UtilsShowOspfSummary struct {
-	// only for HA. enum: `node0`, `node1`
+	// HA cluster node selector. enum: `node0`, `node1`
 	Node *HaClusterNodeEnum `json:"node,omitempty"`
-	// VRF name
+	// Routing instance or VRF filter for OSPF summary output
 	Vrf                  *string                `json:"vrf,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

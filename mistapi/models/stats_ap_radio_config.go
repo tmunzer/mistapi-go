@@ -8,13 +8,19 @@ import (
 )
 
 // StatsApRadioConfig represents a StatsApRadioConfig struct.
+// Radio configuration reported by an AP
 type StatsApRadioConfig struct {
-	Band24               *StatsApRadioConfigBand `json:"band_24,omitempty"`
-	Band24Usage          Optional[string]        `json:"band_24_usage"`
-	Band5                *StatsApRadioConfigBand `json:"band_5,omitempty"`
-	Band6                *StatsApRadioConfigBand `json:"band_6,omitempty"`
-	ScanningEnabled      *bool                   `json:"scanning_enabled,omitempty"`
-	AdditionalProperties map[string]interface{}  `json:"_"`
+	// Per-band radio configuration reported by an AP
+	Band24 *StatsApRadioConfigBand `json:"band_24,omitempty"`
+	// Current operating use for the 2.4 GHz radio
+	Band24Usage Optional[string] `json:"band_24_usage"`
+	// Per-band radio configuration reported by an AP
+	Band5 *StatsApRadioConfigBand `json:"band_5,omitempty"`
+	// Per-band radio configuration reported by an AP
+	Band6 *StatsApRadioConfigBand `json:"band_6,omitempty"`
+	// Whether radio scanning is enabled on the AP
+	ScanningEnabled      *bool                  `json:"scanning_enabled,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for StatsApRadioConfig,

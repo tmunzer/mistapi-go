@@ -10,7 +10,9 @@ import (
 )
 
 // GatewayPathPreferencesPath represents a GatewayPathPreferencesPath struct.
+// Candidate path within a gateway path preference
 type GatewayPathPreferencesPath struct {
+	// Relative cost assigned to this path for gateway path selection
 	Cost *int `json:"cost,omitempty"`
 	// For SSR Only. `true`, if this specific path is undesired
 	Disabled *bool `json:"disabled,omitempty"`
@@ -22,13 +24,13 @@ type GatewayPathPreferencesPath struct {
 	// * `type`==`vpn`: the name of the VPN Path to use
 	// * `type`==`wan`: the name of the WAN interface to use
 	Name *string `json:"name,omitempty"`
-	// Required when `type`==`local`
+	// Network names used by a local path; required when `type`==`local`
 	Networks []string `json:"networks,omitempty"`
-	// If `type`==`local`, if destination IP is to be replaced
+	// Destination IP addresses to replace when `type`==`local`
 	TargetIps []string `json:"target_ips,omitempty"`
 	// enum: `local`, `tunnel`, `vpn`, `wan`
 	Type GatewayPathTypeEnum `json:"type"`
-	// Optional if `type`==`vpn`
+	// Optional if `type`==`vpn`; WAN interface name associated with the VPN path
 	WanName              *string                `json:"wan_name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

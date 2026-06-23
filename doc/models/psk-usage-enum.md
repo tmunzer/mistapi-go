@@ -15,3 +15,18 @@ enum: `macs`, `multi`, `single`
 | `multi` |
 | `single` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    pskUsage := models.PskUsageEnum_MULTI
+
+}
+```
+

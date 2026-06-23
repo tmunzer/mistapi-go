@@ -15,3 +15,18 @@ enum: `backup`, `linecard`, `master`
 | `linecard` |
 | `master` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    virtualChassisConfigMemberVcRole := models.VirtualChassisConfigMemberVcRoleEnum_MASTER
+
+}
+```
+

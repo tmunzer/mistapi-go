@@ -8,9 +8,13 @@ import (
 )
 
 // InventorySearchResultMember represents a InventorySearchResultMember struct.
+// Virtual Chassis member in an inventory search result
 type InventorySearchResultMember struct {
-	Mac                  *string                `json:"mac,omitempty"`
-	Model                *string                `json:"model,omitempty"`
+	// Member device MAC address in this inventory search result
+	Mac *string `json:"mac,omitempty"`
+	// Member device model in this inventory search result
+	Model *string `json:"model,omitempty"`
+	// Member device serial number in this inventory search result
 	Serial               *string                `json:"serial,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

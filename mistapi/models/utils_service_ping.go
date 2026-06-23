@@ -10,15 +10,19 @@ import (
 )
 
 // UtilsServicePing represents a UtilsServicePing struct.
+// Service ping request for SSR devices
 type UtilsServicePing struct {
-	Count *int   `json:"count,omitempty"`
-	Host  string `json:"host"`
-	// only for HA. enum: `node0`, `node1`
+	// Number of ICMP echo requests to send for the service ping
+	Count *int `json:"count,omitempty"`
+	// Destination IPv4 address for the service ping
+	Host string `json:"host"`
+	// HA cluster node selector. enum: `node0`, `node1`
 	Node *HaClusterNodeEnum `json:"node,omitempty"`
 	// Ping packet takes the same path as the service
 	Service string `json:"service"`
-	Size    *int   `json:"size,omitempty"`
-	// Tenant context in which the packet is sent
+	// ICMP payload size, in bytes
+	Size *int `json:"size,omitempty"`
+	// Routing tenant context in which the packet is sent
 	Tenant               *string                `json:"tenant,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

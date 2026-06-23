@@ -1,6 +1,8 @@
 
 # Network Internal Access
 
+Internal access settings for an organization network
+
 ## Structure
 
 `NetworkInternalAccess`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | - |
+| `Enabled` | `*bool` | Optional | Whether internal access is enabled for this network |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    networkInternalAccess := models.NetworkInternalAccess{
+        Enabled:              models.ToPointer(false),
+    }
+
 }
 ```
 

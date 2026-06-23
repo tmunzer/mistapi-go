@@ -8,26 +8,27 @@ import (
 )
 
 // UpgradeDevicesTargets represents a UpgradeDevicesTargets struct.
+// Read-only device target lists grouped by upgrade status
 type UpgradeDevicesTargets struct {
-	// List of devices MAC Addresses which cloud has requested to download firmware
+	// List of device MAC addresses that the cloud requested to download firmware
 	DownloadRequested []string `json:"download_requested,omitempty"`
-	// List of devices MAC Addresses which have the firmware downloaded
+	// List of device MAC addresses that have downloaded the firmware
 	Downloaded []string `json:"downloaded,omitempty"`
-	// List of devices MAC Addresses which are currently downloading the firmware
+	// List of device MAC addresses that are currently downloading the firmware
 	Downloading []string `json:"downloading,omitempty"`
-	// List of devices MAC Addresses which have failed to upgrade
+	// List of device MAC addresses that failed to upgrade
 	Failed []string `json:"failed,omitempty"`
-	// List of devices MAC Addresses which are rebooting
+	// List of device MAC addresses for devices that are rebooting
 	RebootInProgress []string `json:"reboot_in_progress,omitempty"`
-	// List of devices MAC Addresses which have rebooted successfully
+	// List of device MAC addresses that rebooted successfully
 	Rebooted []string `json:"rebooted,omitempty"`
-	// List of devices MAC Addresses which cloud has scheduled an upgrade for
+	// List of device MAC addresses that the cloud scheduled an upgrade for
 	Scheduled []string `json:"scheduled,omitempty"`
-	// List of devices MAC Addresses which skipped upgrade since requested version was same as running version. Use force to always upgrade
+	// List of device MAC addresses that skipped upgrade because requested version was same as running version. Use force to always upgrade
 	Skipped []string `json:"skipped,omitempty"`
 	// Count of devices part of this upgrade
 	Total *int `json:"total,omitempty"`
-	// Count of devices which have upgraded successfully
+	// List of device MAC addresses that upgraded successfully
 	Upgraded             []string               `json:"upgraded,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

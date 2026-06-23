@@ -27,7 +27,7 @@ func NewOrgsLicenses(baseController baseController) *OrgsLicenses {
 // ClaimOrgLicense takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.ResponseClaimLicense data and
 // an error if there was an issue with the request or response.
-// Claim Org licenses / activation codes
+// Synchronously claims licenses and/or inventory devices from an activation code. All inventory devices are claimed immediately during the request.
 func (o *OrgsLicenses) ClaimOrgLicense(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -39,19 +39,15 @@ func (o *OrgsLicenses) ClaimOrgLicense(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Invalid key (or already used)"},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -71,7 +67,7 @@ func (o *OrgsLicenses) ClaimOrgLicense(
 // GetOrgLicenseAsyncClaimStatus takes context, orgId, detail as parameters and
 // returns an models.ApiResponse with models.ResponseAsyncLicense data and
 // an error if there was an issue with the request or response.
-// Get Processing Status for Async Claim
+// Return processing status for an asynchronous organization license claim, optionally including per-device license details.
 func (o *OrgsLicenses) GetOrgLicenseAsyncClaimStatus(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -83,19 +79,15 @@ func (o *OrgsLicenses) GetOrgLicenseAsyncClaimStatus(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if detail != nil {
 		req.QueryParam("detail", *detail)
@@ -111,10 +103,130 @@ func (o *OrgsLicenses) GetOrgLicenseAsyncClaimStatus(
 	return models.NewApiResponse(result, resp), err
 }
 
+// ListOrgAsyncClaims takes context, orgId, detail as parameters and
+// returns an models.ApiResponse with models.ResponseAsyncClaimsList data and
+// an error if there was an issue with the request or response.
+// List all async inventory claim jobs for the organization, optionally including per-device details per claim.
+func (o *OrgsLicenses) ListOrgAsyncClaims(
+	ctx context.Context,
+	orgId uuid.UUID,
+	detail *bool) (
+	models.ApiResponse[models.ResponseAsyncClaimsList],
+	error) {
+	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/claims")
+	req.AppendTemplateParams(orgId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+	if detail != nil {
+		req.QueryParam("detail", *detail)
+	}
+
+	var result models.ResponseAsyncClaimsList
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseAsyncClaimsList](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
+// CreateOrgAsyncClaim takes context, orgId, body as parameters and
+// returns an models.ApiResponse with models.ResponseAsyncClaimCreate data and
+// an error if there was an issue with the request or response.
+// Schedules an async claim for inventory devices. Inventory claiming is queued and processed in the background; the response returns immediately with a `claim_id` for polling. Licenses (if `type=all`) are still claimed synchronously during the request.
+// Use `GET /api/v1/orgs/{org_id}/claims/{claim_id}` to poll the result.
+func (o *OrgsLicenses) CreateOrgAsyncClaim(
+	ctx context.Context,
+	orgId uuid.UUID,
+	body *models.ClaimActivationAsync) (
+	models.ApiResponse[models.ResponseAsyncClaimCreate],
+	error) {
+	req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/claims")
+	req.AppendTemplateParams(orgId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Invalid key (or already used)"},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
+
+	var result models.ResponseAsyncClaimCreate
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseAsyncClaimCreate](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
+// GetOrgAsyncClaimStatus takes context, orgId, claimId, detail as parameters and
+// returns an models.ApiResponse with models.ResponseAsyncClaimStatus data and
+// an error if there was an issue with the request or response.
+// Return the processing status for a specific async inventory claim job, optionally including per-device details.
+func (o *OrgsLicenses) GetOrgAsyncClaimStatus(
+	ctx context.Context,
+	orgId uuid.UUID,
+	claimId uuid.UUID,
+	detail *bool) (
+	models.ApiResponse[models.ResponseAsyncClaimStatus],
+	error) {
+	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/claims/%v")
+	req.AppendTemplateParams(orgId, claimId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+	if detail != nil {
+		req.QueryParam("detail", *detail)
+	}
+
+	var result models.ResponseAsyncClaimStatus
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseAsyncClaimStatus](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
 // GetOrgLicensesSummary takes context, orgId as parameters and
 // returns an models.ApiResponse with models.License data and
 // an error if there was an issue with the request or response.
-// Get the list of licenses
+// Return the organization license entitlement, subscription, amendment, consumption, and available-license summary.
 func (o *OrgsLicenses) GetOrgLicensesSummary(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -125,19 +237,15 @@ func (o *OrgsLicenses) GetOrgLicensesSummary(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.License
@@ -169,19 +277,15 @@ func (o *OrgsLicenses) MoveOrDeleteOrgLicenseToAnotherOrg(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -210,19 +314,15 @@ func (o *OrgsLicenses) GetOrgLicensesBySite(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result []models.LicenseUsageOrg

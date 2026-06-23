@@ -10,6 +10,7 @@ import (
 // Iotproxy represents a Iotproxy struct.
 // IoT proxy configuration for the site
 type Iotproxy struct {
+	// Whether the site IoT proxy is enabled
 	Enabled *bool `json:"enabled,omitempty"`
 	// Visionline integration settings for IoT proxy
 	Visionline           *IotproxyVisionline    `json:"visionline,omitempty"`

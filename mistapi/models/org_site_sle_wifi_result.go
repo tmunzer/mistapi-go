@@ -11,17 +11,29 @@ import (
 )
 
 // OrgSiteSleWifiResult represents a OrgSiteSleWifiResult struct.
+// Wi-Fi SLE scores and counts for one site
 type OrgSiteSleWifiResult struct {
-	ApAvailability       float64                `json:"ap-availability"`
-	ApHealth             *float64               `json:"ap-health,omitempty"`
-	Capacity             *float64               `json:"capacity,omitempty"`
-	Coverage             *float64               `json:"coverage,omitempty"`
-	NumAps               *float64               `json:"num_aps,omitempty"`
-	NumClients           *float64               `json:"num_clients,omitempty"`
-	Roaming              *float64               `json:"roaming,omitempty"`
-	SiteId               uuid.UUID              `json:"site_id"`
-	SuccessfulConnect    *float64               `json:"successful-connect,omitempty"`
-	Throughput           *float64               `json:"throughput,omitempty"`
+	// AP availability SLE score for this site
+	ApAvailability float64 `json:"ap-availability"`
+	// AP health SLE score for this site
+	ApHealth *float64 `json:"ap-health,omitempty"`
+	// Wi-Fi capacity SLE score for this site
+	Capacity *float64 `json:"capacity,omitempty"`
+	// Wi-Fi coverage SLE score for this site
+	Coverage *float64 `json:"coverage,omitempty"`
+	// Number of APs included in this site result
+	NumAps *float64 `json:"num_aps,omitempty"`
+	// Number of Wi-Fi clients included in this site result
+	NumClients *float64 `json:"num_clients,omitempty"`
+	// Wi-Fi roaming SLE score for this site
+	Roaming *float64 `json:"roaming,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId uuid.UUID `json:"site_id"`
+	// Successful connection SLE score for this site
+	SuccessfulConnect *float64 `json:"successful-connect,omitempty"`
+	// Wi-Fi throughput SLE score for this site
+	Throughput *float64 `json:"throughput,omitempty"`
+	// Client connection-time SLE score for this site
 	TimeToConnect        *float64               `json:"time-to-connect,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

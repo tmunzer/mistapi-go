@@ -8,8 +8,11 @@ import (
 )
 
 // ResponsePcapBucketConfig represents a ResponsePcapBucketConfig struct.
+// Result of a custom packet capture bucket setup or verification operation
 type ResponsePcapBucketConfig struct {
-	Bucket               *string                `json:"bucket,omitempty"`
+	// Custom bucket name used for packet capture storage
+	Bucket *string `json:"bucket,omitempty"`
+	// Status or error detail returned for the bucket operation
 	Detail               *string                `json:"detail,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

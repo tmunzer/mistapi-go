@@ -9,11 +9,15 @@ import (
 )
 
 // OrgEvent represents a OrgEvent struct.
+// Event record generated at the organization level
 type OrgEvent struct {
+	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
-	Text  *string    `json:"text,omitempty"`
-	// Epoch (seconds)
-	Timestamp            *float64               `json:"timestamp,omitempty"`
+	// Detailed human-readable message for the organization event
+	Text *string `json:"text,omitempty"`
+	// Epoch timestamp, in seconds
+	Timestamp *float64 `json:"timestamp,omitempty"`
+	// Event type code for this organization event
 	Type                 *string                `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

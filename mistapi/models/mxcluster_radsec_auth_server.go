@@ -8,6 +8,7 @@ import (
 )
 
 // MxclusterRadsecAuthServer represents a MxclusterRadsecAuthServer struct.
+// RadSec authentication server settings for a Mist Edge cluster
 type MxclusterRadsecAuthServer struct {
 	// IP / hostname of RADIUS server
 	Host *string `json:"host,omitempty"`
@@ -25,9 +26,9 @@ type MxclusterRadsecAuthServer struct {
 	KeywrapMack *string `json:"keywrap_mack,omitempty"`
 	// Auth port of RADIUS server
 	Port *int `json:"port,omitempty"`
-	// Authentication request retry
+	// Number of authentication request retries before failing over
 	Retry *int `json:"retry,omitempty"`
-	// Secret of RADIUS server
+	// Shared secret used with this RADIUS authentication server
 	Secret *string `json:"secret,omitempty"`
 	// List of ssids that will use this server if match_ssid is true and match is found
 	Ssids []string `json:"ssids,omitempty"`

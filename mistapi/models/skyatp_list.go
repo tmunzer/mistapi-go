@@ -8,8 +8,11 @@ import (
 )
 
 // SkyatpList represents a SkyatpList struct.
+// Sky ATP SecIntel allowlist or blocklist entries
 type SkyatpList struct {
-	Domains              []SkyatpListDomain     `json:"domains,omitempty"`
+	// Domain entries in a Sky ATP SecIntel list
+	Domains []SkyatpListDomain `json:"domains,omitempty"`
+	// IP address entries in a Sky ATP SecIntel list
 	Ip                   []SkyatpListIp         `json:"ip,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

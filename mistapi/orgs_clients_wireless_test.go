@@ -18,8 +18,8 @@ func TestOrgsClientsWirelessTestCountOrgWirelessClients(t *testing.T) {
 		t.Error(errUUID)
 	}
 	distinct := models.OrgClientsCountDistinctEnum("device")
-	mac := "aabbccddeeff"
-	hostname := "my-everest-client"
+	mac := "aabbccddeeff,aabbcc*"
+	hostname := "my-everest-client,my-everest*"
 	device := "iPhone"
 	os := "Windows 10"
 	model := "iPhone 8"
@@ -51,8 +51,8 @@ func TestOrgsClientsWirelessTestCountOrgWirelessClients1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	distinct := models.OrgClientsCountDistinctEnum("device")
-	mac := "aabbccddeeff"
-	hostname := "my-everest-client"
+	mac := "aabbccddeeff,aabbcc*"
+	hostname := "my-everest-client,my-everest*"
 	device := "iPhone"
 	os := "Windows 10"
 	model := "iPhone 8"
@@ -84,6 +84,7 @@ func TestOrgsClientsWirelessTestCountOrgWirelessClientEvents(t *testing.T) {
 		t.Error(errUUID)
 	}
 	distinct := models.SiteClientEventsCountDistinctEnum("type")
+	mType := "MARVIS_EVENT_CLIENT_AUTH_FAILURE,CLIENT_DEAUTHENTICATION"
 
 	siteId, errUUID := uuid.Parse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
 	if errUUID != nil {
@@ -92,7 +93,7 @@ func TestOrgsClientsWirelessTestCountOrgWirelessClientEvents(t *testing.T) {
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsClientsWireless.CountOrgWirelessClientEvents(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, nil, &siteId, nil, nil, &duration, &limit)
+	apiResponse, err := orgsClientsWireless.CountOrgWirelessClientEvents(ctx, orgId, &distinct, &mType, nil, nil, nil, nil, nil, nil, &siteId, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -113,6 +114,7 @@ func TestOrgsClientsWirelessTestCountOrgWirelessClientEvents1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	distinct := models.SiteClientEventsCountDistinctEnum("type")
+	mType := "MARVIS_EVENT_CLIENT_AUTH_FAILURE,CLIENT_DEAUTHENTICATION"
 
 	siteId, errUUID := uuid.Parse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
 	if errUUID != nil {
@@ -121,7 +123,7 @@ func TestOrgsClientsWirelessTestCountOrgWirelessClientEvents1(t *testing.T) {
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsClientsWireless.CountOrgWirelessClientEvents(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, nil, &siteId, nil, nil, &duration, &limit)
+	apiResponse, err := orgsClientsWireless.CountOrgWirelessClientEvents(ctx, orgId, &distinct, &mType, nil, nil, nil, nil, nil, nil, &siteId, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -141,17 +143,14 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClientEvents(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-
-	reasonCode := int(7)
-	ssid := "MySSID"
-	ap := "5c5b53010101"
-	keyMgmt := models.ClientKeyMgmtEnum("WPA2-PSK")
-
+	mType := "CLIENT_IP_ASSIGNED,CLIENT_DEAUTHENTICATION"
+	reasonCode := "0,14"
+	ssid := "Corp,Guest"
+	ap := "5c5b53010101,5c5b53020202"
+	keyMgmt := "WPA2-PSK,WPA2-PSK/CCMP"
+	proto := "ax,ac"
+	band := "6,5"
 	wlanId, errUUID := uuid.Parse("7dae216d-7c98-a51b-e068-dd7d477b7216")
-	if errUUID != nil {
-		t.Error(errUUID)
-	}
-	nacruleId, errUUID := uuid.Parse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
@@ -160,7 +159,7 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClientEvents(t *testing.T) {
 	sort := "timestamp"
 	limit := int(100)
 
-	apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, &keyMgmt, nil, nil, &wlanId, &nacruleId, nil, nil, &duration, &sort, &limit, nil)
+	apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, &mType, &reasonCode, &ssid, &ap, &keyMgmt, &proto, &band, &wlanId, nil, nil, nil, &duration, &sort, &limit, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -180,17 +179,14 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClientEvents1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-
-	reasonCode := int(7)
-	ssid := "MySSID"
-	ap := "5c5b53010101"
-	keyMgmt := models.ClientKeyMgmtEnum("WPA2-PSK")
-
+	mType := "CLIENT_IP_ASSIGNED,CLIENT_DEAUTHENTICATION"
+	reasonCode := "0,14"
+	ssid := "Corp,Guest"
+	ap := "5c5b53010101,5c5b53020202"
+	keyMgmt := "WPA2-PSK,WPA2-PSK/CCMP"
+	proto := "ax,ac"
+	band := "6,5"
 	wlanId, errUUID := uuid.Parse("7dae216d-7c98-a51b-e068-dd7d477b7216")
-	if errUUID != nil {
-		t.Error(errUUID)
-	}
-	nacruleId, errUUID := uuid.Parse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
@@ -199,7 +195,7 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClientEvents1(t *testing.T) {
 	sort := "timestamp"
 	limit := int(100)
 
-	apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, &keyMgmt, nil, nil, &wlanId, &nacruleId, nil, nil, &duration, &sort, &limit, nil)
+	apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, &mType, &reasonCode, &ssid, &ap, &keyMgmt, &proto, &band, &wlanId, nil, nil, nil, &duration, &sort, &limit, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -224,18 +220,18 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClients(t *testing.T) {
 		t.Error(errUUID)
 	}
 	ap := "5c5b53010101"
-	band := "5"
+	band := "5,6"
 	device := "iPhone"
-	hostname := "my-everest-client"
-	ip := "10.100.10.54"
-	mac := "aabbccddeeff"
+	hostname := "my-everest-client,my-everest*"
+	ip := "10.100.10.54,10.100.10.*"
+	mac := "aabbccddeeff,aabbcc*"
 	model := "iPhone 8"
 	os := "Windows 10"
 	pskId := "000000ab-00ab-00ab-00ab-0000000000ab"
 	pskName := "MyPPSK"
 	ssid := "MySSID"
 	text := "5c5b530"
-	username := "johndoe"
+	username := "johndoe,johnd*"
 	vlan := "10"
 	limit := int(100)
 
@@ -267,18 +263,18 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClients1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	ap := "5c5b53010101"
-	band := "5"
+	band := "5,6"
 	device := "iPhone"
-	hostname := "my-everest-client"
-	ip := "10.100.10.54"
-	mac := "aabbccddeeff"
+	hostname := "my-everest-client,my-everest*"
+	ip := "10.100.10.54,10.100.10.*"
+	mac := "aabbccddeeff,aabbcc*"
 	model := "iPhone 8"
 	os := "Windows 10"
 	pskId := "000000ab-00ab-00ab-00ab-0000000000ab"
 	pskName := "MyPPSK"
 	ssid := "MySSID"
 	text := "5c5b530"
-	username := "johndoe"
+	username := "johndoe,johnd*"
 	vlan := "10"
 	limit := int(100)
 
@@ -376,25 +372,25 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClientSessions(t *testing.T) {
 		t.Error(errUUID)
 	}
 	ap := "5c5b53010101"
-
-	clientFamily := "iPhone"
-	clientManufacture := "Apple"
-	clientModel := "iPhone 8"
-	clientUsername := "john.doe"
-	clientOs := "Windows 10"
-	ssid := "MySSID"
+	band := "5,6"
+	clientFamily := "Phone/Tablet/Wearable,Monitoring Device"
+	clientManufacture := "Hewlett Packard Enterprise,Unknown"
+	clientModel := "iPhone 8,Aruba S0U52A"
+	clientUsername := "john.doe,jane.doe"
+	clientOs := "iOS 16.7.16,Unknown"
+	ssid := "Corp,Guest"
 	wlanId, errUUID := uuid.Parse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
 	pskId := "000000ab-00ab-00ab-00ab-0000000000ab"
-	pskName := "MyPPSK"
+	pskName := "psk-a,psk-b"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientSessions(ctx, orgId, &ap, nil, &clientFamily, &clientManufacture, &clientModel, &clientUsername, &clientOs, &ssid, &wlanId, &pskId, &pskName, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientSessions(ctx, orgId, &ap, &band, &clientFamily, &clientManufacture, &clientModel, &clientUsername, &clientOs, &ssid, &wlanId, &pskId, &pskName, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -415,25 +411,25 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClientSessions1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	ap := "5c5b53010101"
-
-	clientFamily := "iPhone"
-	clientManufacture := "Apple"
-	clientModel := "iPhone 8"
-	clientUsername := "john.doe"
-	clientOs := "Windows 10"
-	ssid := "MySSID"
+	band := "5,6"
+	clientFamily := "Phone/Tablet/Wearable,Monitoring Device"
+	clientManufacture := "Hewlett Packard Enterprise,Unknown"
+	clientModel := "iPhone 8,Aruba S0U52A"
+	clientUsername := "john.doe,jane.doe"
+	clientOs := "iOS 16.7.16,Unknown"
+	ssid := "Corp,Guest"
 	wlanId, errUUID := uuid.Parse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
 	pskId := "000000ab-00ab-00ab-00ab-0000000000ab"
-	pskName := "MyPPSK"
+	pskName := "psk-a,psk-b"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientSessions(ctx, orgId, &ap, nil, &clientFamily, &clientManufacture, &clientModel, &clientUsername, &clientOs, &ssid, &wlanId, &pskId, &pskName, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientSessions(ctx, orgId, &ap, &band, &clientFamily, &clientManufacture, &clientModel, &clientUsername, &clientOs, &ssid, &wlanId, &pskId, &pskName, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -15,3 +15,18 @@ enum: `auto`, `long`, `short`
 | `long` |
 | `short` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    radioBandPreamble := models.RadioBandPreambleEnum_SHORT
+
+}
+```
+

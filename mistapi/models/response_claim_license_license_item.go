@@ -10,10 +10,15 @@ import (
 )
 
 // ResponseClaimLicenseLicenseItem represents a ResponseClaimLicenseLicenseItem struct.
+// License entitlement returned by a claim operation
 type ResponseClaimLicenseLicenseItem struct {
-	End                  int                    `json:"end"`
-	Quantity             int                    `json:"quantity"`
-	Start                int                    `json:"start"`
+	// Epoch timestamp when the license entitlement ends
+	End int `json:"end"`
+	// Number of license units included in the entitlement
+	Quantity int `json:"quantity"`
+	// Epoch timestamp when the license entitlement starts
+	Start int `json:"start"`
+	// License SKU or subscription type
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

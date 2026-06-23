@@ -1,6 +1,8 @@
 
 # Route Summary Stats
 
+Route table capacity and usage summary
+
 ## Structure
 
 `RouteSummaryStats`
@@ -9,19 +11,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `FibRoutes` | `*int` | Optional | - |
-| `MaxUnicastRoutesSupported` | `*int` | Optional | - |
-| `RibRoutes` | `*int` | Optional | - |
-| `TotalRoutes` | `*int` | Optional | - |
+| `FibRoutes` | `*int` | Optional | Number of routes installed in the forwarding information base |
+| `MaxUnicastRoutesSupported` | `*int` | Optional | Supported maximum number of unicast routes |
+| `RibRoutes` | `*int` | Optional | Number of routes present in the routing information base |
+| `TotalRoutes` | `*int` | Optional | Aggregate number of routes reported by the device |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "fib_routes": 100,
-  "max_unicast_routes_supported": 94,
-  "rib_routes": 218,
-  "total_routes": 170
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    routeSummaryStats := models.RouteSummaryStats{
+        FibRoutes:                 models.ToPointer(224),
+        MaxUnicastRoutesSupported: models.ToPointer(218),
+        RibRoutes:                 models.ToPointer(86),
+        TotalRoutes:               models.ToPointer(46),
+    }
+
 }
 ```
 

@@ -8,9 +8,13 @@ import (
 )
 
 // SleImpactedClientsClientSwitch represents a SleImpactedClientsClientSwitch struct.
+// Switch association for an impacted client
 type SleImpactedClientsClientSwitch struct {
-	Interfaces           []string               `json:"interfaces,omitempty"`
-	SwitchMac            *string                `json:"switch_mac,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Interfaces []string `json:"interfaces,omitempty"`
+	// MAC address of the switch associated with this impacted client
+	SwitchMac *string `json:"switch_mac,omitempty"`
+	// Display name of the switch associated with this impacted client
 	SwitchName           *string                `json:"switch_name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

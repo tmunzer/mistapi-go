@@ -1,7 +1,7 @@
 
 # Switch Metric Scope Enum
 
-enum: `site`, `switch`
+Scope level used when querying switch metrics. enum: `site`, `switch`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `site`, `switch`
 |  --- |
 | `site` |
 | `switch` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchMetricScope := models.SwitchMetricScopeEnum_SITE
+
+}
+```
 

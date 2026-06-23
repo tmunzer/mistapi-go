@@ -1,6 +1,8 @@
 
 # Switch Port Mirroring Property
 
+Input and output settings for one switch port mirroring session
+
 ## Structure
 
 `SwitchPortMirroringProperty`
@@ -16,26 +18,35 @@
 | `OutputNetwork` | `*string` | Optional | Exactly one of the `output_ip_address`, `output_port_id` or `output_network` should be provided |
 | `OutputPortId` | `*string` | Optional | Exactly one of the `output_ip_address`, `output_port_id` or `output_network` should be provided |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "output_ip_address": "1.2.3.4",
-  "output_network": "analyze",
-  "output_port_id": "ge-0/0/5",
-  "input_networks_ingress": [
-    "input_networks_ingress2",
-    "input_networks_ingress3",
-    "input_networks_ingress4"
-  ],
-  "input_port_ids_egress": [
-    "input_port_ids_egress8"
-  ],
-  "input_port_ids_ingress": [
-    "input_port_ids_ingress6",
-    "input_port_ids_ingress7",
-    "input_port_ids_ingress8"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchPortMirroringProperty := models.SwitchPortMirroringProperty{
+        InputNetworksIngress: []string{
+            "input_networks_ingress2",
+            "input_networks_ingress3",
+        },
+        InputPortIdsEgress:   []string{
+            "input_port_ids_egress8",
+            "input_port_ids_egress9",
+            "input_port_ids_egress0",
+        },
+        InputPortIdsIngress:  []string{
+            "input_port_ids_ingress6",
+            "input_port_ids_ingress7",
+        },
+        OutputIpAddress:      models.ToPointer("1.2.3.4"),
+        OutputNetwork:        models.ToPointer("analyze"),
+        OutputPortId:         models.ToPointer("ge-0/0/5"),
+    }
+
 }
 ```
 

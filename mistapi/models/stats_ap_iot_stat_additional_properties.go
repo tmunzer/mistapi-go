@@ -8,7 +8,9 @@ import (
 )
 
 // StatsApIotStatAdditionalProperties represents a StatsApIotStatAdditionalProperties struct.
+// IoT input statistic value
 type StatsApIotStatAdditionalProperties struct {
+	// Reported value for this IoT input
 	Value                Optional[int]          `json:"value"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

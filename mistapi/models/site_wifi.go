@@ -8,14 +8,17 @@ import (
 )
 
 // SiteWifi represents a SiteWifi struct.
-// Wi-Fi site settings
+// Wi-Fi configuration settings for a site
 type SiteWifi struct {
+	// Whether Cisco compatibility features are enabled for site Wi-Fi
 	CiscoEnabled *bool `json:"cisco_enabled,omitempty"`
 	// Whether to disable 11k
-	Disable11k                        *bool `json:"disable_11k,omitempty"`
+	Disable11k *bool `json:"disable_11k,omitempty"`
+	// Whether AP radios are disabled when AP power is constrained
 	DisableRadiosWhenPowerConstrained *bool `json:"disable_radios_when_power_constrained,omitempty"`
 	// When proxy_arp is enabled, check for arp spoofing.
-	EnableArpSpoofCheck       *bool `json:"enable_arp_spoof_check,omitempty"`
+	EnableArpSpoofCheck *bool `json:"enable_arp_spoof_check,omitempty"`
+	// Whether shared radio scanning is enabled for site Wi-Fi
 	EnableSharedRadioScanning *bool `json:"enable_shared_radio_scanning,omitempty"`
 	// Enable Wi-Fi feature (using SUB-MAN license)
 	Enabled *bool `json:"enabled,omitempty"`

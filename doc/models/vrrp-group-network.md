@@ -1,6 +1,8 @@
 
 # Vrrp Group Network
 
+Virtual IP assignment for a VRRP network
+
 ## Structure
 
 `VrrpGroupNetwork`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Ip` | `*string` | Optional | - |
+| `Ip` | `*string` | Optional | Virtual IP address used by the VRRP group on this network |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "ip": "ip2"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    vrrpGroupNetwork := models.VrrpGroupNetwork{
+        Ip:                   models.ToPointer("ip2"),
+    }
+
 }
 ```
 

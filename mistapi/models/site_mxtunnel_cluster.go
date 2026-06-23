@@ -8,8 +8,11 @@ import (
 )
 
 // SiteMxtunnelCluster represents a SiteMxtunnelCluster struct.
+// Mist Tunnel peer cluster definition for a site
 type SiteMxtunnelCluster struct {
-	Name                 *string                `json:"name,omitempty"`
+	// Peer cluster name used in the site Mist Tunnel configuration
+	Name *string `json:"name,omitempty"`
+	// Tunnel termination hostnames or IP addresses in a site Mist Tunnel cluster
 	TuntermHosts         []string               `json:"tunterm_hosts,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

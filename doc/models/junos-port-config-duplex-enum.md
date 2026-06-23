@@ -15,3 +15,18 @@ enum: `auto`, `full`, `half`
 | `full` |
 | `half` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    junosPortConfigDuplex := models.JunosPortConfigDuplexEnum_FULL
+
+}
+```
+

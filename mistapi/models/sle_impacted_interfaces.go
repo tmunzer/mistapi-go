@@ -8,17 +8,27 @@ import (
 )
 
 // SleImpactedInterfaces represents a SleImpactedInterfaces struct.
+// Paginated list of interfaces impacted by an SLE metric
 type SleImpactedInterfaces struct {
-	Classifier           *string                          `json:"classifier,omitempty"`
-	End                  *int                             `json:"end,omitempty"`
-	Failure              *string                          `json:"failure,omitempty"`
-	Interfaces           []SleImpactedInterfacesInterface `json:"interfaces,omitempty"`
-	Limit                *int                             `json:"limit,omitempty"`
-	Metric               *string                          `json:"metric,omitempty"`
-	Page                 *int                             `json:"page,omitempty"`
-	Start                *int                             `json:"start,omitempty"`
-	TotalCount           *int                             `json:"total_count,omitempty"`
-	AdditionalProperties map[string]interface{}           `json:"_"`
+	// Requested SLE classifier filter applied to the query
+	Classifier *string `json:"classifier,omitempty"`
+	// Last timestamp in the impacted interfaces window
+	End *int `json:"end,omitempty"`
+	// Requested SLE failure filter applied to the query
+	Failure *string `json:"failure,omitempty"`
+	// Impacted interface rows returned for an SLE query
+	Interfaces []SleImpactedInterfacesInterface `json:"interfaces,omitempty"`
+	// Maximum number of impacted interface rows returned per page
+	Limit *int `json:"limit,omitempty"`
+	// SLE metric name used for the impacted interfaces query
+	Metric *string `json:"metric,omitempty"`
+	// Current page number for impacted interface results
+	Page *int `json:"page,omitempty"`
+	// First timestamp in the impacted interfaces window
+	Start *int `json:"start,omitempty"`
+	// Number of impacted interface rows matching the query
+	TotalCount           *int                   `json:"total_count,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SleImpactedInterfaces,

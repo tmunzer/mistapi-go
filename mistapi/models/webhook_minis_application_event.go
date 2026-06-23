@@ -9,28 +9,31 @@ import (
 )
 
 // WebhookMinisApplicationEvent represents a WebhookMinisApplicationEvent struct.
+// Marvis Minis application synthetic test result
 type WebhookMinisApplicationEvent struct {
 	// MAC address of the device
 	DeviceMac *string `json:"device_mac,omitempty"`
-	// IP address test was performed to
+	// Destination IP address used for the application test
 	Ip *string `json:"ip,omitempty"`
-	// latency in milliseconds
-	Latency *int       `json:"latency,omitempty"`
-	OrgId   *uuid.UUID `json:"org_id,omitempty"`
+	// Application test latency measured in milliseconds
+	Latency *int `json:"latency,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Name of the probe
 	ProbeName *string `json:"probe_name,omitempty"`
-	// Type of probe
-	ProbeType *string    `json:"probe_type,omitempty"`
-	SiteId    *uuid.UUID `json:"site_id,omitempty"`
+	// Probe category used for the Minis application test
+	ProbeType *string `json:"probe_type,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// Source IP address of the test
 	SrcIp *string `json:"src_ip,omitempty"`
 	// Whether the test was successful
 	Success *bool `json:"success,omitempty"`
 	// enum: `application`, `curl`, `icmp`, `reachability`, `tcp`
 	TestType *SynthetictestConfigCustomProbeTypeEnum `json:"test_type,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
-	// VLAN ID used for the test
+	// Network VLAN ID used for the application test
 	Vlan                 *int                   `json:"vlan,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

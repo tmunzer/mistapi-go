@@ -8,6 +8,7 @@ import (
 )
 
 // OrgCrlImportFile represents a OrgCrlImportFile struct.
+// Multipart upload payload for importing an organization CRL file
 type OrgCrlImportFile struct {
 	// a PEM or DER formatted CRL file
 	File *[]byte `json:"file,omitempty"`

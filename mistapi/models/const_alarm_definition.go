@@ -10,19 +10,21 @@ import (
 )
 
 // ConstAlarmDefinition represents a ConstAlarmDefinition struct.
+// Alarm type definition returned by the constants API
 type ConstAlarmDefinition struct {
 	// Description of the alarm type
-	Display string       `json:"display"`
+	Display string `json:"display"`
+	// Sample alarm payload returned for this alarm type
 	Example *interface{} `json:"example,omitempty"`
 	// List of fields available in an alarm details payload (in REST APIs & Webhooks); e.g. `aps`, `switches`, `gateways`, `hostnames`, `ssids`, `bssids`
 	Fields []string `json:"fields"`
-	// Group to which the alarm belongs
+	// Alarm group to which this definition belongs
 	Group string `json:"group"`
-	// Key name of the alarm type
+	// Alarm type key used in event and alarm payloads
 	Key string `json:"key"`
 	// Marvis defined category to which the alarm belongs
 	MarvisSuggestionCategory *string `json:"marvis_suggestion_category,omitempty"`
-	// Severity of the alarm
+	// Alarm severity level for this definition
 	Severity             string                 `json:"severity"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

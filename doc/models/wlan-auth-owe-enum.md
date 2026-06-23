@@ -15,3 +15,18 @@ if `type`==`open`. enum: `disabled`, `enabled` (means transition mode), `require
 | `enabled` |
 | `required` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanAuthOwe := models.WlanAuthOweEnum_ENABLED
+
+}
+```
+

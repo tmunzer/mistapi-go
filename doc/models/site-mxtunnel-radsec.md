@@ -1,6 +1,8 @@
 
 # Site Mxtunnel Radsec
 
+RadSec proxy settings for a site Mist Tunnel
+
 ## Structure
 
 `SiteMxtunnelRadsec`
@@ -9,57 +11,48 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AcctServers` | [`[]models.RadiusAcctServer`](../../doc/models/radius-acct-server.md) | Optional | - |
-| `AuthServers` | [`[]models.RadiusAuthServer`](../../doc/models/radius-auth-server.md) | Optional | - |
-| `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `UseMxedge` | `*bool` | Optional | - |
+| `AcctServers` | [`[]models.RadiusAcctServer`](../../doc/models/radius-acct-server.md) | Optional | RADIUS accounting servers used by the site Mist Tunnel RadSec proxy |
+| `AuthServers` | [`[]models.RadiusAuthServer`](../../doc/models/radius-auth-server.md) | Optional | RADIUS authentication servers used by the site Mist Tunnel RadSec proxy |
+| `Enabled` | `*bool` | Optional | Whether RadSec proxying is enabled for this site Mist Tunnel<br><br>**Default**: `false` |
+| `UseMxedge` | `*bool` | Optional | Whether RadSec proxying uses Mist Edge |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "acct_servers": [
-    {
-      "host": "host4",
-      "keywrap_enabled": false,
-      "keywrap_format": "ascii",
-      "keywrap_kek": "keywrap_kek0",
-      "keywrap_mack": "keywrap_mack2",
-      "port": 176,
-      "secret": "secret0"
-    },
-    {
-      "host": "host4",
-      "keywrap_enabled": false,
-      "keywrap_format": "ascii",
-      "keywrap_kek": "keywrap_kek0",
-      "keywrap_mack": "keywrap_mack2",
-      "port": 176,
-      "secret": "secret0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteMxtunnelRadsec := models.SiteMxtunnelRadsec{
+        AcctServers:          []models.RadiusAcctServer{
+            models.RadiusAcctServer{
+                Host:                 "host4",
+                KeywrapEnabled:       models.ToPointer(false),
+                KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum_ASCII),
+                KeywrapKek:           models.ToPointer("keywrap_kek0"),
+                KeywrapMack:          models.ToPointer("keywrap_mack2"),
+                Port:                 models.ToPointer(models.RadiusAcctPortContainer.FromNumber(176)),
+                Secret:               "secret0",
+            },
+        },
+        AuthServers:          []models.RadiusAuthServer{
+            models.RadiusAuthServer{
+                Host:                        "host0",
+                KeywrapEnabled:              models.ToPointer(false),
+                KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum_ASCII),
+                KeywrapKek:                  models.ToPointer("keywrap_kek4"),
+                KeywrapMack:                 models.ToPointer("keywrap_mack6"),
+                Port:                        models.ToPointer(models.RadiusAuthPortContainer.FromNumber(36)),
+                Secret:                      "secret4",
+            },
+        },
+        Enabled:              models.ToPointer(false),
+        UseMxedge:            models.ToPointer(false),
     }
-  ],
-  "auth_servers": [
-    {
-      "host": "host0",
-      "keywrap_enabled": false,
-      "keywrap_format": "ascii",
-      "keywrap_kek": "keywrap_kek4",
-      "keywrap_mack": "keywrap_mack6",
-      "port": 36,
-      "secret": "secret4"
-    },
-    {
-      "host": "host0",
-      "keywrap_enabled": false,
-      "keywrap_format": "ascii",
-      "keywrap_kek": "keywrap_kek4",
-      "keywrap_mack": "keywrap_mack6",
-      "port": 36,
-      "secret": "secret4"
-    }
-  ],
-  "use_mxedge": false
+
 }
 ```
 

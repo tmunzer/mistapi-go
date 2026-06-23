@@ -1,6 +1,8 @@
 
 # Map Site Import File
 
+Multipart payload for importing map files at site scope
+
 ## Structure
 
 `MapSiteImportFile`
@@ -10,23 +12,32 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AutoDeviceprofileAssignment` | `*bool` | Optional | Whether to auto assign device to deviceprofile by name |
-| `Csv` | `*[]byte` | Optional | CSV file for ap name mapping, optional |
-| `File` | `*[]byte` | Optional | Ekahau or ibwave file |
-| `Json` | [`*models.MapImportJson`](../../doc/models/map-import-json.md) | Optional | - |
+| `Csv` | `*[]byte` | Optional | Optional AP name-mapping CSV file |
+| `File` | `*[]byte` | Optional | Ekahau or iBwave floorplan file to import |
+| `Json` | [`*models.MapImportJson`](../../doc/models/map-import-json.md) | Optional | Options for importing map data from Ekahau or iBwave JSON |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "auto_deviceprofile_assignment": true,
-  "csv": "data:text/plain;name=dummy_file;base64,",
-  "file": "data:text/plain;name=dummy_file;base64,",
-  "json": {
-    "import_all_floorplans": false,
-    "import_height": false,
-    "import_orientation": false,
-    "vendor_name": "ekahau"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mapSiteImportFile := models.MapSiteImportFile{
+        AutoDeviceprofileAssignment: models.ToPointer(true),
+        Csv:                         models.ToPointer(nil),
+        File:                        models.ToPointer(nil),
+        Json:                        models.ToPointer(models.MapImportJson{
+            ImportAllFloorplans:  models.ToPointer(false),
+            ImportHeight:         models.ToPointer(false),
+            ImportOrientation:    models.ToPointer(false),
+            VendorName:           models.MapImportJsonVendorNameEnum_EKAHAU,
+        }),
+    }
+
 }
 ```
 

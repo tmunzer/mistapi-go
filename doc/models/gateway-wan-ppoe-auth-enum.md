@@ -15,3 +15,18 @@ if `type`==`pppoe`. enum: `chap`, `none`, `pap`
 | `none` |
 | `pap` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayWanPpoeAuth := models.GatewayWanPpoeAuthEnum_CHAP
+
+}
+```
+

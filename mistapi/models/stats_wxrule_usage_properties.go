@@ -8,7 +8,9 @@ import (
 )
 
 // StatsWxruleUsageProperties represents a StatsWxruleUsageProperties struct.
+// Usage counters for one WxLAN rule destination tag
 type StatsWxruleUsageProperties struct {
+	// Number of flows counted for this WxLAN rule and destination tag
 	NumFlows             *int                   `json:"num_flows,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -14,25 +14,34 @@ Switch OOB IP Config:
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Gateway` | `*string` | Optional | - |
-| `Ip` | `*string` | Optional | - |
+| `Gateway` | `*string` | Optional | Default gateway for the out-of-band management interface when `type`==`static` |
+| `Ip` | `*string` | Optional | Static IPv4 address for the out-of-band management interface when `type`==`static` |
 | `Netmask` | `*string` | Optional | Used only if `subnet` is not specified in `networks` |
 | `Network` | `*string` | Optional | Optional, the network to be used for mgmt |
-| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br><br>**Default**: `"dhcp"` |
+| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | IP address assignment mode, either DHCP or static. enum: `dhcp`, `static`<br><br>**Default**: `"dhcp"` |
 | `UseMgmtVrf` | `*bool` | Optional | If supported on the platform. If enabled, DNS will be using this routing-instance, too<br><br>**Default**: `false` |
 | `UseMgmtVrfForHostOut` | `*bool` | Optional | For host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired<br><br>**Default**: `false` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "type": "static",
-  "use_mgmt_vrf": false,
-  "use_mgmt_vrf_for_host_out": false,
-  "gateway": "gateway0",
-  "ip": "ip4",
-  "netmask": "netmask0",
-  "network": "network6"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchOobIpConfig := models.SwitchOobIpConfig{
+        Gateway:              models.ToPointer("gateway8"),
+        Ip:                   models.ToPointer("ip2"),
+        Netmask:              models.ToPointer("netmask8"),
+        Network:              models.ToPointer("network4"),
+        Type:                 models.ToPointer(models.IpTypeEnum_STATIC),
+        UseMgmtVrf:           models.ToPointer(false),
+        UseMgmtVrfForHostOut: models.ToPointer(false),
+    }
+
 }
 ```
 

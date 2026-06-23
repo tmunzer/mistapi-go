@@ -8,6 +8,7 @@ import (
 )
 
 // WebhookAssetRawRssiEventServicePacket represents a WebhookAssetRawRssiEventServicePacket struct.
+// BLE service data decoded from an asset raw RSSI packet
 type WebhookAssetRawRssiEventServicePacket struct {
 	// optional, data from service data
 	ServiceData Optional[string] `json:"service_data"`

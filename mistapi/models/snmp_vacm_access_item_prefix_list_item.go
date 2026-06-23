@@ -8,20 +8,21 @@ import (
 )
 
 // SnmpVacmAccessItemPrefixListItem represents a SnmpVacmAccessItemPrefixListItem struct.
+// Context prefix rule for a VACM access entry
 type SnmpVacmAccessItemPrefixListItem struct {
-	// Only required if `type`==`context_prefix`
+	// Context prefix for this VACM access rule. Required only if `type`==`context_prefix`
 	ContextPrefix *string `json:"context_prefix,omitempty"`
-	// Refer to view name
+	// Notify view name referenced by this VACM access rule
 	NotifyView *string `json:"notify_view,omitempty"`
-	// Refer to view name
+	// Read view name referenced by this VACM access rule
 	ReadView *string `json:"read_view,omitempty"`
 	// enum: `authentication`, `none`, `privacy`
 	SecurityLevel *SnmpVacmAccessItemPrefixListItemLevelEnum `json:"security_level,omitempty"`
 	// enum: `any`, `usm`, `v1`, `v2c`
 	SecurityModel *SnmpVacmAccessItemPrefixListItemModelEnum `json:"security_model,omitempty"`
-	// enum: `context_prefix`, `default_context_prefix`
+	// VACM context matching type for this access rule. enum: `context_prefix`, `default_context_prefix`
 	Type *SnmpVacmAccessItemTypeEnum `json:"type,omitempty"`
-	// Refer to view name
+	// Write view name referenced by this VACM access rule
 	WriteView            *string                `json:"write_view,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

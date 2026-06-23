@@ -14,3 +14,18 @@ The operation being performed. enum: `assign`, `unassign`
 | `assign` |
 | `unassign` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    otherDeviceUpdateOperation := models.OtherDeviceUpdateOperationEnum_ASSIGN
+
+}
+```
+

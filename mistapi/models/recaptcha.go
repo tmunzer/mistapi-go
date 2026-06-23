@@ -8,10 +8,13 @@ import (
 )
 
 // Recaptcha represents a Recaptcha struct.
+// CAPTCHA settings returned for admin registration
 type Recaptcha struct {
-	// flavor of the captcha. enum: `google`, `hcaptcha`
-	Flavor               *RecaptchaFlavorEnum   `json:"flavor,omitempty"`
-	Required             *bool                  `json:"required,omitempty"`
+	// CAPTCHA provider flavor. enum: `google`, `hcaptcha`
+	Flavor *RecaptchaFlavorEnum `json:"flavor,omitempty"`
+	// Whether CAPTCHA verification is required for registration
+	Required *bool `json:"required,omitempty"`
+	// Public site key used to render the selected CAPTCHA provider
 	Sitekey              *string                `json:"sitekey,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -1,7 +1,7 @@
 
 # Resolution Enum
 
-enum: `default`, `fine`
+Location resolution mode for map or placement calculations. enum: `default`, `fine`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `default`, `fine`
 |  --- |
 | `default` |
 | `fine` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    resolution := models.ResolutionEnum_ENUMDEFAULT
+
+}
+```
 

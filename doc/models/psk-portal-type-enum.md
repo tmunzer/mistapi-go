@@ -14,3 +14,18 @@ for personal psk portal. enum: `admin`, `byod`
 | `admin` |
 | `byod` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    pskPortalType := models.PskPortalTypeEnum_ADMIN
+
+}
+```
+

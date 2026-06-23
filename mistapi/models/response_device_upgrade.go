@@ -10,10 +10,11 @@ import (
 )
 
 // ResponseDeviceUpgrade represents a ResponseDeviceUpgrade struct.
+// Single-device upgrade status response
 type ResponseDeviceUpgrade struct {
 	// enum: `error`, `inprogress`, `scheduled`, `starting`, `success`
 	Status UpgradeInfoStatusEnum `json:"status"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp            float64                `json:"timestamp"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

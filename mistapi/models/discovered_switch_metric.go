@@ -9,23 +9,39 @@ import (
 )
 
 // DiscoveredSwitchMetric represents a DiscoveredSwitchMetric struct.
+// Time-series metric result for discovered switch health or compliance
 type DiscoveredSwitchMetric struct {
-	Adopted    *bool                      `json:"adopted,omitempty"`
-	Aps        []DiscoveredSwitchMetricAp `json:"aps,omitempty"`
-	ChassisId  []string                   `json:"chassis_id,omitempty"`
-	Hostname   *string                    `json:"hostname,omitempty"`
-	MgmtAddr   *string                    `json:"mgmt_addr,omitempty"`
-	Model      *string                    `json:"model,omitempty"`
-	OrgId      *uuid.UUID                 `json:"org_id,omitempty"`
-	Scope      *string                    `json:"scope,omitempty"`
-	Score      *int                       `json:"score,omitempty"`
-	SiteId     *uuid.UUID                 `json:"site_id,omitempty"`
-	SystemDesc *string                    `json:"system_desc,omitempty"`
-	SystemName *string                    `json:"system_name,omitempty"`
-	// Epoch (seconds)
-	Timestamp            *float64               `json:"timestamp,omitempty"`
-	Type                 *string                `json:"type,omitempty"`
-	Vendor               *string                `json:"vendor,omitempty"`
+	// Whether the discovered switch in this metric has been adopted into Mist management
+	Adopted *bool `json:"adopted,omitempty"`
+	// AP attachment details included in discovered switch metrics
+	Aps []DiscoveredSwitchMetricAp `json:"aps,omitempty"`
+	// LLDP chassis identifiers associated with a discovered switch metric
+	ChassisId []string `json:"chassis_id,omitempty"`
+	// Switch hostname associated with this metric result
+	Hostname *string `json:"hostname,omitempty"`
+	// Management IP address associated with this metric result
+	MgmtAddr *string `json:"mgmt_addr,omitempty"`
+	// Switch model associated with this metric result
+	Model *string `json:"model,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Aggregation scope for the discovered switch metric result
+	Scope *string `json:"scope,omitempty"`
+	// Compliance or health score for the discovered switch metric
+	Score *int `json:"score,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// LLDP system description associated with this metric result
+	SystemDesc *string `json:"system_desc,omitempty"`
+	// LLDP system name associated with this metric result
+	SystemName *string `json:"system_name,omitempty"`
+	// Epoch timestamp, in seconds
+	Timestamp *float64 `json:"timestamp,omitempty"`
+	// Metric category represented by this discovered switch metric
+	Type *string `json:"type,omitempty"`
+	// Switch vendor associated with this metric result
+	Vendor *string `json:"vendor,omitempty"`
+	// Software version associated with this metric result
 	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

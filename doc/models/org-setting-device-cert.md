@@ -1,7 +1,7 @@
 
 # Org Setting Device Cert
 
-common device cert, optional
+Optional common device certificate configuration for organization settings
 
 ## Structure
 
@@ -11,15 +11,24 @@ common device cert, optional
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Cert` | `*string` | Optional | - |
-| `Key` | `*string` | Optional | - |
+| `Cert` | `*string` | Optional | PEM-encoded common device certificate used by organization settings |
+| `Key` | `*string` | Optional | Private key paired with the common device certificate |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "cert": "-----BEGIN CERTIFICATE-----\\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\\n-----END CERTIFICATE-----",
-  "key": "-----BEGIN PRI..."
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingDeviceCert := models.OrgSettingDeviceCert{
+        Cert:                 models.ToPointer("-----BEGIN CERTIFICATE-----\\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\\n-----END CERTIFICATE-----"),
+        Key:                  models.ToPointer("-----BEGIN PRI..."),
+    }
+
 }
 ```
 

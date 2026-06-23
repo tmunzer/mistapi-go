@@ -8,12 +8,13 @@ import (
 )
 
 // ServicePolicySslProxy represents a ServicePolicySslProxy struct.
-// For SRX-only
+// SRX SSL proxy inspection settings for a service policy
 type ServicePolicySslProxy struct {
 	// enum: `medium`, `strong`, `weak`
-	CiphersCategory      *SslProxyCiphersCategoryEnum `json:"ciphers_category,omitempty"`
-	Enabled              *bool                        `json:"enabled,omitempty"`
-	AdditionalProperties map[string]interface{}       `json:"_"`
+	CiphersCategory *SslProxyCiphersCategoryEnum `json:"ciphers_category,omitempty"`
+	// Whether SSL proxy inspection is enabled for the service policy
+	Enabled              *bool                  `json:"enabled,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ServicePolicySslProxy,

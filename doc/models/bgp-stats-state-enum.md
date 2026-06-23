@@ -20,7 +20,16 @@ enum: `active`, `connect`, `established`, `idle`, `open_config`, `open_sent`
 
 ## Example
 
-```
-established
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    bgpStatsState := models.BgpStatsStateEnum_ACTIVE
+
+}
 ```
 

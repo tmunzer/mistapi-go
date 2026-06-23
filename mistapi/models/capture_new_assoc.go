@@ -12,18 +12,21 @@ import (
 // CaptureNewAssoc represents a CaptureNewAssoc struct.
 // Initiate a packet Capture for New Wireless Client Associations
 type CaptureNewAssoc struct {
+	// AP MAC address used to target new association capture
 	ApMac *string `json:"ap_mac,omitempty"`
-	// Client mac, required if `type`==`client`; optional otherwise
+	// Client MAC address, required if `type`==`client`; optional otherwise
 	ClientMac *string `json:"client_mac,omitempty"`
 	// Duration of the capture, in seconds
-	Duration      Optional[int] `json:"duration"`
-	IncludesMcast *bool         `json:"includes_mcast,omitempty"`
-	MaxPktLen     Optional[int] `json:"max_pkt_len"`
+	Duration Optional[int] `json:"duration"`
+	// Whether to include multicast traffic in the packet capture
+	IncludesMcast *bool `json:"includes_mcast,omitempty"`
+	// Maximum bytes captured from each packet, or null to use the default
+	MaxPktLen Optional[int] `json:"max_pkt_len"`
 	// number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
 	NumPackets Optional[int] `json:"num_packets"`
-	// Optional filter by ssid
+	// Optional SSID filter for new association capture
 	Ssid *string `json:"ssid,omitempty"`
-	// enum: `new_assoc`
+	// Packet capture type discriminator for new association captures. enum: `new_assoc`
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

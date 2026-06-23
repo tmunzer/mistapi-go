@@ -15,3 +15,18 @@ Only if `mode`!=`dynamic`. Link connection mode. enum: `auto`, `full`, `half`
 | `full` |
 | `half` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchPortUsageDuplex := models.SwitchPortUsageDuplexEnum_FULL
+
+}
+```
+

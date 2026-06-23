@@ -1,6 +1,8 @@
 
 # Response Auto Zone Zone Vertex
 
+Pixel coordinate for a suggested zone vertex
+
 ## Structure
 
 `ResponseAutoZoneZoneVertex`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `X` | `*int` | Optional | - |
-| `Y` | `*int` | Optional | - |
+| `X` | `*int` | Optional | Horizontal pixel coordinate of the vertex |
+| `Y` | `*int` | Optional | Vertical pixel coordinate of the vertex |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "x": 10,
-  "y": 42
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseAutoZoneZoneVertex := models.ResponseAutoZoneZoneVertex{
+        X:                    models.ToPointer(10),
+        Y:                    models.ToPointer(42),
+    }
+
 }
 ```
 

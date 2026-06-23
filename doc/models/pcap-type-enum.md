@@ -21,7 +21,16 @@ enum: `client`, `gateway`, `new_assoc`, `radiotap`, `radiotap,wired`, `wired`, `
 
 ## Example
 
-```
-client
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    pcapType := models.PcapTypeEnum_WIRED
+
+}
 ```
 

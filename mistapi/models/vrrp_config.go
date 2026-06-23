@@ -8,8 +8,9 @@ import (
 )
 
 // VrrpConfig represents a VrrpConfig struct.
-// Junos VRRP config
+// Junos VRRP configuration applied to a switch or switch profile
 type VrrpConfig struct {
+	// Whether VRRP configuration is enabled
 	Enabled *bool `json:"enabled,omitempty"`
 	// Property key is the VRRP name
 	Groups               map[string]VrrpConfigGroup `json:"groups,omitempty"`

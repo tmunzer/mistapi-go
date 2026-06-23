@@ -8,7 +8,7 @@ import (
 )
 
 // WlanDynamicVlan represents a WlanDynamicVlan struct.
-// For 802.1x
+// Dynamic VLAN assignment settings for 802.1X WLAN authentication
 type WlanDynamicVlan struct {
 	// vlan_id to use when there’s no match from RADIUS
 	DefaultVlanId *WlanDynamicVlanDefaultVlanIdDeprecated `json:"default_vlan_id,omitempty"` // Deprecated
@@ -21,8 +21,8 @@ type WlanDynamicVlan struct {
 	// standard (using Tunnel-Private-Group-ID, widely supported), airespace-interface-name (Airespace/Cisco). enum: `airespace-interface-name`, `standard`
 	Type *WlanDynamicVlanTypeEnum `json:"type,omitempty"`
 	// Map between vlan_id (as string) to airespace interface names (comma-separated) or null for standard mapping
-	// * if `dynamic_vlan.type`==`standard`, property key is the Vlan ID and property value is \"\"
-	// * if `dynamic_vlan.type`==`airespace-interface-name`, property key is the Vlan ID and property value is the Airespace Interface Name
+	// * if `dynamic_vlan.type`==`standard`, property key is the VLAN ID and property value is \"\"
+	// * if `dynamic_vlan.type`==`airespace-interface-name`, property key is the VLAN ID and property value is the Airespace Interface Name
 	Vlans                map[string]string      `json:"vlans,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -15,3 +15,18 @@ enum: `network`, `vcp-higig`, `vcp-hgoe`
 | `vcp-higig` |
 | `vcp-hgoe` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    vcPortMode := models.VcPortModeEnum_VCPHGOE
+
+}
+```
+

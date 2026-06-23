@@ -11,15 +11,21 @@ import (
 )
 
 // ResponseSsrUpgradeStatus represents a ResponseSsrUpgradeStatus struct.
+// Detailed status for an SSR firmware upgrade job
 type ResponseSsrUpgradeStatus struct {
-	Channel    string  `json:"channel"`
+	// Firmware release channel used for the SSR upgrade
+	Channel string `json:"channel"`
+	// Type of devices targeted by the SSR upgrade
 	DeviceType *string `json:"device_type,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id                   uuid.UUID                       `json:"id"`
-	Status               string                          `json:"status"`
-	Targets              ResponseSsrUpgradeStatusTargets `json:"targets"`
-	Versions             interface{}                     `json:"versions"`
-	AdditionalProperties map[string]interface{}          `json:"_"`
+	Id uuid.UUID `json:"id"`
+	// Current status of the SSR upgrade job
+	Status string `json:"status"`
+	// SSR device IDs grouped by upgrade status
+	Targets ResponseSsrUpgradeStatusTargets `json:"targets"`
+	// SSR firmware versions included in the upgrade job
+	Versions             interface{}            `json:"versions"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseSsrUpgradeStatus,

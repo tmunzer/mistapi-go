@@ -11,16 +11,23 @@ import (
 )
 
 // ResponseMapImportAp represents a ResponseMapImportAp struct.
+// AP placement result from a map import
 type ResponseMapImportAp struct {
 	// enum: `assigned-named-placed`, `assigned-placed`, `ignored`, `named-placed`, `placed`
-	Action               ResponseMapImportApActionEnum `json:"action"`
-	FloorplanId          uuid.UUID                     `json:"floorplan_id"`
-	Height               *float64                      `json:"height,omitempty"`
-	Mac                  string                        `json:"mac"`
-	MapId                uuid.UUID                     `json:"map_id"`
-	Orientation          int                           `json:"orientation"`
-	Reason               *string                       `json:"reason,omitempty"`
-	AdditionalProperties map[string]interface{}        `json:"_"`
+	Action ResponseMapImportApActionEnum `json:"action"`
+	// Floorplan identifier where the AP placement was imported
+	FloorplanId uuid.UUID `json:"floorplan_id"`
+	// Mounting height for the AP on the imported floorplan
+	Height *float64 `json:"height,omitempty"`
+	// AP MAC address matched from the import file
+	Mac string `json:"mac"`
+	// Map identifier associated with the imported AP placement
+	MapId uuid.UUID `json:"map_id"`
+	// AP orientation in degrees on the imported floorplan
+	Orientation int `json:"orientation"`
+	// Explanation of why the AP import action was not completed, when provided
+	Reason               *string                `json:"reason,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseMapImportAp,

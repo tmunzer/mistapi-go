@@ -1,7 +1,7 @@
 
 # Ble Config Beacon Rate Mode Enum
 
-enum: `custom`, `default`
+Beacon rate mode for Mist BLE beacons; use custom to set beacon_rate. enum: `custom`, `default`
 
 ## Enumeration
 
@@ -16,7 +16,16 @@ enum: `custom`, `default`
 
 ## Example
 
-```
-custom
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    bleConfigBeaconRateMode := models.BleConfigBeaconRateModeEnum_CUSTOM
+
+}
 ```
 

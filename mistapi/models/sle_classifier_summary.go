@@ -10,14 +10,21 @@ import (
 )
 
 // SleClassifierSummary represents a SleClassifierSummary struct.
+// Deprecated SLE classifier summary response
 type SleClassifierSummary struct {
-	Classifier           SleClassifier              `json:"classifier"`
-	End                  float64                    `json:"end"`
-	Failures             []interface{}              `json:"failures"`
-	Impact               SleClassifierSummaryImpact `json:"impact"`
-	Metric               string                     `json:"metric"`
-	Start                float64                    `json:"start"`
-	AdditionalProperties map[string]interface{}     `json:"_"`
+	// Time-series classifier detail for an SLE metric
+	Classifier SleClassifier `json:"classifier"`
+	// Last timestamp in the classifier summary window
+	End float64 `json:"end"`
+	// Failure records included in a deprecated classifier summary
+	Failures []interface{} `json:"failures"`
+	// AP and user impact counts for a classifier summary window
+	Impact SleClassifierSummaryImpact `json:"impact"`
+	// SLE metric name summarized by this response
+	Metric string `json:"metric"`
+	// First timestamp in the classifier summary window
+	Start                float64                `json:"start"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SleClassifierSummary,

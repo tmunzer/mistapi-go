@@ -1,7 +1,7 @@
 
 # Stats Wxrule Action Enum
 
-enum: `allow`, `block`
+Allow or block behavior enforced by this WxLAN rule. enum: `allow`, `block`
 
 ## Enumeration
 
@@ -16,7 +16,16 @@ enum: `allow`, `block`
 
 ## Example
 
-```
-allow
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsWxruleAction := models.StatsWxruleActionEnum_ALLOW
+
+}
 ```
 

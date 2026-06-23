@@ -8,14 +8,15 @@ import (
 )
 
 // ProtectReCustom represents a ProtectReCustom struct.
-// Custom acls
+// Custom Protect RE ACL entry
 type ProtectReCustom struct {
 	// Matched dst port, "0" means any
 	PortRange *string `json:"port_range,omitempty"`
 	// enum: `any`, `icmp`, `tcp`, `udp`
-	Protocol             *ProtectReCustomProtocolEnum `json:"protocol,omitempty"`
-	Subnets              []string                     `json:"subnets,omitempty"`
-	AdditionalProperties map[string]interface{}       `json:"_"`
+	Protocol *ProtectReCustomProtocolEnum `json:"protocol,omitempty"`
+	// Source subnets matched by a custom Protect RE ACL
+	Subnets              []string               `json:"subnets,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ProtectReCustom,

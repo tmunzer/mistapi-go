@@ -17,15 +17,17 @@ func TestOrgsStatsDevicesTestListOrgDevicesStats(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mType := "ap"
-	status := models.DeviceStatusEnum("all")
+	mType := models.DeviceEnumWithAllEnum("ap")
+	status := "disconnected,connected"
+	siteId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+	mac := "5c5b53010101,5c5b53020202"
 
 	fields := "field1,field2"
 
 	duration := "1d"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := orgsStatsDevices.ListOrgDevicesStats(ctx, orgId, &mType, &status, nil, nil, nil, nil, &fields, nil, nil, &duration, &limit, &page)
+	apiResponse, err := orgsStatsDevices.ListOrgDevicesStats(ctx, orgId, &mType, &status, &siteId, &mac, nil, nil, &fields, nil, nil, &duration, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -45,15 +47,17 @@ func TestOrgsStatsDevicesTestListOrgDevicesStats1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mType := "ap"
-	status := models.DeviceStatusEnum("all")
+	mType := models.DeviceEnumWithAllEnum("ap")
+	status := "disconnected,connected"
+	siteId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+	mac := "5c5b53010101,5c5b53020202"
 
 	fields := "field1,field2"
 
 	duration := "1d"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := orgsStatsDevices.ListOrgDevicesStats(ctx, orgId, &mType, &status, nil, nil, nil, nil, &fields, nil, nil, &duration, &limit, &page)
+	apiResponse, err := orgsStatsDevices.ListOrgDevicesStats(ctx, orgId, &mType, &status, &siteId, &mac, nil, nil, &fields, nil, nil, &duration, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

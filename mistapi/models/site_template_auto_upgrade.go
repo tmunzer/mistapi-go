@@ -8,11 +8,15 @@ import (
 )
 
 // SiteTemplateAutoUpgrade represents a SiteTemplateAutoUpgrade struct.
+// Automatic upgrade settings applied by a site template
 type SiteTemplateAutoUpgrade struct {
 	// enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed`
-	DayOfWeek            *DayOfWeekEnum         `json:"day_of_week,omitempty"`
-	Enabled              *bool                  `json:"enabled,omitempty"`
-	TimeOfDay            *string                `json:"time_of_day,omitempty"`
+	DayOfWeek *DayOfWeekEnum `json:"day_of_week,omitempty"`
+	// Whether automatic upgrades are enabled for sites using this site template
+	Enabled *bool `json:"enabled,omitempty"`
+	// Local time of day when the automatic upgrade window starts
+	TimeOfDay *string `json:"time_of_day,omitempty"`
+	// Target firmware version installed during automatic upgrades
 	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

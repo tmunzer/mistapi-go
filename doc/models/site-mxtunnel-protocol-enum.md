@@ -1,7 +1,7 @@
 
 # Site Mxtunnel Protocol Enum
 
-enum: `ip`, `udp`
+Encapsulation protocol used for this additional Mist Tunnel. enum: `ip`, `udp`
 
 ## Enumeration
 
@@ -16,7 +16,16 @@ enum: `ip`, `udp`
 
 ## Example
 
-```
-udp
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteMxtunnelProtocol := models.SiteMxtunnelProtocolEnum_IP
+
+}
 ```
 

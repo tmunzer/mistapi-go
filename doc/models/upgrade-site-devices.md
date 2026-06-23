@@ -1,6 +1,8 @@
 
 # Upgrade Site Devices
 
+Site device upgrade request
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -12,7 +14,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `CanaryPhases` | `[]int` | Optional | Only if `strategy`==`canary`. Phases for canary deployment. Each phase represents percentage of devices that need to be upgraded in that phase. default is [1, 10, 50, 100] |
-| `DeviceIds` | `[]uuid.UUID` | Optional | id's of devices which will be selected for upgrade |
+| `DeviceIds` | `[]uuid.UUID` | Optional | Device IDs selected for a site device upgrade |
 | `EnableP2p` | `*bool` | Optional | For APs only. Whether to allow local AP-to-AP FW upgrade |
 | `Force` | `*bool` | Optional | `force`==`true` will force upgrade when requested version is same as running version<br><br>**Default**: `false` |
 | `MaxFailurePercentage` | `*int` | Optional | If `strategy`!=`big_bang`. percentage of failures allowed across the entire upgrade<br><br>**Default**: `5`<br><br>**Constraints**: `>= 0`, `<= 100` |
@@ -34,41 +36,53 @@
 | `Version` | `*string` | Optional | Specific version / stable, default is to use the latest available version |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "canary_phases": null,
-  "force": false,
-  "max_failure_percentage": 5,
-  "p2p_cluster_size": 0,
-  "reboot": false,
-  "reboot_at": 1624399840,
-  "rrm_first_batch_percentage": 2,
-  "rrm_max_batch_percentage": 10,
-  "rrm_mesh_upgrade": "sequential",
-  "rrm_node_order": "fringe_to_center",
-  "rules": [
-    {
-      "match_model": "AP43",
-      "match_name[2:8]": "access"
-    },
-    {
-      "match_model": "AP45"
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    upgradeSiteDevices := models.UpgradeSiteDevices{
+        CanaryPhases:            nil,
+        DeviceIds:               []uuid.UUID{
+            uuid.MustParse("00001687-0000-0000-0000-000000000000"),
+        },
+        EnableP2p:               models.ToPointer(false),
+        Force:                   models.ToPointer(false),
+        MaxFailurePercentage:    models.ToPointer(5),
+        P2pClusterSize:          models.ToPointer(0),
+        Reboot:                  models.ToPointer(false),
+        RebootAt:                models.ToPointer(1624399840),
+        RrmFirstBatchPercentage: models.ToPointer(2),
+        RrmMaxBatchPercentage:   models.ToPointer(10),
+        RrmMeshUpgrade:          models.ToPointer(models.UpgradeDeviceRrmMeshUpgradeEnum_SEQUENTIAL),
+        RrmNodeOrder:            models.ToPointer(models.UpgradeDeviceRrmNodeOrderEnum_FRINGETOCENTER),
+        Rules:                   []map[string]string{
+            []map[string]string{
+                []map[string]string{
+                },
+                []map[string]string{
+                },
+            },
+            []map[string]string{
+                []map[string]string{
+                },
+            },
+        },
+        Snapshot:                models.ToPointer(false),
+        StartTime:               models.ToPointer(1624399840),
+        Strategy:                models.ToPointer(models.UpgradeDeviceStrategyEnum_BIGBANG),
+        Version:                 models.ToPointer("3.1.5"),
+        AdditionalProperties:    map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
     }
-  ],
-  "snapshot": false,
-  "start_time": 1624399840,
-  "strategy": "big_bang",
-  "version": "3.1.5",
-  "device_ids": [
-    "000019b7-0000-0000-0000-000000000000"
-  ],
-  "enable_p2p": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+
 }
 ```
 

@@ -1,6 +1,8 @@
 
 # Marvis Client Location
 
+Location collection settings for Marvis Client
+
 ## Structure
 
 `MarvisClientLocation`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | - |
+| `Enabled` | `*bool` | Optional | Whether location collection is enabled for Marvis Client |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    marvisClientLocation := models.MarvisClientLocation{
+        Enabled:              models.ToPointer(false),
+    }
+
 }
 ```
 

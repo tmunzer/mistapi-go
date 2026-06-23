@@ -1,6 +1,8 @@
 
 # Upgrade Fpga Multi
 
+FPGA upgrade request for multiple devices
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,30 +13,37 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DeviceIds` | `[]uuid.UUID` | Optional | List of device id to upgrade bios |
-| `Models` | `[]string` | Optional | List of device model to upgrade bios |
-| `Reboot` | `*bool` | Optional | Reboot device immediately after upgrade is completed<br><br>**Default**: `false` |
-| `Version` | `*string` | Optional | Specific FPGA version |
+| `DeviceIds` | `[]uuid.UUID` | Optional | Device IDs selected for a multi-device FPGA upgrade |
+| `Models` | `[]string` | Optional | Device models selected for a multi-device FPGA upgrade |
+| `Reboot` | `*bool` | Optional | Whether to restart the selected devices immediately after the upgrade completes<br><br>**Default**: `false` |
+| `Version` | `*string` | Optional | FPGA version to install on the selected devices |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "reboot": false,
-  "version": "REV37",
-  "device_ids": [
-    "000020d7-0000-0000-0000-000000000000",
-    "000020d8-0000-0000-0000-000000000000"
-  ],
-  "models": [
-    "models4",
-    "models5"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    upgradeFpgaMulti := models.UpgradeFpgaMulti{
+        DeviceIds:            []uuid.UUID{
+            uuid.MustParse("0000094f-0000-0000-0000-000000000000"),
+        },
+        Models:               []string{
+            "models0",
+        },
+        Reboot:               models.ToPointer(false),
+        Version:              models.ToPointer("REV37"),
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

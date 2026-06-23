@@ -13,11 +13,20 @@ Property key is the Port name (e.g. "port1", "kni0", "lacp0", "ipsec", "drop", "
 |  --- | --- | --- | --- |
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression common for wired,radiotap |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "tcpdump_expression": "tcpdump_expression8"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureMxedgeMxedgesInterfaces := models.CaptureMxedgeMxedgesInterfaces{
+        TcpdumpExpression:    models.ToPointer("tcpdump_expression2"),
+    }
+
 }
 ```
 

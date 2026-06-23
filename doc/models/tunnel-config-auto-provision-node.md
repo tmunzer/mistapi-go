@@ -1,6 +1,8 @@
 
 # Tunnel Config Auto Provision Node
 
+Auto-provisioned tunnel endpoint settings
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,25 +13,33 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ProbeIps` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `ProbeIps` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
 | `WanNames` | `[]string` | Optional | Optional, only needed if `vars_only`==`false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "probe_ips": [
-    "probe_ips7"
-  ],
-  "wan_names": [
-    "wan_names8",
-    "wan_names9"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    tunnelConfigAutoProvisionNode := models.TunnelConfigAutoProvisionNode{
+        ProbeIps:             []string{
+            "probe_ips1",
+        },
+        WanNames:             []string{
+            "wan_names2",
+            "wan_names3",
+        },
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

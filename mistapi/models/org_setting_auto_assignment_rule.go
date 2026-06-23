@@ -10,7 +10,7 @@ import (
 )
 
 // OrgSettingAutoAssignmentRule represents a OrgSettingAutoAssignmentRule struct.
-// Auto_rules in org settings
+// Automatic assignment rule used by org settings
 type OrgSettingAutoAssignmentRule struct {
 	// If `src`==`geoip`. By default, a claimed device only gets assigned if the site exists to auto-create the site, enable this
 	CreateNewSiteIfNeeded *bool `json:"create_new_site_if_needed,omitempty"`
@@ -21,21 +21,21 @@ type OrgSettingAutoAssignmentRule struct {
 	Expression Optional[string] `json:"expression"`
 	// If `src`==`geoip` and `create_new_site_if_needed`==`true`. If a gateway template is desired for this newly created site
 	GatewaytemplateId *string `json:"gatewaytemplate_id,omitempty"`
-	// If `src`==`geoip`
+	// If `src`==`geoip`, country or region value that must match the device location
 	MatchCountry *string `json:"match_country,omitempty"`
 	// enum: `ap`, `gateway`, `switch`
 	MatchDeviceType *DeviceTypeDefaultApEnum `json:"match_device_type,omitempty"`
-	// Optional/additional filter
+	// Optional additional device model filter for this assignment rule
 	MatchModel *string `json:"match_model,omitempty"`
-	// If `src`==`model`
+	// If `src`==`model`, device model value to match
 	Model *string `json:"model,omitempty"`
-	// If `src`==`name`
+	// If `src`==`name`, prefix that must be present in the device name
 	Prefix Optional[string] `json:"prefix"`
 	// enum: `ext_ip`, `dns_suffix`, `geoip`, `lldp_port_desc`, `lldp_system_name`, `model`, `name`, `subnet`
 	Src OrgSettingAutoSiteAssignmentSrcEnum `json:"src"`
 	// If `src`==`subnet` or `ext_ip`==`ext_ip`
 	Subnet *string `json:"subnet,omitempty"`
-	// If `src`==`name`
+	// If `src`==`name`, suffix that must be present in the device name
 	Suffix Optional[string] `json:"suffix"`
 	// If
 	// * `src`==`ext_ip`, `src`==`subnet` or `src`==`model`, the site name

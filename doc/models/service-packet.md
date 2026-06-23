@@ -1,6 +1,8 @@
 
 # Service Packet
 
+Service data packet observed from an asset or beacon
+
 ## Structure
 
 `ServicePacket`
@@ -12,12 +14,21 @@
 | `ServiceData` | `*string` | Optional | ata from service data |
 | `ServiceUuid` | `*string` | Optional | UUID from service data |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "service_data": "service_data8",
-  "service_uuid": "service_uuid4"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    servicePacket := models.ServicePacket{
+        ServiceData:          models.ToPointer("service_data2"),
+        ServiceUuid:          models.ToPointer("service_uuid0"),
+    }
+
 }
 ```
 

@@ -1,6 +1,8 @@
 
 # Const Insight Metrics Property Example Any Of
 
+Example values for an insight metric property, as an array or keyed object
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure

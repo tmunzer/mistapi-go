@@ -8,12 +8,15 @@ import (
 )
 
 // SiteSettingJuniperSrx represents a SiteSettingJuniperSrx struct.
+// Site-level Juniper SRX integration settings
 type SiteSettingJuniperSrx struct {
-	// auto_upgrade device first time it is onboarded
-	AutoUpgrade          *JuniperSrxAutoUpgrade         `json:"auto_upgrade,omitempty"`
-	Gateways             []SiteSettingJuniperSrxGateway `json:"gateways,omitempty"`
-	SendMistNacUserInfo  *bool                          `json:"send_mist_nac_user_info,omitempty"`
-	AdditionalProperties map[string]interface{}         `json:"_"`
+	// SRX firmware auto-upgrade settings applied when a device is first onboarded
+	AutoUpgrade *JuniperSrxAutoUpgrade `json:"auto_upgrade,omitempty"`
+	// Juniper SRX gateways integrated with a site
+	Gateways []SiteSettingJuniperSrxGateway `json:"gateways,omitempty"`
+	// Whether Mist NAC user information is sent to Juniper SRX gateways
+	SendMistNacUserInfo  *bool                  `json:"send_mist_nac_user_info,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SiteSettingJuniperSrx,

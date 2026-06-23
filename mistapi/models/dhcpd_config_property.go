@@ -8,22 +8,23 @@ import (
 )
 
 // DhcpdConfigProperty represents a DhcpdConfigProperty struct.
+// DHCP server or relay configuration for one network
 type DhcpdConfigProperty struct {
 	// If `type`==`local` or `type6`==`local` - optional, if not defined, system one will be used
 	DnsServers []string `json:"dns_servers,omitempty"`
 	// If `type`==`local` or `type6`==`local` - optional, if not defined, system one will be used
 	DnsSuffix []string `json:"dns_suffix,omitempty"`
-	// If `type`==`local` or `type6`==`local`. Property key is the MAC Address. Format is `[0-9a-f]{12}` (e.g. "5684dae9ac8b")
+	// If `type`==`local` or `type6`==`local`. Property key is the client MAC address. Format is `[0-9a-f]{12}` (e.g. "5684dae9ac8b")
 	FixedBindings map[string]DhcpdConfigFixedBinding `json:"fixed_bindings,omitempty"`
 	// If `type`==`local` - optional, `ip` will be used if not provided
 	Gateway *string `json:"gateway,omitempty"`
-	// If `type6`==`local`
+	// If `type6`==`local`, ending IPv6 address for the DHCP lease pool
 	Ip6End *string `json:"ip6_end,omitempty"`
-	// If `type6`==`local`
+	// If `type6`==`local`, starting IPv6 address for the DHCP lease pool
 	Ip6Start *string `json:"ip6_start,omitempty"`
-	// If `type`==`local`
+	// If `type`==`local`, ending IPv4 address for the DHCP lease pool
 	IpEnd *string `json:"ip_end,omitempty"`
-	// If `type`==`local`
+	// If `type`==`local`, starting IPv4 address for the DHCP lease pool
 	IpStart *string `json:"ip_start,omitempty"`
 	// In seconds, lease time has to be between 3600 [1hr] - 604800 [1 week], default is 86400 [1 day]
 	LeaseTime *int `json:"lease_time,omitempty"`
@@ -32,9 +33,9 @@ type DhcpdConfigProperty struct {
 	// `server_id_override`==`true` means the device, when acts as DHCP relay and forwards DHCP responses from DHCP server to clients,
 	// should overwrite the Sever Identifier option (i.e. DHCP option 54) in DHCP responses with its own IP address.
 	ServerIdOverride *bool `json:"server_id_override,omitempty"`
-	// If `type`==`relay`
+	// If `type`==`relay`, upstream IPv4 DHCP servers
 	Servers []string `json:"servers,omitempty"`
-	// If `type6`==`relay`
+	// If `type6`==`relay`, upstream IPv6 DHCP servers
 	Serversv6 []string `json:"serversv6,omitempty"`
 	// enum: `local` (DHCP Server), `none`, `relay` (DHCP Relay)
 	Type *DhcpdConfigTypeEnum `json:"type,omitempty"`

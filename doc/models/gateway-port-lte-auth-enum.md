@@ -15,3 +15,18 @@ if `wan_type`==`lte`. enum: `chap`, `none`, `pap`
 | `none` |
 | `pap` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayPortLteAuth := models.GatewayPortLteAuthEnum_PAP
+
+}
+```
+

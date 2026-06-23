@@ -1,7 +1,7 @@
 
 # Import Site Assets Upsert Enum
 
-enum: `False`, `True`
+Whether site asset import should update matching existing assets. enum: `False`, `True`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `False`, `True`
 |  --- |
 | `False` |
 | `True` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    importSiteAssetsUpsert := models.ImportSiteAssetsUpsertEnum_FALSE
+
+}
+```
 

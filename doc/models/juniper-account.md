@@ -1,6 +1,8 @@
 
 # Juniper Account
 
+Linked Juniper account available to the organization
+
 ## Structure
 
 `JuniperAccount`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `LinkedBy` | `*string` | Optional | - |
-| `Name` | `*string` | Optional | - |
+| `LinkedBy` | `*string` | Optional, Read-only | User who linked this Juniper account |
+| `Name` | `*string` | Optional, Read-only | Display name of the linked Juniper account |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "linked_by": "John Smith (john@abccorp.com)",
-  "name": "ABC Corp"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    juniperAccount := models.JuniperAccount{
+        LinkedBy:             models.ToPointer("John Smith (john@abccorp.com)"),
+        Name:                 models.ToPointer("ABC Corp"),
+    }
+
 }
 ```
 
