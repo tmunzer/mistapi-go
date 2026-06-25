@@ -30,7 +30,7 @@ type Mxedge struct {
 	// Whether the Mist Edge agent has registered with Mist cloud
 	MxagentRegistered *bool `json:"mxagent_registered,omitempty"`
 	// Mist Edge cluster identifier that this appliance belongs to
-	MxclusterId *uuid.UUID `json:"mxcluster_id,omitempty"`
+	MxclusterId Optional[uuid.UUID] `json:"mxcluster_id"`
 	// Management settings for a Mist Edge appliance
 	MxedgeMgmt *MxedgeMgmt `json:"mxedge_mgmt,omitempty"`
 	// Display name of the Mist Edge
@@ -120,8 +120,12 @@ func (m Mxedge) toMap() map[string]any {
 	if m.MxagentRegistered != nil {
 		structMap["mxagent_registered"] = m.MxagentRegistered
 	}
-	if m.MxclusterId != nil {
-		structMap["mxcluster_id"] = m.MxclusterId
+	if m.MxclusterId.IsValueSet() {
+		if m.MxclusterId.Value() != nil {
+			structMap["mxcluster_id"] = m.MxclusterId.Value()
+		} else {
+			structMap["mxcluster_id"] = nil
+		}
 	}
 	if m.MxedgeMgmt != nil {
 		structMap["mxedge_mgmt"] = m.MxedgeMgmt.toMap()
@@ -244,7 +248,7 @@ type tempMxedge struct {
 	Model                     *string                               `json:"model"`
 	ModifiedTime              *float64                              `json:"modified_time,omitempty"`
 	MxagentRegistered         *bool                                 `json:"mxagent_registered,omitempty"`
-	MxclusterId               *uuid.UUID                            `json:"mxcluster_id,omitempty"`
+	MxclusterId               Optional[uuid.UUID]                   `json:"mxcluster_id"`
 	MxedgeMgmt                *MxedgeMgmt                           `json:"mxedge_mgmt,omitempty"`
 	Name                      *string                               `json:"name"`
 	Notes                     *string                               `json:"notes,omitempty"`

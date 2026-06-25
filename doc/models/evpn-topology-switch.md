@@ -21,7 +21,7 @@ Switch member of an EVPN topology, including role and link relationships
 | `Model` | `*string` | Optional, Read-only | Switch model for this topology member |
 | `Pod` | `*int` | Optional | Optionally, for distribution / access / esilag-access, they can be placed into different pods. e.g.<br><br>* for CLOS, to group dist / access switches into pods<br>* for ERB/CRB, to group dist / esilag-access into pods<br><br>**Default**: `1`<br><br>**Constraints**: `>= 1`, `<= 255` |
 | `Pods` | `[]int` | Optional | By default, core switches are assumed to be connecting all pods.<br>if you want to limit the pods, you can specify pods. |
-| `Role` | [`models.EvpnTopologySwitchRoleEnum`](../../doc/models/evpn-topology-switch-role-enum.md) | Required | use `role`==`none` to remove a switch from the topology. enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`<br><br>**Constraints**: *Minimum Length*: `1` |
+| `Role` | [`models.EvpnTopologySwitchRoleEnum`](../../doc/models/evpn-topology-switch-role-enum.md) | Required | use `role`==`none` to remove a switch from the topology. enum: `access`, `border`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`<br><br>**Constraints**: *Minimum Length*: `1` |
 | `RouterId` | `*string` | Optional, Read-only | Routing identifier used by this switch for EVPN routing |
 | `SiteId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist site |
 | `SuggestedDownlinks` | `[]string` | Optional, Read-only | Builder-suggested downlink switch MAC addresses for an EVPN topology switch |
@@ -143,7 +143,7 @@ func main() {
         Mac:                  "5c5b35000003",
         Model:                models.ToPointer("QFX10002-36Q"),
         Pod:                  models.ToPointer(1),
-        Role:                 models.EvpnTopologySwitchRoleEnum_ESILAGACCESS,
+        Role:                 models.EvpnTopologySwitchRoleEnum_NONE,
         RouterId:             models.ToPointer("172.16.254.4"),
         SiteId:               models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
         SuggestedDownlinks:   []string{

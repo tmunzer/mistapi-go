@@ -611,7 +611,7 @@ mxedgeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Mxedge{
     Model:                     "ME-100",
-    MxclusterId:               models.ToPointer(uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4")),
+    MxclusterId:               models.NewOptional(models.ToPointer(uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4"))),
     Name:                      "Guest",
     Notes:                     models.ToPointer("note for mxedge"),
 }
