@@ -1,7 +1,7 @@
 
 # Evpn Topology Switch Role Enum
 
-use `role`==`none` to remove a switch from the topology. enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
+use `role`==`none` to remove a switch from the topology. enum: `access`, `border`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
 
 ## Enumeration
 
@@ -12,6 +12,7 @@ use `role`==`none` to remove a switch from the topology. enum: `access`, `collap
 | Name |
 |  --- |
 | `access` |
+| `border` |
 | `collapsed-core` |
 | `core` |
 | `distribution` |

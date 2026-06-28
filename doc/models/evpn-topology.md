@@ -155,7 +155,7 @@ func main() {
                 Mac:                  "5c5b35000003",
                 Model:                models.ToPointer("QFX10002-36Q"),
                 Pod:                  models.ToPointer(1),
-                Role:                 models.EvpnTopologySwitchRoleEnum_ESILAGACCESS,
+                Role:                 models.EvpnTopologySwitchRoleEnum_NONE,
                 RouterId:             models.ToPointer("172.16.254.4"),
                 SiteId:               models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
                 SuggestedDownlinks:   []string{

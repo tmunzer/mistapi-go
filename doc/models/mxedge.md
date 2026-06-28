@@ -21,7 +21,7 @@ Mist Edge appliance configuration and registration state
 | `Model` | `string` | Required | Mist Edge hardware or virtual appliance model |
 | `ModifiedTime` | `*float64` | Optional, Read-only | When the object has been modified for the last time, in epoch |
 | `MxagentRegistered` | `*bool` | Optional, Read-only | Whether the Mist Edge agent has registered with Mist cloud |
-| `MxclusterId` | `*uuid.UUID` | Optional | Mist Edge cluster identifier that this appliance belongs to |
+| `MxclusterId` | `models.Optional[uuid.UUID]` | Optional | Mist Edge cluster identifier that this appliance belongs to |
 | `MxedgeMgmt` | [`*models.MxedgeMgmt`](../../doc/models/mxedge-mgmt.md) | Optional | Management settings for a Mist Edge appliance |
 | `Name` | `string` | Required | Display name of the Mist Edge |
 | `Notes` | `*string` | Optional | Free-form notes for the Mist Edge |
@@ -62,7 +62,7 @@ func main() {
         Mac:                       models.ToPointer("0200009fbe65"),
         Magic:                     models.ToPointer("L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD"),
         Model:                     "ME-100",
-        MxclusterId:               models.ToPointer(uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4")),
+        MxclusterId:               models.NewOptional(models.ToPointer(uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4"))),
         Name:                      "Guest",
         Notes:                     models.ToPointer("note for mxedge"),
         OrgId:                     models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),

@@ -1098,11 +1098,12 @@ const (
 )
 
 // EvpnTopologySwitchRoleEnum is a string enum.
-// use `role`==`none` to remove a switch from the topology. enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
+// use `role`==`none` to remove a switch from the topology. enum: `access`, `border`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
 type EvpnTopologySwitchRoleEnum string
 
 const (
 	EvpnTopologySwitchRoleEnum_ACCESS        EvpnTopologySwitchRoleEnum = "access"
+	EvpnTopologySwitchRoleEnum_BORDER        EvpnTopologySwitchRoleEnum = "border"
 	EvpnTopologySwitchRoleEnum_COLLAPSEDCORE EvpnTopologySwitchRoleEnum = "collapsed-core"
 	EvpnTopologySwitchRoleEnum_CORE          EvpnTopologySwitchRoleEnum = "core"
 	EvpnTopologySwitchRoleEnum_DISTRIBUTION  EvpnTopologySwitchRoleEnum = "distribution"

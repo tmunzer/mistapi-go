@@ -36,7 +36,7 @@ type EvpnTopologySwitch struct {
 	// By default, core switches are assumed to be connecting all pods.
 	// if you want to limit the pods, you can specify pods.
 	Pods []int `json:"pods,omitempty"`
-	// use `role`==`none` to remove a switch from the topology. enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
+	// use `role`==`none` to remove a switch from the topology. enum: `access`, `border`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
 	Role EvpnTopologySwitchRoleEnum `json:"role"`
 	// Routing identifier used by this switch for EVPN routing
 	RouterId *string `json:"router_id,omitempty"`
