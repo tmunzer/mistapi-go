@@ -59,7 +59,7 @@ Site settings with derived OAuth account integration data
 | `ModifiedTime` | `*float64` | Optional, Read-only | When the object has been modified for the last time, in epoch |
 | `Mxedge` | [`*models.SiteSettingMxedge`](../../doc/models/site-setting-mxedge.md) | Optional | Service settings for the site Mist Edge cluster |
 | `MxedgeMgmt` | [`*models.MxedgeMgmt`](../../doc/models/mxedge-mgmt.md) | Optional | Management settings for a Mist Edge appliance |
-| `Mxtunnels` | [`*models.SiteMxtunnel`](../../doc/models/site-mxtunnel.md) | Optional | Site Mist Tunnel configuration for tunneling AP user VLANs to Mist Edge tunnel peers |
+| `Mxtunnel` | [`*models.SiteMxtunnel`](../../doc/models/site-mxtunnel.md) | Optional | Site Mist Tunnel configuration for tunneling AP user VLANs to Mist Edge tunnel peers |
 | `Networks` | [`map[string]models.SwitchNetwork`](../../doc/models/switch-network.md) | Optional | Property key is network name |
 | `NtpServers` | `[]string` | Optional | List of NTP servers |
 | `Occupancy` | [`*models.SiteOccupancyAnalytics`](../../doc/models/site-occupancy-analytics.md) | Optional | Analytics settings for site occupancy |

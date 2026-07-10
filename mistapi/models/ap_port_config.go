@@ -32,7 +32,7 @@ type ApPortConfig struct {
 	MistNac *WlanMistNac `json:"mist_nac,omitempty"`
 	// If `forwarding`==`mxtunnel`, vlan_ids comes from mxtunnel
 	MxTunnelId *uuid.UUID `json:"mx_tunnel_id,omitempty"`
-	// If `forwarding`==`site_mxedge`, vlan_ids comes from site_mxedge (`mxtunnels` under site setting)
+	// If `forwarding`==`site_mxedge`, vlan_ids comes from site_mxedge (`mxtunnel` under site setting)
 	MxtunnelName *string `json:"mxtunnel_name,omitempty"`
 	// When doing port auth. enum: `dot1x`, `none`
 	PortAuth *ApPortConfigPortAuthEnum `json:"port_auth,omitempty"`
@@ -44,7 +44,7 @@ type ApPortConfig struct {
 	Radsec *Radsec `json:"radsec,omitempty"`
 	// Optional to specify the VLAN ID for a tunnel if forwarding is for `wxtunnel`, `mxtunnel` or `site_mxedge`.
 	// * if vlan_id is not specified then it will use first one in vlan_ids[] of the mxtunnel.
-	// * if forwarding == site_mxedge, vlan_ids comes from site_mxedge (`mxtunnels` under site setting)
+	// * if forwarding == site_mxedge, vlan_ids comes from site_mxedge (`mxtunnel` under site setting)
 	VlanId *int `json:"vlan_id,omitempty"`
 	// If `forwarding`==`limited`, comma separated list of additional VLAN IDs allowed on this port
 	VlanIds *string `json:"vlan_ids,omitempty"`
