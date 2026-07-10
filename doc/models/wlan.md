@@ -84,7 +84,7 @@
 | `MspId` | `*uuid.UUID` | Optional, Read-only | Managed service provider identifier |
 | `MxtunnelId` | `*uuid.UUID` | Optional | (deprecated, use mxtunnel_ids instead) when `interface`==`mxtunnel`, id of the Mist Tunnel |
 | `MxtunnelIds` | `[]string` | Optional | When `interface`=`mxtunnel`, id of the Mist Tunnel |
-| `MxtunnelName` | `[]string` | Optional | When `interface`=`site_mxedge`, name of the mxtunnel that in mxtunnels under Site Setting |
+| `MxtunnelName` | `[]string` | Optional | When `interface`=`site_mxedge`, name of the Mist Tunnel defined under `site_setting.mxtunnel.additional_mxtunnels` |
 | `NoStaticDns` | `*bool` | Optional | Whether to only allow client to use DNS that we’ve learned from DHCP response<br><br>**Default**: `false` |
 | `NoStaticIp` | `*bool` | Optional | Whether to only allow client that we’ve learned from DHCP exchange to talk<br><br>**Default**: `false` |
 | `OrgId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist organization |

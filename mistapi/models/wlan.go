@@ -166,7 +166,7 @@ type Wlan struct {
 	MxtunnelId *uuid.UUID `json:"mxtunnel_id,omitempty"` // Deprecated
 	// When `interface`=`mxtunnel`, id of the Mist Tunnel
 	MxtunnelIds []string `json:"mxtunnel_ids,omitempty"`
-	// When `interface`=`site_mxedge`, name of the mxtunnel that in mxtunnels under Site Setting
+	// When `interface`=`site_mxedge`, name of the Mist Tunnel defined under `site_setting.mxtunnel.additional_mxtunnels`
 	MxtunnelName []string `json:"mxtunnel_name,omitempty"`
 	// Whether to only allow client to use DNS that we’ve learned from DHCP response
 	NoStaticDns *bool `json:"no_static_dns,omitempty"`
