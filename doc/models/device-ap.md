@@ -22,6 +22,7 @@ Access point configuration and placement data
 | `DisableEth2` | `*bool` | Optional | Whether to disable eth2 port<br><br>**Default**: `false` |
 | `DisableEth3` | `*bool` | Optional | Whether to disable eth3 port<br><br>**Default**: `false` |
 | `DisableModule` | `*bool` | Optional | Whether to disable module port<br><br>**Default**: `false` |
+| `EnableUnii4` | `*bool` | Optional | Whether U-NII-4 channels (169, 173, 177) are enabled on this access point<br><br>**Default**: `false` |
 | `EslConfig` | [`*models.ApEslConfig`](../../doc/models/ap-esl-config.md) | Optional | Electronic shelf label integration settings for an AP |
 | `FlowControl` | `*bool` | Optional | For some AP models, flow_control can be enabled to address some switch compatibility issue<br><br>**Default**: `false` |
 | `ForSite` | `*bool` | Optional, Read-only | Whether the access point configuration is scoped directly to a site |
@@ -40,7 +41,7 @@ Access point configuration and placement data
 | `Mesh` | [`*models.ApMesh`](../../doc/models/ap-mesh.md) | Optional | Wireless mesh settings for an access point |
 | `Model` | `*string` | Optional, Read-only | Hardware model reported for the access point |
 | `ModifiedTime` | `*float64` | Optional, Read-only | When the object has been modified for the last time, in epoch |
-| `MqttConfig` | [`*models.ApMqtt`](../../doc/models/ap-mqtt.md) | Optional | MQTT broker publishing settings for an AP; use `mqtt_topic` on individual AssetFilter entries to specify which MQTT topic each matching BLE advertisement is forwarded to |
+| `MqttConfig` | [`*models.ApMqtt`](../../doc/models/ap-mqtt.md) | Optional | MQTT publishing configuration for an AP. Use `mqtt_topic` on individual AssetFilter entries to specify which MQTT topic each matching BLE advertisement is forwarded to. Only AssetFilters with `mqtt_topic` set are used; disabled filters and filters without `mqtt_topic` are skipped. Set `default_topic` to publish advertisements that match no AssetFilter to a catch-all topic, allowing MQTT to be used without configuring any AssetFilter. |
 | `Name` | `*string` | Optional | Configured hostname assigned to the access point |
 | `Notes` | `*string` | Optional | Any notes about this AP |
 | `NtpServers` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
@@ -55,6 +56,7 @@ Access point configuration and placement data
 | `Type` | `string` | Required, Constant, Read-only | Device Type. enum: `ap`<br><br>**Value**: `"ap"` |
 | `UplinkPortConfig` | [`*models.ApUplinkPortConfig`](../../doc/models/ap-uplink-port-config.md) | Optional | AP Uplink port configuration |
 | `UsbConfig` | [`*models.ApUsb`](../../doc/models/ap-usb.md) | Optional | Legacy USB integration settings for an access point<br><br>- Note: if native imagotag is enabled, BLE will be disabled automatically<br>- Note: legacy, new config moved to ESL Config. |
+| `UwbConfig` | [`*models.ApUwbConfig`](../../doc/models/ap-uwb-config.md) | Optional | Ultra-wideband (UWB) RTLS / OMLOX asset-visibility integration settings for an access point. The device-level value overrides the device profile value, which in turn overrides the site-level setting. |
 | `Vars` | `map[string]string` | Optional | Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `X` | `*float64` | Optional | Horizontal map position of the AP, in pixels |
 | `Y` | `*float64` | Optional | Vertical map position of the AP, in pixels |
@@ -110,6 +112,7 @@ func main() {
         DisableEth2:          models.ToPointer(false),
         DisableEth3:          models.ToPointer(false),
         DisableModule:        models.ToPointer(false),
+        EnableUnii4:          models.ToPointer(false),
         FlowControl:          models.ToPointer(false),
         Height:               models.ToPointer(float64(2.75)),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),

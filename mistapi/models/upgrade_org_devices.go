@@ -11,7 +11,7 @@ import (
 // UpgradeOrgDevices represents a UpgradeOrgDevices struct.
 // Organization-wide device upgrade request
 type UpgradeOrgDevices struct {
-	// If `true`, will upgrade all sites in this org
+	// If `true`, will upgrade all sites in this org; overrides `site_ids`
 	AllSites *bool `json:"all_sites,omitempty"`
 	// Only if `strategy`==`canary`. Phases for canary deployment. Each phase represents percentage of devices that need to be upgraded in that phase. default is [1, 10, 50, 100]
 	CanaryPhases []int `json:"canary_phases,omitempty"`
@@ -22,19 +22,21 @@ type UpgradeOrgDevices struct {
 	// * `serial`: one at a time'
 	// * `canary`: upgrade in phases
 	DownloadStrategy *UpgradeOrgDevicesDownloadStrategyEnum `json:"download_strategy,omitempty"`
+	// For APs only. Whether to allow local AP-to-AP firmware upgrade
+	EnableP2p *bool `json:"enable_p2p,omitempty"`
 	// If `strategy`!=`big_bang`. percentage of failures allowed across the entire upgrade
 	MaxFailurePercentage *int `json:"max_failure_percentage,omitempty"`
 	// If `strategy`==`canary`. Number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used
 	MaxFailures []int `json:"max_failures,omitempty"`
 	// Only devices of these model types will be selected for upgrade
 	Models [][]string `json:"models,omitempty"`
-	// For APs only and if `enable_p2p`==`true`.
+	// For APs only. Size to split devices for peer-to-peer download batches; default 10
 	P2pClusterSize *int `json:"p2p_cluster_size,omitempty"`
-	// For APs only and if `enable_p2p`==`true`. Number of parallel p2p download batches to create
+	// For APs only. Number of parallel peer-to-peer download batches to create. If not set, automatically determined based on device count (<=50 uses 1, 51-100 uses 3, >100 uses 10)
 	P2pParallelism *int `json:"p2p_parallelism,omitempty"`
-	// For Switches and Gateways only and if `reboot`==`true`. Reboot start time in epoch seconds, default is `start_time`
+	// Reboot start time in epoch seconds, default is `start_time`; deprecated, use `reboot_datetime` instead
 	RebootAt *int `json:"reboot_at,omitempty"` // Deprecated
-	// Process start date and time, ISO8601 format. Exclude timezone component if site local timezone needs to be used
+	// Reboot start time in ISO 8601 format; default is `start_datetime`. Exclude timezone component to use site local timezone
 	RebootDatetime *string `json:"reboot_datetime,omitempty"`
 	// enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)
 	RebootStrategy *UpgradeDeviceStrategyEnum `json:"reboot_strategy,omitempty"`
@@ -64,12 +66,14 @@ type UpgradeOrgDevices struct {
 	SiteIds []uuid.UUID `json:"site_ids,omitempty"`
 	// For Junos devices only. Perform recovery snapshot after device is rebooted
 	Snapshot *bool `json:"snapshot,omitempty"`
-	// Process start date and time, ISO8601 format
+	// Firmware download start time in ISO 8601 format; default is now. Exclude timezone component to use site local timezone
 	StartDatetime *string `json:"start_datetime,omitempty"`
-	// Upgrade start time in epoch seconds, default is now
+	// Firmware download start time in epoch seconds, default is now; deprecated, use `start_datetime` instead
 	StartTime *int `json:"start_time,omitempty"` // Deprecated
 	// enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)
 	Strategy *UpgradeDeviceStrategyEnum `json:"strategy,omitempty"`
+	// Deprecated; use `versions` instead. Specific firmware version, `suggested`, or `alpha`; default is latest
+	Version *string `json:"version,omitempty"` // Deprecated
 	// Target firmware version entries for an organization upgrade request
 	Versions             []UpgradeOrgDevicesVersion `json:"versions,omitempty"`
 	AdditionalProperties map[string]interface{}     `json:"_"`
@@ -79,8 +83,8 @@ type UpgradeOrgDevices struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (u UpgradeOrgDevices) String() string {
 	return fmt.Sprintf(
-		"UpgradeOrgDevices[AllSites=%v, CanaryPhases=%v, DeviceType=%v, DownloadStrategy=%v, MaxFailurePercentage=%v, MaxFailures=%v, Models=%v, P2pClusterSize=%v, P2pParallelism=%v, RebootAt=%v, RebootDatetime=%v, RebootStrategy=%v, RrmFirstBatchPercentage=%v, RrmMaxBatchPercentage=%v, RrmMeshUpgrade=%v, RrmNodeOrder=%v, RrmSlowRamp=%v, Rules=%v, SiteIds=%v, Snapshot=%v, StartDatetime=%v, StartTime=%v, Strategy=%v, Versions=%v, AdditionalProperties=%v]",
-		u.AllSites, u.CanaryPhases, u.DeviceType, u.DownloadStrategy, u.MaxFailurePercentage, u.MaxFailures, u.Models, u.P2pClusterSize, u.P2pParallelism, u.RebootAt, u.RebootDatetime, u.RebootStrategy, u.RrmFirstBatchPercentage, u.RrmMaxBatchPercentage, u.RrmMeshUpgrade, u.RrmNodeOrder, u.RrmSlowRamp, u.Rules, u.SiteIds, u.Snapshot, u.StartDatetime, u.StartTime, u.Strategy, u.Versions, u.AdditionalProperties)
+		"UpgradeOrgDevices[AllSites=%v, CanaryPhases=%v, DeviceType=%v, DownloadStrategy=%v, EnableP2p=%v, MaxFailurePercentage=%v, MaxFailures=%v, Models=%v, P2pClusterSize=%v, P2pParallelism=%v, RebootAt=%v, RebootDatetime=%v, RebootStrategy=%v, RrmFirstBatchPercentage=%v, RrmMaxBatchPercentage=%v, RrmMeshUpgrade=%v, RrmNodeOrder=%v, RrmSlowRamp=%v, Rules=%v, SiteIds=%v, Snapshot=%v, StartDatetime=%v, StartTime=%v, Strategy=%v, Version=%v, Versions=%v, AdditionalProperties=%v]",
+		u.AllSites, u.CanaryPhases, u.DeviceType, u.DownloadStrategy, u.EnableP2p, u.MaxFailurePercentage, u.MaxFailures, u.Models, u.P2pClusterSize, u.P2pParallelism, u.RebootAt, u.RebootDatetime, u.RebootStrategy, u.RrmFirstBatchPercentage, u.RrmMaxBatchPercentage, u.RrmMeshUpgrade, u.RrmNodeOrder, u.RrmSlowRamp, u.Rules, u.SiteIds, u.Snapshot, u.StartDatetime, u.StartTime, u.Strategy, u.Version, u.Versions, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UpgradeOrgDevices.
@@ -89,7 +93,7 @@ func (u UpgradeOrgDevices) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(u.AdditionalProperties,
-		"all_sites", "canary_phases", "device_type", "download_strategy", "max_failure_percentage", "max_failures", "models", "p2p_cluster_size", "p2p_parallelism", "reboot_at", "reboot_datetime", "reboot_strategy", "rrm_first_batch_percentage", "rrm_max_batch_percentage", "rrm_mesh_upgrade", "rrm_node_order", "rrm_slow_ramp", "rules", "site_ids", "snapshot", "start_datetime", "start_time", "strategy", "versions"); err != nil {
+		"all_sites", "canary_phases", "device_type", "download_strategy", "enable_p2p", "max_failure_percentage", "max_failures", "models", "p2p_cluster_size", "p2p_parallelism", "reboot_at", "reboot_datetime", "reboot_strategy", "rrm_first_batch_percentage", "rrm_max_batch_percentage", "rrm_mesh_upgrade", "rrm_node_order", "rrm_slow_ramp", "rules", "site_ids", "snapshot", "start_datetime", "start_time", "strategy", "version", "versions"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(u.toMap())
@@ -110,6 +114,9 @@ func (u UpgradeOrgDevices) toMap() map[string]any {
 	}
 	if u.DownloadStrategy != nil {
 		structMap["download_strategy"] = u.DownloadStrategy
+	}
+	if u.EnableP2p != nil {
+		structMap["enable_p2p"] = u.EnableP2p
 	}
 	if u.MaxFailurePercentage != nil {
 		structMap["max_failure_percentage"] = u.MaxFailurePercentage
@@ -168,6 +175,9 @@ func (u UpgradeOrgDevices) toMap() map[string]any {
 	if u.Strategy != nil {
 		structMap["strategy"] = u.Strategy
 	}
+	if u.Version != nil {
+		structMap["version"] = u.Version
+	}
 	if u.Versions != nil {
 		structMap["versions"] = u.Versions
 	}
@@ -182,7 +192,7 @@ func (u *UpgradeOrgDevices) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "all_sites", "canary_phases", "device_type", "download_strategy", "max_failure_percentage", "max_failures", "models", "p2p_cluster_size", "p2p_parallelism", "reboot_at", "reboot_datetime", "reboot_strategy", "rrm_first_batch_percentage", "rrm_max_batch_percentage", "rrm_mesh_upgrade", "rrm_node_order", "rrm_slow_ramp", "rules", "site_ids", "snapshot", "start_datetime", "start_time", "strategy", "versions")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "all_sites", "canary_phases", "device_type", "download_strategy", "enable_p2p", "max_failure_percentage", "max_failures", "models", "p2p_cluster_size", "p2p_parallelism", "reboot_at", "reboot_datetime", "reboot_strategy", "rrm_first_batch_percentage", "rrm_max_batch_percentage", "rrm_mesh_upgrade", "rrm_node_order", "rrm_slow_ramp", "rules", "site_ids", "snapshot", "start_datetime", "start_time", "strategy", "version", "versions")
 	if err != nil {
 		return err
 	}
@@ -192,6 +202,7 @@ func (u *UpgradeOrgDevices) UnmarshalJSON(input []byte) error {
 	u.CanaryPhases = temp.CanaryPhases
 	u.DeviceType = temp.DeviceType
 	u.DownloadStrategy = temp.DownloadStrategy
+	u.EnableP2p = temp.EnableP2p
 	u.MaxFailurePercentage = temp.MaxFailurePercentage
 	u.MaxFailures = temp.MaxFailures
 	u.Models = temp.Models
@@ -211,6 +222,7 @@ func (u *UpgradeOrgDevices) UnmarshalJSON(input []byte) error {
 	u.StartDatetime = temp.StartDatetime
 	u.StartTime = temp.StartTime
 	u.Strategy = temp.Strategy
+	u.Version = temp.Version
 	u.Versions = temp.Versions
 	return nil
 }
@@ -221,6 +233,7 @@ type tempUpgradeOrgDevices struct {
 	CanaryPhases            []int                                  `json:"canary_phases,omitempty"`
 	DeviceType              *DeviceTypeEnum                        `json:"device_type,omitempty"`
 	DownloadStrategy        *UpgradeOrgDevicesDownloadStrategyEnum `json:"download_strategy,omitempty"`
+	EnableP2p               *bool                                  `json:"enable_p2p,omitempty"`
 	MaxFailurePercentage    *int                                   `json:"max_failure_percentage,omitempty"`
 	MaxFailures             []int                                  `json:"max_failures,omitempty"`
 	Models                  [][]string                             `json:"models,omitempty"`
@@ -240,5 +253,6 @@ type tempUpgradeOrgDevices struct {
 	StartDatetime           *string                                `json:"start_datetime,omitempty"`
 	StartTime               *int                                   `json:"start_time,omitempty"`
 	Strategy                *UpgradeDeviceStrategyEnum             `json:"strategy,omitempty"`
+	Version                 *string                                `json:"version,omitempty"`
 	Versions                []UpgradeOrgDevicesVersion             `json:"versions,omitempty"`
 }

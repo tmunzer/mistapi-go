@@ -15,6 +15,7 @@ Webhook configuration for delivering selected Mist events to an external destina
 |  --- | --- | --- | --- |
 | `AssetfilterIds` | `[]uuid.UUID` | Optional | Only if `type`==`asset-raw-rssi`. List of ids to associated asset filters. These filters will be applied to messages routed to a filtered-asset-rssi webhook |
 | `CreatedTime` | `*float64` | Optional, Read-only | When the object has been created, in epoch |
+| `DefaultAction` | [`*models.WebhookActionEnum`](../../doc/models/webhook-action-enum.md) | Optional | Webhook filtering action. enum: `permit`, `block`<br><br>**Default**: `"permit"` |
 | `Enabled` | `*bool` | Optional | Whether webhook is enabled<br><br>**Default**: `true` |
 | `ForSite` | `*bool` | Optional, Read-only | Whether this webhook is scoped to a site rather than the organization |
 | `Headers` | `models.Optional[map[string]string]` | Optional | If `type`=`http-post`, additional custom HTTP headers to add. The headers name and value must be string, total bytes of headers name and value must be less than 1000 |
@@ -29,6 +30,7 @@ Webhook configuration for delivering selected Mist events to an external destina
 | `Oauth2TokenUrl` | `*string` | Optional | Required when `type`==`oauth2`; token endpoint URL used to obtain the OAuth2 access token |
 | `Oauth2Username` | `*string` | Optional | Required when `oauth2_grant_type`==`password`; username used for the OAuth2 token request |
 | `OrgId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist organization |
+| `Rules` | [`[]models.WebhookRule`](../../doc/models/webhook-rule.md) | Optional | Optional filtering rules to override `topics` |
 | `Secret` | `models.Optional[string]` | Optional | Only if `type`=`http-post`<br><br>when `secret` is provided, two HTTP headers will be added:<br><br>* X-Mist-Signature-v2: HMAC_SHA256(secret, body)<br>* X-Mist-Signature: HMAC_SHA1(secret, body) |
 | `SingleEventPerMessage` | `*bool` | Optional | Some solutions may not be able to parse multiple events from a single message (e.g. IBM Qradar, DSM). When set to `true`, only a single event will be sent per message. this feature is only available on certain topics (see [List Webhook Topics](../../doc/controllers/constants-definitions.md#list-webhook-topics))<br><br>**Default**: `false` |
 | `SiteId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist site |
@@ -56,6 +58,7 @@ func main() {
             uuid.MustParse("00001204-0000-0000-0000-000000000000"),
         },
         CreatedTime:           models.ToPointer(float64(238.32)),
+        DefaultAction:         models.ToPointer(models.WebhookActionEnum_PERMIT),
         Enabled:               models.ToPointer(true),
         ForSite:               models.ToPointer(false),
         Headers:               models.NewOptional(models.ToPointer(map[string]string{

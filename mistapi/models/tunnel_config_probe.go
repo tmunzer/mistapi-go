@@ -16,7 +16,7 @@ type TunnelConfigProbe struct {
 	Threshold *int `json:"threshold,omitempty"`
 	// Time within which to complete the connectivity check
 	Timeout *int `json:"timeout,omitempty"`
-	// Protocol used by the custom IPsec tunnel health probe. enum: `http`, `icmp`
+	// Protocol used by the custom IPsec tunnel health probe. `http` is deprecated — use `probe_ips`/`probe_hostnames` for ICMP probes and `probe_http` for HTTP probes instead. enum: `http`, `icmp`
 	Type                 *TunnelConfigProbeTypeEnum `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}     `json:"_"`
 }

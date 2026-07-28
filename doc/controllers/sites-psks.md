@@ -498,6 +498,10 @@ body := []models.Psk{
         Passphrase:             "passphrase6",
         Ssid:                   "ssid6",
         Usage:                  models.ToPointer(models.PskUsageEnum_MULTI),
+        UsermacLabels:          []string{
+            "iot",
+            "students",
+        },
     },
 }
 

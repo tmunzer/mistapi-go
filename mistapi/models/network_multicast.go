@@ -14,7 +14,7 @@ type NetworkMulticast struct {
 	DisableIgmp *bool `json:"disable_igmp,omitempty"`
 	// Whether multicast support is enabled for this network
 	Enabled *bool `json:"enabled,omitempty"`
-	// Group address to RP (rendezvous point) mapping. Property Key is the CIDR (example "225.1.0.3/32")
+	// Group address to RP (rendezvous point) mapping (gateway only). Property Key is the CIDR (example "225.1.0.3/32")
 	Groups               map[string]NetworkMulticastGroup `json:"groups,omitempty"`
 	AdditionalProperties map[string]interface{}           `json:"_"`
 }

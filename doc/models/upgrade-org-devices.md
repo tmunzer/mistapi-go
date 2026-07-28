@@ -13,17 +13,18 @@ Organization-wide device upgrade request
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AllSites` | `*bool` | Optional | If `true`, will upgrade all sites in this org<br><br>**Default**: `false` |
+| `AllSites` | `*bool` | Optional | If `true`, will upgrade all sites in this org; overrides `site_ids`<br><br>**Default**: `false` |
 | `CanaryPhases` | `[]int` | Optional | Only if `strategy`==`canary`. Phases for canary deployment. Each phase represents percentage of devices that need to be upgraded in that phase. default is [1, 10, 50, 100] |
 | `DeviceType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch` |
 | `DownloadStrategy` | [`*models.UpgradeOrgDevicesDownloadStrategyEnum`](../../doc/models/upgrade-org-devices-download-strategy-enum.md) | Optional | enum:<br><br>* `big_bang`: download all at once, no orchestration<br>* `serial`: one at a time'<br>* `canary`: upgrade in phases<br><br>**Default**: `"big_bang"` |
+| `EnableP2p` | `*bool` | Optional | For APs only. Whether to allow local AP-to-AP firmware upgrade |
 | `MaxFailurePercentage` | `*int` | Optional | If `strategy`!=`big_bang`. percentage of failures allowed across the entire upgrade<br><br>**Default**: `5`<br><br>**Constraints**: `>= 0`, `<= 100` |
 | `MaxFailures` | `[]int` | Optional | If `strategy`==`canary`. Number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used |
 | `Models` | `[][]string` | Optional | Only devices of these model types will be selected for upgrade |
-| `P2pClusterSize` | `*int` | Optional | For APs only and if `enable_p2p`==`true`.<br><br>**Default**: `10`<br><br>**Constraints**: `>= 0` |
-| `P2pParallelism` | `*int` | Optional | For APs only and if `enable_p2p`==`true`. Number of parallel p2p download batches to create |
-| `RebootAt` | `*int` | Optional | For Switches and Gateways only and if `reboot`==`true`. Reboot start time in epoch seconds, default is `start_time` |
-| `RebootDatetime` | `*string` | Optional | Process start date and time, ISO8601 format. Exclude timezone component if site local timezone needs to be used |
+| `P2pClusterSize` | `*int` | Optional | For APs only. Size to split devices for peer-to-peer download batches; default 10<br><br>**Default**: `10`<br><br>**Constraints**: `>= 0` |
+| `P2pParallelism` | `*int` | Optional | For APs only. Number of parallel peer-to-peer download batches to create. If not set, automatically determined based on device count (<=50 uses 1, 51-100 uses 3, >100 uses 10) |
+| `RebootAt` | `*int` | Optional | Reboot start time in epoch seconds, default is `start_time`; deprecated, use `reboot_datetime` instead |
+| `RebootDatetime` | `*string` | Optional | Reboot start time in ISO 8601 format; default is `start_datetime`. Exclude timezone component to use site local timezone |
 | `RebootStrategy` | [`*models.UpgradeDeviceStrategyEnum`](../../doc/models/upgrade-device-strategy-enum.md) | Optional | enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)<br><br>**Default**: `"big_bang"` |
 | `RrmFirstBatchPercentage` | `*int` | Optional | For APs only and if `strategy`==`rrm`. Percentage of APs that need to be present in the first RRM batch |
 | `RrmMaxBatchPercentage` | `*int` | Optional | For APs only and if `strategy`==`rrm`. Max percentage of APs that need to be present in each RRM batch |
@@ -33,9 +34,10 @@ Organization-wide device upgrade request
 | `Rules` | `[]map[string]string` | Optional | Rules used to identify devices which will be selected for upgrade. Device will be selected as long as it satisfies any one rule  <br>Property key defines the type of matching, value is the string to match. e.g:<br><br>* `match_name`: Device name must match the property value<br>* `match_name[0:3]`: Device name must match the first 3 letters of the property value<br>* `match_name[2:6]`: Device name must match the property value from the 2nd to the 6th letter<br>* `match_model`: Device model must match the property value<br>* `match_model[1:3]`: Device model must match the property value from the 1st to the 3rd letter<br>* `match_role`: Device role must match the property value<br>* `match_role[0:3]`: Device role must match the property value from the 1st to the 3rd letter<br>* `match_evpn_role`: Device EVPN topology role must match the property value<br>* `match_evpn_role[0:3]`: Device EVPN topology role must match the property value from the 1st to the 3rd letter |
 | `SiteIds` | `[]uuid.UUID` | Optional | Only devices belonging to these sites will be selected for upgrade. Will be ignored if `all_sites`==`true` |
 | `Snapshot` | `*bool` | Optional | For Junos devices only. Perform recovery snapshot after device is rebooted<br><br>**Default**: `false` |
-| `StartDatetime` | `*string` | Optional | Process start date and time, ISO8601 format |
-| `StartTime` | `*int` | Optional | Upgrade start time in epoch seconds, default is now |
+| `StartDatetime` | `*string` | Optional | Firmware download start time in ISO 8601 format; default is now. Exclude timezone component to use site local timezone |
+| `StartTime` | `*int` | Optional | Firmware download start time in epoch seconds, default is now; deprecated, use `start_datetime` instead |
 | `Strategy` | [`*models.UpgradeDeviceStrategyEnum`](../../doc/models/upgrade-device-strategy-enum.md) | Optional | enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)<br><br>**Default**: `"big_bang"` |
+| `Version` | `*string` | Optional | Deprecated; use `versions` instead. Specific firmware version, `suggested`, or `alpha`; default is latest |
 | `Versions` | [`[]models.UpgradeOrgDevicesVersion`](../../doc/models/upgrade-org-devices-version.md) | Optional | Target firmware version entries for an organization upgrade request |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -54,8 +56,9 @@ func main() {
         CanaryPhases:            nil,
         DeviceType:              models.ToPointer(models.DeviceTypeEnum_AP),
         DownloadStrategy:        models.ToPointer(models.UpgradeOrgDevicesDownloadStrategyEnum_BIGBANG),
+        EnableP2p:               models.ToPointer(false),
         MaxFailurePercentage:    models.ToPointer(5),
-        P2pClusterSize:          models.ToPointer(0),
+        P2pClusterSize:          models.ToPointer(10),
         RebootAt:                models.ToPointer(1624399840),
         RebootDatetime:          models.ToPointer("2024-06-13 15:00:00-07:00"),
         RebootStrategy:          models.ToPointer(models.UpgradeDeviceStrategyEnum_BIGBANG),

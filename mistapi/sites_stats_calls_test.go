@@ -175,8 +175,9 @@ func TestSitesStatsCallsTestGetSiteCallsSummary(t *testing.T) {
 	}
 	apMac := "001122334455"
 	app := "zoom"
+	wired := bool(false)
 
-	apiResponse, err := sitesStatsCalls.GetSiteCallsSummary(ctx, siteId, &apMac, &app, nil, nil)
+	apiResponse, err := sitesStatsCalls.GetSiteCallsSummary(ctx, siteId, &apMac, &app, &wired, nil, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -198,8 +199,9 @@ func TestSitesStatsCallsTestGetSiteCallsSummary1(t *testing.T) {
 	}
 	apMac := "001122334455"
 	app := "zoom"
+	wired := bool(false)
 
-	apiResponse, err := sitesStatsCalls.GetSiteCallsSummary(ctx, siteId, &apMac, &app, nil, nil)
+	apiResponse, err := sitesStatsCalls.GetSiteCallsSummary(ctx, siteId, &apMac, &app, &wired, nil, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -223,11 +225,12 @@ func TestSitesStatsCallsTestListSiteTroubleshootCalls(t *testing.T) {
 	meetingId := "1234567890abcdef"
 	mac := "001122334455"
 	app := "zoom"
+	wired := bool(false)
 
 	duration := "1d"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := sitesStatsCalls.ListSiteTroubleshootCalls(ctx, siteId, &ap, &meetingId, &mac, &app, nil, nil, &duration, &limit, &page)
+	apiResponse, err := sitesStatsCalls.ListSiteTroubleshootCalls(ctx, siteId, &ap, &meetingId, &mac, &app, &wired, nil, nil, &duration, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -251,11 +254,12 @@ func TestSitesStatsCallsTestListSiteTroubleshootCalls1(t *testing.T) {
 	meetingId := "1234567890abcdef"
 	mac := "001122334455"
 	app := "zoom"
+	wired := bool(false)
 
 	duration := "1d"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := sitesStatsCalls.ListSiteTroubleshootCalls(ctx, siteId, &ap, &meetingId, &mac, &app, nil, nil, &duration, &limit, &page)
+	apiResponse, err := sitesStatsCalls.ListSiteTroubleshootCalls(ctx, siteId, &ap, &meetingId, &mac, &app, &wired, nil, nil, &duration, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -39,6 +39,8 @@ type NetworkTemplate struct {
 	MistNac *SwitchMistNac `json:"mist_nac,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Multicast configuration for a VRF. When set at the network template level it applies to networks in the master VRF (not assigned to any vrf_instances). PIM is automatically enabled when any network in the VRF has `multicast.enabled`==`true`.
+	MulticastConfig *SwitchMulticastConfig `json:"multicast_config,omitempty"`
 	// Display name of the network template
 	Name *string `json:"name,omitempty"`
 	// Property key is network name
@@ -78,8 +80,8 @@ type NetworkTemplate struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (n NetworkTemplate) String() string {
 	return fmt.Sprintf(
-		"NetworkTemplate[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, BgpConfig=%v, CreatedTime=%v, DhcpSnooping=%v, DnsServers=%v, DnsSuffix=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Id=%v, ImportOrgNetworks=%v, MistNac=%v, ModifiedTime=%v, Name=%v, Networks=%v, NtpServers=%v, OrgId=%v, OspfAreas=%v, PortMirroring=%v, PortUsages=%v, RadiusConfig=%v, RemoteSyslog=%v, RemoveExistingConfigs=%v, RoutingPolicies=%v, SnmpConfig=%v, SwitchMatching=%v, SwitchMgmt=%v, VrfConfig=%v, VrfInstances=%v, AdditionalProperties=%v]",
-		n.AclPolicies, n.AclTags, n.AdditionalConfigCmds, n.BgpConfig, n.CreatedTime, n.DhcpSnooping, n.DnsServers, n.DnsSuffix, n.ExtraRoutes, n.ExtraRoutes6, n.Id, n.ImportOrgNetworks, n.MistNac, n.ModifiedTime, n.Name, n.Networks, n.NtpServers, n.OrgId, n.OspfAreas, n.PortMirroring, n.PortUsages, n.RadiusConfig, n.RemoteSyslog, n.RemoveExistingConfigs, n.RoutingPolicies, n.SnmpConfig, n.SwitchMatching, n.SwitchMgmt, n.VrfConfig, n.VrfInstances, n.AdditionalProperties)
+		"NetworkTemplate[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, BgpConfig=%v, CreatedTime=%v, DhcpSnooping=%v, DnsServers=%v, DnsSuffix=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Id=%v, ImportOrgNetworks=%v, MistNac=%v, ModifiedTime=%v, MulticastConfig=%v, Name=%v, Networks=%v, NtpServers=%v, OrgId=%v, OspfAreas=%v, PortMirroring=%v, PortUsages=%v, RadiusConfig=%v, RemoteSyslog=%v, RemoveExistingConfigs=%v, RoutingPolicies=%v, SnmpConfig=%v, SwitchMatching=%v, SwitchMgmt=%v, VrfConfig=%v, VrfInstances=%v, AdditionalProperties=%v]",
+		n.AclPolicies, n.AclTags, n.AdditionalConfigCmds, n.BgpConfig, n.CreatedTime, n.DhcpSnooping, n.DnsServers, n.DnsSuffix, n.ExtraRoutes, n.ExtraRoutes6, n.Id, n.ImportOrgNetworks, n.MistNac, n.ModifiedTime, n.MulticastConfig, n.Name, n.Networks, n.NtpServers, n.OrgId, n.OspfAreas, n.PortMirroring, n.PortUsages, n.RadiusConfig, n.RemoteSyslog, n.RemoveExistingConfigs, n.RoutingPolicies, n.SnmpConfig, n.SwitchMatching, n.SwitchMgmt, n.VrfConfig, n.VrfInstances, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkTemplate.
@@ -88,7 +90,7 @@ func (n NetworkTemplate) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(n.AdditionalProperties,
-		"acl_policies", "acl_tags", "additional_config_cmds", "bgp_config", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "name", "networks", "ntp_servers", "org_id", "ospf_areas", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "routing_policies", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances"); err != nil {
+		"acl_policies", "acl_tags", "additional_config_cmds", "bgp_config", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "multicast_config", "name", "networks", "ntp_servers", "org_id", "ospf_areas", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "routing_policies", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(n.toMap())
@@ -139,6 +141,9 @@ func (n NetworkTemplate) toMap() map[string]any {
 	}
 	if n.ModifiedTime != nil {
 		structMap["modified_time"] = n.ModifiedTime
+	}
+	if n.MulticastConfig != nil {
+		structMap["multicast_config"] = n.MulticastConfig.toMap()
 	}
 	if n.Name != nil {
 		structMap["name"] = n.Name
@@ -199,7 +204,7 @@ func (n *NetworkTemplate) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "bgp_config", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "name", "networks", "ntp_servers", "org_id", "ospf_areas", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "routing_policies", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "bgp_config", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "multicast_config", "name", "networks", "ntp_servers", "org_id", "ospf_areas", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "routing_policies", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances")
 	if err != nil {
 		return err
 	}
@@ -219,6 +224,7 @@ func (n *NetworkTemplate) UnmarshalJSON(input []byte) error {
 	n.ImportOrgNetworks = temp.ImportOrgNetworks
 	n.MistNac = temp.MistNac
 	n.ModifiedTime = temp.ModifiedTime
+	n.MulticastConfig = temp.MulticastConfig
 	n.Name = temp.Name
 	n.Networks = temp.Networks
 	n.NtpServers = temp.NtpServers
@@ -254,6 +260,7 @@ type tempNetworkTemplate struct {
 	ImportOrgNetworks     []string                               `json:"import_org_networks,omitempty"`
 	MistNac               *SwitchMistNac                         `json:"mist_nac,omitempty"`
 	ModifiedTime          *float64                               `json:"modified_time,omitempty"`
+	MulticastConfig       *SwitchMulticastConfig                 `json:"multicast_config,omitempty"`
 	Name                  *string                                `json:"name,omitempty"`
 	Networks              map[string]SwitchNetwork               `json:"networks,omitempty"`
 	NtpServers            []string                               `json:"ntp_servers,omitempty"`

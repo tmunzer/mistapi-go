@@ -11,6 +11,10 @@ import (
 // Only if `usage`==`wan`. WAN health probe override for this gateway port
 type GatewayWanProbeOverride struct {
 	// Unique string values returned or accepted by this schema
+	Hostnames []string `json:"hostnames,omitempty"`
+	// HTTP probe settings for a WAN probe override
+	Http *GatewayWanProbeOverrideHttp `json:"http,omitempty"`
+	// Unique string values returned or accepted by this schema
 	Ip6s []string `json:"ip6s,omitempty"`
 	// Unique string values returned or accepted by this schema
 	Ips []string `json:"ips,omitempty"`
@@ -23,8 +27,8 @@ type GatewayWanProbeOverride struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (g GatewayWanProbeOverride) String() string {
 	return fmt.Sprintf(
-		"GatewayWanProbeOverride[Ip6s=%v, Ips=%v, ProbeProfile=%v, AdditionalProperties=%v]",
-		g.Ip6s, g.Ips, g.ProbeProfile, g.AdditionalProperties)
+		"GatewayWanProbeOverride[Hostnames=%v, Http=%v, Ip6s=%v, Ips=%v, ProbeProfile=%v, AdditionalProperties=%v]",
+		g.Hostnames, g.Http, g.Ip6s, g.Ips, g.ProbeProfile, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayWanProbeOverride.
@@ -33,7 +37,7 @@ func (g GatewayWanProbeOverride) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(g.AdditionalProperties,
-		"ip6s", "ips", "probe_profile"); err != nil {
+		"hostnames", "http", "ip6s", "ips", "probe_profile"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(g.toMap())
@@ -43,6 +47,12 @@ func (g GatewayWanProbeOverride) MarshalJSON() (
 func (g GatewayWanProbeOverride) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, g.AdditionalProperties)
+	if g.Hostnames != nil {
+		structMap["hostnames"] = g.Hostnames
+	}
+	if g.Http != nil {
+		structMap["http"] = g.Http.toMap()
+	}
 	if g.Ip6s != nil {
 		structMap["ip6s"] = g.Ip6s
 	}
@@ -63,12 +73,14 @@ func (g *GatewayWanProbeOverride) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ip6s", "ips", "probe_profile")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "hostnames", "http", "ip6s", "ips", "probe_profile")
 	if err != nil {
 		return err
 	}
 	g.AdditionalProperties = additionalProperties
 
+	g.Hostnames = temp.Hostnames
+	g.Http = temp.Http
 	g.Ip6s = temp.Ip6s
 	g.Ips = temp.Ips
 	g.ProbeProfile = temp.ProbeProfile
@@ -77,6 +89,8 @@ func (g *GatewayWanProbeOverride) UnmarshalJSON(input []byte) error {
 
 // tempGatewayWanProbeOverride is a temporary struct used for validating the fields of GatewayWanProbeOverride.
 type tempGatewayWanProbeOverride struct {
+	Hostnames    []string                                 `json:"hostnames,omitempty"`
+	Http         *GatewayWanProbeOverrideHttp             `json:"http,omitempty"`
 	Ip6s         []string                                 `json:"ip6s,omitempty"`
 	Ips          []string                                 `json:"ips,omitempty"`
 	ProbeProfile *GatewayWanProbeOverrideProbeProfileEnum `json:"probe_profile,omitempty"`

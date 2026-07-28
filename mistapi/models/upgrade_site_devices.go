@@ -25,9 +25,9 @@ type UpgradeSiteDevices struct {
 	MaxFailures []int `json:"max_failures,omitempty"`
 	// Models which will be selected for upgrade
 	Models []string `json:"models,omitempty"`
-	// For APs only and if `enable_p2p`==`true`.
+	// For APs only and if `enable_p2p`==`true`. Size to split devices for peer-to-peer download batches; default 10
 	P2pClusterSize *int `json:"p2p_cluster_size,omitempty"`
-	// For APs only and if `enable_p2p`==`true`. Number of parallel p2p download batches to create
+	// For APs only and if `enable_p2p`==`true`. Number of parallel peer-to-peer download batches to create. If not set, automatically determined based on device count (<=50 uses 1, 51-100 uses 3, >100 uses 10)
 	P2pParallelism *int `json:"p2p_parallelism,omitempty"`
 	// For Switches and Gateways only (APs are automatically rebooted). Reboot device immediately after upgrade is completed
 	Reboot *bool `json:"reboot,omitempty"`

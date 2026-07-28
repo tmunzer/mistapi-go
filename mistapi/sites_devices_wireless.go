@@ -9,6 +9,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/tmunzer/mistapi-go/mistapi/errors"
 	"github.com/tmunzer/mistapi-go/mistapi/models"
+	"net/http"
 )
 
 // SitesDevicesWireless represents a controller struct.
@@ -141,6 +142,79 @@ func (s *SitesDevicesWireless) SetSiteDeviceIotPort(
 	return models.NewApiResponse(result, resp), err
 }
 
+// StartSiteDeviceZigbeeEventTrail takes context, siteId, deviceId as parameters and
+// returns an models.ApiResponse with models.ZigbeeTrailResponse data and
+// an error if there was an issue with the request or response.
+// Start a Zigbee event trail session on an AP. Returns a `session` that the UI can use to stream results.
+func (s *SitesDevicesWireless) StartSiteDeviceZigbeeEventTrail(
+	ctx context.Context,
+	siteId uuid.UUID,
+	deviceId uuid.UUID) (
+	models.ApiResponse[models.ZigbeeTrailResponse],
+	error) {
+	req := s.prepareRequest(
+		ctx,
+		"POST",
+		"/api/v1/sites/%v/devices/%v/zigbee_event_trail",
+	)
+	req.AppendTemplateParams(siteId, deviceId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+
+	var result models.ZigbeeTrailResponse
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ZigbeeTrailResponse](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
+// StopSiteDeviceZigbeeJoin takes context, siteId, deviceId as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Stop allowing new Zigbee end devices to join the network through the specified AP.
+func (s *SitesDevicesWireless) StopSiteDeviceZigbeeJoin(
+	ctx context.Context,
+	siteId uuid.UUID,
+	deviceId uuid.UUID) (
+	*http.Response,
+	error) {
+	req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/devices/%v/zigbee_join")
+	req.AppendTemplateParams(siteId, deviceId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
+}
+
 // EnableSiteDeviceZigbeeJoin takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.ZigbeeJoinResponse data and
 // an error if there was an issue with the request or response.
@@ -201,5 +275,83 @@ func (s *SitesDevicesWireless) EnableSiteDeviceZigbeeJoin(
 	}
 
 	result, err = utilities.DecodeResults[models.ZigbeeJoinResponse](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
+// KickSiteDeviceZigbeeClients takes context, siteId, deviceId, body as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Kick one or more Zigbee clients from a Zigbee-enabled AP. The AP must be connected.
+func (s *SitesDevicesWireless) KickSiteDeviceZigbeeClients(
+	ctx context.Context,
+	siteId uuid.UUID,
+	deviceId uuid.UUID,
+	body *models.UtilsZigbeeKick) (
+	*http.Response,
+	error) {
+	req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/zigbee_kick")
+	req.AppendTemplateParams(siteId, deviceId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
+
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
+}
+
+// StartSiteDeviceZigbeePacketTrail takes context, siteId, deviceId as parameters and
+// returns an models.ApiResponse with models.ZigbeeTrailResponse data and
+// an error if there was an issue with the request or response.
+// Start a Zigbee packet trail session on an AP. Returns a `session` that the UI can use to stream results.
+func (s *SitesDevicesWireless) StartSiteDeviceZigbeePacketTrail(
+	ctx context.Context,
+	siteId uuid.UUID,
+	deviceId uuid.UUID) (
+	models.ApiResponse[models.ZigbeeTrailResponse],
+	error) {
+	req := s.prepareRequest(
+		ctx,
+		"POST",
+		"/api/v1/sites/%v/devices/%v/zigbee_packet_trail",
+	)
+	req.AppendTemplateParams(siteId, deviceId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+
+	var result models.ZigbeeTrailResponse
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ZigbeeTrailResponse](decoder)
 	return models.NewApiResponse(result, resp), err
 }

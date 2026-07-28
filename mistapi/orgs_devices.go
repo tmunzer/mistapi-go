@@ -169,7 +169,7 @@ func (o *OrgsDevices) CountOrgDevices(
 	return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgDeviceEvents takes context, orgId, distinct, siteId, ap, apfw, model, text, mType, start, end, duration, limit as parameters and
+// CountOrgDeviceEvents takes context, orgId, distinct, siteId, ap, apfw, model, text, mType, includes, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count device event records across the organization, optionally grouped by `distinct` and filtered by site, AP, firmware, model, event text, event type, and time range.
@@ -183,6 +183,7 @@ func (o *OrgsDevices) CountOrgDeviceEvents(
 	model *string,
 	text *string,
 	mType *string,
+	includes *string,
 	start *string,
 	end *string,
 	duration *string,
@@ -224,6 +225,9 @@ func (o *OrgsDevices) CountOrgDeviceEvents(
 	}
 	if mType != nil {
 		req.QueryParam("type", *mType)
+	}
+	if includes != nil {
+		req.QueryParam("includes", *includes)
 	}
 	if start != nil {
 		req.QueryParam("start", *start)

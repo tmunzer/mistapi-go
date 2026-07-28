@@ -14,7 +14,7 @@ import (
 type DeviceVersionItem struct {
 	// Device model (as seen in the device stats)
 	Model string `json:"model"`
-	// Annotation, stable / beta / alpha. Or it can be empty or nothing which is likely a dev build
+	// Annotation, suggested / alpha. Or it can be empty or nothing which is likely a dev build
 	Tag *string `json:"tag,omitempty"`
 	// Available firmware version for this device model
 	Version              string                 `json:"version"`

@@ -16,6 +16,8 @@ type AclPolicy struct {
 	// - for GBP-based policy, all src_tags and dst_tags have to be gbp-based
 	// - for ACL-based policy, `network` is required in either the source or destination so that we know where to attach the policy to
 	Actions []AclPolicyAction `json:"actions,omitempty"`
+	// Whether this ACL policy is disabled
+	Disabled *bool `json:"disabled,omitempty"`
 	// Display name of the ACL policy
 	Name *string `json:"name,omitempty"`
 	// ACL Policy Source Tags:
@@ -29,8 +31,8 @@ type AclPolicy struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a AclPolicy) String() string {
 	return fmt.Sprintf(
-		"AclPolicy[Actions=%v, Name=%v, SrcTags=%v, AdditionalProperties=%v]",
-		a.Actions, a.Name, a.SrcTags, a.AdditionalProperties)
+		"AclPolicy[Actions=%v, Disabled=%v, Name=%v, SrcTags=%v, AdditionalProperties=%v]",
+		a.Actions, a.Disabled, a.Name, a.SrcTags, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AclPolicy.
@@ -39,7 +41,7 @@ func (a AclPolicy) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(a.AdditionalProperties,
-		"actions", "name", "src_tags"); err != nil {
+		"actions", "disabled", "name", "src_tags"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(a.toMap())
@@ -51,6 +53,9 @@ func (a AclPolicy) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, a.AdditionalProperties)
 	if a.Actions != nil {
 		structMap["actions"] = a.Actions
+	}
+	if a.Disabled != nil {
+		structMap["disabled"] = a.Disabled
 	}
 	if a.Name != nil {
 		structMap["name"] = a.Name
@@ -69,13 +74,14 @@ func (a *AclPolicy) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "actions", "name", "src_tags")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "actions", "disabled", "name", "src_tags")
 	if err != nil {
 		return err
 	}
 	a.AdditionalProperties = additionalProperties
 
 	a.Actions = temp.Actions
+	a.Disabled = temp.Disabled
 	a.Name = temp.Name
 	a.SrcTags = temp.SrcTags
 	return nil
@@ -83,7 +89,8 @@ func (a *AclPolicy) UnmarshalJSON(input []byte) error {
 
 // tempAclPolicy is a temporary struct used for validating the fields of AclPolicy.
 type tempAclPolicy struct {
-	Actions []AclPolicyAction `json:"actions,omitempty"`
-	Name    *string           `json:"name,omitempty"`
-	SrcTags []string          `json:"src_tags,omitempty"`
+	Actions  []AclPolicyAction `json:"actions,omitempty"`
+	Disabled *bool             `json:"disabled,omitempty"`
+	Name     *string           `json:"name,omitempty"`
+	SrcTags  []string          `json:"src_tags,omitempty"`
 }

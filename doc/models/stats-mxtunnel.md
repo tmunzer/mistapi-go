@@ -25,12 +25,10 @@ WxLAN or Mist tunnel statistics record
 | `PeerMxedgeId` | `*uuid.UUID` | Optional, Read-only | MxEdge ID of the peer(mist edge to mist edge tunnel) |
 | `RemoteIp` | `string` | Required, Read-only | Remote endpoint IP address for the tunnel |
 | `RemotePort` | `*int` | Optional, Read-only | Remote endpoint port for the tunnel |
-| `RxControlPkts` | `*int` | Optional, Read-only | Number of control packets received for the tunnel |
 | `Sessions` | [`[]models.StatsMxtunnelSession`](../../doc/models/stats-mxtunnel-session.md) | Optional, Read-only | Tunnel sessions reported for a WxLAN or Mist tunnel<br><br>**Constraints**: *Unique Items Required* |
 | `SiteId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist site |
+| `StartTime` | `*int` | Optional, Read-only | Epoch timestamp when the tunnel was established |
 | `State` | [`*models.StatsMxtunnelStateEnum`](../../doc/models/stats-mxtunnel-state-enum.md) | Optional, Read-only | enum: `established`, `established_with_sessions`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply` |
-| `TxControlPkts` | `*int` | Optional, Read-only | Number of control packets transmitted for the tunnel |
-| `Uptime` | `*int` | Optional, Read-only | Duration, in seconds, that the tunnel has been up |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example

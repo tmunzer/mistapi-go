@@ -19,6 +19,8 @@ type ResponseSsrUpgrade struct {
 	Counts ResponseSsrUpgradeCounts `json:"counts"`
 	// Type of devices targeted by the SSR upgrade
 	DeviceType string `json:"device_type"`
+	// Whether the upgrade was forced even when the requested version matched the running version
+	Force *bool `json:"force,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id uuid.UUID `json:"id"`
 	// Current status of the SSR upgrade job
@@ -34,8 +36,8 @@ type ResponseSsrUpgrade struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseSsrUpgrade) String() string {
 	return fmt.Sprintf(
-		"ResponseSsrUpgrade[Channel=%v, Counts=%v, DeviceType=%v, Id=%v, Status=%v, Strategy=%v, Versions=%v, AdditionalProperties=%v]",
-		r.Channel, r.Counts, r.DeviceType, r.Id, r.Status, r.Strategy, r.Versions, r.AdditionalProperties)
+		"ResponseSsrUpgrade[Channel=%v, Counts=%v, DeviceType=%v, Force=%v, Id=%v, Status=%v, Strategy=%v, Versions=%v, AdditionalProperties=%v]",
+		r.Channel, r.Counts, r.DeviceType, r.Force, r.Id, r.Status, r.Strategy, r.Versions, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSsrUpgrade.
@@ -44,7 +46,7 @@ func (r ResponseSsrUpgrade) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"channel", "counts", "device_type", "id", "status", "strategy", "versions"); err != nil {
+		"channel", "counts", "device_type", "force", "id", "status", "strategy", "versions"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -57,6 +59,9 @@ func (r ResponseSsrUpgrade) toMap() map[string]any {
 	structMap["channel"] = r.Channel
 	structMap["counts"] = r.Counts.toMap()
 	structMap["device_type"] = r.DeviceType
+	if r.Force != nil {
+		structMap["force"] = r.Force
+	}
 	structMap["id"] = r.Id
 	structMap["status"] = r.Status
 	structMap["strategy"] = r.Strategy
@@ -76,7 +81,7 @@ func (r *ResponseSsrUpgrade) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "counts", "device_type", "id", "status", "strategy", "versions")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "counts", "device_type", "force", "id", "status", "strategy", "versions")
 	if err != nil {
 		return err
 	}
@@ -85,6 +90,7 @@ func (r *ResponseSsrUpgrade) UnmarshalJSON(input []byte) error {
 	r.Channel = *temp.Channel
 	r.Counts = *temp.Counts
 	r.DeviceType = *temp.DeviceType
+	r.Force = temp.Force
 	r.Id = *temp.Id
 	r.Status = *temp.Status
 	r.Strategy = *temp.Strategy
@@ -97,6 +103,7 @@ type tempResponseSsrUpgrade struct {
 	Channel    *string                   `json:"channel"`
 	Counts     *ResponseSsrUpgradeCounts `json:"counts"`
 	DeviceType *string                   `json:"device_type"`
+	Force      *bool                     `json:"force,omitempty"`
 	Id         *uuid.UUID                `json:"id"`
 	Status     *string                   `json:"status"`
 	Strategy   *string                   `json:"strategy"`

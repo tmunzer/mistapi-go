@@ -17,7 +17,7 @@ Juniper Security Intelligence SIRT advisory item
 | `Problem` | `*string` | Optional | Issue details described by the SIRT advisory |
 | `PublishedDate` | `*int` | Optional | Release date of the SIRT issue |
 | `ReleaseNotes` | `*string` | Optional | Release notes if any |
-| `Severity` | `*string` | Optional | Security severity assigned to the SIRT advisory |
+| `Severity` | [`*models.JsiSirtSeverityEnum`](../../doc/models/jsi-sirt-severity-enum.md) | Optional | Security severity assigned to the SIRT advisory. enum: `Critical`, `High`, `Low`, `Medium` |
 | `Solution` | `*string` | Optional | Recommended fix or remediation for the security issue |
 | `Title` | `*string` | Optional | Summary title for the SIRT advisory |
 | `UpdatedDate` | `*int` | Optional | Time when the JSA advisory was last updated |

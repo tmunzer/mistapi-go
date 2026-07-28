@@ -11,7 +11,7 @@ Request body for temporarily allowing Zigbee end-device joins
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Duration` | `*int` | Optional | Number of seconds to permit new Zigbee end-device joins; range is 30-3600<br><br>**Default**: `600`<br><br>**Constraints**: `>= 30`, `<= 3600` |
+| `Duration` | `*int` | Optional | Number of seconds to permit new Zigbee end-device joins; range is 60-600<br><br>**Default**: `600`<br><br>**Constraints**: `>= 60`, `<= 600` |
 
 ## Example
 

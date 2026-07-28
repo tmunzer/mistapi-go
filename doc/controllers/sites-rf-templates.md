@@ -118,6 +118,7 @@ if err != nil {
     },
     "country_code": "FR",
     "created_time": 1594743723,
+    "enable_unii_4": false,
     "id": "b3f20330-f76a-49f1-bc65-0d8727140b1d",
     "model_specific": {},
     "modified_time": 1613582192,

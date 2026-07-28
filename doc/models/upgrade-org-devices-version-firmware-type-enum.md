@@ -1,7 +1,7 @@
 
 # Upgrade Org Devices Version Firmware Type Enum
 
-Firmware family this version entry applies to. enum: `ap`, `junos`
+Firmware family this version entry applies to. enum: `ap`, `junos`, `ssr`
 
 ## Enumeration
 
@@ -13,6 +13,7 @@ Firmware family this version entry applies to. enum: `ap`, `junos`
 |  --- |
 | `ap` |
 | `junos` |
+| `ssr` |
 
 ## Example
 
@@ -24,7 +25,7 @@ import (
 )
 
 func main() {
-    upgradeOrgDevicesVersionFirmwareType := models.UpgradeOrgDevicesVersionFirmwareTypeEnum_AP
+    upgradeOrgDevicesVersionFirmwareType := models.UpgradeOrgDevicesVersionFirmwareTypeEnum_JUNOS
 
 }
 ```

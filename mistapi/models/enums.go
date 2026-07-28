@@ -43,6 +43,7 @@ const (
 // AclTagTypeEnum is a string enum.
 // enum:
 // * `any`: matching anything not identified
+// * `aruba_user_role`: Aruba user role matched via `radius_group`
 // * `dynamic_gbp`: from the gbp_tag received from RADIUS
 // * `gbp_resource`: can only be used in `dst_tags`
 // * `mac`
@@ -55,16 +56,17 @@ const (
 type AclTagTypeEnum string
 
 const (
-	AclTagTypeEnum_ANY         AclTagTypeEnum = "any"
-	AclTagTypeEnum_DYNAMICGBP  AclTagTypeEnum = "dynamic_gbp"
-	AclTagTypeEnum_GBPRESOURCE AclTagTypeEnum = "gbp_resource"
-	AclTagTypeEnum_MAC         AclTagTypeEnum = "mac"
-	AclTagTypeEnum_NETWORK     AclTagTypeEnum = "network"
-	AclTagTypeEnum_PORTUSAGE   AclTagTypeEnum = "port_usage"
-	AclTagTypeEnum_RADIUSGROUP AclTagTypeEnum = "radius_group"
-	AclTagTypeEnum_RESOURCE    AclTagTypeEnum = "resource"
-	AclTagTypeEnum_STATICGBP   AclTagTypeEnum = "static_gbp"
-	AclTagTypeEnum_SUBNET      AclTagTypeEnum = "subnet"
+	AclTagTypeEnum_ANY           AclTagTypeEnum = "any"
+	AclTagTypeEnum_ARUBAUSERROLE AclTagTypeEnum = "aruba_user_role"
+	AclTagTypeEnum_DYNAMICGBP    AclTagTypeEnum = "dynamic_gbp"
+	AclTagTypeEnum_GBPRESOURCE   AclTagTypeEnum = "gbp_resource"
+	AclTagTypeEnum_MAC           AclTagTypeEnum = "mac"
+	AclTagTypeEnum_NETWORK       AclTagTypeEnum = "network"
+	AclTagTypeEnum_PORTUSAGE     AclTagTypeEnum = "port_usage"
+	AclTagTypeEnum_RADIUSGROUP   AclTagTypeEnum = "radius_group"
+	AclTagTypeEnum_RESOURCE      AclTagTypeEnum = "resource"
+	AclTagTypeEnum_STATICGBP     AclTagTypeEnum = "static_gbp"
+	AclTagTypeEnum_SUBNET        AclTagTypeEnum = "subnet"
 )
 
 // AdminComplianceStatusEnum is a string enum.
@@ -310,6 +312,14 @@ const (
 	ApUsbTypeEnum_HANSHOW  ApUsbTypeEnum = "hanshow"
 	ApUsbTypeEnum_IMAGOTAG ApUsbTypeEnum = "imagotag"
 	ApUsbTypeEnum_SOLUM    ApUsbTypeEnum = "solum"
+)
+
+// ApUwbConfigTypeEnum is a string enum.
+// UWB integration type. enum: `zigpos`
+type ApUwbConfigTypeEnum string
+
+const (
+	ApUwbConfigTypeEnum_ZIGPOS ApUwbConfigTypeEnum = "zigpos"
 )
 
 // ApZigbeeAllowJoinEnum is a string enum.
@@ -1132,6 +1142,24 @@ const (
 	FingerprintsCountDistinctEnum_OSTYPE FingerprintsCountDistinctEnum = "os_type"
 )
 
+// FlowRecordDirectionEnum is a string enum.
+// Flow direction. enum: `egress`, `ingress`
+type FlowRecordDirectionEnum string
+
+const (
+	FlowRecordDirectionEnum_EGRESS  FlowRecordDirectionEnum = "egress"
+	FlowRecordDirectionEnum_INGRESS FlowRecordDirectionEnum = "ingress"
+)
+
+// FlowRecordStateEnum is a string enum.
+// Flow state. enum: `active`, `aged-out`
+type FlowRecordStateEnum string
+
+const (
+	FlowRecordStateEnum_ACTIVE  FlowRecordStateEnum = "active"
+	FlowRecordStateEnum_AGEDOUT FlowRecordStateEnum = "aged-out"
+)
+
 // ForSiteEnum is a string enum.
 // enum: `any`, `true`, `false`
 type ForSiteEnum string
@@ -1386,7 +1414,7 @@ const (
 )
 
 // IdpUserCertLookupFieldEnum is a string enum.
-// allow customer to choose the EAP-TLS client certificate's field. To use for IDP User Groups lookup. enum: `automatic`, `cn`, `email`, `upn`
+// allow customer to choose the EAP-TLS client certificate's field to use for IDP User Groups lookup. enum: `automatic`, `cn`, `email`, `upn`
 type IdpUserCertLookupFieldEnum string
 
 const (
@@ -1471,6 +1499,26 @@ const (
 	JsiInventoryCountDistinctEnum_ENUMTYPE      JsiInventoryCountDistinctEnum = "type"
 	JsiInventoryCountDistinctEnum_VERSION       JsiInventoryCountDistinctEnum = "version"
 	JsiInventoryCountDistinctEnum_WARRANTYTYPE  JsiInventoryCountDistinctEnum = "warranty_type"
+)
+
+// JsiPbnBugTypeEnum is a string enum.
+// Type of the bug. enum: `Day-1`, `Regression`
+type JsiPbnBugTypeEnum string
+
+const (
+	JsiPbnBugTypeEnum_DAY1       JsiPbnBugTypeEnum = "Day-1"
+	JsiPbnBugTypeEnum_REGRESSION JsiPbnBugTypeEnum = "Regression"
+)
+
+// JsiSirtSeverityEnum is a string enum.
+// Security severity assigned to the SIRT advisory. enum: `Critical`, `High`, `Low`, `Medium`
+type JsiSirtSeverityEnum string
+
+const (
+	JsiSirtSeverityEnum_CRITICAL JsiSirtSeverityEnum = "Critical"
+	JsiSirtSeverityEnum_HIGH     JsiSirtSeverityEnum = "High"
+	JsiSirtSeverityEnum_LOW      JsiSirtSeverityEnum = "Low"
+	JsiSirtSeverityEnum_MEDIUM   JsiSirtSeverityEnum = "Medium"
 )
 
 // JsiWarrantyTypeEnum is a string enum.
@@ -2258,7 +2306,7 @@ const (
 )
 
 // OrgNacClientsCountDistinctEnum is a string enum.
-// enum: `ap`, `auth_type`, `device_mac`, `edr_managed`, `edr_provider`, `edr_status`, `family`, `hostname`, `idp_id`, `mfg`, `mdm_compliance`, `mdm_managed`, `mdm_provider`, `model`, `mxedge_id`, `nacrule_matched`, `nacrule_name`, `nacrule_id`, `nas_ip`, `nas_vendor`, `os`, `site_id`, `ssid`, `status`, `type`, `usermac_label`, `username`, `vlan`
+// enum: `ap`, `auth_type`, `device_mac`, `edr_managed`, `edr_providers`, `edr_status`, `family`, `hostname`, `idp_id`, `mfg`, `mdm_compliance`, `mdm_managed`, `mdm_provider`, `model`, `mxedge_id`, `nacrule_matched`, `nacrule_name`, `nacrule_id`, `nas_ip`, `nas_vendor`, `os`, `site_id`, `ssid`, `status`, `type`, `usermac_label`, `username`, `vlan`
 type OrgNacClientsCountDistinctEnum string
 
 const (
@@ -2266,7 +2314,7 @@ const (
 	OrgNacClientsCountDistinctEnum_AUTHTYPE       OrgNacClientsCountDistinctEnum = "auth_type"
 	OrgNacClientsCountDistinctEnum_DEVICEMAC      OrgNacClientsCountDistinctEnum = "device_mac"
 	OrgNacClientsCountDistinctEnum_EDRMANAGED     OrgNacClientsCountDistinctEnum = "edr_managed"
-	OrgNacClientsCountDistinctEnum_EDRPROVIDER    OrgNacClientsCountDistinctEnum = "edr_provider"
+	OrgNacClientsCountDistinctEnum_EDRPROVIDERS   OrgNacClientsCountDistinctEnum = "edr_providers"
 	OrgNacClientsCountDistinctEnum_EDRSTATUS      OrgNacClientsCountDistinctEnum = "edr_status"
 	OrgNacClientsCountDistinctEnum_FAMILY         OrgNacClientsCountDistinctEnum = "family"
 	OrgNacClientsCountDistinctEnum_HOSTNAME       OrgNacClientsCountDistinctEnum = "hostname"
@@ -2750,13 +2798,14 @@ const (
 )
 
 // PskUsageEnum is a string enum.
-// enum: `macs`, `multi`, `single`
+// enum: `macs`, `multi`, `single`, `usermac_labels`
 type PskUsageEnum string
 
 const (
-	PskUsageEnum_MACS   PskUsageEnum = "macs"
-	PskUsageEnum_MULTI  PskUsageEnum = "multi"
-	PskUsageEnum_SINGLE PskUsageEnum = "single"
+	PskUsageEnum_MACS          PskUsageEnum = "macs"
+	PskUsageEnum_MULTI         PskUsageEnum = "multi"
+	PskUsageEnum_SINGLE        PskUsageEnum = "single"
+	PskUsageEnum_USERMACLABELS PskUsageEnum = "usermac_labels"
 )
 
 // RadioBand24UsageEnum is a string enum.
@@ -3344,6 +3393,17 @@ const (
 	SiteGuestsCountDistinctEnum_AUTHMETHOD SiteGuestsCountDistinctEnum = "auth_method"
 	SiteGuestsCountDistinctEnum_COMPANY    SiteGuestsCountDistinctEnum = "company"
 	SiteGuestsCountDistinctEnum_SSID       SiteGuestsCountDistinctEnum = "ssid"
+)
+
+// SiteIotendpointsCountDistinctEnum is a string enum.
+// enum: `ap_mac`, `mac`, `site_id`, `type`
+type SiteIotendpointsCountDistinctEnum string
+
+const (
+	SiteIotendpointsCountDistinctEnum_APMAC    SiteIotendpointsCountDistinctEnum = "ap_mac"
+	SiteIotendpointsCountDistinctEnum_MAC      SiteIotendpointsCountDistinctEnum = "mac"
+	SiteIotendpointsCountDistinctEnum_SITEID   SiteIotendpointsCountDistinctEnum = "site_id"
+	SiteIotendpointsCountDistinctEnum_ENUMTYPE SiteIotendpointsCountDistinctEnum = "type"
 )
 
 // SiteMxedgeEventsCountDistinctEnum is a string enum.
@@ -3995,7 +4055,7 @@ const (
 )
 
 // StatsApGpsStatSrcEnum is a string enum.
-// The origin of the GPS data. enum: `gps`: from this device GPS estimates, `other_ap` from neighboring device GPS estimates. Note: API responses may return `other_aps` which should be treated as `other_ap`
+// The origin of the GPS data. enum: `gps`: from this device GPS estimates, `other_aps` from neighboring devices GPS estimates. Note: API responses may return `other_aps` which should be treated as `other_ap`
 type StatsApGpsStatSrcEnum string
 
 const (
@@ -4046,6 +4106,17 @@ type StatsWxruleActionEnum string
 const (
 	StatsWxruleActionEnum_ALLOW StatsWxruleActionEnum = "allow"
 	StatsWxruleActionEnum_BLOCK StatsWxruleActionEnum = "block"
+)
+
+// SupportContractStatusEnum is a string enum.
+// Service contract status. enum: `Active`, `Declined`, `EOL`, `Service Available`
+type SupportContractStatusEnum string
+
+const (
+	SupportContractStatusEnum_ACTIVE               SupportContractStatusEnum = "Active"
+	SupportContractStatusEnum_DECLINED             SupportContractStatusEnum = "Declined"
+	SupportContractStatusEnum_EOL                  SupportContractStatusEnum = "EOL"
+	SupportContractStatusEnum_ENUMSERVICEAVAILABLE SupportContractStatusEnum = "Service Available"
 )
 
 // SuppressedAlarmScopeEnum is a string enum.
@@ -4471,7 +4542,7 @@ const (
 )
 
 // TunnelConfigProbeTypeEnum is a string enum.
-// Protocol used by the custom IPsec tunnel health probe. enum: `http`, `icmp`
+// Protocol used by the custom IPsec tunnel health probe. `http` is deprecated — use `probe_ips`/`probe_hostnames` for ICMP probes and `probe_http` for HTTP probes instead. enum: `http`, `icmp`
 type TunnelConfigProbeTypeEnum string
 
 const (
@@ -4634,12 +4705,13 @@ const (
 )
 
 // UpgradeOrgDevicesVersionFirmwareTypeEnum is a string enum.
-// Firmware family this version entry applies to. enum: `ap`, `junos`
+// Firmware family this version entry applies to. enum: `ap`, `junos`, `ssr`
 type UpgradeOrgDevicesVersionFirmwareTypeEnum string
 
 const (
 	UpgradeOrgDevicesVersionFirmwareTypeEnum_AP    UpgradeOrgDevicesVersionFirmwareTypeEnum = "ap"
 	UpgradeOrgDevicesVersionFirmwareTypeEnum_JUNOS UpgradeOrgDevicesVersionFirmwareTypeEnum = "junos"
+	UpgradeOrgDevicesVersionFirmwareTypeEnum_SSR   UpgradeOrgDevicesVersionFirmwareTypeEnum = "ssr"
 )
 
 // UseAutoApValuesForEnum is a string enum.
@@ -4849,6 +4921,15 @@ const (
 	WanUsagesCountDistinctEnum_POLICY     WanUsagesCountDistinctEnum = "policy"
 	WanUsagesCountDistinctEnum_PORTID     WanUsagesCountDistinctEnum = "port_id"
 	WanUsagesCountDistinctEnum_TENANT     WanUsagesCountDistinctEnum = "tenant"
+)
+
+// WebhookActionEnum is a string enum.
+// Webhook filtering action. enum: `permit`, `block`
+type WebhookActionEnum string
+
+const (
+	WebhookActionEnum_PERMIT WebhookActionEnum = "permit"
+	WebhookActionEnum_BLOCK  WebhookActionEnum = "block"
 )
 
 // WebhookAlarmsTopicEnum is a string enum.
@@ -5503,6 +5584,24 @@ type ZoneTypeEnum string
 const (
 	ZoneTypeEnum_RSSIZONES ZoneTypeEnum = "rssizones"
 	ZoneTypeEnum_ZONES     ZoneTypeEnum = "zones"
+)
+
+// EnforcementLevelEnum is a string enum.
+// Level at which the license is enforced
+type EnforcementLevelEnum string
+
+const (
+	EnforcementLevelEnum_ORG  EnforcementLevelEnum = "org"
+	EnforcementLevelEnum_SITE EnforcementLevelEnum = "site"
+)
+
+// IgmpVersionEnum is a string enum.
+// IGMP version. '2' (default, ASM/IGMPv2) / '3' (SSM/IGMPv3)
+type IgmpVersionEnum string
+
+const (
+	IgmpVersionEnum_ENUM2 IgmpVersionEnum = "2"
+	IgmpVersionEnum_ENUM3 IgmpVersionEnum = "3"
 )
 
 // TypeEnum is a string enum.

@@ -17,10 +17,14 @@ type ResponseSsrUpgradeStatus struct {
 	Channel string `json:"channel"`
 	// Type of devices targeted by the SSR upgrade
 	DeviceType *string `json:"device_type,omitempty"`
+	// Whether the upgrade was forced even when the requested version matched the running version
+	Force *bool `json:"force,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id uuid.UUID `json:"id"`
 	// Current status of the SSR upgrade job
 	Status string `json:"status"`
+	// Upgrade strategy used by the SSR upgrade job
+	Strategy *string `json:"strategy,omitempty"`
 	// SSR device IDs grouped by upgrade status
 	Targets ResponseSsrUpgradeStatusTargets `json:"targets"`
 	// SSR firmware versions included in the upgrade job
@@ -32,8 +36,8 @@ type ResponseSsrUpgradeStatus struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseSsrUpgradeStatus) String() string {
 	return fmt.Sprintf(
-		"ResponseSsrUpgradeStatus[Channel=%v, DeviceType=%v, Id=%v, Status=%v, Targets=%v, Versions=%v, AdditionalProperties=%v]",
-		r.Channel, r.DeviceType, r.Id, r.Status, r.Targets, r.Versions, r.AdditionalProperties)
+		"ResponseSsrUpgradeStatus[Channel=%v, DeviceType=%v, Force=%v, Id=%v, Status=%v, Strategy=%v, Targets=%v, Versions=%v, AdditionalProperties=%v]",
+		r.Channel, r.DeviceType, r.Force, r.Id, r.Status, r.Strategy, r.Targets, r.Versions, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSsrUpgradeStatus.
@@ -42,7 +46,7 @@ func (r ResponseSsrUpgradeStatus) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"channel", "device_type", "id", "status", "targets", "versions"); err != nil {
+		"channel", "device_type", "force", "id", "status", "strategy", "targets", "versions"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -56,8 +60,14 @@ func (r ResponseSsrUpgradeStatus) toMap() map[string]any {
 	if r.DeviceType != nil {
 		structMap["device_type"] = r.DeviceType
 	}
+	if r.Force != nil {
+		structMap["force"] = r.Force
+	}
 	structMap["id"] = r.Id
 	structMap["status"] = r.Status
+	if r.Strategy != nil {
+		structMap["strategy"] = r.Strategy
+	}
 	structMap["targets"] = r.Targets.toMap()
 	structMap["versions"] = r.Versions
 	return structMap
@@ -75,7 +85,7 @@ func (r *ResponseSsrUpgradeStatus) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "device_type", "id", "status", "targets", "versions")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "device_type", "force", "id", "status", "strategy", "targets", "versions")
 	if err != nil {
 		return err
 	}
@@ -83,8 +93,10 @@ func (r *ResponseSsrUpgradeStatus) UnmarshalJSON(input []byte) error {
 
 	r.Channel = *temp.Channel
 	r.DeviceType = temp.DeviceType
+	r.Force = temp.Force
 	r.Id = *temp.Id
 	r.Status = *temp.Status
+	r.Strategy = temp.Strategy
 	r.Targets = *temp.Targets
 	r.Versions = *temp.Versions
 	return nil
@@ -94,8 +106,10 @@ func (r *ResponseSsrUpgradeStatus) UnmarshalJSON(input []byte) error {
 type tempResponseSsrUpgradeStatus struct {
 	Channel    *string                          `json:"channel"`
 	DeviceType *string                          `json:"device_type,omitempty"`
+	Force      *bool                            `json:"force,omitempty"`
 	Id         *uuid.UUID                       `json:"id"`
 	Status     *string                          `json:"status"`
+	Strategy   *string                          `json:"strategy,omitempty"`
 	Targets    *ResponseSsrUpgradeStatusTargets `json:"targets"`
 	Versions   *interface{}                     `json:"versions"`
 }

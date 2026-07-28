@@ -15,6 +15,8 @@ type Webhook struct {
 	AssetfilterIds []uuid.UUID `json:"assetfilter_ids,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
+	// Webhook filtering action. enum: `permit`, `block`
+	DefaultAction *WebhookActionEnum `json:"default_action,omitempty"`
 	// Whether webhook is enabled
 	Enabled *bool `json:"enabled,omitempty"`
 	// Whether this webhook is scoped to a site rather than the organization
@@ -43,6 +45,8 @@ type Webhook struct {
 	Oauth2Username *string `json:"oauth2_username,omitempty"`
 	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Optional filtering rules to override `topics`
+	Rules []WebhookRule `json:"rules,omitempty"`
 	// Only if `type`=`http-post`
 	// when `secret` is provided, two HTTP headers will be added:
 	// * X-Mist-Signature-v2: HMAC_SHA256(secret, body)
@@ -69,8 +73,8 @@ type Webhook struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (w Webhook) String() string {
 	return fmt.Sprintf(
-		"Webhook[AssetfilterIds=%v, CreatedTime=%v, Enabled=%v, ForSite=%v, Headers=%v, Id=%v, ModifiedTime=%v, Name=%v, Oauth2ClientId=%v, Oauth2ClientSecret=%v, Oauth2GrantType=%v, Oauth2Password=%v, Oauth2Scopes=%v, Oauth2TokenUrl=%v, Oauth2Username=%v, OrgId=%v, Secret=%v, SingleEventPerMessage=%v, SiteId=%v, SplunkToken=%v, Topics=%v, Type=%v, Url=%v, VerifyCert=%v, AdditionalProperties=%v]",
-		w.AssetfilterIds, w.CreatedTime, w.Enabled, w.ForSite, w.Headers, w.Id, w.ModifiedTime, w.Name, w.Oauth2ClientId, w.Oauth2ClientSecret, w.Oauth2GrantType, w.Oauth2Password, w.Oauth2Scopes, w.Oauth2TokenUrl, w.Oauth2Username, w.OrgId, w.Secret, w.SingleEventPerMessage, w.SiteId, w.SplunkToken, w.Topics, w.Type, w.Url, w.VerifyCert, w.AdditionalProperties)
+		"Webhook[AssetfilterIds=%v, CreatedTime=%v, DefaultAction=%v, Enabled=%v, ForSite=%v, Headers=%v, Id=%v, ModifiedTime=%v, Name=%v, Oauth2ClientId=%v, Oauth2ClientSecret=%v, Oauth2GrantType=%v, Oauth2Password=%v, Oauth2Scopes=%v, Oauth2TokenUrl=%v, Oauth2Username=%v, OrgId=%v, Rules=%v, Secret=%v, SingleEventPerMessage=%v, SiteId=%v, SplunkToken=%v, Topics=%v, Type=%v, Url=%v, VerifyCert=%v, AdditionalProperties=%v]",
+		w.AssetfilterIds, w.CreatedTime, w.DefaultAction, w.Enabled, w.ForSite, w.Headers, w.Id, w.ModifiedTime, w.Name, w.Oauth2ClientId, w.Oauth2ClientSecret, w.Oauth2GrantType, w.Oauth2Password, w.Oauth2Scopes, w.Oauth2TokenUrl, w.Oauth2Username, w.OrgId, w.Rules, w.Secret, w.SingleEventPerMessage, w.SiteId, w.SplunkToken, w.Topics, w.Type, w.Url, w.VerifyCert, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Webhook.
@@ -79,7 +83,7 @@ func (w Webhook) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(w.AdditionalProperties,
-		"assetfilter_ids", "created_time", "enabled", "for_site", "headers", "id", "modified_time", "name", "oauth2_client_id", "oauth2_client_secret", "oauth2_grant_type", "oauth2_password", "oauth2_scopes", "oauth2_token_url", "oauth2_username", "org_id", "secret", "single_event_per_message", "site_id", "splunk_token", "topics", "type", "url", "verify_cert"); err != nil {
+		"assetfilter_ids", "created_time", "default_action", "enabled", "for_site", "headers", "id", "modified_time", "name", "oauth2_client_id", "oauth2_client_secret", "oauth2_grant_type", "oauth2_password", "oauth2_scopes", "oauth2_token_url", "oauth2_username", "org_id", "rules", "secret", "single_event_per_message", "site_id", "splunk_token", "topics", "type", "url", "verify_cert"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(w.toMap())
@@ -94,6 +98,9 @@ func (w Webhook) toMap() map[string]any {
 	}
 	if w.CreatedTime != nil {
 		structMap["created_time"] = w.CreatedTime
+	}
+	if w.DefaultAction != nil {
+		structMap["default_action"] = w.DefaultAction
 	}
 	if w.Enabled != nil {
 		structMap["enabled"] = w.Enabled
@@ -145,6 +152,9 @@ func (w Webhook) toMap() map[string]any {
 	if w.OrgId != nil {
 		structMap["org_id"] = w.OrgId
 	}
+	if w.Rules != nil {
+		structMap["rules"] = w.Rules
+	}
 	if w.Secret.IsValueSet() {
 		if w.Secret.Value() != nil {
 			structMap["secret"] = w.Secret.Value()
@@ -188,7 +198,7 @@ func (w *Webhook) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "assetfilter_ids", "created_time", "enabled", "for_site", "headers", "id", "modified_time", "name", "oauth2_client_id", "oauth2_client_secret", "oauth2_grant_type", "oauth2_password", "oauth2_scopes", "oauth2_token_url", "oauth2_username", "org_id", "secret", "single_event_per_message", "site_id", "splunk_token", "topics", "type", "url", "verify_cert")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "assetfilter_ids", "created_time", "default_action", "enabled", "for_site", "headers", "id", "modified_time", "name", "oauth2_client_id", "oauth2_client_secret", "oauth2_grant_type", "oauth2_password", "oauth2_scopes", "oauth2_token_url", "oauth2_username", "org_id", "rules", "secret", "single_event_per_message", "site_id", "splunk_token", "topics", "type", "url", "verify_cert")
 	if err != nil {
 		return err
 	}
@@ -196,6 +206,7 @@ func (w *Webhook) UnmarshalJSON(input []byte) error {
 
 	w.AssetfilterIds = temp.AssetfilterIds
 	w.CreatedTime = temp.CreatedTime
+	w.DefaultAction = temp.DefaultAction
 	w.Enabled = temp.Enabled
 	w.ForSite = temp.ForSite
 	w.Headers = temp.Headers
@@ -210,6 +221,7 @@ func (w *Webhook) UnmarshalJSON(input []byte) error {
 	w.Oauth2TokenUrl = temp.Oauth2TokenUrl
 	w.Oauth2Username = temp.Oauth2Username
 	w.OrgId = temp.OrgId
+	w.Rules = temp.Rules
 	w.Secret = temp.Secret
 	w.SingleEventPerMessage = temp.SingleEventPerMessage
 	w.SiteId = temp.SiteId
@@ -225,6 +237,7 @@ func (w *Webhook) UnmarshalJSON(input []byte) error {
 type tempWebhook struct {
 	AssetfilterIds        []uuid.UUID                 `json:"assetfilter_ids,omitempty"`
 	CreatedTime           *float64                    `json:"created_time,omitempty"`
+	DefaultAction         *WebhookActionEnum          `json:"default_action,omitempty"`
 	Enabled               *bool                       `json:"enabled,omitempty"`
 	ForSite               *bool                       `json:"for_site,omitempty"`
 	Headers               Optional[map[string]string] `json:"headers"`
@@ -239,6 +252,7 @@ type tempWebhook struct {
 	Oauth2TokenUrl        *string                     `json:"oauth2_token_url,omitempty"`
 	Oauth2Username        *string                     `json:"oauth2_username,omitempty"`
 	OrgId                 *uuid.UUID                  `json:"org_id,omitempty"`
+	Rules                 []WebhookRule               `json:"rules,omitempty"`
 	Secret                Optional[string]            `json:"secret"`
 	SingleEventPerMessage *bool                       `json:"single_event_per_message,omitempty"`
 	SiteId                *uuid.UUID                  `json:"site_id,omitempty"`

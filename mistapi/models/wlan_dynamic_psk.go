@@ -26,6 +26,8 @@ type WlanDynamicPsk struct {
 	Enabled *bool `json:"enabled,omitempty"`
 	// When 11r is enabled, we'll try to use the cached PMK, this can be disabled. `false` means auto
 	ForceLookup *bool `json:"force_lookup,omitempty"`
+	// VLAN_ids to be locally bridged
+	LocalVlanIds []VlanIdWithVariable `json:"local_vlan_ids,omitempty"`
 	// Origin used to retrieve per-user PSKs. enum: `cloud_psks`, `radius`
 	Source               *DynamicPskSourceEnum  `json:"source,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -35,8 +37,8 @@ type WlanDynamicPsk struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (w WlanDynamicPsk) String() string {
 	return fmt.Sprintf(
-		"WlanDynamicPsk[DefaultPsk=%v, DefaultVlanId=%v, Enabled=%v, ForceLookup=%v, Source=%v, AdditionalProperties=%v]",
-		w.DefaultPsk, w.DefaultVlanId, w.Enabled, w.ForceLookup, w.Source, w.AdditionalProperties)
+		"WlanDynamicPsk[DefaultPsk=%v, DefaultVlanId=%v, Enabled=%v, ForceLookup=%v, LocalVlanIds=%v, Source=%v, AdditionalProperties=%v]",
+		w.DefaultPsk, w.DefaultVlanId, w.Enabled, w.ForceLookup, w.LocalVlanIds, w.Source, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanDynamicPsk.
@@ -45,7 +47,7 @@ func (w WlanDynamicPsk) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(w.AdditionalProperties,
-		"default_psk", "default_vlan_id", "enabled", "force_lookup", "source"); err != nil {
+		"default_psk", "default_vlan_id", "enabled", "force_lookup", "local_vlan_ids", "source"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(w.toMap())
@@ -67,6 +69,9 @@ func (w WlanDynamicPsk) toMap() map[string]any {
 	if w.ForceLookup != nil {
 		structMap["force_lookup"] = w.ForceLookup
 	}
+	if w.LocalVlanIds != nil {
+		structMap["local_vlan_ids"] = w.LocalVlanIds
+	}
 	if w.Source != nil {
 		structMap["source"] = w.Source
 	}
@@ -81,7 +86,7 @@ func (w *WlanDynamicPsk) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "default_psk", "default_vlan_id", "enabled", "force_lookup", "source")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "default_psk", "default_vlan_id", "enabled", "force_lookup", "local_vlan_ids", "source")
 	if err != nil {
 		return err
 	}
@@ -91,6 +96,7 @@ func (w *WlanDynamicPsk) UnmarshalJSON(input []byte) error {
 	w.DefaultVlanId = temp.DefaultVlanId
 	w.Enabled = temp.Enabled
 	w.ForceLookup = temp.ForceLookup
+	w.LocalVlanIds = temp.LocalVlanIds
 	w.Source = temp.Source
 	return nil
 }
@@ -101,5 +107,6 @@ type tempWlanDynamicPsk struct {
 	DefaultVlanId *VlanIdWithVariable   `json:"default_vlan_id,omitempty"`
 	Enabled       *bool                 `json:"enabled,omitempty"`
 	ForceLookup   *bool                 `json:"force_lookup,omitempty"`
+	LocalVlanIds  []VlanIdWithVariable  `json:"local_vlan_ids,omitempty"`
 	Source        *DynamicPskSourceEnum `json:"source,omitempty"`
 }

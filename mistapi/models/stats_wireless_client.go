@@ -61,6 +61,8 @@ type StatsWirelessClient struct {
 	MapId *uuid.UUID `json:"map_id,omitempty"`
 	// Device model, may be available if we can identify them
 	Model *string `json:"model,omitempty"`
+	// Mist Edge the wireless client connection is tunneled through, when applicable
+	MxedgeId *uuid.UUID `json:"mxedge_id,omitempty"`
 	// Number of APs used to locate this client
 	NumLocatingAps *int `json:"num_locating_aps,omitempty"`
 	// Device os, through fingerprinting
@@ -134,8 +136,8 @@ type StatsWirelessClient struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsWirelessClient) String() string {
 	return fmt.Sprintf(
-		"StatsWirelessClient[Accuracy=%v, AirespaceIfname=%v, Airwatch=%v, Annotation=%v, ApId=%v, ApMac=%v, AssocTime=%v, Band=%v, Bssid=%v, Channel=%v, DualBand=%v, Family=%v, Group=%v, Guest=%v, Hostname=%v, IdleTime=%v, Ip=%v, IsGuest=%v, KeyMgmt=%v, LastSeen=%v, Mac=%v, Manufacture=%v, MapId=%v, Model=%v, NumLocatingAps=%v, Os=%v, PowerSaving=%v, Proto=%v, PskId=%v, Rssi=%v, Rssizones=%v, RxBps=%v, RxBytes=%v, RxPkts=%v, RxRate=%v, RxRetries=%v, SiteId=%v, Snr=%v, Ssid=%v, TxBps=%v, TxBytes=%v, TxPkts=%v, TxRate=%v, TxRetries=%v, Type=%v, Uptime=%v, Username=%v, Vbeacons=%v, VlanId=%v, WlanId=%v, WxruleId=%v, WxruleUsage=%v, X=%v, XM=%v, Y=%v, YM=%v, Zones=%v, AdditionalProperties=%v]",
-		s.Accuracy, s.AirespaceIfname, s.Airwatch, s.Annotation, s.ApId, s.ApMac, s.AssocTime, s.Band, s.Bssid, s.Channel, s.DualBand, s.Family, s.Group, s.Guest, s.Hostname, s.IdleTime, s.Ip, s.IsGuest, s.KeyMgmt, s.LastSeen, s.Mac, s.Manufacture, s.MapId, s.Model, s.NumLocatingAps, s.Os, s.PowerSaving, s.Proto, s.PskId, s.Rssi, s.Rssizones, s.RxBps, s.RxBytes, s.RxPkts, s.RxRate, s.RxRetries, s.SiteId, s.Snr, s.Ssid, s.TxBps, s.TxBytes, s.TxPkts, s.TxRate, s.TxRetries, s.Type, s.Uptime, s.Username, s.Vbeacons, s.VlanId, s.WlanId, s.WxruleId, s.WxruleUsage, s.X, s.XM, s.Y, s.YM, s.Zones, s.AdditionalProperties)
+		"StatsWirelessClient[Accuracy=%v, AirespaceIfname=%v, Airwatch=%v, Annotation=%v, ApId=%v, ApMac=%v, AssocTime=%v, Band=%v, Bssid=%v, Channel=%v, DualBand=%v, Family=%v, Group=%v, Guest=%v, Hostname=%v, IdleTime=%v, Ip=%v, IsGuest=%v, KeyMgmt=%v, LastSeen=%v, Mac=%v, Manufacture=%v, MapId=%v, Model=%v, MxedgeId=%v, NumLocatingAps=%v, Os=%v, PowerSaving=%v, Proto=%v, PskId=%v, Rssi=%v, Rssizones=%v, RxBps=%v, RxBytes=%v, RxPkts=%v, RxRate=%v, RxRetries=%v, SiteId=%v, Snr=%v, Ssid=%v, TxBps=%v, TxBytes=%v, TxPkts=%v, TxRate=%v, TxRetries=%v, Type=%v, Uptime=%v, Username=%v, Vbeacons=%v, VlanId=%v, WlanId=%v, WxruleId=%v, WxruleUsage=%v, X=%v, XM=%v, Y=%v, YM=%v, Zones=%v, AdditionalProperties=%v]",
+		s.Accuracy, s.AirespaceIfname, s.Airwatch, s.Annotation, s.ApId, s.ApMac, s.AssocTime, s.Band, s.Bssid, s.Channel, s.DualBand, s.Family, s.Group, s.Guest, s.Hostname, s.IdleTime, s.Ip, s.IsGuest, s.KeyMgmt, s.LastSeen, s.Mac, s.Manufacture, s.MapId, s.Model, s.MxedgeId, s.NumLocatingAps, s.Os, s.PowerSaving, s.Proto, s.PskId, s.Rssi, s.Rssizones, s.RxBps, s.RxBytes, s.RxPkts, s.RxRate, s.RxRetries, s.SiteId, s.Snr, s.Ssid, s.TxBps, s.TxBytes, s.TxPkts, s.TxRate, s.TxRetries, s.Type, s.Uptime, s.Username, s.Vbeacons, s.VlanId, s.WlanId, s.WxruleId, s.WxruleUsage, s.X, s.XM, s.Y, s.YM, s.Zones, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsWirelessClient.
@@ -144,7 +146,7 @@ func (s StatsWirelessClient) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"accuracy", "airespace_ifname", "airwatch", "annotation", "ap_id", "ap_mac", "assoc_time", "band", "bssid", "channel", "dual_band", "family", "group", "guest", "hostname", "idle_time", "ip", "is_guest", "key_mgmt", "last_seen", "mac", "manufacture", "map_id", "model", "num_locating_aps", "os", "power_saving", "proto", "psk_id", "rssi", "rssizones", "rx_bps", "rx_bytes", "rx_pkts", "rx_rate", "rx_retries", "site_id", "snr", "ssid", "tx_bps", "tx_bytes", "tx_pkts", "tx_rate", "tx_retries", "type", "uptime", "username", "vbeacons", "vlan_id", "wlan_id", "wxrule_id", "wxrule_usage", "x", "x_m", "y", "y_m", "zones"); err != nil {
+		"accuracy", "airespace_ifname", "airwatch", "annotation", "ap_id", "ap_mac", "assoc_time", "band", "bssid", "channel", "dual_band", "family", "group", "guest", "hostname", "idle_time", "ip", "is_guest", "key_mgmt", "last_seen", "mac", "manufacture", "map_id", "model", "mxedge_id", "num_locating_aps", "os", "power_saving", "proto", "psk_id", "rssi", "rssizones", "rx_bps", "rx_bytes", "rx_pkts", "rx_rate", "rx_retries", "site_id", "snr", "ssid", "tx_bps", "tx_bytes", "tx_pkts", "tx_rate", "tx_retries", "type", "uptime", "username", "vbeacons", "vlan_id", "wlan_id", "wxrule_id", "wxrule_usage", "x", "x_m", "y", "y_m", "zones"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -215,6 +217,9 @@ func (s StatsWirelessClient) toMap() map[string]any {
 	}
 	if s.Model != nil {
 		structMap["model"] = s.Model
+	}
+	if s.MxedgeId != nil {
+		structMap["mxedge_id"] = s.MxedgeId
 	}
 	if s.NumLocatingAps != nil {
 		structMap["num_locating_aps"] = s.NumLocatingAps
@@ -360,7 +365,7 @@ func (s *StatsWirelessClient) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accuracy", "airespace_ifname", "airwatch", "annotation", "ap_id", "ap_mac", "assoc_time", "band", "bssid", "channel", "dual_band", "family", "group", "guest", "hostname", "idle_time", "ip", "is_guest", "key_mgmt", "last_seen", "mac", "manufacture", "map_id", "model", "num_locating_aps", "os", "power_saving", "proto", "psk_id", "rssi", "rssizones", "rx_bps", "rx_bytes", "rx_pkts", "rx_rate", "rx_retries", "site_id", "snr", "ssid", "tx_bps", "tx_bytes", "tx_pkts", "tx_rate", "tx_retries", "type", "uptime", "username", "vbeacons", "vlan_id", "wlan_id", "wxrule_id", "wxrule_usage", "x", "x_m", "y", "y_m", "zones")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accuracy", "airespace_ifname", "airwatch", "annotation", "ap_id", "ap_mac", "assoc_time", "band", "bssid", "channel", "dual_band", "family", "group", "guest", "hostname", "idle_time", "ip", "is_guest", "key_mgmt", "last_seen", "mac", "manufacture", "map_id", "model", "mxedge_id", "num_locating_aps", "os", "power_saving", "proto", "psk_id", "rssi", "rssizones", "rx_bps", "rx_bytes", "rx_pkts", "rx_rate", "rx_retries", "site_id", "snr", "ssid", "tx_bps", "tx_bytes", "tx_pkts", "tx_rate", "tx_retries", "type", "uptime", "username", "vbeacons", "vlan_id", "wlan_id", "wxrule_id", "wxrule_usage", "x", "x_m", "y", "y_m", "zones")
 	if err != nil {
 		return err
 	}
@@ -390,6 +395,7 @@ func (s *StatsWirelessClient) UnmarshalJSON(input []byte) error {
 	s.Manufacture = temp.Manufacture
 	s.MapId = temp.MapId
 	s.Model = temp.Model
+	s.MxedgeId = temp.MxedgeId
 	s.NumLocatingAps = temp.NumLocatingAps
 	s.Os = temp.Os
 	s.PowerSaving = temp.PowerSaving
@@ -452,6 +458,7 @@ type tempStatsWirelessClient struct {
 	Manufacture     *string                          `json:"manufacture,omitempty"`
 	MapId           *uuid.UUID                       `json:"map_id,omitempty"`
 	Model           *string                          `json:"model,omitempty"`
+	MxedgeId        *uuid.UUID                       `json:"mxedge_id,omitempty"`
 	NumLocatingAps  *int                             `json:"num_locating_aps,omitempty"`
 	Os              *string                          `json:"os,omitempty"`
 	PowerSaving     *bool                            `json:"power_saving,omitempty"`

@@ -23,6 +23,8 @@ type NacPortal struct {
 	CertExpireTime *int `json:"cert_expire_time,omitempty"`
 	// EAP mode used when onboarding wireless clients through the NAC portal. enum: `wpa2`, `wpa3`
 	EapType *NacPortalEapTypeEnum `json:"eap_type,omitempty"`
+	// Whether location data collection is enabled for devices onboarding through this NAC portal
+	EnableLocation *bool `json:"enable_location,omitempty"`
 	// Model, version, fingering, events (connecting, disconnect, roaming), which ap
 	EnableTelemetry *bool `json:"enable_telemetry,omitempty"`
 	// Number of days before certificate expiration to start sending reminder notifications
@@ -76,8 +78,8 @@ type NacPortal struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (n NacPortal) String() string {
 	return fmt.Sprintf(
-		"NacPortal[AccessType=%v, AdditionalCacerts=%v, AdditionalNacServerName=%v, BgImageUrl=%v, CertExpireTime=%v, EapType=%v, EnableTelemetry=%v, ExpiryNotificationTime=%v, Id=%v, Name=%v, NotifyExpiry=%v, OrgId=%v, Portal=%v, PortalAuthorizeJwtSecret=%v, PortalAuthorizeUrl=%v, PortalSsoUrl=%v, Ssid=%v, Sso=%v, TemplateUrl=%v, ThumbnailUrl=%v, Tos=%v, Type=%v, UiUrl=%v, AdditionalProperties=%v]",
-		n.AccessType, n.AdditionalCacerts, n.AdditionalNacServerName, n.BgImageUrl, n.CertExpireTime, n.EapType, n.EnableTelemetry, n.ExpiryNotificationTime, n.Id, n.Name, n.NotifyExpiry, n.OrgId, n.Portal, n.PortalAuthorizeJwtSecret, n.PortalAuthorizeUrl, n.PortalSsoUrl, n.Ssid, n.Sso, n.TemplateUrl, n.ThumbnailUrl, n.Tos, n.Type, n.UiUrl, n.AdditionalProperties)
+		"NacPortal[AccessType=%v, AdditionalCacerts=%v, AdditionalNacServerName=%v, BgImageUrl=%v, CertExpireTime=%v, EapType=%v, EnableLocation=%v, EnableTelemetry=%v, ExpiryNotificationTime=%v, Id=%v, Name=%v, NotifyExpiry=%v, OrgId=%v, Portal=%v, PortalAuthorizeJwtSecret=%v, PortalAuthorizeUrl=%v, PortalSsoUrl=%v, Ssid=%v, Sso=%v, TemplateUrl=%v, ThumbnailUrl=%v, Tos=%v, Type=%v, UiUrl=%v, AdditionalProperties=%v]",
+		n.AccessType, n.AdditionalCacerts, n.AdditionalNacServerName, n.BgImageUrl, n.CertExpireTime, n.EapType, n.EnableLocation, n.EnableTelemetry, n.ExpiryNotificationTime, n.Id, n.Name, n.NotifyExpiry, n.OrgId, n.Portal, n.PortalAuthorizeJwtSecret, n.PortalAuthorizeUrl, n.PortalSsoUrl, n.Ssid, n.Sso, n.TemplateUrl, n.ThumbnailUrl, n.Tos, n.Type, n.UiUrl, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacPortal.
@@ -86,7 +88,7 @@ func (n NacPortal) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(n.AdditionalProperties,
-		"access_type", "additional_cacerts", "additional_nac_server_name", "bg_image_url", "cert_expire_time", "eap_type", "enable_telemetry", "expiry_notification_time", "id", "name", "notify_expiry", "org_id", "portal", "portal_authorize_jwt_secret", "portal_authorize_url", "portal_sso_url", "ssid", "sso", "template_url", "thumbnail_url", "tos", "type", "ui_url"); err != nil {
+		"access_type", "additional_cacerts", "additional_nac_server_name", "bg_image_url", "cert_expire_time", "eap_type", "enable_location", "enable_telemetry", "expiry_notification_time", "id", "name", "notify_expiry", "org_id", "portal", "portal_authorize_jwt_secret", "portal_authorize_url", "portal_sso_url", "ssid", "sso", "template_url", "thumbnail_url", "tos", "type", "ui_url"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(n.toMap())
@@ -113,6 +115,9 @@ func (n NacPortal) toMap() map[string]any {
 	}
 	if n.EapType != nil {
 		structMap["eap_type"] = n.EapType
+	}
+	if n.EnableLocation != nil {
+		structMap["enable_location"] = n.EnableLocation
 	}
 	if n.EnableTelemetry != nil {
 		structMap["enable_telemetry"] = n.EnableTelemetry
@@ -176,7 +181,7 @@ func (n *NacPortal) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "access_type", "additional_cacerts", "additional_nac_server_name", "bg_image_url", "cert_expire_time", "eap_type", "enable_telemetry", "expiry_notification_time", "id", "name", "notify_expiry", "org_id", "portal", "portal_authorize_jwt_secret", "portal_authorize_url", "portal_sso_url", "ssid", "sso", "template_url", "thumbnail_url", "tos", "type", "ui_url")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "access_type", "additional_cacerts", "additional_nac_server_name", "bg_image_url", "cert_expire_time", "eap_type", "enable_location", "enable_telemetry", "expiry_notification_time", "id", "name", "notify_expiry", "org_id", "portal", "portal_authorize_jwt_secret", "portal_authorize_url", "portal_sso_url", "ssid", "sso", "template_url", "thumbnail_url", "tos", "type", "ui_url")
 	if err != nil {
 		return err
 	}
@@ -188,6 +193,7 @@ func (n *NacPortal) UnmarshalJSON(input []byte) error {
 	n.BgImageUrl = temp.BgImageUrl
 	n.CertExpireTime = temp.CertExpireTime
 	n.EapType = temp.EapType
+	n.EnableLocation = temp.EnableLocation
 	n.EnableTelemetry = temp.EnableTelemetry
 	n.ExpiryNotificationTime = temp.ExpiryNotificationTime
 	n.Id = temp.Id
@@ -216,6 +222,7 @@ type tempNacPortal struct {
 	BgImageUrl               *string                  `json:"bg_image_url,omitempty"`
 	CertExpireTime           *int                     `json:"cert_expire_time,omitempty"`
 	EapType                  *NacPortalEapTypeEnum    `json:"eap_type,omitempty"`
+	EnableLocation           *bool                    `json:"enable_location,omitempty"`
 	EnableTelemetry          *bool                    `json:"enable_telemetry,omitempty"`
 	ExpiryNotificationTime   *int                     `json:"expiry_notification_time,omitempty"`
 	Id                       *uuid.UUID               `json:"id,omitempty"`

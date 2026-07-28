@@ -336,6 +336,7 @@ func TestOrgsInventoryTestSearchOrgInventory(t *testing.T) {
 	name := "name-a,name-b"
 
 	serial := "AB123CD,*123*"
+	magic := "WVTFBLTNPXD23H2"
 	master := "true"
 	sku := "EX2300-F-12P,*2300*"
 	version := "21.2R3-S3.5,*2R3*"
@@ -344,7 +345,7 @@ func TestOrgsInventoryTestSearchOrgInventory(t *testing.T) {
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &model, &name, nil, &serial, &master, &sku, &version, &status, nil, &limit, &sort, nil)
+	apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &model, &name, nil, &serial, &magic, &master, &sku, &version, &status, nil, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -353,7 +354,7 @@ func TestOrgsInventoryTestSearchOrgInventory(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"limit":1000,"results":[{"mac":"f01c2df166e0","master":true,"members":[{"mac":"f01c2df166e0","model":"EX4300-48P","serial":"PD3714460200"}],"model":"EX4300-48P","name":"mist-wa-ex4300-VC","org_id":"9b853544-51e4-45fb-81ac-a442e4a111d0","serial":"PD3714460200","site_id":"01dc141d-b6af-4baa-b00f-0e31ef954c4f","sku":"EX4300-48P","status":"disconnected","type":"switch","vc_mac":"f01c2df166e0","version":"21.4R3.5"}],"total":1}`
+	expected := `{"limit":1000,"results":[{"mac":"f01c2df166e0","magic":"WVTFBLTNPXD23H2","master":true,"members":[{"mac":"f01c2df166e0","model":"EX4300-48P","serial":"PD3714460200"}],"model":"EX4300-48P","name":"mist-wa-ex4300-VC","org_id":"9b853544-51e4-45fb-81ac-a442e4a111d0","serial":"PD3714460200","site_id":"01dc141d-b6af-4baa-b00f-0e31ef954c4f","sku":"EX4300-48P","status":"disconnected","type":"switch","vc_mac":"f01c2df166e0","version":"21.4R3.5"}],"total":1}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -370,6 +371,7 @@ func TestOrgsInventoryTestSearchOrgInventory1(t *testing.T) {
 	name := "name-a,name-b"
 
 	serial := "AB123CD,*123*"
+	magic := "WVTFBLTNPXD23H2"
 	master := "true"
 	sku := "EX2300-F-12P,*2300*"
 	version := "21.2R3-S3.5,*2R3*"
@@ -378,7 +380,7 @@ func TestOrgsInventoryTestSearchOrgInventory1(t *testing.T) {
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &model, &name, nil, &serial, &master, &sku, &version, &status, nil, &limit, &sort, nil)
+	apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &model, &name, nil, &serial, &magic, &master, &sku, &version, &status, nil, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -387,6 +389,6 @@ func TestOrgsInventoryTestSearchOrgInventory1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"limit":1000,"results":[{"mac":"f01c2df166e0","master":true,"members":[{"mac":"f01c2df166e0","model":"EX4300-48P","serial":"PD3714460200"}],"model":"EX4300-48P","name":"mist-wa-ex4300-VC","org_id":"9b853544-51e4-45fb-81ac-a442e4a111d0","serial":"PD3714460200","site_id":"01dc141d-b6af-4baa-b00f-0e31ef954c4f","sku":"EX4300-48P","status":"disconnected","type":"switch","vc_mac":"f01c2df166e0","version":"21.4R3.5"}],"total":1}`
+	expected := `{"limit":1000,"results":[{"mac":"f01c2df166e0","magic":"WVTFBLTNPXD23H2","master":true,"members":[{"mac":"f01c2df166e0","model":"EX4300-48P","serial":"PD3714460200"}],"model":"EX4300-48P","name":"mist-wa-ex4300-VC","org_id":"9b853544-51e4-45fb-81ac-a442e4a111d0","serial":"PD3714460200","site_id":"01dc141d-b6af-4baa-b00f-0e31ef954c4f","sku":"EX4300-48P","status":"disconnected","type":"switch","vc_mac":"f01c2df166e0","version":"21.4R3.5"}],"total":1}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

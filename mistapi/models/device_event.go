@@ -37,6 +37,8 @@ type DeviceEvent struct {
 	EvType *WebhookDeviceEventsEventEvTypeEnum `json:"ev_type,omitempty"`
 	// External IP address reported for the device event
 	ExtIp *string `json:"ext_ip,omitempty"`
+	// Job identifier associated with a tunnel provisioning event (present when `includes`==`ext_tunnel`)
+	JobId *uuid.UUID `json:"job_id,omitempty"`
 	// Device MAC address associated with the event
 	Mac *string `json:"mac,omitempty"`
 	// Device model associated with the event
@@ -63,10 +65,16 @@ type DeviceEvent struct {
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// Name of the site associated with the event
 	SiteName *string `json:"site_name,omitempty"`
+	// Tunnel provisioning status for ext_tunnel events (e.g. `PROVISION_IN_PROGRESS`)
+	Status *string `json:"status,omitempty"`
+	// Gateway template identifier associated with a tunnel provisioning event (present when `includes`==`ext_tunnel`)
+	TemplateId *uuid.UUID `json:"template_id,omitempty"`
 	// Optional human-readable text for the device event
 	Text *string `json:"text,omitempty"`
 	// Epoch timestamp, in seconds
 	Timestamp float64 `json:"timestamp"`
+	// Tunnel name associated with a tunnel provisioning event (present when `includes`==`ext_tunnel`)
+	TunnelName *string `json:"tunnel_name,omitempty"`
 	// Device event type key
 	Type string `json:"type"`
 	// Current radio usage band for an RRM event
@@ -80,8 +88,8 @@ type DeviceEvent struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (d DeviceEvent) String() string {
 	return fmt.Sprintf(
-		"DeviceEvent[Ap=%v, ApName=%v, Apfw=%v, AuditId=%v, Bandwidth=%v, Channel=%v, ChassisMac=%v, Count=%v, DeviceName=%v, DeviceType=%v, EvType=%v, ExtIp=%v, Mac=%v, Model=%v, Node=%v, OrgId=%v, PortId=%v, Power=%v, PreBandwidth=%v, PreChannel=%v, PrePower=%v, PreUsage=%v, Reason=%v, SiteId=%v, SiteName=%v, Text=%v, Timestamp=%v, Type=%v, Usage=%v, Version=%v, AdditionalProperties=%v]",
-		d.Ap, d.ApName, d.Apfw, d.AuditId, d.Bandwidth, d.Channel, d.ChassisMac, d.Count, d.DeviceName, d.DeviceType, d.EvType, d.ExtIp, d.Mac, d.Model, d.Node, d.OrgId, d.PortId, d.Power, d.PreBandwidth, d.PreChannel, d.PrePower, d.PreUsage, d.Reason, d.SiteId, d.SiteName, d.Text, d.Timestamp, d.Type, d.Usage, d.Version, d.AdditionalProperties)
+		"DeviceEvent[Ap=%v, ApName=%v, Apfw=%v, AuditId=%v, Bandwidth=%v, Channel=%v, ChassisMac=%v, Count=%v, DeviceName=%v, DeviceType=%v, EvType=%v, ExtIp=%v, JobId=%v, Mac=%v, Model=%v, Node=%v, OrgId=%v, PortId=%v, Power=%v, PreBandwidth=%v, PreChannel=%v, PrePower=%v, PreUsage=%v, Reason=%v, SiteId=%v, SiteName=%v, Status=%v, TemplateId=%v, Text=%v, Timestamp=%v, TunnelName=%v, Type=%v, Usage=%v, Version=%v, AdditionalProperties=%v]",
+		d.Ap, d.ApName, d.Apfw, d.AuditId, d.Bandwidth, d.Channel, d.ChassisMac, d.Count, d.DeviceName, d.DeviceType, d.EvType, d.ExtIp, d.JobId, d.Mac, d.Model, d.Node, d.OrgId, d.PortId, d.Power, d.PreBandwidth, d.PreChannel, d.PrePower, d.PreUsage, d.Reason, d.SiteId, d.SiteName, d.Status, d.TemplateId, d.Text, d.Timestamp, d.TunnelName, d.Type, d.Usage, d.Version, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceEvent.
@@ -90,7 +98,7 @@ func (d DeviceEvent) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(d.AdditionalProperties,
-		"ap", "ap_name", "apfw", "audit_id", "bandwidth", "channel", "chassis_mac", "count", "device_name", "device_type", "ev_type", "ext_ip", "mac", "model", "node", "org_id", "port_id", "power", "pre_bandwidth", "pre_channel", "pre_power", "pre_usage", "reason", "site_id", "site_name", "text", "timestamp", "type", "usage", "version"); err != nil {
+		"ap", "ap_name", "apfw", "audit_id", "bandwidth", "channel", "chassis_mac", "count", "device_name", "device_type", "ev_type", "ext_ip", "job_id", "mac", "model", "node", "org_id", "port_id", "power", "pre_bandwidth", "pre_channel", "pre_power", "pre_usage", "reason", "site_id", "site_name", "status", "template_id", "text", "timestamp", "tunnel_name", "type", "usage", "version"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(d.toMap())
@@ -136,6 +144,9 @@ func (d DeviceEvent) toMap() map[string]any {
 	if d.ExtIp != nil {
 		structMap["ext_ip"] = d.ExtIp
 	}
+	if d.JobId != nil {
+		structMap["job_id"] = d.JobId
+	}
 	if d.Mac != nil {
 		structMap["mac"] = d.Mac
 	}
@@ -173,10 +184,19 @@ func (d DeviceEvent) toMap() map[string]any {
 	if d.SiteName != nil {
 		structMap["site_name"] = d.SiteName
 	}
+	if d.Status != nil {
+		structMap["status"] = d.Status
+	}
+	if d.TemplateId != nil {
+		structMap["template_id"] = d.TemplateId
+	}
 	if d.Text != nil {
 		structMap["text"] = d.Text
 	}
 	structMap["timestamp"] = d.Timestamp
+	if d.TunnelName != nil {
+		structMap["tunnel_name"] = d.TunnelName
+	}
 	structMap["type"] = d.Type
 	if d.Usage != nil {
 		structMap["usage"] = d.Usage
@@ -199,7 +219,7 @@ func (d *DeviceEvent) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "ap_name", "apfw", "audit_id", "bandwidth", "channel", "chassis_mac", "count", "device_name", "device_type", "ev_type", "ext_ip", "mac", "model", "node", "org_id", "port_id", "power", "pre_bandwidth", "pre_channel", "pre_power", "pre_usage", "reason", "site_id", "site_name", "text", "timestamp", "type", "usage", "version")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "ap_name", "apfw", "audit_id", "bandwidth", "channel", "chassis_mac", "count", "device_name", "device_type", "ev_type", "ext_ip", "job_id", "mac", "model", "node", "org_id", "port_id", "power", "pre_bandwidth", "pre_channel", "pre_power", "pre_usage", "reason", "site_id", "site_name", "status", "template_id", "text", "timestamp", "tunnel_name", "type", "usage", "version")
 	if err != nil {
 		return err
 	}
@@ -217,6 +237,7 @@ func (d *DeviceEvent) UnmarshalJSON(input []byte) error {
 	d.DeviceType = temp.DeviceType
 	d.EvType = temp.EvType
 	d.ExtIp = temp.ExtIp
+	d.JobId = temp.JobId
 	d.Mac = temp.Mac
 	d.Model = temp.Model
 	d.Node = temp.Node
@@ -230,8 +251,11 @@ func (d *DeviceEvent) UnmarshalJSON(input []byte) error {
 	d.Reason = temp.Reason
 	d.SiteId = temp.SiteId
 	d.SiteName = temp.SiteName
+	d.Status = temp.Status
+	d.TemplateId = temp.TemplateId
 	d.Text = temp.Text
 	d.Timestamp = *temp.Timestamp
+	d.TunnelName = temp.TunnelName
 	d.Type = *temp.Type
 	d.Usage = temp.Usage
 	d.Version = temp.Version
@@ -252,6 +276,7 @@ type tempDeviceEvent struct {
 	DeviceType   *DeviceTypeEnum                     `json:"device_type,omitempty"`
 	EvType       *WebhookDeviceEventsEventEvTypeEnum `json:"ev_type,omitempty"`
 	ExtIp        *string                             `json:"ext_ip,omitempty"`
+	JobId        *uuid.UUID                          `json:"job_id,omitempty"`
 	Mac          *string                             `json:"mac,omitempty"`
 	Model        *string                             `json:"model,omitempty"`
 	Node         *string                             `json:"node,omitempty"`
@@ -265,8 +290,11 @@ type tempDeviceEvent struct {
 	Reason       *string                             `json:"reason,omitempty"`
 	SiteId       *uuid.UUID                          `json:"site_id,omitempty"`
 	SiteName     *string                             `json:"site_name,omitempty"`
+	Status       *string                             `json:"status,omitempty"`
+	TemplateId   *uuid.UUID                          `json:"template_id,omitempty"`
 	Text         *string                             `json:"text,omitempty"`
 	Timestamp    *float64                            `json:"timestamp"`
+	TunnelName   *string                             `json:"tunnel_name,omitempty"`
 	Type         *string                             `json:"type"`
 	Usage        *int                                `json:"usage,omitempty"`
 	Version      *string                             `json:"version,omitempty"`

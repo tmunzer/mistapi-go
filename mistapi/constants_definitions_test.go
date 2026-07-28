@@ -364,6 +364,38 @@ func TestConstantsDefinitionsTestListLicenseTypes1(t *testing.T) {
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestConstantsDefinitionsTestListMarvisClientEventsDefinitions tests the behavior of the ConstantsDefinitions
+func TestConstantsDefinitionsTestListMarvisClientEventsDefinitions(t *testing.T) {
+	ctx := context.Background()
+	apiResponse, err := constantsDefinitions.ListMarvisClientEventsDefinitions(ctx)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `[{"display":"Marvis Client Roamed","key":"MARVISCLIENT_ROAMED"}]`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestConstantsDefinitionsTestListMarvisClientEventsDefinitions1 tests the behavior of the ConstantsDefinitions
+func TestConstantsDefinitionsTestListMarvisClientEventsDefinitions1(t *testing.T) {
+	ctx := context.Background()
+	apiResponse, err := constantsDefinitions.ListMarvisClientEventsDefinitions(ctx)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `[{"display":"Marvis Client Roamed","key":"MARVISCLIENT_ROAMED"}]`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestConstantsDefinitionsTestListMarvisClientVersions tests the behavior of the ConstantsDefinitions
 func TestConstantsDefinitionsTestListMarvisClientVersions(t *testing.T) {
 	ctx := context.Background()
@@ -376,7 +408,7 @@ func TestConstantsDefinitionsTestListMarvisClientVersions(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"label":"default","notes":"","os":"android","url":"https://mobile.mist.com/installers/marvisclient/android/1.1.9/marvisclient-installer.apk","version":"1.1.9"},{"label":"default","notes":"","os":"macos","url":"https://mobile.mist.com/installers/marvisclient/macos/0.100.29/marvisclient-installer.dmg","version":"0.100.29"},{"label":"default","notes":"","os":"windows","url":"https://mobile.mist.com/installers/marvisclient/windows/0.100.26/marvisclient-installer.zip","version":"0.100.26"}]`
+	expected := `[{"label":"latest","notes":"","os":"android","url":"https://mobile.mist.com/installers/marvisclient/android/1.1.9/marvisclient-installer.apk","version":"1.1.9"},{"label":"rc1","notes":"","os":"macos","url":"https://mobile.mist.com/installers/marvisclient/macos/0.100.29/marvisclient-installer.dmg","version":"0.100.29"},{"label":"default","notes":"","os":"windows","url":"https://mobile.mist.com/installers/marvisclient/windows/0.100.26/marvisclient-installer.zip","version":"0.100.26"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -392,7 +424,7 @@ func TestConstantsDefinitionsTestListMarvisClientVersions1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"label":"default","notes":"","os":"android","url":"https://mobile.mist.com/installers/marvisclient/android/1.1.9/marvisclient-installer.apk","version":"1.1.9"},{"label":"default","notes":"","os":"macos","url":"https://mobile.mist.com/installers/marvisclient/macos/0.100.29/marvisclient-installer.dmg","version":"0.100.29"},{"label":"default","notes":"","os":"windows","url":"https://mobile.mist.com/installers/marvisclient/windows/0.100.26/marvisclient-installer.zip","version":"0.100.26"}]`
+	expected := `[{"label":"latest","notes":"","os":"android","url":"https://mobile.mist.com/installers/marvisclient/android/1.1.9/marvisclient-installer.apk","version":"1.1.9"},{"label":"rc1","notes":"","os":"macos","url":"https://mobile.mist.com/installers/marvisclient/macos/0.100.29/marvisclient-installer.dmg","version":"0.100.29"},{"label":"default","notes":"","os":"windows","url":"https://mobile.mist.com/installers/marvisclient/windows/0.100.26/marvisclient-installer.zip","version":"0.100.26"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

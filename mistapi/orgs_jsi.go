@@ -250,7 +250,7 @@ func (o *OrgsJSI) CountOrgJsiAssetsAndContracts(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgJsiAssetsAndContracts takes context, orgId, claimed, model, serial, sku, status, warrantyType, endOfSaleAfter, endOfSaleBefore, eosAfter, eosBefore, versionEosAfter, versionEosBefore, hasSupport, sirtId, pbnId, text, limit, sort, searchAfter as parameters and
+// SearchOrgJsiAssetsAndContracts takes context, orgId, claimed, model, serial, sku, status, warrantyType, endOfSaleAfter, endOfSaleBefore, eosAfter, eosBefore, versionEosAfter, versionEosBefore, contractEndBefore, contractEndAfter, contractType, contractSku, endOfServiceTime, supportContractStatus, hasSupport, sirtId, pbnId, text, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.JsInventorySearch data and
 // an error if there was an issue with the request or response.
 // This gets all devices purchased from the accounts associated with the Org
@@ -272,6 +272,12 @@ func (o *OrgsJSI) SearchOrgJsiAssetsAndContracts(
 	eosBefore *string,
 	versionEosAfter *string,
 	versionEosBefore *string,
+	contractEndBefore *string,
+	contractEndAfter *string,
+	contractType *string,
+	contractSku *string,
+	endOfServiceTime *string,
+	supportContractStatus *models.SupportContractStatusEnum,
 	hasSupport *bool,
 	sirtId *string,
 	pbnId *string,
@@ -331,6 +337,24 @@ func (o *OrgsJSI) SearchOrgJsiAssetsAndContracts(
 	}
 	if versionEosBefore != nil {
 		req.QueryParam("version_eos_before", *versionEosBefore)
+	}
+	if contractEndBefore != nil {
+		req.QueryParam("contract_end_before", *contractEndBefore)
+	}
+	if contractEndAfter != nil {
+		req.QueryParam("contract_end_after", *contractEndAfter)
+	}
+	if contractType != nil {
+		req.QueryParam("contract_type", *contractType)
+	}
+	if contractSku != nil {
+		req.QueryParam("contract_sku", *contractSku)
+	}
+	if endOfServiceTime != nil {
+		req.QueryParam("end_of_service_time", *endOfServiceTime)
+	}
+	if supportContractStatus != nil {
+		req.QueryParam("support_contract_status", *supportContractStatus)
 	}
 	if hasSupport != nil {
 		req.QueryParam("has_support", *hasSupport)
@@ -413,7 +437,7 @@ func (o *OrgsJSI) CountOrgJsiPbn(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgJsiPbn takes context, orgId, versions, mModels, customerRisk, id, bugType, limit, page, searchAfter, start, end as parameters and
+// SearchOrgJsiPbn takes context, orgId, versions, mModels, customerRisk, id, bugType, text, limit, page, sort, searchAfter, start, end as parameters and
 // returns an models.ApiResponse with models.JsiPbnSearch data and
 // an error if there was an issue with the request or response.
 // Text search for PBN (Problem Bug Notification) advisories. Search can be done on versions, models, customer_risk, id, and bug_type fields.
@@ -424,9 +448,11 @@ func (o *OrgsJSI) SearchOrgJsiPbn(
 	mModels *string,
 	customerRisk *string,
 	id *string,
-	bugType *string,
+	bugType *models.JsiPbnBugTypeEnum,
+	text *string,
 	limit *int,
 	page *int,
+	sort *string,
 	searchAfter *string,
 	start *string,
 	end *string) (
@@ -462,11 +488,17 @@ func (o *OrgsJSI) SearchOrgJsiPbn(
 	if bugType != nil {
 		req.QueryParam("bug_type", *bugType)
 	}
+	if text != nil {
+		req.QueryParam("text", *text)
+	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)
 	}
 	if page != nil {
 		req.QueryParam("page", *page)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 	if searchAfter != nil {
 		req.QueryParam("search_after", *searchAfter)
@@ -544,7 +576,7 @@ func (o *OrgsJSI) CountOrgJsiSirt(
 func (o *OrgsJSI) SearchOrgJsiSirt(
 	ctx context.Context,
 	orgId uuid.UUID,
-	severity *string,
+	severity *models.JsiSirtSeverityEnum,
 	id *string,
 	updatedAfter *string,
 	updatedBefore *string,

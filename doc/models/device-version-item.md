@@ -12,7 +12,7 @@ Available firmware version for a specific device model and release tag
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Model` | `string` | Required | Device model (as seen in the device stats) |
-| `Tag` | `*string` | Optional | Annotation, stable / beta / alpha. Or it can be empty or nothing which is likely a dev build |
+| `Tag` | `*string` | Optional | Annotation, suggested / alpha. Or it can be empty or nothing which is likely a dev build |
 | `Version` | `string` | Required | Available firmware version for this device model |
 
 ## Example

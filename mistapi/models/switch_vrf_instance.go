@@ -22,6 +22,8 @@ type SwitchVrfInstance struct {
 	ExtraRoutes map[string]VrfExtraRoute `json:"extra_routes,omitempty"`
 	// Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
 	ExtraRoutes6 map[string]VrfExtraRoute6 `json:"extra_routes6,omitempty"`
+	// Multicast configuration for a VRF. When set at the network template level it applies to networks in the master VRF (not assigned to any vrf_instances). PIM is automatically enabled when any network in the VRF has `multicast.enabled`==`true`.
+	MulticastConfig *SwitchMulticastConfig `json:"multicast_config,omitempty"`
 	// Unique string values returned or accepted by this schema
 	Networks             []string               `json:"networks,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -31,8 +33,8 @@ type SwitchVrfInstance struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SwitchVrfInstance) String() string {
 	return fmt.Sprintf(
-		"SwitchVrfInstance[AggregateRoutes=%v, AggregateRoutes6=%v, EvpnAutoLoopbackSubnet=%v, EvpnAutoLoopbackSubnet6=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Networks=%v, AdditionalProperties=%v]",
-		s.AggregateRoutes, s.AggregateRoutes6, s.EvpnAutoLoopbackSubnet, s.EvpnAutoLoopbackSubnet6, s.ExtraRoutes, s.ExtraRoutes6, s.Networks, s.AdditionalProperties)
+		"SwitchVrfInstance[AggregateRoutes=%v, AggregateRoutes6=%v, EvpnAutoLoopbackSubnet=%v, EvpnAutoLoopbackSubnet6=%v, ExtraRoutes=%v, ExtraRoutes6=%v, MulticastConfig=%v, Networks=%v, AdditionalProperties=%v]",
+		s.AggregateRoutes, s.AggregateRoutes6, s.EvpnAutoLoopbackSubnet, s.EvpnAutoLoopbackSubnet6, s.ExtraRoutes, s.ExtraRoutes6, s.MulticastConfig, s.Networks, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchVrfInstance.
@@ -41,7 +43,7 @@ func (s SwitchVrfInstance) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"aggregate_routes", "aggregate_routes6", "evpn_auto_loopback_subnet", "evpn_auto_loopback_subnet6", "extra_routes", "extra_routes6", "networks"); err != nil {
+		"aggregate_routes", "aggregate_routes6", "evpn_auto_loopback_subnet", "evpn_auto_loopback_subnet6", "extra_routes", "extra_routes6", "multicast_config", "networks"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -69,6 +71,9 @@ func (s SwitchVrfInstance) toMap() map[string]any {
 	if s.ExtraRoutes6 != nil {
 		structMap["extra_routes6"] = s.ExtraRoutes6
 	}
+	if s.MulticastConfig != nil {
+		structMap["multicast_config"] = s.MulticastConfig.toMap()
+	}
 	if s.Networks != nil {
 		structMap["networks"] = s.Networks
 	}
@@ -83,7 +88,7 @@ func (s *SwitchVrfInstance) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aggregate_routes", "aggregate_routes6", "evpn_auto_loopback_subnet", "evpn_auto_loopback_subnet6", "extra_routes", "extra_routes6", "networks")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aggregate_routes", "aggregate_routes6", "evpn_auto_loopback_subnet", "evpn_auto_loopback_subnet6", "extra_routes", "extra_routes6", "multicast_config", "networks")
 	if err != nil {
 		return err
 	}
@@ -95,6 +100,7 @@ func (s *SwitchVrfInstance) UnmarshalJSON(input []byte) error {
 	s.EvpnAutoLoopbackSubnet6 = temp.EvpnAutoLoopbackSubnet6
 	s.ExtraRoutes = temp.ExtraRoutes
 	s.ExtraRoutes6 = temp.ExtraRoutes6
+	s.MulticastConfig = temp.MulticastConfig
 	s.Networks = temp.Networks
 	return nil
 }
@@ -107,5 +113,6 @@ type tempSwitchVrfInstance struct {
 	EvpnAutoLoopbackSubnet6 *string                   `json:"evpn_auto_loopback_subnet6,omitempty"`
 	ExtraRoutes             map[string]VrfExtraRoute  `json:"extra_routes,omitempty"`
 	ExtraRoutes6            map[string]VrfExtraRoute6 `json:"extra_routes6,omitempty"`
+	MulticastConfig         *SwitchMulticastConfig    `json:"multicast_config,omitempty"`
 	Networks                []string                  `json:"networks,omitempty"`
 }

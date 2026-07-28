@@ -30,7 +30,7 @@ AP device profile configuration applied to APs at a site or organization
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | Indicator light settings for an access point |
 | `Mesh` | [`*models.ApMesh`](../../doc/models/ap-mesh.md) | Optional | Wireless mesh settings for an access point |
 | `ModifiedTime` | `*float64` | Optional, Read-only | When the object has been modified for the last time, in epoch |
-| `MqttConfig` | [`*models.ApMqtt`](../../doc/models/ap-mqtt.md) | Optional | MQTT broker publishing settings for an AP; use `mqtt_topic` on individual AssetFilter entries to specify which MQTT topic each matching BLE advertisement is forwarded to |
+| `MqttConfig` | [`*models.ApMqtt`](../../doc/models/ap-mqtt.md) | Optional | MQTT publishing configuration for an AP. Use `mqtt_topic` on individual AssetFilter entries to specify which MQTT topic each matching BLE advertisement is forwarded to. Only AssetFilters with `mqtt_topic` set are used; disabled filters and filters without `mqtt_topic` are skipped. Set `default_topic` to publish advertisements that match no AssetFilter to a catch-all topic, allowing MQTT to be used without configuring any AssetFilter. |
 | `Name` | `models.Optional[string]` | Optional | Display name of the AP device profile |
 | `NtpServers` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
 | `OrgId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist organization |
@@ -43,6 +43,7 @@ AP device profile configuration applied to APs at a site or organization
 | `Type` | `string` | Required, Constant | Device Type. enum: `ap`<br><br>**Value**: `"ap"` |
 | `UplinkPortConfig` | [`*models.ApUplinkPortConfig`](../../doc/models/ap-uplink-port-config.md) | Optional | AP Uplink port configuration |
 | `UsbConfig` | [`*models.ApUsb`](../../doc/models/ap-usb.md) | Optional | Legacy USB integration settings for an access point<br><br>- Note: if native imagotag is enabled, BLE will be disabled automatically<br>- Note: legacy, new config moved to ESL Config. |
+| `UwbConfig` | [`*models.ApUwbConfig`](../../doc/models/ap-uwb-config.md) | Optional | Ultra-wideband (UWB) RTLS / OMLOX asset-visibility integration settings for an access point. The device-level value overrides the device profile value, which in turn overrides the site-level setting. |
 | `Vars` | `map[string]string` | Optional | Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `ZigbeeConfig` | [`*models.ApZigbee`](../../doc/models/ap-zigbee.md) | Optional | Zigbee radio and network settings applied to an AP or AP profile |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

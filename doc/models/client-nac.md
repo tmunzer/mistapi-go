@@ -20,8 +20,8 @@ NAC client authentication and access state
 | `ClientIp` | `[]string` | Optional, Read-only | The known IP addresses used by the client for the specified duration |
 | `DeviceMac` | `*string` | Optional, Read-only | MAC address of the AP or switch the client is connected to |
 | `EdrManaged` | `*bool` | Optional | Whether the NAC client is managed by an EDR provider |
-| `EdrProvider` | [`*models.EdrProviderEnum`](../../doc/models/edr-provider-enum.md) | Optional | EDR provider associated with the NAC client. enum: `crowdstrike`, `sentinelone` |
-| `EdrStatus` | [`*models.EdrStatusEnum`](../../doc/models/edr-status-enum.md) | Optional | EDR Status of the NAC client. enum: `sentinelone_healthy`, `sentinelone_infected`, `crowdstrike_low`, `crowdstrike_medium`, `crowdstrike_high`, `crowdstrike_critical`, `crowdstrike_informational` |
+| `EdrProviders` | [`[]models.EdrProviderEnum`](../../doc/models/edr-provider-enum.md) | Optional | EDR providers associated with the NAC client |
+| `EdrStatus` | [`[]models.EdrStatusEnum`](../../doc/models/edr-status-enum.md) | Optional | EDR health statuses reported for the NAC client |
 | `Group` | `*string` | Optional | User group associated with the NAC client |
 | `IdpId` | `*string` | Optional | Identity Provider identifier used during NAC authentication |
 | `IdpRole` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |

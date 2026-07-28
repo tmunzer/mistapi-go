@@ -99,6 +99,7 @@ func main() {
                         DstTag:               "dst_tag0",
                     },
                 },
+                Disabled:             models.ToPointer(false),
                 Name:                 models.ToPointer("name2"),
                 SrcTags:              []string{
                     "src_tags1",
@@ -112,6 +113,7 @@ func main() {
                         DstTag:               "dst_tag0",
                     },
                 },
+                Disabled:             models.ToPointer(false),
                 Name:                 models.ToPointer("name2"),
                 SrcTags:              []string{
                     "src_tags1",
@@ -131,7 +133,7 @@ func main() {
                 },
                 Network:              models.ToPointer("network2"),
                 PortUsage:            models.ToPointer("port_usage0"),
-                Type:                 models.AclTagTypeEnum_NETWORK,
+                Type:                 models.AclTagTypeEnum_ANY,
             },
         },
         AdditionalConfigCmds:  []string{

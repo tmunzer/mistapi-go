@@ -163,7 +163,7 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.OrgNacClientsCountDistinctEnum`](../../doc/models/org-nac-clients-count-distinct-enum.md) | Query, Optional | Field used to group this count response. enum: `ap`, `auth_type`, `device_mac`, `edr_managed`, `edr_provider`, `edr_status`, `family`, `hostname`, `idp_id`, `mfg`, `mdm_compliance`, `mdm_managed`, `mdm_provider`, `model`, `mxedge_id`, `nacrule_matched`, `nacrule_name`, `nacrule_id`, `nas_ip`, `nas_vendor`, `os`, `site_id`, `ssid`, `status`, `type`, `usermac_label`, `username`, `vlan`<br><br>**Default**: `"type"` |
+| `distinct` | [`*models.OrgNacClientsCountDistinctEnum`](../../doc/models/org-nac-clients-count-distinct-enum.md) | Query, Optional | Field used to group this count response. enum: `ap`, `auth_type`, `device_mac`, `edr_managed`, `edr_providers`, `edr_status`, `family`, `hostname`, `idp_id`, `mfg`, `mdm_compliance`, `mdm_managed`, `mdm_provider`, `model`, `mxedge_id`, `nacrule_matched`, `nacrule_name`, `nacrule_id`, `nas_ip`, `nas_vendor`, `os`, `site_id`, `ssid`, `status`, `type`, `usermac_label`, `username`, `vlan`<br><br>**Default**: `"type"` |
 | `lastNacruleId` | `*string` | Query, Optional | NAC Policy Rule ID, if matched |
 | `nacruleMatched` | `*bool` | Query, Optional | NAC Policy Rule Matched |
 | `authType` | `*string` | Query, Optional | Authentication type, e.g. "eap-tls", "eap-peap", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
@@ -460,7 +460,7 @@ SearchOrgNacClients(
     authType *string,
     certExpiryDuration *string,
     edrManaged *bool,
-    edrProvider *models.EdrProviderEnum,
+    edrProviders *models.EdrProviderEnum,
     edrStatus *models.EdrStatusEnum,
     family *string,
     hostname *string,
@@ -509,7 +509,7 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 | `authType` | `*string` | Query, Optional | Authentication type, e.g. "eap-tls", "eap-peap", "eap-ttls", "eap-teap", "mab", "psk", "device-auth". Accepts multiple comma-separated values. |
 | `certExpiryDuration` | `*string` | Query, Optional | Filter by certificate expiry within a specific duration from now (e.g., "7d" for 7 days, "1m" for 1 month). Accepts multiple comma-separated values. |
 | `edrManaged` | `*bool` | Query, Optional | Filters NAC clients that are integrated with EDR providers |
-| `edrProvider` | [`*models.EdrProviderEnum`](../../doc/models/edr-provider-enum.md) | Query, Optional | EDR provider used to filter NAC clients. enum: `crowdstrike`, `sentinelone` |
+| `edrProviders` | [`*models.EdrProviderEnum`](../../doc/models/edr-provider-enum.md) | Query, Optional | EDR provider of the client's organization. enum: `crowdstrike`, `sentinelone` |
 | `edrStatus` | [`*models.EdrStatusEnum`](../../doc/models/edr-status-enum.md) | Query, Optional | EDR status used to filter NAC clients. enum: `sentinelone_healthy`, `sentinelone_infected`, `crowdstrike_low`, `crowdstrike_medium`, `crowdstrike_high`, `crowdstrike_critical`, `crowdstrike_informational` |
 | `family` | `*string` | Query, Optional | Partial / full Client family (e.g. "Phone/Tablet/Wearable", "Access Point"). Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `Surveillance*` and `*urveillance*` match `Surveillance Camera`). Suffix-only wildcards (e.g. `*Camera`) are not supported. Accepts multiple comma-separated values. |
 | `hostname` | `*string` | Query, Optional | Partial / full Client hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `everest*` and `*rest*` match `my-everest-client`). Suffix-only wildcards (e.g. `*everest`) are not supported. Accepts multiple comma-separated values. |
@@ -625,8 +625,12 @@ if err != nil {
         "10.7.51.74"
       ],
       "edr_managed": true,
-      "edr_provider": "sentinelone",
-      "edr_status": "sentinelone_healthy",
+      "edr_providers": [
+        "sentinelone"
+      ],
+      "edr_status": [
+        "sentinelone_healthy"
+      ],
       "idp_id": "string",
       "idp_role": [
         "string"

@@ -29,7 +29,7 @@ import (
 func main() {
     siteSettingAutoUpgrade := models.SiteSettingAutoUpgrade{
         CustomVersions:       map[string]string{
-            "AP21": "stable",
+            "AP21": "alpha",
             "AP41": "0.1.5135",
             "AP61": "0.1.7215",
         },

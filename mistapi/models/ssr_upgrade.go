@@ -14,6 +14,8 @@ import (
 type SsrUpgrade struct {
 	// upgrade channel to follow. enum: `alpha`, `beta`, `stable`
 	Channel *SsrUpgradeChannelEnum `json:"channel,omitempty"`
+	// When true, forces the upgrade even when the requested version matches the currently running version; default is false
+	Force *bool `json:"force,omitempty"`
 	// Reboot start time in epoch seconds, default is start_time, -1 disables reboot
 	RebootAt *int `json:"reboot_at,omitempty"`
 	// 128T firmware download start time in epoch seconds, default is now, -1 disables download
@@ -27,8 +29,8 @@ type SsrUpgrade struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SsrUpgrade) String() string {
 	return fmt.Sprintf(
-		"SsrUpgrade[Channel=%v, RebootAt=%v, StartTime=%v, Version=%v, AdditionalProperties=%v]",
-		s.Channel, s.RebootAt, s.StartTime, s.Version, s.AdditionalProperties)
+		"SsrUpgrade[Channel=%v, Force=%v, RebootAt=%v, StartTime=%v, Version=%v, AdditionalProperties=%v]",
+		s.Channel, s.Force, s.RebootAt, s.StartTime, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsrUpgrade.
@@ -37,7 +39,7 @@ func (s SsrUpgrade) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"channel", "reboot_at", "start_time", "version"); err != nil {
+		"channel", "force", "reboot_at", "start_time", "version"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -49,6 +51,9 @@ func (s SsrUpgrade) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
 	if s.Channel != nil {
 		structMap["channel"] = s.Channel
+	}
+	if s.Force != nil {
+		structMap["force"] = s.Force
 	}
 	if s.RebootAt != nil {
 		structMap["reboot_at"] = s.RebootAt
@@ -72,13 +77,14 @@ func (s *SsrUpgrade) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "reboot_at", "start_time", "version")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "force", "reboot_at", "start_time", "version")
 	if err != nil {
 		return err
 	}
 	s.AdditionalProperties = additionalProperties
 
 	s.Channel = temp.Channel
+	s.Force = temp.Force
 	s.RebootAt = temp.RebootAt
 	s.StartTime = temp.StartTime
 	s.Version = *temp.Version
@@ -88,6 +94,7 @@ func (s *SsrUpgrade) UnmarshalJSON(input []byte) error {
 // tempSsrUpgrade is a temporary struct used for validating the fields of SsrUpgrade.
 type tempSsrUpgrade struct {
 	Channel   *SsrUpgradeChannelEnum `json:"channel,omitempty"`
+	Force     *bool                  `json:"force,omitempty"`
 	RebootAt  *int                   `json:"reboot_at,omitempty"`
 	StartTime *int                   `json:"start_time,omitempty"`
 	Version   *string                `json:"version"`

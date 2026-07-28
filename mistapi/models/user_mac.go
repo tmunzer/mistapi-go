@@ -25,6 +25,8 @@ type UserMac struct {
 	Notes *string `json:"notes,omitempty"`
 	// RADIUS group associated with this user MAC entry
 	RadiusGroup *string `json:"radius_group,omitempty"`
+	// Optional list of site IDs this user MAC entry is scoped to
+	SiteIds []uuid.UUID `json:"site_ids,omitempty"`
 	// Network VLAN value associated with this user MAC entry
 	Vlan                 *string                `json:"vlan,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -34,8 +36,8 @@ type UserMac struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (u UserMac) String() string {
 	return fmt.Sprintf(
-		"UserMac[Id=%v, Labels=%v, Mac=%v, Name=%v, Notes=%v, RadiusGroup=%v, Vlan=%v, AdditionalProperties=%v]",
-		u.Id, u.Labels, u.Mac, u.Name, u.Notes, u.RadiusGroup, u.Vlan, u.AdditionalProperties)
+		"UserMac[Id=%v, Labels=%v, Mac=%v, Name=%v, Notes=%v, RadiusGroup=%v, SiteIds=%v, Vlan=%v, AdditionalProperties=%v]",
+		u.Id, u.Labels, u.Mac, u.Name, u.Notes, u.RadiusGroup, u.SiteIds, u.Vlan, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UserMac.
@@ -44,7 +46,7 @@ func (u UserMac) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(u.AdditionalProperties,
-		"id", "labels", "mac", "name", "notes", "radius_group", "vlan"); err != nil {
+		"id", "labels", "mac", "name", "notes", "radius_group", "site_ids", "vlan"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(u.toMap())
@@ -70,6 +72,9 @@ func (u UserMac) toMap() map[string]any {
 	if u.RadiusGroup != nil {
 		structMap["radius_group"] = u.RadiusGroup
 	}
+	if u.SiteIds != nil {
+		structMap["site_ids"] = u.SiteIds
+	}
 	if u.Vlan != nil {
 		structMap["vlan"] = u.Vlan
 	}
@@ -88,7 +93,7 @@ func (u *UserMac) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "id", "labels", "mac", "name", "notes", "radius_group", "vlan")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "id", "labels", "mac", "name", "notes", "radius_group", "site_ids", "vlan")
 	if err != nil {
 		return err
 	}
@@ -100,19 +105,21 @@ func (u *UserMac) UnmarshalJSON(input []byte) error {
 	u.Name = temp.Name
 	u.Notes = temp.Notes
 	u.RadiusGroup = temp.RadiusGroup
+	u.SiteIds = temp.SiteIds
 	u.Vlan = temp.Vlan
 	return nil
 }
 
 // tempUserMac is a temporary struct used for validating the fields of UserMac.
 type tempUserMac struct {
-	Id          *uuid.UUID `json:"id,omitempty"`
-	Labels      []string   `json:"labels,omitempty"`
-	Mac         *string    `json:"mac"`
-	Name        *string    `json:"name,omitempty"`
-	Notes       *string    `json:"notes,omitempty"`
-	RadiusGroup *string    `json:"radius_group,omitempty"`
-	Vlan        *string    `json:"vlan,omitempty"`
+	Id          *uuid.UUID  `json:"id,omitempty"`
+	Labels      []string    `json:"labels,omitempty"`
+	Mac         *string     `json:"mac"`
+	Name        *string     `json:"name,omitempty"`
+	Notes       *string     `json:"notes,omitempty"`
+	RadiusGroup *string     `json:"radius_group,omitempty"`
+	SiteIds     []uuid.UUID `json:"site_ids,omitempty"`
+	Vlan        *string     `json:"vlan,omitempty"`
 }
 
 func (u *tempUserMac) validate() error {

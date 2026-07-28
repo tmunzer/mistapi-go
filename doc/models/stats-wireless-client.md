@@ -37,6 +37,7 @@ Wireless client connection, traffic, and location statistics
 | `Manufacture` | `*string` | Optional | Device manufacture, through fingerprinting or OUI |
 | `MapId` | `*uuid.UUID` | Optional | Estimated client location - map_id |
 | `Model` | `*string` | Optional | Device model, may be available if we can identify them |
+| `MxedgeId` | `*uuid.UUID` | Optional | Mist Edge the wireless client connection is tunneled through, when applicable |
 | `NumLocatingAps` | `*int` | Optional | Number of APs used to locate this client |
 | `Os` | `*string` | Optional | Device os, through fingerprinting |
 | `PowerSaving` | `*bool` | Optional | If it’s currently in power-save mode |

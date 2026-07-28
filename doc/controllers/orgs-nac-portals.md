@@ -71,6 +71,7 @@ body := models.NacPortal{
     },
     CertExpireTime:           models.ToPointer(365),
     EapType:                  models.ToPointer(models.NacPortalEapTypeEnum_WPA2),
+    EnableLocation:           models.ToPointer(false),
     Name:                     models.ToPointer("get-wifi"),
     Ssid:                     models.ToPointer("Corp"),
 }
@@ -104,6 +105,7 @@ if err != nil {
 {
   "access_type": "wireless",
   "cert_expire_time": 365,
+  "enable_location": false,
   "enable_telemetry": true,
   "expiry_notification_time": 2,
   "name": "get-wifi",
@@ -438,6 +440,7 @@ if err != nil {
 {
   "access_type": "wireless",
   "cert_expire_time": 365,
+  "enable_location": false,
   "enable_telemetry": true,
   "expiry_notification_time": 2,
   "name": "get-wifi",
@@ -734,6 +737,7 @@ if err != nil {
       "-----BEGIN CERTIFICATE-----\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\n-----END CERTIFICATE-----"
     ],
     "cert_expire_time": 365,
+    "enable_location": false,
     "enable_telemetry": true,
     "expiry_notification_time": 2,
     "name": "get-wifi",
@@ -820,6 +824,7 @@ body := models.NacPortal{
     },
     CertExpireTime:           models.ToPointer(365),
     EapType:                  models.ToPointer(models.NacPortalEapTypeEnum_WPA2),
+    EnableLocation:           models.ToPointer(false),
     Name:                     models.ToPointer("get-wifi"),
     Ssid:                     models.ToPointer("Corp"),
 }
@@ -853,6 +858,7 @@ if err != nil {
 {
   "access_type": "wireless",
   "cert_expire_time": 365,
+  "enable_location": false,
   "enable_telemetry": true,
   "expiry_notification_time": 2,
   "name": "get-wifi",

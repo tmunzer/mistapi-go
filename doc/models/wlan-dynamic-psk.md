@@ -24,6 +24,7 @@ For dynamic PSK where we get per_user PSK from RADIUS. dynamic_psk allows PSK to
 | `DefaultVlanId` | [`*models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | VLAN ID, either numeric or expressed as a template variable string |
 | `Enabled` | `*bool` | Optional | Whether dynamic PSK is enabled for this WLAN<br><br>**Default**: `false` |
 | `ForceLookup` | `*bool` | Optional | When 11r is enabled, we'll try to use the cached PMK, this can be disabled. `false` means auto<br><br>**Default**: `false` |
+| `LocalVlanIds` | [`[]models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | VLAN ID, either numeric or expressed as a template variable string |
 | `Source` | [`*models.DynamicPskSourceEnum`](../../doc/models/dynamic-psk-source-enum.md) | Optional | Origin used to retrieve per-user PSKs. enum: `cloud_psks`, `radius`<br><br>**Default**: `"radius"` |
 
 ## Example
@@ -41,6 +42,11 @@ func main() {
         DefaultVlanId:        models.ToPointer(models.VlanIdWithVariableContainer.FromString("String1")),
         Enabled:              models.ToPointer(false),
         ForceLookup:          models.ToPointer(false),
+        LocalVlanIds:         []models.VlanIdWithVariable{
+            models.VlanIdWithVariableContainer.FromString("String0"),
+            models.VlanIdWithVariableContainer.FromString("String1"),
+            models.VlanIdWithVariableContainer.FromString("String2"),
+        },
         Source:               models.ToPointer(models.DynamicPskSourceEnum_CLOUDPSKS),
     }
 

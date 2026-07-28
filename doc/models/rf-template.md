@@ -23,6 +23,7 @@ RF template used by the current RRM calculation
 | `Band6` | [`*models.RftemplateRadioBand6`](../../doc/models/rftemplate-radio-band-6.md) | Optional | Radio Band AP settings |
 | `CountryCode` | `*string` | Optional | Optional, country code to use. If specified, this gets applied to all sites using the RF Template |
 | `CreatedTime` | `*float64` | Optional, Read-only | When the object has been created, in epoch |
+| `EnableUnii4` | `*bool` | Optional | Whether U-NII-4 channels (169, 173, 177) are enabled<br><br>**Default**: `false` |
 | `ForSite` | `*bool` | Optional, Read-only | Whether the RF template is scoped to a site rather than the organization |
 | `Id` | `*uuid.UUID` | Optional, Read-only | Unique ID of the object instance in the Mist Organization |
 | `ModelSpecific` | [`map[string]models.RfTemplateModelSpecificProperty`](../../doc/models/rf-template-model-specific-property.md) | Optional | overwrites for a specific model. If a band is specified, it will shadow the default. Property key is the model name (e.g. "AP63") |
@@ -57,6 +58,7 @@ func main() {
             })),
         }),
         Band24Usage:          models.ToPointer(models.RadioBand24UsageEnum_ENUM24),
+        EnableUnii4:          models.ToPointer(false),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
         Name:                 "name2",
         OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),

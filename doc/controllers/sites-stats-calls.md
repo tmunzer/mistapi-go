@@ -134,6 +134,7 @@ GetSiteCallsSummary(
     siteId uuid.UUID,
     apMac *string,
     app *string,
+    wired *bool,
     start *string,
     end *string) (
     models.ApiResponse[models.ResponseStatsCallsSummary],
@@ -151,6 +152,7 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `apMac` | `*string` | Query, Optional | Filter results by AP MAC address |
 | `app` | `*string` | Query, Optional | Filter results by application name |
+| `wired` | `*bool` | Query, Optional | Filter results by whether the client is wired<br><br>**Default**: `false` |
 | `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
 | `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
 
@@ -171,7 +173,9 @@ apMac := "001122334455"
 
 app := "zoom"
 
-apiResponse, err := sitesStatsCalls.GetSiteCallsSummary(ctx, siteId, &apMac, &app, nil, nil)
+wired := false
+
+apiResponse, err := sitesStatsCalls.GetSiteCallsSummary(ctx, siteId, &apMac, &app, &wired, nil, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
@@ -231,6 +235,7 @@ ListSiteTroubleshootCalls(
     meetingId *string,
     mac *string,
     app *string,
+    wired *bool,
     start *string,
     end *string,
     duration *string,
@@ -253,6 +258,7 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 | `meetingId` | `*string` | Query, Optional | Filter results by meeting identifier |
 | `mac` | `*string` | Query, Optional | Filter results by MAC address |
 | `app` | `*string` | Query, Optional | Third party app name |
+| `wired` | `*bool` | Query, Optional | Filter results by whether the client is wired<br><br>**Default**: `false` |
 | `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
 | `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
 | `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
@@ -280,13 +286,15 @@ mac := "001122334455"
 
 app := "zoom"
 
+wired := false
+
 duration := "10m"
 
 limit := 100
 
 page := 1
 
-apiResponse, err := sitesStatsCalls.ListSiteTroubleshootCalls(ctx, siteId, &ap, &meetingId, &mac, &app, nil, nil, &duration, &limit, &page)
+apiResponse, err := sitesStatsCalls.ListSiteTroubleshootCalls(ctx, siteId, &ap, &meetingId, &mac, &app, &wired, nil, nil, &duration, &limit, &page)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

@@ -10,8 +10,8 @@ import (
 // JsiPbnItem represents a JsiPbnItem struct.
 // PBN (Problem Bug Notification) advisory item
 type JsiPbnItem struct {
-	// Type of the bug (Day-1, Regression)
-	BugType *string `json:"bug_type,omitempty"`
+	// Type of the bug. enum: `Day-1`, `Regression`
+	BugType *JsiPbnBugTypeEnum `json:"bug_type,omitempty"`
 	// Customer impact risk level for the PBN advisory
 	CustomerRisk *string `json:"customer_risk,omitempty"`
 	// Release in which the issue was fixed
@@ -22,8 +22,8 @@ type JsiPbnItem struct {
 	IntroducedIn *string `json:"introduced_in,omitempty"`
 	// Device models affected by the PBN issue
 	Models []string `json:"models,omitempty"`
-	// Product family affected by the PBN issue
-	ProductFamily *string `json:"product_family,omitempty"`
+	// Product families affected by the PBN issue
+	ProductFamily []string `json:"product_family,omitempty"`
 	// Release notes for this PBN
 	ReleaseNotes *string `json:"release_notes,omitempty"`
 	// Steps recommended to restore service or recover from the PBN issue
@@ -143,18 +143,18 @@ func (j *JsiPbnItem) UnmarshalJSON(input []byte) error {
 
 // tempJsiPbnItem is a temporary struct used for validating the fields of JsiPbnItem.
 type tempJsiPbnItem struct {
-	BugType            *string  `json:"bug_type,omitempty"`
-	CustomerRisk       *string  `json:"customer_risk,omitempty"`
-	FixedIn            *string  `json:"fixed_in,omitempty"`
-	Id                 *string  `json:"id,omitempty"`
-	IntroducedIn       *string  `json:"introduced_in,omitempty"`
-	Models             []string `json:"models,omitempty"`
-	ProductFamily      *string  `json:"product_family,omitempty"`
-	ReleaseNotes       *string  `json:"release_notes,omitempty"`
-	Restoration        *string  `json:"restoration,omitempty"`
-	Title              *string  `json:"title,omitempty"`
-	UpdatedDate        *int     `json:"updated_date,omitempty"`
-	Versions           []string `json:"versions,omitempty"`
-	Workaround         *string  `json:"workaround,omitempty"`
-	WorkaroundProvided *string  `json:"workaround_provided,omitempty"`
+	BugType            *JsiPbnBugTypeEnum `json:"bug_type,omitempty"`
+	CustomerRisk       *string            `json:"customer_risk,omitempty"`
+	FixedIn            *string            `json:"fixed_in,omitempty"`
+	Id                 *string            `json:"id,omitempty"`
+	IntroducedIn       *string            `json:"introduced_in,omitempty"`
+	Models             []string           `json:"models,omitempty"`
+	ProductFamily      []string           `json:"product_family,omitempty"`
+	ReleaseNotes       *string            `json:"release_notes,omitempty"`
+	Restoration        *string            `json:"restoration,omitempty"`
+	Title              *string            `json:"title,omitempty"`
+	UpdatedDate        *int               `json:"updated_date,omitempty"`
+	Versions           []string           `json:"versions,omitempty"`
+	Workaround         *string            `json:"workaround,omitempty"`
+	WorkaroundProvided *string            `json:"workaround_provided,omitempty"`
 }

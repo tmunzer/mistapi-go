@@ -57,7 +57,8 @@ type ClientInterface interface {
 	OrgsDeviceProfiles() *OrgsDeviceProfiles
 	OrgsDevices() *OrgsDevices
 	OrgsDevicesSSR() *OrgsDevicesSSR
-	OrgsDevicesAOS() *OrgsDevicesAOS
+	OrgsDevicesAOSCX() *OrgsDevicesAOSCX
+	OrgsDevicesEdgeConnect() *OrgsDevicesEdgeConnect
 	OrgsEVPNTopologies() *OrgsEVPNTopologies
 	OrgsIntegrationJuniper() *OrgsIntegrationJuniper
 	OrgsDevicesOthers() *OrgsDevicesOthers
@@ -88,6 +89,7 @@ type ClientInterface interface {
 	OrgsStatsAssets() *OrgsStatsAssets
 	OrgsStatsBGPPeers() *OrgsStatsBGPPeers
 	OrgsStatsDevices() *OrgsStatsDevices
+	OrgsStatsMarvisClients() *OrgsStatsMarvisClients
 	OrgsStatsMxEdges() *OrgsStatsMxEdges
 	OrgsStatsOspf() *OrgsStatsOspf
 	OrgsStatsOtherDevices() *OrgsStatsOtherDevices
@@ -223,7 +225,6 @@ type ClientInterface interface {
 	UtilitiesLocation() *UtilitiesLocation
 	UtilitiesMxEdge() *UtilitiesMxEdge
 	UtilitiesUpgrade() *UtilitiesUpgrade
-	OrgsStatsMarvisClients() *OrgsStatsMarvisClients
 	UserAgent() *string
 }
 
@@ -276,7 +277,8 @@ type client struct {
 	orgsDeviceProfiles               OrgsDeviceProfiles
 	orgsDevices                      OrgsDevices
 	orgsDevicesSSR                   OrgsDevicesSSR
-	orgsDevicesAOS                   OrgsDevicesAOS
+	orgsDevicesAOSCX                 OrgsDevicesAOSCX
+	orgsDevicesEdgeConnect           OrgsDevicesEdgeConnect
 	orgsEVPNTopologies               OrgsEVPNTopologies
 	orgsIntegrationJuniper           OrgsIntegrationJuniper
 	orgsDevicesOthers                OrgsDevicesOthers
@@ -307,6 +309,7 @@ type client struct {
 	orgsStatsAssets                  OrgsStatsAssets
 	orgsStatsBGPPeers                OrgsStatsBGPPeers
 	orgsStatsDevices                 OrgsStatsDevices
+	orgsStatsMarvisClients           OrgsStatsMarvisClients
 	orgsStatsMxEdges                 OrgsStatsMxEdges
 	orgsStatsOspf                    OrgsStatsOspf
 	orgsStatsOtherDevices            OrgsStatsOtherDevices
@@ -442,7 +445,6 @@ type client struct {
 	utilitiesLocation                UtilitiesLocation
 	utilitiesMxEdge                  UtilitiesMxEdge
 	utilitiesUpgrade                 UtilitiesUpgrade
-	orgsStatsMarvisClients           OrgsStatsMarvisClients
 }
 
 // NewClient is the constructor for creating a new client instance.
@@ -514,7 +516,8 @@ func NewClient(configuration Configuration) ClientInterface {
 	client.orgsDeviceProfiles = *NewOrgsDeviceProfiles(*baseController)
 	client.orgsDevices = *NewOrgsDevices(*baseController)
 	client.orgsDevicesSSR = *NewOrgsDevicesSSR(*baseController)
-	client.orgsDevicesAOS = *NewOrgsDevicesAOS(*baseController)
+	client.orgsDevicesAOSCX = *NewOrgsDevicesAOSCX(*baseController)
+	client.orgsDevicesEdgeConnect = *NewOrgsDevicesEdgeConnect(*baseController)
 	client.orgsEVPNTopologies = *NewOrgsEVPNTopologies(*baseController)
 	client.orgsIntegrationJuniper = *NewOrgsIntegrationJuniper(*baseController)
 	client.orgsDevicesOthers = *NewOrgsDevicesOthers(*baseController)
@@ -545,6 +548,7 @@ func NewClient(configuration Configuration) ClientInterface {
 	client.orgsStatsAssets = *NewOrgsStatsAssets(*baseController)
 	client.orgsStatsBGPPeers = *NewOrgsStatsBGPPeers(*baseController)
 	client.orgsStatsDevices = *NewOrgsStatsDevices(*baseController)
+	client.orgsStatsMarvisClients = *NewOrgsStatsMarvisClients(*baseController)
 	client.orgsStatsMxEdges = *NewOrgsStatsMxEdges(*baseController)
 	client.orgsStatsOspf = *NewOrgsStatsOspf(*baseController)
 	client.orgsStatsOtherDevices = *NewOrgsStatsOtherDevices(*baseController)
@@ -680,7 +684,6 @@ func NewClient(configuration Configuration) ClientInterface {
 	client.utilitiesLocation = *NewUtilitiesLocation(*baseController)
 	client.utilitiesMxEdge = *NewUtilitiesMxEdge(*baseController)
 	client.utilitiesUpgrade = *NewUtilitiesUpgrade(*baseController)
-	client.orgsStatsMarvisClients = *NewOrgsStatsMarvisClients(*baseController)
 	return client
 }
 
@@ -914,9 +917,14 @@ func (c *client) OrgsDevicesSSR() *OrgsDevicesSSR {
 	return &c.orgsDevicesSSR
 }
 
-// OrgsDevicesAOS returns the orgsDevicesAOS instance of the client.
-func (c *client) OrgsDevicesAOS() *OrgsDevicesAOS {
-	return &c.orgsDevicesAOS
+// OrgsDevicesAOSCX returns the orgsDevicesAOSCX instance of the client.
+func (c *client) OrgsDevicesAOSCX() *OrgsDevicesAOSCX {
+	return &c.orgsDevicesAOSCX
+}
+
+// OrgsDevicesEdgeConnect returns the orgsDevicesEdgeConnect instance of the client.
+func (c *client) OrgsDevicesEdgeConnect() *OrgsDevicesEdgeConnect {
+	return &c.orgsDevicesEdgeConnect
 }
 
 // OrgsEVPNTopologies returns the orgsEVPNTopologies instance of the client.
@@ -1067,6 +1075,11 @@ func (c *client) OrgsStatsBGPPeers() *OrgsStatsBGPPeers {
 // OrgsStatsDevices returns the orgsStatsDevices instance of the client.
 func (c *client) OrgsStatsDevices() *OrgsStatsDevices {
 	return &c.orgsStatsDevices
+}
+
+// OrgsStatsMarvisClients returns the orgsStatsMarvisClients instance of the client.
+func (c *client) OrgsStatsMarvisClients() *OrgsStatsMarvisClients {
+	return &c.orgsStatsMarvisClients
 }
 
 // OrgsStatsMxEdges returns the orgsStatsMxEdges instance of the client.
@@ -1742,11 +1755,6 @@ func (c *client) UtilitiesMxEdge() *UtilitiesMxEdge {
 // UtilitiesUpgrade returns the utilitiesUpgrade instance of the client.
 func (c *client) UtilitiesUpgrade() *UtilitiesUpgrade {
 	return &c.utilitiesUpgrade
-}
-
-// OrgsStatsMarvisClients returns the orgsStatsMarvisClients instance of the client.
-func (c *client) OrgsStatsMarvisClients() *OrgsStatsMarvisClients {
-	return &c.orgsStatsMarvisClients
 }
 
 // UserAgent returns the userAgent instance of the client.

@@ -34,14 +34,14 @@ func main() {
         Next:                 models.ToPointer("next4"),
         Results:              []models.JsiPbnItem{
             models.JsiPbnItem{
-                BugType:              models.ToPointer("bug_type0"),
+                BugType:              models.ToPointer(models.JsiPbnBugTypeEnum_DAY1),
                 CustomerRisk:         models.ToPointer("customer_risk4"),
                 FixedIn:              models.ToPointer("fixed_in8"),
                 Id:                   models.ToPointer("id6"),
                 IntroducedIn:         models.ToPointer("introduced_in2"),
             },
             models.JsiPbnItem{
-                BugType:              models.ToPointer("bug_type0"),
+                BugType:              models.ToPointer(models.JsiPbnBugTypeEnum_DAY1),
                 CustomerRisk:         models.ToPointer("customer_risk4"),
                 FixedIn:              models.ToPointer("fixed_in8"),
                 Id:                   models.ToPointer("id6"),

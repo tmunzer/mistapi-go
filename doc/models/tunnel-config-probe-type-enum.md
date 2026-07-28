@@ -1,7 +1,7 @@
 
 # Tunnel Config Probe Type Enum
 
-Protocol used by the custom IPsec tunnel health probe. enum: `http`, `icmp`
+Protocol used by the custom IPsec tunnel health probe. `http` is deprecated — use `probe_ips`/`probe_hostnames` for ICMP probes and `probe_http` for HTTP probes instead. enum: `http`, `icmp`
 
 ## Enumeration
 

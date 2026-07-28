@@ -22,8 +22,8 @@ type JsiSirtItem struct {
 	PublishedDate *int `json:"published_date,omitempty"`
 	// Release notes if any
 	ReleaseNotes *string `json:"release_notes,omitempty"`
-	// Security severity assigned to the SIRT advisory
-	Severity *string `json:"severity,omitempty"`
+	// Security severity assigned to the SIRT advisory. enum: `Critical`, `High`, `Low`, `Medium`
+	Severity *JsiSirtSeverityEnum `json:"severity,omitempty"`
 	// Recommended fix or remediation for the security issue
 	Solution *string `json:"solution,omitempty"`
 	// Summary title for the SIRT advisory
@@ -131,16 +131,16 @@ func (j *JsiSirtItem) UnmarshalJSON(input []byte) error {
 
 // tempJsiSirtItem is a temporary struct used for validating the fields of JsiSirtItem.
 type tempJsiSirtItem struct {
-	CvssScore     *float64 `json:"cvss_score,omitempty"`
-	Id            *string  `json:"id,omitempty"`
-	Models        []string `json:"models,omitempty"`
-	Problem       *string  `json:"problem,omitempty"`
-	PublishedDate *int     `json:"published_date,omitempty"`
-	ReleaseNotes  *string  `json:"release_notes,omitempty"`
-	Severity      *string  `json:"severity,omitempty"`
-	Solution      *string  `json:"solution,omitempty"`
-	Title         *string  `json:"title,omitempty"`
-	UpdatedDate   *int     `json:"updated_date,omitempty"`
-	Versions      []string `json:"versions,omitempty"`
-	Workaround    *string  `json:"workaround,omitempty"`
+	CvssScore     *float64             `json:"cvss_score,omitempty"`
+	Id            *string              `json:"id,omitempty"`
+	Models        []string             `json:"models,omitempty"`
+	Problem       *string              `json:"problem,omitempty"`
+	PublishedDate *int                 `json:"published_date,omitempty"`
+	ReleaseNotes  *string              `json:"release_notes,omitempty"`
+	Severity      *JsiSirtSeverityEnum `json:"severity,omitempty"`
+	Solution      *string              `json:"solution,omitempty"`
+	Title         *string              `json:"title,omitempty"`
+	UpdatedDate   *int                 `json:"updated_date,omitempty"`
+	Versions      []string             `json:"versions,omitempty"`
+	Workaround    *string              `json:"workaround,omitempty"`
 }

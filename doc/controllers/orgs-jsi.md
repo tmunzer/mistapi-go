@@ -669,6 +669,12 @@ SearchOrgJsiAssetsAndContracts(
     eosBefore *string,
     versionEosAfter *string,
     versionEosBefore *string,
+    contractEndBefore *string,
+    contractEndAfter *string,
+    contractType *string,
+    contractSku *string,
+    endOfServiceTime *string,
+    supportContractStatus *models.SupportContractStatusEnum,
     hasSupport *bool,
     sirtId *string,
     pbnId *string,
@@ -701,10 +707,16 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 | `eosBefore` | `*string` | Query, Optional | Filter devices with End Of Support date before this date |
 | `versionEosAfter` | `*string` | Query, Optional | Filter devices with OS Version End Of Support date after this date |
 | `versionEosBefore` | `*string` | Query, Optional | Filter devices with OS Version End Of Support date before this date |
+| `contractEndBefore` | `*string` | Query, Optional | Filter results by service contract end date before this date |
+| `contractEndAfter` | `*string` | Query, Optional | Filter results by service contract end date after this date |
+| `contractType` | `*string` | Query, Optional | Filter results by contract type |
+| `contractSku` | `*string` | Query, Optional | Filter results by contract SKU |
+| `endOfServiceTime` | `*string` | Query, Optional | Filter results by end of service time |
+| `supportContractStatus` | [`*models.SupportContractStatusEnum`](../../doc/models/support-contract-status-enum.md) | Query, Optional | Filter results by service contract status |
 | `hasSupport` | `*bool` | Query, Optional | Indicates if the device is covered under active support contract. Accepts multiple comma-separated boolean values. |
 | `sirtId` | `*string` | Query, Optional | To get the onboarded devices that are affected by the SIRT ID |
 | `pbnId` | `*string` | Query, Optional | To get the onboarded devices that are affected by the PBN ID |
-| `text` | `*string` | Query, Optional | Wildcards for `serial`, `model`, `account_id` |
+| `text` | `*string` | Query, Optional | Wildcard text search across `account_id`, `contract_id`, `contract_reseller`, `contract_sku`, `device_name`, `distributor`, `ia_address`, `ia_country`, `ia_region`, `ia_zip_postal`, `model`, `serial`, `sku`, `status`, `suggested_version`, `version`, `warranty` |
 | `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
@@ -744,6 +756,10 @@ versionEosAfter := "2024-01-01"
 
 versionEosBefore := "2025-12-31"
 
+contractEndBefore := "2025-12-31"
+
+contractEndAfter := "2024-01-01"
+
 hasSupport := true
 
 sirtId := "JSA12345"
@@ -754,7 +770,7 @@ limit := 100
 
 sort := "-site_id"
 
-apiResponse, err := orgsJSI.SearchOrgJsiAssetsAndContracts(ctx, orgId, &claimed, &model, &serial, &sku, &status, nil, &endOfSaleAfter, &endOfSaleBefore, &eosAfter, &eosBefore, &versionEosAfter, &versionEosBefore, &hasSupport, &sirtId, &pbnId, nil, &limit, &sort, nil)
+apiResponse, err := orgsJSI.SearchOrgJsiAssetsAndContracts(ctx, orgId, &claimed, &model, &serial, &sku, &status, nil, &endOfSaleAfter, &endOfSaleBefore, &eosAfter, &eosBefore, &versionEosAfter, &versionEosBefore, &contractEndBefore, &contractEndAfter, nil, nil, nil, nil, &hasSupport, &sirtId, &pbnId, nil, &limit, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseDetailString:
@@ -774,40 +790,6 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "end": 1748023308,
-  "limit": 1000,
-  "results": [
-    {
-      "claimed": true,
-      "device_name": "name1",
-      "end_of_sale_time": 1561507200,
-      "eos_time": 1672012800,
-      "has_support": true,
-      "master": true,
-      "model": "EX2300-24MP",
-      "org_id": "6e843b41-f953-4af9-80e5-e1a70f65754a",
-      "serial": "XN3123300095",
-      "sku": "EX2300",
-      "status": "connected",
-      "suggested_version": "Latest 21.4R3-Sx",
-      "type": "switch",
-      "version": "23.4R2-S4.11",
-      "version_eos_time": 1672012800,
-      "version_time": 1561507200,
-      "warranty": "Enhanced Hardware Warranty",
-      "warranty_time": 1672012800,
-      "warranty_type": "Enhanced Hardware Warranty"
-    }
-  ],
-  "start": 1748019708,
-  "total": 1
 }
 ```
 
@@ -834,9 +816,11 @@ SearchOrgJsiPbn(
     mModels *string,
     customerRisk *string,
     id *string,
-    bugType *string,
+    bugType *models.JsiPbnBugTypeEnum,
+    text *string,
     limit *int,
     page *int,
+    sort *string,
     searchAfter *string,
     start *string,
     end *string) (
@@ -853,13 +837,15 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `versions` | `*string` | Query, Optional | OS versions to search for |
-| `mModels` | `*string` | Query, Optional | Device models to search for |
-| `customerRisk` | `*string` | Query, Optional | Customer risk level to filter by |
-| `id` | `*string` | Query, Optional | PBN ID to search for |
-| `bugType` | `*string` | Query, Optional | Bug type to filter by |
+| `versions` | `*string` | Query, Optional | Software versions affected by the PBN |
+| `mModels` | `*string` | Query, Optional | Models affected by the PBN |
+| `customerRisk` | `*string` | Query, Optional | Filter results by customer risk. enum: `Critical`, `Major`, `Minor` |
+| `id` | `*string` | Query, Optional | ID of the PBN |
+| `bugType` | [`*models.JsiPbnBugTypeEnum`](../../doc/models/jsi-pbn-bug-type-enum.md) | Query, Optional | Filter results by bug type |
+| `text` | `*string` | Query, Optional | Wildcard search across `versions`, `models`, `customer_risk`, `id`, `bug_type` |
 | `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | Select the page number to return when using page-based pagination; starts at `1`<br><br>**Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 | `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
 | `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
@@ -885,7 +871,9 @@ limit := 100
 
 page := 1
 
-apiResponse, err := orgsJSI.SearchOrgJsiPbn(ctx, orgId, &versions, nil, nil, &id, nil, &limit, &page, nil, nil, nil)
+sort := "-site_id"
+
+apiResponse, err := orgsJSI.SearchOrgJsiPbn(ctx, orgId, &versions, nil, nil, &id, nil, nil, &limit, &page, &sort, nil, nil, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
@@ -908,6 +896,42 @@ if err != nil {
 }
 ```
 
+## Example Response *(as JSON)*
+
+```json
+{
+  "end": 1753415677,
+  "limit": 1,
+  "next": "/api/v1/orgs/bf105f5e-2490-453b-9dc0-81224ca295cf/jsi/pbn/search?end=1753415677&limit=1&search_after=%5B%221403338%22%5D&start=1753412077",
+  "results": [
+    {
+      "bug_type": "Day-1",
+      "customer_risk": "Major",
+      "id": "1403338",
+      "introduced_in": "",
+      "models": [
+        "MX10008",
+        "vMX"
+      ],
+      "product_family": [
+        "EX2200",
+        "QFX5210"
+      ],
+      "release_notes": "In aggregated interfaces and STP (Spanning Tree Protocol) scenario, the STP does not work.",
+      "restoration": "",
+      "title": "The STP does not work when aggregated interfaces number is \"ae1000\"",
+      "versions": [
+        "23.4R2-S1.1"
+      ],
+      "workaround": "Use the 'ae' number from 0 to 999 in QFX5000 and 0 to 479 in other QFXs / EX under STP.",
+      "workaround_provided": "yes"
+    }
+  ],
+  "start": 1753412077,
+  "total": 604
+}
+```
+
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -927,7 +951,7 @@ Search and get all the SIRT for the onboarded devices. Search can be done on sev
 SearchOrgJsiSirt(
     ctx context.Context,
     orgId uuid.UUID,
-    severity *string,
+    severity *models.JsiSirtSeverityEnum,
     id *string,
     updatedAfter *string,
     updatedBefore *string,
@@ -955,15 +979,15 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `severity` | `*string` | Query, Optional | Filter results by severity |
-| `id` | `*string` | Query, Optional | Filter results by identifier |
+| `severity` | [`*models.JsiSirtSeverityEnum`](../../doc/models/jsi-sirt-severity-enum.md) | Query, Optional | Filter results by SIRT severity |
+| `id` | `*string` | Query, Optional | JSA number |
 | `updatedAfter` | `*string` | Query, Optional | JSA Updated date to be filtered after this date |
 | `updatedBefore` | `*string` | Query, Optional | JSA Updated date to be filtered before this date |
 | `publishedAfter` | `*string` | Query, Optional | JSA Published date to be filtered after this date |
 | `publishedBefore` | `*string` | Query, Optional | JSA Published date to be filtered before this date |
-| `mModels` | `*string` | Query, Optional | Filter results by models |
-| `versions` | `*string` | Query, Optional | Software version affected by the SIRT |
-| `text` | `*string` | Query, Optional | Wildcards search on os_version_affected, affected_models, severity, jsa_id |
+| `mModels` | `*string` | Query, Optional | Models affected by the SIRT |
+| `versions` | `*string` | Query, Optional | Software versions affected by the SIRT |
+| `text` | `*string` | Query, Optional | Wildcard search across `versions`, `models`, `severity`, `id` |
 | `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | Select the page number to return when using page-based pagination; starts at `1`<br><br>**Default**: `1`<br><br>**Constraints**: `>= 1` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
@@ -1014,6 +1038,39 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "end": 1753411849,
+  "limit": 1,
+  "next": "/api/v1/orgs/bf105f5e-2490-453b-9dc0-81224ca295cf/jsi/sirt/search?end=1753411849&limit=1&search_after=%5B%22JSA100053%22%5D&start=1753408249",
+  "results": [
+    {
+      "cvss_score": 6.5,
+      "id": "JSA100053",
+      "models": [
+        "MX10008",
+        "vMX"
+      ],
+      "problem": "An Improper Handling of Length Parameter Inconsistency vulnerability in the routing protocol daemon (rpd).\n",
+      "published_date": 1752019200,
+      "release_notes": "An Improper Handling of Length Parameter Inconsistency vulnerability in the routing protocol daemon (rpd).",
+      "severity": "Medium",
+      "solution": "false",
+      "title": "Junos OS and Junos OS Evolved: In an EVPN environment, receipt of a specifically malformed BGP update causes RPD crash",
+      "updated_date": 1752019200,
+      "versions": [
+        "23.4R2-S1.1"
+      ],
+      "workaround": ""
+    }
+  ],
+  "start": 1753408249,
+  "total": 14
 }
 ```
 

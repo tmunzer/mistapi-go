@@ -23,6 +23,7 @@ Device event payload returned by search and webhook APIs
 | `DeviceType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch` |
 | `EvType` | [`*models.WebhookDeviceEventsEventEvTypeEnum`](../../doc/models/webhook-device-events-event-ev-type-enum.md) | Optional | (optional) event advisory. enum: `notice`, `warn` |
 | `ExtIp` | `*string` | Optional | External IP address reported for the device event |
+| `JobId` | `*uuid.UUID` | Optional | Job identifier associated with a tunnel provisioning event (present when `includes`==`ext_tunnel`) |
 | `Mac` | `*string` | Optional | Device MAC address associated with the event |
 | `Model` | `*string` | Optional | Device model associated with the event |
 | `Node` | `*string` | Optional | Cluster node identifier associated with the device event |
@@ -36,8 +37,11 @@ Device event payload returned by search and webhook APIs
 | `Reason` | `*string` | Optional | Optional reason text reported for the device event |
 | `SiteId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist site |
 | `SiteName` | `*string` | Optional | Name of the site associated with the event |
+| `Status` | `*string` | Optional | Tunnel provisioning status for ext_tunnel events (e.g. `PROVISION_IN_PROGRESS`) |
+| `TemplateId` | `*uuid.UUID` | Optional | Gateway template identifier associated with a tunnel provisioning event (present when `includes`==`ext_tunnel`) |
 | `Text` | `*string` | Optional | Optional human-readable text for the device event |
 | `Timestamp` | `float64` | Required, Read-only | Epoch timestamp, in seconds |
+| `TunnelName` | `*string` | Optional | Tunnel name associated with a tunnel provisioning event (present when `includes`==`ext_tunnel`) |
 | `Type` | `string` | Required | Device event type key |
 | `Usage` | `*int` | Optional | Current radio usage band for an RRM event |
 | `Version` | `*string` | Optional | Firmware or software version associated with the device event |

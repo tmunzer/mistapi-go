@@ -98,6 +98,7 @@ Configuration settings applied at the site level
 | `TuntermMulticastConfig` | [`*models.SiteSettingTuntermMulticastConfig`](../../doc/models/site-setting-tunterm-multicast-config.md) | Optional | Multicast forwarding settings for tunnel termination at the site |
 | `UplinkPortConfig` | [`*models.ApUplinkPortConfig`](../../doc/models/ap-uplink-port-config.md) | Optional | AP Uplink port configuration |
 | `UsesDescriptionFromPortUsage` | `*bool` | Optional | by default, we only honor description provided in port_config. This allows fallback to those defined in port_usages<br><br>**Default**: `false` |
+| `UwbConfig` | [`*models.ApUwbConfig`](../../doc/models/ap-uwb-config.md) | Optional | Ultra-wideband (UWB) RTLS / OMLOX asset-visibility integration settings for an access point. The device-level value overrides the device profile value, which in turn overrides the site-level setting. |
 | `Vars` | `map[string]string` | Optional | Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `VarsAnnotations` | [`map[string]models.VarsAnnotation`](../../doc/models/vars-annotation.md) | Optional | Optional annotations for vars defined in this site. Keys match var names; values describe the var purpose and type for UI auto-complete. |
 | `Vna` | [`*models.SiteSettingVna`](../../doc/models/site-setting-vna.md) | Optional | Virtual Network Assistant settings for AP, switch, and gateway experiences at a site |
@@ -136,6 +137,7 @@ func main() {
                         DstTag:               "dst_tag0",
                     },
                 },
+                Disabled:             models.ToPointer(false),
                 Name:                 models.ToPointer("name2"),
                 SrcTags:              []string{
                     "src_tags1",
@@ -155,7 +157,7 @@ func main() {
                 },
                 Network:              models.ToPointer("network2"),
                 PortUsage:            models.ToPointer("port_usage0"),
-                Type:                 models.AclTagTypeEnum_NETWORK,
+                Type:                 models.AclTagTypeEnum_ANY,
             },
             "key1": models.AclTag{
                 EtherTypes:           []string{
@@ -168,7 +170,7 @@ func main() {
                 },
                 Network:              models.ToPointer("network2"),
                 PortUsage:            models.ToPointer("port_usage0"),
-                Type:                 models.AclTagTypeEnum_NETWORK,
+                Type:                 models.AclTagTypeEnum_ANY,
             },
             "key2": models.AclTag{
                 EtherTypes:           []string{
@@ -181,7 +183,7 @@ func main() {
                 },
                 Network:              models.ToPointer("network2"),
                 PortUsage:            models.ToPointer("port_usage0"),
-                Type:                 models.AclTagTypeEnum_NETWORK,
+                Type:                 models.AclTagTypeEnum_ANY,
             },
         },
         AdditionalConfigCmds:            []string{

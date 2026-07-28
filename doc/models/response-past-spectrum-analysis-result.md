@@ -16,6 +16,7 @@ Result of a past spectrum analysis
 | `FftSamples` | [`[]models.ResponsePastSpectrumAnalysisFftSample`](../../doc/models/response-past-spectrum-analysis-fft-sample.md) | Optional | List of FFT samples for the spectrum analysis |
 | `Mac` | `*string` | Optional | AP MAC address for the access point that ran the spectrum analysis |
 | `OrgId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist organization |
+| `SpectrogramUrl` | `*string` | Optional | URL to the generated spectrogram image for the spectrum analysis |
 | `Timestamp` | `*int` | Optional | Epoch timestamp, in seconds, when the spectrum analysis was run |
 
 ## Example

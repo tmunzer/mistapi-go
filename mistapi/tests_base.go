@@ -88,7 +88,9 @@ var orgsDevices OrgsDevices
 
 var orgsDevicesSsr OrgsDevicesSSR
 
-var orgsDevicesAos OrgsDevicesAOS
+var orgsDevicesAoscx OrgsDevicesAOSCX
+
+var orgsDevicesEdgeConnect OrgsDevicesEdgeConnect
 
 var orgsEvpnTopologies OrgsEVPNTopologies
 
@@ -147,6 +149,8 @@ var orgsStatsAssets OrgsStatsAssets
 var orgsStatsBgpPeers OrgsStatsBGPPeers
 
 var orgsStatsDevices OrgsStatsDevices
+
+var orgsStatsMarvisClients OrgsStatsMarvisClients
 
 var orgsStatsMxEdges OrgsStatsMxEdges
 
@@ -412,8 +416,6 @@ var utilitiesMxEdge UtilitiesMxEdge
 
 var utilitiesUpgrade UtilitiesUpgrade
 
-var orgsStatsMarvisClients OrgsStatsMarvisClients
-
 // init is an initialization function that sets up the controllers.
 // It creates a configuration from the environment with a specified HTTP configuration and initializes the client.
 // Then, it assigns the different controllers from the client to the corresponding variables for further use.
@@ -472,7 +474,8 @@ func init() {
 	orgsDeviceProfiles = *client.OrgsDeviceProfiles()
 	orgsDevices = *client.OrgsDevices()
 	orgsDevicesSsr = *client.OrgsDevicesSSR()
-	orgsDevicesAos = *client.OrgsDevicesAOS()
+	orgsDevicesAoscx = *client.OrgsDevicesAOSCX()
+	orgsDevicesEdgeConnect = *client.OrgsDevicesEdgeConnect()
 	orgsEvpnTopologies = *client.OrgsEVPNTopologies()
 	orgsIntegrationJuniper = *client.OrgsIntegrationJuniper()
 	orgsDevicesOthers = *client.OrgsDevicesOthers()
@@ -502,6 +505,7 @@ func init() {
 	orgsStatsAssets = *client.OrgsStatsAssets()
 	orgsStatsBgpPeers = *client.OrgsStatsBGPPeers()
 	orgsStatsDevices = *client.OrgsStatsDevices()
+	orgsStatsMarvisClients = *client.OrgsStatsMarvisClients()
 	orgsStatsMxEdges = *client.OrgsStatsMxEdges()
 	orgsStatsOspf = *client.OrgsStatsOspf()
 	orgsStatsOtherDevices = *client.OrgsStatsOtherDevices()
@@ -634,5 +638,4 @@ func init() {
 	utilitiesLocation = *client.UtilitiesLocation()
 	utilitiesMxEdge = *client.UtilitiesMxEdge()
 	utilitiesUpgrade = *client.UtilitiesUpgrade()
-	orgsStatsMarvisClients = *client.OrgsStatsMarvisClients()
 }

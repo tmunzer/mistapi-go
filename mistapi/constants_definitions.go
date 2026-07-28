@@ -416,6 +416,38 @@ func (c *ConstantsDefinitions) ListLicenseTypes(ctx context.Context) (
 	return models.NewApiResponse(result, resp), err
 }
 
+// ListMarvisClientEventsDefinitions takes context as parameters and
+// returns an models.ApiResponse with []models.ConstMarvisclientEvent data and
+// an error if there was an issue with the request or response.
+// Return Marvis Client event type definitions used by the Marvis Client event search and count APIs.
+func (c *ConstantsDefinitions) ListMarvisClientEventsDefinitions(ctx context.Context) (
+	models.ApiResponse[[]models.ConstMarvisclientEvent],
+	error) {
+	req := c.prepareRequest(ctx, "GET", "/api/v1/const/marvisclient_events")
+
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+	var result []models.ConstMarvisclientEvent
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[[]models.ConstMarvisclientEvent](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
 // ListMarvisClientVersions takes context as parameters and
 // returns an models.ApiResponse with []models.ConstMarvisClientVersion data and
 // an error if there was an issue with the request or response.
