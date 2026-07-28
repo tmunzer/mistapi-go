@@ -19,6 +19,7 @@ NAC portal configuration for 802.1X onboarding, guest access, or Marvis client c
 | `BgImageUrl` | `*string` | Optional | URL of the NAC portal background image |
 | `CertExpireTime` | `*int` | Optional | Validity duration for portal-issued client certificates, in days |
 | `EapType` | [`*models.NacPortalEapTypeEnum`](../../doc/models/nac-portal-eap-type-enum.md) | Optional | EAP mode used when onboarding wireless clients through the NAC portal. enum: `wpa2`, `wpa3`<br><br>**Default**: `"wpa2"` |
+| `EnableLocation` | `*bool` | Optional | Whether location data collection is enabled for devices onboarding through this NAC portal<br><br>**Default**: `false` |
 | `EnableTelemetry` | `*bool` | Optional | Model, version, fingering, events (connecting, disconnect, roaming), which ap |
 | `ExpiryNotificationTime` | `*int` | Optional | Number of days before certificate expiration to start sending reminder notifications |
 | `Id` | `*uuid.UUID` | Optional, Read-only | Unique ID of the object instance in the Mist Organization |
@@ -61,6 +62,7 @@ func main() {
         BgImageUrl:               models.ToPointer("bg_image_url4"),
         CertExpireTime:           models.ToPointer(365),
         EapType:                  models.ToPointer(models.NacPortalEapTypeEnum_WPA2),
+        EnableLocation:           models.ToPointer(false),
         Id:                       models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
         Name:                     models.ToPointer("get-wifi"),
         OrgId:                    models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),

@@ -10,7 +10,7 @@ import (
 // GwRoutingPolicyTermAction represents a GwRoutingPolicyTermAction struct.
 // Actions applied to routes matched by a gateway routing policy term
 type GwRoutingPolicyTermAction struct {
-	// Whether to accept routes that match this term
+	// Whether to accept routes that match this term. Precedence is `accept` > `next_term` > `next_policy`; routes are rejected if all three are false
 	Accept *bool `json:"accept,omitempty"`
 	// BGP communities added to routes matched by a gateway routing policy term
 	AddCommunity []string `json:"add_community,omitempty"`
@@ -26,6 +26,10 @@ type GwRoutingPolicyTermAction struct {
 	ExportCommunities []string `json:"export_communities,omitempty"`
 	// Optional, for an import policy, local_preference can be changed, value in range 1-4294967294. Can be a Variable (e.g. `{{bgp_as}}`)
 	LocalPreference *RoutingPolicyLocalPreference `json:"local_preference,omitempty"`
+	// When true, continue evaluating the next routing policy in the chain after this term matches; default is false
+	NextPolicy *bool `json:"next_policy,omitempty"`
+	// When true, continue evaluating the next term in the same routing policy after this term matches; default is false
+	NextTerm *bool `json:"next_term,omitempty"`
 	// When used as export policy, optional. By default, the local AS will be prepended, to change it. Can be a Variable (e.g. `{{as_path}}`)
 	PrependAsPath        []string               `json:"prepend_as_path,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -35,8 +39,8 @@ type GwRoutingPolicyTermAction struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (g GwRoutingPolicyTermAction) String() string {
 	return fmt.Sprintf(
-		"GwRoutingPolicyTermAction[Accept=%v, AddCommunity=%v, AddTargetVrfs=%v, Community=%v, ExcludeAsPath=%v, ExcludeCommunity=%v, ExportCommunities=%v, LocalPreference=%v, PrependAsPath=%v, AdditionalProperties=%v]",
-		g.Accept, g.AddCommunity, g.AddTargetVrfs, g.Community, g.ExcludeAsPath, g.ExcludeCommunity, g.ExportCommunities, g.LocalPreference, g.PrependAsPath, g.AdditionalProperties)
+		"GwRoutingPolicyTermAction[Accept=%v, AddCommunity=%v, AddTargetVrfs=%v, Community=%v, ExcludeAsPath=%v, ExcludeCommunity=%v, ExportCommunities=%v, LocalPreference=%v, NextPolicy=%v, NextTerm=%v, PrependAsPath=%v, AdditionalProperties=%v]",
+		g.Accept, g.AddCommunity, g.AddTargetVrfs, g.Community, g.ExcludeAsPath, g.ExcludeCommunity, g.ExportCommunities, g.LocalPreference, g.NextPolicy, g.NextTerm, g.PrependAsPath, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GwRoutingPolicyTermAction.
@@ -45,7 +49,7 @@ func (g GwRoutingPolicyTermAction) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(g.AdditionalProperties,
-		"accept", "add_community", "add_target_vrfs", "community", "exclude_as_path", "exclude_community", "export_communities", "local_preference", "prepend_as_path"); err != nil {
+		"accept", "add_community", "add_target_vrfs", "community", "exclude_as_path", "exclude_community", "export_communities", "local_preference", "next_policy", "next_term", "prepend_as_path"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(g.toMap())
@@ -79,6 +83,12 @@ func (g GwRoutingPolicyTermAction) toMap() map[string]any {
 	if g.LocalPreference != nil {
 		structMap["local_preference"] = g.LocalPreference.toMap()
 	}
+	if g.NextPolicy != nil {
+		structMap["next_policy"] = g.NextPolicy
+	}
+	if g.NextTerm != nil {
+		structMap["next_term"] = g.NextTerm
+	}
 	if g.PrependAsPath != nil {
 		structMap["prepend_as_path"] = g.PrependAsPath
 	}
@@ -93,7 +103,7 @@ func (g *GwRoutingPolicyTermAction) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accept", "add_community", "add_target_vrfs", "community", "exclude_as_path", "exclude_community", "export_communities", "local_preference", "prepend_as_path")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accept", "add_community", "add_target_vrfs", "community", "exclude_as_path", "exclude_community", "export_communities", "local_preference", "next_policy", "next_term", "prepend_as_path")
 	if err != nil {
 		return err
 	}
@@ -107,6 +117,8 @@ func (g *GwRoutingPolicyTermAction) UnmarshalJSON(input []byte) error {
 	g.ExcludeCommunity = temp.ExcludeCommunity
 	g.ExportCommunities = temp.ExportCommunities
 	g.LocalPreference = temp.LocalPreference
+	g.NextPolicy = temp.NextPolicy
+	g.NextTerm = temp.NextTerm
 	g.PrependAsPath = temp.PrependAsPath
 	return nil
 }
@@ -121,5 +133,7 @@ type tempGwRoutingPolicyTermAction struct {
 	ExcludeCommunity  []string                      `json:"exclude_community,omitempty"`
 	ExportCommunities []string                      `json:"export_communities,omitempty"`
 	LocalPreference   *RoutingPolicyLocalPreference `json:"local_preference,omitempty"`
+	NextPolicy        *bool                         `json:"next_policy,omitempty"`
+	NextTerm          *bool                         `json:"next_term,omitempty"`
 	PrependAsPath     []string                      `json:"prepend_as_path,omitempty"`
 }

@@ -20,8 +20,8 @@ Site device upgrade request
 | `MaxFailurePercentage` | `*int` | Optional | If `strategy`!=`big_bang`. percentage of failures allowed across the entire upgrade<br><br>**Default**: `5`<br><br>**Constraints**: `>= 0`, `<= 100` |
 | `MaxFailures` | `[]int` | Optional | If `strategy`==`canary`. Number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used |
 | `Models` | `[]string` | Optional | Models which will be selected for upgrade |
-| `P2pClusterSize` | `*int` | Optional | For APs only and if `enable_p2p`==`true`.<br><br>**Default**: `10`<br><br>**Constraints**: `>= 0` |
-| `P2pParallelism` | `*int` | Optional | For APs only and if `enable_p2p`==`true`. Number of parallel p2p download batches to create |
+| `P2pClusterSize` | `*int` | Optional | For APs only and if `enable_p2p`==`true`. Size to split devices for peer-to-peer download batches; default 10<br><br>**Default**: `10`<br><br>**Constraints**: `>= 0` |
+| `P2pParallelism` | `*int` | Optional | For APs only and if `enable_p2p`==`true`. Number of parallel peer-to-peer download batches to create. If not set, automatically determined based on device count (<=50 uses 1, 51-100 uses 3, >100 uses 10) |
 | `Reboot` | `*bool` | Optional | For Switches and Gateways only (APs are automatically rebooted). Reboot device immediately after upgrade is completed<br><br>**Default**: `false` |
 | `RebootAt` | `*int` | Optional | For Switches and Gateways only and if `reboot`==`true`. Reboot start time in epoch seconds, default is `start_time` |
 | `RrmFirstBatchPercentage` | `*int` | Optional | For APs only and if `strategy`==`rrm`. Percentage of APs that need to be present in the first RRM batch |
@@ -55,7 +55,7 @@ func main() {
         EnableP2p:               models.ToPointer(false),
         Force:                   models.ToPointer(false),
         MaxFailurePercentage:    models.ToPointer(5),
-        P2pClusterSize:          models.ToPointer(0),
+        P2pClusterSize:          models.ToPointer(10),
         Reboot:                  models.ToPointer(false),
         RebootAt:                models.ToPointer(1624399840),
         RrmFirstBatchPercentage: models.ToPointer(2),

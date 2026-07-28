@@ -35,6 +35,8 @@ type DeviceAp struct {
 	DisableEth3 *bool `json:"disable_eth3,omitempty"`
 	// Whether to disable module port
 	DisableModule *bool `json:"disable_module,omitempty"`
+	// Whether U-NII-4 channels (169, 173, 177) are enabled on this access point
+	EnableUnii4 *bool `json:"enable_unii_4,omitempty"`
 	// Electronic shelf label integration settings for an AP
 	EslConfig *ApEslConfig `json:"esl_config,omitempty"`
 	// For some AP models, flow_control can be enabled to address some switch compatibility issue
@@ -71,7 +73,7 @@ type DeviceAp struct {
 	Model *string `json:"model,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// MQTT broker publishing settings for an AP; use `mqtt_topic` on individual AssetFilter entries to specify which MQTT topic each matching BLE advertisement is forwarded to
+	// MQTT publishing configuration for an AP. Use `mqtt_topic` on individual AssetFilter entries to specify which MQTT topic each matching BLE advertisement is forwarded to. Only AssetFilters with `mqtt_topic` set are used; disabled filters and filters without `mqtt_topic` are skipped. Set `default_topic` to publish advertisements that match no AssetFilter to a catch-all topic, allowing MQTT to be used without configuring any AssetFilter.
 	MqttConfig *ApMqtt `json:"mqtt_config,omitempty"`
 	// Configured hostname assigned to the access point
 	Name *string `json:"name,omitempty"`
@@ -103,6 +105,8 @@ type DeviceAp struct {
 	// - Note: if native imagotag is enabled, BLE will be disabled automatically
 	// - Note: legacy, new config moved to ESL Config.
 	UsbConfig *ApUsb `json:"usb_config,omitempty"`
+	// Ultra-wideband (UWB) RTLS / OMLOX asset-visibility integration settings for an access point. The device-level value overrides the device profile value, which in turn overrides the site-level setting.
+	UwbConfig *ApUwbConfig `json:"uwb_config,omitempty"`
 	// Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
 	Vars map[string]string `json:"vars,omitempty"`
 	// Horizontal map position of the AP, in pixels
@@ -118,8 +122,8 @@ type DeviceAp struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (d DeviceAp) String() string {
 	return fmt.Sprintf(
-		"DeviceAp[Aeroscout=%v, Airista=%v, BleConfig=%v, Centrak=%v, ClientBridge=%v, CreatedTime=%v, DeviceprofileId=%v, DisableEth1=%v, DisableEth2=%v, DisableEth3=%v, DisableModule=%v, EslConfig=%v, FlowControl=%v, ForSite=%v, Height=%v, Id=%v, Image1Url=%v, Image2Url=%v, Image3Url=%v, IotConfig=%v, IpConfig=%v, LacpConfig=%v, Led=%v, Locked=%v, Mac=%v, MapId=%v, Mesh=%v, Model=%v, ModifiedTime=%v, MqttConfig=%v, Name=%v, Notes=%v, NtpServers=%v, OrgId=%v, Orientation=%v, PoePassthrough=%v, PortConfig=%v, PwrConfig=%v, RadioConfig=%v, Serial=%v, SiteId=%v, Type=%v, UplinkPortConfig=%v, UsbConfig=%v, Vars=%v, X=%v, Y=%v, ZigbeeConfig=%v, AdditionalProperties=%v]",
-		d.Aeroscout, d.Airista, d.BleConfig, d.Centrak, d.ClientBridge, d.CreatedTime, d.DeviceprofileId, d.DisableEth1, d.DisableEth2, d.DisableEth3, d.DisableModule, d.EslConfig, d.FlowControl, d.ForSite, d.Height, d.Id, d.Image1Url, d.Image2Url, d.Image3Url, d.IotConfig, d.IpConfig, d.LacpConfig, d.Led, d.Locked, d.Mac, d.MapId, d.Mesh, d.Model, d.ModifiedTime, d.MqttConfig, d.Name, d.Notes, d.NtpServers, d.OrgId, d.Orientation, d.PoePassthrough, d.PortConfig, d.PwrConfig, d.RadioConfig, d.Serial, d.SiteId, d.Type, d.UplinkPortConfig, d.UsbConfig, d.Vars, d.X, d.Y, d.ZigbeeConfig, d.AdditionalProperties)
+		"DeviceAp[Aeroscout=%v, Airista=%v, BleConfig=%v, Centrak=%v, ClientBridge=%v, CreatedTime=%v, DeviceprofileId=%v, DisableEth1=%v, DisableEth2=%v, DisableEth3=%v, DisableModule=%v, EnableUnii4=%v, EslConfig=%v, FlowControl=%v, ForSite=%v, Height=%v, Id=%v, Image1Url=%v, Image2Url=%v, Image3Url=%v, IotConfig=%v, IpConfig=%v, LacpConfig=%v, Led=%v, Locked=%v, Mac=%v, MapId=%v, Mesh=%v, Model=%v, ModifiedTime=%v, MqttConfig=%v, Name=%v, Notes=%v, NtpServers=%v, OrgId=%v, Orientation=%v, PoePassthrough=%v, PortConfig=%v, PwrConfig=%v, RadioConfig=%v, Serial=%v, SiteId=%v, Type=%v, UplinkPortConfig=%v, UsbConfig=%v, UwbConfig=%v, Vars=%v, X=%v, Y=%v, ZigbeeConfig=%v, AdditionalProperties=%v]",
+		d.Aeroscout, d.Airista, d.BleConfig, d.Centrak, d.ClientBridge, d.CreatedTime, d.DeviceprofileId, d.DisableEth1, d.DisableEth2, d.DisableEth3, d.DisableModule, d.EnableUnii4, d.EslConfig, d.FlowControl, d.ForSite, d.Height, d.Id, d.Image1Url, d.Image2Url, d.Image3Url, d.IotConfig, d.IpConfig, d.LacpConfig, d.Led, d.Locked, d.Mac, d.MapId, d.Mesh, d.Model, d.ModifiedTime, d.MqttConfig, d.Name, d.Notes, d.NtpServers, d.OrgId, d.Orientation, d.PoePassthrough, d.PortConfig, d.PwrConfig, d.RadioConfig, d.Serial, d.SiteId, d.Type, d.UplinkPortConfig, d.UsbConfig, d.UwbConfig, d.Vars, d.X, d.Y, d.ZigbeeConfig, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceAp.
@@ -128,7 +132,7 @@ func (d DeviceAp) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(d.AdditionalProperties,
-		"aeroscout", "airista", "ble_config", "centrak", "client_bridge", "created_time", "deviceprofile_id", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "flow_control", "for_site", "height", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "lacp_config", "led", "locked", "mac", "map_id", "mesh", "model", "modified_time", "mqtt_config", "name", "notes", "ntp_servers", "org_id", "orientation", "poe_passthrough", "port_config", "pwr_config", "radio_config", "serial", "site_id", "type", "uplink_port_config", "usb_config", "vars", "x", "y", "zigbee_config"); err != nil {
+		"aeroscout", "airista", "ble_config", "centrak", "client_bridge", "created_time", "deviceprofile_id", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "enable_unii_4", "esl_config", "flow_control", "for_site", "height", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "lacp_config", "led", "locked", "mac", "map_id", "mesh", "model", "modified_time", "mqtt_config", "name", "notes", "ntp_servers", "org_id", "orientation", "poe_passthrough", "port_config", "pwr_config", "radio_config", "serial", "site_id", "type", "uplink_port_config", "usb_config", "uwb_config", "vars", "x", "y", "zigbee_config"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(d.toMap())
@@ -174,6 +178,9 @@ func (d DeviceAp) toMap() map[string]any {
 	}
 	if d.DisableModule != nil {
 		structMap["disable_module"] = d.DisableModule
+	}
+	if d.EnableUnii4 != nil {
+		structMap["enable_unii_4"] = d.EnableUnii4
 	}
 	if d.EslConfig != nil {
 		structMap["esl_config"] = d.EslConfig.toMap()
@@ -284,6 +291,9 @@ func (d DeviceAp) toMap() map[string]any {
 	if d.UsbConfig != nil {
 		structMap["usb_config"] = d.UsbConfig.toMap()
 	}
+	if d.UwbConfig != nil {
+		structMap["uwb_config"] = d.UwbConfig.toMap()
+	}
 	if d.Vars != nil {
 		structMap["vars"] = d.Vars
 	}
@@ -311,7 +321,7 @@ func (d *DeviceAp) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aeroscout", "airista", "ble_config", "centrak", "client_bridge", "created_time", "deviceprofile_id", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "flow_control", "for_site", "height", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "lacp_config", "led", "locked", "mac", "map_id", "mesh", "model", "modified_time", "mqtt_config", "name", "notes", "ntp_servers", "org_id", "orientation", "poe_passthrough", "port_config", "pwr_config", "radio_config", "serial", "site_id", "type", "uplink_port_config", "usb_config", "vars", "x", "y", "zigbee_config")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aeroscout", "airista", "ble_config", "centrak", "client_bridge", "created_time", "deviceprofile_id", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "enable_unii_4", "esl_config", "flow_control", "for_site", "height", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "lacp_config", "led", "locked", "mac", "map_id", "mesh", "model", "modified_time", "mqtt_config", "name", "notes", "ntp_servers", "org_id", "orientation", "poe_passthrough", "port_config", "pwr_config", "radio_config", "serial", "site_id", "type", "uplink_port_config", "usb_config", "uwb_config", "vars", "x", "y", "zigbee_config")
 	if err != nil {
 		return err
 	}
@@ -328,6 +338,7 @@ func (d *DeviceAp) UnmarshalJSON(input []byte) error {
 	d.DisableEth2 = temp.DisableEth2
 	d.DisableEth3 = temp.DisableEth3
 	d.DisableModule = temp.DisableModule
+	d.EnableUnii4 = temp.EnableUnii4
 	d.EslConfig = temp.EslConfig
 	d.FlowControl = temp.FlowControl
 	d.ForSite = temp.ForSite
@@ -361,6 +372,7 @@ func (d *DeviceAp) UnmarshalJSON(input []byte) error {
 	d.Type = *temp.Type
 	d.UplinkPortConfig = temp.UplinkPortConfig
 	d.UsbConfig = temp.UsbConfig
+	d.UwbConfig = temp.UwbConfig
 	d.Vars = temp.Vars
 	d.X = temp.X
 	d.Y = temp.Y
@@ -381,6 +393,7 @@ type tempDeviceAp struct {
 	DisableEth2      *bool                   `json:"disable_eth2,omitempty"`
 	DisableEth3      *bool                   `json:"disable_eth3,omitempty"`
 	DisableModule    *bool                   `json:"disable_module,omitempty"`
+	EnableUnii4      *bool                   `json:"enable_unii_4,omitempty"`
 	EslConfig        *ApEslConfig            `json:"esl_config,omitempty"`
 	FlowControl      *bool                   `json:"flow_control,omitempty"`
 	ForSite          *bool                   `json:"for_site,omitempty"`
@@ -414,6 +427,7 @@ type tempDeviceAp struct {
 	Type             *string                 `json:"type"`
 	UplinkPortConfig *ApUplinkPortConfig     `json:"uplink_port_config,omitempty"`
 	UsbConfig        *ApUsb                  `json:"usb_config,omitempty"`
+	UwbConfig        *ApUwbConfig            `json:"uwb_config,omitempty"`
 	Vars             map[string]string       `json:"vars,omitempty"`
 	X                *float64                `json:"x,omitempty"`
 	Y                *float64                `json:"y,omitempty"`

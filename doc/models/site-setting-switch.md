@@ -25,6 +25,7 @@ Site switch settings combining a network template and auto-upgrade controls
 | `ImportOrgNetworks` | `[]string` | Optional | Org Networks that we'd like to import |
 | `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | Mist NAC RadSec settings for a switch |
 | `ModifiedTime` | `*float64` | Optional, Read-only | When the object has been modified for the last time, in epoch |
+| `MulticastConfig` | [`*models.SwitchMulticastConfig`](../../doc/models/switch-multicast-config.md) | Optional | Multicast configuration for a VRF. When set at the network template level it applies to networks in the master VRF (not assigned to any vrf_instances). PIM is automatically enabled when any network in the VRF has `multicast.enabled`==`true`. |
 | `Name` | `*string` | Optional | Display name of the network template |
 | `Networks` | [`map[string]models.SwitchNetwork`](../../doc/models/switch-network.md) | Optional | Property key is network name |
 | `NtpServers` | `[]string` | Optional | List of NTP servers specific to this device. By default, those in Site Settings will be used |
@@ -63,6 +64,7 @@ func main() {
                         DstTag:               "dst_tag0",
                     },
                 },
+                Disabled:             models.ToPointer(false),
                 Name:                 models.ToPointer("name2"),
                 SrcTags:              []string{
                     "src_tags1",
@@ -76,6 +78,7 @@ func main() {
                         DstTag:               "dst_tag0",
                     },
                 },
+                Disabled:             models.ToPointer(false),
                 Name:                 models.ToPointer("name2"),
                 SrcTags:              []string{
                     "src_tags1",
@@ -95,7 +98,7 @@ func main() {
                 },
                 Network:              models.ToPointer("network2"),
                 PortUsage:            models.ToPointer("port_usage0"),
-                Type:                 models.AclTagTypeEnum_NETWORK,
+                Type:                 models.AclTagTypeEnum_ANY,
             },
         },
         AdditionalConfigCmds:  []string{

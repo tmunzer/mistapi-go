@@ -10,6 +10,8 @@ import (
 // Snmpv3ConfigNotifyFilterItem represents a Snmpv3ConfigNotifyFilterItem struct.
 // SNMPv3 notification filter profile
 type Snmpv3ConfigNotifyFilterItem struct {
+	// List of SNMP trap group category names for a CX notification filter profile
+	Categories []string `json:"categories,omitempty"`
 	// OID filter rules in an SNMPv3 notification filter profile
 	Contents []Snmpv3ConfigNotifyFilterItemContent `json:"contents,omitempty"`
 	// Notification filter profile name
@@ -21,8 +23,8 @@ type Snmpv3ConfigNotifyFilterItem struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s Snmpv3ConfigNotifyFilterItem) String() string {
 	return fmt.Sprintf(
-		"Snmpv3ConfigNotifyFilterItem[Contents=%v, ProfileName=%v, AdditionalProperties=%v]",
-		s.Contents, s.ProfileName, s.AdditionalProperties)
+		"Snmpv3ConfigNotifyFilterItem[Categories=%v, Contents=%v, ProfileName=%v, AdditionalProperties=%v]",
+		s.Categories, s.Contents, s.ProfileName, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Snmpv3ConfigNotifyFilterItem.
@@ -31,7 +33,7 @@ func (s Snmpv3ConfigNotifyFilterItem) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"contents", "profile_name"); err != nil {
+		"categories", "contents", "profile_name"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -41,6 +43,9 @@ func (s Snmpv3ConfigNotifyFilterItem) MarshalJSON() (
 func (s Snmpv3ConfigNotifyFilterItem) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
+	if s.Categories != nil {
+		structMap["categories"] = s.Categories
+	}
 	if s.Contents != nil {
 		structMap["contents"] = s.Contents
 	}
@@ -58,12 +63,13 @@ func (s *Snmpv3ConfigNotifyFilterItem) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "contents", "profile_name")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "categories", "contents", "profile_name")
 	if err != nil {
 		return err
 	}
 	s.AdditionalProperties = additionalProperties
 
+	s.Categories = temp.Categories
 	s.Contents = temp.Contents
 	s.ProfileName = temp.ProfileName
 	return nil
@@ -71,6 +77,7 @@ func (s *Snmpv3ConfigNotifyFilterItem) UnmarshalJSON(input []byte) error {
 
 // tempSnmpv3ConfigNotifyFilterItem is a temporary struct used for validating the fields of Snmpv3ConfigNotifyFilterItem.
 type tempSnmpv3ConfigNotifyFilterItem struct {
+	Categories  []string                              `json:"categories,omitempty"`
 	Contents    []Snmpv3ConfigNotifyFilterItemContent `json:"contents,omitempty"`
 	ProfileName *string                               `json:"profile_name,omitempty"`
 }

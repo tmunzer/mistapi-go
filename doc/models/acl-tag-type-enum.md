@@ -4,6 +4,7 @@
 enum:
 
 * `any`: matching anything not identified
+* `aruba_user_role`: Aruba user role matched via `radius_group`
 * `dynamic_gbp`: from the gbp_tag received from RADIUS
 * `gbp_resource`: can only be used in `dst_tags`
 * `mac`
@@ -23,6 +24,7 @@ enum:
 | Name |
 |  --- |
 | `any` |
+| `aruba_user_role` |
 | `dynamic_gbp` |
 | `gbp_resource` |
 | `mac` |
@@ -43,7 +45,7 @@ import (
 )
 
 func main() {
-    aclTagType := models.AclTagTypeEnum_GBPRESOURCE
+    aclTagType := models.AclTagTypeEnum_RESOURCE
 
 }
 ```

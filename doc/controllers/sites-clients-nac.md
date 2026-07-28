@@ -174,7 +174,7 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 | `lastStatus` | `*string` | Query, Optional | Connection status of client i.e "permitted", "denied, "session_ended" |
 | `mType` | `*string` | Query, Optional | Client type i.e. "wireless", "wired" etc. |
 | `mdmComplianceStatus` | `*string` | Query, Optional | MDM compliance of client i.e "compliant", "not compliant" |
-| `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg "intune", "jamf" |
+| `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organization eg "intune", "jamf" |
 | `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
 | `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
 | `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
@@ -601,8 +601,12 @@ if err != nil {
         "10.7.51.74"
       ],
       "edr_managed": true,
-      "edr_provider": "sentinelone",
-      "edr_status": "sentinelone_healthy",
+      "edr_providers": [
+        "sentinelone"
+      ],
+      "edr_status": [
+        "sentinelone_healthy"
+      ],
       "idp_id": "string",
       "idp_role": [
         "string"

@@ -13,6 +13,8 @@ import (
 type InventorySearchResult struct {
 	// Device MAC address for this inventory search result
 	Mac *string `json:"mac,omitempty"`
+	// Device claim code (magic) for this inventory search result
+	Magic *string `json:"magic,omitempty"`
 	// Whether this search result represents the master member of a Virtual Chassis
 	Master *bool `json:"master,omitempty"`
 	// Virtual Chassis members included in an inventory search result
@@ -44,8 +46,8 @@ type InventorySearchResult struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (i InventorySearchResult) String() string {
 	return fmt.Sprintf(
-		"InventorySearchResult[Mac=%v, Master=%v, Members=%v, Model=%v, Name=%v, OrgId=%v, Serial=%v, SiteId=%v, Sku=%v, Status=%v, Type=%v, VcMac=%v, Version=%v, AdditionalProperties=%v]",
-		i.Mac, i.Master, i.Members, i.Model, i.Name, i.OrgId, i.Serial, i.SiteId, i.Sku, i.Status, i.Type, i.VcMac, i.Version, i.AdditionalProperties)
+		"InventorySearchResult[Mac=%v, Magic=%v, Master=%v, Members=%v, Model=%v, Name=%v, OrgId=%v, Serial=%v, SiteId=%v, Sku=%v, Status=%v, Type=%v, VcMac=%v, Version=%v, AdditionalProperties=%v]",
+		i.Mac, i.Magic, i.Master, i.Members, i.Model, i.Name, i.OrgId, i.Serial, i.SiteId, i.Sku, i.Status, i.Type, i.VcMac, i.Version, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for InventorySearchResult.
@@ -54,7 +56,7 @@ func (i InventorySearchResult) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(i.AdditionalProperties,
-		"mac", "master", "members", "model", "name", "org_id", "serial", "site_id", "sku", "status", "type", "vc_mac", "version"); err != nil {
+		"mac", "magic", "master", "members", "model", "name", "org_id", "serial", "site_id", "sku", "status", "type", "vc_mac", "version"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(i.toMap())
@@ -66,6 +68,9 @@ func (i InventorySearchResult) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, i.AdditionalProperties)
 	if i.Mac != nil {
 		structMap["mac"] = i.Mac
+	}
+	if i.Magic != nil {
+		structMap["magic"] = i.Magic
 	}
 	if i.Master != nil {
 		structMap["master"] = i.Master
@@ -114,13 +119,14 @@ func (i *InventorySearchResult) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "master", "members", "model", "name", "org_id", "serial", "site_id", "sku", "status", "type", "vc_mac", "version")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "magic", "master", "members", "model", "name", "org_id", "serial", "site_id", "sku", "status", "type", "vc_mac", "version")
 	if err != nil {
 		return err
 	}
 	i.AdditionalProperties = additionalProperties
 
 	i.Mac = temp.Mac
+	i.Magic = temp.Magic
 	i.Master = temp.Master
 	i.Members = temp.Members
 	i.Model = temp.Model
@@ -139,6 +145,7 @@ func (i *InventorySearchResult) UnmarshalJSON(input []byte) error {
 // tempInventorySearchResult is a temporary struct used for validating the fields of InventorySearchResult.
 type tempInventorySearchResult struct {
 	Mac     *string                       `json:"mac,omitempty"`
+	Magic   *string                       `json:"magic,omitempty"`
 	Master  *bool                         `json:"master,omitempty"`
 	Members []InventorySearchResultMember `json:"members,omitempty"`
 	Model   *string                       `json:"model,omitempty"`

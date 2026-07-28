@@ -17,8 +17,12 @@ type JsInventoryItem struct {
 	Claimed *bool `json:"claimed,omitempty"`
 	// Expiration date of the service contract; only returned for onboarded (claimed) devices
 	ContractEndDate *string `json:"contract_end_date,omitempty"`
+	// Unique identifier of the service contract; only returned for onboarded (claimed) devices
+	ContractId *string `json:"contract_id,omitempty"`
 	// Name of the reseller associated with the contract; only returned for onboarded (claimed) devices
 	ContractReseller *string `json:"contract_reseller,omitempty"`
+	// SKU associated with the service contract; only returned for onboarded (claimed) devices
+	ContractSku *string `json:"contract_sku,omitempty"`
 	// Official commencement date of the service contract; only returned for onboarded (claimed) devices
 	ContractStartDate *string `json:"contract_start_date,omitempty"`
 	// General classification of the contract; only returned for onboarded (claimed) devices
@@ -31,6 +35,8 @@ type JsInventoryItem struct {
 	Distributor *string `json:"distributor,omitempty"`
 	// End of sale epoch timestamp
 	EndOfSaleTime *int `json:"end_of_sale_time,omitempty"`
+	// End of service epoch timestamp
+	EndOfServiceTime *int `json:"end_of_service_time,omitempty"`
 	// Product support notice associated with the device end-of-life milestone
 	EolPsn *string `json:"eol_psn,omitempty"`
 	// End of support time
@@ -69,6 +75,8 @@ type JsInventoryItem struct {
 	Status *string `json:"status,omitempty"`
 	// Recommended software version for the device
 	SuggestedVersion *string `json:"suggested_version,omitempty"`
+	// Service contract status. enum: `Active`, `Declined`, `EOL`, `Service Available`
+	SupportContractStatus *SupportContractStatusEnum `json:"support_contract_status,omitempty"`
 	// enum: `ap`, `gateway`, `switch`
 	Type *DeviceTypeEnum `json:"type,omitempty"`
 	// Software version currently running on the device
@@ -96,8 +104,8 @@ type JsInventoryItem struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (j JsInventoryItem) String() string {
 	return fmt.Sprintf(
-		"JsInventoryItem[Availability=%v, Claimed=%v, ContractEndDate=%v, ContractReseller=%v, ContractStartDate=%v, ContractType=%v, CurrentContractFlag=%v, DeviceName=%v, Distributor=%v, EndOfSaleTime=%v, EolPsn=%v, EosTime=%v, HasSupport=%v, IaAddress=%v, IaCountry=%v, IaRegion=%v, IaZipPostal=%v, Master=%v, Model=%v, OrgId=%v, Serial=%v, ServiceContractNo=%v, ServiceContractType=%v, ServiceDeclineFlag=%v, ServiceEligible=%v, ShipDateCalc=%v, Sku=%v, Status=%v, SuggestedVersion=%v, Type=%v, Version=%v, VersionDescription=%v, VersionEosTime=%v, VersionTime=%v, Warranty=%v, WarrantyEnd=%v, WarrantyStart=%v, WarrantyTime=%v, WarrantyType=%v, AdditionalProperties=%v]",
-		j.Availability, j.Claimed, j.ContractEndDate, j.ContractReseller, j.ContractStartDate, j.ContractType, j.CurrentContractFlag, j.DeviceName, j.Distributor, j.EndOfSaleTime, j.EolPsn, j.EosTime, j.HasSupport, j.IaAddress, j.IaCountry, j.IaRegion, j.IaZipPostal, j.Master, j.Model, j.OrgId, j.Serial, j.ServiceContractNo, j.ServiceContractType, j.ServiceDeclineFlag, j.ServiceEligible, j.ShipDateCalc, j.Sku, j.Status, j.SuggestedVersion, j.Type, j.Version, j.VersionDescription, j.VersionEosTime, j.VersionTime, j.Warranty, j.WarrantyEnd, j.WarrantyStart, j.WarrantyTime, j.WarrantyType, j.AdditionalProperties)
+		"JsInventoryItem[Availability=%v, Claimed=%v, ContractEndDate=%v, ContractId=%v, ContractReseller=%v, ContractSku=%v, ContractStartDate=%v, ContractType=%v, CurrentContractFlag=%v, DeviceName=%v, Distributor=%v, EndOfSaleTime=%v, EndOfServiceTime=%v, EolPsn=%v, EosTime=%v, HasSupport=%v, IaAddress=%v, IaCountry=%v, IaRegion=%v, IaZipPostal=%v, Master=%v, Model=%v, OrgId=%v, Serial=%v, ServiceContractNo=%v, ServiceContractType=%v, ServiceDeclineFlag=%v, ServiceEligible=%v, ShipDateCalc=%v, Sku=%v, Status=%v, SuggestedVersion=%v, SupportContractStatus=%v, Type=%v, Version=%v, VersionDescription=%v, VersionEosTime=%v, VersionTime=%v, Warranty=%v, WarrantyEnd=%v, WarrantyStart=%v, WarrantyTime=%v, WarrantyType=%v, AdditionalProperties=%v]",
+		j.Availability, j.Claimed, j.ContractEndDate, j.ContractId, j.ContractReseller, j.ContractSku, j.ContractStartDate, j.ContractType, j.CurrentContractFlag, j.DeviceName, j.Distributor, j.EndOfSaleTime, j.EndOfServiceTime, j.EolPsn, j.EosTime, j.HasSupport, j.IaAddress, j.IaCountry, j.IaRegion, j.IaZipPostal, j.Master, j.Model, j.OrgId, j.Serial, j.ServiceContractNo, j.ServiceContractType, j.ServiceDeclineFlag, j.ServiceEligible, j.ShipDateCalc, j.Sku, j.Status, j.SuggestedVersion, j.SupportContractStatus, j.Type, j.Version, j.VersionDescription, j.VersionEosTime, j.VersionTime, j.Warranty, j.WarrantyEnd, j.WarrantyStart, j.WarrantyTime, j.WarrantyType, j.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for JsInventoryItem.
@@ -106,7 +114,7 @@ func (j JsInventoryItem) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(j.AdditionalProperties,
-		"availability", "claimed", "contract_end_date", "contract_reseller", "contract_start_date", "contract_type", "current_contract_flag", "device_name", "distributor", "end_of_sale_time", "eol_psn", "eos_time", "has_support", "ia_address", "ia_country", "ia_region", "ia_zip_postal", "master", "model", "org_id", "serial", "service_contract_no", "service_contract_type", "service_decline_flag", "service_eligible", "ship_date_calc", "sku", "status", "suggested_version", "type", "version", "version_description", "version_eos_time", "version_time", "warranty", "warranty_end", "warranty_start", "warranty_time", "warranty_type"); err != nil {
+		"availability", "claimed", "contract_end_date", "contract_id", "contract_reseller", "contract_sku", "contract_start_date", "contract_type", "current_contract_flag", "device_name", "distributor", "end_of_sale_time", "end_of_service_time", "eol_psn", "eos_time", "has_support", "ia_address", "ia_country", "ia_region", "ia_zip_postal", "master", "model", "org_id", "serial", "service_contract_no", "service_contract_type", "service_decline_flag", "service_eligible", "ship_date_calc", "sku", "status", "suggested_version", "support_contract_status", "type", "version", "version_description", "version_eos_time", "version_time", "warranty", "warranty_end", "warranty_start", "warranty_time", "warranty_type"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(j.toMap())
@@ -125,8 +133,14 @@ func (j JsInventoryItem) toMap() map[string]any {
 	if j.ContractEndDate != nil {
 		structMap["contract_end_date"] = j.ContractEndDate
 	}
+	if j.ContractId != nil {
+		structMap["contract_id"] = j.ContractId
+	}
 	if j.ContractReseller != nil {
 		structMap["contract_reseller"] = j.ContractReseller
+	}
+	if j.ContractSku != nil {
+		structMap["contract_sku"] = j.ContractSku
 	}
 	if j.ContractStartDate != nil {
 		structMap["contract_start_date"] = j.ContractStartDate
@@ -145,6 +159,9 @@ func (j JsInventoryItem) toMap() map[string]any {
 	}
 	if j.EndOfSaleTime != nil {
 		structMap["end_of_sale_time"] = j.EndOfSaleTime
+	}
+	if j.EndOfServiceTime != nil {
+		structMap["end_of_service_time"] = j.EndOfServiceTime
 	}
 	if j.EolPsn != nil {
 		structMap["eol_psn"] = j.EolPsn
@@ -203,6 +220,9 @@ func (j JsInventoryItem) toMap() map[string]any {
 	if j.SuggestedVersion != nil {
 		structMap["suggested_version"] = j.SuggestedVersion
 	}
+	if j.SupportContractStatus != nil {
+		structMap["support_contract_status"] = j.SupportContractStatus
+	}
 	if j.Type != nil {
 		structMap["type"] = j.Type
 	}
@@ -244,7 +264,7 @@ func (j *JsInventoryItem) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "availability", "claimed", "contract_end_date", "contract_reseller", "contract_start_date", "contract_type", "current_contract_flag", "device_name", "distributor", "end_of_sale_time", "eol_psn", "eos_time", "has_support", "ia_address", "ia_country", "ia_region", "ia_zip_postal", "master", "model", "org_id", "serial", "service_contract_no", "service_contract_type", "service_decline_flag", "service_eligible", "ship_date_calc", "sku", "status", "suggested_version", "type", "version", "version_description", "version_eos_time", "version_time", "warranty", "warranty_end", "warranty_start", "warranty_time", "warranty_type")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "availability", "claimed", "contract_end_date", "contract_id", "contract_reseller", "contract_sku", "contract_start_date", "contract_type", "current_contract_flag", "device_name", "distributor", "end_of_sale_time", "end_of_service_time", "eol_psn", "eos_time", "has_support", "ia_address", "ia_country", "ia_region", "ia_zip_postal", "master", "model", "org_id", "serial", "service_contract_no", "service_contract_type", "service_decline_flag", "service_eligible", "ship_date_calc", "sku", "status", "suggested_version", "support_contract_status", "type", "version", "version_description", "version_eos_time", "version_time", "warranty", "warranty_end", "warranty_start", "warranty_time", "warranty_type")
 	if err != nil {
 		return err
 	}
@@ -253,13 +273,16 @@ func (j *JsInventoryItem) UnmarshalJSON(input []byte) error {
 	j.Availability = temp.Availability
 	j.Claimed = temp.Claimed
 	j.ContractEndDate = temp.ContractEndDate
+	j.ContractId = temp.ContractId
 	j.ContractReseller = temp.ContractReseller
+	j.ContractSku = temp.ContractSku
 	j.ContractStartDate = temp.ContractStartDate
 	j.ContractType = temp.ContractType
 	j.CurrentContractFlag = temp.CurrentContractFlag
 	j.DeviceName = temp.DeviceName
 	j.Distributor = temp.Distributor
 	j.EndOfSaleTime = temp.EndOfSaleTime
+	j.EndOfServiceTime = temp.EndOfServiceTime
 	j.EolPsn = temp.EolPsn
 	j.EosTime = temp.EosTime
 	j.HasSupport = temp.HasSupport
@@ -279,6 +302,7 @@ func (j *JsInventoryItem) UnmarshalJSON(input []byte) error {
 	j.Sku = temp.Sku
 	j.Status = temp.Status
 	j.SuggestedVersion = temp.SuggestedVersion
+	j.SupportContractStatus = temp.SupportContractStatus
 	j.Type = temp.Type
 	j.Version = temp.Version
 	j.VersionDescription = temp.VersionDescription
@@ -294,43 +318,47 @@ func (j *JsInventoryItem) UnmarshalJSON(input []byte) error {
 
 // tempJsInventoryItem is a temporary struct used for validating the fields of JsInventoryItem.
 type tempJsInventoryItem struct {
-	Availability        *string              `json:"availability,omitempty"`
-	Claimed             *bool                `json:"claimed,omitempty"`
-	ContractEndDate     *string              `json:"contract_end_date,omitempty"`
-	ContractReseller    *string              `json:"contract_reseller,omitempty"`
-	ContractStartDate   *string              `json:"contract_start_date,omitempty"`
-	ContractType        *string              `json:"contract_type,omitempty"`
-	CurrentContractFlag *string              `json:"current_contract_flag,omitempty"`
-	DeviceName          *string              `json:"device_name,omitempty"`
-	Distributor         *string              `json:"distributor,omitempty"`
-	EndOfSaleTime       *int                 `json:"end_of_sale_time,omitempty"`
-	EolPsn              *string              `json:"eol_psn,omitempty"`
-	EosTime             *int                 `json:"eos_time,omitempty"`
-	HasSupport          *bool                `json:"has_support,omitempty"`
-	IaAddress           *string              `json:"ia_address,omitempty"`
-	IaCountry           *string              `json:"ia_country,omitempty"`
-	IaRegion            *string              `json:"ia_region,omitempty"`
-	IaZipPostal         *string              `json:"ia_zip_postal,omitempty"`
-	Master              *bool                `json:"master,omitempty"`
-	Model               *string              `json:"model,omitempty"`
-	OrgId               *uuid.UUID           `json:"org_id,omitempty"`
-	Serial              *string              `json:"serial,omitempty"`
-	ServiceContractNo   *string              `json:"service_contract_no,omitempty"`
-	ServiceContractType *string              `json:"service_contract_type,omitempty"`
-	ServiceDeclineFlag  *string              `json:"service_decline_flag,omitempty"`
-	ServiceEligible     *string              `json:"service_eligible,omitempty"`
-	ShipDateCalc        *string              `json:"ship_date_calc,omitempty"`
-	Sku                 *string              `json:"sku,omitempty"`
-	Status              *string              `json:"status,omitempty"`
-	SuggestedVersion    *string              `json:"suggested_version,omitempty"`
-	Type                *DeviceTypeEnum      `json:"type,omitempty"`
-	Version             *string              `json:"version,omitempty"`
-	VersionDescription  *string              `json:"version_description,omitempty"`
-	VersionEosTime      *int                 `json:"version_eos_time,omitempty"`
-	VersionTime         *int                 `json:"version_time,omitempty"`
-	Warranty            *string              `json:"warranty,omitempty"`
-	WarrantyEnd         *string              `json:"warranty_end,omitempty"`
-	WarrantyStart       *string              `json:"warranty_start,omitempty"`
-	WarrantyTime        *int                 `json:"warranty_time,omitempty"`
-	WarrantyType        *JsiWarrantyTypeEnum `json:"warranty_type,omitempty"`
+	Availability          *string                    `json:"availability,omitempty"`
+	Claimed               *bool                      `json:"claimed,omitempty"`
+	ContractEndDate       *string                    `json:"contract_end_date,omitempty"`
+	ContractId            *string                    `json:"contract_id,omitempty"`
+	ContractReseller      *string                    `json:"contract_reseller,omitempty"`
+	ContractSku           *string                    `json:"contract_sku,omitempty"`
+	ContractStartDate     *string                    `json:"contract_start_date,omitempty"`
+	ContractType          *string                    `json:"contract_type,omitempty"`
+	CurrentContractFlag   *string                    `json:"current_contract_flag,omitempty"`
+	DeviceName            *string                    `json:"device_name,omitempty"`
+	Distributor           *string                    `json:"distributor,omitempty"`
+	EndOfSaleTime         *int                       `json:"end_of_sale_time,omitempty"`
+	EndOfServiceTime      *int                       `json:"end_of_service_time,omitempty"`
+	EolPsn                *string                    `json:"eol_psn,omitempty"`
+	EosTime               *int                       `json:"eos_time,omitempty"`
+	HasSupport            *bool                      `json:"has_support,omitempty"`
+	IaAddress             *string                    `json:"ia_address,omitempty"`
+	IaCountry             *string                    `json:"ia_country,omitempty"`
+	IaRegion              *string                    `json:"ia_region,omitempty"`
+	IaZipPostal           *string                    `json:"ia_zip_postal,omitempty"`
+	Master                *bool                      `json:"master,omitempty"`
+	Model                 *string                    `json:"model,omitempty"`
+	OrgId                 *uuid.UUID                 `json:"org_id,omitempty"`
+	Serial                *string                    `json:"serial,omitempty"`
+	ServiceContractNo     *string                    `json:"service_contract_no,omitempty"`
+	ServiceContractType   *string                    `json:"service_contract_type,omitempty"`
+	ServiceDeclineFlag    *string                    `json:"service_decline_flag,omitempty"`
+	ServiceEligible       *string                    `json:"service_eligible,omitempty"`
+	ShipDateCalc          *string                    `json:"ship_date_calc,omitempty"`
+	Sku                   *string                    `json:"sku,omitempty"`
+	Status                *string                    `json:"status,omitempty"`
+	SuggestedVersion      *string                    `json:"suggested_version,omitempty"`
+	SupportContractStatus *SupportContractStatusEnum `json:"support_contract_status,omitempty"`
+	Type                  *DeviceTypeEnum            `json:"type,omitempty"`
+	Version               *string                    `json:"version,omitempty"`
+	VersionDescription    *string                    `json:"version_description,omitempty"`
+	VersionEosTime        *int                       `json:"version_eos_time,omitempty"`
+	VersionTime           *int                       `json:"version_time,omitempty"`
+	Warranty              *string                    `json:"warranty,omitempty"`
+	WarrantyEnd           *string                    `json:"warranty_end,omitempty"`
+	WarrantyStart         *string                    `json:"warranty_start,omitempty"`
+	WarrantyTime          *int                       `json:"warranty_time,omitempty"`
+	WarrantyType          *JsiWarrantyTypeEnum       `json:"warranty_type,omitempty"`
 }

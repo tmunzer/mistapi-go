@@ -91,6 +91,47 @@ if err != nil {
 }
 ```
 
+## Example Response *(as JSON)*
+
+```json
+{
+  "end": 1723651268,
+  "limit": 10,
+  "results": [
+    {
+      "id": "111cafd2-ba1b-5169-bfcb-9cdf1d473ddb",
+      "labels": [
+        "flor1",
+        "bld4"
+      ],
+      "mac": "921b638445cd",
+      "name": "Printer2",
+      "notes": "mac address refers to Canon printers",
+      "radius_group": "VIP",
+      "site_ids": [
+        "4ac1dcf4-9d8b-7211-65c4-057819f0862b",
+        "52f4347e-3e4b-186c-21ca-ad5b70eb23d6"
+      ],
+      "vlan": "30"
+    },
+    {
+      "id": "abecafd2-ba1b-5169-bfcb-9cdf1d473123",
+      "labels": [
+        "blgd-cupe",
+        "old"
+      ],
+      "mac": "921b638445ce",
+      "name": "os mac",
+      "notes": "mac devices",
+      "radius_group": "rg-1",
+      "vlan": "vlan-2"
+    }
+  ],
+  "start": 1723651267,
+  "total": 2
+}
+```
+
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -194,6 +235,10 @@ if err != nil {
   ],
   "mac": "921b638445cd",
   "notes": "MAC address refers to Canon printers",
+  "site_ids": [
+    "4ac1dcf4-9d8b-7211-65c4-057819f0862b",
+    "52f4347e-3e4b-186c-21ca-ad5b70eb23d6"
+  ],
   "vlan": "30"
 }
 ```
@@ -422,6 +467,10 @@ if err != nil {
   ],
   "mac": "921b638445cd",
   "notes": "MAC address refers to Canon printers",
+  "site_ids": [
+    "4ac1dcf4-9d8b-7211-65c4-057819f0862b",
+    "52f4347e-3e4b-186c-21ca-ad5b70eb23d6"
+  ],
   "vlan": "30"
 }
 ```
@@ -628,6 +677,10 @@ if err != nil {
     ],
     "mac": "921b638445cd",
     "notes": "MAC address refers to Canon printers",
+    "site_ids": [
+      "4ac1dcf4-9d8b-7211-65c4-057819f0862b",
+      "52f4347e-3e4b-186c-21ca-ad5b70eb23d6"
+    ],
     "vlan": "30"
   }
 ]
@@ -824,6 +877,10 @@ if err != nil {
   ],
   "mac": "921b638445cd",
   "notes": "MAC address refers to Canon printers",
+  "site_ids": [
+    "4ac1dcf4-9d8b-7211-65c4-057819f0862b",
+    "52f4347e-3e4b-186c-21ca-ad5b70eb23d6"
+  ],
   "vlan": "30"
 }
 ```

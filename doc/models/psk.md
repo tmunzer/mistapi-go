@@ -33,7 +33,8 @@ Personal pre-shared key configuration for WLAN access
 | `Role` | `*string` | Optional | Client role applied to users authenticated with this PSK<br><br>**Constraints**: *Minimum Length*: `0`, *Maximum Length*: `32` |
 | `SiteId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist site |
 | `Ssid` | `string` | Required | WLAN SSID where this PSK can be used |
-| `Usage` | [`*models.PskUsageEnum`](../../doc/models/psk-usage-enum.md) | Optional | enum: `macs`, `multi`, `single`<br><br>**Default**: `"multi"` |
+| `Usage` | [`*models.PskUsageEnum`](../../doc/models/psk-usage-enum.md) | Optional | enum: `macs`, `multi`, `single`, `usermac_labels`<br><br>**Default**: `"multi"` |
+| `UsermacLabels` | `[]string` | Optional | If `usage`==`usermac_labels`, this list contains usermac labels (e.g. `iot`, `students`). This list is capped at 100 entries<br><br>**Constraints**: *Maximum Items*: `100` |
 | `VlanId` | [`*models.PskVlanId`](../../doc/models/containers/psk-vlan-id.md) | Optional | VLAN for this PSK key |
 | `VlanName` | `*string` | Optional | VLAN name to be assigned. Optional, `vlan_id` takes precedence if both are provided |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -68,6 +69,10 @@ func main() {
         SiteId:                 models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
         Ssid:                   "ssid6",
         Usage:                  models.ToPointer(models.PskUsageEnum_MULTI),
+        UsermacLabels:          []string{
+            "iot",
+            "students",
+        },
         AdditionalProperties:   map[string]interface{}{
             "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
         },

@@ -14,13 +14,16 @@ Juniper Support inventory item with entitlement, lifecycle, and software metadat
 | `Availability` | `*string` | Optional | Current operational availability status of the device; only returned for onboarded (claimed) devices |
 | `Claimed` | `*bool` | Optional | Indicates if the device is claimed by any org |
 | `ContractEndDate` | `*string` | Optional | Expiration date of the service contract; only returned for onboarded (claimed) devices |
+| `ContractId` | `*string` | Optional | Unique identifier of the service contract; only returned for onboarded (claimed) devices |
 | `ContractReseller` | `*string` | Optional | Name of the reseller associated with the contract; only returned for onboarded (claimed) devices |
+| `ContractSku` | `*string` | Optional | SKU associated with the service contract; only returned for onboarded (claimed) devices |
 | `ContractStartDate` | `*string` | Optional | Official commencement date of the service contract; only returned for onboarded (claimed) devices |
 | `ContractType` | `*string` | Optional | General classification of the contract; only returned for onboarded (claimed) devices |
 | `CurrentContractFlag` | `*string` | Optional | Current status of the contract (e.g., 'Active', 'Expired'); only returned for onboarded (claimed) devices |
 | `DeviceName` | `*string` | Optional | Name of the device |
 | `Distributor` | `*string` | Optional | Name of the distributor who provided the device; only returned for onboarded (claimed) devices |
 | `EndOfSaleTime` | `*int` | Optional | End of sale epoch timestamp |
+| `EndOfServiceTime` | `*int` | Optional | End of service epoch timestamp |
 | `EolPsn` | `*string` | Optional | Product support notice associated with the device end-of-life milestone |
 | `EosTime` | `*int` | Optional | End of support time |
 | `HasSupport` | `*bool` | Optional | Indicates if the device is covered under active support contract |
@@ -40,6 +43,7 @@ Juniper Support inventory item with entitlement, lifecycle, and software metadat
 | `Sku` | `*string` | Optional | Serviceable SKU associated with the device |
 | `Status` | `*string` | Optional | Current inventory status reported for the device |
 | `SuggestedVersion` | `*string` | Optional | Recommended software version for the device |
+| `SupportContractStatus` | [`*models.SupportContractStatusEnum`](../../doc/models/support-contract-status-enum.md) | Optional | Service contract status. enum: `Active`, `Declined`, `EOL`, `Service Available` |
 | `Type` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch` |
 | `Version` | `*string` | Optional | Software version currently running on the device |
 | `VersionDescription` | `*string` | Optional | Release description associated with the reported software version |
@@ -63,13 +67,13 @@ import (
 
 func main() {
     jsInventoryItem := models.JsInventoryItem{
-        Availability:         models.ToPointer("availability4"),
-        Claimed:              models.ToPointer(false),
-        ContractEndDate:      models.ToPointer("contract_end_date4"),
-        ContractReseller:     models.ToPointer("contract_reseller6"),
-        ContractStartDate:    models.ToPointer("contract_start_date4"),
-        EolPsn:               models.ToPointer("TSB18097"),
-        OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
+        Availability:          models.ToPointer("availability4"),
+        Claimed:               models.ToPointer(false),
+        ContractEndDate:       models.ToPointer("contract_end_date4"),
+        ContractId:            models.ToPointer("contract_id2"),
+        ContractReseller:      models.ToPointer("contract_reseller6"),
+        EolPsn:                models.ToPointer("TSB18097"),
+        OrgId:                 models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     }
 
 }

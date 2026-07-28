@@ -219,7 +219,7 @@ func (s *SitesStatsCalls) SearchSiteCalls(
 	return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteCallsSummary takes context, siteId, apMac, app, start, end as parameters and
+// GetSiteCallsSummary takes context, siteId, apMac, app, wired, start, end as parameters and
 // returns an models.ApiResponse with models.ResponseStatsCallsSummary data and
 // an error if there was an issue with the request or response.
 // Summarized, aggregated stats for the site calls
@@ -228,6 +228,7 @@ func (s *SitesStatsCalls) GetSiteCallsSummary(
 	siteId uuid.UUID,
 	apMac *string,
 	app *string,
+	wired *bool,
 	start *string,
 	end *string) (
 	models.ApiResponse[models.ResponseStatsCallsSummary],
@@ -253,6 +254,9 @@ func (s *SitesStatsCalls) GetSiteCallsSummary(
 	if app != nil {
 		req.QueryParam("app", *app)
 	}
+	if wired != nil {
+		req.QueryParam("wired", *wired)
+	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}
@@ -270,7 +274,7 @@ func (s *SitesStatsCalls) GetSiteCallsSummary(
 	return models.NewApiResponse(result, resp), err
 }
 
-// ListSiteTroubleshootCalls takes context, siteId, ap, meetingId, mac, app, start, end, duration, limit, page as parameters and
+// ListSiteTroubleshootCalls takes context, siteId, ap, meetingId, mac, app, wired, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseCallTroubleshootSummary data and
 // an error if there was an issue with the request or response.
 // Summary of calls troubleshoot by site
@@ -281,6 +285,7 @@ func (s *SitesStatsCalls) ListSiteTroubleshootCalls(
 	meetingId *string,
 	mac *string,
 	app *string,
+	wired *bool,
 	start *string,
 	end *string,
 	duration *string,
@@ -314,6 +319,9 @@ func (s *SitesStatsCalls) ListSiteTroubleshootCalls(
 	}
 	if app != nil {
 		req.QueryParam("app", *app)
+	}
+	if wired != nil {
+		req.QueryParam("wired", *wired)
 	}
 	if start != nil {
 		req.QueryParam("start", *start)

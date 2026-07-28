@@ -433,6 +433,95 @@ func (u *UtilitiesLAN) ClearSiteDevicePendingVersion(
 	return httpCtx.Response, err
 }
 
+// SearchSiteDeviceFlowRecords takes context, siteId, deviceId, start, end, limit, sort, srcIp, dstIp, srcPort, dstPort, protocol, state, direction, searchAfter as parameters and
+// returns an models.ApiResponse with models.ResponseDeviceFlowRecordsSearch data and
+// an error if there was an issue with the request or response.
+// Search network flow records for a specific device within a site.
+// Note: Only supported for switch devices. The device must be manageable. The `device_mac` is automatically scoped to the device in the URL path and cannot be overridden by query parameter.
+func (u *UtilitiesLAN) SearchSiteDeviceFlowRecords(
+	ctx context.Context,
+	siteId uuid.UUID,
+	deviceId uuid.UUID,
+	start *string,
+	end *string,
+	limit *int,
+	sort *string,
+	srcIp *string,
+	dstIp *string,
+	srcPort *string,
+	dstPort *string,
+	protocol *string,
+	state *string,
+	direction *string,
+	searchAfter *string) (
+	models.ApiResponse[models.ResponseDeviceFlowRecordsSearch],
+	error) {
+	req := u.prepareRequest(
+		ctx,
+		"GET",
+		"/api/v1/sites/%v/devices/%v/flow_records/search",
+	)
+	req.AppendTemplateParams(siteId, deviceId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
+	}
+	if srcIp != nil {
+		req.QueryParam("src_ip", *srcIp)
+	}
+	if dstIp != nil {
+		req.QueryParam("dst_ip", *dstIp)
+	}
+	if srcPort != nil {
+		req.QueryParam("src_port", *srcPort)
+	}
+	if dstPort != nil {
+		req.QueryParam("dst_port", *dstPort)
+	}
+	if protocol != nil {
+		req.QueryParam("protocol", *protocol)
+	}
+	if state != nil {
+		req.QueryParam("state", *state)
+	}
+	if direction != nil {
+		req.QueryParam("direction", *direction)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
+	}
+
+	var result models.ResponseDeviceFlowRecordsSearch
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseDeviceFlowRecordsSearch](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
 // PollSiteSwitchStats takes context, siteId, deviceId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.

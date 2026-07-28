@@ -103,7 +103,8 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | OrgsDeviceProfiles() | Gets OrgsDeviceProfiles |
 | OrgsDevices() | Gets OrgsDevices |
 | OrgsDevicesSSR() | Gets OrgsDevicesSSR |
-| OrgsDevicesAOS() | Gets OrgsDevicesAOS |
+| OrgsDevicesAOSCX() | Gets OrgsDevicesAOSCX |
+| OrgsDevicesEdgeConnect() | Gets OrgsDevicesEdgeConnect |
 | OrgsEVPNTopologies() | Gets OrgsEVPNTopologies |
 | OrgsIntegrationJuniper() | Gets OrgsIntegrationJuniper |
 | OrgsDevicesOthers() | Gets OrgsDevicesOthers |
@@ -134,6 +135,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | OrgsStatsAssets() | Gets OrgsStatsAssets |
 | OrgsStatsBGPPeers() | Gets OrgsStatsBGPPeers |
 | OrgsStatsDevices() | Gets OrgsStatsDevices |
+| OrgsStatsMarvisClients() | Gets OrgsStatsMarvisClients |
 | OrgsStatsMxEdges() | Gets OrgsStatsMxEdges |
 | OrgsStatsOspf() | Gets OrgsStatsOspf |
 | OrgsStatsOtherDevices() | Gets OrgsStatsOtherDevices |
@@ -269,5 +271,4 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | UtilitiesLocation() | Gets UtilitiesLocation |
 | UtilitiesMxEdge() | Gets UtilitiesMxEdge |
 | UtilitiesUpgrade() | Gets UtilitiesUpgrade |
-| OrgsStatsMarvisClients() | Gets OrgsStatsMarvisClients |
 

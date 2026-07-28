@@ -22,6 +22,7 @@ utilitiesLAN := client.UtilitiesLAN()
 * [Reauth Site Dot 1 X Wired Client](../../doc/controllers/utilities-lan.md#reauth-site-dot-1-x-wired-client)
 * [Restore Site Device Backup Version](../../doc/controllers/utilities-lan.md#restore-site-device-backup-version)
 * [Restore Site Multiple Device Backup Version](../../doc/controllers/utilities-lan.md#restore-site-multiple-device-backup-version)
+* [Search Site Device Flow Records](../../doc/controllers/utilities-lan.md#search-site-device-flow-records)
 * [Show Site Device Arp Table](../../doc/controllers/utilities-lan.md#show-site-device-arp-table)
 * [Toogle Site Device Vc Routing Engines Role](../../doc/controllers/utilities-lan.md#toogle-site-device-vc-routing-engines-role)
 * [Upgrade Device Bios](../../doc/controllers/utilities-lan.md#upgrade-device-bios)
@@ -949,6 +950,141 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Request | `ApiError` |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
+
+
+# Search Site Device Flow Records
+
+Search network flow records for a specific device within a site.
+Note: Only supported for switch devices. The device must be manageable. The `device_mac` is automatically scoped to the device in the URL path and cannot be overridden by query parameter.
+
+```go
+SearchSiteDeviceFlowRecords(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    start *string,
+    end *string,
+    limit *int,
+    sort *string,
+    srcIp *string,
+    dstIp *string,
+    srcPort *string,
+    dstPort *string,
+    protocol *string,
+    state *string,
+    direction *string,
+    searchAfter *string) (
+    models.ApiResponse[models.ResponseDeviceFlowRecordsSearch],
+    error)
+```
+
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `srcIp` | `*string` | Query, Optional | Source IP address |
+| `dstIp` | `*string` | Query, Optional | Destination IP address |
+| `srcPort` | `*string` | Query, Optional | Source port |
+| `dstPort` | `*string` | Query, Optional | Destination port |
+| `protocol` | `*string` | Query, Optional | Protocol (e.g. `tcp`, `udp`, `icmp`) |
+| `state` | `*string` | Query, Optional | Flow state |
+| `direction` | `*string` | Query, Optional | Flow direction |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
+
+## Response Type
+
+**200**: OK
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceFlowRecordsSearch](../../doc/models/response-device-flow-records-search.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+limit := 100
+
+sort := "-site_id"
+
+apiResponse, err := utilitiesLAN.SearchSiteDeviceFlowRecords(ctx, siteId, deviceId, nil, nil, &limit, &sort, nil, nil, nil, nil, nil, nil, nil, nil)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "end": 1775003600,
+  "limit": 1000,
+  "results": [
+    {
+      "device_mac": "5c5b350e020a",
+      "direction": "ingress",
+      "dst_ip": "8.8.8.8",
+      "dst_port": 443,
+      "duration": 60,
+      "end_time": 1775000060,
+      "flow_id": 12345,
+      "org_id": "2818e386-8dec-2562-9ede-5b8a0fbbdc71",
+      "protocol": "tcp",
+      "sampling_percentage": 0.1,
+      "site_id": "4ac1dcf4-9d8b-7211-65c4-057819f0862b",
+      "src_ip": "10.0.0.1",
+      "src_port": 54321,
+      "start_time": 1775000000,
+      "state": "aged-out",
+      "timestamp": 1775000060,
+      "total_bytes": 150000,
+      "total_pkts": 100
+    }
+  ],
+  "start": 1775000000,
+  "total": 1
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |

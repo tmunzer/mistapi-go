@@ -34,10 +34,11 @@ type AclTag struct {
 	PortUsage *string `json:"port_usage,omitempty"`
 	// Required if:
 	// * `type`==`radius_group`
+	// * `type`==`aruba_user_role`
 	// * `type`==`static_gbp`
 	// if from matching radius_group
 	RadiusGroup *string `json:"radius_group,omitempty"`
-	// If `type`==`resource`, `type`==`radius_group`, `type`==`port_usage` or `type`==`gbp_resource`. Empty means unrestricted, i.e. any
+	// If `type`==`resource`, `type`==`radius_group`, `type`==`aruba_user_role`, `type`==`port_usage` or `type`==`gbp_resource`. Empty means unrestricted, i.e. any
 	Specs []AclTagSpec `json:"specs,omitempty"`
 	// If
 	// - `type`==`subnet`
@@ -46,6 +47,7 @@ type AclTag struct {
 	Subnets []string `json:"subnets,omitempty"`
 	// enum:
 	// * `any`: matching anything not identified
+	// * `aruba_user_role`: Aruba user role matched via `radius_group`
 	// * `dynamic_gbp`: from the gbp_tag received from RADIUS
 	// * `gbp_resource`: can only be used in `dst_tags`
 	// * `mac`

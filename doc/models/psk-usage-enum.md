@@ -1,7 +1,7 @@
 
 # Psk Usage Enum
 
-enum: `macs`, `multi`, `single`
+enum: `macs`, `multi`, `single`, `usermac_labels`
 
 ## Enumeration
 
@@ -14,6 +14,7 @@ enum: `macs`, `multi`, `single`
 | `macs` |
 | `multi` |
 | `single` |
+| `usermac_labels` |
 
 ## Example
 
@@ -25,7 +26,7 @@ import (
 )
 
 func main() {
-    pskUsage := models.PskUsageEnum_MULTI
+    pskUsage := models.PskUsageEnum_MACS
 
 }
 ```

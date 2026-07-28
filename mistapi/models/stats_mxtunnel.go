@@ -37,27 +37,23 @@ type StatsMxtunnel struct {
 	RemoteIp string `json:"remote_ip"`
 	// Remote endpoint port for the tunnel
 	RemotePort *int `json:"remote_port,omitempty"`
-	// Number of control packets received for the tunnel
-	RxControlPkts *int `json:"rx_control_pkts,omitempty"`
 	// Tunnel sessions reported for a WxLAN or Mist tunnel
 	Sessions []StatsMxtunnelSession `json:"sessions,omitempty"`
 	// Unique identifier of a Mist site
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Epoch timestamp when the tunnel was established
+	StartTime *int `json:"start_time,omitempty"`
 	// enum: `established`, `established_with_sessions`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
-	State *StatsMxtunnelStateEnum `json:"state,omitempty"`
-	// Number of control packets transmitted for the tunnel
-	TxControlPkts *int `json:"tx_control_pkts,omitempty"`
-	// Duration, in seconds, that the tunnel has been up
-	Uptime               *int                   `json:"uptime,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"_"`
+	State                *StatsMxtunnelStateEnum `json:"state,omitempty"`
+	AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for StatsMxtunnel,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsMxtunnel) String() string {
 	return fmt.Sprintf(
-		"StatsMxtunnel[Ap=%v, ForSite=%v, Fwupdate=%v, LastSeen=%v, Mtu=%v, MxclusterId=%v, MxedgeId=%v, MxtunnelId=%v, OrgId=%v, PeerMxedgeId=%v, RemoteIp=%v, RemotePort=%v, RxControlPkts=%v, Sessions=%v, SiteId=%v, State=%v, TxControlPkts=%v, Uptime=%v, AdditionalProperties=%v]",
-		s.Ap, s.ForSite, s.Fwupdate, s.LastSeen, s.Mtu, s.MxclusterId, s.MxedgeId, s.MxtunnelId, s.OrgId, s.PeerMxedgeId, s.RemoteIp, s.RemotePort, s.RxControlPkts, s.Sessions, s.SiteId, s.State, s.TxControlPkts, s.Uptime, s.AdditionalProperties)
+		"StatsMxtunnel[Ap=%v, ForSite=%v, Fwupdate=%v, LastSeen=%v, Mtu=%v, MxclusterId=%v, MxedgeId=%v, MxtunnelId=%v, OrgId=%v, PeerMxedgeId=%v, RemoteIp=%v, RemotePort=%v, Sessions=%v, SiteId=%v, StartTime=%v, State=%v, AdditionalProperties=%v]",
+		s.Ap, s.ForSite, s.Fwupdate, s.LastSeen, s.Mtu, s.MxclusterId, s.MxedgeId, s.MxtunnelId, s.OrgId, s.PeerMxedgeId, s.RemoteIp, s.RemotePort, s.Sessions, s.SiteId, s.StartTime, s.State, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxtunnel.
@@ -66,7 +62,7 @@ func (s StatsMxtunnel) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"ap", "for_site", "fwupdate", "last_seen", "mtu", "mxcluster_id", "mxedge_id", "mxtunnel_id", "org_id", "peer_mxedge_id", "remote_ip", "remote_port", "rx_control_pkts", "sessions", "site_id", "state", "tx_control_pkts", "uptime"); err != nil {
+		"ap", "for_site", "fwupdate", "last_seen", "mtu", "mxcluster_id", "mxedge_id", "mxtunnel_id", "org_id", "peer_mxedge_id", "remote_ip", "remote_port", "sessions", "site_id", "start_time", "state"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -114,23 +110,17 @@ func (s StatsMxtunnel) toMap() map[string]any {
 	if s.RemotePort != nil {
 		structMap["remote_port"] = s.RemotePort
 	}
-	if s.RxControlPkts != nil {
-		structMap["rx_control_pkts"] = s.RxControlPkts
-	}
 	if s.Sessions != nil {
 		structMap["sessions"] = s.Sessions
 	}
 	if s.SiteId != nil {
 		structMap["site_id"] = s.SiteId
 	}
+	if s.StartTime != nil {
+		structMap["start_time"] = s.StartTime
+	}
 	if s.State != nil {
 		structMap["state"] = s.State
-	}
-	if s.TxControlPkts != nil {
-		structMap["tx_control_pkts"] = s.TxControlPkts
-	}
-	if s.Uptime != nil {
-		structMap["uptime"] = s.Uptime
 	}
 	return structMap
 }
@@ -147,7 +137,7 @@ func (s *StatsMxtunnel) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "for_site", "fwupdate", "last_seen", "mtu", "mxcluster_id", "mxedge_id", "mxtunnel_id", "org_id", "peer_mxedge_id", "remote_ip", "remote_port", "rx_control_pkts", "sessions", "site_id", "state", "tx_control_pkts", "uptime")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "for_site", "fwupdate", "last_seen", "mtu", "mxcluster_id", "mxedge_id", "mxtunnel_id", "org_id", "peer_mxedge_id", "remote_ip", "remote_port", "sessions", "site_id", "start_time", "state")
 	if err != nil {
 		return err
 	}
@@ -165,35 +155,31 @@ func (s *StatsMxtunnel) UnmarshalJSON(input []byte) error {
 	s.PeerMxedgeId = temp.PeerMxedgeId
 	s.RemoteIp = *temp.RemoteIp
 	s.RemotePort = temp.RemotePort
-	s.RxControlPkts = temp.RxControlPkts
 	s.Sessions = temp.Sessions
 	s.SiteId = temp.SiteId
+	s.StartTime = temp.StartTime
 	s.State = temp.State
-	s.TxControlPkts = temp.TxControlPkts
-	s.Uptime = temp.Uptime
 	return nil
 }
 
 // tempStatsMxtunnel is a temporary struct used for validating the fields of StatsMxtunnel.
 type tempStatsMxtunnel struct {
-	Ap            *string                 `json:"ap,omitempty"`
-	ForSite       *bool                   `json:"for_site,omitempty"`
-	Fwupdate      *FwupdateStat           `json:"fwupdate,omitempty"`
-	LastSeen      Optional[float64]       `json:"last_seen"`
-	Mtu           *int                    `json:"mtu,omitempty"`
-	MxclusterId   *uuid.UUID              `json:"mxcluster_id,omitempty"`
-	MxedgeId      *uuid.UUID              `json:"mxedge_id,omitempty"`
-	MxtunnelId    *uuid.UUID              `json:"mxtunnel_id,omitempty"`
-	OrgId         *uuid.UUID              `json:"org_id,omitempty"`
-	PeerMxedgeId  *uuid.UUID              `json:"peer_mxedge_id,omitempty"`
-	RemoteIp      *string                 `json:"remote_ip"`
-	RemotePort    *int                    `json:"remote_port,omitempty"`
-	RxControlPkts *int                    `json:"rx_control_pkts,omitempty"`
-	Sessions      []StatsMxtunnelSession  `json:"sessions,omitempty"`
-	SiteId        *uuid.UUID              `json:"site_id,omitempty"`
-	State         *StatsMxtunnelStateEnum `json:"state,omitempty"`
-	TxControlPkts *int                    `json:"tx_control_pkts,omitempty"`
-	Uptime        *int                    `json:"uptime,omitempty"`
+	Ap           *string                 `json:"ap,omitempty"`
+	ForSite      *bool                   `json:"for_site,omitempty"`
+	Fwupdate     *FwupdateStat           `json:"fwupdate,omitempty"`
+	LastSeen     Optional[float64]       `json:"last_seen"`
+	Mtu          *int                    `json:"mtu,omitempty"`
+	MxclusterId  *uuid.UUID              `json:"mxcluster_id,omitempty"`
+	MxedgeId     *uuid.UUID              `json:"mxedge_id,omitempty"`
+	MxtunnelId   *uuid.UUID              `json:"mxtunnel_id,omitempty"`
+	OrgId        *uuid.UUID              `json:"org_id,omitempty"`
+	PeerMxedgeId *uuid.UUID              `json:"peer_mxedge_id,omitempty"`
+	RemoteIp     *string                 `json:"remote_ip"`
+	RemotePort   *int                    `json:"remote_port,omitempty"`
+	Sessions     []StatsMxtunnelSession  `json:"sessions,omitempty"`
+	SiteId       *uuid.UUID              `json:"site_id,omitempty"`
+	StartTime    *int                    `json:"start_time,omitempty"`
+	State        *StatsMxtunnelStateEnum `json:"state,omitempty"`
 }
 
 func (s *tempStatsMxtunnel) validate() error {

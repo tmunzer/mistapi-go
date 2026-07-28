@@ -37,6 +37,7 @@ CountOrgDeviceEvents(
     model *string,
     text *string,
     mType *string,
+    includes *string,
     start *string,
     end *string,
     duration *string,
@@ -54,13 +55,14 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.OrgDevicesEventsCountDistinctEnum`](../../doc/models/org-devices-events-count-distinct-enum.md) | Query, Optional | Field used to group this count response. enum: `ap`, `apfw`, `model`, `org_id`, `site_id`, `text`, `timestamp`, `type`<br><br>**Default**: `"model"` |
+| `distinct` | [`*models.OrgDevicesEventsCountDistinctEnum`](../../doc/models/org-devices-events-count-distinct-enum.md) | Query, Optional | Field used to group this count response. enum: `ap`, `apfw`, `model`, `org_id`, `site_id`, `status`, `text`, `timestamp`, `type`<br><br>**Default**: `"model"` |
 | `siteId` | `*uuid.UUID` | Query, Optional | Filter results by site identifier |
 | `ap` | `*string` | Query, Optional | Filter results by AP MAC address |
 | `apfw` | `*string` | Query, Optional | Filter results by AP firmware version |
 | `model` | `*string` | Query, Optional | Filter results by device model |
 | `text` | `*string` | Query, Optional | Filter results by event message text |
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `includes` | `*string` | Query, Optional | Keyword to include events from additional indices (e.g. ext_tunnel for ext tunnel events) |
 | `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
 | `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
 | `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
@@ -91,11 +93,13 @@ model := "AP43"
 
 text := "Device connected"
 
+includes := "ext_tunnel"
+
 duration := "10m"
 
 limit := 100
 
-apiResponse, err := orgsDevices.CountOrgDeviceEvents(ctx, orgId, &distinct, &siteId, &ap, &apfw, &model, &text, nil, nil, nil, &duration, &limit)
+apiResponse, err := orgsDevices.CountOrgDeviceEvents(ctx, orgId, &distinct, &siteId, &ap, &apfw, &model, &text, nil, &includes, nil, nil, &duration, &limit)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
@@ -798,7 +802,7 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 | `text` | `*string` | Query, Optional | Filter results by event message text |
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions). Accepts multiple comma-separated values. |
 | `lastBy` | `*string` | Query, Optional | Return last/recent event for passed in field |
-| `includes` | `*string` | Query, Optional | Keyword to include events from additional indices (e.g. ext_tunnel for prisma events) |
+| `includes` | `*string` | Query, Optional | Keyword to include events from additional indices (e.g. ext_tunnel for ext tunnel events) |
 | `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
 | `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
@@ -879,6 +883,18 @@ if err != nil {
       "text": "Succeeding DNS query from 172.29.101.134 to 172.29.101.7 for \"portal.mistsys.com\" on vlan 1, id 60224",
       "timestamp": 1547235620.89,
       "type": "CLIENT_DNS_OK"
+    },
+    {
+      "device_type": "gateway",
+      "job_id": "c2096de9-0ca4-4a8b-b500-d37cbe0f0baf",
+      "mac": "d007ca6c6ac0",
+      "org_id": "86f0c649-06b1-4337-b3d4-25eeb887f732",
+      "site_id": "9f8d28eb-77c7-44c7-a85b-4426bf291679",
+      "status": "PROVISION_IN_PROGRESS",
+      "template_id": "660e8400-e29b-41d4-a716-446655440001",
+      "timestamp": 1748987445.959,
+      "tunnel_name": "zs1",
+      "type": "NOTICE"
     }
   ],
   "start": 0,

@@ -320,6 +320,18 @@ if err != nil {
       "text": "Succeeding DNS query from 172.29.101.134 to 172.29.101.7 for \"portal.mistsys.com\" on vlan 1, id 60224",
       "timestamp": 1547235620.89,
       "type": "CLIENT_DNS_OK"
+    },
+    {
+      "device_type": "gateway",
+      "job_id": "c2096de9-0ca4-4a8b-b500-d37cbe0f0baf",
+      "mac": "d007ca6c6ac0",
+      "org_id": "86f0c649-06b1-4337-b3d4-25eeb887f732",
+      "site_id": "9f8d28eb-77c7-44c7-a85b-4426bf291679",
+      "status": "PROVISION_IN_PROGRESS",
+      "template_id": "660e8400-e29b-41d4-a716-446655440001",
+      "timestamp": 1748987445.959,
+      "tunnel_name": "zs1",
+      "type": "NOTICE"
     }
   ],
   "start": 0,

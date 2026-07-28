@@ -17,6 +17,7 @@ Gateway management-plane and access settings
 | `AutoSignatureUpdate` | [`*models.GatewayMgmtAutoSignatureUpdate`](../../doc/models/gateway-mgmt-auto-signature-update.md) | Optional | Automatic security signature update schedule |
 | `ConfigRevertTimer` | `*int` | Optional | Rollback timer for commit confirmed<br><br>**Default**: `10`<br><br>**Constraints**: `>= 1`, `<= 30` |
 | `DisableConsole` | `*bool` | Optional | For SSR and SRX, disable console port<br><br>**Default**: `false` |
+| `DisableIdpPcap` | `*bool` | Optional | For SRX only, disable IDP packet capture<br><br>**Default**: `false` |
 | `DisableOob` | `*bool` | Optional | For SSR and SRX, disable management interface<br><br>**Default**: `false` |
 | `DisableUsb` | `*bool` | Optional | For SSR and SRX, disable usb interface<br><br>**Default**: `false` |
 | `FipsEnabled` | `*bool` | Optional | Whether FIPS mode is enabled on the gateway<br><br>**Default**: `false` |
@@ -79,6 +80,7 @@ func main() {
         }),
         ConfigRevertTimer:          models.ToPointer(10),
         DisableConsole:             models.ToPointer(false),
+        DisableIdpPcap:             models.ToPointer(false),
         DisableOob:                 models.ToPointer(false),
         DisableUsb:                 models.ToPointer(false),
         FipsEnabled:                models.ToPointer(false),

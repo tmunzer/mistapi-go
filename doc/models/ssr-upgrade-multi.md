@@ -14,7 +14,8 @@ Request to upgrade multiple SSR devices
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Channel` | [`*models.SsrUpgradeChannelEnum`](../../doc/models/ssr-upgrade-channel-enum.md) | Optional | upgrade channel to follow. enum: `alpha`, `beta`, `stable`<br><br>**Default**: `"stable"` |
-| `DeviceIds` | `[]uuid.UUID` | Required | List of 128T device IDs to upgrade |
+| `DeviceIds` | `[]uuid.UUID` | Required | List of 128T device IDs to upgrade; currently only one 128T device is allowed |
+| `Force` | `*bool` | Optional | When true, forces the upgrade even when the requested version matches the currently running version; default is false<br><br>**Default**: `false` |
 | `RebootAt` | `*int` | Optional | Reboot start time in epoch seconds, default is start_time, -1 disables reboot |
 | `StartTime` | `*int` | Optional | 128T firmware download start time in epoch seconds, default is now, -1 disables download |
 | `Strategy` | [`*models.SsrUpgradeStrategyEnum`](../../doc/models/ssr-upgrade-strategy-enum.md) | Optional | enum:<br><br>* `big_bang`: upgrade all at once<br>* `serial`: one at a time<br><br>**Default**: `"big_bang"` |
@@ -39,10 +40,10 @@ func main() {
             uuid.MustParse("000002aa-0000-0000-0000-000000000000"),
             uuid.MustParse("000002ab-0000-0000-0000-000000000000"),
         },
+        Force:                models.ToPointer(false),
         RebootAt:             models.ToPointer(112),
         StartTime:            models.ToPointer(182),
         Strategy:             models.ToPointer(models.SsrUpgradeStrategyEnum_BIGBANG),
-        Version:              models.ToPointer("version8"),
         AdditionalProperties: map[string]interface{}{
             "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
         },

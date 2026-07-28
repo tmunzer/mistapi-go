@@ -47,7 +47,7 @@ type DeviceprofileAp struct {
 	Mesh *ApMesh `json:"mesh,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// MQTT broker publishing settings for an AP; use `mqtt_topic` on individual AssetFilter entries to specify which MQTT topic each matching BLE advertisement is forwarded to
+	// MQTT publishing configuration for an AP. Use `mqtt_topic` on individual AssetFilter entries to specify which MQTT topic each matching BLE advertisement is forwarded to. Only AssetFilters with `mqtt_topic` set are used; disabled filters and filters without `mqtt_topic` are skipped. Set `default_topic` to publish advertisements that match no AssetFilter to a catch-all topic, allowing MQTT to be used without configuring any AssetFilter.
 	MqttConfig *ApMqtt `json:"mqtt_config,omitempty"`
 	// Display name of the AP device profile
 	Name Optional[string] `json:"name"`
@@ -75,6 +75,8 @@ type DeviceprofileAp struct {
 	// - Note: if native imagotag is enabled, BLE will be disabled automatically
 	// - Note: legacy, new config moved to ESL Config.
 	UsbConfig *ApUsb `json:"usb_config,omitempty"`
+	// Ultra-wideband (UWB) RTLS / OMLOX asset-visibility integration settings for an access point. The device-level value overrides the device profile value, which in turn overrides the site-level setting.
+	UwbConfig *ApUwbConfig `json:"uwb_config,omitempty"`
 	// Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
 	Vars map[string]string `json:"vars,omitempty"`
 	// Zigbee radio and network settings applied to an AP or AP profile
@@ -86,8 +88,8 @@ type DeviceprofileAp struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (d DeviceprofileAp) String() string {
 	return fmt.Sprintf(
-		"DeviceprofileAp[Aeroscout=%v, Airista=%v, BleConfig=%v, CreatedTime=%v, DisableEth1=%v, DisableEth2=%v, DisableEth3=%v, DisableModule=%v, EslConfig=%v, ForSite=%v, Id=%v, IotConfig=%v, IpConfig=%v, LacpConfig=%v, Led=%v, Mesh=%v, ModifiedTime=%v, MqttConfig=%v, Name=%v, NtpServers=%v, OrgId=%v, PoePassthrough=%v, PortConfig=%v, PwrConfig=%v, RadioConfig=%v, SiteId=%v, SwitchConfig=%v, Type=%v, UplinkPortConfig=%v, UsbConfig=%v, Vars=%v, ZigbeeConfig=%v, AdditionalProperties=%v]",
-		d.Aeroscout, d.Airista, d.BleConfig, d.CreatedTime, d.DisableEth1, d.DisableEth2, d.DisableEth3, d.DisableModule, d.EslConfig, d.ForSite, d.Id, d.IotConfig, d.IpConfig, d.LacpConfig, d.Led, d.Mesh, d.ModifiedTime, d.MqttConfig, d.Name, d.NtpServers, d.OrgId, d.PoePassthrough, d.PortConfig, d.PwrConfig, d.RadioConfig, d.SiteId, d.SwitchConfig, d.Type, d.UplinkPortConfig, d.UsbConfig, d.Vars, d.ZigbeeConfig, d.AdditionalProperties)
+		"DeviceprofileAp[Aeroscout=%v, Airista=%v, BleConfig=%v, CreatedTime=%v, DisableEth1=%v, DisableEth2=%v, DisableEth3=%v, DisableModule=%v, EslConfig=%v, ForSite=%v, Id=%v, IotConfig=%v, IpConfig=%v, LacpConfig=%v, Led=%v, Mesh=%v, ModifiedTime=%v, MqttConfig=%v, Name=%v, NtpServers=%v, OrgId=%v, PoePassthrough=%v, PortConfig=%v, PwrConfig=%v, RadioConfig=%v, SiteId=%v, SwitchConfig=%v, Type=%v, UplinkPortConfig=%v, UsbConfig=%v, UwbConfig=%v, Vars=%v, ZigbeeConfig=%v, AdditionalProperties=%v]",
+		d.Aeroscout, d.Airista, d.BleConfig, d.CreatedTime, d.DisableEth1, d.DisableEth2, d.DisableEth3, d.DisableModule, d.EslConfig, d.ForSite, d.Id, d.IotConfig, d.IpConfig, d.LacpConfig, d.Led, d.Mesh, d.ModifiedTime, d.MqttConfig, d.Name, d.NtpServers, d.OrgId, d.PoePassthrough, d.PortConfig, d.PwrConfig, d.RadioConfig, d.SiteId, d.SwitchConfig, d.Type, d.UplinkPortConfig, d.UsbConfig, d.UwbConfig, d.Vars, d.ZigbeeConfig, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceprofileAp.
@@ -96,7 +98,7 @@ func (d DeviceprofileAp) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(d.AdditionalProperties,
-		"aeroscout", "airista", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "lacp_config", "led", "mesh", "modified_time", "mqtt_config", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars", "zigbee_config"); err != nil {
+		"aeroscout", "airista", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "lacp_config", "led", "mesh", "modified_time", "mqtt_config", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "uwb_config", "vars", "zigbee_config"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(d.toMap())
@@ -198,6 +200,9 @@ func (d DeviceprofileAp) toMap() map[string]any {
 	if d.UsbConfig != nil {
 		structMap["usb_config"] = d.UsbConfig.toMap()
 	}
+	if d.UwbConfig != nil {
+		structMap["uwb_config"] = d.UwbConfig.toMap()
+	}
 	if d.Vars != nil {
 		structMap["vars"] = d.Vars
 	}
@@ -219,7 +224,7 @@ func (d *DeviceprofileAp) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aeroscout", "airista", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "lacp_config", "led", "mesh", "modified_time", "mqtt_config", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars", "zigbee_config")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aeroscout", "airista", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "lacp_config", "led", "mesh", "modified_time", "mqtt_config", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "uwb_config", "vars", "zigbee_config")
 	if err != nil {
 		return err
 	}
@@ -255,6 +260,7 @@ func (d *DeviceprofileAp) UnmarshalJSON(input []byte) error {
 	d.Type = *temp.Type
 	d.UplinkPortConfig = temp.UplinkPortConfig
 	d.UsbConfig = temp.UsbConfig
+	d.UwbConfig = temp.UwbConfig
 	d.Vars = temp.Vars
 	d.ZigbeeConfig = temp.ZigbeeConfig
 	return nil
@@ -292,6 +298,7 @@ type tempDeviceprofileAp struct {
 	Type             *string                 `json:"type"`
 	UplinkPortConfig *ApUplinkPortConfig     `json:"uplink_port_config,omitempty"`
 	UsbConfig        *ApUsb                  `json:"usb_config,omitempty"`
+	UwbConfig        *ApUwbConfig            `json:"uwb_config,omitempty"`
 	Vars             map[string]string       `json:"vars,omitempty"`
 	ZigbeeConfig     *ApZigbee               `json:"zigbee_config,omitempty"`
 }

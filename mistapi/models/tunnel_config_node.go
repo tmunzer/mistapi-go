@@ -14,8 +14,16 @@ import (
 type TunnelConfigNode struct {
 	// Remote gateway host addresses for a tunnel node
 	Hosts []string `json:"hosts"`
+	// Unique string values returned or accepted by this schema
+	InternalIp6s []string `json:"internal_ip6s,omitempty"`
 	// Only if `provider`==`zscaler-gre`, `provider`==`jse-ipsec`, `provider`==`custom-ipsec` or `provider`==`custom-gre`
 	InternalIps []string `json:"internal_ips,omitempty"`
+	// Unique string values returned or accepted by this schema
+	ProbeHostnames []string `json:"probe_hostnames,omitempty"`
+	// HTTP probe settings for a custom IPsec tunnel node
+	ProbeHttp *TunnelConfigNodeProbeHttp `json:"probe_http,omitempty"`
+	// Unique string values returned or accepted by this schema
+	ProbeIp6s []string `json:"probe_ip6s,omitempty"`
 	// Unique string values returned or accepted by this schema
 	ProbeIps []string `json:"probe_ips,omitempty"`
 	// Only if `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
@@ -29,8 +37,8 @@ type TunnelConfigNode struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (t TunnelConfigNode) String() string {
 	return fmt.Sprintf(
-		"TunnelConfigNode[Hosts=%v, InternalIps=%v, ProbeIps=%v, RemoteIds=%v, WanNames=%v, AdditionalProperties=%v]",
-		t.Hosts, t.InternalIps, t.ProbeIps, t.RemoteIds, t.WanNames, t.AdditionalProperties)
+		"TunnelConfigNode[Hosts=%v, InternalIp6s=%v, InternalIps=%v, ProbeHostnames=%v, ProbeHttp=%v, ProbeIp6s=%v, ProbeIps=%v, RemoteIds=%v, WanNames=%v, AdditionalProperties=%v]",
+		t.Hosts, t.InternalIp6s, t.InternalIps, t.ProbeHostnames, t.ProbeHttp, t.ProbeIp6s, t.ProbeIps, t.RemoteIds, t.WanNames, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TunnelConfigNode.
@@ -39,7 +47,7 @@ func (t TunnelConfigNode) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(t.AdditionalProperties,
-		"hosts", "internal_ips", "probe_ips", "remote_ids", "wan_names"); err != nil {
+		"hosts", "internal_ip6s", "internal_ips", "probe_hostnames", "probe_http", "probe_ip6s", "probe_ips", "remote_ids", "wan_names"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(t.toMap())
@@ -50,8 +58,20 @@ func (t TunnelConfigNode) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, t.AdditionalProperties)
 	structMap["hosts"] = t.Hosts
+	if t.InternalIp6s != nil {
+		structMap["internal_ip6s"] = t.InternalIp6s
+	}
 	if t.InternalIps != nil {
 		structMap["internal_ips"] = t.InternalIps
+	}
+	if t.ProbeHostnames != nil {
+		structMap["probe_hostnames"] = t.ProbeHostnames
+	}
+	if t.ProbeHttp != nil {
+		structMap["probe_http"] = t.ProbeHttp.toMap()
+	}
+	if t.ProbeIp6s != nil {
+		structMap["probe_ip6s"] = t.ProbeIp6s
 	}
 	if t.ProbeIps != nil {
 		structMap["probe_ips"] = t.ProbeIps
@@ -75,14 +95,18 @@ func (t *TunnelConfigNode) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "hosts", "internal_ips", "probe_ips", "remote_ids", "wan_names")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "hosts", "internal_ip6s", "internal_ips", "probe_hostnames", "probe_http", "probe_ip6s", "probe_ips", "remote_ids", "wan_names")
 	if err != nil {
 		return err
 	}
 	t.AdditionalProperties = additionalProperties
 
 	t.Hosts = *temp.Hosts
+	t.InternalIp6s = temp.InternalIp6s
 	t.InternalIps = temp.InternalIps
+	t.ProbeHostnames = temp.ProbeHostnames
+	t.ProbeHttp = temp.ProbeHttp
+	t.ProbeIp6s = temp.ProbeIp6s
 	t.ProbeIps = temp.ProbeIps
 	t.RemoteIds = temp.RemoteIds
 	t.WanNames = *temp.WanNames
@@ -91,11 +115,15 @@ func (t *TunnelConfigNode) UnmarshalJSON(input []byte) error {
 
 // tempTunnelConfigNode is a temporary struct used for validating the fields of TunnelConfigNode.
 type tempTunnelConfigNode struct {
-	Hosts       *[]string `json:"hosts"`
-	InternalIps []string  `json:"internal_ips,omitempty"`
-	ProbeIps    []string  `json:"probe_ips,omitempty"`
-	RemoteIds   []string  `json:"remote_ids,omitempty"`
-	WanNames    *[]string `json:"wan_names"`
+	Hosts          *[]string                  `json:"hosts"`
+	InternalIp6s   []string                   `json:"internal_ip6s,omitempty"`
+	InternalIps    []string                   `json:"internal_ips,omitempty"`
+	ProbeHostnames []string                   `json:"probe_hostnames,omitempty"`
+	ProbeHttp      *TunnelConfigNodeProbeHttp `json:"probe_http,omitempty"`
+	ProbeIp6s      []string                   `json:"probe_ip6s,omitempty"`
+	ProbeIps       []string                   `json:"probe_ips,omitempty"`
+	RemoteIds      []string                   `json:"remote_ids,omitempty"`
+	WanNames       *[]string                  `json:"wan_names"`
 }
 
 func (t *tempTunnelConfigNode) validate() error {

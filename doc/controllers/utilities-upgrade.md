@@ -1029,7 +1029,7 @@ if err != nil {
 [
   {
     "model": "AP41",
-    "tag": "stable",
+    "tag": "suggested",
     "version": "v0.1.543"
   },
   {
@@ -1451,7 +1451,7 @@ if err != nil {
 [
   {
     "model": "AP41",
-    "tag": "stable",
+    "tag": "suggested",
     "version": "v0.1.543"
   },
   {
@@ -1939,7 +1939,7 @@ body := models.UpgradeOrgDevices{
     CanaryPhases:            nil,
     DownloadStrategy:        models.ToPointer(models.UpgradeOrgDevicesDownloadStrategyEnum_BIGBANG),
     MaxFailurePercentage:    models.ToPointer(5),
-    P2pClusterSize:          models.ToPointer(0),
+    P2pClusterSize:          models.ToPointer(10),
     RebootAt:                models.ToPointer(1624399840),
     RebootDatetime:          models.ToPointer("2024-06-13 15:00:00-07:00"),
     RebootStrategy:          models.ToPointer(models.UpgradeDeviceStrategyEnum_BIGBANG),
@@ -2351,7 +2351,7 @@ body := models.UpgradeSiteDevices{
     CanaryPhases:            nil,
     Force:                   models.ToPointer(false),
     MaxFailurePercentage:    models.ToPointer(5),
-    P2pClusterSize:          models.ToPointer(0),
+    P2pClusterSize:          models.ToPointer(10),
     Reboot:                  models.ToPointer(false),
     RebootAt:                models.ToPointer(1624399840),
     RrmFirstBatchPercentage: models.ToPointer(2),

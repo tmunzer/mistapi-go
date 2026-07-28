@@ -21,6 +21,8 @@ type ResponsePastSpectrumAnalysisResult struct {
 	Mac *string `json:"mac,omitempty"`
 	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// URL to the generated spectrogram image for the spectrum analysis
+	SpectrogramUrl *string `json:"spectrogram_url,omitempty"`
 	// Epoch timestamp, in seconds, when the spectrum analysis was run
 	Timestamp            *int                   `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -30,8 +32,8 @@ type ResponsePastSpectrumAnalysisResult struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponsePastSpectrumAnalysisResult) String() string {
 	return fmt.Sprintf(
-		"ResponsePastSpectrumAnalysisResult[Band=%v, ChannelUsage=%v, FftSamples=%v, Mac=%v, OrgId=%v, Timestamp=%v, AdditionalProperties=%v]",
-		r.Band, r.ChannelUsage, r.FftSamples, r.Mac, r.OrgId, r.Timestamp, r.AdditionalProperties)
+		"ResponsePastSpectrumAnalysisResult[Band=%v, ChannelUsage=%v, FftSamples=%v, Mac=%v, OrgId=%v, SpectrogramUrl=%v, Timestamp=%v, AdditionalProperties=%v]",
+		r.Band, r.ChannelUsage, r.FftSamples, r.Mac, r.OrgId, r.SpectrogramUrl, r.Timestamp, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePastSpectrumAnalysisResult.
@@ -40,7 +42,7 @@ func (r ResponsePastSpectrumAnalysisResult) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"band", "channel_usage", "fft_samples", "mac", "org_id", "timestamp"); err != nil {
+		"band", "channel_usage", "fft_samples", "mac", "org_id", "spectrogram_url", "timestamp"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -65,6 +67,9 @@ func (r ResponsePastSpectrumAnalysisResult) toMap() map[string]any {
 	if r.OrgId != nil {
 		structMap["org_id"] = r.OrgId
 	}
+	if r.SpectrogramUrl != nil {
+		structMap["spectrogram_url"] = r.SpectrogramUrl
+	}
 	if r.Timestamp != nil {
 		structMap["timestamp"] = r.Timestamp
 	}
@@ -79,7 +84,7 @@ func (r *ResponsePastSpectrumAnalysisResult) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "channel_usage", "fft_samples", "mac", "org_id", "timestamp")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "channel_usage", "fft_samples", "mac", "org_id", "spectrogram_url", "timestamp")
 	if err != nil {
 		return err
 	}
@@ -90,16 +95,18 @@ func (r *ResponsePastSpectrumAnalysisResult) UnmarshalJSON(input []byte) error {
 	r.FftSamples = temp.FftSamples
 	r.Mac = temp.Mac
 	r.OrgId = temp.OrgId
+	r.SpectrogramUrl = temp.SpectrogramUrl
 	r.Timestamp = temp.Timestamp
 	return nil
 }
 
 // tempResponsePastSpectrumAnalysisResult is a temporary struct used for validating the fields of ResponsePastSpectrumAnalysisResult.
 type tempResponsePastSpectrumAnalysisResult struct {
-	Band         *string                                    `json:"band,omitempty"`
-	ChannelUsage []ResponsePastSpectrumAnalysisChannelUsage `json:"channel_usage,omitempty"`
-	FftSamples   []ResponsePastSpectrumAnalysisFftSample    `json:"fft_samples,omitempty"`
-	Mac          *string                                    `json:"mac,omitempty"`
-	OrgId        *uuid.UUID                                 `json:"org_id,omitempty"`
-	Timestamp    *int                                       `json:"timestamp,omitempty"`
+	Band           *string                                    `json:"band,omitempty"`
+	ChannelUsage   []ResponsePastSpectrumAnalysisChannelUsage `json:"channel_usage,omitempty"`
+	FftSamples     []ResponsePastSpectrumAnalysisFftSample    `json:"fft_samples,omitempty"`
+	Mac            *string                                    `json:"mac,omitempty"`
+	OrgId          *uuid.UUID                                 `json:"org_id,omitempty"`
+	SpectrogramUrl *string                                    `json:"spectrogram_url,omitempty"`
+	Timestamp      *int                                       `json:"timestamp,omitempty"`
 }

@@ -33,6 +33,8 @@ type RfTemplate struct {
 	CountryCode *string `json:"country_code,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
+	// Whether U-NII-4 channels (169, 173, 177) are enabled
+	EnableUnii4 *bool `json:"enable_unii_4,omitempty"`
 	// Whether the RF template is scoped to a site rather than the organization
 	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
@@ -54,8 +56,8 @@ type RfTemplate struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r RfTemplate) String() string {
 	return fmt.Sprintf(
-		"RfTemplate[AntGain24=%v, AntGain5=%v, AntGain6=%v, Band24=%v, Band24Usage=%v, Band5=%v, Band5On24Radio=%v, Band6=%v, CountryCode=%v, CreatedTime=%v, ForSite=%v, Id=%v, ModelSpecific=%v, ModifiedTime=%v, Name=%v, OrgId=%v, ScanningEnabled=%v, AdditionalProperties=%v]",
-		r.AntGain24, r.AntGain5, r.AntGain6, r.Band24, r.Band24Usage, r.Band5, r.Band5On24Radio, r.Band6, r.CountryCode, r.CreatedTime, r.ForSite, r.Id, r.ModelSpecific, r.ModifiedTime, r.Name, r.OrgId, r.ScanningEnabled, r.AdditionalProperties)
+		"RfTemplate[AntGain24=%v, AntGain5=%v, AntGain6=%v, Band24=%v, Band24Usage=%v, Band5=%v, Band5On24Radio=%v, Band6=%v, CountryCode=%v, CreatedTime=%v, EnableUnii4=%v, ForSite=%v, Id=%v, ModelSpecific=%v, ModifiedTime=%v, Name=%v, OrgId=%v, ScanningEnabled=%v, AdditionalProperties=%v]",
+		r.AntGain24, r.AntGain5, r.AntGain6, r.Band24, r.Band24Usage, r.Band5, r.Band5On24Radio, r.Band6, r.CountryCode, r.CreatedTime, r.EnableUnii4, r.ForSite, r.Id, r.ModelSpecific, r.ModifiedTime, r.Name, r.OrgId, r.ScanningEnabled, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RfTemplate.
@@ -64,7 +66,7 @@ func (r RfTemplate) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"ant_gain_24", "ant_gain_5", "ant_gain_6", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "country_code", "created_time", "for_site", "id", "model_specific", "modified_time", "name", "org_id", "scanning_enabled"); err != nil {
+		"ant_gain_24", "ant_gain_5", "ant_gain_6", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "country_code", "created_time", "enable_unii_4", "for_site", "id", "model_specific", "modified_time", "name", "org_id", "scanning_enabled"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -104,6 +106,9 @@ func (r RfTemplate) toMap() map[string]any {
 	if r.CreatedTime != nil {
 		structMap["created_time"] = r.CreatedTime
 	}
+	if r.EnableUnii4 != nil {
+		structMap["enable_unii_4"] = r.EnableUnii4
+	}
 	if r.ForSite != nil {
 		structMap["for_site"] = r.ForSite
 	}
@@ -138,7 +143,7 @@ func (r *RfTemplate) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ant_gain_24", "ant_gain_5", "ant_gain_6", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "country_code", "created_time", "for_site", "id", "model_specific", "modified_time", "name", "org_id", "scanning_enabled")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ant_gain_24", "ant_gain_5", "ant_gain_6", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "country_code", "created_time", "enable_unii_4", "for_site", "id", "model_specific", "modified_time", "name", "org_id", "scanning_enabled")
 	if err != nil {
 		return err
 	}
@@ -154,6 +159,7 @@ func (r *RfTemplate) UnmarshalJSON(input []byte) error {
 	r.Band6 = temp.Band6
 	r.CountryCode = temp.CountryCode
 	r.CreatedTime = temp.CreatedTime
+	r.EnableUnii4 = temp.EnableUnii4
 	r.ForSite = temp.ForSite
 	r.Id = temp.Id
 	r.ModelSpecific = temp.ModelSpecific
@@ -176,6 +182,7 @@ type tempRfTemplate struct {
 	Band6           *RftemplateRadioBand6                      `json:"band_6,omitempty"`
 	CountryCode     *string                                    `json:"country_code,omitempty"`
 	CreatedTime     *float64                                   `json:"created_time,omitempty"`
+	EnableUnii4     *bool                                      `json:"enable_unii_4,omitempty"`
 	ForSite         *bool                                      `json:"for_site,omitempty"`
 	Id              *uuid.UUID                                 `json:"id,omitempty"`
 	ModelSpecific   map[string]RfTemplateModelSpecificProperty `json:"model_specific,omitempty"`

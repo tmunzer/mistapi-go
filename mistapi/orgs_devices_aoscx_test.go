@@ -9,14 +9,14 @@ import (
 	"testing"
 )
 
-// TestOrgsDevicesAOSTestGetOrgAosRegisterCmd tests the behavior of the OrgsDevicesAOS
-func TestOrgsDevicesAOSTestGetOrgAosRegisterCmd(t *testing.T) {
+// TestOrgsDevicesAOSCXTestGetOrgAoscxRegisterCmd tests the behavior of the OrgsDevicesAOSCX
+func TestOrgsDevicesAOSCXTestGetOrgAoscxRegisterCmd(t *testing.T) {
 	ctx := context.Background()
 	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	apiResponse, err := orgsDevicesAos.GetOrgAosRegisterCmd(ctx, orgId)
+	apiResponse, err := orgsDevicesAoscx.GetOrgAoscxRegisterCmd(ctx, orgId)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -27,14 +27,14 @@ func TestOrgsDevicesAOSTestGetOrgAosRegisterCmd(t *testing.T) {
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestOrgsDevicesAOSTestGetOrgAosRegisterCmd1 tests the behavior of the OrgsDevicesAOS
-func TestOrgsDevicesAOSTestGetOrgAosRegisterCmd1(t *testing.T) {
+// TestOrgsDevicesAOSCXTestGetOrgAoscxRegisterCmd1 tests the behavior of the OrgsDevicesAOSCX
+func TestOrgsDevicesAOSCXTestGetOrgAoscxRegisterCmd1(t *testing.T) {
 	ctx := context.Background()
 	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	apiResponse, err := orgsDevicesAos.GetOrgAosRegisterCmd(ctx, orgId)
+	apiResponse, err := orgsDevicesAoscx.GetOrgAoscxRegisterCmd(ctx, orgId)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

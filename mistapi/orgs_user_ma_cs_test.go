@@ -27,7 +27,7 @@ func TestOrgsUserMACsTestCreateOrgUserMac(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"MAC address refers to Canon printers","vlan":"30"}`
+	expected := `{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"MAC address refers to Canon printers","site_ids":["4ac1dcf4-9d8b-7211-65c4-057819f0862b","52f4347e-3e4b-186c-21ca-ad5b70eb23d6"],"vlan":"30"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -48,7 +48,7 @@ func TestOrgsUserMACsTestCreateOrgUserMac1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"MAC address refers to Canon printers","vlan":"30"}`
+	expected := `{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"MAC address refers to Canon printers","site_ids":["4ac1dcf4-9d8b-7211-65c4-057819f0862b","52f4347e-3e4b-186c-21ca-ad5b70eb23d6"],"vlan":"30"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -113,6 +113,8 @@ func TestOrgsUserMACsTestCountOrgUserMacs(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"end":1723651268,"limit":10,"results":[{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","name":"Printer2","notes":"mac address refers to Canon printers","radius_group":"VIP","site_ids":["4ac1dcf4-9d8b-7211-65c4-057819f0862b","52f4347e-3e4b-186c-21ca-ad5b70eb23d6"],"vlan":"30"},{"id":"abecafd2-ba1b-5169-bfcb-9cdf1d473123","labels":["blgd-cupe","old"],"mac":"921b638445ce","name":"os mac","notes":"mac devices","radius_group":"rg-1","vlan":"vlan-2"}],"start":1723651267,"total":2}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
 // TestOrgsUserMACsTestCountOrgUserMacs1 tests the behavior of the OrgsUserMACs
@@ -134,6 +136,8 @@ func TestOrgsUserMACsTestCountOrgUserMacs1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"end":1723651268,"limit":10,"results":[{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","name":"Printer2","notes":"mac address refers to Canon printers","radius_group":"VIP","site_ids":["4ac1dcf4-9d8b-7211-65c4-057819f0862b","52f4347e-3e4b-186c-21ca-ad5b70eb23d6"],"vlan":"30"},{"id":"abecafd2-ba1b-5169-bfcb-9cdf1d473123","labels":["blgd-cupe","old"],"mac":"921b638445ce","name":"os mac","notes":"mac devices","radius_group":"rg-1","vlan":"vlan-2"}],"start":1723651267,"total":2}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
 // TestOrgsUserMACsTestDeleteOrgMultipleUserMacs tests the behavior of the OrgsUserMACs
@@ -172,7 +176,7 @@ func TestOrgsUserMACsTestSearchOrgUserMacs(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"MAC address refers to Canon printers","vlan":"30"}]`
+	expected := `[{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"MAC address refers to Canon printers","site_ids":["4ac1dcf4-9d8b-7211-65c4-057819f0862b","52f4347e-3e4b-186c-21ca-ad5b70eb23d6"],"vlan":"30"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -197,7 +201,7 @@ func TestOrgsUserMACsTestSearchOrgUserMacs1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"MAC address refers to Canon printers","vlan":"30"}]`
+	expected := `[{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"MAC address refers to Canon printers","site_ids":["4ac1dcf4-9d8b-7211-65c4-057819f0862b","52f4347e-3e4b-186c-21ca-ad5b70eb23d6"],"vlan":"30"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -239,7 +243,7 @@ func TestOrgsUserMACsTestGetOrgUserMac(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"MAC address refers to Canon printers","vlan":"30"}`
+	expected := `{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"MAC address refers to Canon printers","site_ids":["4ac1dcf4-9d8b-7211-65c4-057819f0862b","52f4347e-3e4b-186c-21ca-ad5b70eb23d6"],"vlan":"30"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -263,7 +267,7 @@ func TestOrgsUserMACsTestGetOrgUserMac1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"MAC address refers to Canon printers","vlan":"30"}`
+	expected := `{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"MAC address refers to Canon printers","site_ids":["4ac1dcf4-9d8b-7211-65c4-057819f0862b","52f4347e-3e4b-186c-21ca-ad5b70eb23d6"],"vlan":"30"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -288,7 +292,7 @@ func TestOrgsUserMACsTestUpdateOrgUserMac(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"MAC address refers to Canon printers","vlan":"30"}`
+	expected := `{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"MAC address refers to Canon printers","site_ids":["4ac1dcf4-9d8b-7211-65c4-057819f0862b","52f4347e-3e4b-186c-21ca-ad5b70eb23d6"],"vlan":"30"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -313,6 +317,6 @@ func TestOrgsUserMACsTestUpdateOrgUserMac1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"MAC address refers to Canon printers","vlan":"30"}`
+	expected := `{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"MAC address refers to Canon printers","site_ids":["4ac1dcf4-9d8b-7211-65c4-057819f0862b","52f4347e-3e4b-186c-21ca-ad5b70eb23d6"],"vlan":"30"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

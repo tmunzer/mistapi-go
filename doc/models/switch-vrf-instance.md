@@ -17,6 +17,7 @@ Switch VRF instance routing and network membership settings
 | `EvpnAutoLoopbackSubnet6` | `*string` | Optional | IPv6 subnet used for automatic EVPN loopback addresses in this VRF instance |
 | `ExtraRoutes` | [`map[string]models.VrfExtraRoute`](../../doc/models/vrf-extra-route.md) | Optional | Property key is the destination CIDR (e.g. "10.0.0.0/8") |
 | `ExtraRoutes6` | [`map[string]models.VrfExtraRoute6`](../../doc/models/vrf-extra-route-6.md) | Optional | Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
+| `MulticastConfig` | [`*models.SwitchMulticastConfig`](../../doc/models/switch-multicast-config.md) | Optional | Multicast configuration for a VRF. When set at the network template level it applies to networks in the master VRF (not assigned to any vrf_instances). PIM is automatically enabled when any network in the VRF has `multicast.enabled`==`true`. |
 | `Networks` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
 
 ## Example

@@ -22,9 +22,9 @@ Organization-wide feature, integration, management, and security settings
 | `AutoUpgrade` | [`*models.OrgSettingAutoUpgrade`](../../doc/models/org-setting-auto-upgrade.md) | Optional | Organization-wide AP automatic firmware upgrade policy |
 | `BlacklistUrl` | `*string` | Optional, Read-only | Read-only URL for the organization blacklist file |
 | `Cacerts` | `[]string` | Optional | RADSec certificates for AP |
+| `CacertsConfigs` | [`[]models.OrgSettingCacertsConfig`](../../doc/models/org-setting-cacerts-config.md) | Optional | List of per-issuer CA certificate configurations. Preferred over `cacerts`. |
 | `Celona` | [`*models.OrgSettingCelona`](../../doc/models/org-setting-celona.md) | Optional | Integration settings for Celona |
 | `Cloudshark` | [`*models.OrgSettingCloudshark`](../../doc/models/org-setting-cloudshark.md) | Optional | Packet capture integration settings for CloudShark |
-| `Cradlepoint` | [`*models.OrgSettingCradlepoint`](../../doc/models/org-setting-cradlepoint.md) | Optional, Read-only | Read-only Cradlepoint integration settings stored for the organization |
 | `CreatedTime` | `*float64` | Optional, Read-only | When the object has been created, in epoch |
 | `DeviceCert` | [`*models.OrgSettingDeviceCert`](../../doc/models/org-setting-device-cert.md) | Optional | Optional common device certificate configuration for organization settings |
 | `DeviceUpdownThreshold` | `models.Optional[int]` | Optional | Enable threshold-based device down delivery via<br><br>* device-updowns webhooks topic,<br>* Mist Alert Framework; e.g. send AP/SW/GW down event only if AP/SW/GW Up is not seen within the threshold in minutes; 0 - 240, default is 0 (trigger immediate)<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 240` |
@@ -83,8 +83,9 @@ func main() {
         AllowMist:                    models.ToPointer(false),
         ApUpdownThreshold:            models.NewOptional(models.ToPointer(0)),
         ApiPolicy:                    models.ToPointer(models.OrgSettingApiPolicy{
-            NoReveal:             models.ToPointer(false),
-            SrcIps:               []string{
+            EnforceSrcIpsForTokens: models.ToPointer(false),
+            NoReveal:               models.ToPointer(false),
+            SrcIps:                 []string{
                 "src_ips6",
                 "src_ips7",
             },

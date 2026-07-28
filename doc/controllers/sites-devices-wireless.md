@@ -12,8 +12,12 @@ sitesDevicesWireless := client.SitesDevicesWireless()
 
 * [Enable Site Device Zigbee Join](../../doc/controllers/sites-devices-wireless.md#enable-site-device-zigbee-join)
 * [Get Site Device Iot Port](../../doc/controllers/sites-devices-wireless.md#get-site-device-iot-port)
+* [Kick Site Device Zigbee Clients](../../doc/controllers/sites-devices-wireless.md#kick-site-device-zigbee-clients)
 * [List Site Device Radio Channels](../../doc/controllers/sites-devices-wireless.md#list-site-device-radio-channels)
 * [Set Site Device Iot Port](../../doc/controllers/sites-devices-wireless.md#set-site-device-iot-port)
+* [Start Site Device Zigbee Event Trail](../../doc/controllers/sites-devices-wireless.md#start-site-device-zigbee-event-trail)
+* [Start Site Device Zigbee Packet Trail](../../doc/controllers/sites-devices-wireless.md#start-site-device-zigbee-packet-trail)
+* [Stop Site Device Zigbee Join](../../doc/controllers/sites-devices-wireless.md#stop-site-device-zigbee-join)
 
 
 # Enable Site Device Zigbee Join
@@ -198,6 +202,86 @@ if err != nil {
 {
   "A1": 1,
   "DO": 0
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
+
+
+# Kick Site Device Zigbee Clients
+
+Kick one or more Zigbee clients from a Zigbee-enabled AP. The AP must be connected.
+
+```go
+KickSiteDeviceZigbeeClients(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsZigbeeKick) (
+    http.Response,
+    error)
+```
+
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.UtilsZigbeeKick`](../../doc/models/utils-zigbee-kick.md) | Body, Optional | Request Body |
+
+## Response Type
+
+**200**: OK
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.UtilsZigbeeKick{
+    Macs:                 []string{
+        "00177a01060cae9f",
+        "00177a01060caea1",
+    },
+}
+
+resp, err := sitesDevicesWireless.KickSiteDeviceZigbeeClients(ctx, siteId, deviceId, &body)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    fmt.Println(resp.StatusCode)
 }
 ```
 
@@ -528,6 +612,239 @@ if err != nil {
 {
   "A1": 1,
   "DO": 0
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
+
+
+# Start Site Device Zigbee Event Trail
+
+Start a Zigbee event trail session on an AP. Returns a `session` that the UI can use to stream results.
+
+```go
+StartSiteDeviceZigbeeEventTrail(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID) (
+    models.ApiResponse[models.ZigbeeTrailResponse],
+    error)
+```
+
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+**200**: OK
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ZigbeeTrailResponse](../../doc/models/zigbee-trail-response.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+apiResponse, err := sitesDevicesWireless.StartSiteDeviceZigbeeEventTrail(ctx, siteId, deviceId)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "session": "7a5f7796-83ee-11e5-95c6-1258369c38a9"
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
+
+
+# Start Site Device Zigbee Packet Trail
+
+Start a Zigbee packet trail session on an AP. Returns a `session` that the UI can use to stream results.
+
+```go
+StartSiteDeviceZigbeePacketTrail(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID) (
+    models.ApiResponse[models.ZigbeeTrailResponse],
+    error)
+```
+
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+**200**: OK
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ZigbeeTrailResponse](../../doc/models/zigbee-trail-response.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+apiResponse, err := sitesDevicesWireless.StartSiteDeviceZigbeePacketTrail(ctx, siteId, deviceId)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "session": "7a5f7796-83ee-11e5-95c6-1258369c38a9"
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
+
+
+# Stop Site Device Zigbee Join
+
+Stop allowing new Zigbee end devices to join the network through the specified AP.
+
+```go
+StopSiteDeviceZigbeeJoin(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID) (
+    http.Response,
+    error)
+```
+
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+**200**: OK
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+resp, err := sitesDevicesWireless.StopSiteDeviceZigbeeJoin(ctx, siteId, deviceId)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    fmt.Println(resp.StatusCode)
 }
 ```
 

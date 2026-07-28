@@ -289,6 +289,62 @@ func TestUtilitiesLANTestClearSiteDevicePendingVersion(t *testing.T) {
 	testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
 
+// TestUtilitiesLANTestSearchSiteDeviceFlowRecords tests the behavior of the UtilitiesLAN
+func TestUtilitiesLANTestSearchSiteDeviceFlowRecords(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+
+	limit := int(100)
+	sort := "timestamp"
+
+	apiResponse, err := utilitiesLan.SearchSiteDeviceFlowRecords(ctx, siteId, deviceId, nil, nil, &limit, &sort, nil, nil, nil, nil, nil, nil, nil, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"end":1775003600,"limit":1000,"results":[{"device_mac":"5c5b350e020a","direction":"ingress","dst_ip":"8.8.8.8","dst_port":443,"duration":60,"end_time":1775000060,"flow_id":12345,"org_id":"2818e386-8dec-2562-9ede-5b8a0fbbdc71","protocol":"tcp","sampling_percentage":0.1,"site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","src_ip":"10.0.0.1","src_port":54321,"start_time":1775000000,"state":"aged-out","timestamp":1775000060,"total_bytes":150000,"total_pkts":100}],"start":1775000000,"total":1}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestUtilitiesLANTestSearchSiteDeviceFlowRecords1 tests the behavior of the UtilitiesLAN
+func TestUtilitiesLANTestSearchSiteDeviceFlowRecords1(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+
+	limit := int(100)
+	sort := "timestamp"
+
+	apiResponse, err := utilitiesLan.SearchSiteDeviceFlowRecords(ctx, siteId, deviceId, nil, nil, &limit, &sort, nil, nil, nil, nil, nil, nil, nil, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"end":1775003600,"limit":1000,"results":[{"device_mac":"5c5b350e020a","direction":"ingress","dst_ip":"8.8.8.8","dst_port":443,"duration":60,"end_time":1775000060,"flow_id":12345,"org_id":"2818e386-8dec-2562-9ede-5b8a0fbbdc71","protocol":"tcp","sampling_percentage":0.1,"site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","src_ip":"10.0.0.1","src_port":54321,"start_time":1775000000,"state":"aged-out","timestamp":1775000060,"total_bytes":150000,"total_pkts":100}],"start":1775000000,"total":1}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestUtilitiesLANTestPollSiteSwitchStats tests the behavior of the UtilitiesLAN
 func TestUtilitiesLANTestPollSiteSwitchStats(t *testing.T) {
 	ctx := context.Background()

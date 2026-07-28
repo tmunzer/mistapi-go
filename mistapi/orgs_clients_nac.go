@@ -348,7 +348,7 @@ func (o *OrgsClientsNAC) SearchOrgNacClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgNacClients takes context, orgId, ap, authType, certExpiryDuration, edrManaged, edrProvider, edrStatus, family, hostname, idpId, mac, mdmCompliance, mdmProvider, mdmManaged, mfg, model, nacruleName, nacruleId, nacruleMatched, nasVendor, nasIp, ingressVlan, os, ssid, status, text, mType, usermacLabel, username, vlan, siteId, limit, start, end, duration, sort, searchAfter as parameters and
+// SearchOrgNacClients takes context, orgId, ap, authType, certExpiryDuration, edrManaged, edrProviders, edrStatus, family, hostname, idpId, mac, mdmCompliance, mdmProvider, mdmManaged, mfg, model, nacruleName, nacruleId, nacruleMatched, nasVendor, nasIp, ingressVlan, os, ssid, status, text, mType, usermacLabel, username, vlan, siteId, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseClientNacSearch data and
 // an error if there was an issue with the request or response.
 // Search NAC client records across the organization with filters for authentication, endpoint posture, identity, network, NAC rule, site, and time attributes.
@@ -359,7 +359,7 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
 	authType *string,
 	certExpiryDuration *string,
 	edrManaged *bool,
-	edrProvider *models.EdrProviderEnum,
+	edrProviders *models.EdrProviderEnum,
 	edrStatus *models.EdrStatusEnum,
 	family *string,
 	hostname *string,
@@ -420,8 +420,8 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
 	if edrManaged != nil {
 		req.QueryParam("edr_managed", *edrManaged)
 	}
-	if edrProvider != nil {
-		req.QueryParam("edr_provider", *edrProvider)
+	if edrProviders != nil {
+		req.QueryParam("edr_providers", *edrProviders)
 	}
 	if edrStatus != nil {
 		req.QueryParam("edr_status", *edrStatus)

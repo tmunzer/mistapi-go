@@ -20,6 +20,8 @@ Statistics for a Mist Edge appliance returned by stats endpoints
 | `IdracVersion` | `*string` | Optional | IDRAC version of the mist edge device |
 | `InactiveVlanStrs` | [`*models.StatsMxedgeInactiveVlanStrs`](../../doc/models/stats-mxedge-inactive-vlan-strs.md) | Optional | Inactive wired/L2TP VLANs. Entries can be individual VLANs or ranges. |
 | `IpStat` | [`*models.StatsMxedgeIpStat`](../../doc/models/stats-mxedge-ip-stat.md) | Optional | IP address statistics reported by a Mist Edge |
+| `KernelAbi` | `*string` | Optional | Kernel release version running on the Mist Edge |
+| `KernelVersion` | `*string` | Optional | Kernel package version running on the Mist Edge |
 | `LagStat` | [`map[string]models.StatsMxedgeLagStat`](../../doc/models/stats-mxedge-lag-stat.md) | Optional | Link aggregation group statistics keyed by LAG name |
 | `LastSeen` | `models.Optional[float64]` | Optional, Read-only | Timestamp indicating when the entity was last seen |
 | `Mac` | `*string` | Optional | Mist Edge MAC address reported by Mist |
@@ -80,6 +82,8 @@ func main() {
         }),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
         IdracVersion:         models.ToPointer("7.00.00.00"),
+        KernelAbi:            models.ToPointer("6.1.0-47"),
+        KernelVersion:        models.ToPointer("6.1.170-3"),
         LagStat:              map[string]models.StatsMxedgeLagStat{
             "lacp0": models.StatsMxedgeLagStat{
                 ActivePorts:          []string{

@@ -20,13 +20,15 @@ type OrgSettingMistNac struct {
 	DisableRsaeAlgorithms *bool `json:"disable_rsae_algorithms,omitempty"`
 	// eap ssl security level, see https://www.openssl.org/docs/man1.1.1/man3/SSL_CTX_set_security_level.html#DEFAULT-CALLBACK-BEHAVIOUR
 	EapSslSecurityLevel *int `json:"eap_ssl_security_level,omitempty"`
+	// Enable EAP-MD5 for MAB. WARNING: Not FIPS compliant, use only if required for legacy device support.
+	EnableEapMd5ForMab *bool `json:"enable_eap_md5_for_mab,omitempty"`
 	// By default, NAC POD failover considers all NAC pods available around the globe, i.e. EU, US, or APAC based, failover happens based on geo IP of the originating site. For strict GDPR compliance NAC POD failover would only happen between the PODs located within the EU environment, and no authentication would take place outside of EU. This is an org setting that is applicable to WLANs, switch templates, Mist Edge clusters that have mist_nac enabled
 	EuOnly *bool `json:"eu_only,omitempty"`
 	// Client fingerprinting settings used for Mist NAC policy enforcement
 	Fingerprinting *OrgSettingMistNacFingerprinting `json:"fingerprinting,omitempty"`
 	// allow customer to choose the EAP-TLS client certificate's field to use for IDP Machine Groups lookup. enum: `automatic`, `cn`, `dns`
 	IdpMachineCertLookupField *IdpMachineCertLookupFieldEnum `json:"idp_machine_cert_lookup_field,omitempty"`
-	// allow customer to choose the EAP-TLS client certificate's field. To use for IDP User Groups lookup. enum: `automatic`, `cn`, `email`, `upn`
+	// allow customer to choose the EAP-TLS client certificate's field to use for IDP User Groups lookup. enum: `automatic`, `cn`, `email`, `upn`
 	IdpUserCertLookupField *IdpUserCertLookupFieldEnum `json:"idp_user_cert_lookup_field,omitempty"`
 	// Identity provider realm mappings used by Mist NAC
 	Idps []OrgSettingMistNacIdp `json:"idps,omitempty"`
@@ -38,7 +40,7 @@ type OrgSettingMistNac struct {
 	UseIpVersion *OrgSettingMistNacIpVersionEnum `json:"use_ip_version,omitempty"`
 	// By default, NAS devices (switches/aps) and proxies(mxedge) are configured to use port TCP2083(RadSec) to reach mist-nac. Set `use_ssl_port`==`true` to override that port with TCP43 (ssl), This is an org level setting that is applicable to wlans, switch_templates, and mxedge_clusters that have mist-nac enabled
 	UseSslPort *bool `json:"use_ssl_port,omitempty"`
-	// Allow customer to configure an expiry time for usermacs by attaching a Quarantine label to those which have been inactive for the configured period of time (in days). 0 means no expiry
+	// Allow customer to configure an expiry time for usermacs by attaching an `inactive_endpoint` label to those which have been inactive for the configured period of time (in days). 0 means no expiry
 	UsermacExpiry        *int                   `json:"usermac_expiry,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -47,8 +49,8 @@ type OrgSettingMistNac struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (o OrgSettingMistNac) String() string {
 	return fmt.Sprintf(
-		"OrgSettingMistNac[AllowTeapMachineAuthOnly=%v, Cacerts=%v, DefaultIdpId=%v, DisableRsaeAlgorithms=%v, EapSslSecurityLevel=%v, EuOnly=%v, Fingerprinting=%v, IdpMachineCertLookupField=%v, IdpUserCertLookupField=%v, Idps=%v, Mdm=%v, ServerCert=%v, UseIpVersion=%v, UseSslPort=%v, UsermacExpiry=%v, AdditionalProperties=%v]",
-		o.AllowTeapMachineAuthOnly, o.Cacerts, o.DefaultIdpId, o.DisableRsaeAlgorithms, o.EapSslSecurityLevel, o.EuOnly, o.Fingerprinting, o.IdpMachineCertLookupField, o.IdpUserCertLookupField, o.Idps, o.Mdm, o.ServerCert, o.UseIpVersion, o.UseSslPort, o.UsermacExpiry, o.AdditionalProperties)
+		"OrgSettingMistNac[AllowTeapMachineAuthOnly=%v, Cacerts=%v, DefaultIdpId=%v, DisableRsaeAlgorithms=%v, EapSslSecurityLevel=%v, EnableEapMd5ForMab=%v, EuOnly=%v, Fingerprinting=%v, IdpMachineCertLookupField=%v, IdpUserCertLookupField=%v, Idps=%v, Mdm=%v, ServerCert=%v, UseIpVersion=%v, UseSslPort=%v, UsermacExpiry=%v, AdditionalProperties=%v]",
+		o.AllowTeapMachineAuthOnly, o.Cacerts, o.DefaultIdpId, o.DisableRsaeAlgorithms, o.EapSslSecurityLevel, o.EnableEapMd5ForMab, o.EuOnly, o.Fingerprinting, o.IdpMachineCertLookupField, o.IdpUserCertLookupField, o.Idps, o.Mdm, o.ServerCert, o.UseIpVersion, o.UseSslPort, o.UsermacExpiry, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingMistNac.
@@ -57,7 +59,7 @@ func (o OrgSettingMistNac) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(o.AdditionalProperties,
-		"allow_teap_machine_auth_only", "cacerts", "default_idp_id", "disable_rsae_algorithms", "eap_ssl_security_level", "eu_only", "fingerprinting", "idp_machine_cert_lookup_field", "idp_user_cert_lookup_field", "idps", "mdm", "server_cert", "use_ip_version", "use_ssl_port", "usermac_expiry"); err != nil {
+		"allow_teap_machine_auth_only", "cacerts", "default_idp_id", "disable_rsae_algorithms", "eap_ssl_security_level", "enable_eap_md5_for_mab", "eu_only", "fingerprinting", "idp_machine_cert_lookup_field", "idp_user_cert_lookup_field", "idps", "mdm", "server_cert", "use_ip_version", "use_ssl_port", "usermac_expiry"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(o.toMap())
@@ -81,6 +83,9 @@ func (o OrgSettingMistNac) toMap() map[string]any {
 	}
 	if o.EapSslSecurityLevel != nil {
 		structMap["eap_ssl_security_level"] = o.EapSslSecurityLevel
+	}
+	if o.EnableEapMd5ForMab != nil {
+		structMap["enable_eap_md5_for_mab"] = o.EnableEapMd5ForMab
 	}
 	if o.EuOnly != nil {
 		structMap["eu_only"] = o.EuOnly
@@ -123,7 +128,7 @@ func (o *OrgSettingMistNac) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_teap_machine_auth_only", "cacerts", "default_idp_id", "disable_rsae_algorithms", "eap_ssl_security_level", "eu_only", "fingerprinting", "idp_machine_cert_lookup_field", "idp_user_cert_lookup_field", "idps", "mdm", "server_cert", "use_ip_version", "use_ssl_port", "usermac_expiry")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_teap_machine_auth_only", "cacerts", "default_idp_id", "disable_rsae_algorithms", "eap_ssl_security_level", "enable_eap_md5_for_mab", "eu_only", "fingerprinting", "idp_machine_cert_lookup_field", "idp_user_cert_lookup_field", "idps", "mdm", "server_cert", "use_ip_version", "use_ssl_port", "usermac_expiry")
 	if err != nil {
 		return err
 	}
@@ -134,6 +139,7 @@ func (o *OrgSettingMistNac) UnmarshalJSON(input []byte) error {
 	o.DefaultIdpId = temp.DefaultIdpId
 	o.DisableRsaeAlgorithms = temp.DisableRsaeAlgorithms
 	o.EapSslSecurityLevel = temp.EapSslSecurityLevel
+	o.EnableEapMd5ForMab = temp.EnableEapMd5ForMab
 	o.EuOnly = temp.EuOnly
 	o.Fingerprinting = temp.Fingerprinting
 	o.IdpMachineCertLookupField = temp.IdpMachineCertLookupField
@@ -154,6 +160,7 @@ type tempOrgSettingMistNac struct {
 	DefaultIdpId              *string                          `json:"default_idp_id,omitempty"`
 	DisableRsaeAlgorithms     *bool                            `json:"disable_rsae_algorithms,omitempty"`
 	EapSslSecurityLevel       *int                             `json:"eap_ssl_security_level,omitempty"`
+	EnableEapMd5ForMab        *bool                            `json:"enable_eap_md5_for_mab,omitempty"`
 	EuOnly                    *bool                            `json:"eu_only,omitempty"`
 	Fingerprinting            *OrgSettingMistNacFingerprinting `json:"fingerprinting,omitempty"`
 	IdpMachineCertLookupField *IdpMachineCertLookupFieldEnum   `json:"idp_machine_cert_lookup_field,omitempty"`

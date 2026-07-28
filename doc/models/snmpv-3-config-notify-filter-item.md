@@ -11,6 +11,7 @@ SNMPv3 notification filter profile
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `Categories` | `[]string` | Optional | List of SNMP trap group category names for a CX notification filter profile |
 | `Contents` | [`[]models.Snmpv3ConfigNotifyFilterItemContent`](../../doc/models/snmpv-3-config-notify-filter-item-content.md) | Optional | OID filter rules in an SNMPv3 notification filter profile |
 | `ProfileName` | `*string` | Optional | Notification filter profile name |
 
@@ -25,6 +26,10 @@ import (
 
 func main() {
     snmpv3ConfigNotifyFilterItem := models.Snmpv3ConfigNotifyFilterItem{
+        Categories:           []string{
+            "link",
+            "authentication",
+        },
         Contents:             []models.Snmpv3ConfigNotifyFilterItemContent{
             models.Snmpv3ConfigNotifyFilterItemContent{
                 Include:              models.ToPointer(false),

@@ -22,6 +22,8 @@ type GatewayMgmt struct {
 	ConfigRevertTimer *int `json:"config_revert_timer,omitempty"`
 	// For SSR and SRX, disable console port
 	DisableConsole *bool `json:"disable_console,omitempty"`
+	// For SRX only, disable IDP packet capture
+	DisableIdpPcap *bool `json:"disable_idp_pcap,omitempty"`
 	// For SSR and SRX, disable management interface
 	DisableOob *bool `json:"disable_oob,omitempty"`
 	// For SSR and SRX, disable usb interface
@@ -49,8 +51,8 @@ type GatewayMgmt struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (g GatewayMgmt) String() string {
 	return fmt.Sprintf(
-		"GatewayMgmt[AdminSshkeys=%v, AppProbing=%v, AppUsage=%v, AutoSignatureUpdate=%v, ConfigRevertTimer=%v, DisableConsole=%v, DisableOob=%v, DisableUsb=%v, FipsEnabled=%v, ProbeHosts=%v, ProbeHostsv6=%v, ProtectRe=%v, RootPassword=%v, SecurityLogSourceAddress=%v, SecurityLogSourceInterface=%v, AdditionalProperties=%v]",
-		g.AdminSshkeys, g.AppProbing, g.AppUsage, g.AutoSignatureUpdate, g.ConfigRevertTimer, g.DisableConsole, g.DisableOob, g.DisableUsb, g.FipsEnabled, g.ProbeHosts, g.ProbeHostsv6, g.ProtectRe, g.RootPassword, g.SecurityLogSourceAddress, g.SecurityLogSourceInterface, g.AdditionalProperties)
+		"GatewayMgmt[AdminSshkeys=%v, AppProbing=%v, AppUsage=%v, AutoSignatureUpdate=%v, ConfigRevertTimer=%v, DisableConsole=%v, DisableIdpPcap=%v, DisableOob=%v, DisableUsb=%v, FipsEnabled=%v, ProbeHosts=%v, ProbeHostsv6=%v, ProtectRe=%v, RootPassword=%v, SecurityLogSourceAddress=%v, SecurityLogSourceInterface=%v, AdditionalProperties=%v]",
+		g.AdminSshkeys, g.AppProbing, g.AppUsage, g.AutoSignatureUpdate, g.ConfigRevertTimer, g.DisableConsole, g.DisableIdpPcap, g.DisableOob, g.DisableUsb, g.FipsEnabled, g.ProbeHosts, g.ProbeHostsv6, g.ProtectRe, g.RootPassword, g.SecurityLogSourceAddress, g.SecurityLogSourceInterface, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayMgmt.
@@ -59,7 +61,7 @@ func (g GatewayMgmt) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(g.AdditionalProperties,
-		"admin_sshkeys", "app_probing", "app_usage", "auto_signature_update", "config_revert_timer", "disable_console", "disable_oob", "disable_usb", "fips_enabled", "probe_hosts", "probe_hostsv6", "protect_re", "root_password", "security_log_source_address", "security_log_source_interface"); err != nil {
+		"admin_sshkeys", "app_probing", "app_usage", "auto_signature_update", "config_revert_timer", "disable_console", "disable_idp_pcap", "disable_oob", "disable_usb", "fips_enabled", "probe_hosts", "probe_hostsv6", "protect_re", "root_password", "security_log_source_address", "security_log_source_interface"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(g.toMap())
@@ -86,6 +88,9 @@ func (g GatewayMgmt) toMap() map[string]any {
 	}
 	if g.DisableConsole != nil {
 		structMap["disable_console"] = g.DisableConsole
+	}
+	if g.DisableIdpPcap != nil {
+		structMap["disable_idp_pcap"] = g.DisableIdpPcap
 	}
 	if g.DisableOob != nil {
 		structMap["disable_oob"] = g.DisableOob
@@ -125,7 +130,7 @@ func (g *GatewayMgmt) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "admin_sshkeys", "app_probing", "app_usage", "auto_signature_update", "config_revert_timer", "disable_console", "disable_oob", "disable_usb", "fips_enabled", "probe_hosts", "probe_hostsv6", "protect_re", "root_password", "security_log_source_address", "security_log_source_interface")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "admin_sshkeys", "app_probing", "app_usage", "auto_signature_update", "config_revert_timer", "disable_console", "disable_idp_pcap", "disable_oob", "disable_usb", "fips_enabled", "probe_hosts", "probe_hostsv6", "protect_re", "root_password", "security_log_source_address", "security_log_source_interface")
 	if err != nil {
 		return err
 	}
@@ -137,6 +142,7 @@ func (g *GatewayMgmt) UnmarshalJSON(input []byte) error {
 	g.AutoSignatureUpdate = temp.AutoSignatureUpdate
 	g.ConfigRevertTimer = temp.ConfigRevertTimer
 	g.DisableConsole = temp.DisableConsole
+	g.DisableIdpPcap = temp.DisableIdpPcap
 	g.DisableOob = temp.DisableOob
 	g.DisableUsb = temp.DisableUsb
 	g.FipsEnabled = temp.FipsEnabled
@@ -157,6 +163,7 @@ type tempGatewayMgmt struct {
 	AutoSignatureUpdate        *GatewayMgmtAutoSignatureUpdate `json:"auto_signature_update,omitempty"`
 	ConfigRevertTimer          *int                            `json:"config_revert_timer,omitempty"`
 	DisableConsole             *bool                           `json:"disable_console,omitempty"`
+	DisableIdpPcap             *bool                           `json:"disable_idp_pcap,omitempty"`
 	DisableOob                 *bool                           `json:"disable_oob,omitempty"`
 	DisableUsb                 *bool                           `json:"disable_usb,omitempty"`
 	FipsEnabled                *bool                           `json:"fips_enabled,omitempty"`

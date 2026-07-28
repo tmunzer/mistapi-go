@@ -230,84 +230,6 @@ func TestOrgsJSITestCountOrgJsiAssetsAndContracts1(t *testing.T) {
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestOrgsJSITestSearchOrgJsiAssetsAndContracts tests the behavior of the OrgsJSI
-func TestOrgsJSITestSearchOrgJsiAssetsAndContracts(t *testing.T) {
-	ctx := context.Background()
-	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
-	if errUUID != nil {
-		t.Error(errUUID)
-	}
-
-	model := "QFX10000-36Q,QFX10000-30C"
-	serial := "ACNP4666,ACNP6969"
-	sku := "QFX10000-36Q,QFX10000-30C"
-	status := models.DeviceStatusEnum("all")
-
-	endOfSaleAfter := "2024-01-01"
-	endOfSaleBefore := "2025-12-31"
-	eosAfter := "2024-01-01"
-	eosBefore := "2025-12-31"
-	versionEosAfter := "2024-01-01"
-	versionEosBefore := "2025-12-31"
-
-	sirtId := "JSA12345"
-	pbnId := "PBN67890"
-
-	limit := int(100)
-	sort := "timestamp"
-
-	apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, nil, &model, &serial, &sku, &status, nil, &endOfSaleAfter, &endOfSaleBefore, &eosAfter, &eosBefore, &versionEosAfter, &versionEosBefore, nil, &sirtId, &pbnId, nil, &limit, &sort, nil)
-	if err != nil {
-		t.Errorf("Endpoint call failed: %v", err)
-	}
-	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
-	expectedHeaders := []testHelper.TestHeader{
-		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
-	}
-	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1748023308,"limit":1000,"results":[{"claimed":true,"device_name":"name1","end_of_sale_time":1561507200,"eos_time":1672012800,"has_support":true,"master":true,"model":"EX2300-24MP","org_id":"6e843b41-f953-4af9-80e5-e1a70f65754a","serial":"XN3123300095","sku":"EX2300","status":"connected","suggested_version":"Latest 21.4R3-Sx","type":"switch","version":"23.4R2-S4.11","version_eos_time":1672012800,"version_time":1561507200,"warranty":"Enhanced Hardware Warranty","warranty_time":1672012800,"warranty_type":"Enhanced Hardware Warranty"}],"start":1748019708,"total":1}`
-	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
-}
-
-// TestOrgsJSITestSearchOrgJsiAssetsAndContracts1 tests the behavior of the OrgsJSI
-func TestOrgsJSITestSearchOrgJsiAssetsAndContracts1(t *testing.T) {
-	ctx := context.Background()
-	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
-	if errUUID != nil {
-		t.Error(errUUID)
-	}
-
-	model := "QFX10000-36Q,QFX10000-30C"
-	serial := "ACNP4666,ACNP6969"
-	sku := "QFX10000-36Q,QFX10000-30C"
-	status := models.DeviceStatusEnum("all")
-
-	endOfSaleAfter := "2024-01-01"
-	endOfSaleBefore := "2025-12-31"
-	eosAfter := "2024-01-01"
-	eosBefore := "2025-12-31"
-	versionEosAfter := "2024-01-01"
-	versionEosBefore := "2025-12-31"
-
-	sirtId := "JSA12345"
-	pbnId := "PBN67890"
-
-	limit := int(100)
-	sort := "timestamp"
-
-	apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, nil, &model, &serial, &sku, &status, nil, &endOfSaleAfter, &endOfSaleBefore, &eosAfter, &eosBefore, &versionEosAfter, &versionEosBefore, nil, &sirtId, &pbnId, nil, &limit, &sort, nil)
-	if err != nil {
-		t.Errorf("Endpoint call failed: %v", err)
-	}
-	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
-	expectedHeaders := []testHelper.TestHeader{
-		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
-	}
-	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1748023308,"limit":1000,"results":[{"claimed":true,"device_name":"name1","end_of_sale_time":1561507200,"eos_time":1672012800,"has_support":true,"master":true,"model":"EX2300-24MP","org_id":"6e843b41-f953-4af9-80e5-e1a70f65754a","serial":"XN3123300095","sku":"EX2300","status":"connected","suggested_version":"Latest 21.4R3-Sx","type":"switch","version":"23.4R2-S4.11","version_eos_time":1672012800,"version_time":1561507200,"warranty":"Enhanced Hardware Warranty","warranty_time":1672012800,"warranty_type":"Enhanced Hardware Warranty"}],"start":1748019708,"total":1}`
-	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
-}
-
 // TestOrgsJSITestCountOrgJsiPbn tests the behavior of the OrgsJSI
 func TestOrgsJSITestCountOrgJsiPbn(t *testing.T) {
 	ctx := context.Background()
@@ -363,8 +285,9 @@ func TestOrgsJSITestSearchOrgJsiPbn(t *testing.T) {
 
 	limit := int(100)
 	page := int(1)
+	sort := "timestamp"
 
-	apiResponse, err := orgsJsi.SearchOrgJsiPbn(ctx, orgId, &versions, nil, nil, &id, nil, &limit, &page, nil, nil, nil)
+	apiResponse, err := orgsJsi.SearchOrgJsiPbn(ctx, orgId, &versions, nil, nil, &id, nil, nil, &limit, &page, &sort, nil, nil, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -373,6 +296,8 @@ func TestOrgsJSITestSearchOrgJsiPbn(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"end":1753415677,"limit":1,"next":"/api/v1/orgs/bf105f5e-2490-453b-9dc0-81224ca295cf/jsi/pbn/search?end=1753415677&limit=1&search_after=%5B%221403338%22%5D&start=1753412077","results":[{"bug_type":"Day-1","customer_risk":"Major","id":"1403338","introduced_in":"","models":["MX10008","vMX"],"product_family":["EX2200","QFX5210"],"release_notes":"In aggregated interfaces and STP (Spanning Tree Protocol) scenario, the STP does not work.","restoration":"","title":"The STP does not work when aggregated interfaces number is \"ae1000\"","versions":["23.4R2-S1.1"],"workaround":"Use the 'ae' number from 0 to 999 in QFX5000 and 0 to 479 in other QFXs / EX under STP.","workaround_provided":"yes"}],"start":1753412077,"total":604}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
 // TestOrgsJSITestSearchOrgJsiPbn1 tests the behavior of the OrgsJSI
@@ -388,8 +313,9 @@ func TestOrgsJSITestSearchOrgJsiPbn1(t *testing.T) {
 
 	limit := int(100)
 	page := int(1)
+	sort := "timestamp"
 
-	apiResponse, err := orgsJsi.SearchOrgJsiPbn(ctx, orgId, &versions, nil, nil, &id, nil, &limit, &page, nil, nil, nil)
+	apiResponse, err := orgsJsi.SearchOrgJsiPbn(ctx, orgId, &versions, nil, nil, &id, nil, nil, &limit, &page, &sort, nil, nil, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -398,6 +324,8 @@ func TestOrgsJSITestSearchOrgJsiPbn1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"end":1753415677,"limit":1,"next":"/api/v1/orgs/bf105f5e-2490-453b-9dc0-81224ca295cf/jsi/pbn/search?end=1753415677&limit=1&search_after=%5B%221403338%22%5D&start=1753412077","results":[{"bug_type":"Day-1","customer_risk":"Major","id":"1403338","introduced_in":"","models":["MX10008","vMX"],"product_family":["EX2200","QFX5210"],"release_notes":"In aggregated interfaces and STP (Spanning Tree Protocol) scenario, the STP does not work.","restoration":"","title":"The STP does not work when aggregated interfaces number is \"ae1000\"","versions":["23.4R2-S1.1"],"workaround":"Use the 'ae' number from 0 to 999 in QFX5000 and 0 to 479 in other QFXs / EX under STP.","workaround_provided":"yes"}],"start":1753412077,"total":604}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
 // TestOrgsJSITestCountOrgJsiSirt tests the behavior of the OrgsJSI
@@ -467,6 +395,8 @@ func TestOrgsJSITestSearchOrgJsiSirt(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"end":1753411849,"limit":1,"next":"/api/v1/orgs/bf105f5e-2490-453b-9dc0-81224ca295cf/jsi/sirt/search?end=1753411849&limit=1&search_after=%5B%22JSA100053%22%5D&start=1753408249","results":[{"cvss_score":6.5,"id":"JSA100053","models":["MX10008","vMX"],"problem":"An Improper Handling of Length Parameter Inconsistency vulnerability in the routing protocol daemon (rpd).\n","published_date":1752019200,"release_notes":"An Improper Handling of Length Parameter Inconsistency vulnerability in the routing protocol daemon (rpd).","severity":"Medium","solution":"false","title":"Junos OS and Junos OS Evolved: In an EVPN environment, receipt of a specifically malformed BGP update causes RPD crash","updated_date":1752019200,"versions":["23.4R2-S1.1"],"workaround":""}],"start":1753408249,"total":14}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
 // TestOrgsJSITestSearchOrgJsiSirt1 tests the behavior of the OrgsJSI
@@ -494,4 +424,6 @@ func TestOrgsJSITestSearchOrgJsiSirt1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"end":1753411849,"limit":1,"next":"/api/v1/orgs/bf105f5e-2490-453b-9dc0-81224ca295cf/jsi/sirt/search?end=1753411849&limit=1&search_after=%5B%22JSA100053%22%5D&start=1753408249","results":[{"cvss_score":6.5,"id":"JSA100053","models":["MX10008","vMX"],"problem":"An Improper Handling of Length Parameter Inconsistency vulnerability in the routing protocol daemon (rpd).\n","published_date":1752019200,"release_notes":"An Improper Handling of Length Parameter Inconsistency vulnerability in the routing protocol daemon (rpd).","severity":"Medium","solution":"false","title":"Junos OS and Junos OS Evolved: In an EVPN environment, receipt of a specifically malformed BGP update causes RPD crash","updated_date":1752019200,"versions":["23.4R2-S1.1"],"workaround":""}],"start":1753408249,"total":14}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

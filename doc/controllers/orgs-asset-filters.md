@@ -101,6 +101,7 @@ if err != nil {
   "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
   "mfg_company_id": 0,
   "modified_time": 0,
+  "mqtt_topic": "xxxxx",
   "name": "string",
   "org_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
   "site_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"
@@ -265,6 +266,7 @@ if err != nil {
   "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
   "mfg_company_id": 0,
   "modified_time": 0,
+  "mqtt_topic": "xxxxx",
   "name": "string",
   "org_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
   "site_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"
@@ -447,6 +449,7 @@ if err != nil {
   "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
   "mfg_company_id": 0,
   "modified_time": 0,
+  "mqtt_topic": "xxxxx",
   "name": "string",
   "org_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
   "site_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"

@@ -15,8 +15,10 @@ import (
 type SsrUpgradeMulti struct {
 	// upgrade channel to follow. enum: `alpha`, `beta`, `stable`
 	Channel *SsrUpgradeChannelEnum `json:"channel,omitempty"`
-	// List of 128T device IDs to upgrade
+	// List of 128T device IDs to upgrade; currently only one 128T device is allowed
 	DeviceIds []uuid.UUID `json:"device_ids"`
+	// When true, forces the upgrade even when the requested version matches the currently running version; default is false
+	Force *bool `json:"force,omitempty"`
 	// Reboot start time in epoch seconds, default is start_time, -1 disables reboot
 	RebootAt *int `json:"reboot_at,omitempty"`
 	// 128T firmware download start time in epoch seconds, default is now, -1 disables download
@@ -34,8 +36,8 @@ type SsrUpgradeMulti struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SsrUpgradeMulti) String() string {
 	return fmt.Sprintf(
-		"SsrUpgradeMulti[Channel=%v, DeviceIds=%v, RebootAt=%v, StartTime=%v, Strategy=%v, Version=%v, AdditionalProperties=%v]",
-		s.Channel, s.DeviceIds, s.RebootAt, s.StartTime, s.Strategy, s.Version, s.AdditionalProperties)
+		"SsrUpgradeMulti[Channel=%v, DeviceIds=%v, Force=%v, RebootAt=%v, StartTime=%v, Strategy=%v, Version=%v, AdditionalProperties=%v]",
+		s.Channel, s.DeviceIds, s.Force, s.RebootAt, s.StartTime, s.Strategy, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsrUpgradeMulti.
@@ -44,7 +46,7 @@ func (s SsrUpgradeMulti) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"channel", "device_ids", "reboot_at", "start_time", "strategy", "version"); err != nil {
+		"channel", "device_ids", "force", "reboot_at", "start_time", "strategy", "version"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -58,6 +60,9 @@ func (s SsrUpgradeMulti) toMap() map[string]any {
 		structMap["channel"] = s.Channel
 	}
 	structMap["device_ids"] = s.DeviceIds
+	if s.Force != nil {
+		structMap["force"] = s.Force
+	}
 	if s.RebootAt != nil {
 		structMap["reboot_at"] = s.RebootAt
 	}
@@ -85,7 +90,7 @@ func (s *SsrUpgradeMulti) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "device_ids", "reboot_at", "start_time", "strategy", "version")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "device_ids", "force", "reboot_at", "start_time", "strategy", "version")
 	if err != nil {
 		return err
 	}
@@ -93,6 +98,7 @@ func (s *SsrUpgradeMulti) UnmarshalJSON(input []byte) error {
 
 	s.Channel = temp.Channel
 	s.DeviceIds = *temp.DeviceIds
+	s.Force = temp.Force
 	s.RebootAt = temp.RebootAt
 	s.StartTime = temp.StartTime
 	s.Strategy = temp.Strategy
@@ -104,6 +110,7 @@ func (s *SsrUpgradeMulti) UnmarshalJSON(input []byte) error {
 type tempSsrUpgradeMulti struct {
 	Channel   *SsrUpgradeChannelEnum  `json:"channel,omitempty"`
 	DeviceIds *[]uuid.UUID            `json:"device_ids"`
+	Force     *bool                   `json:"force,omitempty"`
 	RebootAt  *int                    `json:"reboot_at,omitempty"`
 	StartTime *int                    `json:"start_time,omitempty"`
 	Strategy  *SsrUpgradeStrategyEnum `json:"strategy,omitempty"`

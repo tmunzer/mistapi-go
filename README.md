@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2606.1.1**
+> Version: **2607.1.0**
 > 
-> Date: **July 10, 2026**
+> Date: **July 22, 2026**
 
 <div class="notification"> NOTE:<br>Some important API changes will be introduced. Please make sure to read the <a href="https://www.juniper.net/documentation/us/en/software/mist/api/http/guides/important-api-changes">announcements</a> </div>
 
@@ -196,7 +196,8 @@ This API uses the following authentication schemes.
 * [Orgs CRL](doc/controllers/orgs-crl.md)
 * [Orgs Device Profiles](doc/controllers/orgs-device-profiles.md)
 * [Orgs Devices](doc/controllers/orgs-devices.md)
-* [Orgs Devices-AOS](doc/controllers/orgs-devices-aos.md)
+* [Orgs Devices-AOSCX](doc/controllers/orgs-devices-aoscx.md)
+* [Orgs Devices-Edge Connect](doc/controllers/orgs-devices-edge-connect.md)
 * [Orgs Devices-Others](doc/controllers/orgs-devices-others.md)
 * [Orgs Devices-SSR](doc/controllers/orgs-devices-ssr.md)
 * [Orgs Events](doc/controllers/orgs-events.md)

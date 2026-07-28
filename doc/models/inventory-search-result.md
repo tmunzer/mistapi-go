@@ -12,6 +12,7 @@ Inventory record returned by inventory search
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Mac` | `*string` | Optional | Device MAC address for this inventory search result |
+| `Magic` | `*string` | Optional | Device claim code (magic) for this inventory search result |
 | `Master` | `*bool` | Optional | Whether this search result represents the master member of a Virtual Chassis |
 | `Members` | [`[]models.InventorySearchResultMember`](../../doc/models/inventory-search-result-member.md) | Optional | Virtual Chassis members included in an inventory search result |
 | `Model` | `*string` | Optional | Device model for this inventory search result |
@@ -38,6 +39,7 @@ import (
 func main() {
     inventorySearchResult := models.InventorySearchResult{
         Mac:                  models.ToPointer("f01c2df166e0"),
+        Magic:                models.ToPointer("WVTFBLTNPXD23H2"),
         Master:               models.ToPointer(true),
         Members:              []models.InventorySearchResultMember{
             models.InventorySearchResultMember{

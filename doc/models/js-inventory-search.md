@@ -34,11 +34,11 @@ func main() {
         Next:                 models.ToPointer("next2"),
         Results:              []models.JsInventoryItem{
             models.JsInventoryItem{
-                Availability:         models.ToPointer("availability6"),
-                Claimed:              models.ToPointer(false),
-                ContractEndDate:      models.ToPointer("contract_end_date6"),
-                ContractReseller:     models.ToPointer("contract_reseller4"),
-                ContractStartDate:    models.ToPointer("contract_start_date2"),
+                Availability:          models.ToPointer("availability6"),
+                Claimed:               models.ToPointer(false),
+                ContractEndDate:       models.ToPointer("contract_end_date6"),
+                ContractId:            models.ToPointer("contract_id4"),
+                ContractReseller:      models.ToPointer("contract_reseller4"),
             },
         },
         Start:                models.ToPointer(24),

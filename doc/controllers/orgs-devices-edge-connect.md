@@ -1,23 +1,23 @@
-# Orgs Devices-AOS
+# Orgs Devices-Edge Connect
 
 ```go
-orgsDevicesAOS := client.OrgsDevicesAOS()
+orgsDevicesEdgeConnect := client.OrgsDevicesEdgeConnect()
 ```
 
 ## Class Name
 
-`OrgsDevicesAOS`
+`OrgsDevicesEdgeConnect`
 
 
-# Get Org Aos Register Cmd
+# Get Org Edgeconnect Register Cmd
 
-Generates a registration challenge token for TPM-based brownfield registration of AOS devices. The returned command string can be copied and pasted directly into an AOS device to register it with Mist.
+Returns a registration code for adopting an EdgeConnect device into Mist.
 
 ```go
-GetOrgAosRegisterCmd(
+GetOrgEdgeconnectRegisterCmd(
     ctx context.Context,
     orgId uuid.UUID) (
-    models.ApiResponse[models.AosRegisterCmd],
+    models.ApiResponse[models.EdgeconnectRegisterCmd],
     error)
 ```
 
@@ -33,9 +33,9 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 
 ## Response Type
 
-**200**: AOS Brownfield Registration Commands
+**200**: EdgeConnect Registration Command
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AosRegisterCmd](../../doc/models/aos-register-cmd.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.EdgeconnectRegisterCmd](../../doc/models/edgeconnect-register-cmd.md).
 
 ## Example Usage
 
@@ -44,7 +44,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := orgsDevicesAOS.GetOrgAosRegisterCmd(ctx, orgId)
+apiResponse, err := orgsDevicesEdgeConnect.GetOrgEdgeconnectRegisterCmd(ctx, orgId)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

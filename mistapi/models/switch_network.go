@@ -20,6 +20,8 @@ type SwitchNetwork struct {
 	Isolation *bool `json:"isolation,omitempty"`
 	// Required when `isolation`==`true`. Unique VLAN ID used for client isolation
 	IsolationVlanId *string `json:"isolation_vlan_id,omitempty"`
+	// Multicast settings for a switch network (VLAN)
+	Multicast *SwitchNetworkMulticast `json:"multicast,omitempty"`
 	// Optional for pure switching, required when L3 / routing features are used
 	Subnet *string `json:"subnet,omitempty"`
 	// Optional for pure switching, required when L3 / routing features are used
@@ -33,8 +35,8 @@ type SwitchNetwork struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SwitchNetwork) String() string {
 	return fmt.Sprintf(
-		"SwitchNetwork[Gateway=%v, Gateway6=%v, Isolation=%v, IsolationVlanId=%v, Subnet=%v, Subnet6=%v, VlanId=%v, AdditionalProperties=%v]",
-		s.Gateway, s.Gateway6, s.Isolation, s.IsolationVlanId, s.Subnet, s.Subnet6, s.VlanId, s.AdditionalProperties)
+		"SwitchNetwork[Gateway=%v, Gateway6=%v, Isolation=%v, IsolationVlanId=%v, Multicast=%v, Subnet=%v, Subnet6=%v, VlanId=%v, AdditionalProperties=%v]",
+		s.Gateway, s.Gateway6, s.Isolation, s.IsolationVlanId, s.Multicast, s.Subnet, s.Subnet6, s.VlanId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchNetwork.
@@ -43,7 +45,7 @@ func (s SwitchNetwork) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"gateway", "gateway6", "isolation", "isolation_vlan_id", "subnet", "subnet6", "vlan_id"); err != nil {
+		"gateway", "gateway6", "isolation", "isolation_vlan_id", "multicast", "subnet", "subnet6", "vlan_id"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -64,6 +66,9 @@ func (s SwitchNetwork) toMap() map[string]any {
 	}
 	if s.IsolationVlanId != nil {
 		structMap["isolation_vlan_id"] = s.IsolationVlanId
+	}
+	if s.Multicast != nil {
+		structMap["multicast"] = s.Multicast.toMap()
 	}
 	if s.Subnet != nil {
 		structMap["subnet"] = s.Subnet
@@ -87,7 +92,7 @@ func (s *SwitchNetwork) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "gateway", "gateway6", "isolation", "isolation_vlan_id", "subnet", "subnet6", "vlan_id")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "gateway", "gateway6", "isolation", "isolation_vlan_id", "multicast", "subnet", "subnet6", "vlan_id")
 	if err != nil {
 		return err
 	}
@@ -97,6 +102,7 @@ func (s *SwitchNetwork) UnmarshalJSON(input []byte) error {
 	s.Gateway6 = temp.Gateway6
 	s.Isolation = temp.Isolation
 	s.IsolationVlanId = temp.IsolationVlanId
+	s.Multicast = temp.Multicast
 	s.Subnet = temp.Subnet
 	s.Subnet6 = temp.Subnet6
 	s.VlanId = *temp.VlanId
@@ -105,13 +111,14 @@ func (s *SwitchNetwork) UnmarshalJSON(input []byte) error {
 
 // tempSwitchNetwork is a temporary struct used for validating the fields of SwitchNetwork.
 type tempSwitchNetwork struct {
-	Gateway         *string             `json:"gateway,omitempty"`
-	Gateway6        *string             `json:"gateway6,omitempty"`
-	Isolation       *bool               `json:"isolation,omitempty"`
-	IsolationVlanId *string             `json:"isolation_vlan_id,omitempty"`
-	Subnet          *string             `json:"subnet,omitempty"`
-	Subnet6         *string             `json:"subnet6,omitempty"`
-	VlanId          *VlanIdWithVariable `json:"vlan_id"`
+	Gateway         *string                 `json:"gateway,omitempty"`
+	Gateway6        *string                 `json:"gateway6,omitempty"`
+	Isolation       *bool                   `json:"isolation,omitempty"`
+	IsolationVlanId *string                 `json:"isolation_vlan_id,omitempty"`
+	Multicast       *SwitchNetworkMulticast `json:"multicast,omitempty"`
+	Subnet          *string                 `json:"subnet,omitempty"`
+	Subnet6         *string                 `json:"subnet6,omitempty"`
+	VlanId          *VlanIdWithVariable     `json:"vlan_id"`
 }
 
 func (s *tempSwitchNetwork) validate() error {

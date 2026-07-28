@@ -151,6 +151,72 @@ func TestSitesDevicesWirelessTestSetSiteDeviceIotPort1(t *testing.T) {
 	testHelper.RawBodyMatcher(t, expected, apiResponse.Response.Body)
 }
 
+// TestSitesDevicesWirelessTestStartSiteDeviceZigbeeEventTrail tests the behavior of the SitesDevicesWireless
+func TestSitesDevicesWirelessTestStartSiteDeviceZigbeeEventTrail(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	apiResponse, err := sitesDevicesWireless.StartSiteDeviceZigbeeEventTrail(ctx, siteId, deviceId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"session":"7a5f7796-83ee-11e5-95c6-1258369c38a9"}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestSitesDevicesWirelessTestStartSiteDeviceZigbeeEventTrail1 tests the behavior of the SitesDevicesWireless
+func TestSitesDevicesWirelessTestStartSiteDeviceZigbeeEventTrail1(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	apiResponse, err := sitesDevicesWireless.StartSiteDeviceZigbeeEventTrail(ctx, siteId, deviceId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"session":"7a5f7796-83ee-11e5-95c6-1258369c38a9"}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestSitesDevicesWirelessTestStopSiteDeviceZigbeeJoin tests the behavior of the SitesDevicesWireless
+func TestSitesDevicesWirelessTestStopSiteDeviceZigbeeJoin(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	resp, err := sitesDevicesWireless.StopSiteDeviceZigbeeJoin(ctx, siteId, deviceId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+}
+
 // TestSitesDevicesWirelessTestEnableSiteDeviceZigbeeJoin tests the behavior of the SitesDevicesWireless
 func TestSitesDevicesWirelessTestEnableSiteDeviceZigbeeJoin(t *testing.T) {
 	ctx := context.Background()
@@ -206,5 +272,76 @@ func TestSitesDevicesWirelessTestEnableSiteDeviceZigbeeJoin1(t *testing.T) {
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 	expected := `{"session_id":"19e73828-937f-05e6-f709-e29efdb0a82b"}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestSitesDevicesWirelessTestKickSiteDeviceZigbeeClients tests the behavior of the SitesDevicesWireless
+func TestSitesDevicesWirelessTestKickSiteDeviceZigbeeClients(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	var body models.UtilsZigbeeKick
+	errBody := json.Unmarshal([]byte(`{"macs":["00177a01060cae9f","00177a01060caea1"]}`), &body)
+	if errBody != nil {
+		t.Errorf("Cannot parse the model object.")
+	}
+	resp, err := sitesDevicesWireless.KickSiteDeviceZigbeeClients(ctx, siteId, deviceId, &body)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+}
+
+// TestSitesDevicesWirelessTestStartSiteDeviceZigbeePacketTrail tests the behavior of the SitesDevicesWireless
+func TestSitesDevicesWirelessTestStartSiteDeviceZigbeePacketTrail(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	apiResponse, err := sitesDevicesWireless.StartSiteDeviceZigbeePacketTrail(ctx, siteId, deviceId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"session":"7a5f7796-83ee-11e5-95c6-1258369c38a9"}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestSitesDevicesWirelessTestStartSiteDeviceZigbeePacketTrail1 tests the behavior of the SitesDevicesWireless
+func TestSitesDevicesWirelessTestStartSiteDeviceZigbeePacketTrail1(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	apiResponse, err := sitesDevicesWireless.StartSiteDeviceZigbeePacketTrail(ctx, siteId, deviceId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"session":"7a5f7796-83ee-11e5-95c6-1258369c38a9"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

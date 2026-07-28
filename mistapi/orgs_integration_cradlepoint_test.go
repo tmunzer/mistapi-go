@@ -41,7 +41,7 @@ func TestOrgsIntegrationCradlepointTestTestOrgCradlepointConnection(t *testing.T
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"error":"Cradlepoint API keys are no longer valid, please verify and update the keys under organization settings.","last_status":"inactive"}`
+	expected := `{"alert_config_id":"8b7e06ac-0yu5-11f1-88h2-42628k552c3d","cp_api_id":"********","cp_api_key":"********","destination_config_id":"8ad364de-0yu5-13r1-9abc-263675be6074","ecm_api_id":"********","ecm_api_key":"********","enable_lldp":false,"error":"Cradlepoint API keys are no longer valid, please verify and update the keys under organization settings.","last_status":"inactive","shared_secret":"********"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -61,7 +61,7 @@ func TestOrgsIntegrationCradlepointTestTestOrgCradlepointConnection1(t *testing.
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"error":"Cradlepoint API keys are no longer valid, please verify and update the keys under organization settings.","last_status":"inactive"}`
+	expected := `{"alert_config_id":"8b7e06ac-0yu5-11f1-88h2-42628k552c3d","cp_api_id":"********","cp_api_key":"********","destination_config_id":"8ad364de-0yu5-13r1-9abc-263675be6074","ecm_api_id":"********","ecm_api_key":"********","enable_lldp":false,"error":"Cradlepoint API keys are no longer valid, please verify and update the keys under organization settings.","last_status":"inactive","shared_secret":"********"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -72,8 +72,12 @@ func TestOrgsIntegrationCradlepointTestSetupOrgCradlepointConnectionToMist(t *te
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-
-	resp, err := orgsIntegrationCradlepoint.SetupOrgCradlepointConnectionToMist(ctx, orgId, nil)
+	var body models.AccountCradlepointConfig
+	errBody := json.Unmarshal([]byte(`{"cp_api_id":"84446d61-2206-4ea5-855a-0043f980be54","cp_api_key":"79c329da9893e34099c7d8ad5cb9c941","ecm_api_id":"73446d61-2206-4ea5-855a-0043f980be62","ecm_api_key":"68b329da9893e34099c7d8ad5cb9c9405","enable_lldp":true}`), &body)
+	if errBody != nil {
+		t.Errorf("Cannot parse the model object.")
+	}
+	resp, err := orgsIntegrationCradlepoint.SetupOrgCradlepointConnectionToMist(ctx, orgId, &body)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -88,7 +92,7 @@ func TestOrgsIntegrationCradlepointTestUpdateOrgCradlepointConnectionToMist(t *t
 		t.Error(errUUID)
 	}
 	var body models.AccountCradlepointConfig
-	errBody := json.Unmarshal([]byte(`{"cp_api_id":"84446d61-2206-4ea5-855a-0043f980be54","cp_api_key":"79c329da9893e34099c7d8ad5cb9c941","ecm_api_id":"73446d61-2206-4ea5-855a-0043f980be62","ecm_api_key":"68b329da9893e34099c7d8ad5cb9c9405"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"cp_api_id":"84446d61-2206-4ea5-855a-0043f980be54","cp_api_key":"79c329da9893e34099c7d8ad5cb9c941","ecm_api_id":"73446d61-2206-4ea5-855a-0043f980be62","ecm_api_key":"68b329da9893e34099c7d8ad5cb9c9405","enable_lldp":true}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}

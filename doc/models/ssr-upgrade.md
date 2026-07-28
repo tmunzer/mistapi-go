@@ -14,6 +14,7 @@ Request to upgrade a single SSR device
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Channel` | [`*models.SsrUpgradeChannelEnum`](../../doc/models/ssr-upgrade-channel-enum.md) | Optional | upgrade channel to follow. enum: `alpha`, `beta`, `stable`<br><br>**Default**: `"stable"` |
+| `Force` | `*bool` | Optional | When true, forces the upgrade even when the requested version matches the currently running version; default is false<br><br>**Default**: `false` |
 | `RebootAt` | `*int` | Optional | Reboot start time in epoch seconds, default is start_time, -1 disables reboot |
 | `StartTime` | `*int` | Optional | 128T firmware download start time in epoch seconds, default is now, -1 disables download |
 | `Version` | `string` | Required | 128T firmware version to upgrade (e.g. 5.3.0-93)<br><br>**Default**: `"stable"`<br><br>**Constraints**: *Minimum Length*: `1` |
@@ -31,6 +32,7 @@ import (
 func main() {
     ssrUpgrade := models.SsrUpgrade{
         Channel:              models.ToPointer(models.SsrUpgradeChannelEnum_STABLE),
+        Force:                models.ToPointer(false),
         RebootAt:             models.ToPointer(0),
         StartTime:            models.ToPointer(186),
         Version:              "stable",

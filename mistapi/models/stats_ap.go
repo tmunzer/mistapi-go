@@ -152,7 +152,9 @@ type StatsAp struct {
 	// Map X coordinate of the AP placement, in pixels
 	X Optional[float64] `json:"x"`
 	// Map Y coordinate of the AP placement, in pixels
-	Y                    Optional[float64]      `json:"y"`
+	Y Optional[float64] `json:"y"`
+	// ZigBee statistics reported by an AP, present only when ZigBee is enabled on the AP
+	ZigbeeStat           *StatsApZigbeeStat     `json:"zigbee_stat,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -160,8 +162,8 @@ type StatsAp struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsAp) String() string {
 	return fmt.Sprintf(
-		"StatsAp[AntennaSelect=%v, AutoPlacement=%v, AutoUpgradeStat=%v, BleStat=%v, CertExpiry=%v, ConfigReverted=%v, CpuSystem=%v, CpuUser=%v, CpuUtil=%v, CreatedTime=%v, DeviceprofileId=%v, EnvStat=%v, EslStat=%v, EvpntopoId=%v, ExpiringCerts=%v, ExtIp=%v, Fwupdate=%v, GpsStat=%v, HwRev=%v, Id=%v, InactiveWiredVlans=%v, IotStat=%v, Ip=%v, IpConfig=%v, IpStat=%v, L2tpStat=%v, LastSeen=%v, LastTrouble=%v, Led=%v, LldpStat=%v, LldpStats=%v, Locating=%v, Locked=%v, Mac=%v, MapId=%v, MemTotalKb=%v, MemUsedKb=%v, MeshDownlinks=%v, MeshUplink=%v, Model=%v, ModifiedTime=%v, Mount=%v, Name=%v, Notes=%v, NumClients=%v, NumWlans=%v, OrgId=%v, PortStat=%v, PowerBudget=%v, PowerConstrained=%v, PowerOpmode=%v, PowerSrc=%v, RadioConfig=%v, RadioStat=%v, RxBps=%v, RxBytes=%v, RxPkts=%v, Serial=%v, SiteId=%v, Status=%v, SwitchRedundancy=%v, TxBps=%v, TxBytes=%v, TxPkts=%v, Type=%v, Uptime=%v, UsbStat=%v, Version=%v, X=%v, Y=%v, AdditionalProperties=%v]",
-		s.AntennaSelect, s.AutoPlacement, s.AutoUpgradeStat, s.BleStat, s.CertExpiry, s.ConfigReverted, s.CpuSystem, s.CpuUser, s.CpuUtil, s.CreatedTime, s.DeviceprofileId, s.EnvStat, s.EslStat, s.EvpntopoId, s.ExpiringCerts, s.ExtIp, s.Fwupdate, s.GpsStat, s.HwRev, s.Id, s.InactiveWiredVlans, s.IotStat, s.Ip, s.IpConfig, s.IpStat, s.L2tpStat, s.LastSeen, s.LastTrouble, s.Led, s.LldpStat, s.LldpStats, s.Locating, s.Locked, s.Mac, s.MapId, s.MemTotalKb, s.MemUsedKb, s.MeshDownlinks, s.MeshUplink, s.Model, s.ModifiedTime, s.Mount, s.Name, s.Notes, s.NumClients, s.NumWlans, s.OrgId, s.PortStat, s.PowerBudget, s.PowerConstrained, s.PowerOpmode, s.PowerSrc, s.RadioConfig, s.RadioStat, s.RxBps, s.RxBytes, s.RxPkts, s.Serial, s.SiteId, s.Status, s.SwitchRedundancy, s.TxBps, s.TxBytes, s.TxPkts, s.Type, s.Uptime, s.UsbStat, s.Version, s.X, s.Y, s.AdditionalProperties)
+		"StatsAp[AntennaSelect=%v, AutoPlacement=%v, AutoUpgradeStat=%v, BleStat=%v, CertExpiry=%v, ConfigReverted=%v, CpuSystem=%v, CpuUser=%v, CpuUtil=%v, CreatedTime=%v, DeviceprofileId=%v, EnvStat=%v, EslStat=%v, EvpntopoId=%v, ExpiringCerts=%v, ExtIp=%v, Fwupdate=%v, GpsStat=%v, HwRev=%v, Id=%v, InactiveWiredVlans=%v, IotStat=%v, Ip=%v, IpConfig=%v, IpStat=%v, L2tpStat=%v, LastSeen=%v, LastTrouble=%v, Led=%v, LldpStat=%v, LldpStats=%v, Locating=%v, Locked=%v, Mac=%v, MapId=%v, MemTotalKb=%v, MemUsedKb=%v, MeshDownlinks=%v, MeshUplink=%v, Model=%v, ModifiedTime=%v, Mount=%v, Name=%v, Notes=%v, NumClients=%v, NumWlans=%v, OrgId=%v, PortStat=%v, PowerBudget=%v, PowerConstrained=%v, PowerOpmode=%v, PowerSrc=%v, RadioConfig=%v, RadioStat=%v, RxBps=%v, RxBytes=%v, RxPkts=%v, Serial=%v, SiteId=%v, Status=%v, SwitchRedundancy=%v, TxBps=%v, TxBytes=%v, TxPkts=%v, Type=%v, Uptime=%v, UsbStat=%v, Version=%v, X=%v, Y=%v, ZigbeeStat=%v, AdditionalProperties=%v]",
+		s.AntennaSelect, s.AutoPlacement, s.AutoUpgradeStat, s.BleStat, s.CertExpiry, s.ConfigReverted, s.CpuSystem, s.CpuUser, s.CpuUtil, s.CreatedTime, s.DeviceprofileId, s.EnvStat, s.EslStat, s.EvpntopoId, s.ExpiringCerts, s.ExtIp, s.Fwupdate, s.GpsStat, s.HwRev, s.Id, s.InactiveWiredVlans, s.IotStat, s.Ip, s.IpConfig, s.IpStat, s.L2tpStat, s.LastSeen, s.LastTrouble, s.Led, s.LldpStat, s.LldpStats, s.Locating, s.Locked, s.Mac, s.MapId, s.MemTotalKb, s.MemUsedKb, s.MeshDownlinks, s.MeshUplink, s.Model, s.ModifiedTime, s.Mount, s.Name, s.Notes, s.NumClients, s.NumWlans, s.OrgId, s.PortStat, s.PowerBudget, s.PowerConstrained, s.PowerOpmode, s.PowerSrc, s.RadioConfig, s.RadioStat, s.RxBps, s.RxBytes, s.RxPkts, s.Serial, s.SiteId, s.Status, s.SwitchRedundancy, s.TxBps, s.TxBytes, s.TxPkts, s.Type, s.Uptime, s.UsbStat, s.Version, s.X, s.Y, s.ZigbeeStat, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsAp.
@@ -170,7 +172,7 @@ func (s StatsAp) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"antenna_select", "auto_placement", "auto_upgrade_stat", "ble_stat", "cert_expiry", "config_reverted", "cpu_system", "cpu_user", "cpu_util", "created_time", "deviceprofile_id", "env_stat", "esl_stat", "evpntopo_id", "expiring_certs", "ext_ip", "fwupdate", "gps_stat", "hw_rev", "id", "inactive_wired_vlans", "iot_stat", "ip", "ip_config", "ip_stat", "l2tp_stat", "last_seen", "last_trouble", "led", "lldp_stat", "lldp_stats", "locating", "locked", "mac", "map_id", "mem_total_kb", "mem_used_kb", "mesh_downlinks", "mesh_uplink", "model", "modified_time", "mount", "name", "notes", "num_clients", "num_wlans", "org_id", "port_stat", "power_budget", "power_constrained", "power_opmode", "power_src", "radio_config", "radio_stat", "rx_bps", "rx_bytes", "rx_pkts", "serial", "site_id", "status", "switch_redundancy", "tx_bps", "tx_bytes", "tx_pkts", "type", "uptime", "usb_stat", "version", "x", "y"); err != nil {
+		"antenna_select", "auto_placement", "auto_upgrade_stat", "ble_stat", "cert_expiry", "config_reverted", "cpu_system", "cpu_user", "cpu_util", "created_time", "deviceprofile_id", "env_stat", "esl_stat", "evpntopo_id", "expiring_certs", "ext_ip", "fwupdate", "gps_stat", "hw_rev", "id", "inactive_wired_vlans", "iot_stat", "ip", "ip_config", "ip_stat", "l2tp_stat", "last_seen", "last_trouble", "led", "lldp_stat", "lldp_stats", "locating", "locked", "mac", "map_id", "mem_total_kb", "mem_used_kb", "mesh_downlinks", "mesh_uplink", "model", "modified_time", "mount", "name", "notes", "num_clients", "num_wlans", "org_id", "port_stat", "power_budget", "power_constrained", "power_opmode", "power_src", "radio_config", "radio_stat", "rx_bps", "rx_bytes", "rx_pkts", "serial", "site_id", "status", "switch_redundancy", "tx_bps", "tx_bytes", "tx_pkts", "type", "uptime", "usb_stat", "version", "x", "y", "zigbee_stat"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -548,6 +550,9 @@ func (s StatsAp) toMap() map[string]any {
 			structMap["y"] = nil
 		}
 	}
+	if s.ZigbeeStat != nil {
+		structMap["zigbee_stat"] = s.ZigbeeStat.toMap()
+	}
 	return structMap
 }
 
@@ -563,7 +568,7 @@ func (s *StatsAp) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "antenna_select", "auto_placement", "auto_upgrade_stat", "ble_stat", "cert_expiry", "config_reverted", "cpu_system", "cpu_user", "cpu_util", "created_time", "deviceprofile_id", "env_stat", "esl_stat", "evpntopo_id", "expiring_certs", "ext_ip", "fwupdate", "gps_stat", "hw_rev", "id", "inactive_wired_vlans", "iot_stat", "ip", "ip_config", "ip_stat", "l2tp_stat", "last_seen", "last_trouble", "led", "lldp_stat", "lldp_stats", "locating", "locked", "mac", "map_id", "mem_total_kb", "mem_used_kb", "mesh_downlinks", "mesh_uplink", "model", "modified_time", "mount", "name", "notes", "num_clients", "num_wlans", "org_id", "port_stat", "power_budget", "power_constrained", "power_opmode", "power_src", "radio_config", "radio_stat", "rx_bps", "rx_bytes", "rx_pkts", "serial", "site_id", "status", "switch_redundancy", "tx_bps", "tx_bytes", "tx_pkts", "type", "uptime", "usb_stat", "version", "x", "y")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "antenna_select", "auto_placement", "auto_upgrade_stat", "ble_stat", "cert_expiry", "config_reverted", "cpu_system", "cpu_user", "cpu_util", "created_time", "deviceprofile_id", "env_stat", "esl_stat", "evpntopo_id", "expiring_certs", "ext_ip", "fwupdate", "gps_stat", "hw_rev", "id", "inactive_wired_vlans", "iot_stat", "ip", "ip_config", "ip_stat", "l2tp_stat", "last_seen", "last_trouble", "led", "lldp_stat", "lldp_stats", "locating", "locked", "mac", "map_id", "mem_total_kb", "mem_used_kb", "mesh_downlinks", "mesh_uplink", "model", "modified_time", "mount", "name", "notes", "num_clients", "num_wlans", "org_id", "port_stat", "power_budget", "power_constrained", "power_opmode", "power_src", "radio_config", "radio_stat", "rx_bps", "rx_bytes", "rx_pkts", "serial", "site_id", "status", "switch_redundancy", "tx_bps", "tx_bytes", "tx_pkts", "type", "uptime", "usb_stat", "version", "x", "y", "zigbee_stat")
 	if err != nil {
 		return err
 	}
@@ -639,6 +644,7 @@ func (s *StatsAp) UnmarshalJSON(input []byte) error {
 	s.Version = temp.Version
 	s.X = temp.X
 	s.Y = temp.Y
+	s.ZigbeeStat = temp.ZigbeeStat
 	return nil
 }
 
@@ -714,6 +720,7 @@ type tempStatsAp struct {
 	Version            Optional[string]                              `json:"version"`
 	X                  Optional[float64]                             `json:"x"`
 	Y                  Optional[float64]                             `json:"y"`
+	ZigbeeStat         *StatsApZigbeeStat                            `json:"zigbee_stat,omitempty"`
 }
 
 func (s *tempStatsAp) validate() error {

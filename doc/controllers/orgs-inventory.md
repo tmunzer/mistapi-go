@@ -741,6 +741,7 @@ SearchOrgInventory(
     name *string,
     siteId *uuid.UUID,
     serial *string,
+    magic *string,
     master *string,
     sku *string,
     version *string,
@@ -768,6 +769,7 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 | `name` | `*string` | Query, Optional | Device name. Always a partial match (e.g. `london` will match `london-1`, `london-2`, `my-london-device`...). Accepts multiple comma-separated values. |
 | `siteId` | `*uuid.UUID` | Query, Optional | Filter inventory results by site identifier. Accepts multiple comma-separated values. |
 | `serial` | `*string` | Query, Optional | Device serial number. Partial match allowed with wildcard * (e.g. `*123*` will match `AB123CD`, `12345`, `XY123`). Accepts multiple comma-separated values. |
+| `magic` | `*string` | Query, Optional | Device claim code (magic). Accepts multiple comma-separated values. |
 | `master` | `*string` | Query, Optional | Filter inventory results by whether the device is the Virtual Chassis master |
 | `sku` | `*string` | Query, Optional | Device SKU. Partial match allowed with wildcard * (e.g. `*2300*` will match `EX2300-F-12P`). Accepts multiple comma-separated values. |
 | `version` | `*string` | Query, Optional | Device version. Partial match allowed with wildcard * (e.g. `2R3` will match `21.2R3-S3.5`). Accepts multiple comma-separated values. |
@@ -802,6 +804,8 @@ siteId := uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")
 
 serial := "AB123CD,*123*"
 
+magic := "WVTFBLTNPXD23H2"
+
 master := "true"
 
 sku := "EX2300-F-12P,*2300*"
@@ -814,7 +818,7 @@ limit := 100
 
 sort := "-site_id"
 
-apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &model, &name, &siteId, &serial, &master, &sku, &version, &status, nil, &limit, &sort, nil)
+apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &model, &name, &siteId, &serial, &magic, &master, &sku, &version, &status, nil, &limit, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
@@ -845,6 +849,7 @@ if err != nil {
   "results": [
     {
       "mac": "f01c2df166e0",
+      "magic": "WVTFBLTNPXD23H2",
       "master": true,
       "members": [
         {

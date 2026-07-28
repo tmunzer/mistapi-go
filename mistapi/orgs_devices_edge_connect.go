@@ -11,28 +11,28 @@ import (
 	"github.com/tmunzer/mistapi-go/mistapi/models"
 )
 
-// OrgsDevicesAOS represents a controller struct.
-type OrgsDevicesAOS struct {
+// OrgsDevicesEdgeConnect represents a controller struct.
+type OrgsDevicesEdgeConnect struct {
 	baseController
 }
 
-// NewOrgsDevicesAOS creates a new instance of OrgsDevicesAOS.
-// It takes a baseController as a parameter and returns a pointer to the OrgsDevicesAOS.
-func NewOrgsDevicesAOS(baseController baseController) *OrgsDevicesAOS {
-	orgsDevicesAOS := OrgsDevicesAOS{baseController: baseController}
-	return &orgsDevicesAOS
+// NewOrgsDevicesEdgeConnect creates a new instance of OrgsDevicesEdgeConnect.
+// It takes a baseController as a parameter and returns a pointer to the OrgsDevicesEdgeConnect.
+func NewOrgsDevicesEdgeConnect(baseController baseController) *OrgsDevicesEdgeConnect {
+	orgsDevicesEdgeConnect := OrgsDevicesEdgeConnect{baseController: baseController}
+	return &orgsDevicesEdgeConnect
 }
 
-// GetOrgAosRegisterCmd takes context, orgId as parameters and
-// returns an models.ApiResponse with models.AosRegisterCmd data and
+// GetOrgEdgeconnectRegisterCmd takes context, orgId as parameters and
+// returns an models.ApiResponse with models.EdgeconnectRegisterCmd data and
 // an error if there was an issue with the request or response.
-// Generates a registration challenge token for TPM-based brownfield registration of AOS devices. The returned command string can be copied and pasted directly into an AOS device to register it with Mist.
-func (o *OrgsDevicesAOS) GetOrgAosRegisterCmd(
+// Returns a registration code for adopting an EdgeConnect device into Mist.
+func (o *OrgsDevicesEdgeConnect) GetOrgEdgeconnectRegisterCmd(
 	ctx context.Context,
 	orgId uuid.UUID) (
-	models.ApiResponse[models.AosRegisterCmd],
+	models.ApiResponse[models.EdgeconnectRegisterCmd],
 	error) {
-	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/aos/register_cmd")
+	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/edgeconnect/register_cmd")
 	req.AppendTemplateParams(orgId)
 	req.Authenticate(
 		NewOrAuth(
@@ -48,12 +48,12 @@ func (o *OrgsDevicesAOS) GetOrgAosRegisterCmd(
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
-	var result models.AosRegisterCmd
+	var result models.EdgeconnectRegisterCmd
 	decoder, resp, err := req.CallAsJson()
 	if err != nil {
 		return models.NewApiResponse(result, resp), err
 	}
 
-	result, err = utilities.DecodeResults[models.AosRegisterCmd](decoder)
+	result, err = utilities.DecodeResults[models.EdgeconnectRegisterCmd](decoder)
 	return models.NewApiResponse(result, resp), err
 }

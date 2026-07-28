@@ -196,6 +196,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Webhook{
+    DefaultAction:         models.ToPointer(models.WebhookActionEnum_PERMIT),
     Enabled:               models.ToPointer(true),
     Headers:               models.NewOptional(models.ToPointer(map[string]string{
         "x-custom-1": "your_custom_header_value1",
@@ -785,6 +786,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 webhookId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Webhook{
+    DefaultAction:         models.ToPointer(models.WebhookActionEnum_PERMIT),
     Enabled:               models.ToPointer(true),
     Headers:               models.NewOptional(models.ToPointer(map[string]string{
         "x-custom-1": "your_custom_header_value1",

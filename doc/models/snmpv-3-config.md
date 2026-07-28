@@ -43,6 +43,11 @@ func main() {
         },
         NotifyFilter:         []models.Snmpv3ConfigNotifyFilterItem{
             models.Snmpv3ConfigNotifyFilterItem{
+                Categories:           []string{
+                    "categories4",
+                    "categories3",
+                    "categories2",
+                },
                 Contents:             []models.Snmpv3ConfigNotifyFilterItemContent{
                     models.Snmpv3ConfigNotifyFilterItemContent{
                         Include:              models.ToPointer(false),

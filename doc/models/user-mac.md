@@ -19,6 +19,7 @@ Organization user MAC entry
 | `Name` | `*string` | Optional | Display name for this user MAC entry |
 | `Notes` | `*string` | Optional | Free-form notes about this user MAC entry |
 | `RadiusGroup` | `*string` | Optional | RADIUS group associated with this user MAC entry |
+| `SiteIds` | `[]uuid.UUID` | Optional | Optional list of site IDs this user MAC entry is scoped to |
 | `Vlan` | `*string` | Optional | Network VLAN value associated with this user MAC entry |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

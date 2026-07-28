@@ -63,7 +63,10 @@ func main() {
                             Gateway6:             models.ToPointer("gateway64"),
                             Isolation:            models.ToPointer(false),
                             IsolationVlanId:      models.ToPointer("isolation_vlan_id8"),
-                            Subnet:               models.ToPointer("subnet6"),
+                            Multicast:            models.ToPointer(models.SwitchNetworkMulticast{
+                                Enabled:              models.ToPointer(false),
+                                IgmpVersion:          models.ToPointer(models.IgmpVersionEnum_ENUM2),
+                            }),
                             VlanId:               models.VlanIdWithVariableContainer.FromString("String7"),
                         },
                         "key1": models.SwitchNetwork{
@@ -71,7 +74,10 @@ func main() {
                             Gateway6:             models.ToPointer("gateway64"),
                             Isolation:            models.ToPointer(false),
                             IsolationVlanId:      models.ToPointer("isolation_vlan_id8"),
-                            Subnet:               models.ToPointer("subnet6"),
+                            Multicast:            models.ToPointer(models.SwitchNetworkMulticast{
+                                Enabled:              models.ToPointer(false),
+                                IgmpVersion:          models.ToPointer(models.IgmpVersionEnum_ENUM2),
+                            }),
                             VlanId:               models.VlanIdWithVariableContainer.FromString("String7"),
                         },
                     },

@@ -428,7 +428,7 @@ func (o *OrgsInventory) ReplaceOrgDevices(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgInventory takes context, orgId, mType, mac, model, name, siteId, serial, master, sku, version, status, text, limit, sort, searchAfter as parameters and
+// SearchOrgInventory takes context, orgId, mType, mac, model, name, siteId, serial, magic, master, sku, version, status, text, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.InventorySearch data and
 // an error if there was an issue with the request or response.
 // Search organization inventory records with filters for type, MAC address, model, name, site, serial number, Virtual Chassis master state, SKU, version, status, and text.
@@ -441,6 +441,7 @@ func (o *OrgsInventory) SearchOrgInventory(
 	name *string,
 	siteId *uuid.UUID,
 	serial *string,
+	magic *string,
 	master *string,
 	sku *string,
 	version *string,
@@ -483,6 +484,9 @@ func (o *OrgsInventory) SearchOrgInventory(
 	}
 	if serial != nil {
 		req.QueryParam("serial", *serial)
+	}
+	if magic != nil {
+		req.QueryParam("magic", *magic)
 	}
 	if master != nil {
 		req.QueryParam("master", *master)

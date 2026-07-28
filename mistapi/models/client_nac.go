@@ -29,10 +29,10 @@ type ClientNac struct {
 	DeviceMac *string `json:"device_mac,omitempty"`
 	// Whether the NAC client is managed by an EDR provider
 	EdrManaged *bool `json:"edr_managed,omitempty"`
-	// EDR provider associated with the NAC client. enum: `crowdstrike`, `sentinelone`
-	EdrProvider *EdrProviderEnum `json:"edr_provider,omitempty"`
-	// EDR Status of the NAC client. enum: `sentinelone_healthy`, `sentinelone_infected`, `crowdstrike_low`, `crowdstrike_medium`, `crowdstrike_high`, `crowdstrike_critical`, `crowdstrike_informational`
-	EdrStatus *EdrStatusEnum `json:"edr_status,omitempty"`
+	// EDR providers associated with the NAC client
+	EdrProviders []EdrProviderEnum `json:"edr_providers,omitempty"`
+	// EDR health statuses reported for the NAC client
+	EdrStatus []EdrStatusEnum `json:"edr_status,omitempty"`
 	// User group associated with the NAC client
 	Group *string `json:"group,omitempty"`
 	// Identity Provider identifier used during NAC authentication
@@ -110,8 +110,8 @@ type ClientNac struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (c ClientNac) String() string {
 	return fmt.Sprintf(
-		"ClientNac[Ap=%v, AuthType=%v, CertCn=%v, CertIssuer=%v, CertSerial=%v, CertSubject=%v, ClientIp=%v, DeviceMac=%v, EdrManaged=%v, EdrProvider=%v, EdrStatus=%v, Group=%v, IdpId=%v, IdpRole=%v, LastAp=%v, LastCertCn=%v, LastCertExpiry=%v, LastCertIssuer=%v, LastCertSerial=%v, LastCertSubject=%v, LastClientIp=%v, LastNacruleId=%v, LastNacruleName=%v, LastNasVendor=%v, LastPortId=%v, LastSsid=%v, LastStatus=%v, LastUsername=%v, LastVlan=%v, Mac=%v, NacruleId=%v, NacruleMatched=%v, NacruleName=%v, NasIp=%v, NasVendor=%v, OrgId=%v, PortId=%v, RandomMac=%v, RespAttrs=%v, SiteId=%v, Ssid=%v, Timestamp=%v, Type=%v, UsermacLabel=%v, Username=%v, Vlan=%v, AdditionalProperties=%v]",
-		c.Ap, c.AuthType, c.CertCn, c.CertIssuer, c.CertSerial, c.CertSubject, c.ClientIp, c.DeviceMac, c.EdrManaged, c.EdrProvider, c.EdrStatus, c.Group, c.IdpId, c.IdpRole, c.LastAp, c.LastCertCn, c.LastCertExpiry, c.LastCertIssuer, c.LastCertSerial, c.LastCertSubject, c.LastClientIp, c.LastNacruleId, c.LastNacruleName, c.LastNasVendor, c.LastPortId, c.LastSsid, c.LastStatus, c.LastUsername, c.LastVlan, c.Mac, c.NacruleId, c.NacruleMatched, c.NacruleName, c.NasIp, c.NasVendor, c.OrgId, c.PortId, c.RandomMac, c.RespAttrs, c.SiteId, c.Ssid, c.Timestamp, c.Type, c.UsermacLabel, c.Username, c.Vlan, c.AdditionalProperties)
+		"ClientNac[Ap=%v, AuthType=%v, CertCn=%v, CertIssuer=%v, CertSerial=%v, CertSubject=%v, ClientIp=%v, DeviceMac=%v, EdrManaged=%v, EdrProviders=%v, EdrStatus=%v, Group=%v, IdpId=%v, IdpRole=%v, LastAp=%v, LastCertCn=%v, LastCertExpiry=%v, LastCertIssuer=%v, LastCertSerial=%v, LastCertSubject=%v, LastClientIp=%v, LastNacruleId=%v, LastNacruleName=%v, LastNasVendor=%v, LastPortId=%v, LastSsid=%v, LastStatus=%v, LastUsername=%v, LastVlan=%v, Mac=%v, NacruleId=%v, NacruleMatched=%v, NacruleName=%v, NasIp=%v, NasVendor=%v, OrgId=%v, PortId=%v, RandomMac=%v, RespAttrs=%v, SiteId=%v, Ssid=%v, Timestamp=%v, Type=%v, UsermacLabel=%v, Username=%v, Vlan=%v, AdditionalProperties=%v]",
+		c.Ap, c.AuthType, c.CertCn, c.CertIssuer, c.CertSerial, c.CertSubject, c.ClientIp, c.DeviceMac, c.EdrManaged, c.EdrProviders, c.EdrStatus, c.Group, c.IdpId, c.IdpRole, c.LastAp, c.LastCertCn, c.LastCertExpiry, c.LastCertIssuer, c.LastCertSerial, c.LastCertSubject, c.LastClientIp, c.LastNacruleId, c.LastNacruleName, c.LastNasVendor, c.LastPortId, c.LastSsid, c.LastStatus, c.LastUsername, c.LastVlan, c.Mac, c.NacruleId, c.NacruleMatched, c.NacruleName, c.NasIp, c.NasVendor, c.OrgId, c.PortId, c.RandomMac, c.RespAttrs, c.SiteId, c.Ssid, c.Timestamp, c.Type, c.UsermacLabel, c.Username, c.Vlan, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ClientNac.
@@ -120,7 +120,7 @@ func (c ClientNac) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(c.AdditionalProperties,
-		"ap", "auth_type", "cert_cn", "cert_issuer", "cert_serial", "cert_subject", "client_ip", "device_mac", "edr_managed", "edr_provider", "edr_status", "group", "idp_id", "idp_role", "last_ap", "last_cert_cn", "last_cert_expiry", "last_cert_issuer", "last_cert_serial", "last_cert_subject", "last_client_ip", "last_nacrule_id", "last_nacrule_name", "last_nas_vendor", "last_port_id", "last_ssid", "last_status", "last_username", "last_vlan", "mac", "nacrule_id", "nacrule_matched", "nacrule_name", "nas_ip", "nas_vendor", "org_id", "port_id", "random_mac", "resp_attrs", "site_id", "ssid", "timestamp", "type", "usermac_label", "username", "vlan"); err != nil {
+		"ap", "auth_type", "cert_cn", "cert_issuer", "cert_serial", "cert_subject", "client_ip", "device_mac", "edr_managed", "edr_providers", "edr_status", "group", "idp_id", "idp_role", "last_ap", "last_cert_cn", "last_cert_expiry", "last_cert_issuer", "last_cert_serial", "last_cert_subject", "last_client_ip", "last_nacrule_id", "last_nacrule_name", "last_nas_vendor", "last_port_id", "last_ssid", "last_status", "last_username", "last_vlan", "mac", "nacrule_id", "nacrule_matched", "nacrule_name", "nas_ip", "nas_vendor", "org_id", "port_id", "random_mac", "resp_attrs", "site_id", "ssid", "timestamp", "type", "usermac_label", "username", "vlan"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(c.toMap())
@@ -157,8 +157,8 @@ func (c ClientNac) toMap() map[string]any {
 	if c.EdrManaged != nil {
 		structMap["edr_managed"] = c.EdrManaged
 	}
-	if c.EdrProvider != nil {
-		structMap["edr_provider"] = c.EdrProvider
+	if c.EdrProviders != nil {
+		structMap["edr_providers"] = c.EdrProviders
 	}
 	if c.EdrStatus != nil {
 		structMap["edr_status"] = c.EdrStatus
@@ -279,7 +279,7 @@ func (c *ClientNac) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "auth_type", "cert_cn", "cert_issuer", "cert_serial", "cert_subject", "client_ip", "device_mac", "edr_managed", "edr_provider", "edr_status", "group", "idp_id", "idp_role", "last_ap", "last_cert_cn", "last_cert_expiry", "last_cert_issuer", "last_cert_serial", "last_cert_subject", "last_client_ip", "last_nacrule_id", "last_nacrule_name", "last_nas_vendor", "last_port_id", "last_ssid", "last_status", "last_username", "last_vlan", "mac", "nacrule_id", "nacrule_matched", "nacrule_name", "nas_ip", "nas_vendor", "org_id", "port_id", "random_mac", "resp_attrs", "site_id", "ssid", "timestamp", "type", "usermac_label", "username", "vlan")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "auth_type", "cert_cn", "cert_issuer", "cert_serial", "cert_subject", "client_ip", "device_mac", "edr_managed", "edr_providers", "edr_status", "group", "idp_id", "idp_role", "last_ap", "last_cert_cn", "last_cert_expiry", "last_cert_issuer", "last_cert_serial", "last_cert_subject", "last_client_ip", "last_nacrule_id", "last_nacrule_name", "last_nas_vendor", "last_port_id", "last_ssid", "last_status", "last_username", "last_vlan", "mac", "nacrule_id", "nacrule_matched", "nacrule_name", "nas_ip", "nas_vendor", "org_id", "port_id", "random_mac", "resp_attrs", "site_id", "ssid", "timestamp", "type", "usermac_label", "username", "vlan")
 	if err != nil {
 		return err
 	}
@@ -294,7 +294,7 @@ func (c *ClientNac) UnmarshalJSON(input []byte) error {
 	c.ClientIp = temp.ClientIp
 	c.DeviceMac = temp.DeviceMac
 	c.EdrManaged = temp.EdrManaged
-	c.EdrProvider = temp.EdrProvider
+	c.EdrProviders = temp.EdrProviders
 	c.EdrStatus = temp.EdrStatus
 	c.Group = temp.Group
 	c.IdpId = temp.IdpId
@@ -345,8 +345,8 @@ type tempClientNac struct {
 	ClientIp        []string                 `json:"client_ip,omitempty"`
 	DeviceMac       *string                  `json:"device_mac,omitempty"`
 	EdrManaged      *bool                    `json:"edr_managed,omitempty"`
-	EdrProvider     *EdrProviderEnum         `json:"edr_provider,omitempty"`
-	EdrStatus       *EdrStatusEnum           `json:"edr_status,omitempty"`
+	EdrProviders    []EdrProviderEnum        `json:"edr_providers,omitempty"`
+	EdrStatus       []EdrStatusEnum          `json:"edr_status,omitempty"`
 	Group           *string                  `json:"group,omitempty"`
 	IdpId           *string                  `json:"idp_id,omitempty"`
 	IdpRole         []string                 `json:"idp_role,omitempty"`

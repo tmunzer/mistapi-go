@@ -35,6 +35,7 @@ func main() {
         Results:              []models.InventorySearchResult{
             models.InventorySearchResult{
                 Mac:                  models.ToPointer("mac0"),
+                Magic:                models.ToPointer("magic6"),
                 Master:               models.ToPointer(false),
                 Members:              []models.InventorySearchResultMember{
                     models.InventorySearchResultMember{
@@ -49,10 +50,10 @@ func main() {
                     },
                 },
                 Model:                models.ToPointer("model4"),
-                Name:                 models.ToPointer("name6"),
             },
             models.InventorySearchResult{
                 Mac:                  models.ToPointer("mac0"),
+                Magic:                models.ToPointer("magic6"),
                 Master:               models.ToPointer(false),
                 Members:              []models.InventorySearchResultMember{
                     models.InventorySearchResultMember{
@@ -67,10 +68,10 @@ func main() {
                     },
                 },
                 Model:                models.ToPointer("model4"),
-                Name:                 models.ToPointer("name6"),
             },
             models.InventorySearchResult{
                 Mac:                  models.ToPointer("mac0"),
+                Magic:                models.ToPointer("magic6"),
                 Master:               models.ToPointer(false),
                 Members:              []models.InventorySearchResultMember{
                     models.InventorySearchResultMember{
@@ -85,7 +86,6 @@ func main() {
                     },
                 },
                 Model:                models.ToPointer("model4"),
-                Name:                 models.ToPointer("name6"),
             },
         },
         Start:                models.ToPointer(250),

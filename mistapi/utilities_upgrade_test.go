@@ -177,7 +177,7 @@ func TestUtilitiesUpgradeTestListOrgAvailableDeviceVersions(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"model":"AP41","tag":"stable","version":"v0.1.543"},{"model":"AP21","version":"v0.1.545"}]`
+	expected := `[{"model":"AP41","tag":"suggested","version":"v0.1.543"},{"model":"AP21","version":"v0.1.545"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -199,7 +199,7 @@ func TestUtilitiesUpgradeTestListOrgAvailableDeviceVersions1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"model":"AP41","tag":"stable","version":"v0.1.543"},{"model":"AP21","version":"v0.1.545"}]`
+	expected := `[{"model":"AP41","tag":"suggested","version":"v0.1.543"},{"model":"AP21","version":"v0.1.545"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -754,7 +754,7 @@ func TestUtilitiesUpgradeTestListSiteAvailableDeviceVersions(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"model":"AP41","tag":"stable","version":"v0.1.543"},{"model":"AP21","version":"v0.1.545"}]`
+	expected := `[{"model":"AP41","tag":"suggested","version":"v0.1.543"},{"model":"AP21","version":"v0.1.545"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -776,7 +776,7 @@ func TestUtilitiesUpgradeTestListSiteAvailableDeviceVersions1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"model":"AP41","tag":"stable","version":"v0.1.543"},{"model":"AP21","version":"v0.1.545"}]`
+	expected := `[{"model":"AP41","tag":"suggested","version":"v0.1.543"},{"model":"AP21","version":"v0.1.545"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

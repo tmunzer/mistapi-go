@@ -81,6 +81,7 @@ AP runtime statistics, placement data, and inventory metadata
 | `Version` | `models.Optional[string]` | Optional, Read-only | Firmware version running on the AP |
 | `X` | `models.Optional[float64]` | Optional, Read-only | Map X coordinate of the AP placement, in pixels |
 | `Y` | `models.Optional[float64]` | Optional, Read-only | Map Y coordinate of the AP placement, in pixels |
+| `ZigbeeStat` | [`*models.StatsApZigbeeStat`](../../doc/models/stats-ap-zigbee-stat.md) | Optional | ZigBee statistics reported by an AP, present only when ZigBee is enabled on the AP |
 
 ## Example
 
