@@ -34,13 +34,10 @@ func main() {
         Page:                 1,
         Results:              []models.Anomaly{
             models.Anomaly{
-                Events:               []string{
-                    "events4",
-                },
-                Since:                models.ToPointer(float64(133.06)),
-                SleBaseline:          float64(108.54),
-                SleDeviation:         float64(23),
-                Timestamp:            float64(2.64),
+                Events:               "",
+                SleBaseline:          0.0,
+                SleDeviation:         0.0,
+                Timestamp:            0.0,
             },
         },
         Start:                1710949286,

@@ -59,7 +59,7 @@ func (s *SitesSpectrumAnalysis) GetSiteRunningSpectrumAnalysis(
 }
 
 // InitiateSiteAnalyzeSpectrum takes context, siteId, body as parameters and
-// returns an models.ApiResponse with models.WebsocketSession data and
+// returns an models.ApiResponse with models.SpectrumAnalysisResponse data and
 // an error if there was an issue with the request or response.
 // Initiate a spectrum analysis for a site
 // The output will be available through websocket. As there can be multiple command
@@ -98,7 +98,7 @@ func (s *SitesSpectrumAnalysis) InitiateSiteAnalyzeSpectrum(
 	ctx context.Context,
 	siteId uuid.UUID,
 	body *models.SpectrumAnalysis) (
-	models.ApiResponse[models.WebsocketSession],
+	models.ApiResponse[models.SpectrumAnalysisResponse],
 	error) {
 	req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/analyze_spectrum")
 	req.AppendTemplateParams(siteId)
@@ -120,13 +120,13 @@ func (s *SitesSpectrumAnalysis) InitiateSiteAnalyzeSpectrum(
 		req.Json(body)
 	}
 
-	var result models.WebsocketSession
+	var result models.SpectrumAnalysisResponse
 	decoder, resp, err := req.CallAsJson()
 	if err != nil {
 		return models.NewApiResponse(result, resp), err
 	}
 
-	result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
+	result, err = utilities.DecodeResults[models.SpectrumAnalysisResponse](decoder)
 	return models.NewApiResponse(result, resp), err
 }
 

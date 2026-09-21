@@ -35,10 +35,8 @@ func main() {
         Next:                 models.ToPointer("next6"),
         Results:              []models.ResponsePskPortalLogsSearchItem{
             models.ResponsePskPortalLogsSearchItem{
-                Id:                   models.ToPointer(uuid.MustParse("000023ba-0000-0000-0000-000000000000")),
                 Message:              models.ToPointer("message6"),
                 NameId:               models.ToPointer("name_id8"),
-                OrgId:                models.ToPointer(uuid.MustParse("00002492-0000-0000-0000-000000000000")),
                 PskId:                models.ToPointer(uuid.MustParse("00000b40-0000-0000-0000-000000000000")),
             },
         },

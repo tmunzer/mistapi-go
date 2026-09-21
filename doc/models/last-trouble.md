@@ -26,7 +26,6 @@ import (
 func main() {
     lastTrouble := models.LastTrouble{
         Code:                 models.ToPointer("03"),
-        Timestamp:            models.ToPointer(float64(183.7)),
     }
 
 }

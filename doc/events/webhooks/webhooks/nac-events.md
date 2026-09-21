@@ -50,9 +50,7 @@ This event's request payload is of type [*models.WebhookNacEvents](../../../../d
       "timestamp": 1691512031.358188,
       "type": "NAC_CLIENT_PERMIT",
       "username": "user@deaflyz.net",
-      "vlan": "750",
-      "client_type": "wired",
-      "device_mac": "device_mac4"
+      "vlan": "750"
     }
   ],
   "topic": "nac-events"

@@ -34,6 +34,7 @@ Gateway configuration and placement data
 | `Managed` | `*bool` | Optional | Whether the device is managed by Mist. Deprecated in favour of mist_configured. |
 | `MapId` | `*uuid.UUID` | Optional | Map where the device belongs to |
 | `MistConfigured` | `*bool` | Optional | whether the device can be configured by Mist or not. This deprecates `managed` for adopted devices. |
+| `MnhaConfig` | [`*models.GatewayMnhaConfig`](../../doc/models/gateway-mnha-config.md) | Optional | Multi-Node High Availability (MNHA) configuration, supported on SRX devices only. When enabled, the device operates in MNHA mode instead of chassis-cluster mode. |
 | `Model` | `*string` | Optional, Read-only | Gateway model reported for the device |
 | `ModifiedTime` | `*float64` | Optional, Read-only | When the object has been modified for the last time, in epoch |
 | `MspId` | `*uuid.UUID` | Optional, Read-only | Managed service provider identifier |
@@ -97,8 +98,6 @@ func main() {
                 Via:                    models.BgpConfigViaEnum_VPN,
             },
         },
-        CreatedTime:             models.ToPointer(float64(85.12)),
-        DeviceprofileId:         models.ToPointer(uuid.MustParse("00001aec-0000-0000-0000-000000000000")),
         DhcpdConfig:             models.ToPointer(models.DhcpdConfig{
             Enabled:              models.ToPointer(false),
             AdditionalProperties: map[string]models.DhcpdConfigProperty{

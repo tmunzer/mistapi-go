@@ -34,40 +34,10 @@ func main() {
         Next:                 models.ToPointer("next4"),
         Results:              []models.ClientNac{
             models.ClientNac{
-                Ap:                   []string{
-                    "ap6",
-                    "ap7",
-                    "ap8",
-                },
                 AuthType:             models.ToPointer(models.NacAuthTypeEnum_EAPTEAP),
-                CertCn:               []string{
-                    "cert_cn9",
-                    "cert_cn8",
-                },
-                CertIssuer:           []string{
-                    "cert_issuer2",
-                },
-                CertSerial:           []string{
-                    "cert_serial8",
-                },
             },
             models.ClientNac{
-                Ap:                   []string{
-                    "ap6",
-                    "ap7",
-                    "ap8",
-                },
                 AuthType:             models.ToPointer(models.NacAuthTypeEnum_EAPTEAP),
-                CertCn:               []string{
-                    "cert_cn9",
-                    "cert_cn8",
-                },
-                CertIssuer:           []string{
-                    "cert_issuer2",
-                },
-                CertSerial:           []string{
-                    "cert_serial8",
-                },
             },
         },
         Start:                models.ToPointer(1513276353),

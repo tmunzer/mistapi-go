@@ -662,7 +662,7 @@ SearchOrgJsiAssetsAndContracts(
     serial *string,
     sku *string,
     status *models.DeviceStatusEnum,
-    warrantyType *models.JsiWarrantyTypeEnum,
+    warrantyType *string,
     endOfSaleAfter *string,
     endOfSaleBefore *string,
     eosAfter *string,
@@ -700,7 +700,7 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 | `serial` | `*string` | Query, Optional | Filter results by device serial number. Accepts multiple comma-separated values. |
 | `sku` | `*string` | Query, Optional | Filter results by SKU. Accepts multiple comma-separated values. |
 | `status` | [`*models.DeviceStatusEnum`](../../doc/models/device-status-enum.md) | Query, Optional | Device status. enum: `all`, `connected`, `disconnected`<br><br>**Default**: `"all"` |
-| `warrantyType` | [`*models.JsiWarrantyTypeEnum`](../../doc/models/jsi-warranty-type-enum.md) | Query, Optional | Device warranty type used to filter Juniper Support Insight inventory. enum: `Standard Hardware Warranty`, `Enhanced Hardware Warranty`, `Dead On Arrival Warranty`, `Limited Lifetime Warranty`, `Software Warranty`, `Limited Lifetime Warranty for WLA`, `Warranty-JCPO EOL (DOA Not Included)`, `MIST Enhanced Hardware Warranty`, `MIST Standard Warranty`, `Determine Lifetime warranty` |
+| `warrantyType` | `*string` | Query, Optional | Device warranty type used to filter Juniper Support Insight inventory |
 | `endOfSaleAfter` | `*string` | Query, Optional | Filter devices with End Of Sale date after this date |
 | `endOfSaleBefore` | `*string` | Query, Optional | Filter devices with End Of Sale date before this date |
 | `eosAfter` | `*string` | Query, Optional | Filter devices with End Of Support date after this date |
@@ -790,6 +790,64 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "end": 1748023308,
+  "limit": 1000,
+  "results": [
+    {
+      "availability": "Yes",
+      "claimed": true,
+      "contract_end_date": "2028-10-01",
+      "contract_id": "324343-234",
+      "contract_reseller": "Reseller1",
+      "contract_sku": "EX2300-24MP-AFO",
+      "contract_start_date": "2022-09-01",
+      "contract_type": "Maintenance",
+      "current_contract_flag": "No Contract",
+      "device_name": "name1",
+      "distributor": "Dist",
+      "end_of_sale_time": 1561507200,
+      "end_of_service_time": 1661507200,
+      "eol_psn": "TSB18097",
+      "eos_time": 1672012800,
+      "has_support": true,
+      "ia_address": "Address1",
+      "ia_country": "United States",
+      "ia_region": "Rhode Island",
+      "ia_zip_postal": "02865-3749",
+      "master": true,
+      "model": "EX2300-24MP",
+      "org_id": "6e843b41-f953-4af9-80e5-e1a70f65754a",
+      "serial": "XN3123300095",
+      "service_contract_no": "16036705",
+      "service_contract_type": "MS",
+      "service_decline_flag": "No",
+      "service_eligible": "Yes",
+      "ship_date_calc": "2022-08-31",
+      "sku": "EX2300",
+      "status": "connected",
+      "suggested_version": "Latest 21.4R3-Sx",
+      "support_contract_status": "Active",
+      "type": "switch",
+      "version": "23.4R2-S4.11",
+      "version_description": "",
+      "version_eos_time": 1672012800,
+      "version_time": 1561507200,
+      "warranty": "Enhanced Hardware Warranty",
+      "warranty_end": "2042-11-28",
+      "warranty_start": "2022-09-01",
+      "warranty_time": 1672012800,
+      "warranty_type": "WTY00002"
+    }
+  ],
+  "start": 1748019708,
+  "total": 1
 }
 ```
 

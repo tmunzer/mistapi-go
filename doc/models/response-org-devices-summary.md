@@ -30,11 +30,6 @@ import (
 
 func main() {
     responseOrgDevicesSummary := models.ResponseOrgDevicesSummary{
-        NumAps:                models.ToPointer(86),
-        NumGateways:           models.ToPointer(166),
-        NumMxedges:            models.ToPointer(126),
-        NumSwitches:           models.ToPointer(184),
-        NumUnassignedAps:      models.ToPointer(88),
     }
 
 }

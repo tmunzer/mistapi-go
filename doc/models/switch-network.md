@@ -37,7 +37,7 @@ func main() {
         IsolationVlanId:      models.ToPointer("3070"),
         Multicast:            models.ToPointer(models.SwitchNetworkMulticast{
             Enabled:              models.ToPointer(false),
-            IgmpVersion:          models.ToPointer(models.IgmpVersionEnum_ENUM2),
+            IgmpVersion:          models.ToPointer(models.SwitchNetworkMulticastIgmpVersionEnum_ENUM2),
         }),
         VlanId:               models.VlanIdWithVariableContainer.FromString("String3"),
     }

@@ -24,7 +24,6 @@ package main
 
 import (
     "mistapi/models"
-    "github.com/google/uuid"
 )
 
 func main() {
@@ -33,7 +32,6 @@ func main() {
         Limit:                models.ToPointer(54),
         Results:              []models.UserMac{
             models.UserMac{
-                Id:                   models.ToPointer(uuid.MustParse("000023ba-0000-0000-0000-000000000000")),
                 Labels:               []string{
                     "labels2",
                     "labels1",
@@ -47,7 +45,6 @@ func main() {
                 },
             },
             models.UserMac{
-                Id:                   models.ToPointer(uuid.MustParse("000023ba-0000-0000-0000-000000000000")),
                 Labels:               []string{
                     "labels2",
                     "labels1",
@@ -61,7 +58,6 @@ func main() {
                 },
             },
             models.UserMac{
-                Id:                   models.ToPointer(uuid.MustParse("000023ba-0000-0000-0000-000000000000")),
                 Labels:               []string{
                     "labels2",
                     "labels1",

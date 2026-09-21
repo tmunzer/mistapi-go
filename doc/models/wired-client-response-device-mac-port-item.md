@@ -31,10 +31,7 @@ import (
 func main() {
     wiredClientResponseDeviceMacPortItem := models.WiredClientResponseDeviceMacPortItem{
         DeviceMac:            models.ToPointer("device_mac0"),
-        Ip:                   models.ToPointer("ip0"),
-        PortId:               models.ToPointer("port_id6"),
         PortParent:           models.ToPointer("port_parent8"),
-        Start:                models.ToPointer("start0"),
     }
 
 }

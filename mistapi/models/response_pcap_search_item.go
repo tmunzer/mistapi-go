@@ -36,7 +36,7 @@ type ResponsePcapSearchItem struct {
 	// URL for downloading the generated PCAP file
 	PcapUrl *string `json:"pcap_url,omitempty"`
 	// Site associated with the packet capture, when the capture is site-scoped
-	SiteId Optional[string] `json:"site_id"`
+	SiteId Optional[uuid.UUID] `json:"site_id"`
 	// Reason the packet capture session ended
 	TerminationReason *string `json:"termination_reason,omitempty"`
 	// Epoch timestamp, in seconds
@@ -171,7 +171,7 @@ type tempResponsePcapSearchItem struct {
 	OrgId             *uuid.UUID                                   `json:"org_id,omitempty"`
 	PcapAps           map[string]ResponsePcapSearchItemPcapApsItem `json:"pcap_aps,omitempty"`
 	PcapUrl           *string                                      `json:"pcap_url,omitempty"`
-	SiteId            Optional[string]                             `json:"site_id"`
+	SiteId            Optional[uuid.UUID]                          `json:"site_id"`
 	TerminationReason *string                                      `json:"termination_reason,omitempty"`
 	Timestamp         *float64                                     `json:"timestamp"`
 	Type              *string                                      `json:"type"`

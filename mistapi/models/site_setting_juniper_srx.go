@@ -14,6 +14,8 @@ type SiteSettingJuniperSrx struct {
 	AutoUpgrade *JuniperSrxAutoUpgrade `json:"auto_upgrade,omitempty"`
 	// Juniper SRX gateways integrated with a site
 	Gateways []SiteSettingJuniperSrxGateway `json:"gateways,omitempty"`
+	// Source of the Mist NAC user role sent to firewall gateways. enum: `idp_role`, `radius_group`, `none`
+	MistNacUserRoleSource *SiteSettingMistNacUserRoleSourceEnum `json:"mist_nac_user_role_source,omitempty"`
 	// Whether Mist NAC user information is sent to Juniper SRX gateways
 	SendMistNacUserInfo  *bool                  `json:"send_mist_nac_user_info,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -23,8 +25,8 @@ type SiteSettingJuniperSrx struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SiteSettingJuniperSrx) String() string {
 	return fmt.Sprintf(
-		"SiteSettingJuniperSrx[AutoUpgrade=%v, Gateways=%v, SendMistNacUserInfo=%v, AdditionalProperties=%v]",
-		s.AutoUpgrade, s.Gateways, s.SendMistNacUserInfo, s.AdditionalProperties)
+		"SiteSettingJuniperSrx[AutoUpgrade=%v, Gateways=%v, MistNacUserRoleSource=%v, SendMistNacUserInfo=%v, AdditionalProperties=%v]",
+		s.AutoUpgrade, s.Gateways, s.MistNacUserRoleSource, s.SendMistNacUserInfo, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingJuniperSrx.
@@ -33,7 +35,7 @@ func (s SiteSettingJuniperSrx) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"auto_upgrade", "gateways", "send_mist_nac_user_info"); err != nil {
+		"auto_upgrade", "gateways", "mist_nac_user_role_source", "send_mist_nac_user_info"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -49,6 +51,9 @@ func (s SiteSettingJuniperSrx) toMap() map[string]any {
 	if s.Gateways != nil {
 		structMap["gateways"] = s.Gateways
 	}
+	if s.MistNacUserRoleSource != nil {
+		structMap["mist_nac_user_role_source"] = s.MistNacUserRoleSource
+	}
 	if s.SendMistNacUserInfo != nil {
 		structMap["send_mist_nac_user_info"] = s.SendMistNacUserInfo
 	}
@@ -63,7 +68,7 @@ func (s *SiteSettingJuniperSrx) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auto_upgrade", "gateways", "send_mist_nac_user_info")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auto_upgrade", "gateways", "mist_nac_user_role_source", "send_mist_nac_user_info")
 	if err != nil {
 		return err
 	}
@@ -71,13 +76,15 @@ func (s *SiteSettingJuniperSrx) UnmarshalJSON(input []byte) error {
 
 	s.AutoUpgrade = temp.AutoUpgrade
 	s.Gateways = temp.Gateways
+	s.MistNacUserRoleSource = temp.MistNacUserRoleSource
 	s.SendMistNacUserInfo = temp.SendMistNacUserInfo
 	return nil
 }
 
 // tempSiteSettingJuniperSrx is a temporary struct used for validating the fields of SiteSettingJuniperSrx.
 type tempSiteSettingJuniperSrx struct {
-	AutoUpgrade         *JuniperSrxAutoUpgrade         `json:"auto_upgrade,omitempty"`
-	Gateways            []SiteSettingJuniperSrxGateway `json:"gateways,omitempty"`
-	SendMistNacUserInfo *bool                          `json:"send_mist_nac_user_info,omitempty"`
+	AutoUpgrade           *JuniperSrxAutoUpgrade                `json:"auto_upgrade,omitempty"`
+	Gateways              []SiteSettingJuniperSrxGateway        `json:"gateways,omitempty"`
+	MistNacUserRoleSource *SiteSettingMistNacUserRoleSourceEnum `json:"mist_nac_user_role_source,omitempty"`
+	SendMistNacUserInfo   *bool                                 `json:"send_mist_nac_user_info,omitempty"`
 }

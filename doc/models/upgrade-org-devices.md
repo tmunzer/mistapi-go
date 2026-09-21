@@ -36,7 +36,7 @@ Organization-wide device upgrade request
 | `Snapshot` | `*bool` | Optional | For Junos devices only. Perform recovery snapshot after device is rebooted<br><br>**Default**: `false` |
 | `StartDatetime` | `*string` | Optional | Firmware download start time in ISO 8601 format; default is now. Exclude timezone component to use site local timezone |
 | `StartTime` | `*int` | Optional | Firmware download start time in epoch seconds, default is now; deprecated, use `start_datetime` instead |
-| `Strategy` | [`*models.UpgradeDeviceStrategyEnum`](../../doc/models/upgrade-device-strategy-enum.md) | Optional | enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)<br><br>**Default**: `"big_bang"` |
+| `Strategy` | [`*models.UpgradeDeviceStrategyDeprecatedEnum`](../../doc/models/upgrade-device-strategy-deprecated-enum.md) | Optional | Deprecated; use `download_strategy` and `reboot_strategy` instead. `big_bang` (upgrade all at once, no orchestration), `serial` (one at a time), `canary`, or `rrm` (AP only); default is big_bang<br><br>**Default**: `"big_bang"` |
 | `Version` | `*string` | Optional | Deprecated; use `versions` instead. Specific firmware version, `suggested`, or `alpha`; default is latest |
 | `Versions` | [`[]models.UpgradeOrgDevicesVersion`](../../doc/models/upgrade-org-devices-version.md) | Optional | Target firmware version entries for an organization upgrade request |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -81,7 +81,7 @@ func main() {
         Snapshot:                models.ToPointer(false),
         StartDatetime:           models.ToPointer("2024-06-13 15:00:00-07:00"),
         StartTime:               models.ToPointer(1624399840),
-        Strategy:                models.ToPointer(models.UpgradeDeviceStrategyEnum_BIGBANG),
+        Strategy:                models.ToPointer(models.UpgradeDeviceStrategyDeprecatedEnum_BIGBANG),
         AdditionalProperties:    map[string]interface{}{
             "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
         },

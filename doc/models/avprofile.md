@@ -38,7 +38,6 @@ import (
 
 func main() {
     avprofile := models.Avprofile{
-        CreatedTime:          models.ToPointer(float64(49.94)),
         FallbackAction:       models.ToPointer(models.AvprofileFallbackActionEnum_LOGANDPERMIT),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
         MaxFilesize:          models.ToPointer(10000),

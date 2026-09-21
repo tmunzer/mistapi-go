@@ -78,7 +78,7 @@ func main() {
                 Band:                 models.ToPointer(6),
                 Bandwidth:            models.ToPointer(20),
                 Channel:              models.ToPointer(133),
-                TcpdumpExpression:    models.NewOptional[string](nil),
+                TcpdumpExpression:    models.NewOptional(models.ToPointer("tcpdump_expression2")),
             },
         },
         SiteId:                    models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),

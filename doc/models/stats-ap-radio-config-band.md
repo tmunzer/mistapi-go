@@ -33,10 +33,8 @@ import (
 
 func main() {
     statsApRadioConfigBand := models.StatsApRadioConfigBand{
-        AllowRrmDisable:        models.NewOptional(models.ToPointer(false)),
         Bandwidth:              models.NewOptional(models.ToPointer(float64(20))),
         Channel:                models.ToPointer(1),
-        Disabled:               models.NewOptional(models.ToPointer(false)),
         DynamicChainingEnabled: models.NewOptional(models.ToPointer(false)),
         Power:                  models.NewOptional(models.ToPointer(float64(10))),
         PowerMax:               models.NewOptional(models.ToPointer(float64(10))),

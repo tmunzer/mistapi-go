@@ -18,7 +18,7 @@ type CaptureMxedge struct {
 	// * `stream`: to Mist cloud
 	// * `tzsp`: stream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
 	Format *CaptureMxedgeFormatEnum `json:"format,omitempty"`
-	// Max_len of each packet to capture. Default is 512, minimum is 64 and maximum is 2048
+	// Max_len of each packet to capture. Default is 512, minimum is 64 and maximum is 1536
 	MaxPktLen *int `json:"max_pkt_len,omitempty"`
 	// Dict of Mist Edges to capture on, property key is the Mist Edge ID. Property value is a dict of interfaces to capture for the given Mist Edge (e.g. port1, kni0, lacp0, ipsec, drop, oobm)
 	Mxedges map[string]CaptureMxedgeMxedges `json:"mxedges,omitempty"`

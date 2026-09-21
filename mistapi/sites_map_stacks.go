@@ -9,6 +9,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/tmunzer/mistapi-go/mistapi/errors"
 	"github.com/tmunzer/mistapi-go/mistapi/models"
+	"net/http"
 )
 
 // SitesMapStacks represents a controller struct.
@@ -82,6 +83,116 @@ func (s *SitesMapStacks) CreateSiteMapStack(
 	error) {
 	req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/mapstacks")
 	req.AppendTemplateParams(siteId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
+
+	var result models.MapstackResponse
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.MapstackResponse](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
+// DeleteSiteMapStack takes context, siteId, mapstackId as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Delete a Site Map Stack
+func (s *SitesMapStacks) DeleteSiteMapStack(
+	ctx context.Context,
+	siteId uuid.UUID,
+	mapstackId uuid.UUID) (
+	*http.Response,
+	error) {
+	req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/mapstacks/%v")
+	req.AppendTemplateParams(siteId, mapstackId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
+}
+
+// GetSiteMapStack takes context, siteId, mapstackId as parameters and
+// returns an models.ApiResponse with models.MapstackResponse data and
+// an error if there was an issue with the request or response.
+// Get Site Map Stack Details
+func (s *SitesMapStacks) GetSiteMapStack(
+	ctx context.Context,
+	siteId uuid.UUID,
+	mapstackId uuid.UUID) (
+	models.ApiResponse[models.MapstackResponse],
+	error) {
+	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/mapstacks/%v")
+	req.AppendTemplateParams(siteId, mapstackId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+
+	var result models.MapstackResponse
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.MapstackResponse](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
+// UpdateSiteMapStack takes context, siteId, mapstackId, body as parameters and
+// returns an models.ApiResponse with models.MapstackResponse data and
+// an error if there was an issue with the request or response.
+// Update a Site Map Stack
+func (s *SitesMapStacks) UpdateSiteMapStack(
+	ctx context.Context,
+	siteId uuid.UUID,
+	mapstackId uuid.UUID,
+	body *models.Mapstack) (
+	models.ApiResponse[models.MapstackResponse],
+	error) {
+	req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/mapstacks/%v")
+	req.AppendTemplateParams(siteId, mapstackId)
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),

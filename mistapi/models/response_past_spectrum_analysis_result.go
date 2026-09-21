@@ -15,6 +15,10 @@ type ResponsePastSpectrumAnalysisResult struct {
 	Band *string `json:"band,omitempty"`
 	// Per-channel utilization measurements captured during spectrum analysis
 	ChannelUsage []ResponsePastSpectrumAnalysisChannelUsage `json:"channel_usage,omitempty"`
+	// AP device UUID used for a single-AP spectrum analysis
+	DeviceId *uuid.UUID `json:"device_id,omitempty"`
+	// AP device UUIDs used for a multi-AP spectrum analysis; maximum 5 devices
+	DeviceIds []uuid.UUID `json:"device_ids,omitempty"`
 	// List of FFT samples for the spectrum analysis
 	FftSamples []ResponsePastSpectrumAnalysisFftSample `json:"fft_samples,omitempty"`
 	// AP MAC address for the access point that ran the spectrum analysis
@@ -32,8 +36,8 @@ type ResponsePastSpectrumAnalysisResult struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponsePastSpectrumAnalysisResult) String() string {
 	return fmt.Sprintf(
-		"ResponsePastSpectrumAnalysisResult[Band=%v, ChannelUsage=%v, FftSamples=%v, Mac=%v, OrgId=%v, SpectrogramUrl=%v, Timestamp=%v, AdditionalProperties=%v]",
-		r.Band, r.ChannelUsage, r.FftSamples, r.Mac, r.OrgId, r.SpectrogramUrl, r.Timestamp, r.AdditionalProperties)
+		"ResponsePastSpectrumAnalysisResult[Band=%v, ChannelUsage=%v, DeviceId=%v, DeviceIds=%v, FftSamples=%v, Mac=%v, OrgId=%v, SpectrogramUrl=%v, Timestamp=%v, AdditionalProperties=%v]",
+		r.Band, r.ChannelUsage, r.DeviceId, r.DeviceIds, r.FftSamples, r.Mac, r.OrgId, r.SpectrogramUrl, r.Timestamp, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePastSpectrumAnalysisResult.
@@ -42,7 +46,7 @@ func (r ResponsePastSpectrumAnalysisResult) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"band", "channel_usage", "fft_samples", "mac", "org_id", "spectrogram_url", "timestamp"); err != nil {
+		"band", "channel_usage", "device_id", "device_ids", "fft_samples", "mac", "org_id", "spectrogram_url", "timestamp"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -57,6 +61,12 @@ func (r ResponsePastSpectrumAnalysisResult) toMap() map[string]any {
 	}
 	if r.ChannelUsage != nil {
 		structMap["channel_usage"] = r.ChannelUsage
+	}
+	if r.DeviceId != nil {
+		structMap["device_id"] = r.DeviceId
+	}
+	if r.DeviceIds != nil {
+		structMap["device_ids"] = r.DeviceIds
 	}
 	if r.FftSamples != nil {
 		structMap["fft_samples"] = r.FftSamples
@@ -84,7 +94,7 @@ func (r *ResponsePastSpectrumAnalysisResult) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "channel_usage", "fft_samples", "mac", "org_id", "spectrogram_url", "timestamp")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "channel_usage", "device_id", "device_ids", "fft_samples", "mac", "org_id", "spectrogram_url", "timestamp")
 	if err != nil {
 		return err
 	}
@@ -92,6 +102,8 @@ func (r *ResponsePastSpectrumAnalysisResult) UnmarshalJSON(input []byte) error {
 
 	r.Band = temp.Band
 	r.ChannelUsage = temp.ChannelUsage
+	r.DeviceId = temp.DeviceId
+	r.DeviceIds = temp.DeviceIds
 	r.FftSamples = temp.FftSamples
 	r.Mac = temp.Mac
 	r.OrgId = temp.OrgId
@@ -104,6 +116,8 @@ func (r *ResponsePastSpectrumAnalysisResult) UnmarshalJSON(input []byte) error {
 type tempResponsePastSpectrumAnalysisResult struct {
 	Band           *string                                    `json:"band,omitempty"`
 	ChannelUsage   []ResponsePastSpectrumAnalysisChannelUsage `json:"channel_usage,omitempty"`
+	DeviceId       *uuid.UUID                                 `json:"device_id,omitempty"`
+	DeviceIds      []uuid.UUID                                `json:"device_ids,omitempty"`
 	FftSamples     []ResponsePastSpectrumAnalysisFftSample    `json:"fft_samples,omitempty"`
 	Mac            *string                                    `json:"mac,omitempty"`
 	OrgId          *uuid.UUID                                 `json:"org_id,omitempty"`

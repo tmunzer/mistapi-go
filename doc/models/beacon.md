@@ -46,11 +46,9 @@ import (
 
 func main() {
     beacon := models.Beacon{
-        CreatedTime:          models.ToPointer(float64(53.64)),
         EddystoneInstance:    models.ToPointer("eddystone_instance6"),
         EddystoneNamespace:   models.ToPointer("eddystone_namespace0"),
         EddystoneUrl:         models.ToPointer("eddystone_url8"),
-        ForSite:              models.ToPointer(false),
         IbeaconMajor:         models.NewOptional(models.ToPointer(1234)),
         IbeaconMinor:         models.NewOptional(models.ToPointer(1234)),
         IbeaconUuid:          models.NewOptional(models.ToPointer(uuid.MustParse("f3f17139-704a-f03a-2786-0400279e37c3"))),

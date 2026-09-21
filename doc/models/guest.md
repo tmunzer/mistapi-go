@@ -45,9 +45,6 @@ import (
 
 func main() {
     guest := models.Guest{
-        AccessCodeEmail:        models.ToPointer("access_code_email4"),
-        ApMac:                  models.ToPointer("ap_mac4"),
-        AuthMethod:             models.ToPointer("auth_method6"),
         Authorized:             models.ToPointer(true),
         AuthorizedExpiringTime: models.ToPointer(float64(1480704955)),
         AuthorizedTime:         models.ToPointer(float64(1480704355)),

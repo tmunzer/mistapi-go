@@ -32,7 +32,6 @@ import (
 
 func main() {
     userApitoken := models.UserApitoken{
-        CreatedTime:          models.ToPointer(float64(42.78)),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
         Key:                  models.ToPointer("1qkb...QQCL"),
         LastUsed:             models.NewOptional(models.ToPointer(1690115110)),

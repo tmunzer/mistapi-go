@@ -230,6 +230,88 @@ func TestOrgsJSITestCountOrgJsiAssetsAndContracts1(t *testing.T) {
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestOrgsJSITestSearchOrgJsiAssetsAndContracts tests the behavior of the OrgsJSI
+func TestOrgsJSITestSearchOrgJsiAssetsAndContracts(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+
+	model := "QFX10000-36Q,QFX10000-30C"
+	serial := "ACNP4666,ACNP6969"
+	sku := "QFX10000-36Q,QFX10000-30C"
+	status := models.DeviceStatusEnum("all")
+
+	endOfSaleAfter := "2024-01-01"
+	endOfSaleBefore := "2025-12-31"
+	eosAfter := "2024-01-01"
+	eosBefore := "2025-12-31"
+	versionEosAfter := "2024-01-01"
+	versionEosBefore := "2025-12-31"
+	contractEndBefore := "2025-12-31"
+	contractEndAfter := "2024-01-01"
+
+	sirtId := "JSA12345"
+	pbnId := "PBN67890"
+
+	limit := int(100)
+	sort := "timestamp"
+
+	apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, nil, &model, &serial, &sku, &status, nil, &endOfSaleAfter, &endOfSaleBefore, &eosAfter, &eosBefore, &versionEosAfter, &versionEosBefore, &contractEndBefore, &contractEndAfter, nil, nil, nil, nil, nil, &sirtId, &pbnId, nil, &limit, &sort, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"end":1748023308,"limit":1000,"results":[{"availability":"Yes","claimed":true,"contract_end_date":"2028-10-01","contract_id":"324343-234","contract_reseller":"Reseller1","contract_sku":"EX2300-24MP-AFO","contract_start_date":"2022-09-01","contract_type":"Maintenance","current_contract_flag":"No Contract","device_name":"name1","distributor":"Dist","end_of_sale_time":1561507200,"end_of_service_time":1661507200,"eol_psn":"TSB18097","eos_time":1672012800,"has_support":true,"ia_address":"Address1","ia_country":"United States","ia_region":"Rhode Island","ia_zip_postal":"02865-3749","master":true,"model":"EX2300-24MP","org_id":"6e843b41-f953-4af9-80e5-e1a70f65754a","serial":"XN3123300095","service_contract_no":"16036705","service_contract_type":"MS","service_decline_flag":"No","service_eligible":"Yes","ship_date_calc":"2022-08-31","sku":"EX2300","status":"connected","suggested_version":"Latest 21.4R3-Sx","support_contract_status":"Active","type":"switch","version":"23.4R2-S4.11","version_description":"","version_eos_time":1672012800,"version_time":1561507200,"warranty":"Enhanced Hardware Warranty","warranty_end":"2042-11-28","warranty_start":"2022-09-01","warranty_time":1672012800,"warranty_type":"WTY00002"}],"start":1748019708,"total":1}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestOrgsJSITestSearchOrgJsiAssetsAndContracts1 tests the behavior of the OrgsJSI
+func TestOrgsJSITestSearchOrgJsiAssetsAndContracts1(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+
+	model := "QFX10000-36Q,QFX10000-30C"
+	serial := "ACNP4666,ACNP6969"
+	sku := "QFX10000-36Q,QFX10000-30C"
+	status := models.DeviceStatusEnum("all")
+
+	endOfSaleAfter := "2024-01-01"
+	endOfSaleBefore := "2025-12-31"
+	eosAfter := "2024-01-01"
+	eosBefore := "2025-12-31"
+	versionEosAfter := "2024-01-01"
+	versionEosBefore := "2025-12-31"
+	contractEndBefore := "2025-12-31"
+	contractEndAfter := "2024-01-01"
+
+	sirtId := "JSA12345"
+	pbnId := "PBN67890"
+
+	limit := int(100)
+	sort := "timestamp"
+
+	apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, nil, &model, &serial, &sku, &status, nil, &endOfSaleAfter, &endOfSaleBefore, &eosAfter, &eosBefore, &versionEosAfter, &versionEosBefore, &contractEndBefore, &contractEndAfter, nil, nil, nil, nil, nil, &sirtId, &pbnId, nil, &limit, &sort, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"end":1748023308,"limit":1000,"results":[{"availability":"Yes","claimed":true,"contract_end_date":"2028-10-01","contract_id":"324343-234","contract_reseller":"Reseller1","contract_sku":"EX2300-24MP-AFO","contract_start_date":"2022-09-01","contract_type":"Maintenance","current_contract_flag":"No Contract","device_name":"name1","distributor":"Dist","end_of_sale_time":1561507200,"end_of_service_time":1661507200,"eol_psn":"TSB18097","eos_time":1672012800,"has_support":true,"ia_address":"Address1","ia_country":"United States","ia_region":"Rhode Island","ia_zip_postal":"02865-3749","master":true,"model":"EX2300-24MP","org_id":"6e843b41-f953-4af9-80e5-e1a70f65754a","serial":"XN3123300095","service_contract_no":"16036705","service_contract_type":"MS","service_decline_flag":"No","service_eligible":"Yes","ship_date_calc":"2022-08-31","sku":"EX2300","status":"connected","suggested_version":"Latest 21.4R3-Sx","support_contract_status":"Active","type":"switch","version":"23.4R2-S4.11","version_description":"","version_eos_time":1672012800,"version_time":1561507200,"warranty":"Enhanced Hardware Warranty","warranty_end":"2042-11-28","warranty_start":"2022-09-01","warranty_time":1672012800,"warranty_type":"WTY00002"}],"start":1748019708,"total":1}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestOrgsJSITestCountOrgJsiPbn tests the behavior of the OrgsJSI
 func TestOrgsJSITestCountOrgJsiPbn(t *testing.T) {
 	ctx := context.Background()

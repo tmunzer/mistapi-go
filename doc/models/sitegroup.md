@@ -33,9 +33,7 @@ import (
 
 func main() {
     sitegroup := models.Sitegroup{
-        CreatedTime:          models.ToPointer(float64(2.38)),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
-        ModifiedTime:         models.ToPointer(float64(76.58)),
         Name:                 "name8",
         OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
         SiteIds:              []uuid.UUID{

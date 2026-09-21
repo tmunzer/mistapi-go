@@ -17,14 +17,14 @@ Map or floorplan metadata for a site or organization
 | `Flags` | `map[string]int` | Optional, Read-only | Name/val pair objects for location engine to use |
 | `ForSite` | `*bool` | Optional, Read-only | Whether this map belongs to a site scope |
 | `Geofences` | [`[]models.MapGeofence`](../../doc/models/map-geofence.md) | Optional | List of geofences for the map |
-| `GroupIdx` | `*int` | Optional | Optional floor or group ordering index for this map |
-| `GroupName` | `*string` | Optional | Optional floor or group display name for this map |
 | `Height` | `*int` | Optional | When `type`==`image`, height of the map image in pixels |
 | `HeightM` | `*float64` | Optional | Physical height of the map in meters |
 | `Id` | `*uuid.UUID` | Optional, Read-only | Unique ID of the object instance in the Mist Organization |
 | `LatlngBr` | [`*models.LatlngBr`](../../doc/models/latlng-br.md) | Optional | When `type`==`google`, latitude and longitude of the bottom-right corner |
 | `LatlngTl` | [`*models.LatlngTl`](../../doc/models/latlng-tl.md) | Optional | When `type`==`google`, latitude and longitude of the top-left corner |
 | `Locked` | `*bool` | Optional | Whether this map is considered locked down<br><br>**Default**: `false` |
+| `MapstackFloor` | `*int` | Optional | Optional floor number within the map stack<br><br>**Constraints**: `>= 0` |
+| `MapstackId` | `*uuid.UUID` | Optional | Map stack containing this map |
 | `ModifiedTime` | `*float64` | Optional, Read-only | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | The name of the map |
 | `OccupancyLimit` | `*int` | Optional | Maximum occupancy configured for this map |
@@ -58,12 +58,10 @@ import (
 
 func main() {
     mMap := models.Map{
-        CreatedTime:          models.ToPointer(float64(212.24)),
         Flags:                map[string]int{
             "assetHoldTime": 5,
             "storeTime": 10,
         },
-        ForSite:              models.ToPointer(false),
         Geofences:            []models.MapGeofence{
             models.MapGeofence{
                 Name:                 models.ToPointer("name6"),
@@ -117,11 +115,10 @@ func main() {
                 },
             },
         },
-        GroupIdx:             models.ToPointer(1),
-        GroupName:            models.ToPointer("East Wing"),
         Height:               models.ToPointer(1500),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
         Locked:               models.ToPointer(false),
+        MapstackFloor:        models.ToPointer(1),
         Name:                 models.ToPointer("Mist Office"),
         OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
         Orientation:          models.ToPointer(30),

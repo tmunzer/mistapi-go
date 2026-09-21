@@ -27,12 +27,11 @@ import (
 
 func main() {
     ssrVersion := models.SsrVersion{
-        Default:              models.ToPointer(false),
-        Package:              "package4",
+        Package:              "",
         Tags:                 []string{
             "tags7",
         },
-        Version:              "version8",
+        Version:              "",
     }
 
 }

@@ -245,3 +245,70 @@ func (o *OrgsSCEP) RevokeOrgIssuedClientCertificates(
 	}
 	return httpCtx.Response, err
 }
+
+// SearchOrgScepEvents takes context, orgId, mType, certProvider, commonName, deviceId, text, limit, page as parameters and
+// returns an models.ApiResponse with models.ResponseScepEventsSearch data and
+// an error if there was an issue with the request or response.
+// Search Mist SCEP PKI operation events for the organization. Use this to audit certificate issuance errors and diagnose client onboarding problems.
+func (o *OrgsSCEP) SearchOrgScepEvents(
+	ctx context.Context,
+	orgId uuid.UUID,
+	mType *models.OrgScepEventsSearchTypeEnum,
+	certProvider *string,
+	commonName *string,
+	deviceId *uuid.UUID,
+	text *string,
+	limit *int,
+	page *int) (
+	models.ApiResponse[models.ResponseScepEventsSearch],
+	error) {
+	req := o.prepareRequest(
+		ctx,
+		"GET",
+		"/api/v1/orgs/%v/setting/mist_scep/events/search",
+	)
+	req.AppendTemplateParams(orgId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+	if mType != nil {
+		req.QueryParam("type", *mType)
+	}
+	if certProvider != nil {
+		req.QueryParam("cert_provider", *certProvider)
+	}
+	if commonName != nil {
+		req.QueryParam("common_name", *commonName)
+	}
+	if deviceId != nil {
+		req.QueryParam("device_id", *deviceId)
+	}
+	if text != nil {
+		req.QueryParam("text", *text)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
+	}
+
+	var result models.ResponseScepEventsSearch
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseScepEventsSearch](decoder)
+	return models.NewApiResponse(result, resp), err
+}

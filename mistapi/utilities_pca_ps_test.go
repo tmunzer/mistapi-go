@@ -163,6 +163,102 @@ func TestUtilitiesPCAPsTestStartOrgPacketCapture1(t *testing.T) {
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestUtilitiesPCAPsTestStopSiteFlowCapture tests the behavior of the UtilitiesPCAPs
+func TestUtilitiesPCAPsTestStopSiteFlowCapture(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	resp, err := utilitiesPcaPs.StopSiteFlowCapture(ctx, siteId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+}
+
+// TestUtilitiesPCAPsTestGetSiteFlowCaptureStatus tests the behavior of the UtilitiesPCAPs
+func TestUtilitiesPCAPsTestGetSiteFlowCaptureStatus(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	apiResponse, err := utilitiesPcaPs.GetSiteFlowCaptureStatus(ctx, siteId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesPCAPsTestGetSiteFlowCaptureStatus1 tests the behavior of the UtilitiesPCAPs
+func TestUtilitiesPCAPsTestGetSiteFlowCaptureStatus1(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	apiResponse, err := utilitiesPcaPs.GetSiteFlowCaptureStatus(ctx, siteId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesPCAPsTestStartSiteFlowCapture tests the behavior of the UtilitiesPCAPs
+func TestUtilitiesPCAPsTestStartSiteFlowCapture(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	var body models.FlowCaptureRequest
+	errBody := json.Unmarshal([]byte(`{"dst_ip":"8.8.8.8","dst_port":443,"duration":600,"protocol":"tcp","src_ip":"10.0.0.0/8","src_port":1024,"switches":["5c5b35000001","5c5b35000002"]}`), &body)
+	if errBody != nil {
+		t.Errorf("Cannot parse the model object.")
+	}
+	apiResponse, err := utilitiesPcaPs.StartSiteFlowCapture(ctx, siteId, &body)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesPCAPsTestStartSiteFlowCapture1 tests the behavior of the UtilitiesPCAPs
+func TestUtilitiesPCAPsTestStartSiteFlowCapture1(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	var body models.FlowCaptureRequest
+	errBody := json.Unmarshal([]byte(`{"dst_ip":"8.8.8.8","dst_port":443,"duration":600,"protocol":"tcp","src_ip":"10.0.0.0/8","src_port":1024,"switches":["5c5b35000001","5c5b35000002"]}`), &body)
+	if errBody != nil {
+		t.Errorf("Cannot parse the model object.")
+	}
+	apiResponse, err := utilitiesPcaPs.StartSiteFlowCapture(ctx, siteId, &body)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
 // TestUtilitiesPCAPsTestListSitePacketCaptures tests the behavior of the UtilitiesPCAPs
 func TestUtilitiesPCAPsTestListSitePacketCaptures(t *testing.T) {
 	ctx := context.Background()

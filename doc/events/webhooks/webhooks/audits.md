@@ -30,16 +30,7 @@ This event's request payload is of type [*models.WebhookAudits](../../../../doc/
       "org_id": "00001302-0000-0000-0000-000000000000",
       "site_id": "00000290-0000-0000-0000-000000000000",
       "src_ip": "src_ip6",
-      "timestamp": 157.68,
-      "admin_id": "0000104e-0000-0000-0000-000000000000",
-      "after": {
-        "key1": "val1",
-        "key2": "val2"
-      },
-      "before": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "timestamp": 157.68
     }
   ],
   "topic": "audits"

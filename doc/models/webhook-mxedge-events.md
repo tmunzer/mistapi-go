@@ -30,7 +30,6 @@ func main() {
             models.MxedgeEvent{
                 AuditId:              models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
                 Component:            models.NewOptional(models.ToPointer("PS1")),
-                DeviceId:             models.NewOptional(models.ToPointer(uuid.MustParse("0000254a-0000-0000-0000-000000000000"))),
                 DeviceType:           models.ToPointer("device_type0"),
                 FromVersion:          models.ToPointer("from_version2"),
                 MxclusterId:          models.ToPointer("2815c917-58e7-472f-a190-bfd44fb58d05"),

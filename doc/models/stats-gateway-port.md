@@ -67,10 +67,7 @@ import (
 
 func main() {
     statsGatewayPort := models.StatsGatewayPort{
-        Active:               models.ToPointer(false),
         AuthState:            models.ToPointer(models.PortAuthStateEnum_HELD),
-        Disabled:             models.ToPointer(false),
-        ForSite:              models.ToPointer(false),
         FullDuplex:           models.ToPointer(true),
         NeighborMac:          "64d814353400",
         NeighborPortDesc:     models.ToPointer("GigabitEthernet1/0/21"),

@@ -40,7 +40,7 @@ func main() {
                 Channel:              models.ToPointer(30),
                 KeyMgmt:              models.ToPointer(models.ClientKeyMgmtEnum_WPA2PSK),
                 Proto:                models.ToPointer(models.Dot11ProtoEnum_B),
-                Timestamp:            float64(2.64),
+                Timestamp:            0.0,
             },
         },
         Start:                102,

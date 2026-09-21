@@ -29,7 +29,7 @@ This event's request payload is of type [*models.WebhookDeviceUpdowns](../../../
       "org_id": "a40f5d1f-d889-42e9-94ea-b9b33585fc6b",
       "site_id": "72771e6a-6f5e-4de4-a5b9-1266c4197811",
       "site_name": "string",
-      "timestamp": 0.0,
+      "timestamp": 0,
       "type": "string"
     }
   ],

@@ -28,9 +28,7 @@ import (
 
 func main() {
     nacCrlFile := models.NacCrlFile{
-        CreatedTime:          models.ToPointer(float64(16.02)),
         Id:                   models.ToPointer("a1ca26f3-44dd-4833-9a7b-97bbb2ab5230"),
-        ModifiedTime:         models.ToPointer(float64(62.94)),
         Name:                 models.ToPointer("SampleCertificateSigner"),
         Url:                  models.ToPointer("http://url/to/crl_file"),
     }

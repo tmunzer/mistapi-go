@@ -12,11 +12,14 @@ utilitiesPCAPs := client.UtilitiesPCAPs()
 
 * [Get Org Capturing Status](../../doc/controllers/utilities-pca-ps.md#get-org-capturing-status)
 * [Get Site Capturing Status](../../doc/controllers/utilities-pca-ps.md#get-site-capturing-status)
+* [Get Site Flow Capture Status](../../doc/controllers/utilities-pca-ps.md#get-site-flow-capture-status)
 * [List Org Packet Captures](../../doc/controllers/utilities-pca-ps.md#list-org-packet-captures)
 * [List Site Packet Captures](../../doc/controllers/utilities-pca-ps.md#list-site-packet-captures)
 * [Start Org Packet Capture](../../doc/controllers/utilities-pca-ps.md#start-org-packet-capture)
+* [Start Site Flow Capture](../../doc/controllers/utilities-pca-ps.md#start-site-flow-capture)
 * [Start Site Packet Capture](../../doc/controllers/utilities-pca-ps.md#start-site-packet-capture)
 * [Stop Org Packet Capture](../../doc/controllers/utilities-pca-ps.md#stop-org-packet-capture)
+* [Stop Site Flow Capture](../../doc/controllers/utilities-pca-ps.md#stop-site-flow-capture)
 * [Stop Site Packet Capture](../../doc/controllers/utilities-pca-ps.md#stop-site-packet-capture)
 * [Update Site Packet Capture](../../doc/controllers/utilities-pca-ps.md#update-site-packet-capture)
 
@@ -193,6 +196,75 @@ if err != nil {
   ],
   "started_time": 1435080709,
   "type": "client"
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
+
+
+# Get Site Flow Capture Status
+
+Get the current flow capture session status for the site. Returns an empty object when no session is active.
+
+```go
+GetSiteFlowCaptureStatus(
+    ctx context.Context,
+    siteId uuid.UUID) (
+    models.ApiResponse[models.FlowCaptureSession],
+    error)
+```
+
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+**200**: OK
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.FlowCaptureSession](../../doc/models/flow-capture-session.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+apiResponse, err := utilitiesPCAPs.GetSiteFlowCaptureStatus(ctx, siteId)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
 }
 ```
 
@@ -621,6 +693,96 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
+# Start Site Flow Capture
+
+Start a flow capture session on one or more online switches running JMA firmware. The same filter is applied to every switch. Only one packet or flow capture session can be active per site at a time.
+
+The captured flow records are streamed over websocket rather than returned in the HTTP response.
+
+#### Subscribe to Flow Capture outputs
+
+`WS /api-ws/v1/stream`
+
+```go
+StartSiteFlowCapture(
+    ctx context.Context,
+    siteId uuid.UUID,
+    body *models.FlowCaptureRequest) (
+    models.ApiResponse[models.FlowCaptureSession],
+    error)
+```
+
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.FlowCaptureRequest`](../../doc/models/flow-capture-request.md) | Body, Optional | Request Body |
+
+## Response Type
+
+**200**: OK
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.FlowCaptureSession](../../doc/models/flow-capture-session.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.FlowCaptureRequest{
+    DstIp:                models.ToPointer("8.8.8.8"),
+    DstPort:              models.ToPointer(443),
+    Duration:             models.ToPointer(600),
+    Protocol:             models.ToPointer(models.FlowCaptureProtocolEnum_TCP),
+    SrcIp:                models.ToPointer("10.0.0.0/8"),
+    SrcPort:              models.ToPointer(1024),
+    Switches:             []string{
+        "5c5b35000001",
+        "5c5b35000002",
+    },
+}
+
+apiResponse, err := utilitiesPCAPs.StartSiteFlowCapture(ctx, siteId, &body)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
+
+
 # Start Site Packet Capture
 
 Initiate a Site Packet Capture
@@ -847,6 +1009,73 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 resp, err := utilitiesPCAPs.StopOrgPacketCapture(ctx, orgId)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
+
+
+# Stop Site Flow Capture
+
+Stop the active flow capture session for the site. Returns 400 if no flow capture session is active.
+
+```go
+StopSiteFlowCapture(
+    ctx context.Context,
+    siteId uuid.UUID) (
+    http.Response,
+    error)
+```
+
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+**200**: OK
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+resp, err := utilitiesPCAPs.StopSiteFlowCapture(ctx, siteId)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

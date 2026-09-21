@@ -44,9 +44,6 @@ import (
 func main() {
     apRadioStat := models.ApRadioStat{
         Bandwidth:              models.ToPointer(models.Dot11BandwidthEnum_ENUM20),
-        Channel:                models.NewOptional(models.ToPointer(68)),
-        DynamicChainingEnabled: models.NewOptional(models.ToPointer(false)),
-        Mac:                    models.NewOptional(models.ToPointer("mac0")),
         NoiseFloor:             models.NewOptional(models.ToPointer(-90)),
         RxBytes:                models.NewOptional(models.ToPointer(int64(8515104416))),
         RxPkts:                 models.NewOptional(models.ToPointer(int64(57770567))),

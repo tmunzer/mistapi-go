@@ -30,9 +30,6 @@ func main() {
             "Enhanced_Web_Images",
             "Enhanced_Image_Servers",
         },
-        Ssr:                  []string{
-            "ssr6",
-        },
     }
 
 }

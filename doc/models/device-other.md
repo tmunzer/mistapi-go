@@ -37,7 +37,6 @@ import (
 
 func main() {
     deviceOther := models.DeviceOther{
-        CreatedTime:          models.ToPointer(float64(150.44)),
         DeviceMac:            models.ToPointer("device_mac8"),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
         Mac:                  models.ToPointer("mac8"),

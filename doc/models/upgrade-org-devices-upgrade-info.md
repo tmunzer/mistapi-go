@@ -31,26 +31,6 @@ func main() {
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
         StartTime:            models.ToPointer(1717658765),
         Status:               models.ToPointer(models.UpgradeDeviceStatusEnum_CANCELLED),
-        Targets:              models.ToPointer(models.UpgradeDevicesTargets{
-            DownloadRequested:    []string{
-                "download_requested6",
-            },
-            Downloaded:           []string{
-                "downloaded0",
-                "downloaded1",
-                "downloaded2",
-            },
-            Downloading:          []string{
-                "downloading6",
-            },
-            Failed:               []string{
-                "failed6",
-            },
-            RebootInProgress:     []string{
-                "reboot_in_progress3",
-                "reboot_in_progress4",
-            },
-        }),
     }
 
 }

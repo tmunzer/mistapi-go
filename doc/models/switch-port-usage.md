@@ -30,11 +30,12 @@ Junos switch port usage template and authentication settings
 | `InterSwitchLink` | `*bool` | Optional | Only if `mode`!=`dynamic`. `inter_switch_link` is used together with `isolation` under networks. NOTE: `inter_switch_link` works only between Juniper devices. This has to be applied to both ports connected together<br><br>**Default**: `false` |
 | `MacAuthOnly` | `*bool` | Optional | Only if `mode`!=`dynamic` and `enable_mac_auth`==`true` |
 | `MacAuthPreferred` | `*bool` | Optional | Only if `mode`!=`dynamic` + `enable_mac_auth`==`true` + `mac_auth_only`==`false`, dot1x will be given priority then mac_auth. Enable this to prefer mac_auth over dot1x. |
-| `MacAuthProtocol` | [`*models.SwitchPortUsageMacAuthProtocolEnum`](../../doc/models/switch-port-usage-mac-auth-protocol-enum.md) | Optional | Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`<br><br>**Default**: `"eap-md5"` |
+| `MacAuthProtocol` | [`*models.SwitchPortUsageMacAuthProtocolEnum`](../../doc/models/switch-port-usage-mac-auth-protocol-enum.md) | Optional | Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. When Mist NAC is enabled, this is forced to `pap`, unless the Org `mist_nac.enable_eap_md5_for_mab` setting is enabled: in that case `eap-md5` is kept and the port still performs MAB (mac-radius) but sends the request as EAP-MD5. enum: `eap-md5`, `eap-peap`, `pap`<br><br>**Default**: `"eap-md5"` |
 | `MacLimit` | [`*models.SwitchPortUsageMacLimit`](../../doc/models/containers/switch-port-usage-mac-limit.md) | Optional | Only if `mode`!=`dynamic`, max number of MAC addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform) |
 | `Mode` | [`*models.SwitchPortUsageModeEnum`](../../doc/models/switch-port-usage-mode-enum.md) | Optional | `mode`==`dynamic` must only be used if the port usage name is `dynamic`. enum: `access`, `dynamic`, `inet`, `trunk` |
 | `Mtu` | [`*models.SwitchPortUsageMtu`](../../doc/models/containers/switch-port-usage-mtu.md) | Optional | Only if `mode`!=`dynamic` media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation. The default value is 1514. |
 | `Networks` | `[]string` | Optional | Only if `mode`==`trunk`, the list of network/vlans |
+| `NoLocalPortConfig` | `*bool` | Optional | Whether this port usage can be overridden in local port configuration<br><br>**Default**: `false` |
 | `PersistMac` | `*bool` | Optional | Only if `mode`==`access` and `port_auth`!=`dot1x`. Whether the port should retain dynamically learned MAC addresses<br><br>**Default**: `false` |
 | `PoeDisabled` | `*bool` | Optional | Only if `mode`!=`dynamic`. Whether PoE capabilities are disabled for a port<br><br>**Default**: `false` |
 | `PoeKeepStateWhenReboot` | `*bool` | Optional | Only if `mode`!=`dynamic`. Whether Perpetual PoE is enabled; keeps PoE state across reboots<br><br>**Default**: `false` |
@@ -87,6 +88,7 @@ func main() {
         InterIsolationNetworkLink:                models.ToPointer(false),
         InterSwitchLink:                          models.ToPointer(false),
         MacAuthProtocol:                          models.ToPointer(models.SwitchPortUsageMacAuthProtocolEnum_EAPMD5),
+        NoLocalPortConfig:                        models.ToPointer(false),
         PersistMac:                               models.ToPointer(false),
         PoeDisabled:                              models.ToPointer(false),
         PoeKeepStateWhenReboot:                   models.ToPointer(false),

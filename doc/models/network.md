@@ -31,6 +31,7 @@ Organization-level Layer 3 network definition that can be merged into site setti
 | `Tenants` | [`map[string]models.NetworkTenant`](../../doc/models/network-tenant.md) | Optional | Property key must be the user/tenant name (i.e. "printer-1") or a Variable (i.e. "{{myvar}}") |
 | `VlanId` | [`*models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | VLAN ID, either numeric or expressed as a template variable string |
 | `VpnAccess` | [`map[string]models.NetworkVpnAccessConfig`](../../doc/models/network-vpn-access-config.md) | Optional | Property key is the VPN name. Whether this network can be accessed from vpn |
+| `ZoneId` | `*uuid.UUID` | Optional | SecurityZone this network belongs to. When set, the zone name is used as the security zone name on the SRX, and multiple networks can share the same zone. When omitted, the network `name` is used as the security zone name. |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example
@@ -45,7 +46,6 @@ import (
 
 func main() {
     network := models.Network{
-        CreatedTime:          models.ToPointer(float64(103.24)),
         DisallowMistServices: models.ToPointer(false),
         Gateway:              models.ToPointer("192.168.70.1"),
         Gateway6:             models.ToPointer("fdad:b0bc:f29e::1"),
@@ -54,6 +54,7 @@ func main() {
         OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
         Subnet:               models.ToPointer("192.168.70.0/24"),
         Subnet6:              models.ToPointer("fdad:b0bc:f29e::/32"),
+        ZoneId:               models.ToPointer(uuid.MustParse("a045ea40-ccd0-4660-8f35-0305fae26e9c")),
         AdditionalProperties: map[string]interface{}{
             "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
         },

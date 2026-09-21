@@ -32,14 +32,13 @@ import (
 
 func main() {
     webhookDeviceUpdownsEvent := models.WebhookDeviceUpdownsEvent{
-        Ap:                   "ap6",
-        ApName:               "ap_name8",
-        ForSite:              models.ToPointer(false),
+        Ap:                   "",
+        ApName:               "",
         OrgId:                uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61"),
         SiteId:               uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6"),
-        SiteName:             "site_name2",
-        Timestamp:            float64(189.98),
-        Type:                 "type0",
+        SiteName:             "",
+        Timestamp:            0.0,
+        Type:                 "",
     }
 
 }

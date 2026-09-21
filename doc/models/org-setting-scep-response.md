@@ -33,7 +33,6 @@ func main() {
         CertProviders:        []models.OrgSettingScepCertProviderEnum{
             models.OrgSettingScepCertProviderEnum_INTUNE,
         },
-        Enabled:              models.ToPointer(false),
         IntuneScepUrl:        models.ToPointer("https://scep.mistsys.com/api/v1/incoming/intune/:org_id/scep"),
         JamfAccessToken:      models.ToPointer("1Z4QqEnCt05Jjt3TV5LgPJ4V_WL_RWnJ7dqVMLYHj81="),
         JamfScepUrl:          models.ToPointer("https://scep.mistsys.com/api/v1/incoming/intune/:org_id/scep"),

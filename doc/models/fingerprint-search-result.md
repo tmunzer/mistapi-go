@@ -35,10 +35,6 @@ func main() {
         Next:                 models.ToPointer("next8"),
         Results:              []models.Fingerprint{
             models.Fingerprint{
-                Family:               models.ToPointer("family8"),
-                Mac:                  models.ToPointer("mac0"),
-                Mfg:                  models.ToPointer("mfg6"),
-                Model:                models.ToPointer("model4"),
                 OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
                 SiteId:               models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
             },

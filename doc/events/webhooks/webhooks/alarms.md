@@ -39,7 +39,7 @@ This event's request payload is of type [*models.WebhookAlarms](../../../../doc/
       "ssids": [
         "string"
       ],
-      "timestamp": 0.0,
+      "timestamp": 0,
       "type": "string",
       "update": true
     }

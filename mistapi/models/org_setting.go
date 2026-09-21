@@ -111,7 +111,7 @@ type OrgSetting struct {
 	Tags []string `json:"tags,omitempty"`
 	// Automatically logout the user when UI session is inactive. `0` means disabled
 	UiIdleTimeout *int `json:"ui_idle_timeout,omitempty"`
-	// Whether UI usage tracking is disabled for the organization
+	// Whether to disable UI usage tracking (e.g. Fullstory, Pendo) for the whole organization
 	UiNoTracking *bool `json:"ui_no_tracking,omitempty"`
 	// Organization VPN behavior options
 	VpnOptions *OrgSettingVpnOptions `json:"vpn_options,omitempty"`

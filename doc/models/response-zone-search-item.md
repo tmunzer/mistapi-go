@@ -29,7 +29,6 @@ func main() {
     responseZoneSearchItem := models.ResponseZoneSearchItem{
         Enter:                models.ToPointer(1541705254),
         Scope:                models.ToPointer("map"),
-        Timestamp:            models.ToPointer(float64(253.96)),
         User:                 models.ToPointer("c4b301c81166"),
     }
 

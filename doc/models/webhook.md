@@ -57,10 +57,8 @@ func main() {
             uuid.MustParse("00001203-0000-0000-0000-000000000000"),
             uuid.MustParse("00001204-0000-0000-0000-000000000000"),
         },
-        CreatedTime:           models.ToPointer(float64(238.32)),
         DefaultAction:         models.ToPointer(models.WebhookActionEnum_PERMIT),
         Enabled:               models.ToPointer(true),
-        ForSite:               models.ToPointer(false),
         Headers:               models.NewOptional(models.ToPointer(map[string]string{
             "x-custom-1": "your_custom_header_value1",
             "x-custom-2": "your_custom_header_value2",

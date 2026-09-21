@@ -13,8 +13,10 @@ OSPF peer statistic record reported by a router
 |  --- | --- | --- | --- |
 | `DeadTime` | `*int` | Optional | Seconds remaining before the neighbor is considered inactive |
 | `Mac` | `*string` | Optional | Router MAC address of the device advertising the OSPF peer |
+| `Neighbor` | `*string` | Optional | IP address of the OSPF neighbor |
+| `NeighborId` | `*string` | Optional | Router ID (IP address) of the OSPF neighbor |
 | `OrgId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist organization |
-| `PeerIp` | `*string` | Optional | IP address of the OSPF neighbor |
+| `PeerIp` | `*string` | Optional | IP address of the OSPF neighbor. Deprecated, use `neighbor` instead |
 | `PortId` | `*string` | Optional | Interface on which the OSPF neighbor is learned |
 | `Priority` | `*int` | Optional | OSPF priority advertised by the neighbor, from 0 to 255<br><br>**Constraints**: `>= 0`, `<= 255` |
 | `SiteId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist site |
@@ -37,9 +39,9 @@ func main() {
     ospfPeerStatsSearchResultsItems := models.OspfPeerStatsSearchResultsItems{
         DeadTime:             models.ToPointer(96),
         Mac:                  models.ToPointer("mac8"),
+        Neighbor:             models.ToPointer("172.29.1.4"),
+        NeighborId:           models.ToPointer("172.16.254.2"),
         OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
-        PeerIp:               models.ToPointer("peer_ip6"),
-        PortId:               models.ToPointer("port_id4"),
         SiteId:               models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
     }
 

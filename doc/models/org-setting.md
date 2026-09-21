@@ -61,7 +61,7 @@ Organization-wide feature, integration, management, and security settings
 | `SyntheticTest` | [`*models.SynthetictestConfig`](../../doc/models/synthetictest-config.md) | Optional | Synthetic test configuration for Marvis Minis |
 | `Tags` | `[]string` | Optional | Labels associated with these organization settings |
 | `UiIdleTimeout` | `*int` | Optional | Automatically logout the user when UI session is inactive. `0` means disabled<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 480` |
-| `UiNoTracking` | `*bool` | Optional | Whether UI usage tracking is disabled for the organization<br><br>**Default**: `false` |
+| `UiNoTracking` | `*bool` | Optional | Whether to disable UI usage tracking (e.g. Fullstory, Pendo) for the whole organization<br><br>**Default**: `false` |
 | `VpnOptions` | [`*models.OrgSettingVpnOptions`](../../doc/models/org-setting-vpn-options.md) | Optional | Organization VPN behavior options |
 | `WanPma` | [`*models.OrgSettingWanPma`](../../doc/models/org-setting-wan-pma.md) | Optional | PMA feature settings for WAN Assurance |
 | `WiredPma` | [`*models.OrgSettingWiredPma`](../../doc/models/org-setting-wired-pma.md) | Optional | PMA feature settings for Wired Assurance |

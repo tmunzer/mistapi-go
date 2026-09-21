@@ -15,7 +15,7 @@ Initiate a packet Capture for New Wireless Client Associations
 | `ClientMac` | `*string` | Optional | Client MAC address, required if `type`==`client`; optional otherwise |
 | `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br><br>**Default**: `600`<br><br>**Constraints**: `>= 60`, `<= 86400` |
 | `IncludesMcast` | `*bool` | Optional | Whether to include multicast traffic in the packet capture<br><br>**Default**: `false` |
-| `MaxPktLen` | `models.Optional[int]` | Optional | Maximum bytes captured from each packet, or null to use the default<br><br>**Default**: `512`<br><br>**Constraints**: `>= 64`, `<= 2048` |
+| `MaxPktLen` | `models.Optional[int]` | Optional | Maximum bytes captured from each packet; default is 512, minimum is 64 and maximum is 1536. Null uses the default.<br><br>**Default**: `512`<br><br>**Constraints**: `>= 64`, `<= 1536` |
 | `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br><br>**Default**: `1024`<br><br>**Constraints**: `>= 0`, `<= 10000` |
 | `Ssid` | `*string` | Optional | Optional SSID filter for new association capture |
 | `Type` | `string` | Required, Constant | Packet capture type discriminator for new association captures. enum: `new_assoc`<br><br>**Value**: `"new_assoc"` |

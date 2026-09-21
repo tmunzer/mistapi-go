@@ -9,7 +9,7 @@ import (
 )
 
 // MxedgeTuntermIgmpSnoopingConfigEnabled represents a MxedgeTuntermIgmpSnoopingConfigEnabled struct.
-// This is a container for any-of cases.
+// This is a container for one-of cases.
 type MxedgeTuntermIgmpSnoopingConfigEnabled struct {
 	value     any
 	isBoolean bool
@@ -47,7 +47,7 @@ func (m *MxedgeTuntermIgmpSnoopingConfigEnabled) toMap() any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MxedgeTuntermIgmpSnoopingConfigEnabled.
 // It customizes the JSON unmarshaling process for MxedgeTuntermIgmpSnoopingConfigEnabled objects.
 func (m *MxedgeTuntermIgmpSnoopingConfigEnabled) UnmarshalJSON(input []byte) error {
-	result, err := UnmarshallAnyOf(input,
+	result, err := UnmarshallOneOf(input,
 		NewTypeHolder(new(bool), false, &m.isBoolean),
 		NewTypeHolder(new(string), false, &m.isString),
 	)
@@ -75,7 +75,7 @@ func (m *MxedgeTuntermIgmpSnoopingConfigEnabled) AsString() (
 }
 
 // internalMxedgeTuntermIgmpSnoopingConfigEnabled represents a mxedgeTuntermIgmpSnoopingConfigEnabled struct.
-// This is a container for any-of cases.
+// This is a container for one-of cases.
 type internalMxedgeTuntermIgmpSnoopingConfigEnabled struct{}
 
 var MxedgeTuntermIgmpSnoopingConfigEnabledContainer internalMxedgeTuntermIgmpSnoopingConfigEnabled

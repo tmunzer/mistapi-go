@@ -10,10 +10,10 @@ import (
 	"testing"
 )
 
-// TestSitesNACFingerprintsTestCountSiteClientFingerprints tests the behavior of the SitesNACFingerprints
-func TestSitesNACFingerprintsTestCountSiteClientFingerprints(t *testing.T) {
+// TestOrgsNACFingerprintsTestCountOrgClientFingerprints tests the behavior of the OrgsNACFingerprints
+func TestOrgsNACFingerprintsTestCountOrgClientFingerprints(t *testing.T) {
 	ctx := context.Background()
-	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
@@ -21,7 +21,7 @@ func TestSitesNACFingerprintsTestCountSiteClientFingerprints(t *testing.T) {
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := sitesNacFingerprints.CountSiteClientFingerprints(ctx, siteId, &distinct, nil, nil, &duration, &limit)
+	apiResponse, err := orgsNacFingerprints.CountOrgClientFingerprints(ctx, orgId, &distinct, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -34,10 +34,10 @@ func TestSitesNACFingerprintsTestCountSiteClientFingerprints(t *testing.T) {
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestSitesNACFingerprintsTestCountSiteClientFingerprints1 tests the behavior of the SitesNACFingerprints
-func TestSitesNACFingerprintsTestCountSiteClientFingerprints1(t *testing.T) {
+// TestOrgsNACFingerprintsTestCountOrgClientFingerprints1 tests the behavior of the OrgsNACFingerprints
+func TestOrgsNACFingerprintsTestCountOrgClientFingerprints1(t *testing.T) {
 	ctx := context.Background()
-	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
@@ -45,7 +45,7 @@ func TestSitesNACFingerprintsTestCountSiteClientFingerprints1(t *testing.T) {
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := sitesNacFingerprints.CountSiteClientFingerprints(ctx, siteId, &distinct, nil, nil, &duration, &limit)
+	apiResponse, err := orgsNacFingerprints.CountOrgClientFingerprints(ctx, orgId, &distinct, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -58,10 +58,10 @@ func TestSitesNACFingerprintsTestCountSiteClientFingerprints1(t *testing.T) {
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestSitesNACFingerprintsTestSearchSiteClientFingerprints tests the behavior of the SitesNACFingerprints
-func TestSitesNACFingerprintsTestSearchSiteClientFingerprints(t *testing.T) {
+// TestOrgsNACFingerprintsTestSearchOrgClientFingerprints tests the behavior of the OrgsNACFingerprints
+func TestOrgsNACFingerprintsTestSearchOrgClientFingerprints(t *testing.T) {
 	ctx := context.Background()
-	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
@@ -78,7 +78,7 @@ func TestSitesNACFingerprintsTestSearchSiteClientFingerprints(t *testing.T) {
 	interval := "10m"
 	sort := "wxid"
 
-	apiResponse, err := sitesNacFingerprints.SearchSiteClientFingerprints(ctx, siteId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &limit, nil, nil, &duration, &interval, &sort, nil)
+	apiResponse, err := orgsNacFingerprints.SearchOrgClientFingerprints(ctx, orgId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &limit, nil, nil, &duration, &interval, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -91,10 +91,10 @@ func TestSitesNACFingerprintsTestSearchSiteClientFingerprints(t *testing.T) {
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestSitesNACFingerprintsTestSearchSiteClientFingerprints1 tests the behavior of the SitesNACFingerprints
-func TestSitesNACFingerprintsTestSearchSiteClientFingerprints1(t *testing.T) {
+// TestOrgsNACFingerprintsTestSearchOrgClientFingerprints1 tests the behavior of the OrgsNACFingerprints
+func TestOrgsNACFingerprintsTestSearchOrgClientFingerprints1(t *testing.T) {
 	ctx := context.Background()
-	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
@@ -111,7 +111,7 @@ func TestSitesNACFingerprintsTestSearchSiteClientFingerprints1(t *testing.T) {
 	interval := "10m"
 	sort := "wxid"
 
-	apiResponse, err := sitesNacFingerprints.SearchSiteClientFingerprints(ctx, siteId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &limit, nil, nil, &duration, &interval, &sort, nil)
+	apiResponse, err := orgsNacFingerprints.SearchOrgClientFingerprints(ctx, orgId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &limit, nil, nil, &duration, &interval, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -133,7 +133,7 @@ func TestOrgsClientsWanTestSearchOrgWanClientEvents(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":0,"limit":0,"results":{"When":"2022-12-31 23:59:59.293000+00:00","ev_type":"CLIENT_IP_ASSIGNED","metadata":{},"org_id":"b0b9f142-aaba-11e6-aafc-0242ac110002","random_mac":true,"site_id":"fc656275-b157-43fd-b922-5f4f341c19bf","text":"DHCP Ack IP 192.168.88.216","wcid":"62bbfb75-10d8-49d1-dec7-d2df91624287"},"start":0,"total":0}`
+	expected := `{"end":0,"limit":0,"results":[{"When":"2022-12-31 23:59:59.293000+00:00","ev_type":"CLIENT_IP_ASSIGNED","metadata":{},"org_id":"b0b9f142-aaba-11e6-aafc-0242ac110002","random_mac":true,"site_id":"fc656275-b157-43fd-b922-5f4f341c19bf","text":"DHCP Ack IP 192.168.88.216","wcid":"62bbfb75-10d8-49d1-dec7-d2df91624287"}],"start":0,"total":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -164,7 +164,7 @@ func TestOrgsClientsWanTestSearchOrgWanClientEvents1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":0,"limit":0,"results":{"When":"2022-12-31 23:59:59.293000+00:00","ev_type":"CLIENT_IP_ASSIGNED","metadata":{},"org_id":"b0b9f142-aaba-11e6-aafc-0242ac110002","random_mac":true,"site_id":"fc656275-b157-43fd-b922-5f4f341c19bf","text":"DHCP Ack IP 192.168.88.216","wcid":"62bbfb75-10d8-49d1-dec7-d2df91624287"},"start":0,"total":0}`
+	expected := `{"end":0,"limit":0,"results":[{"When":"2022-12-31 23:59:59.293000+00:00","ev_type":"CLIENT_IP_ASSIGNED","metadata":{},"org_id":"b0b9f142-aaba-11e6-aafc-0242ac110002","random_mac":true,"site_id":"fc656275-b157-43fd-b922-5f4f341c19bf","text":"DHCP Ack IP 192.168.88.216","wcid":"62bbfb75-10d8-49d1-dec7-d2df91624287"}],"start":0,"total":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

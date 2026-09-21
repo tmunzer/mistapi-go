@@ -12,6 +12,8 @@ import (
 type SiteSettingPaloaltoNetworks struct {
 	// Palo Alto Networks gateways integrated with a site
 	Gateways []SiteSettingPaloaltoNetworkGateway `json:"gateways,omitempty"`
+	// Source of the Mist NAC user role sent to firewall gateways. enum: `idp_role`, `radius_group`, `none`
+	MistNacUserRoleSource *SiteSettingMistNacUserRoleSourceEnum `json:"mist_nac_user_role_source,omitempty"`
 	// Whether Mist NAC user information is sent to Palo Alto Networks gateways
 	SendMistNacUserInfo  *bool                  `json:"send_mist_nac_user_info,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -21,8 +23,8 @@ type SiteSettingPaloaltoNetworks struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SiteSettingPaloaltoNetworks) String() string {
 	return fmt.Sprintf(
-		"SiteSettingPaloaltoNetworks[Gateways=%v, SendMistNacUserInfo=%v, AdditionalProperties=%v]",
-		s.Gateways, s.SendMistNacUserInfo, s.AdditionalProperties)
+		"SiteSettingPaloaltoNetworks[Gateways=%v, MistNacUserRoleSource=%v, SendMistNacUserInfo=%v, AdditionalProperties=%v]",
+		s.Gateways, s.MistNacUserRoleSource, s.SendMistNacUserInfo, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingPaloaltoNetworks.
@@ -31,7 +33,7 @@ func (s SiteSettingPaloaltoNetworks) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"gateways", "send_mist_nac_user_info"); err != nil {
+		"gateways", "mist_nac_user_role_source", "send_mist_nac_user_info"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -43,6 +45,9 @@ func (s SiteSettingPaloaltoNetworks) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
 	if s.Gateways != nil {
 		structMap["gateways"] = s.Gateways
+	}
+	if s.MistNacUserRoleSource != nil {
+		structMap["mist_nac_user_role_source"] = s.MistNacUserRoleSource
 	}
 	if s.SendMistNacUserInfo != nil {
 		structMap["send_mist_nac_user_info"] = s.SendMistNacUserInfo
@@ -58,19 +63,21 @@ func (s *SiteSettingPaloaltoNetworks) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "gateways", "send_mist_nac_user_info")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "gateways", "mist_nac_user_role_source", "send_mist_nac_user_info")
 	if err != nil {
 		return err
 	}
 	s.AdditionalProperties = additionalProperties
 
 	s.Gateways = temp.Gateways
+	s.MistNacUserRoleSource = temp.MistNacUserRoleSource
 	s.SendMistNacUserInfo = temp.SendMistNacUserInfo
 	return nil
 }
 
 // tempSiteSettingPaloaltoNetworks is a temporary struct used for validating the fields of SiteSettingPaloaltoNetworks.
 type tempSiteSettingPaloaltoNetworks struct {
-	Gateways            []SiteSettingPaloaltoNetworkGateway `json:"gateways,omitempty"`
-	SendMistNacUserInfo *bool                               `json:"send_mist_nac_user_info,omitempty"`
+	Gateways              []SiteSettingPaloaltoNetworkGateway   `json:"gateways,omitempty"`
+	MistNacUserRoleSource *SiteSettingMistNacUserRoleSourceEnum `json:"mist_nac_user_role_source,omitempty"`
+	SendMistNacUserInfo   *bool                                 `json:"send_mist_nac_user_info,omitempty"`
 }

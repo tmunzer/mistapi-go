@@ -54,10 +54,7 @@ import (
 
 func main() {
     statsGatewayModuleStatItem := models.StatsGatewayModuleStatItem{
-        BackupVersion:        models.NewOptional(models.ToPointer("backup_version0")),
-        BiosVersion:          models.NewOptional(models.ToPointer("bios_version4")),
         BootPartition:        models.ToPointer("boot_partition0"),
-        CpldVersion:          models.NewOptional(models.ToPointer("cpld_version6")),
         Fans:                 []models.ModuleStatItemFansItems{
             models.ModuleStatItemFansItems{
                 Airflow:              models.ToPointer("airflow8"),

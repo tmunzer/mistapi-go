@@ -31,9 +31,6 @@ func main() {
     statsSwitchVcSetupInfo := models.StatsSwitchVcSetupInfo{
         ConfigType:           models.ToPointer("nonprovisioned"),
         CurrentStats:         models.ToPointer("VCSETUP_WAITING"),
-        ErrMissingDevIdFpc:   models.ToPointer(false),
-        LastUpdate:           models.ToPointer(float64(151.08)),
-        RequestTime:          models.ToPointer(float64(71.6)),
         RequestType:          models.ToPointer("vc_create"),
     }
 

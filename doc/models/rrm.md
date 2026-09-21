@@ -172,7 +172,7 @@ func main() {
         RftemplateId:         uuid.MustParse("00000cf4-0000-0000-0000-000000000000"),
         RftemplateName:       "rftemplate_name8",
         Status:               models.RrmStatusEnum_READY,
-        Timestamp:            float64(36.02),
+        Timestamp:            0.0,
     }
 
 }

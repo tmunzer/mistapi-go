@@ -74,11 +74,13 @@ func TestSitesStatsCallsTestCountSiteCalls(t *testing.T) {
 		t.Error(errUUID)
 	}
 	distinct := models.CountSiteCallsDistinctEnum("mac")
-	rating := int(5)
+	mac := "001122334455"
+	apMac := "001122334455"
+	rating := "1,2"
 	app := "zoom"
 
 	limit := int(100)
-	apiResponse, err := sitesStatsCalls.CountSiteCalls(ctx, siteId, &distinct, &rating, &app, nil, nil, &limit)
+	apiResponse, err := sitesStatsCalls.CountSiteCalls(ctx, siteId, &distinct, &mac, &apMac, &rating, &app, nil, nil, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -99,11 +101,13 @@ func TestSitesStatsCallsTestCountSiteCalls1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	distinct := models.CountSiteCallsDistinctEnum("mac")
-	rating := int(5)
+	mac := "001122334455"
+	apMac := "001122334455"
+	rating := "1,2"
 	app := "zoom"
 
 	limit := int(100)
-	apiResponse, err := sitesStatsCalls.CountSiteCalls(ctx, siteId, &distinct, &rating, &app, nil, nil, &limit)
+	apiResponse, err := sitesStatsCalls.CountSiteCalls(ctx, siteId, &distinct, &mac, &apMac, &rating, &app, nil, nil, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

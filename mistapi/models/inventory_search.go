@@ -10,16 +10,16 @@ import (
 // InventorySearch represents a InventorySearch struct.
 // Paginated inventory search response
 type InventorySearch struct {
-	// Page ending index for this inventory search response
-	End *int `json:"end,omitempty"`
+	// End of the inventory search time window, in epoch seconds
+	End *float64 `json:"end,omitempty"`
 	// Maximum number of inventory search results requested
 	Limit *int `json:"limit,omitempty"`
 	// URL for the next page of inventory search results
 	Next *string `json:"next,omitempty"`
 	// Inventory records returned by an inventory search
 	Results []InventorySearchResult `json:"results,omitempty"`
-	// Page starting index for this inventory search response
-	Start *int `json:"start,omitempty"`
+	// Start of the inventory search time window, in epoch seconds
+	Start *float64 `json:"start,omitempty"`
 	// Number of inventory records matching the search
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -95,10 +95,10 @@ func (i *InventorySearch) UnmarshalJSON(input []byte) error {
 
 // tempInventorySearch is a temporary struct used for validating the fields of InventorySearch.
 type tempInventorySearch struct {
-	End     *int                    `json:"end,omitempty"`
+	End     *float64                `json:"end,omitempty"`
 	Limit   *int                    `json:"limit,omitempty"`
 	Next    *string                 `json:"next,omitempty"`
 	Results []InventorySearchResult `json:"results,omitempty"`
-	Start   *int                    `json:"start,omitempty"`
+	Start   *float64                `json:"start,omitempty"`
 	Total   *int                    `json:"total,omitempty"`
 }

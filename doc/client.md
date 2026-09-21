@@ -127,7 +127,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | OrgsMxEdges() | Gets OrgsMxEdges |
 | OrgsMxTunnels() | Gets OrgsMxTunnels |
 | OrgsNACIDP() | Gets OrgsNACIDP |
-| SitesNACFingerprints() | Gets SitesNACFingerprints |
+| OrgsNACFingerprints() | Gets OrgsNACFingerprints |
 | OrgsNACTags() | Gets OrgsNACTags |
 | OrgsNACPortals() | Gets OrgsNACPortals |
 | OrgsNACCRL() | Gets OrgsNACCRL |
@@ -154,6 +154,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | OrgsSDKInvites() | Gets OrgsSDKInvites |
 | OrgsSDKTemplates() | Gets OrgsSDKTemplates |
 | OrgsSecurityPolicies() | Gets OrgsSecurityPolicies |
+| OrgsSecurityZones() | Gets OrgsSecurityZones |
 | OrgsServices() | Gets OrgsServices |
 | OrgsServicePolicies() | Gets OrgsServicePolicies |
 | OrgsSetting() | Gets OrgsSetting |

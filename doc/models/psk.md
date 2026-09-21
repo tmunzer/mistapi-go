@@ -51,8 +51,6 @@ import (
 
 func main() {
     psk := models.Psk{
-        AdminSsoId:             models.ToPointer("admin_sso_id4"),
-        CreatedTime:            models.ToPointer(float64(36.88)),
         Email:                  models.ToPointer("email8"),
         ExpireTime:             models.NewOptional(models.ToPointer(1614990263)),
         ExpiryNotificationTime: models.ToPointer(222),

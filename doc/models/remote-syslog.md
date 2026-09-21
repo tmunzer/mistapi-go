@@ -102,9 +102,21 @@ func main() {
         SendToAllServers:     models.ToPointer(false),
         Servers:              []models.RemoteSyslogServer{
             models.RemoteSyslogServer{
+                Contents:             []models.RemoteSyslogContent{
+                    models.RemoteSyslogContent{
+                        Facility:             models.ToPointer(models.RemoteSyslogFacilityEnum_NTP),
+                        Severity:             models.ToPointer(models.RemoteSyslogSeverityEnum_ENUMERROR),
+                    },
+                    models.RemoteSyslogContent{
+                        Facility:             models.ToPointer(models.RemoteSyslogFacilityEnum_NTP),
+                        Severity:             models.ToPointer(models.RemoteSyslogSeverityEnum_ENUMERROR),
+                    },
+                },
+                ExplicitPriority:     models.ToPointer(false),
                 Facility:             models.ToPointer(models.RemoteSyslogFacilityEnum_CONFIG),
                 Host:                 models.ToPointer("syslogd.internal"),
-                Port:                 models.ToPointer(),
+                Match:                models.ToPointer("match2"),
+                Port:                 models.ToPointer(models.RemoteSyslogServerPortContainer.FromNumber(514)),
                 Protocol:             models.ToPointer(models.RemoteSyslogServerProtocolEnum_UDP),
                 Severity:             models.ToPointer(models.RemoteSyslogSeverityEnum_INFO),
                 Tag:                  models.ToPointer(""),

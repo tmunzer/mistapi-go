@@ -126,7 +126,7 @@ func TestSitesDevicesOthersTestSearchSiteOtherDeviceEvents(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":0,"limit":0,"results":{"device_mac":"string","mac":"5c5b351e13b5","org_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862a","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","text":"Plugged: The Internal 5GB (SIM1) has been inserted into Internal 1.","timestamp":547235620.89,"type":"CELLULAR_EDGE_MODEM_WAN_PLUGGED","vendor":"cradlepoint"},"start":0,"total":0}`
+	expected := `{"end":0,"limit":0,"results":[{"device_mac":"string","mac":"5c5b351e13b5","org_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862a","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","text":"Plugged: The Internal 5GB (SIM1) has been inserted into Internal 1.","timestamp":547235620.89,"type":"CELLULAR_EDGE_MODEM_WAN_PLUGGED","vendor":"cradlepoint"}],"start":0,"total":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -152,6 +152,6 @@ func TestSitesDevicesOthersTestSearchSiteOtherDeviceEvents1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":0,"limit":0,"results":{"device_mac":"string","mac":"5c5b351e13b5","org_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862a","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","text":"Plugged: The Internal 5GB (SIM1) has been inserted into Internal 1.","timestamp":547235620.89,"type":"CELLULAR_EDGE_MODEM_WAN_PLUGGED","vendor":"cradlepoint"},"start":0,"total":0}`
+	expected := `{"end":0,"limit":0,"results":[{"device_mac":"string","mac":"5c5b351e13b5","org_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862a","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","text":"Plugged: The Internal 5GB (SIM1) has been inserted into Internal 1.","timestamp":547235620.89,"type":"CELLULAR_EDGE_MODEM_WAN_PLUGGED","vendor":"cradlepoint"}],"start":0,"total":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

@@ -38,7 +38,7 @@ func main() {
                 Id:                     uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f"),
                 MapId:                  uuid.MustParse("00001148-0000-0000-0000-000000000000"),
                 SiteId:                 uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6"),
-                Timestamp:              float64(188.18),
+                Timestamp:              0.0,
                 Type:                   "type0",
                 X:                      float64(94.86),
                 Y:                      float64(226.14),

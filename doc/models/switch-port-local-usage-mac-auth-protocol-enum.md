@@ -1,7 +1,7 @@
 
 # Switch Port Local Usage Mac Auth Protocol Enum
 
-Only if `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`
+Only if `enable_mac_auth` ==`true`. When Mist NAC is enabled, this is forced to `pap`, unless the Org `mist_nac.enable_eap_md5_for_mab` setting is enabled: in that case `eap-md5` is kept and the port still performs MAB (mac-radius) but sends the request as EAP-MD5. enum: `eap-md5`, `eap-peap`, `pap`
 
 ## Enumeration
 

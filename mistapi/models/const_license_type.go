@@ -12,8 +12,8 @@ import (
 type ConstLicenseType struct {
 	// Human-readable description of the license type
 	Description *string `json:"description,omitempty"`
-	// Level at which the license is enforced
-	EnforcementLevel *EnforcementLevelEnum `json:"enforcement_level,omitempty"`
+	// Level at which the license is enforced. enum: `org`, `site`.
+	EnforcementLevel *ConstLicenseTypeEnforcementLevelEnum `json:"enforcement_level,omitempty"`
 	// License type keys this license type entitles
 	EntitledLicenses []string `json:"entitled_licenses,omitempty"`
 	// License group this license type belongs to
@@ -107,12 +107,12 @@ func (c *ConstLicenseType) UnmarshalJSON(input []byte) error {
 
 // tempConstLicenseType is a temporary struct used for validating the fields of ConstLicenseType.
 type tempConstLicenseType struct {
-	Description      *string               `json:"description,omitempty"`
-	EnforcementLevel *EnforcementLevelEnum `json:"enforcement_level,omitempty"`
-	EntitledLicenses []string              `json:"entitled_licenses,omitempty"`
-	Group            *string               `json:"group,omitempty"`
-	Includes         []string              `json:"includes,omitempty"`
-	Key              *string               `json:"key,omitempty"`
-	Name             *string               `json:"name,omitempty"`
-	Type             *string               `json:"type,omitempty"`
+	Description      *string                               `json:"description,omitempty"`
+	EnforcementLevel *ConstLicenseTypeEnforcementLevelEnum `json:"enforcement_level,omitempty"`
+	EntitledLicenses []string                              `json:"entitled_licenses,omitempty"`
+	Group            *string                               `json:"group,omitempty"`
+	Includes         []string                              `json:"includes,omitempty"`
+	Key              *string                               `json:"key,omitempty"`
+	Name             *string                               `json:"name,omitempty"`
+	Type             *string                               `json:"type,omitempty"`
 }

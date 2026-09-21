@@ -43,7 +43,6 @@ import (
 
 func main() {
     uiSettings := models.UiSettings{
-        CreatedTime:          models.ToPointer(float64(50.84)),
         DefaultScopeId:       models.ToPointer("67970e46-4e12-11e6-9188-0242ad112847"),
         DefaultScopeType:     models.ToPointer("site"),
         DefaultTimeRange:     models.ToPointer(models.UiSettingsDefaultTimeRange{

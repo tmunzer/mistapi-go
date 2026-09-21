@@ -40,9 +40,7 @@ func main() {
     org := models.Org{
         AlarmtemplateId:      models.NewOptional(models.ToPointer(uuid.MustParse("00000682-0000-0000-0000-000000000000"))),
         AllowMist:            models.ToPointer(true),
-        CreatedTime:          models.ToPointer(float64(36.26)),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
-        ModifiedTime:         models.ToPointer(float64(42.7)),
         MspId:                models.ToPointer(uuid.MustParse("b9d42c2e-88ee-41f8-b798-f009ce7fe909")),
         MspLogoUrl:           models.ToPointer("https://example.com/logo/b9d42c2e-88ee-41f8-b798-f009ce7fe909.jpeg"),
         MspName:              models.ToPointer("MSP"),

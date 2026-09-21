@@ -21,7 +21,7 @@ type SleImpactedUsers struct {
 	// Requested SLE failure filter applied to the query
 	Failure string `json:"failure"`
 	// Maximum number of impacted user rows returned per page
-	Limit float64 `json:"limit"`
+	Limit int `json:"limit"`
 	// SLE metric name used for the impacted users query
 	Metric string `json:"metric"`
 	// Current page number for impacted user results
@@ -113,7 +113,7 @@ type tempSleImpactedUsers struct {
 	Clients    []SleImpactedUsersClient `json:"clients,omitempty"`
 	End        *float64                 `json:"end"`
 	Failure    *string                  `json:"failure"`
-	Limit      *float64                 `json:"limit"`
+	Limit      *int                     `json:"limit"`
 	Metric     *string                  `json:"metric"`
 	Page       *float64                 `json:"page"`
 	Start      *float64                 `json:"start"`

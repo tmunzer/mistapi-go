@@ -25,7 +25,6 @@ package main
 
 import (
     "mistapi/models"
-    "github.com/google/uuid"
 )
 
 func main() {
@@ -36,16 +35,12 @@ func main() {
         Page:                 models.ToPointer(3),
         Results:              []models.MxedgeEvent{
             models.MxedgeEvent{
-                AuditId:              models.ToPointer(uuid.MustParse("00000d00-0000-0000-0000-000000000000")),
                 Component:            models.NewOptional(models.ToPointer("component4")),
-                DeviceId:             models.NewOptional(models.ToPointer(uuid.MustParse("00001510-0000-0000-0000-000000000000"))),
                 DeviceType:           models.ToPointer("device_type4"),
                 FromVersion:          models.ToPointer("from_version8"),
             },
             models.MxedgeEvent{
-                AuditId:              models.ToPointer(uuid.MustParse("00000d00-0000-0000-0000-000000000000")),
                 Component:            models.NewOptional(models.ToPointer("component4")),
-                DeviceId:             models.NewOptional(models.ToPointer(uuid.MustParse("00001510-0000-0000-0000-000000000000"))),
                 DeviceType:           models.ToPointer("device_type4"),
                 FromVersion:          models.ToPointer("from_version8"),
             },

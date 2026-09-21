@@ -27,7 +27,7 @@ import (
 func main() {
     apiUsage := models.ApiUsage{
         RequestLimit:         5000,
-        Requests:             28,
+        Requests:             0,
         Seconds:              models.ToPointer(float64(31.84)),
     }
 

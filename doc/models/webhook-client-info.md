@@ -21,7 +21,6 @@ package main
 
 import (
     "mistapi/models"
-    "github.com/google/uuid"
 )
 
 func main() {
@@ -31,15 +30,11 @@ func main() {
                 Hostname:             models.ToPointer("hostname6"),
                 Ip:                   models.ToPointer("ip4"),
                 Mac:                  models.ToPointer("mac4"),
-                OrgId:                models.ToPointer(uuid.MustParse("00000dbc-0000-0000-0000-000000000000")),
-                SiteId:               models.ToPointer(uuid.MustParse("0000245a-0000-0000-0000-000000000000")),
             },
             models.WebhookClientInfoEvent{
                 Hostname:             models.ToPointer("hostname6"),
                 Ip:                   models.ToPointer("ip4"),
                 Mac:                  models.ToPointer("mac4"),
-                OrgId:                models.ToPointer(uuid.MustParse("00000dbc-0000-0000-0000-000000000000")),
-                SiteId:               models.ToPointer(uuid.MustParse("0000245a-0000-0000-0000-000000000000")),
             },
         },
         Topic:                models.ToPointer(models.WebhookClientInfoTopicEnum_CLIENTINFO),

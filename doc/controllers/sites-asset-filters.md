@@ -55,6 +55,7 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AssetFilter{
+    AeroscoutForwarding:   models.ToPointer(false),
     Disabled:              models.ToPointer(false),
     EddystoneUidNamespace: models.ToPointer("2818e3868dec25629ede"),
     EddystoneUrl:          models.ToPointer("https://www.abc.com"),
@@ -404,6 +405,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 assetfilterId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AssetFilter{
+    AeroscoutForwarding:   models.ToPointer(false),
     Disabled:              models.ToPointer(false),
     EddystoneUidNamespace: models.ToPointer("2818e3868dec25629ede"),
     EddystoneUrl:          models.ToPointer("https://www.abc.com"),

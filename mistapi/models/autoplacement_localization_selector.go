@@ -11,7 +11,7 @@ import (
 // Request body to apply or clear cached autoplacement or auto-orientation values for a map or subset of APs
 type AutoplacementLocalizationSelector struct {
 	// The selector to choose auto placement or auto orientation. enum: `orientation`, `placement`
-	For *UseAutoApValuesForEnum `json:"for,omitempty"`
+	For *AutoplacementLocalizationSelectorForEnum `json:"for,omitempty"`
 	// List of AP MAC addresses to apply the action to. If omitted, the action applies to all APs on the map
 	Macs                 []string               `json:"macs,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -71,6 +71,6 @@ func (a *AutoplacementLocalizationSelector) UnmarshalJSON(input []byte) error {
 
 // tempAutoplacementLocalizationSelector is a temporary struct used for validating the fields of AutoplacementLocalizationSelector.
 type tempAutoplacementLocalizationSelector struct {
-	For  *UseAutoApValuesForEnum `json:"for,omitempty"`
-	Macs []string                `json:"macs,omitempty"`
+	For  *AutoplacementLocalizationSelectorForEnum `json:"for,omitempty"`
+	Macs []string                                  `json:"macs,omitempty"`
 }

@@ -17,7 +17,7 @@ Initiate a Wireless Packet Capture
 | `Band` | [`*models.CaptureWirelessBandEnum`](../../doc/models/capture-wireless-band-enum.md) | Optional | enum: `24`, `5`, `6`<br><br>**Default**: `"24"` |
 | `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br><br>**Default**: `600`<br><br>**Constraints**: `>= 60`, `<= 86400` |
 | `Format` | [`*models.CaptureWirelessFormatEnum`](../../doc/models/capture-wireless-format-enum.md) | Optional | pcap format. enum: `pcap`, `stream`<br><br>**Default**: `"pcap"` |
-| `MaxPktLen` | `models.Optional[int]` | Optional | Maximum bytes captured from each packet, or null to use the default<br><br>**Default**: `512`<br><br>**Constraints**: `>= 64`, `<= 2048` |
+| `MaxPktLen` | `models.Optional[int]` | Optional | Maximum bytes captured from each packet; default is 512, minimum is 64 and maximum is 1536. Null uses the default.<br><br>**Default**: `512`<br><br>**Constraints**: `>= 64`, `<= 1536` |
 | `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br><br>**Default**: `1024`<br><br>**Constraints**: `>= 0`, `<= 10000` |
 | `Ssid` | `*string` | Optional | Wireless network SSID used to filter the packet capture |
 | `Type` | `string` | Required, Constant | Packet capture type discriminator for wireless captures. enum: `wireless`<br><br>**Value**: `"wireless"` |

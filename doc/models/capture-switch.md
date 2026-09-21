@@ -15,7 +15,7 @@ Initiate a Switch (Junos) Packet Capture
 |  --- | --- | --- | --- |
 | `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br><br>**Default**: `600`<br><br>**Constraints**: `>= 60`, `<= 86400` |
 | `Format` | [`*models.CaptureSwitchFormatEnum`](../../doc/models/capture-switch-format-enum.md) | Optional | Output format for the switch packet capture. enum: `stream`<br><br>**Default**: `"stream"` |
-| `MaxPktLen` | `models.Optional[int]` | Optional | Maximum bytes captured from each packet, or null to use the default<br><br>**Default**: `512`<br><br>**Constraints**: `>= 64`, `<= 2048` |
+| `MaxPktLen` | `models.Optional[int]` | Optional | Maximum bytes captured from each packet; default is 512, minimum is 64 and maximum is 1536. Null uses the default.<br><br>**Default**: `512`<br><br>**Constraints**: `>= 64`, `<= 1536` |
 | `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br><br>**Default**: `1024`<br><br>**Constraints**: `>= 0`, `<= 10000` |
 | `Ports` | [`map[string]models.CaptureSwitchPortsTcpdumpExpression`](../../doc/models/capture-switch-ports-tcpdump-expression.md) | Optional | Property key is the port name. 6 ports max per switch supported, or 5 max with irb port auto-included into capture request |
 | `Switches` | [`map[string]models.CaptureSwitchSwitches`](../../doc/models/capture-switch-switches.md) | Required | Property key is the switch MAC address |

@@ -56,7 +56,6 @@ func main() {
             Min:                  models.ToPointer(float64(78.86)),
             P95:                  models.ToPointer(float64(107.34)),
         }),
-        CreatedTime:            models.ToPointer(float64(223.8)),
         DiscoveredAssetsWait:   models.ToPointer(models.StatsZoneDiscoveredAssetsWaits{
             Avg:                  models.ToPointer(float64(229.4)),
             Max:                  models.ToPointer(float64(41.48)),
@@ -65,7 +64,6 @@ func main() {
         }),
         Id:                     uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f"),
         MapId:                  uuid.MustParse("123449d4-d12f-4feb-b40f-5be0e2ae1234"),
-        ModifiedTime:           models.ToPointer(float64(111.16)),
         Name:                   "Zone A",
         NumAssets:              models.ToPointer(0),
         NumClients:             models.ToPointer(80),

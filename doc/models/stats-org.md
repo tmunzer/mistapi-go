@@ -41,9 +41,9 @@ func main() {
     statsOrg := models.StatsOrg{
         AlarmtemplateId:        uuid.MustParse("000010fa-0000-0000-0000-000000000000"),
         AllowMist:              false,
-        CreatedTime:            float64(63.06),
+        CreatedTime:            0.0,
         Id:                     uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f"),
-        ModifiedTime:           float64(15.9),
+        ModifiedTime:           0.0,
         MspId:                  uuid.MustParse("b9d42c2e-88ee-41f8-b798-f009ce7fe909"),
         Name:                   "name6",
         NumDevices:             170,

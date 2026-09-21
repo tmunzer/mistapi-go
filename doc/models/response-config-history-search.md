@@ -67,7 +67,7 @@ func main() {
                     "ssids_56",
                     "ssids_57",
                 },
-                Timestamp:            float64(2.64),
+                Timestamp:            0.0,
                 Version:              "version2",
             },
         },

@@ -73,7 +73,7 @@ func main() {
             "ffeeddccbbaa",
             "ffeeddccbbab",
         },
-        Timestamp:            float64(237.82),
+        Timestamp:            0.0,
         Type:                 "rogue_client",
     }
 

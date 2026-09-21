@@ -28,6 +28,8 @@ type AdminInvite struct {
 	InviteCode *string `json:"invite_code,omitempty"`
 	// Family name for the registering admin user
 	LastName string `json:"last_name"`
+	// Optional privacy-consent setting. When omitted, defaults to true in GDPR environments and false in non-GDPR environments.
+	NoTracking *bool `json:"no_tracking,omitempty"`
 	// Organization name supplied during initial admin registration
 	OrgName string `json:"org_name"`
 	// Credential password for the registering admin account
@@ -55,8 +57,8 @@ type AdminInvite struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a AdminInvite) String() string {
 	return fmt.Sprintf(
-		"AdminInvite[AccountOnly=%v, AllowMist=%v, City=%v, Country=%v, Email=%v, FirstName=%v, InviteCode=%v, LastName=%v, OrgName=%v, Password=%v, Recaptcha=%v, RecaptchaFlavor=%v, RefererInviteToken=%v, ReturnTo=%v, State=%v, StreetAddress=%v, StreetAddress2=%v, Zipcode=%v, AdditionalProperties=%v]",
-		a.AccountOnly, a.AllowMist, a.City, a.Country, a.Email, a.FirstName, a.InviteCode, a.LastName, a.OrgName, a.Password, a.Recaptcha, a.RecaptchaFlavor, a.RefererInviteToken, a.ReturnTo, a.State, a.StreetAddress, a.StreetAddress2, a.Zipcode, a.AdditionalProperties)
+		"AdminInvite[AccountOnly=%v, AllowMist=%v, City=%v, Country=%v, Email=%v, FirstName=%v, InviteCode=%v, LastName=%v, NoTracking=%v, OrgName=%v, Password=%v, Recaptcha=%v, RecaptchaFlavor=%v, RefererInviteToken=%v, ReturnTo=%v, State=%v, StreetAddress=%v, StreetAddress2=%v, Zipcode=%v, AdditionalProperties=%v]",
+		a.AccountOnly, a.AllowMist, a.City, a.Country, a.Email, a.FirstName, a.InviteCode, a.LastName, a.NoTracking, a.OrgName, a.Password, a.Recaptcha, a.RecaptchaFlavor, a.RefererInviteToken, a.ReturnTo, a.State, a.StreetAddress, a.StreetAddress2, a.Zipcode, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AdminInvite.
@@ -65,7 +67,7 @@ func (a AdminInvite) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(a.AdditionalProperties,
-		"account_only", "allow_mist", "city", "country", "email", "first_name", "invite_code", "last_name", "org_name", "password", "recaptcha", "recaptcha_flavor", "referer_invite_token", "return_to", "state", "street_address", "street_address 2", "zipcode"); err != nil {
+		"account_only", "allow_mist", "city", "country", "email", "first_name", "invite_code", "last_name", "no_tracking", "org_name", "password", "recaptcha", "recaptcha_flavor", "referer_invite_token", "return_to", "state", "street_address", "street_address 2", "zipcode"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(a.toMap())
@@ -93,6 +95,9 @@ func (a AdminInvite) toMap() map[string]any {
 		structMap["invite_code"] = a.InviteCode
 	}
 	structMap["last_name"] = a.LastName
+	if a.NoTracking != nil {
+		structMap["no_tracking"] = a.NoTracking
+	}
 	structMap["org_name"] = a.OrgName
 	structMap["password"] = a.Password
 	structMap["recaptcha"] = a.Recaptcha
@@ -132,7 +137,7 @@ func (a *AdminInvite) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "account_only", "allow_mist", "city", "country", "email", "first_name", "invite_code", "last_name", "org_name", "password", "recaptcha", "recaptcha_flavor", "referer_invite_token", "return_to", "state", "street_address", "street_address 2", "zipcode")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "account_only", "allow_mist", "city", "country", "email", "first_name", "invite_code", "last_name", "no_tracking", "org_name", "password", "recaptcha", "recaptcha_flavor", "referer_invite_token", "return_to", "state", "street_address", "street_address 2", "zipcode")
 	if err != nil {
 		return err
 	}
@@ -146,6 +151,7 @@ func (a *AdminInvite) UnmarshalJSON(input []byte) error {
 	a.FirstName = *temp.FirstName
 	a.InviteCode = temp.InviteCode
 	a.LastName = *temp.LastName
+	a.NoTracking = temp.NoTracking
 	a.OrgName = *temp.OrgName
 	a.Password = *temp.Password
 	a.Recaptcha = *temp.Recaptcha
@@ -169,6 +175,7 @@ type tempAdminInvite struct {
 	FirstName          *string              `json:"first_name"`
 	InviteCode         *string              `json:"invite_code,omitempty"`
 	LastName           *string              `json:"last_name"`
+	NoTracking         *bool                `json:"no_tracking,omitempty"`
 	OrgName            *string              `json:"org_name"`
 	Password           *string              `json:"password"`
 	Recaptcha          *string              `json:"recaptcha"`

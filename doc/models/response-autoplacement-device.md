@@ -25,8 +25,6 @@ import (
 
 func main() {
     responseAutoplacementDevice := models.ResponseAutoplacementDevice{
-        Reason:               models.ToPointer("reason6"),
-        Valid:                models.ToPointer(false),
     }
 
 }

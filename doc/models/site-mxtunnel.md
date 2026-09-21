@@ -131,7 +131,6 @@ func main() {
                 },
             },
         },
-        CreatedTime:          models.ToPointer(float64(199.14)),
         HelloInterval:        models.ToPointer(60),
         HelloRetries:         models.ToPointer(3),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),

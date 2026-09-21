@@ -71,7 +71,7 @@ func (o *OrgsAlarmTemplates) ListOrgAlarmTemplates(
 // returns an models.ApiResponse with models.AlarmTemplate data and
 // an error if there was an issue with the request or response.
 // Create an organization alarm template that defines default delivery settings and per-alarm rule overrides.
-// Available rules can be found in [List Alarm Definitions]($e/Events%20Definitions/listAlarmDefinitions)
+// Available rules can be found in [List Alarm Definitions]($e/Constants%20Events/listAlarmDefinitions)
 // The `delivery` object is only required when it differs from the template delivery settings.
 // To assign an Alarm template to a site, use the [Update Site]($e/Sites/updateSiteInfo) endpoint and specify the Alarm template ID in the `alarmtemplate_id` field of the request body.
 func (o *OrgsAlarmTemplates) CreateOrgAlarmTemplate(

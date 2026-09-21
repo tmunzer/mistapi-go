@@ -22,7 +22,6 @@ package main
 
 import (
     "mistapi/models"
-    "github.com/google/uuid"
 )
 
 func main() {
@@ -34,21 +33,18 @@ func main() {
                 CertProvider:         models.ToPointer("cert_provider6"),
                 CommonName:           models.ToPointer("common_name4"),
                 CreatedTime:          models.ToPointer(208),
-                DeviceId:             models.ToPointer(uuid.MustParse("00001510-0000-0000-0000-000000000000")),
                 ExpireTime:           models.ToPointer(238),
             },
             models.IssuedClientCertificate{
                 CertProvider:         models.ToPointer("cert_provider6"),
                 CommonName:           models.ToPointer("common_name4"),
                 CreatedTime:          models.ToPointer(208),
-                DeviceId:             models.ToPointer(uuid.MustParse("00001510-0000-0000-0000-000000000000")),
                 ExpireTime:           models.ToPointer(238),
             },
             models.IssuedClientCertificate{
                 CertProvider:         models.ToPointer("cert_provider6"),
                 CommonName:           models.ToPointer("common_name4"),
                 CreatedTime:          models.ToPointer(208),
-                DeviceId:             models.ToPointer(uuid.MustParse("00001510-0000-0000-0000-000000000000")),
                 ExpireTime:           models.ToPointer(238),
             },
         },

@@ -25,54 +25,15 @@ package main
 
 import (
     "mistapi/models"
-    "github.com/google/uuid"
 )
 
 func main() {
     license := models.License{
-        Amendments:           []models.LicenseAmendment{
-            models.LicenseAmendment{
-                CreatedTime:          models.ToPointer(float64(132.88)),
-                EndTime:              models.ToPointer(210),
-                Id:                   models.ToPointer(uuid.MustParse("00000292-0000-0000-0000-000000000000")),
-                ModifiedTime:         models.ToPointer(float64(202.08)),
-                Quantity:             models.ToPointer(182),
-            },
-            models.LicenseAmendment{
-                CreatedTime:          models.ToPointer(float64(132.88)),
-                EndTime:              models.ToPointer(210),
-                Id:                   models.ToPointer(uuid.MustParse("00000292-0000-0000-0000-000000000000")),
-                ModifiedTime:         models.ToPointer(float64(202.08)),
-                Quantity:             models.ToPointer(182),
-            },
-        },
-        Entitled:             map[string]int{
-            "key0": 120,
-            "key1": 119,
-        },
-        FullyLoaded:          map[string]int{
-            "key0": 214,
-            "key1": 215,
-            "key2": 216,
-        },
         Licenses:             []models.LicenseSub{
             models.LicenseSub{
-                CreatedTime:          models.ToPointer(float64(186.08)),
-                EndTime:              models.ToPointer(154),
-                Id:                   models.ToPointer(uuid.MustParse("0000017a-0000-0000-0000-000000000000")),
-                ModifiedTime:         models.ToPointer(float64(148.88)),
-                OrderId:              models.ToPointer("order_id2"),
             },
             models.LicenseSub{
-                CreatedTime:          models.ToPointer(float64(186.08)),
-                EndTime:              models.ToPointer(154),
-                Id:                   models.ToPointer(uuid.MustParse("0000017a-0000-0000-0000-000000000000")),
-                ModifiedTime:         models.ToPointer(float64(148.88)),
-                OrderId:              models.ToPointer("order_id2"),
             },
-        },
-        Summary:              map[string]int{
-            "key0": 22,
         },
     }
 

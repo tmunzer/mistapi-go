@@ -37,39 +37,23 @@ import (
 
 func main() {
     responseVirtualChassisConfig := models.ResponseVirtualChassisConfig{
-        ConfigType:           models.ToPointer("config_type0"),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
-        Locating:             models.ToPointer(false),
         Mac:                  models.ToPointer("mac6"),
         Members:              []models.StatsSwitchModuleStatItem{
             models.StatsSwitchModuleStatItem{
-                BackupVersion:        models.NewOptional(models.ToPointer("backup_version8")),
-                BiosVersion:          models.NewOptional(models.ToPointer("bios_version6")),
                 BootPartition:        models.ToPointer("boot_partition8"),
-                CpldVersion:          models.NewOptional(models.ToPointer("cpld_version4")),
                 CpuStat:              models.ToPointer(models.CpuStat{
-                    Idle:                 models.NewOptional(models.ToPointer(float64(102.08))),
-                    Interrupt:            models.NewOptional(models.ToPointer(float64(215.84))),
                     LoadAvg:              []float64{
                         float64(105.91),
                     },
-                    System:               models.NewOptional(models.ToPointer(float64(13.6))),
-                    Usage:                models.NewOptional(models.ToPointer(float64(125.9))),
                 }),
             },
             models.StatsSwitchModuleStatItem{
-                BackupVersion:        models.NewOptional(models.ToPointer("backup_version8")),
-                BiosVersion:          models.NewOptional(models.ToPointer("bios_version6")),
                 BootPartition:        models.ToPointer("boot_partition8"),
-                CpldVersion:          models.NewOptional(models.ToPointer("cpld_version4")),
                 CpuStat:              models.ToPointer(models.CpuStat{
-                    Idle:                 models.NewOptional(models.ToPointer(float64(102.08))),
-                    Interrupt:            models.NewOptional(models.ToPointer(float64(215.84))),
                     LoadAvg:              []float64{
                         float64(105.91),
                     },
-                    System:               models.NewOptional(models.ToPointer(float64(13.6))),
-                    Usage:                models.NewOptional(models.ToPointer(float64(125.9))),
                 }),
             },
         },

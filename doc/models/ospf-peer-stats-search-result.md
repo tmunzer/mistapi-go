@@ -25,7 +25,6 @@ package main
 
 import (
     "mistapi/models"
-    "github.com/google/uuid"
 )
 
 func main() {
@@ -37,23 +36,20 @@ func main() {
             models.OspfPeerStatsSearchResultsItems{
                 DeadTime:             models.ToPointer(140),
                 Mac:                  models.ToPointer("mac0"),
-                OrgId:                models.ToPointer(uuid.MustParse("00002492-0000-0000-0000-000000000000")),
-                PeerIp:               models.ToPointer("peer_ip4"),
-                PortId:               models.ToPointer("port_id6"),
+                Neighbor:             models.ToPointer("neighbor6"),
+                NeighborId:           models.ToPointer("neighbor_id0"),
             },
             models.OspfPeerStatsSearchResultsItems{
                 DeadTime:             models.ToPointer(140),
                 Mac:                  models.ToPointer("mac0"),
-                OrgId:                models.ToPointer(uuid.MustParse("00002492-0000-0000-0000-000000000000")),
-                PeerIp:               models.ToPointer("peer_ip4"),
-                PortId:               models.ToPointer("port_id6"),
+                Neighbor:             models.ToPointer("neighbor6"),
+                NeighborId:           models.ToPointer("neighbor_id0"),
             },
             models.OspfPeerStatsSearchResultsItems{
                 DeadTime:             models.ToPointer(140),
                 Mac:                  models.ToPointer("mac0"),
-                OrgId:                models.ToPointer(uuid.MustParse("00002492-0000-0000-0000-000000000000")),
-                PeerIp:               models.ToPointer("peer_ip4"),
-                PortId:               models.ToPointer("port_id6"),
+                Neighbor:             models.ToPointer("neighbor6"),
+                NeighborId:           models.ToPointer("neighbor_id0"),
             },
         },
         Start:                models.ToPointer(1710949286),

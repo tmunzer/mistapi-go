@@ -525,7 +525,7 @@ if err != nil {
 
 # Search Msp Orgs
 
-Search organizations under this MSP using organization identifiers, names, subscription state, trial state, usage types, and time-based filters.
+Search organizations under this MSP using organization identifiers, names, subscription state, trial state, usage types, and time-based filters. Only organizations with at least one claimed device are returned.
 
 ```go
 SearchMspOrgs(

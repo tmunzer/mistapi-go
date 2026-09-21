@@ -30,22 +30,9 @@ import (
 
 func main() {
     licenseUsageOrg := models.LicenseUsageOrg{
-        ForSite:              models.ToPointer(false),
-        FullyLoaded:          map[string]int{
-            "key0": 162,
-            "key1": 163,
-        },
-        NumDevices:           104,
+        NumDevices:           0,
         SiteId:               uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6"),
-        Summary:              map[string]int{
-            "key0": 226,
-            "key1": 227,
-            "key2": 228,
-        },
-        Usages:               map[string]int{
-            "key0": 55,
-            "key1": 56,
-        },
+        Usages:               0,
     }
 
 }

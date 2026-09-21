@@ -36,7 +36,7 @@ func main() {
         Channel:              162,
         Rssi:                 float64(4.48),
         Ssid:                 "ssid4",
-        Timestamp:            float64(134.44),
+        Timestamp:            0.0,
     }
 
 }

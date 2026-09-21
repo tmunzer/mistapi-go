@@ -11,25 +11,25 @@ import (
 	"github.com/tmunzer/mistapi-go/mistapi/models"
 )
 
-// SitesNACFingerprints represents a controller struct.
-type SitesNACFingerprints struct {
+// OrgsNACFingerprints represents a controller struct.
+type OrgsNACFingerprints struct {
 	baseController
 }
 
-// NewSitesNACFingerprints creates a new instance of SitesNACFingerprints.
-// It takes a baseController as a parameter and returns a pointer to the SitesNACFingerprints.
-func NewSitesNACFingerprints(baseController baseController) *SitesNACFingerprints {
-	sitesNACFingerprints := SitesNACFingerprints{baseController: baseController}
-	return &sitesNACFingerprints
+// NewOrgsNACFingerprints creates a new instance of OrgsNACFingerprints.
+// It takes a baseController as a parameter and returns a pointer to the OrgsNACFingerprints.
+func NewOrgsNACFingerprints(baseController baseController) *OrgsNACFingerprints {
+	orgsNACFingerprints := OrgsNACFingerprints{baseController: baseController}
+	return &orgsNACFingerprints
 }
 
-// CountSiteClientFingerprints takes context, siteId, distinct, start, end, duration, limit as parameters and
+// CountOrgClientFingerprints takes context, orgId, distinct, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count Client Fingerprints
-func (s *SitesNACFingerprints) CountSiteClientFingerprints(
+func (o *OrgsNACFingerprints) CountOrgClientFingerprints(
 	ctx context.Context,
-	siteId uuid.UUID,
+	orgId uuid.UUID,
 	distinct *models.FingerprintsCountDistinctEnum,
 	start *string,
 	end *string,
@@ -37,12 +37,12 @@ func (s *SitesNACFingerprints) CountSiteClientFingerprints(
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
 	error) {
-	req := s.prepareRequest(
+	req := o.prepareRequest(
 		ctx,
 		"GET",
-		"/api/v1/sites/%v/insights/fingerprints/count",
+		"/api/v1/orgs/%v/insights/fingerprints/count",
 	)
-	req.AppendTemplateParams(siteId)
+	req.AppendTemplateParams(orgId)
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
@@ -82,13 +82,13 @@ func (s *SitesNACFingerprints) CountSiteClientFingerprints(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteClientFingerprints takes context, siteId, family, clientType, model, mfg, os, osType, mac, limit, start, end, duration, interval, sort, searchAfter as parameters and
+// SearchOrgClientFingerprints takes context, orgId, family, clientType, model, mfg, os, osType, mac, limit, start, end, duration, interval, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.FingerprintSearchResult data and
 // an error if there was an issue with the request or response.
 // Search Client Fingerprints
-func (s *SitesNACFingerprints) SearchSiteClientFingerprints(
+func (o *OrgsNACFingerprints) SearchOrgClientFingerprints(
 	ctx context.Context,
-	siteId uuid.UUID,
+	orgId uuid.UUID,
 	family *string,
 	clientType *models.NacAccessTypeEnum,
 	model *string,
@@ -105,12 +105,12 @@ func (s *SitesNACFingerprints) SearchSiteClientFingerprints(
 	searchAfter *string) (
 	models.ApiResponse[models.FingerprintSearchResult],
 	error) {
-	req := s.prepareRequest(
+	req := o.prepareRequest(
 		ctx,
 		"GET",
-		"/api/v1/sites/%v/insights/fingerprints/search",
+		"/api/v1/orgs/%v/insights/fingerprints/search",
 	)
-	req.AppendTemplateParams(siteId)
+	req.AppendTemplateParams(orgId)
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),

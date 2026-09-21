@@ -12,7 +12,7 @@ Multicast settings for a switch network (VLAN)
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | Whether to enable IGMP snooping on this VLAN<br><br>**Default**: `false` |
-| `IgmpVersion` | [`*models.IgmpVersionEnum`](../../doc/models/igmp-version-enum.md) | Optional | IGMP version. '2' (default, ASM/IGMPv2) / '3' (SSM/IGMPv3)<br><br>**Default**: `"2"` |
+| `IgmpVersion` | [`*models.SwitchNetworkMulticastIgmpVersionEnum`](../../doc/models/switch-network-multicast-igmp-version-enum.md) | Optional | IGMP version. '2' (default, ASM/IGMPv2) / '3' (SSM/IGMPv3)<br><br>**Default**: `"2"` |
 
 ## Example
 
@@ -26,7 +26,7 @@ import (
 func main() {
     switchNetworkMulticast := models.SwitchNetworkMulticast{
         Enabled:              models.ToPointer(false),
-        IgmpVersion:          models.ToPointer(models.IgmpVersionEnum_ENUM2),
+        IgmpVersion:          models.ToPointer(models.SwitchNetworkMulticastIgmpVersionEnum_ENUM2),
     }
 
 }

@@ -24,7 +24,7 @@ This event's request payload is of type [*models.WebhookDiscoveredRawRssi](../..
   "events": [
     {
       "ap_loc": [
-        0.0
+        0
       ],
       "beam": 0,
       "device_id": "3bafab7b-4400-4bcf-8e6e-09f954699940",
@@ -37,7 +37,7 @@ This event's request payload is of type [*models.WebhookDiscoveredRawRssi](../..
       "mfg_company_id": "string",
       "mfg_data": "string",
       "org_id": "a40f5d1f-d889-42e9-94ea-b9b33585fc6b",
-      "rssi": 0.0,
+      "rssi": 0,
       "service_packets": [
         {
           "service_data": "string",

@@ -16,7 +16,7 @@ type CaptureSwitch struct {
 	Duration Optional[int] `json:"duration"`
 	// Output format for the switch packet capture. enum: `stream`
 	Format *CaptureSwitchFormatEnum `json:"format,omitempty"`
-	// Maximum bytes captured from each packet, or null to use the default
+	// Maximum bytes captured from each packet; default is 512, minimum is 64 and maximum is 1536. Null uses the default.
 	MaxPktLen Optional[int] `json:"max_pkt_len"`
 	// number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
 	NumPackets Optional[int] `json:"num_packets"`

@@ -25,7 +25,6 @@ package main
 
 import (
     "mistapi/models"
-    "github.com/google/uuid"
 )
 
 func main() {
@@ -35,9 +34,7 @@ func main() {
         Next:                 models.ToPointer("next4"),
         Results:              []models.OrgEvent{
             models.OrgEvent{
-                OrgId:                models.ToPointer(uuid.MustParse("00002492-0000-0000-0000-000000000000")),
                 Text:                 models.ToPointer("text4"),
-                Timestamp:            models.ToPointer(float64(2.64)),
                 Type:                 models.ToPointer("type4"),
             },
         },

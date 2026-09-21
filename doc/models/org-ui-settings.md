@@ -38,7 +38,6 @@ import (
 
 func main() {
     orgUiSettings := models.OrgUiSettings{
-        CreatedTime:          models.ToPointer(float64(109.12)),
         Description:          models.ToPointer("This databoard shows AP stats"),
         ForSite:              models.ToPointer(false),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),

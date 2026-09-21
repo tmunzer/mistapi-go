@@ -68,7 +68,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AutoplacementLocalizationSelector{
-    For:                  models.ToPointer(models.UseAutoApValuesForEnum_PLACEMENT),
+    For:                  models.ToPointer(models.AutoplacementLocalizationSelectorForEnum_PLACEMENT),
     Macs:                 []string{
         "5c5b35000001",
     },
@@ -229,7 +229,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AutoplacementLocalizationSelector{
-    For:                  models.ToPointer(models.UseAutoApValuesForEnum_PLACEMENT),
+    For:                  models.ToPointer(models.AutoplacementLocalizationSelectorForEnum_PLACEMENT),
     Macs:                 []string{
         "5c5b35000001",
     },

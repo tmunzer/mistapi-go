@@ -13,6 +13,7 @@ BLE asset filter definition; all specified criteria must match
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `AeroscoutForwarding` | `*bool` | Optional | Whether matching BLE advertisements are forwarded to AES when aeroscout is enabled on the device<br><br>**Default**: `false` |
 | `ApMac` | `*string` | Optional | Access point MAC address that must observe the BLE asset |
 | `Beam` | `*int` | Optional | BLE beam number used to filter asset observations |
 | `CreatedTime` | `*float64` | Optional, Read-only | When the object has been created, in epoch |
@@ -45,9 +46,9 @@ import (
 
 func main() {
     assetFilter := models.AssetFilter{
+        AeroscoutForwarding:   models.ToPointer(false),
         ApMac:                 models.ToPointer("ap_mac8"),
         Beam:                  models.ToPointer(206),
-        CreatedTime:           models.ToPointer(float64(39.96)),
         Disabled:              models.ToPointer(false),
         EddystoneUidNamespace: models.ToPointer("2818e3868dec25629ede"),
         EddystoneUrl:          models.ToPointer("https://www.abc.com"),

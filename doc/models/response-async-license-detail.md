@@ -28,7 +28,6 @@ func main() {
     responseAsyncLicenseDetail := models.ResponseAsyncLicenseDetail{
         Mac:                  models.ToPointer("mac6"),
         Status:               models.ToPointer("status4"),
-        Timestamp:            models.ToPointer(float64(45.4)),
     }
 
 }

@@ -15,7 +15,7 @@ Paginated list of users impacted by an SLE metric
 | `Clients` | [`[]models.SleImpactedUsersClient`](../../doc/models/sle-impacted-users-client.md) | Optional | Impacted client rows returned for an SLE query<br><br>**Constraints**: *Unique Items Required* |
 | `End` | `float64` | Required | Last timestamp in the impacted users window |
 | `Failure` | `string` | Required | Requested SLE failure filter applied to the query |
-| `Limit` | `float64` | Required | Maximum number of impacted user rows returned per page |
+| `Limit` | `int` | Required | Maximum number of impacted user rows returned per page |
 | `Metric` | `string` | Required | SLE metric name used for the impacted users query<br><br>**Constraints**: *Minimum Length*: `1` |
 | `Page` | `float64` | Required | Current page number for impacted user results |
 | `Start` | `float64` | Required | First timestamp in the impacted users window |
@@ -89,7 +89,7 @@ func main() {
         },
         End:                  float64(42.06),
         Failure:              "failure2",
-        Limit:                float64(207.96),
+        Limit:                60,
         Metric:               "metric0",
         Page:                 float64(81.1),
         Start:                float64(254.12),

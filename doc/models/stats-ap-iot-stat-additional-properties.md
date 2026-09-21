@@ -24,7 +24,6 @@ import (
 
 func main() {
     statsApIotStatAdditionalProperties := models.StatsApIotStatAdditionalProperties{
-        Value:                models.NewOptional(models.ToPointer(116)),
     }
 
 }

@@ -39,7 +39,7 @@ func main() {
         },
         NoResolve:            models.ToPointer(false),
         Preference:           models.NewOptional(models.ToPointer(30)),
-        Via:                  models.ToPointer(),
+        Via:                  models.ToPointer(models.NextHopViaContainer.FromString("10.2.1.1")),
     }
 
 }

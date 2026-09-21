@@ -10,8 +10,8 @@ import (
 // SynthetictestConfigWanSpeedtest represents a SynthetictestConfigWanSpeedtest struct.
 // WAN speedtest scheduling settings for synthetic tests
 type SynthetictestConfigWanSpeedtest struct {
-	// Whether scheduled WAN speedtests are enabled
-	Enabled *bool `json:"enabled,omitempty"`
+	// Whether scheduled WAN speedtests are disabled. Defaults to `false` (enabled); set this to `true` to disable speedtests.
+	Disabled *bool `json:"disabled,omitempty"`
 	// `any` / HH:MM (24-hour format)
 	TimeOfDay            *string                `json:"time_of_day,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -21,8 +21,8 @@ type SynthetictestConfigWanSpeedtest struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SynthetictestConfigWanSpeedtest) String() string {
 	return fmt.Sprintf(
-		"SynthetictestConfigWanSpeedtest[Enabled=%v, TimeOfDay=%v, AdditionalProperties=%v]",
-		s.Enabled, s.TimeOfDay, s.AdditionalProperties)
+		"SynthetictestConfigWanSpeedtest[Disabled=%v, TimeOfDay=%v, AdditionalProperties=%v]",
+		s.Disabled, s.TimeOfDay, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestConfigWanSpeedtest.
@@ -31,7 +31,7 @@ func (s SynthetictestConfigWanSpeedtest) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"enabled", "time_of_day"); err != nil {
+		"disabled", "time_of_day"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -41,8 +41,8 @@ func (s SynthetictestConfigWanSpeedtest) MarshalJSON() (
 func (s SynthetictestConfigWanSpeedtest) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
-	if s.Enabled != nil {
-		structMap["enabled"] = s.Enabled
+	if s.Disabled != nil {
+		structMap["disabled"] = s.Disabled
 	}
 	if s.TimeOfDay != nil {
 		structMap["time_of_day"] = s.TimeOfDay
@@ -58,19 +58,19 @@ func (s *SynthetictestConfigWanSpeedtest) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "time_of_day")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "time_of_day")
 	if err != nil {
 		return err
 	}
 	s.AdditionalProperties = additionalProperties
 
-	s.Enabled = temp.Enabled
+	s.Disabled = temp.Disabled
 	s.TimeOfDay = temp.TimeOfDay
 	return nil
 }
 
 // tempSynthetictestConfigWanSpeedtest is a temporary struct used for validating the fields of SynthetictestConfigWanSpeedtest.
 type tempSynthetictestConfigWanSpeedtest struct {
-	Enabled   *bool   `json:"enabled,omitempty"`
+	Disabled  *bool   `json:"disabled,omitempty"`
 	TimeOfDay *string `json:"time_of_day,omitempty"`
 }

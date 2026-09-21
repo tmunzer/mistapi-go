@@ -2138,7 +2138,7 @@ if err != nil {
   "classifier": "",
   "end": 1668760746,
   "failure": "",
-  "limit": "1000",
+  "limit": 1000,
   "metric": "application_health",
   "page": 1,
   "start": 1668121200,

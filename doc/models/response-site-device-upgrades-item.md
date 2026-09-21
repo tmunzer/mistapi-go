@@ -37,13 +37,6 @@ import (
 
 func main() {
     responseSiteDeviceUpgradesItem := models.ResponseSiteDeviceUpgradesItem{
-        Counts:               models.ToPointer(models.UpgradeSiteDevicesCounts{
-            DownloadRequested:    models.ToPointer(138),
-            Downloaded:           models.ToPointer(70),
-            Failed:               models.ToPointer(166),
-            RebootInProgress:     models.ToPointer(88),
-            Rebooted:             models.ToPointer(76),
-        }),
         CurrentPhase:         models.ToPointer(150),
         EnableP2p:            models.ToPointer(false),
         Force:                models.ToPointer(false),

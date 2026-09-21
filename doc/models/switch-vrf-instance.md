@@ -31,16 +31,6 @@ import (
 
 func main() {
     switchVrfInstance := models.SwitchVrfInstance{
-        AggregateRoutes:         map[string]models.AggregateRoute{
-            "key0": nil,
-        },
-        AggregateRoutes6:        map[string]models.AggregateRoute{
-            "key0": nil,
-            "key1": models.AggregateRoute{
-            },
-        },
-        EvpnAutoLoopbackSubnet:  models.ToPointer("evpn_auto_loopback_subnet0"),
-        EvpnAutoLoopbackSubnet6: models.ToPointer("evpn_auto_loopback_subnet64"),
         ExtraRoutes:             map[string]models.VrfExtraRoute{
             "0.0.0.0/0": models.VrfExtraRoute{
                 Via:                  models.ToPointer("192.168.31.1"),

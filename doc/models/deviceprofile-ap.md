@@ -82,7 +82,6 @@ func main() {
             },
             CustomBlePacketEnabled:  models.ToPointer(false),
         }),
-        CreatedTime:          models.ToPointer(float64(45.42)),
         DisableEth1:          models.ToPointer(false),
         DisableEth2:          models.ToPointer(false),
         DisableEth3:          models.ToPointer(false),

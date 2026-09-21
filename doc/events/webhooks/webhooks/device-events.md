@@ -35,10 +35,8 @@ This event's request payload is of type [*models.WebhookDeviceEvents](../../../.
       "site_id": "72771e6a-6f5e-4de4-a5b9-1266c4197811",
       "site_name": "string",
       "text": "string",
-      "timestamp": 0.0,
-      "type": "string",
-      "apfw": "apfw6",
-      "bandwidth": 64
+      "timestamp": 0,
+      "type": "string"
     }
   ],
   "topic": "device-events"

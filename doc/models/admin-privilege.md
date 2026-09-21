@@ -38,10 +38,6 @@ import (
 func main() {
     adminPrivilege := models.AdminPrivilege{
         MspId:                models.ToPointer(uuid.MustParse("b9d42c2e-88ee-41f8-b798-f009ce7fe909")),
-        MspLogoUrl:           models.ToPointer("msp_logo_url6"),
-        MspName:              models.NewOptional(models.ToPointer("msp_name2")),
-        MspUrl:               models.ToPointer("msp_url8"),
-        Name:                 models.ToPointer("name8"),
         OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
         Role:                 models.AdminPrivilegeRoleEnum_READ,
         Scope:                models.AdminPrivilegeScopeEnum_SITEGROUP,

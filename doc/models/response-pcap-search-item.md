@@ -22,7 +22,7 @@ Packet capture record returned by organization or site packet capture search
 | `OrgId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist organization |
 | `PcapAps` | [`map[string]models.ResponsePcapSearchItemPcapApsItem`](../../doc/models/response-pcap-search-item-pcap-aps-item.md) | Optional | Per-AP radio capture settings keyed by AP MAC address |
 | `PcapUrl` | `*string` | Optional | URL for downloading the generated PCAP file |
-| `SiteId` | `models.Optional[string]` | Optional | Site associated with the packet capture, when the capture is site-scoped |
+| `SiteId` | `models.Optional[uuid.UUID]` | Optional | Site associated with the packet capture, when the capture is site-scoped |
 | `TerminationReason` | `*string` | Optional | Reason the packet capture session ended |
 | `Timestamp` | `float64` | Required, Read-only | Epoch timestamp, in seconds |
 | `Type` | `string` | Required | Packet capture type represented by this record |
@@ -58,11 +58,11 @@ func main() {
                 Band:                 models.ToPointer("6"),
                 Bandwidth:            models.ToPointer("20"),
                 Channel:              models.ToPointer(133),
-                TcpdumpExpression:    models.NewOptional[string](nil),
+                TcpdumpExpression:    models.NewOptional(models.ToPointer("tcpdump_expression2")),
             },
         },
         TerminationReason:    models.ToPointer("default"),
-        Timestamp:            float64(54.64),
+        Timestamp:            0.0,
         Type:                 "type4",
         Url:                  "url0",
     }

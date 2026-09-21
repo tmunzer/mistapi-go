@@ -1962,7 +1962,7 @@ body := models.UpgradeOrgDevices{
     Snapshot:                models.ToPointer(false),
     StartDatetime:           models.ToPointer("2024-06-13 15:00:00-07:00"),
     StartTime:               models.ToPointer(1624399840),
-    Strategy:                models.ToPointer(models.UpgradeDeviceStrategyEnum_BIGBANG),
+    Strategy:                models.ToPointer(models.UpgradeDeviceStrategyDeprecatedEnum_BIGBANG),
 }
 
 apiResponse, err := utilitiesUpgrade.UpgradeOrgDevices(ctx, orgId, &body)

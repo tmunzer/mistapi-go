@@ -112,14 +112,8 @@ func main() {
             X:                    models.ToPointer(float64(15)),
         }),
         AutoUpgradeStat:      models.ToPointer(models.StatsApAutoUpgrade{
-            Lastcheck:            models.NewOptional(models.ToPointer(int64(28))),
         }),
         BleStat:              models.ToPointer(models.StatsApBle{
-            BeaconEnabled:         models.NewOptional(models.ToPointer(false)),
-            BeaconRate:            models.NewOptional(models.ToPointer(78)),
-            EddystoneUidEnabled:   models.NewOptional(models.ToPointer(false)),
-            EddystoneUidFreqMsec:  models.NewOptional(models.ToPointer(132)),
-            EddystoneUidInstance:  models.NewOptional(models.ToPointer("eddystone_uid_instance6")),
         }),
         CertExpiry:           models.NewOptional(models.ToPointer(float64(1534534392))),
         ExtIp:                models.NewOptional(models.ToPointer("73.92.124.103")),
