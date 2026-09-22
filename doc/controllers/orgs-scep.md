@@ -14,6 +14,7 @@ orgsSCEP := client.OrgsSCEP()
 * [Get Org Mist Scep](../../doc/controllers/orgs-scep.md#get-org-mist-scep)
 * [List Org Issued Client Certificates](../../doc/controllers/orgs-scep.md#list-org-issued-client-certificates)
 * [Revoke Org Issued Client Certificates](../../doc/controllers/orgs-scep.md#revoke-org-issued-client-certificates)
+* [Search Org Scep Events](../../doc/controllers/orgs-scep.md#search-org-scep-events)
 * [Update Org Mist Scep](../../doc/controllers/orgs-scep.md#update-org-mist-scep)
 
 
@@ -358,6 +359,144 @@ if err != nil {
     }
 } else {
     fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
+
+
+# Search Org Scep Events
+
+Search Mist SCEP PKI operation events for the organization. Use this to audit certificate issuance errors and diagnose client onboarding problems.
+
+```go
+SearchOrgScepEvents(
+    ctx context.Context,
+    orgId uuid.UUID,
+    mType *models.OrgScepEventsSearchTypeEnum,
+    certProvider *string,
+    commonName *string,
+    deviceId *uuid.UUID,
+    text *string,
+    limit *int,
+    page *int) (
+    models.ApiResponse[models.ResponseScepEventsSearch],
+    error)
+```
+
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `mType` | [`*models.OrgScepEventsSearchTypeEnum`](../../doc/models/org-scep-events-search-type-enum.md) | Query, Optional | Filter by event type. enum: `failure`, `success` |
+| `certProvider` | `*string` | Query, Optional | Filter by the MDM or certificate provider that triggered the operation |
+| `commonName` | `*string` | Query, Optional | Partial match against the certificate common name, such as a user UPN |
+| `deviceId` | `*uuid.UUID` | Query, Optional | Filter by the device identifier associated with the SCEP operation |
+| `text` | `*string` | Query, Optional | Keyword search within the event reason text |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | Select the page number to return when using page-based pagination; starts at `1`<br><br>**Default**: `1`<br><br>**Constraints**: `>= 1` |
+
+## Response Type
+
+**200**: OK
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseScepEventsSearch](../../doc/models/response-scep-events-search.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+mType := models.OrgScepEventsSearchTypeEnum_FAILURE
+
+certProvider := "jamf"
+
+commonName := "john@corp.com"
+
+deviceId := uuid.MustParse("bb08e3c5-a1d9-5f21-a3b7-cd0821eab8f6")
+
+text := "invalid challenge"
+
+limit := 100
+
+page := 1
+
+apiResponse, err := orgsSCEP.SearchOrgScepEvents(ctx, orgId, &mType, &certProvider, &commonName, &deviceId, &text, &limit, &page)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "end": 1748314800,
+  "limit": 100,
+  "page": 1,
+  "results": [
+    {
+      "cert_provider": "jamf",
+      "common_name": "name@company.net bb08e3c5-a1d9-5f21-a3b7-cd0821eab8f6",
+      "device_id": "bb08e3c5-a1d9-5f21-a3b7-cd0821eab8f6",
+      "org_id": "9301bff6-8992-49d6-b1ea-907ee81bb5fb",
+      "text": "invalid challenge/expired",
+      "timestamp": 1748227903,
+      "type": "SCEP_PKI_OPERATION_FAILURE"
+    },
+    {
+      "cert_provider": "jamf",
+      "common_name": "name@company.net aa3d2e37-6063-4bc0-9d5f-3bc13509f1f4",
+      "device_id": "",
+      "org_id": "9342bff6-8992-49d6-b1ea-907ee81bb5fb",
+      "text": "invalid CN or device_id",
+      "timestamp": 1748227803,
+      "type": "SCEP_PKI_OPERATION_FAILURE"
+    },
+    {
+      "cert_provider": "jamf",
+      "common_name": "name@company.net aa3d2e37-6063-4bc0-9d5f-3bc13509f1f4",
+      "device_id": "aa3d2e37-6063-4bc0-9d5f-3bc13509f1f4",
+      "org_id": "9342bff6-8992-49d6-b1ea-907ee81bb5fb",
+      "text": "scep PKI operation successful",
+      "timestamp": 1748227803,
+      "type": "SCEP_PKI_OPERATION_SUCCESS"
+    }
+  ],
+  "start": 1748228400,
+  "total": 3
 }
 ```
 

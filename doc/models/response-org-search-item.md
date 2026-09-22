@@ -49,10 +49,6 @@ import (
 func main() {
     responseOrgSearchItem := models.ResponseOrgSearchItem{
         MspId:                models.ToPointer(uuid.MustParse("b9d42c2e-88ee-41f8-b798-f009ce7fe909")),
-        Name:                 models.ToPointer("name0"),
-        NumAps:               models.ToPointer(108),
-        NumGateways:          models.ToPointer(144),
-        NumSites:             models.ToPointer(82),
         OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     }
 

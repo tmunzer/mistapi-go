@@ -31,13 +31,12 @@ import (
 
 func main() {
     responseMspInventoryDevice := models.ResponseMspInventoryDevice{
-        ForSite:              models.ToPointer(false),
-        Mac:                  "mac2",
-        Model:                "model6",
+        Mac:                  "",
+        Model:                "",
         OrgId:                uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61"),
-        Serial:               "serial8",
+        Serial:               "",
         SiteId:               uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6"),
-        Type:                 "type2",
+        Type:                 "",
     }
 
 }

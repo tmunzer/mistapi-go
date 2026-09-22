@@ -72,7 +72,6 @@ func main() {
                 Via:                    models.BgpConfigViaEnum_VPN,
             },
         },
-        CreatedTime:             models.ToPointer(float64(87.4)),
         DhcpdConfig:             models.ToPointer(models.DhcpdConfig{
             Enabled:              models.ToPointer(false),
             AdditionalProperties: map[string]models.DhcpdConfigProperty{

@@ -16,7 +16,7 @@ Request payload for replacing an inventory device with a claimed, unassigned dev
 | `Discard` | `[]string` | Optional | Attributes that should not be copied to the replacement device |
 | `InventoryMac` | `*string` | Optional | MAC address of the claimed, unassigned inventory device that will replace the old device |
 | `Mac` | `*string` | Optional | Device MAC address being replaced |
-| `SiteId` | `*string` | Optional | Site containing the device being replaced |
+| `SiteId` | `*uuid.UUID` | Optional | Site containing the device being replaced |
 | `TuntermPortConfig` | [`*models.TuntermPortConfig`](../../doc/models/tunterm-port-config.md) | Optional | Ethernet port configuration for tunnel termination interfaces |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -27,6 +27,7 @@ package main
 
 import (
     "mistapi/models"
+    "github.com/google/uuid"
 )
 
 func main() {
@@ -38,7 +39,7 @@ func main() {
         },
         InventoryMac:         models.ToPointer("5c5b35000301"),
         Mac:                  models.ToPointer("5c5b35000101"),
-        SiteId:               models.ToPointer("4ac1dcf4-9d8b-7211-65c4-057819f0862b"),
+        SiteId:               models.ToPointer(uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")),
         TuntermPortConfig:    models.ToPointer(models.TuntermPortConfig{
             DownstreamPorts:            []string{
                 "downstream_ports5",

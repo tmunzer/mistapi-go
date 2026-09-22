@@ -39,7 +39,7 @@ func main() {
                 Latency:              float64(250.14),
                 Ssid:                 "ssid6",
                 Subtype:              models.ToPointer("subtype8"),
-                Timestamp:            float64(2.64),
+                Timestamp:            0.0,
                 Type:                 models.ToPointer(models.EventFastroamTypeEnum_PINGPONG),
             },
         },

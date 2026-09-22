@@ -27,8 +27,8 @@ This event's request payload is of type [*models.WebhookSdkclientScanData](../..
       "connection_band": "2.4",
       "connection_bssid": "5c5b352b51b4",
       "connection_channel": 11,
-      "connection_rssi": -87.0,
-      "last_seen": 1592333828.0,
+      "connection_rssi": -87,
+      "last_seen": 1592333828,
       "mac": "70ef0071535f",
       "scan_data": [
         {
@@ -36,18 +36,18 @@ This event's request payload is of type [*models.WebhookSdkclientScanData](../..
           "band": "2.4",
           "bssid": "5c5b352b51b4",
           "channel": 11,
-          "rssi": -87.0,
+          "rssi": -87,
           "ssid": "mist-wifi",
-          "timestamp": 1592333828.0
+          "timestamp": 1592333828
         },
         {
           "ap": "5c5b352f587e",
           "band": "5",
           "bssid": "5c5b352b51b8",
           "channel": 36,
-          "rssi": -75.0,
+          "rssi": -75,
           "ssid": "mist-wifi",
-          "timestamp": 1592333828.0
+          "timestamp": 1592333828
         }
       ],
       "site_id": "93986f10-773b-42be-9438-8d3e6d127f1a"

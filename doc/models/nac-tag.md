@@ -47,7 +47,6 @@ import (
 func main() {
     nacTag := models.NacTag{
         AllowUsermacOverride: models.ToPointer(false),
-        CreatedTime:          models.ToPointer(float64(218.38)),
         EgressVlanNames:      []string{
             "1vlan-30",
             "1vlan-20",

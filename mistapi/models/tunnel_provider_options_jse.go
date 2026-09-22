@@ -12,7 +12,7 @@ import (
 type TunnelProviderOptionsJse struct {
 	// User capacity to provision on Juniper Secure Edge
 	NumUsers *int `json:"num_users,omitempty"`
-	// JSE Organization name. The list of available organizations can be retrieved with the [Get Org JSE Info]($e/Orgs%20JSE/getOrgJseInfo) API Call
+	// JSE Organization name. The list of available organizations can be retrieved with the [Get Org JSE Info]($e/Orgs%20Integration%20JSE/getOrgJseInfo) API Call
 	OrgName              *string                `json:"org_name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -27,7 +27,7 @@ This event's request payload is of type [*models.WebhookLocationSdk](../../../..
       "map_id": "845a23bf-bed9-e43c-4c86-6fa474be7ae5",
       "name": "optional",
       "site_id": "4ac1dcf4-9d8b-7211-65c4-057819f0862b",
-      "timestamp": 1461220784.0,
+      "timestamp": 1461220784,
       "type": "sdk",
       "x": 13.5,
       "y": 3.2

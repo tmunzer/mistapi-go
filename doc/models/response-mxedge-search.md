@@ -25,7 +25,6 @@ package main
 
 import (
     "mistapi/models"
-    "github.com/google/uuid"
 )
 
 func main() {
@@ -38,8 +37,6 @@ func main() {
                 Distro:               models.ToPointer("distro8"),
                 LastSeen:             models.ToPointer(float64(165.16)),
                 Model:                models.ToPointer("model4"),
-                MxclusterId:          models.ToPointer(uuid.MustParse("00001c8a-0000-0000-0000-000000000000")),
-                MxedgeId:             models.ToPointer(uuid.MustParse("00001bbe-0000-0000-0000-000000000000")),
             },
         },
         Start:                models.ToPointer(1694622179),

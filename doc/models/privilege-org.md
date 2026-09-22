@@ -31,7 +31,6 @@ import (
 
 func main() {
     privilegeOrg := models.PrivilegeOrg{
-        OrgId:                models.ToPointer(uuid.MustParse("000020f8-0000-0000-0000-000000000000")),
         Role:                 models.PrivilegeOrgRoleEnum_INSTALLER,
         Scope:                models.PrivilegeOrgScopeEnum_SITEGROUP,
         SiteId:               models.ToPointer(uuid.MustParse("00001086-0000-0000-0000-000000000000")),

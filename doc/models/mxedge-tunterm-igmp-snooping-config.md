@@ -11,7 +11,7 @@ IGMP snooping settings for Mist Tunnel VLANs
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | [`*models.MxedgeTuntermIgmpSnoopingConfigEnabled`](../../doc/models/containers/mxedge-tunterm-igmp-snooping-config-enabled.md) | Optional | This is a container for any-of cases. |
+| `Enabled` | [`*models.MxedgeTuntermIgmpSnoopingConfigEnabled`](../../doc/models/containers/mxedge-tunterm-igmp-snooping-config-enabled.md) | Optional | This is a container for one-of cases. |
 | `Querier` | [`*models.MxedgeTuntermIgmpSnoopingQuerier`](../../doc/models/mxedge-tunterm-igmp-snooping-querier.md) | Optional | IGMP querier settings for tunnel termination |
 | `VlanIds` | [`*models.MxedgeTuntermIgmpSnoopingConfigVlanIds`](../../doc/models/containers/mxedge-tunterm-igmp-snooping-config-vlan-ids.md) | Optional | List of VLAN IDs where tunnel termination performs IGMP snooping |
 

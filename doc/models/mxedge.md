@@ -56,8 +56,6 @@ import (
 
 func main() {
     mxedge := models.Mxedge{
-        CreatedTime:               models.ToPointer(float64(184.84)),
-        ForSite:                   models.ToPointer(false),
         Id:                        models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
         Mac:                       models.ToPointer("0200009fbe65"),
         Magic:                     models.ToPointer("L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD"),

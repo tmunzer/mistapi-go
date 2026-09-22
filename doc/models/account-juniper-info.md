@@ -29,16 +29,10 @@ func main() {
     accountJuniperInfo := models.AccountJuniperInfo{
         Accounts:             []models.JuniperAccount{
             models.JuniperAccount{
-                LinkedBy:             models.ToPointer("linked_by8"),
-                Name:                 models.ToPointer("name0"),
             },
             models.JuniperAccount{
-                LinkedBy:             models.ToPointer("linked_by8"),
-                Name:                 models.ToPointer("name0"),
             },
             models.JuniperAccount{
-                LinkedBy:             models.ToPointer("linked_by8"),
-                Name:                 models.ToPointer("name0"),
             },
         },
         AdditionalProperties: map[string]interface{}{

@@ -35,7 +35,6 @@ func main() {
             SuccessfulConnect:    models.ToPointer(float64(14.8)),
             TimeToConnect:        models.ToPointer(float64(125.56)),
         }),
-        Timestamp:            models.ToPointer(float64(25.92)),
     }
 
 }

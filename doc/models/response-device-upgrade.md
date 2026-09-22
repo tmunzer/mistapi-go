@@ -26,7 +26,7 @@ import (
 func main() {
     responseDeviceUpgrade := models.ResponseDeviceUpgrade{
         Status:               models.UpgradeInfoStatusEnum_SUCCESS,
-        Timestamp:            float64(150.2),
+        Timestamp:            0.0,
     }
 
 }

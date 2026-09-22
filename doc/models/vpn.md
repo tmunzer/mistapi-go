@@ -35,9 +35,7 @@ import (
 
 func main() {
     vpn := models.Vpn{
-        CreatedTime:          models.ToPointer(float64(229)),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
-        ModifiedTime:         models.ToPointer(float64(105.96)),
         Name:                 "name0",
         OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
         PathSelection:        models.ToPointer(models.VpnPathSelection{

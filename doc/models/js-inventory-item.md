@@ -53,7 +53,7 @@ Juniper Support inventory item with entitlement, lifecycle, and software metadat
 | `WarrantyEnd` | `*string` | Optional | Expiration date of the warranty period; only returned for onboarded (claimed) devices |
 | `WarrantyStart` | `*string` | Optional | Start date of the manufacturer or secondary warranty; only returned for onboarded (claimed) devices |
 | `WarrantyTime` | `*int` | Optional | Timestamp when warranty needs to be renewed |
-| `WarrantyType` | [`*models.JsiWarrantyTypeEnum`](../../doc/models/jsi-warranty-type-enum.md) | Optional | Warranty type label for Juniper Support Insight (JSI) devices. enum: `Standard Hardware Warranty`, `Enhanced Hardware Warranty`, `Dead On Arrival Warranty`, `Limited Lifetime Warranty`, `Software Warranty`, `Limited Lifetime Warranty for WLA`, `Warranty-JCPO EOL (DOA Not Included)`, `MIST Enhanced Hardware Warranty`, `MIST Standard Warranty`, `Determine Lifetime warranty` |
+| `WarrantyType` | `*string` | Optional | Warranty category reported for the device |
 
 ## Example
 

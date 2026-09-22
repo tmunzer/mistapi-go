@@ -35,25 +35,9 @@ func main() {
         AttachmentIds:        []uuid.UUID{
             uuid.MustParse("00000000-0000-0000-0000-15231a659c78"),
         },
-        Attachments:          []models.TicketCommentsAttachment{
-            models.TicketCommentsAttachment{
-                ContentType:          models.ToPointer("content_type4"),
-                ContentUrl:           models.ToPointer("content_url4"),
-                CreatedAt:            models.ToPointer(174),
-                FileName:             models.ToPointer("file_name8"),
-                Id:                   models.ToPointer(uuid.MustParse("000001f4-0000-0000-0000-000000000000")),
-            },
-            models.TicketCommentsAttachment{
-                ContentType:          models.ToPointer("content_type4"),
-                ContentUrl:           models.ToPointer("content_url4"),
-                CreatedAt:            models.ToPointer(174),
-                FileName:             models.ToPointer("file_name8"),
-                Id:                   models.ToPointer(uuid.MustParse("000001f4-0000-0000-0000-000000000000")),
-            },
-        },
-        Author:               "author8",
+        Author:               "",
         Comment:              "comment2",
-        CreatedAt:            104,
+        CreatedAt:            0,
         AdditionalProperties: map[string]interface{}{
             "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
         },

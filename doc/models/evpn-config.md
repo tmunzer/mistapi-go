@@ -25,8 +25,6 @@ import (
 
 func main() {
     evpnConfig := models.EvpnConfig{
-        Enabled:              models.ToPointer(false),
-        Role:                 models.ToPointer(models.EvpnConfigRoleEnum_ACCESS),
     }
 
 }

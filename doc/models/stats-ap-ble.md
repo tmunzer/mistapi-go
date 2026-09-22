@@ -47,7 +47,6 @@ import (
 
 func main() {
     statsApBle := models.StatsApBle{
-        BeaconEnabled:         models.NewOptional(models.ToPointer(false)),
         BeaconRate:            models.NewOptional(models.ToPointer(3)),
         EddystoneUidEnabled:   models.NewOptional(models.ToPointer(false)),
         EddystoneUidFreqMsec:  models.NewOptional(models.ToPointer(2000)),

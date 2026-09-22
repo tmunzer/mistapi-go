@@ -42,7 +42,6 @@ func main() {
             "dns_suffix9",
             "dns_suffix0",
         },
-        Gateway:              models.NewOptional(models.ToPointer("gateway0")),
         Gateway6:             models.NewOptional(models.ToPointer("fdad:b0bc:f29e::1")),
         Ip:                   models.NewOptional(models.ToPointer("10.3.3.1")),
         Ip6:                  models.NewOptional(models.ToPointer("fdad:b0bc:f29e::3d16")),

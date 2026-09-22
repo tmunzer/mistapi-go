@@ -81,7 +81,7 @@ type ClientInterface interface {
 	OrgsMxEdges() *OrgsMxEdges
 	OrgsMxTunnels() *OrgsMxTunnels
 	OrgsNACIDP() *OrgsNACIDP
-	SitesNACFingerprints() *SitesNACFingerprints
+	OrgsNACFingerprints() *OrgsNACFingerprints
 	OrgsNACTags() *OrgsNACTags
 	OrgsNACPortals() *OrgsNACPortals
 	OrgsNACCRL() *OrgsNACCRL
@@ -108,6 +108,7 @@ type ClientInterface interface {
 	OrgsSDKInvites() *OrgsSDKInvites
 	OrgsSDKTemplates() *OrgsSDKTemplates
 	OrgsSecurityPolicies() *OrgsSecurityPolicies
+	OrgsSecurityZones() *OrgsSecurityZones
 	OrgsServices() *OrgsServices
 	OrgsServicePolicies() *OrgsServicePolicies
 	OrgsSetting() *OrgsSetting
@@ -301,7 +302,7 @@ type client struct {
 	orgsMxEdges                      OrgsMxEdges
 	orgsMxTunnels                    OrgsMxTunnels
 	orgsNACIDP                       OrgsNACIDP
-	sitesNACFingerprints             SitesNACFingerprints
+	orgsNACFingerprints              OrgsNACFingerprints
 	orgsNACTags                      OrgsNACTags
 	orgsNACPortals                   OrgsNACPortals
 	orgsNACCRL                       OrgsNACCRL
@@ -328,6 +329,7 @@ type client struct {
 	orgsSDKInvites                   OrgsSDKInvites
 	orgsSDKTemplates                 OrgsSDKTemplates
 	orgsSecurityPolicies             OrgsSecurityPolicies
+	orgsSecurityZones                OrgsSecurityZones
 	orgsServices                     OrgsServices
 	orgsServicePolicies              OrgsServicePolicies
 	orgsSetting                      OrgsSetting
@@ -540,7 +542,7 @@ func NewClient(configuration Configuration) ClientInterface {
 	client.orgsMxEdges = *NewOrgsMxEdges(*baseController)
 	client.orgsMxTunnels = *NewOrgsMxTunnels(*baseController)
 	client.orgsNACIDP = *NewOrgsNACIDP(*baseController)
-	client.sitesNACFingerprints = *NewSitesNACFingerprints(*baseController)
+	client.orgsNACFingerprints = *NewOrgsNACFingerprints(*baseController)
 	client.orgsNACTags = *NewOrgsNACTags(*baseController)
 	client.orgsNACPortals = *NewOrgsNACPortals(*baseController)
 	client.orgsNACCRL = *NewOrgsNACCRL(*baseController)
@@ -567,6 +569,7 @@ func NewClient(configuration Configuration) ClientInterface {
 	client.orgsSDKInvites = *NewOrgsSDKInvites(*baseController)
 	client.orgsSDKTemplates = *NewOrgsSDKTemplates(*baseController)
 	client.orgsSecurityPolicies = *NewOrgsSecurityPolicies(*baseController)
+	client.orgsSecurityZones = *NewOrgsSecurityZones(*baseController)
 	client.orgsServices = *NewOrgsServices(*baseController)
 	client.orgsServicePolicies = *NewOrgsServicePolicies(*baseController)
 	client.orgsSetting = *NewOrgsSetting(*baseController)
@@ -1037,9 +1040,9 @@ func (c *client) OrgsNACIDP() *OrgsNACIDP {
 	return &c.orgsNACIDP
 }
 
-// SitesNACFingerprints returns the sitesNACFingerprints instance of the client.
-func (c *client) SitesNACFingerprints() *SitesNACFingerprints {
-	return &c.sitesNACFingerprints
+// OrgsNACFingerprints returns the orgsNACFingerprints instance of the client.
+func (c *client) OrgsNACFingerprints() *OrgsNACFingerprints {
+	return &c.orgsNACFingerprints
 }
 
 // OrgsNACTags returns the orgsNACTags instance of the client.
@@ -1170,6 +1173,11 @@ func (c *client) OrgsSDKTemplates() *OrgsSDKTemplates {
 // OrgsSecurityPolicies returns the orgsSecurityPolicies instance of the client.
 func (c *client) OrgsSecurityPolicies() *OrgsSecurityPolicies {
 	return &c.orgsSecurityPolicies
+}
+
+// OrgsSecurityZones returns the orgsSecurityZones instance of the client.
+func (c *client) OrgsSecurityZones() *OrgsSecurityZones {
+	return &c.orgsSecurityZones
 }
 
 // OrgsServices returns the orgsServices instance of the client.

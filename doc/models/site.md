@@ -51,7 +51,6 @@ func main() {
         AlarmtemplateId:      models.NewOptional(models.ToPointer(uuid.MustParse("684dfc5c-fe77-2290-eb1d-ef3d677fe168"))),
         AptemplateId:         models.NewOptional(models.ToPointer(uuid.MustParse("16bdf952-ade2-4491-80b0-85ce506c760b"))),
         CountryCode:          models.ToPointer("US"),
-        CreatedTime:          models.ToPointer(float64(113.34)),
         GatewaytemplateId:    models.NewOptional(models.ToPointer(uuid.MustParse("6f9b2e75-9b2f-b5ae-81e3-e14c76f1a90f"))),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
         Name:                 "Mist Office",

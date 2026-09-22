@@ -33,9 +33,7 @@ import (
 
 func main() {
     orggroup := models.Orggroup{
-        CreatedTime:          models.ToPointer(float64(12.46)),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
-        ModifiedTime:         models.ToPointer(float64(66.5)),
         MspId:                models.ToPointer(uuid.MustParse("b9d42c2e-88ee-41f8-b798-f009ce7fe909")),
         Name:                 "name6",
         OrgIds:               []uuid.UUID{

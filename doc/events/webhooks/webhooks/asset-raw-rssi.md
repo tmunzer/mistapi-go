@@ -63,9 +63,7 @@ This event's request payload is of type [*models.WebhookAssetRawRssi](../../../.
       "org_id": "9c3e516c-397d-11e6-ae35-0242ac110008",
       "rssi": -74,
       "site_id": "27ea2f07-6fe6-4eab-be1b-b8e3ce083d67",
-      "timestamp": 1661300746,
-      "ibeacon_major": 178,
-      "ibeacon_minor": 40
+      "timestamp": 1661300746
     }
   ],
   "topic": "asset-raw-rssi"

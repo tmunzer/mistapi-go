@@ -41,7 +41,7 @@ func main() {
                 IsolationVlanId:      models.ToPointer("isolation_vlan_id8"),
                 Multicast:            models.ToPointer(models.SwitchNetworkMulticast{
                     Enabled:              models.ToPointer(false),
-                    IgmpVersion:          models.ToPointer(models.IgmpVersionEnum_ENUM2),
+                    IgmpVersion:          models.ToPointer(models.SwitchNetworkMulticastIgmpVersionEnum_ENUM2),
                 }),
                 VlanId:               models.VlanIdWithVariableContainer.FromString("String7"),
             },
@@ -52,7 +52,7 @@ func main() {
                 IsolationVlanId:      models.ToPointer("isolation_vlan_id8"),
                 Multicast:            models.ToPointer(models.SwitchNetworkMulticast{
                     Enabled:              models.ToPointer(false),
-                    IgmpVersion:          models.ToPointer(models.IgmpVersionEnum_ENUM2),
+                    IgmpVersion:          models.ToPointer(models.SwitchNetworkMulticastIgmpVersionEnum_ENUM2),
                 }),
                 VlanId:               models.VlanIdWithVariableContainer.FromString("String7"),
             },
@@ -63,7 +63,7 @@ func main() {
                 IsolationVlanId:      models.ToPointer("isolation_vlan_id8"),
                 Multicast:            models.ToPointer(models.SwitchNetworkMulticast{
                     Enabled:              models.ToPointer(false),
-                    IgmpVersion:          models.ToPointer(models.IgmpVersionEnum_ENUM2),
+                    IgmpVersion:          models.ToPointer(models.SwitchNetworkMulticastIgmpVersionEnum_ENUM2),
                 }),
                 VlanId:               models.VlanIdWithVariableContainer.FromString("String7"),
             },

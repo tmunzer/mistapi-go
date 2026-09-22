@@ -33,10 +33,7 @@ import (
 
 func main() {
     sleThreshold := models.SleThreshold{
-        Default:              models.ToPointer(float64(89.22)),
-        Direction:            models.ToPointer("direction8"),
         Maximum:              models.ToPointer(float64(224.96)),
-        Metric:               models.ToPointer("metric6"),
         Minimum:              models.ToPointer(float64(196.84)),
         AdditionalProperties: map[string]interface{}{
             "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),

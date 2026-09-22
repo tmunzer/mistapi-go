@@ -45,8 +45,6 @@ import (
 
 func main() {
     vbeacon := models.Vbeacon{
-        CreatedTime:          models.ToPointer(float64(135.22)),
-        ForSite:              models.ToPointer(false),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
         Major:                models.ToPointer(1356),
         MapId:                models.ToPointer(uuid.MustParse("63eda950-c6da-11e4-a628-60f81dd250cc")),

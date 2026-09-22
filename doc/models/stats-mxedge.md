@@ -13,6 +13,7 @@ Statistics for a Mist Edge appliance returned by stats endpoints
 |  --- | --- | --- | --- |
 | `CpuStat` | [`*models.StatsMxedgeCpuStat`](../../doc/models/stats-mxedge-cpu-stat.md) | Optional | Aggregate and per-core CPU utilization statistics for a Mist Edge |
 | `CreatedTime` | `*float64` | Optional, Read-only | When the object has been created, in epoch |
+| `DropStat` | [`*models.StatsMxedgeDropStat`](../../doc/models/stats-mxedge-drop-stat.md) | Optional | Packet drop counters reported by the Mist Edge tunnel termination service. Counters not listed here may be reported as additional properties. |
 | `FipsEnabled` | `*bool` | Optional | Whether FIPS mode is enabled on the Mist Edge |
 | `ForSite` | `*bool` | Optional | Whether the Mist Edge is assigned directly to a site |
 | `Fwupdate` | [`*models.FwupdateStat`](../../doc/models/fwupdate-stat.md) | Optional | Firmware update status for a device |
@@ -70,16 +71,18 @@ func main() {
             System:               models.ToPointer(80),
             Usage:                models.ToPointer(46),
         }),
-        CreatedTime:          models.ToPointer(float64(79.58)),
+        DropStat:             models.ToPointer(models.StatsMxedgeDropStat{
+            DropIp4MustFragment:  models.ToPointer(114),
+            DropIpsecNoSa:        models.ToPointer(172),
+            DropIpsecUnknownSpi:  models.ToPointer(198),
+            DropL2tpNoSession:    models.ToPointer(40),
+            DropProtectedSvi:     models.ToPointer(100),
+            AdditionalProperties: map[string]interface{}{
+                "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+            },
+        }),
         FipsEnabled:          models.ToPointer(false),
         ForSite:              models.ToPointer(false),
-        Fwupdate:             models.ToPointer(models.FwupdateStat{
-            Progress:             models.NewOptional(models.ToPointer(100)),
-            Status:               models.NewOptional(models.ToPointer(models.FwupdateStatStatusEnum_INPROGRESS)),
-            StatusId:             models.NewOptional(models.ToPointer(70)),
-            Timestamp:            models.ToPointer(float64(147.68)),
-            WillRetry:            models.NewOptional(models.ToPointer(false)),
-        }),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
         IdracVersion:         models.ToPointer("7.00.00.00"),
         KernelAbi:            models.ToPointer("6.1.0-47"),
@@ -103,6 +106,19 @@ func main() {
         PortStat:             map[string]models.StatsMxedgePortStat{
             "port0": models.StatsMxedgePortStat{
                 FullDuplex:           models.ToPointer(true),
+                Lacp:                 models.ToPointer(models.StatsMxedgePortStatLacp{
+                    MuxState:             models.ToPointer("mux_state0"),
+                    RxLacpdu:             models.ToPointer(100),
+                    RxState:              models.ToPointer("rx_state6"),
+                    TxLacpdu:             models.ToPointer(122),
+                }),
+                LldpStats:            models.ToPointer(models.StatsMxedgePortStatLldpStats{
+                    ChassisId:            models.ToPointer("chassis_id0"),
+                    MgmtAddr:             models.ToPointer("mgmt_addr8"),
+                    PortDesc:             models.ToPointer("port_desc4"),
+                    PortId:               models.ToPointer("port_id4"),
+                    SystemDesc:           models.ToPointer("system_desc8"),
+                }),
                 Mac:                  models.ToPointer("9e294e49091d"),
                 RxBytes:              models.NewOptional(models.ToPointer(int64(646898375700))),
                 RxErrors:             models.ToPointer(0),
@@ -116,6 +132,19 @@ func main() {
             },
             "port1": models.StatsMxedgePortStat{
                 FullDuplex:           models.ToPointer(true),
+                Lacp:                 models.ToPointer(models.StatsMxedgePortStatLacp{
+                    MuxState:             models.ToPointer("mux_state0"),
+                    RxLacpdu:             models.ToPointer(100),
+                    RxState:              models.ToPointer("rx_state6"),
+                    TxLacpdu:             models.ToPointer(122),
+                }),
+                LldpStats:            models.ToPointer(models.StatsMxedgePortStatLldpStats{
+                    ChassisId:            models.ToPointer("chassis_id0"),
+                    MgmtAddr:             models.ToPointer("mgmt_addr8"),
+                    PortDesc:             models.ToPointer("port_desc4"),
+                    PortId:               models.ToPointer("port_id4"),
+                    SystemDesc:           models.ToPointer("system_desc8"),
+                }),
                 Mac:                  models.ToPointer("a270fe53437e"),
                 RxBytes:              models.NewOptional(models.ToPointer(int64(647200437652))),
                 RxErrors:             models.ToPointer(0),

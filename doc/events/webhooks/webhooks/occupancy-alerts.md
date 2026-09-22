@@ -29,7 +29,7 @@ This event's request payload is of type [*models.WebhookOccupancyAlerts](../../.
           "map_id": "09d2b626-2e4e-45ef-a3c4-e6aeb6c83db1",
           "occupancy_limit": 0,
           "org_id": "a40f5d1f-d889-42e9-94ea-b9b33585fc6b",
-          "timestamp": 0.0,
+          "timestamp": 0,
           "type": "COMPLIANCE-VIOLATION",
           "zone_id": "4495020a-236f-46e0-9453-e3f9cc6476f4",
           "zone_name": "string"

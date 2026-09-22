@@ -58,19 +58,14 @@ import (
 
 func main() {
     wxlanTag := models.WxlanTag{
-        CreatedTime:          models.ToPointer(float64(178.7)),
-        ForSite:              models.ToPointer(false),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
-        LastIps:              []string{
-            "last_ips6",
-        },
         Mac:                  models.NewOptional(models.ToPointer("mac4")),
         Name:                 "name0",
         Op:                   models.ToPointer(models.WxlanTagOperationEnum_IN),
         OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
         SiteId:               models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
         Type:                 models.WxlanTagTypeEnum_RESOURCE,
-        VlanId:               models.ToPointer(),
+        VlanId:               models.ToPointer(models.WxlanTagVlanIdContainer.FromNumber(1055)),
         AdditionalProperties: map[string]interface{}{
             "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
         },

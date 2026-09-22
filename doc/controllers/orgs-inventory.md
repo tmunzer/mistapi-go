@@ -677,7 +677,7 @@ body := models.ReplaceDevice{
     },
     InventoryMac:         models.ToPointer("5c5b35000301"),
     Mac:                  models.ToPointer("5c5b35000101"),
-    SiteId:               models.ToPointer("4ac1dcf4-9d8b-7211-65c4-057819f0862b"),
+    SiteId:               models.ToPointer(uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")),
 }
 
 apiResponse, err := orgsInventory.ReplaceOrgDevices(ctx, orgId, &body)
@@ -729,7 +729,7 @@ if err != nil {
 
 # Search Org Inventory
 
-Search organization inventory records with filters for type, MAC address, model, name, site, serial number, Virtual Chassis master state, SKU, version, status, and text.
+Search organization inventory records with filters for type, MAC address, Virtual Chassis MAC address, Virtual Chassis master MAC address, model, name, site, serial number, Virtual Chassis master state, SKU, version, status, and text.
 
 ```go
 SearchOrgInventory(
@@ -737,6 +737,8 @@ SearchOrgInventory(
     orgId uuid.UUID,
     mType *models.DeviceTypeDefaultApEnum,
     mac *string,
+    vcMac *string,
+    masterMac *string,
     model *string,
     name *string,
     siteId *uuid.UUID,
@@ -747,6 +749,8 @@ SearchOrgInventory(
     version *string,
     status *string,
     text *string,
+    modifiedAfter *int,
+    disconnectedBefore *int,
     limit *int,
     sort *string,
     searchAfter *string) (
@@ -765,6 +769,8 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | Filter results by type. enum: `ap`, `gateway`, `switch`<br><br>**Default**: `"ap"` |
 | `mac` | `*string` | Query, Optional | Filter by MAC address. Partial matches may use `*` wildcards (e.g. `*5b35*` matches `5c5b350e0001` and `5c5b35000301`). Accepts multiple comma-separated values. |
+| `vcMac` | `*string` | Query, Optional | Virtual Chassis MAC address. Accepts multiple comma-separated values. |
+| `masterMac` | `*string` | Query, Optional | MAC address of the Virtual Chassis master device. Accepts multiple comma-separated values. |
 | `model` | `*string` | Query, Optional | Partial / full Device model. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `AP4*` and `*P4*` match `AP43`). Suffix-only wildcards (e.g. `*43`) are not supported. Accepts multiple comma-separated values. |
 | `name` | `*string` | Query, Optional | Device name. Always a partial match (e.g. `london` will match `london-1`, `london-2`, `my-london-device`...). Accepts multiple comma-separated values. |
 | `siteId` | `*uuid.UUID` | Query, Optional | Filter inventory results by site identifier. Accepts multiple comma-separated values. |
@@ -775,6 +781,8 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 | `version` | `*string` | Query, Optional | Device version. Partial match allowed with wildcard * (e.g. `2R3` will match `21.2R3-S3.5`). Accepts multiple comma-separated values. |
 | `status` | `*string` | Query, Optional | Device status. enum: `connected`, `disconnected`. Accepts multiple comma-separated values. |
 | `text` | `*string` | Query, Optional | Wildcards for name, mac, serial |
+| `modifiedAfter` | `*int` | Query, Optional | Filter on inventory last modified time, in epoch |
+| `disconnectedBefore` | `*int` | Query, Optional | Filter results to devices that were last disconnected before this time, in epoch seconds |
 | `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
@@ -796,6 +804,10 @@ mType := models.DeviceTypeDefaultApEnum_AP
 
 mac := "5c5b350e0001,*5b35*"
 
+vcMac := "5c5b53010101,5c5b53020202"
+
+masterMac := "5c5b53010101,5c5b53020202"
+
 model := "AP43,AP4*"
 
 name := "name-a,name-b"
@@ -814,11 +826,15 @@ version := "21.2R3-S3.5,*2R3*"
 
 status := "connected,disconnected"
 
+modifiedAfter := 1733522845
+
+disconnectedBefore := 1781519042
+
 limit := 100
 
 sort := "-site_id"
 
-apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &model, &name, &siteId, &serial, &magic, &master, &sku, &version, &status, nil, &limit, &sort, nil)
+apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &vcMac, &masterMac, &model, &name, &siteId, &serial, &magic, &master, &sku, &version, &status, nil, &modifiedAfter, &disconnectedBefore, &limit, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
@@ -848,6 +864,8 @@ if err != nil {
   "limit": 1000,
   "results": [
     {
+      "last_disconnected": 1616109044,
+      "last_name_change": 1784007045.409,
       "mac": "f01c2df166e0",
       "magic": "WVTFBLTNPXD23H2",
       "master": true,
@@ -865,6 +883,7 @@ if err != nil {
       "site_id": "01dc141d-b6af-4baa-b00f-0e31ef954c4f",
       "sku": "EX4300-48P",
       "status": "disconnected",
+      "timestamp": 1616108044,
       "type": "switch",
       "vc_mac": "f01c2df166e0",
       "version": "21.4R3.5"

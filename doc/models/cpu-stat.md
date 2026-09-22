@@ -29,15 +29,11 @@ import (
 
 func main() {
     cpuStat := models.CpuStat{
-        Idle:                 models.NewOptional(models.ToPointer(float64(72.52))),
-        Interrupt:            models.NewOptional(models.ToPointer(float64(186.28))),
         LoadAvg:              []float64{
             float64(76.35),
             float64(76.36),
             float64(76.37),
         },
-        System:               models.NewOptional(models.ToPointer(float64(43.16))),
-        Usage:                models.NewOptional(models.ToPointer(float64(96.34))),
     }
 
 }

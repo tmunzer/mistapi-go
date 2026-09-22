@@ -25,7 +25,7 @@ type NacPortal struct {
 	EapType *NacPortalEapTypeEnum `json:"eap_type,omitempty"`
 	// Whether location data collection is enabled for devices onboarding through this NAC portal
 	EnableLocation *bool `json:"enable_location,omitempty"`
-	// Model, version, fingering, events (connecting, disconnect, roaming), which ap
+	// Optional, model, version, fingerprinting, events (connecting, disconnect, roaming), which ap, default is false
 	EnableTelemetry *bool `json:"enable_telemetry,omitempty"`
 	// Number of days before certificate expiration to start sending reminder notifications
 	ExpiryNotificationTime *int `json:"expiry_notification_time,omitempty"`

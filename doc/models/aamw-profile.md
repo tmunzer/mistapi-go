@@ -43,7 +43,6 @@ func main() {
                 HashLookupOnly:       models.ToPointer(false),
             },
         },
-        CreatedTime:          models.ToPointer(float64(3.48)),
         FallbackAction:       models.ToPointer(models.AamwProfileActionEnum_BLOCK),
         FileAction:           models.ToPointer(models.AamwProfileActionEnum_BLOCK),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),

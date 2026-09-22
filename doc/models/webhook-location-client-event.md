@@ -35,7 +35,6 @@ func main() {
         Mac:                    models.ToPointer("5684dae9ac8b"),
         MapId:                  models.ToPointer(uuid.MustParse("845a23bf-bed9-e43c-4c86-6fa474be7ae5")),
         SiteId:                 models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
-        Timestamp:              models.ToPointer(float64(141.14)),
         Type:                   models.ToPointer("wifi"),
         X:                      models.ToPointer(float64(13.5)),
         Y:                      models.ToPointer(float64(3.2)),

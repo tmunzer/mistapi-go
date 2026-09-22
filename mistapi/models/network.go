@@ -48,16 +48,18 @@ type Network struct {
 	// VLAN ID, either numeric or expressed as a template variable string
 	VlanId *VlanIdWithVariable `json:"vlan_id,omitempty"`
 	// Property key is the VPN name. Whether this network can be accessed from vpn
-	VpnAccess            map[string]NetworkVpnAccessConfig `json:"vpn_access,omitempty"`
-	AdditionalProperties map[string]interface{}            `json:"_"`
+	VpnAccess map[string]NetworkVpnAccessConfig `json:"vpn_access,omitempty"`
+	// SecurityZone this network belongs to. When set, the zone name is used as the security zone name on the SRX, and multiple networks can share the same zone. When omitted, the network `name` is used as the security zone name.
+	ZoneId               *uuid.UUID             `json:"zone_id,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for Network,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (n Network) String() string {
 	return fmt.Sprintf(
-		"Network[CreatedTime=%v, DisallowMistServices=%v, Gateway=%v, Gateway6=%v, Id=%v, InternalAccess=%v, InternetAccess=%v, Isolation=%v, ModifiedTime=%v, Multicast=%v, Name=%v, OrgId=%v, RoutedForNetworks=%v, Subnet=%v, Subnet6=%v, Tenants=%v, VlanId=%v, VpnAccess=%v, AdditionalProperties=%v]",
-		n.CreatedTime, n.DisallowMistServices, n.Gateway, n.Gateway6, n.Id, n.InternalAccess, n.InternetAccess, n.Isolation, n.ModifiedTime, n.Multicast, n.Name, n.OrgId, n.RoutedForNetworks, n.Subnet, n.Subnet6, n.Tenants, n.VlanId, n.VpnAccess, n.AdditionalProperties)
+		"Network[CreatedTime=%v, DisallowMistServices=%v, Gateway=%v, Gateway6=%v, Id=%v, InternalAccess=%v, InternetAccess=%v, Isolation=%v, ModifiedTime=%v, Multicast=%v, Name=%v, OrgId=%v, RoutedForNetworks=%v, Subnet=%v, Subnet6=%v, Tenants=%v, VlanId=%v, VpnAccess=%v, ZoneId=%v, AdditionalProperties=%v]",
+		n.CreatedTime, n.DisallowMistServices, n.Gateway, n.Gateway6, n.Id, n.InternalAccess, n.InternetAccess, n.Isolation, n.ModifiedTime, n.Multicast, n.Name, n.OrgId, n.RoutedForNetworks, n.Subnet, n.Subnet6, n.Tenants, n.VlanId, n.VpnAccess, n.ZoneId, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Network.
@@ -66,7 +68,7 @@ func (n Network) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(n.AdditionalProperties,
-		"created_time", "disallow_mist_services", "gateway", "gateway6", "id", "internal_access", "internet_access", "isolation", "modified_time", "multicast", "name", "org_id", "routed_for_networks", "subnet", "subnet6", "tenants", "vlan_id", "vpn_access"); err != nil {
+		"created_time", "disallow_mist_services", "gateway", "gateway6", "id", "internal_access", "internet_access", "isolation", "modified_time", "multicast", "name", "org_id", "routed_for_networks", "subnet", "subnet6", "tenants", "vlan_id", "vpn_access", "zone_id"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(n.toMap())
@@ -128,6 +130,9 @@ func (n Network) toMap() map[string]any {
 	if n.VpnAccess != nil {
 		structMap["vpn_access"] = n.VpnAccess
 	}
+	if n.ZoneId != nil {
+		structMap["zone_id"] = n.ZoneId
+	}
 	return structMap
 }
 
@@ -143,7 +148,7 @@ func (n *Network) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "disallow_mist_services", "gateway", "gateway6", "id", "internal_access", "internet_access", "isolation", "modified_time", "multicast", "name", "org_id", "routed_for_networks", "subnet", "subnet6", "tenants", "vlan_id", "vpn_access")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "disallow_mist_services", "gateway", "gateway6", "id", "internal_access", "internet_access", "isolation", "modified_time", "multicast", "name", "org_id", "routed_for_networks", "subnet", "subnet6", "tenants", "vlan_id", "vpn_access", "zone_id")
 	if err != nil {
 		return err
 	}
@@ -167,6 +172,7 @@ func (n *Network) UnmarshalJSON(input []byte) error {
 	n.Tenants = temp.Tenants
 	n.VlanId = temp.VlanId
 	n.VpnAccess = temp.VpnAccess
+	n.ZoneId = temp.ZoneId
 	return nil
 }
 
@@ -190,6 +196,7 @@ type tempNetwork struct {
 	Tenants              map[string]NetworkTenant          `json:"tenants,omitempty"`
 	VlanId               *VlanIdWithVariable               `json:"vlan_id,omitempty"`
 	VpnAccess            map[string]NetworkVpnAccessConfig `json:"vpn_access,omitempty"`
+	ZoneId               *uuid.UUID                        `json:"zone_id,omitempty"`
 }
 
 func (n *tempNetwork) validate() error {

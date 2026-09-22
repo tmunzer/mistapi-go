@@ -26,6 +26,7 @@ GetSiteChannelScores(
     ctx context.Context,
     siteId uuid.UUID,
     band models.Dot11BandEnum,
+    ap *string,
     start *string,
     end *string) (
     models.ApiResponse[models.ResponseRrmChannelScores],
@@ -42,6 +43,7 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `band` | [`models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Template, Required | 802.11 Band |
+| `ap` | `*string` | Query, Optional | AP MAC address. When supplied, returns per-AP channel scores instead of site-wide scores. |
 | `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
 | `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
 
@@ -60,7 +62,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 band := models.Dot11BandEnum_ENUM5
 
-apiResponse, err := sitesRRM.GetSiteChannelScores(ctx, siteId, band, nil, nil)
+apiResponse, err := sitesRRM.GetSiteChannelScores(ctx, siteId, band, nil, nil, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

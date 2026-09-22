@@ -149,15 +149,34 @@ func main() {
                 Type:                 models.SwitchBgpConfigTypeEnum_EXTERNAL,
             },
         },
-        CreatedTime:           models.ToPointer(float64(139.74)),
         ExtraRoutes:           map[string]models.ExtraRoute{
             "0.0.0.0/0": models.ExtraRoute{
-                Via:                  models.ToPointer(),
+                Discard:              models.ToPointer(false),
+                Metric:               models.NewOptional(models.ToPointer(90)),
+                NextQualified:        map[string]models.ExtraRouteNextQualifiedProperties{
+                    "key0": nil,
+                    "key1": models.ExtraRouteNextQualifiedProperties{
+                    },
+                    "key2": models.ExtraRouteNextQualifiedProperties{
+                    },
+                },
+                NoResolve:            models.ToPointer(false),
+                Preference:           models.NewOptional(models.ToPointer(86)),
+                Via:                  models.ToPointer(models.NextHopViaContainer.FromString("192.168.1.10")),
             },
         },
         ExtraRoutes6:          map[string]models.ExtraRoute6{
             "2a02:1234:420a:10c9::/64": models.ExtraRoute6{
-                Via:                  models.ToPointer(),
+                Discard:              models.ToPointer(false),
+                Metric:               models.NewOptional(models.ToPointer(110)),
+                NextQualified:        map[string]models.ExtraRoute6NextQualifiedProperties{
+                    "key0": nil,
+                    "key1": models.ExtraRoute6NextQualifiedProperties{
+                    },
+                },
+                NoResolve:            models.ToPointer(false),
+                Preference:           models.NewOptional(models.ToPointer(66)),
+                Via:                  models.ToPointer(models.NextHopViaContainer.FromString("2a02:1234:200a::100")),
             },
         },
         Id:                    models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
@@ -165,6 +184,20 @@ func main() {
         RemoveExistingConfigs: models.ToPointer(false),
         VrfInstances:          map[string]models.SwitchVrfInstance{
             "guest": models.SwitchVrfInstance{
+                AggregateRoutes:         map[string]models.AggregateRoute{
+                    "key0": nil,
+                    "key1": models.AggregateRoute{
+                    },
+                    "key2": models.AggregateRoute{
+                    },
+                },
+                AggregateRoutes6:        map[string]models.AggregateRoute{
+                    "key0": nil,
+                    "key1": models.AggregateRoute{
+                    },
+                },
+                EvpnAutoLoopbackSubnet:  models.ToPointer("evpn_auto_loopback_subnet8"),
+                EvpnAutoLoopbackSubnet6: models.ToPointer("evpn_auto_loopback_subnet62"),
                 ExtraRoutes:             map[string]models.VrfExtraRoute{
                     "0.0.0.0/0": models.VrfExtraRoute{
                         Via:                  models.ToPointer("192.168.31.1"),

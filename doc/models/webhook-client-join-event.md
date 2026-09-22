@@ -51,7 +51,7 @@ func main() {
         SiteId:               uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6"),
         SiteName:             "site_name8",
         Ssid:                 "ssid4",
-        Timestamp:            float64(169.24),
+        Timestamp:            0.0,
         Version:              float64(252.82),
         WlanId:               uuid.MustParse("00001016-0000-0000-0000-000000000000"),
     }

@@ -53,7 +53,6 @@ func main() {
             "mist",
             "all-videos",
         },
-        CreatedTime:          models.ToPointer(float64(24.6)),
         DstAllowWxtags:       []string{
             "fff34466-eec0-3756-6765-381c728a6037",
             "eee2c7b0-d1d0-5a30-f349-e35fa43dc3b3",

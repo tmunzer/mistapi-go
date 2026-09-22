@@ -13,7 +13,7 @@ Request body to apply or clear cached autoplacement or auto-orientation values f
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `For` | [`*models.UseAutoApValuesForEnum`](../../doc/models/use-auto-ap-values-for-enum.md) | Optional | The selector to choose auto placement or auto orientation. enum: `orientation`, `placement`<br><br>**Default**: `"placement"` |
+| `For` | [`*models.AutoplacementLocalizationSelectorForEnum`](../../doc/models/autoplacement-localization-selector-for-enum.md) | Optional | The selector to choose auto placement or auto orientation. enum: `orientation`, `placement`<br><br>**Default**: `"placement"` |
 | `Macs` | `[]string` | Optional | List of AP MAC addresses to apply the action to. If omitted, the action applies to all APs on the map |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -28,7 +28,7 @@ import (
 
 func main() {
     autoplacementLocalizationSelector := models.AutoplacementLocalizationSelector{
-        For:                  models.ToPointer(models.UseAutoApValuesForEnum_PLACEMENT),
+        For:                  models.ToPointer(models.AutoplacementLocalizationSelectorForEnum_PLACEMENT),
         Macs:                 []string{
             "macs9",
             "macs8",

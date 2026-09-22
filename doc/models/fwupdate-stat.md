@@ -29,9 +29,7 @@ import (
 func main() {
     fwupdateStat := models.FwupdateStat{
         Progress:             models.NewOptional(models.ToPointer(10)),
-        Status:               models.NewOptional(models.ToPointer(models.FwupdateStatStatusEnum_INPROGRESS)),
         StatusId:             models.NewOptional(models.ToPointer(5)),
-        Timestamp:            models.ToPointer(float64(115.22)),
         WillRetry:            models.NewOptional(models.ToPointer(false)),
     }
 

@@ -28,7 +28,6 @@ import (
 
 func main() {
     virtualChassisConfigMember := models.VirtualChassisConfigMember{
-        Locating:             models.ToPointer(false),
         Mac:                  "mac8",
         MemberId:             models.ToPointer(180),
         VcPorts:              []string{

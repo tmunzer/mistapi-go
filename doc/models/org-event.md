@@ -30,7 +30,6 @@ func main() {
     orgEvent := models.OrgEvent{
         OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
         Text:                 models.ToPointer("authentication failed, API key invalid"),
-        Timestamp:            models.ToPointer(float64(14.8)),
         Type:                 models.ToPointer("CRADLEPOINT_SYNC_FAILED"),
     }
 

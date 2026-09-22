@@ -134,7 +134,7 @@ var orgsMxTunnels OrgsMxTunnels
 
 var orgsNacidp OrgsNACIDP
 
-var sitesNacFingerprints SitesNACFingerprints
+var orgsNacFingerprints OrgsNACFingerprints
 
 var orgsNacTags OrgsNACTags
 
@@ -187,6 +187,8 @@ var orgsSdkInvites OrgsSDKInvites
 var orgsSdkTemplates OrgsSDKTemplates
 
 var orgsSecurityPolicies OrgsSecurityPolicies
+
+var orgsSecurityZones OrgsSecurityZones
 
 var orgsServices OrgsServices
 
@@ -497,7 +499,7 @@ func init() {
 	orgsMxEdges = *client.OrgsMxEdges()
 	orgsMxTunnels = *client.OrgsMxTunnels()
 	orgsNacidp = *client.OrgsNACIDP()
-	sitesNacFingerprints = *client.SitesNACFingerprints()
+	orgsNacFingerprints = *client.OrgsNACFingerprints()
 	orgsNacTags = *client.OrgsNACTags()
 	orgsNacPortals = *client.OrgsNACPortals()
 	orgsNaccrl = *client.OrgsNACCRL()
@@ -524,6 +526,7 @@ func init() {
 	orgsSdkInvites = *client.OrgsSDKInvites()
 	orgsSdkTemplates = *client.OrgsSDKTemplates()
 	orgsSecurityPolicies = *client.OrgsSecurityPolicies()
+	orgsSecurityZones = *client.OrgsSecurityZones()
 	orgsServices = *client.OrgsServices()
 	orgsServicePolicies = *client.OrgsServicePolicies()
 	orgsSetting = *client.OrgsSetting()

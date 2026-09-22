@@ -58,18 +58,11 @@ import (
 
 func main() {
     statsSwitchModuleStatItem := models.StatsSwitchModuleStatItem{
-        BackupVersion:        models.NewOptional(models.ToPointer("backup_version8")),
-        BiosVersion:          models.NewOptional(models.ToPointer("bios_version4")),
         BootPartition:        models.ToPointer("boot_partition8"),
-        CpldVersion:          models.NewOptional(models.ToPointer("cpld_version4")),
         CpuStat:              models.ToPointer(models.CpuStat{
-            Idle:                 models.NewOptional(models.ToPointer(float64(102.08))),
-            Interrupt:            models.NewOptional(models.ToPointer(float64(215.84))),
             LoadAvg:              []float64{
                 float64(105.91),
             },
-            System:               models.NewOptional(models.ToPointer(float64(13.6))),
-            Usage:                models.NewOptional(models.ToPointer(float64(125.9))),
         }),
         LastSeen:             models.NewOptional(models.ToPointer(float64(1470417522))),
         Mac:                  models.ToPointer("fc3342123456"),

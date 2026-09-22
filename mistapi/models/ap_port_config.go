@@ -26,7 +26,7 @@ type ApPortConfig struct {
 	Forwarding *ApPortConfigForwardingEnum `json:"forwarding,omitempty"`
 	// When `true`, we'll do dot1x then mac_auth. enable this to prefer mac_auth
 	MacAuthPreferred *bool `json:"mac_auth_preferred,omitempty"`
-	// if `enable_mac_auth`==`true`, allows user to select an authentication protocol. enum: `eap-md5`, `eap-peap`, `pap`
+	// if `enable_mac_auth`==`true`, allows user to select an authentication protocol. When Mist NAC is enabled, this is forced to `pap`, unless the Org `mist_nac.enable_eap_md5_for_mab` setting is enabled: in that case `eap-md5` is kept and the port still performs MAB (mac-radius) but sends the request as EAP-MD5. enum: `eap-md5`, `eap-peap`, `pap`
 	MacAuthProtocol *ApPortConfigMacAuthProtocolEnum `json:"mac_auth_protocol,omitempty"`
 	// Mist NAC RADIUS settings for a WLAN
 	MistNac *WlanMistNac `json:"mist_nac,omitempty"`

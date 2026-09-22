@@ -26,16 +26,10 @@ func main() {
     responseNacCrlFiles := models.ResponseNacCrlFiles{
         Results:              []models.NacCrlFile{
             models.NacCrlFile{
-                CreatedTime:          models.ToPointer(float64(73.76)),
-                Id:                   models.ToPointer("id6"),
-                ModifiedTime:         models.ToPointer(float64(5.2)),
                 Name:                 models.ToPointer("name6"),
                 Url:                  models.ToPointer("url0"),
             },
             models.NacCrlFile{
-                CreatedTime:          models.ToPointer(float64(73.76)),
-                Id:                   models.ToPointer("id6"),
-                ModifiedTime:         models.ToPointer(float64(5.2)),
                 Name:                 models.ToPointer("name6"),
                 Url:                  models.ToPointer("url0"),
             },

@@ -30,7 +30,7 @@ This event's request payload is of type [*models.WebhookSiteSle](../../../../doc
         "successful-connect": 0.7,
         "time-to-connect": 0.9
       },
-      "timestamp": 1694620800.0
+      "timestamp": 1694620800
     }
   ],
   "topic": "site-sle"

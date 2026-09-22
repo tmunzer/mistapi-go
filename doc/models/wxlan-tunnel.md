@@ -48,7 +48,6 @@ import (
 
 func main() {
     wxlanTunnel := models.WxlanTunnel{
-        CreatedTime:          models.ToPointer(float64(53.5)),
         Dmvpn:                models.ToPointer(models.WxlanTunnelDmvpn{
             Enabled:              models.ToPointer(false),
             HoldingTime:          models.ToPointer(188),
@@ -58,7 +57,6 @@ func main() {
             },
         }),
         ForMgmt:              models.ToPointer(false),
-        ForSite:              models.ToPointer(false),
         HelloInterval:        models.ToPointer(60),
         HelloRetries:         models.ToPointer(7),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),

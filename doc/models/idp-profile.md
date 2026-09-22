@@ -35,9 +35,7 @@ import (
 func main() {
     idpProfile := models.IdpProfile{
         BaseProfile:          models.ToPointer(models.IdpProfileBaseProfileEnum_STRICT),
-        CreatedTime:          models.ToPointer(float64(44.6)),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
-        ModifiedTime:         models.ToPointer(float64(34.36)),
         Name:                 models.ToPointer("relaxed"),
         OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
         AdditionalProperties: map[string]interface{}{

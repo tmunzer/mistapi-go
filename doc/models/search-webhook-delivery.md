@@ -25,7 +25,6 @@ package main
 
 import (
     "mistapi/models"
-    "github.com/google/uuid"
 )
 
 func main() {
@@ -36,8 +35,6 @@ func main() {
         Results:              []models.WebhookDelivery{
             models.WebhookDelivery{
                 Error:                models.ToPointer("error0"),
-                Id:                   models.ToPointer(uuid.MustParse("000023ba-0000-0000-0000-000000000000")),
-                OrgId:                models.ToPointer(uuid.MustParse("00002492-0000-0000-0000-000000000000")),
                 ReqHeaders:           models.ToPointer("req_headers6"),
                 ReqPayload:           models.ToPointer("req_payload4"),
             },

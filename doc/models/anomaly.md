@@ -28,13 +28,10 @@ import (
 
 func main() {
     anomaly := models.Anomaly{
-        Events:               []string{
-            "events4",
-        },
-        Since:                models.ToPointer(float64(194.04)),
-        SleBaseline:          float64(169.52),
-        SleDeviation:         float64(83.98),
-        Timestamp:            float64(63.62),
+        Events:               "",
+        SleBaseline:          0.0,
+        SleDeviation:         0.0,
+        Timestamp:            0.0,
     }
 
 }

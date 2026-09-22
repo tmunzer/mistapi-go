@@ -38,22 +38,17 @@ import (
 
 func main() {
     wirelessClientSession := models.WirelessClientSession{
-        Ap:                   "ap2",
-        Band:                 "band8",
-        ClientManufacture:    models.NewOptional(models.ToPointer("client_manufacture0")),
-        Connect:              50,
+        Ap:                   "",
+        Band:                 "",
+        Connect:              0,
         Disconnect:           0,
-        Duration:             float64(161.82),
-        ForSite:              models.ToPointer(false),
-        Mac:                  "mac0",
+        Duration:             0.0,
+        Mac:                  "",
         OrgId:                uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61"),
         SiteId:               uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6"),
-        Ssid:                 "ssid4",
-        Tags:                 []string{
-            "tags1",
-        },
-        Timestamp:            float64(60.04),
-        WlanId:               uuid.MustParse("00000c7e-0000-0000-0000-000000000000"),
+        Ssid:                 "",
+        Timestamp:            0.0,
+        WlanId:               uuid.MustParse(""),
     }
 
 }

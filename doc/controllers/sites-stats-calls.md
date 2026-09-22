@@ -26,7 +26,9 @@ CountSiteCalls(
     ctx context.Context,
     siteId uuid.UUID,
     distinct *models.CountSiteCallsDistinctEnum,
-    rating *int,
+    mac *string,
+    apMac *string,
+    rating *string,
     app *string,
     start *string,
     end *string,
@@ -45,7 +47,9 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.CountSiteCallsDistinctEnum`](../../doc/models/count-site-calls-distinct-enum.md) | Query, Optional | Field used to group this count response. enum: `mac`<br><br>**Default**: `"mac"` |
-| `rating` | `*int` | Query, Optional | Feedback rating (e.g. "rating=1" or "rating=1,2")<br><br>**Constraints**: `>= 1`, `<= 5` |
+| `mac` | `*string` | Query, Optional | Filter results by client MAC address |
+| `apMac` | `*string` | Query, Optional | Filter results by AP MAC address |
+| `rating` | `*string` | Query, Optional | Feedback rating, from 1 to 5; accepts comma-separated values such as "1,2"<br><br>**Constraints**: *Pattern*: `^[1-5](,[1-5])*$` |
 | `app` | `*string` | Query, Optional | Filter application statistics by application name |
 | `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
 | `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
@@ -66,13 +70,17 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.CountSiteCallsDistinctEnum_MAC
 
-rating := 5
+mac := "001122334455"
+
+apMac := "001122334455"
+
+rating := "1,2"
 
 app := "zoom"
 
 limit := 100
 
-apiResponse, err := sitesStatsCalls.CountSiteCalls(ctx, siteId, &distinct, &rating, &app, nil, nil, &limit)
+apiResponse, err := sitesStatsCalls.CountSiteCalls(ctx, siteId, &distinct, &mac, &apMac, &rating, &app, nil, nil, &limit)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

@@ -36,9 +36,7 @@ This event's request payload is of type [*models.WebhookLocationCentrak](../../.
         }
       ],
       "x": 13.5,
-      "y": 3.2,
-      "mfg_company_id": 234,
-      "mfg_data": "mfg_data2"
+      "y": 3.2
     }
   ],
   "topic": "location-centrak"

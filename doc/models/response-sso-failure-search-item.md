@@ -28,7 +28,7 @@ func main() {
     responseSsoFailureSearchItem := models.ResponseSsoFailureSearchItem{
         Detail:               "detail0",
         SamlAssertionXml:     "saml_assertion_xml2",
-        Timestamp:            float64(88.88),
+        Timestamp:            0.0,
     }
 
 }

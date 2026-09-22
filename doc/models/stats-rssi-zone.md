@@ -54,7 +54,6 @@ func main() {
             Min:                  models.ToPointer(float64(78.86)),
             P95:                  models.ToPointer(float64(107.34)),
         }),
-        CreatedTime:            models.ToPointer(float64(3.88)),
         Devices:                []models.StatsRssiZonesDevice{
             models.StatsRssiZonesDevice{
                 DeviceId:             models.ToPointer(uuid.MustParse("00002576-0000-0000-0000-000000000000")),
@@ -68,7 +67,6 @@ func main() {
             P95:                  models.ToPointer(float64(195.58)),
         }),
         Id:                     uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f"),
-        ModifiedTime:           models.ToPointer(float64(75.08)),
         Name:                   "Zone A",
         NumAssets:              models.ToPointer(0),
         NumClients:             models.ToPointer(80),

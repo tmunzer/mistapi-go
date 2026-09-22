@@ -43,7 +43,7 @@ func main() {
                 PreChannel:           164,
                 PrePower:             float64(92.2),
                 PreUsage:             "pre_usage6",
-                Timestamp:            float64(2.64),
+                Timestamp:            0.0,
                 Usage:                "usage4",
             },
         },

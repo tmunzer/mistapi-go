@@ -1,11 +1,11 @@
 
-# Type Enum
+# Marvis Config Feedback Type Enum
 
 Feedback type. enum: `invalid`
 
 ## Enumeration
 
-`TypeEnum`
+`MarvisConfigFeedbackTypeEnum`
 
 ## Fields
 
@@ -23,7 +23,7 @@ import (
 )
 
 func main() {
-    mType := models.TypeEnum_INVALID
+    marvisConfigFeedbackType := models.MarvisConfigFeedbackTypeEnum_INVALID
 
 }
 ```

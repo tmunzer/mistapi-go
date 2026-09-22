@@ -205,3 +205,63 @@ func TestOrgsSCEPTestRevokeOrgIssuedClientCertificates(t *testing.T) {
 	}
 	testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
+
+// TestOrgsSCEPTestSearchOrgScepEvents tests the behavior of the OrgsSCEP
+func TestOrgsSCEPTestSearchOrgScepEvents(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	mType := models.OrgScepEventsSearchTypeEnum("failure")
+	certProvider := "jamf"
+	commonName := "john@corp.com"
+	deviceId, errUUID := uuid.Parse("bb08e3c5-a1d9-5f21-a3b7-cd0821eab8f6")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	text := "invalid challenge"
+	limit := int(100)
+	page := int(1)
+	apiResponse, err := orgsScep.SearchOrgScepEvents(ctx, orgId, &mType, &certProvider, &commonName, &deviceId, &text, &limit, &page)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"end":1748314800,"limit":100,"page":1,"results":[{"cert_provider":"jamf","common_name":"name@company.net bb08e3c5-a1d9-5f21-a3b7-cd0821eab8f6","device_id":"bb08e3c5-a1d9-5f21-a3b7-cd0821eab8f6","org_id":"9301bff6-8992-49d6-b1ea-907ee81bb5fb","text":"invalid challenge/expired","timestamp":1748227903,"type":"SCEP_PKI_OPERATION_FAILURE"},{"cert_provider":"jamf","common_name":"name@company.net aa3d2e37-6063-4bc0-9d5f-3bc13509f1f4","device_id":"","org_id":"9342bff6-8992-49d6-b1ea-907ee81bb5fb","text":"invalid CN or device_id","timestamp":1748227803,"type":"SCEP_PKI_OPERATION_FAILURE"},{"cert_provider":"jamf","common_name":"name@company.net aa3d2e37-6063-4bc0-9d5f-3bc13509f1f4","device_id":"aa3d2e37-6063-4bc0-9d5f-3bc13509f1f4","org_id":"9342bff6-8992-49d6-b1ea-907ee81bb5fb","text":"scep PKI operation successful","timestamp":1748227803,"type":"SCEP_PKI_OPERATION_SUCCESS"}],"start":1748228400,"total":3}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestOrgsSCEPTestSearchOrgScepEvents1 tests the behavior of the OrgsSCEP
+func TestOrgsSCEPTestSearchOrgScepEvents1(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	mType := models.OrgScepEventsSearchTypeEnum("failure")
+	certProvider := "jamf"
+	commonName := "john@corp.com"
+	deviceId, errUUID := uuid.Parse("bb08e3c5-a1d9-5f21-a3b7-cd0821eab8f6")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	text := "invalid challenge"
+	limit := int(100)
+	page := int(1)
+	apiResponse, err := orgsScep.SearchOrgScepEvents(ctx, orgId, &mType, &certProvider, &commonName, &deviceId, &text, &limit, &page)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"end":1748314800,"limit":100,"page":1,"results":[{"cert_provider":"jamf","common_name":"name@company.net bb08e3c5-a1d9-5f21-a3b7-cd0821eab8f6","device_id":"bb08e3c5-a1d9-5f21-a3b7-cd0821eab8f6","org_id":"9301bff6-8992-49d6-b1ea-907ee81bb5fb","text":"invalid challenge/expired","timestamp":1748227903,"type":"SCEP_PKI_OPERATION_FAILURE"},{"cert_provider":"jamf","common_name":"name@company.net aa3d2e37-6063-4bc0-9d5f-3bc13509f1f4","device_id":"","org_id":"9342bff6-8992-49d6-b1ea-907ee81bb5fb","text":"invalid CN or device_id","timestamp":1748227803,"type":"SCEP_PKI_OPERATION_FAILURE"},{"cert_provider":"jamf","common_name":"name@company.net aa3d2e37-6063-4bc0-9d5f-3bc13509f1f4","device_id":"aa3d2e37-6063-4bc0-9d5f-3bc13509f1f4","org_id":"9342bff6-8992-49d6-b1ea-907ee81bb5fb","text":"scep PKI operation successful","timestamp":1748227803,"type":"SCEP_PKI_OPERATION_SUCCESS"}],"start":1748228400,"total":3}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}

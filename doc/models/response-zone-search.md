@@ -36,7 +36,6 @@ func main() {
             models.ResponseZoneSearchItem{
                 Enter:                models.ToPointer(226),
                 Scope:                models.ToPointer("scope6"),
-                Timestamp:            models.ToPointer(float64(2.64)),
                 User:                 models.ToPointer("user6"),
             },
         },

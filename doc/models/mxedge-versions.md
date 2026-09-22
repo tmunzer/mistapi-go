@@ -25,8 +25,6 @@ import (
 
 func main() {
     mxedgeVersions := models.MxedgeVersions{
-        Mxagent:              models.ToPointer("mxagent0"),
-        Tunterm:              models.ToPointer("tunterm8"),
     }
 
 }

@@ -139,6 +139,7 @@ body := models.AdminInvite{
     FirstName:            "John",
     InviteCode:           models.ToPointer("MISTROCKS"),
     LastName:             "Smith",
+    NoTracking:           models.ToPointer(false),
     OrgName:              "Smith LLC",
     Password:             "foryoureyesonly",
     Recaptcha:            "string",

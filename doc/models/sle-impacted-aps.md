@@ -15,7 +15,7 @@ Paginated list of APs impacted by an SLE metric
 | `Classifier` | `string` | Required | Requested SLE classifier filter applied to the query |
 | `End` | `float64` | Required | Last timestamp in the impacted APs window |
 | `Failure` | `string` | Required | Requested SLE failure filter applied to the query |
-| `Limit` | `float64` | Required | Maximum number of impacted AP rows returned per page |
+| `Limit` | `int` | Required | Maximum number of impacted AP rows returned per page |
 | `Metric` | `string` | Required | SLE metric name used for the impacted APs query<br><br>**Constraints**: *Minimum Length*: `1` |
 | `Page` | `float64` | Required | Current page number for impacted AP results |
 | `Start` | `float64` | Required | First timestamp in the impacted APs window |
@@ -44,7 +44,7 @@ func main() {
         Classifier:           "classifier2",
         End:                  float64(119.64),
         Failure:              "failure0",
-        Limit:                float64(125.62),
+        Limit:                18,
         Metric:               "metric8",
         Page:                 float64(3.52),
         Start:                float64(75.7),

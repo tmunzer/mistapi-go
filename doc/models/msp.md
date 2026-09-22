@@ -36,10 +36,8 @@ import (
 func main() {
     msp := models.Msp{
         AllowMist:            models.ToPointer(false),
-        CreatedTime:          models.ToPointer(float64(109.3)),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
         LogoUrl:              models.ToPointer("logo_url0"),
-        ModifiedTime:         models.ToPointer(float64(225.66)),
         Tier:                 models.ToPointer(models.MspTierEnum_BASE),
         AdditionalProperties: map[string]interface{}{
             "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),

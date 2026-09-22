@@ -44,6 +44,11 @@ func main() {
                         Wifi:                 models.ToPointer(float64(198.3)),
                     },
                 },
+                DeviceId:             models.ToPointer(uuid.MustParse("00001510-0000-0000-0000-000000000000")),
+                DeviceIds:            []uuid.UUID{
+                    uuid.MustParse("00000325-0000-0000-0000-000000000000"),
+                    uuid.MustParse("00000326-0000-0000-0000-000000000000"),
+                },
                 FftSamples:           []models.ResponsePastSpectrumAnalysisFftSample{
                     models.ResponsePastSpectrumAnalysisFftSample{
                         Frequency:            models.ToPointer(float64(91.6)),
@@ -61,8 +66,6 @@ func main() {
                         Signal7:              models.ToPointer(float64(18.34)),
                     },
                 },
-                Mac:                  models.ToPointer("mac0"),
-                OrgId:                models.ToPointer(uuid.MustParse("00002492-0000-0000-0000-000000000000")),
             },
         },
         Start:                models.ToPointer(50),

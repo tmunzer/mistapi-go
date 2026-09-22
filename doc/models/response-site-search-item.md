@@ -37,15 +37,14 @@ import (
 func main() {
     responseSiteSearchItem := models.ResponseSiteSearchItem{
         AutoUpgradeEnabled:   false,
-        AutoUpgradeVersion:   "auto_upgrade_version2",
-        CountryCode:          models.NewOptional(models.ToPointer("country_code4")),
+        AutoUpgradeVersion:   "",
         HoneypotEnabled:      false,
         Id:                   uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f"),
-        Name:                 "name4",
+        Name:                 "",
         OrgId:                uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61"),
         SiteId:               uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6"),
-        Timestamp:            float64(105.12),
-        Timezone:             "timezone6",
+        Timestamp:            0.0,
+        Timezone:             "",
         VnaEnabled:           false,
         WifiEnabled:          false,
     }

@@ -37,10 +37,10 @@ This event's request payload is of type [*models.WebhookLocation](../../../../do
       "mfg_data": "string",
       "name": "string",
       "site_id": "72771e6a-6f5e-4de4-a5b9-1266c4197811",
-      "timestamp": 0.0,
+      "timestamp": 0,
       "type": "string",
-      "x": 0.0,
-      "y": 0.0
+      "x": 0,
+      "y": 0
     }
   ],
   "topic": "location"

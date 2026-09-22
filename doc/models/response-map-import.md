@@ -49,7 +49,6 @@ func main() {
                 Reason:               models.ToPointer("reason2"),
             },
         },
-        ForSite:              models.ToPointer(false),
         SiteId:               uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6"),
         Summary:              models.ResponseMapImportSummary{
             NumApAssigned:        66,

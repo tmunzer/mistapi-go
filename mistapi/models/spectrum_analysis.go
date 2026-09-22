@@ -17,8 +17,10 @@ type SpectrumAnalysis struct {
 	Band SpectrumAnalysisBandEnum `json:"band"`
 	// Optional list of channels to scan. If not specified, all supported channels will be scanned
 	Channels []int `json:"channels,omitempty"`
-	// Device ID of the AP that is performing spectrum analysis
+	// Optional device-generated UUID of the AP that is performing spectrum analysis. Required when `device_ids` is not provided.
 	DeviceId *uuid.UUID `json:"device_id,omitempty"`
+	// Optional device-generated UUIDs of APs to scan. When provided, these take precedence over `device_id`; maximum 5 devices.
+	DeviceIds []uuid.UUID `json:"device_ids,omitempty"`
 	// Length of the spectrum analysis run, in seconds
 	Duration *int `json:"duration,omitempty"`
 	// Format of the spectrum analysis data. enum: `json`, `stream`
@@ -30,8 +32,8 @@ type SpectrumAnalysis struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SpectrumAnalysis) String() string {
 	return fmt.Sprintf(
-		"SpectrumAnalysis[Band=%v, Channels=%v, DeviceId=%v, Duration=%v, Format=%v, AdditionalProperties=%v]",
-		s.Band, s.Channels, s.DeviceId, s.Duration, s.Format, s.AdditionalProperties)
+		"SpectrumAnalysis[Band=%v, Channels=%v, DeviceId=%v, DeviceIds=%v, Duration=%v, Format=%v, AdditionalProperties=%v]",
+		s.Band, s.Channels, s.DeviceId, s.DeviceIds, s.Duration, s.Format, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SpectrumAnalysis.
@@ -40,7 +42,7 @@ func (s SpectrumAnalysis) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"band", "channels", "device_id", "duration", "format"); err != nil {
+		"band", "channels", "device_id", "device_ids", "duration", "format"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -56,6 +58,9 @@ func (s SpectrumAnalysis) toMap() map[string]any {
 	}
 	if s.DeviceId != nil {
 		structMap["device_id"] = s.DeviceId
+	}
+	if s.DeviceIds != nil {
+		structMap["device_ids"] = s.DeviceIds
 	}
 	if s.Duration != nil {
 		structMap["duration"] = s.Duration
@@ -78,7 +83,7 @@ func (s *SpectrumAnalysis) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "channels", "device_id", "duration", "format")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "channels", "device_id", "device_ids", "duration", "format")
 	if err != nil {
 		return err
 	}
@@ -87,6 +92,7 @@ func (s *SpectrumAnalysis) UnmarshalJSON(input []byte) error {
 	s.Band = *temp.Band
 	s.Channels = temp.Channels
 	s.DeviceId = temp.DeviceId
+	s.DeviceIds = temp.DeviceIds
 	s.Duration = temp.Duration
 	s.Format = temp.Format
 	return nil
@@ -94,11 +100,12 @@ func (s *SpectrumAnalysis) UnmarshalJSON(input []byte) error {
 
 // tempSpectrumAnalysis is a temporary struct used for validating the fields of SpectrumAnalysis.
 type tempSpectrumAnalysis struct {
-	Band     *SpectrumAnalysisBandEnum   `json:"band"`
-	Channels []int                       `json:"channels,omitempty"`
-	DeviceId *uuid.UUID                  `json:"device_id,omitempty"`
-	Duration *int                        `json:"duration,omitempty"`
-	Format   *SpectrumAnalysisFormatEnum `json:"format,omitempty"`
+	Band      *SpectrumAnalysisBandEnum   `json:"band"`
+	Channels  []int                       `json:"channels,omitempty"`
+	DeviceId  *uuid.UUID                  `json:"device_id,omitempty"`
+	DeviceIds []uuid.UUID                 `json:"device_ids,omitempty"`
+	Duration  *int                        `json:"duration,omitempty"`
+	Format    *SpectrumAnalysisFormatEnum `json:"format,omitempty"`
 }
 
 func (s *tempSpectrumAnalysis) validate() error {

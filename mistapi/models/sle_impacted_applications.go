@@ -19,7 +19,7 @@ type SleImpactedApplications struct {
 	// Requested SLE failure filter applied to the query
 	Failure *string `json:"failure,omitempty"`
 	// Maximum number of impacted application rows returned per page
-	Limit *string `json:"limit,omitempty"`
+	Limit *int `json:"limit,omitempty"`
 	// SLE metric name used for the impacted applications query
 	Metric *string `json:"metric,omitempty"`
 	// Current page number for impacted application results
@@ -117,7 +117,7 @@ type tempSleImpactedApplications struct {
 	Classifier *string                      `json:"classifier,omitempty"`
 	End        *int                         `json:"end,omitempty"`
 	Failure    *string                      `json:"failure,omitempty"`
-	Limit      *string                      `json:"limit,omitempty"`
+	Limit      *int                         `json:"limit,omitempty"`
 	Metric     *string                      `json:"metric,omitempty"`
 	Page       *int                         `json:"page,omitempty"`
 	Start      *int                         `json:"start,omitempty"`

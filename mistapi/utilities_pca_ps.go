@@ -234,6 +234,116 @@ func (u *UtilitiesPCAPs) StartOrgPacketCapture(
 	return models.NewApiResponse(result, resp), err
 }
 
+// StopSiteFlowCapture takes context, siteId as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Stop the active flow capture session for the site. Returns 400 if no flow capture session is active.
+func (u *UtilitiesPCAPs) StopSiteFlowCapture(
+	ctx context.Context,
+	siteId uuid.UUID) (
+	*http.Response,
+	error) {
+	req := u.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/flow_capture")
+	req.AppendTemplateParams(siteId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
+}
+
+// GetSiteFlowCaptureStatus takes context, siteId as parameters and
+// returns an models.ApiResponse with models.FlowCaptureSession data and
+// an error if there was an issue with the request or response.
+// Get the current flow capture session status for the site. Returns an empty object when no session is active.
+func (u *UtilitiesPCAPs) GetSiteFlowCaptureStatus(
+	ctx context.Context,
+	siteId uuid.UUID) (
+	models.ApiResponse[models.FlowCaptureSession],
+	error) {
+	req := u.prepareRequest(ctx, "GET", "/api/v1/sites/%v/flow_capture")
+	req.AppendTemplateParams(siteId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+
+	var result models.FlowCaptureSession
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.FlowCaptureSession](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
+// StartSiteFlowCapture takes context, siteId, body as parameters and
+// returns an models.ApiResponse with models.FlowCaptureSession data and
+// an error if there was an issue with the request or response.
+// Start a flow capture session on one or more online switches running JMA firmware. The same filter is applied to every switch. Only one packet or flow capture session can be active per site at a time.
+// The captured flow records are streamed over websocket rather than returned in the HTTP response.
+// #### Subscribe to Flow Capture outputs
+// `WS /api-ws/v1/stream`
+func (u *UtilitiesPCAPs) StartSiteFlowCapture(
+	ctx context.Context,
+	siteId uuid.UUID,
+	body *models.FlowCaptureRequest) (
+	models.ApiResponse[models.FlowCaptureSession],
+	error) {
+	req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/flow_capture")
+	req.AppendTemplateParams(siteId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
+
+	var result models.FlowCaptureSession
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.FlowCaptureSession](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
 // ListSitePacketCaptures takes context, siteId, clientMac, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponsePcapSearch data and
 // an error if there was an issue with the request or response.

@@ -6,8 +6,61 @@ import (
 	"context"
 	"github.com/apimatic/go-core-runtime/testHelper"
 	"github.com/google/uuid"
+	"github.com/tmunzer/mistapi-go/mistapi/models"
 	"testing"
 )
+
+// TestOrgsVarsTestCountOrgVars tests the behavior of the OrgsVars
+func TestOrgsVarsTestCountOrgVars(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	distinct := models.OrgVarsCountDistinctEnum("var")
+	siteId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+	mVar := "guest_end,guest_net"
+
+	duration := "1d"
+	limit := int(100)
+	apiResponse, err := orgsVars.CountOrgVars(ctx, orgId, &distinct, &siteId, &mVar, nil, nil, nil, &duration, &limit)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"distinct":"string","end":0,"limit":0,"results":[{"count":0,"property":"string"}],"start":0,"total":0}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestOrgsVarsTestCountOrgVars1 tests the behavior of the OrgsVars
+func TestOrgsVarsTestCountOrgVars1(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	distinct := models.OrgVarsCountDistinctEnum("var")
+	siteId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+	mVar := "guest_end,guest_net"
+
+	duration := "1d"
+	limit := int(100)
+	apiResponse, err := orgsVars.CountOrgVars(ctx, orgId, &distinct, &siteId, &mVar, nil, nil, nil, &duration, &limit)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"distinct":"string","end":0,"limit":0,"results":[{"count":0,"property":"string"}],"start":0,"total":0}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
 
 // TestOrgsVarsTestSearchOrgVars tests the behavior of the OrgsVars
 func TestOrgsVarsTestSearchOrgVars(t *testing.T) {

@@ -35,17 +35,13 @@ import (
 
 func main() {
     ssoRoleMsp := models.SsoRoleMsp{
-        CreatedTime:          models.ToPointer(float64(9.08)),
-        ForSite:              models.ToPointer(false),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
-        ModifiedTime:         models.ToPointer(float64(69.88)),
         MspId:                models.ToPointer(uuid.MustParse("b9d42c2e-88ee-41f8-b798-f009ce7fe909")),
         Name:                 "name8",
         OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
         Privileges:           []models.PrivilegeMsp{
             models.PrivilegeMsp{
                 OrgId:                models.ToPointer(uuid.MustParse("00000cc8-0000-0000-0000-000000000000")),
-                OrgName:              models.ToPointer("org_name6"),
                 OrggroupId:           models.ToPointer(uuid.MustParse("000010e2-0000-0000-0000-000000000000")),
                 Role:                 models.PrivilegeMspRoleEnum_ADMIN,
                 Scope:                models.PrivilegeMspScopeEnum_ORG,

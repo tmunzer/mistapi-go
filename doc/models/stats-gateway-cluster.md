@@ -24,7 +24,6 @@ import (
 
 func main() {
     statsGatewayCluster := models.StatsGatewayCluster{
-        State:                models.NewOptional(models.ToPointer("state0")),
     }
 
 }

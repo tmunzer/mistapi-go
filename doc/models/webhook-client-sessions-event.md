@@ -69,7 +69,7 @@ func main() {
         SiteName:             "site_name2",
         Ssid:                 "ssid6",
         TerminationReason:    58,
-        Timestamp:            float64(78.06),
+        Timestamp:            0.0,
         Version:              float64(5.52),
         WlanId:               uuid.MustParse("00000ecc-0000-0000-0000-000000000000"),
     }

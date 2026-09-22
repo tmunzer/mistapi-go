@@ -39,19 +39,7 @@ This event's request payload is of type [*models.WebhookWifiConnRaw](../../../..
           "rssi": -92
         }
       ],
-      "site_id": "27ea2f07-6fe6-4eab-be1b-b8e3ce083d67",
-      "extended_info_list": [
-        {
-          "frame_ctrl": 248,
-          "payload": "payload2",
-          "sequence_ctrl": 42
-        },
-        {
-          "frame_ctrl": 248,
-          "payload": "payload2",
-          "sequence_ctrl": 42
-        }
-      ]
+      "site_id": "27ea2f07-6fe6-4eab-be1b-b8e3ce083d67"
     },
     {
       "ap_id": "ac-23-16-ec-a7-0b",

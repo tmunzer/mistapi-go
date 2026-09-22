@@ -222,12 +222,32 @@ func main() {
         EnableUnii4:                     models.ToPointer(false),
         ExtraRoutes:                     map[string]models.ExtraRoute{
             "0.0.0.0/0": models.ExtraRoute{
-                Via:                  models.ToPointer(),
+                Discard:              models.ToPointer(false),
+                Metric:               models.NewOptional(models.ToPointer(90)),
+                NextQualified:        map[string]models.ExtraRouteNextQualifiedProperties{
+                    "key0": nil,
+                    "key1": models.ExtraRouteNextQualifiedProperties{
+                    },
+                    "key2": models.ExtraRouteNextQualifiedProperties{
+                    },
+                },
+                NoResolve:            models.ToPointer(false),
+                Preference:           models.NewOptional(models.ToPointer(86)),
+                Via:                  models.ToPointer(models.NextHopViaContainer.FromString("192.168.1.10")),
             },
         },
         ExtraRoutes6:                    map[string]models.ExtraRoute6{
             "2a02:1234:420a:10c9::/64": models.ExtraRoute6{
-                Via:                  models.ToPointer(),
+                Discard:              models.ToPointer(false),
+                Metric:               models.NewOptional(models.ToPointer(110)),
+                NextQualified:        map[string]models.ExtraRoute6NextQualifiedProperties{
+                    "key0": nil,
+                    "key1": models.ExtraRoute6NextQualifiedProperties{
+                    },
+                },
+                NoResolve:            models.ToPointer(false),
+                Preference:           models.NewOptional(models.ToPointer(66)),
+                Via:                  models.ToPointer(models.NextHopViaContainer.FromString("2a02:1234:200a::100")),
             },
         },
         GatewayUpdownThreshold:          models.NewOptional(models.ToPointer(0)),
@@ -247,14 +267,30 @@ func main() {
         },
         VarsAnnotations:                 map[string]models.VarsAnnotation{
             "MXTUNNEL_GUEST": models.VarsAnnotation{
+                Note:                 models.ToPointer("note0"),
                 Type:                 models.ToPointer("mxtunnel_id"),
             },
             "RADIUS_IP1": models.VarsAnnotation{
                 Note:                 models.ToPointer("RADIUS server IP address for US East Campus"),
+                Type:                 models.ToPointer("type6"),
             },
         },
         VrfInstances:                    map[string]models.SwitchVrfInstance{
             "guest": models.SwitchVrfInstance{
+                AggregateRoutes:         map[string]models.AggregateRoute{
+                    "key0": nil,
+                    "key1": models.AggregateRoute{
+                    },
+                    "key2": models.AggregateRoute{
+                    },
+                },
+                AggregateRoutes6:        map[string]models.AggregateRoute{
+                    "key0": nil,
+                    "key1": models.AggregateRoute{
+                    },
+                },
+                EvpnAutoLoopbackSubnet:  models.ToPointer("evpn_auto_loopback_subnet8"),
+                EvpnAutoLoopbackSubnet6: models.ToPointer("evpn_auto_loopback_subnet62"),
                 ExtraRoutes:             map[string]models.VrfExtraRoute{
                     "0.0.0.0/0": models.VrfExtraRoute{
                         Via:                  models.ToPointer("192.168.31.1"),
@@ -297,11 +333,6 @@ func main() {
         ZdxOrgId:                        models.ToPointer("123456"),
         AdditionalProperties:            map[string]models.AccountOauthInfoAccount{
             "exampleAdditionalProperty": models.AccountOauthInfoAccount{
-                AccountId:            models.ToPointer("account_id8"),
-                AutoProbeSubnet:      models.ToPointer("auto_probe_subnet4"),
-                ClientId:             models.ToPointer("client_id8"),
-                CloudName:            models.ToPointer("cloud_name8"),
-                Company:              models.ToPointer("company6"),
             },
         },
     }

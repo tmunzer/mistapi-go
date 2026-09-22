@@ -13,8 +13,8 @@ type SwitchNetworkMulticast struct {
 	// Whether to enable IGMP snooping on this VLAN
 	Enabled *bool `json:"enabled,omitempty"`
 	// IGMP version. '2' (default, ASM/IGMPv2) / '3' (SSM/IGMPv3)
-	IgmpVersion          *IgmpVersionEnum       `json:"igmp_version,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"_"`
+	IgmpVersion          *SwitchNetworkMulticastIgmpVersionEnum `json:"igmp_version,omitempty"`
+	AdditionalProperties map[string]interface{}                 `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SwitchNetworkMulticast,
@@ -71,6 +71,6 @@ func (s *SwitchNetworkMulticast) UnmarshalJSON(input []byte) error {
 
 // tempSwitchNetworkMulticast is a temporary struct used for validating the fields of SwitchNetworkMulticast.
 type tempSwitchNetworkMulticast struct {
-	Enabled     *bool            `json:"enabled,omitempty"`
-	IgmpVersion *IgmpVersionEnum `json:"igmp_version,omitempty"`
+	Enabled     *bool                                  `json:"enabled,omitempty"`
+	IgmpVersion *SwitchNetworkMulticastIgmpVersionEnum `json:"igmp_version,omitempty"`
 }

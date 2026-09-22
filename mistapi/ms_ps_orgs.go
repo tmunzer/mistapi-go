@@ -139,7 +139,7 @@ func (m *MSPsOrgs) ManageMspOrgs(
 // SearchMspOrgs takes context, mspId, name, orgId, subInsufficient, trialEnabled, usageTypes, limit, sort, start, end, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseOrgSearch data and
 // an error if there was an issue with the request or response.
-// Search organizations under this MSP using organization identifiers, names, subscription state, trial state, usage types, and time-based filters.
+// Search organizations under this MSP using organization identifiers, names, subscription state, trial state, usage types, and time-based filters. Only organizations with at least one claimed device are returned.
 func (m *MSPsOrgs) SearchMspOrgs(
 	ctx context.Context,
 	mspId uuid.UUID,

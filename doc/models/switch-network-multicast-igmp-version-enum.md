@@ -1,11 +1,11 @@
 
-# Igmp Version Enum
+# Switch Network Multicast Igmp Version Enum
 
 IGMP version. '2' (default, ASM/IGMPv2) / '3' (SSM/IGMPv3)
 
 ## Enumeration
 
-`IgmpVersionEnum`
+`SwitchNetworkMulticastIgmpVersionEnum`
 
 ## Fields
 
@@ -24,7 +24,7 @@ import (
 )
 
 func main() {
-    igmpVersion := models.IgmpVersionEnum_ENUM2
+    switchNetworkMulticastIgmpVersion := models.SwitchNetworkMulticastIgmpVersionEnum_ENUM2
 
 }
 ```

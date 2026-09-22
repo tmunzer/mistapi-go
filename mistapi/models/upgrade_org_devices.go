@@ -70,8 +70,8 @@ type UpgradeOrgDevices struct {
 	StartDatetime *string `json:"start_datetime,omitempty"`
 	// Firmware download start time in epoch seconds, default is now; deprecated, use `start_datetime` instead
 	StartTime *int `json:"start_time,omitempty"` // Deprecated
-	// enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)
-	Strategy *UpgradeDeviceStrategyEnum `json:"strategy,omitempty"`
+	// Deprecated; use `download_strategy` and `reboot_strategy` instead. `big_bang` (upgrade all at once, no orchestration), `serial` (one at a time), `canary`, or `rrm` (AP only); default is big_bang
+	Strategy *UpgradeDeviceStrategyDeprecatedEnum `json:"strategy,omitempty"` // Deprecated
 	// Deprecated; use `versions` instead. Specific firmware version, `suggested`, or `alpha`; default is latest
 	Version *string `json:"version,omitempty"` // Deprecated
 	// Target firmware version entries for an organization upgrade request
@@ -252,7 +252,7 @@ type tempUpgradeOrgDevices struct {
 	Snapshot                *bool                                  `json:"snapshot,omitempty"`
 	StartDatetime           *string                                `json:"start_datetime,omitempty"`
 	StartTime               *int                                   `json:"start_time,omitempty"`
-	Strategy                *UpgradeDeviceStrategyEnum             `json:"strategy,omitempty"`
+	Strategy                *UpgradeDeviceStrategyDeprecatedEnum   `json:"strategy,omitempty"`
 	Version                 *string                                `json:"version,omitempty"`
 	Versions                []UpgradeOrgDevicesVersion             `json:"versions,omitempty"`
 }

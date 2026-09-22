@@ -20,7 +20,7 @@ NAC portal configuration for 802.1X onboarding, guest access, or Marvis client c
 | `CertExpireTime` | `*int` | Optional | Validity duration for portal-issued client certificates, in days |
 | `EapType` | [`*models.NacPortalEapTypeEnum`](../../doc/models/nac-portal-eap-type-enum.md) | Optional | EAP mode used when onboarding wireless clients through the NAC portal. enum: `wpa2`, `wpa3`<br><br>**Default**: `"wpa2"` |
 | `EnableLocation` | `*bool` | Optional | Whether location data collection is enabled for devices onboarding through this NAC portal<br><br>**Default**: `false` |
-| `EnableTelemetry` | `*bool` | Optional | Model, version, fingering, events (connecting, disconnect, roaming), which ap |
+| `EnableTelemetry` | `*bool` | Optional | Optional, model, version, fingerprinting, events (connecting, disconnect, roaming), which ap, default is false |
 | `ExpiryNotificationTime` | `*int` | Optional | Number of days before certificate expiration to start sending reminder notifications |
 | `Id` | `*uuid.UUID` | Optional, Read-only | Unique ID of the object instance in the Mist Organization |
 | `Name` | `*string` | Optional | Human-readable name of the NAC portal |

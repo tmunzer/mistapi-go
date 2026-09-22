@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2607.1.0**
+> Version: **2609.1.0**
 > 
-> Date: **July 22, 2026**
+> Date: **September 7, 2026**
 
 <div class="notification"> NOTE:<br>Some important API changes will be introduced. Please make sure to read the <a href="https://www.juniper.net/documentation/us/en/software/mist/api/http/guides/important-api-changes">announcements</a> </div>
 
@@ -222,6 +222,7 @@ This API uses the following authentication schemes.
 * [Orgs Mx Edges](doc/controllers/orgs-mx-edges.md)
 * [Orgs Mx Tunnels](doc/controllers/orgs-mx-tunnels.md)
 * [Orgs NACCRL](doc/controllers/orgs-naccrl.md)
+* [Orgs NAC Fingerprints](doc/controllers/orgs-nac-fingerprints.md)
 * [Orgs NACIDP](doc/controllers/orgs-nacidp.md)
 * [Orgs NAC Portals](doc/controllers/orgs-nac-portals.md)
 * [Orgs NAC Rules](doc/controllers/orgs-nac-rules.md)
@@ -238,6 +239,7 @@ This API uses the following authentication schemes.
 * [Orgs SDK Templates](doc/controllers/orgs-sdk-templates.md)
 * [Orgs Sec Intel Profiles](doc/controllers/orgs-sec-intel-profiles.md)
 * [Orgs Security Policies](doc/controllers/orgs-security-policies.md)
+* [Orgs Security Zones](doc/controllers/orgs-security-zones.md)
 * [Orgs Service Policies](doc/controllers/orgs-service-policies.md)
 * [Orgs Services](doc/controllers/orgs-services.md)
 * [Orgs Setting](doc/controllers/orgs-setting.md)
@@ -313,7 +315,6 @@ This API uses the following authentication schemes.
 * [Sites Map Stacks](doc/controllers/sites-map-stacks.md)
 * [Sites Marvis Configs](doc/controllers/sites-marvis-configs.md)
 * [Sites Mx Edges](doc/controllers/sites-mx-edges.md)
-* [Sites NAC Fingerprints](doc/controllers/sites-nac-fingerprints.md)
 * [Sites Networks](doc/controllers/sites-networks.md)
 * [Sites Network Templates](doc/controllers/sites-network-templates.md)
 * [Sites Psks](doc/controllers/sites-psks.md)

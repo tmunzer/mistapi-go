@@ -95,8 +95,8 @@ type JsInventoryItem struct {
 	WarrantyStart *string `json:"warranty_start,omitempty"`
 	// Timestamp when warranty needs to be renewed
 	WarrantyTime *int `json:"warranty_time,omitempty"`
-	// Warranty type label for Juniper Support Insight (JSI) devices. enum: `Standard Hardware Warranty`, `Enhanced Hardware Warranty`, `Dead On Arrival Warranty`, `Limited Lifetime Warranty`, `Software Warranty`, `Limited Lifetime Warranty for WLA`, `Warranty-JCPO EOL (DOA Not Included)`, `MIST Enhanced Hardware Warranty`, `MIST Standard Warranty`, `Determine Lifetime warranty`
-	WarrantyType         *JsiWarrantyTypeEnum   `json:"warranty_type,omitempty"`
+	// Warranty category reported for the device
+	WarrantyType         *string                `json:"warranty_type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -360,5 +360,5 @@ type tempJsInventoryItem struct {
 	WarrantyEnd           *string                    `json:"warranty_end,omitempty"`
 	WarrantyStart         *string                    `json:"warranty_start,omitempty"`
 	WarrantyTime          *int                       `json:"warranty_time,omitempty"`
-	WarrantyType          *JsiWarrantyTypeEnum       `json:"warranty_type,omitempty"`
+	WarrantyType          *string                    `json:"warranty_type,omitempty"`
 }

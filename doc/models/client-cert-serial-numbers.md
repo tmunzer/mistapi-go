@@ -30,9 +30,6 @@ func main() {
         SerialNumbers:        []string{
             "13 00 13 03 23 EE D5 84 01",
         },
-        AdditionalProperties: map[string]interface{}{
-            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
-        },
     }
 
 }

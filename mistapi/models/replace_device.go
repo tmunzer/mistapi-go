@@ -5,6 +5,7 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/google/uuid"
 )
 
 // ReplaceDevice represents a ReplaceDevice struct.
@@ -17,7 +18,7 @@ type ReplaceDevice struct {
 	// Device MAC address being replaced
 	Mac *string `json:"mac,omitempty"`
 	// Site containing the device being replaced
-	SiteId *string `json:"site_id,omitempty"`
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// Ethernet port configuration for tunnel termination interfaces
 	TuntermPortConfig    *TuntermPortConfig     `json:"tunterm_port_config,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -92,6 +93,6 @@ type tempReplaceDevice struct {
 	Discard           []string           `json:"discard,omitempty"`
 	InventoryMac      *string            `json:"inventory_mac,omitempty"`
 	Mac               *string            `json:"mac,omitempty"`
-	SiteId            *string            `json:"site_id,omitempty"`
+	SiteId            *uuid.UUID         `json:"site_id,omitempty"`
 	TuntermPortConfig *TuntermPortConfig `json:"tunterm_port_config,omitempty"`
 }

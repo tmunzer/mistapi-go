@@ -44,7 +44,6 @@ func main() {
         ApplyTags:            []string{
             "c049dfcd-0c73-5014-1c64-062e9903f1e5",
         },
-        CreatedTime:          models.ToPointer(float64(2.12)),
         DryRun:               models.ToPointer(false),
         Enabled:              models.ToPointer(true),
         GuestAuthState:       models.ToPointer(models.NacRuleGuestAuthStateEnum_AUTHORIZED),

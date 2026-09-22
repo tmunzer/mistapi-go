@@ -12,7 +12,7 @@ Feedback submission for a Marvis config action
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Note` | `*string` | Optional | Free-text note about the feedback |
-| `Type` | [`*models.TypeEnum`](../../doc/models/type-enum.md) | Optional | Feedback type. enum: `invalid` |
+| `Type` | [`*models.MarvisConfigFeedbackTypeEnum`](../../doc/models/marvis-config-feedback-type-enum.md) | Optional | Feedback type. enum: `invalid` |
 
 ## Example
 
@@ -26,7 +26,7 @@ import (
 func main() {
     marvisConfigFeedback := models.MarvisConfigFeedback{
         Note:                 models.ToPointer("note2"),
-        Type:                 models.ToPointer(models.TypeEnum_INVALID),
+        Type:                 models.ToPointer(models.MarvisConfigFeedbackTypeEnum_INVALID),
     }
 
 }

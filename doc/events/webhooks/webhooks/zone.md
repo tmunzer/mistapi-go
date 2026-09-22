@@ -27,12 +27,10 @@ This event's request payload is of type [*models.WebhookZone](../../../../doc/mo
       "map_id": "09d2b626-2e4e-45ef-a3c4-e6aeb6c83db1",
       "name": "string",
       "site_id": "72771e6a-6f5e-4de4-a5b9-1266c4197811",
-      "timestamp": 0.0,
+      "timestamp": 0,
       "trigger": "enter",
       "type": "wifi",
-      "zone_id": "d38f8e76-40db-4144-8cbb-1266c4197811",
-      "asset_id": "00001e56-0000-0000-0000-000000000000",
-      "mac": "mac4"
+      "zone_id": "d38f8e76-40db-4144-8cbb-1266c4197811"
     }
   ],
   "topic": "zone"

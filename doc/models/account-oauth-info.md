@@ -30,7 +30,6 @@ func main() {
             models.AccountOauthInfoAccount{
                 AccountId:            models.ToPointer("iojzXIJWEuiD73ZvydOfg"),
                 AutoProbeSubnet:      models.ToPointer("11.0.0.0/8"),
-                ClientId:             models.ToPointer("client_id2"),
                 CloudName:            models.ToPointer("Tapi.sase.paloaltonetworks.com"),
                 Company:              models.ToPointer("Test Company1 Ltd"),
                 EnableProbe:          models.ToPointer(false),
@@ -59,7 +58,6 @@ func main() {
                 ZdxOrgId:             models.ToPointer("123456"),
             },
         },
-        AuthorizationUrl:     models.ToPointer("authorization_url0"),
         Linked:               false,
     }
 

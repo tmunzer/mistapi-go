@@ -47,10 +47,6 @@ import (
 
 func main() {
     guestOrg := models.GuestOrg{
-        AccessCodeEmail:        models.ToPointer("access_code_email0"),
-        AllowWlanIdRoam:        models.ToPointer(false),
-        ApMac:                  models.ToPointer("ap_mac0"),
-        AuthMethod:             models.ToPointer("auth_method2"),
         Authorized:             models.ToPointer(true),
         AuthorizedExpiringTime: models.ToPointer(float64(1480704955)),
         AuthorizedTime:         models.ToPointer(float64(1480704355)),

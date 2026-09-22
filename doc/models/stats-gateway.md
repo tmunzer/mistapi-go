@@ -103,7 +103,6 @@ func main() {
             MaxEntriesSupported:  models.ToPointer(8),
         }),
         AutoUpgradeStat:      models.ToPointer(models.StatsApAutoUpgrade{
-            Lastcheck:            models.NewOptional(models.ToPointer(int64(28))),
         }),
         BgpPeers:             []models.BgpPeer{
             models.BgpPeer{

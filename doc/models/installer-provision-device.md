@@ -40,7 +40,6 @@ import (
 func main() {
     installerProvisionDevice := models.InstallerProvisionDevice{
         DeviceprofileName:    models.ToPointer("SJ1"),
-        ForSite:              models.ToPointer(false),
         Height:               models.ToPointer(float64(2.7)),
         MapId:                models.ToPointer(uuid.MustParse("845a23bf-bed9-e43c-4c86-6fa474be7ae5")),
         Name:                 "SJ1-AP1",

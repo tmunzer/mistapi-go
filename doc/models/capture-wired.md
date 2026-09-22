@@ -16,7 +16,7 @@ Initiate a Wired Packet Capture
 | `ApMac` | `models.Optional[string]` | Optional | AP MAC address used to target the wired packet capture |
 | `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br><br>**Default**: `600`<br><br>**Constraints**: `>= 60`, `<= 86400` |
 | `Format` | [`*models.CaptureWiredFormatEnum`](../../doc/models/capture-wired-format-enum.md) | Optional | pcap format. enum: `pcap`, `stream`<br><br>**Default**: `"pcap"` |
-| `MaxPktLen` | `models.Optional[int]` | Optional | Maximum bytes captured from each packet, or null to use the default<br><br>**Default**: `512`<br><br>**Constraints**: `>= 64`, `<= 2048` |
+| `MaxPktLen` | `models.Optional[int]` | Optional | Maximum bytes captured from each packet; default is 512, minimum is 64 and maximum is 1536. Null uses the default.<br><br>**Default**: `512`<br><br>**Constraints**: `>= 64`, `<= 1536` |
 | `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br><br>**Default**: `1024`<br><br>**Constraints**: `>= 0`, `<= 10000` |
 | `TcpdumpExpression` | `models.Optional[string]` | Optional | tcpdump filter expression applied to packet capture traffic |
 | `Type` | `string` | Required, Constant | Packet capture type discriminator for wired captures. enum: `wired`<br><br>**Value**: `"wired"` |

@@ -57,7 +57,6 @@ func main() {
     accountOauthInfoAccount := models.AccountOauthInfoAccount{
         AccountId:            models.ToPointer("iojzXIJWEuiD73ZvydOfg"),
         AutoProbeSubnet:      models.ToPointer("11.0.0.0/8"),
-        ClientId:             models.ToPointer("client_id8"),
         CloudName:            models.ToPointer("Tapi.sase.paloaltonetworks.com"),
         Company:              models.ToPointer("Test Company1 Ltd"),
         EnableProbe:          models.ToPointer(false),

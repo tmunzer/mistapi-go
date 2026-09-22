@@ -35,10 +35,10 @@ func main() {
         Results:              []models.BgpStats{
             models.BgpStats{
                 EvpnOverlay:          models.ToPointer(false),
+                FlapCount:            models.ToPointer(62),
                 ForOverlay:           models.ToPointer(false),
                 LocalAs:              models.ToPointer(models.BgpAsContainer.FromString("String3")),
                 Mac:                  models.ToPointer("mac0"),
-                Model:                models.ToPointer("model4"),
             },
         },
         Start:                models.ToPointer(float64(28.92)),

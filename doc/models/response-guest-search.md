@@ -35,9 +35,6 @@ func main() {
         Next:                 models.ToPointer("next0"),
         Results:              []models.Guest{
             models.Guest{
-                AccessCodeEmail:        models.ToPointer("access_code_email8"),
-                ApMac:                  models.ToPointer("ap_mac8"),
-                AuthMethod:             models.ToPointer("auth_method0"),
                 Authorized:             models.ToPointer(true),
                 AuthorizedExpiringTime: models.ToPointer(float64(1480704955)),
                 AuthorizedTime:         models.ToPointer(float64(1480704355)),

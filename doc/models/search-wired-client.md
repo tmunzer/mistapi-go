@@ -37,25 +37,6 @@ func main() {
             models.WiredClientResponse{
                 AuthMethod:                models.ToPointer("mac_auth"),
                 AuthState:                 models.ToPointer("authenticated"),
-                DeviceMac:                 []string{
-                    "device_mac7",
-                },
-                DeviceMacPort:             []models.WiredClientResponseDeviceMacPortItem{
-                    models.WiredClientResponseDeviceMacPortItem{
-                        DeviceMac:            models.ToPointer("device_mac8"),
-                        Ip:                   models.ToPointer("ip8"),
-                        PortId:               models.ToPointer("port_id4"),
-                        PortParent:           models.ToPointer("port_parent6"),
-                        Start:                models.ToPointer("start8"),
-                    },
-                    models.WiredClientResponseDeviceMacPortItem{
-                        DeviceMac:            models.ToPointer("device_mac8"),
-                        Ip:                   models.ToPointer("ip8"),
-                        PortId:               models.ToPointer("port_id4"),
-                        PortParent:           models.ToPointer("port_parent6"),
-                        Start:                models.ToPointer("start8"),
-                    },
-                },
                 DhcpClientIdentifier:      models.ToPointer("MAC address 00155df6d500"),
                 DhcpFqdn:                  models.ToPointer("ITS-VMMT0-D1N02.mgthub.local"),
                 DhcpHostname:              models.ToPointer("ITS-VMMT0-D1N02"),

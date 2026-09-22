@@ -29,10 +29,7 @@ This event's request payload is of type [*models.WebhookMxedgeEvents](../../../.
       "mxedge_name": "demo123",
       "org_id": "203d3d02-dbc0-4c1b-9f41-76896a3330f4",
       "timestamp": 1763546876.209649,
-      "type": "ME_CONFIG_CHANGED_BY_USER",
-      "device_id": "0000254a-0000-0000-0000-000000000000",
-      "device_type": "device_type0",
-      "from_version": "from_version2"
+      "type": "ME_CONFIG_CHANGED_BY_USER"
     },
     {
       "audit_id": "48efa5bf-d290-4e93-80ca-4dbf72f4187a",
@@ -41,10 +38,7 @@ This event's request payload is of type [*models.WebhookMxedgeEvents](../../../.
       "mxedge_name": "test123",
       "org_id": "203d3d02-dbc0-4c1b-9f41-76896a3330f4",
       "timestamp": 1763546876.417778,
-      "type": "ME_CONFIG_CHANGED_BY_USER",
-      "device_id": "0000254a-0000-0000-0000-000000000000",
-      "device_type": "device_type0",
-      "from_version": "from_version2"
+      "type": "ME_CONFIG_CHANGED_BY_USER"
     }
   ],
   "topic": "mxedge-events"

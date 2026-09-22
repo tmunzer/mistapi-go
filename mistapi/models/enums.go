@@ -274,7 +274,7 @@ const (
 )
 
 // ApPortConfigMacAuthProtocolEnum is a string enum.
-// if `enable_mac_auth`==`true`, allows user to select an authentication protocol. enum: `eap-md5`, `eap-peap`, `pap`
+// if `enable_mac_auth`==`true`, allows user to select an authentication protocol. When Mist NAC is enabled, this is forced to `pap`, unless the Org `mist_nac.enable_eap_md5_for_mab` setting is enabled: in that case `eap-md5` is kept and the port still performs MAB (mac-radius) but sends the request as EAP-MD5. enum: `eap-md5`, `eap-peap`, `pap`
 type ApPortConfigMacAuthProtocolEnum string
 
 const (
@@ -349,6 +349,15 @@ const (
 	AutoPlacementInfoStatusEnum_ENUMERROR  AutoPlacementInfoStatusEnum = "error"
 	AutoPlacementInfoStatusEnum_INPROGRESS AutoPlacementInfoStatusEnum = "inprogress"
 	AutoPlacementInfoStatusEnum_PENDING    AutoPlacementInfoStatusEnum = "pending"
+)
+
+// AutoplacementLocalizationSelectorForEnum is a string enum.
+// The selector to choose auto placement or auto orientation. enum: `orientation`, `placement`
+type AutoplacementLocalizationSelectorForEnum string
+
+const (
+	AutoplacementLocalizationSelectorForEnum_ORIENTATION AutoplacementLocalizationSelectorForEnum = "orientation"
+	AutoplacementLocalizationSelectorForEnum_PLACEMENT   AutoplacementLocalizationSelectorForEnum = "placement"
 )
 
 // AvprofileFallbackActionEnum is a string enum.
@@ -759,6 +768,15 @@ const (
 	ConstInsightMetricsPropertyScopeEnum_ZONE        ConstInsightMetricsPropertyScopeEnum = "zone"
 )
 
+// ConstLicenseTypeEnforcementLevelEnum is a string enum.
+// Level at which the license is enforced. enum: `org`, `site`.
+type ConstLicenseTypeEnforcementLevelEnum string
+
+const (
+	ConstLicenseTypeEnforcementLevelEnum_ORG  ConstLicenseTypeEnforcementLevelEnum = "org"
+	ConstLicenseTypeEnforcementLevelEnum_SITE ConstLicenseTypeEnforcementLevelEnum = "site"
+)
+
 // CountOrgDevicesMxtunnelStatusEnum is a string enum.
 // Mist Tunnel status value used when counting organization devices. enum: `down`, `up`
 type CountOrgDevicesMxtunnelStatusEnum string
@@ -1142,6 +1160,26 @@ const (
 	FingerprintsCountDistinctEnum_OSTYPE FingerprintsCountDistinctEnum = "os_type"
 )
 
+// FlowCaptureDirectionEnum is a string enum.
+// Direction of the captured flow. enum: `egress`, `ingress`
+type FlowCaptureDirectionEnum string
+
+const (
+	FlowCaptureDirectionEnum_EGRESS  FlowCaptureDirectionEnum = "egress"
+	FlowCaptureDirectionEnum_INGRESS FlowCaptureDirectionEnum = "ingress"
+)
+
+// FlowCaptureProtocolEnum is a string enum.
+// Flow capture protocol filter. enum: `tcp`, `udp`, `icmp`, `icmp6`
+type FlowCaptureProtocolEnum string
+
+const (
+	FlowCaptureProtocolEnum_TCP   FlowCaptureProtocolEnum = "tcp"
+	FlowCaptureProtocolEnum_UDP   FlowCaptureProtocolEnum = "udp"
+	FlowCaptureProtocolEnum_ICMP  FlowCaptureProtocolEnum = "icmp"
+	FlowCaptureProtocolEnum_ICMP6 FlowCaptureProtocolEnum = "icmp6"
+)
+
 // FlowRecordDirectionEnum is a string enum.
 // Flow direction. enum: `egress`, `ingress`
 type FlowRecordDirectionEnum string
@@ -1521,23 +1559,6 @@ const (
 	JsiSirtSeverityEnum_MEDIUM   JsiSirtSeverityEnum = "Medium"
 )
 
-// JsiWarrantyTypeEnum is a string enum.
-// Warranty type label for Juniper Support Insight (JSI) devices. enum: `Standard Hardware Warranty`, `Enhanced Hardware Warranty`, `Dead On Arrival Warranty`, `Limited Lifetime Warranty`, `Software Warranty`, `Limited Lifetime Warranty for WLA`, `Warranty-JCPO EOL (DOA Not Included)`, `MIST Enhanced Hardware Warranty`, `MIST Standard Warranty`, `Determine Lifetime warranty`
-type JsiWarrantyTypeEnum string
-
-const (
-	JsiWarrantyTypeEnum_ENUMSTANDARDHARDWAREWARRANTY      JsiWarrantyTypeEnum = "Standard Hardware Warranty"
-	JsiWarrantyTypeEnum_ENUMENHANCEDHARDWAREWARRANTY      JsiWarrantyTypeEnum = "Enhanced Hardware Warranty"
-	JsiWarrantyTypeEnum_ENUMDEADONARRIVALWARRANTY         JsiWarrantyTypeEnum = "Dead On Arrival Warranty"
-	JsiWarrantyTypeEnum_ENUMLIMITEDLIFETIMEWARRANTY       JsiWarrantyTypeEnum = "Limited Lifetime Warranty"
-	JsiWarrantyTypeEnum_ENUMSOFTWAREWARRANTY              JsiWarrantyTypeEnum = "Software Warranty"
-	JsiWarrantyTypeEnum_ENUMLIMITEDLIFETIMEWARRANTYFORWLA JsiWarrantyTypeEnum = "Limited Lifetime Warranty for WLA"
-	JsiWarrantyTypeEnum_ENUMWARRANTYJCPOEOLDOANOTINCLUDED JsiWarrantyTypeEnum = "Warranty-JCPO EOL (DOA Not Included)"
-	JsiWarrantyTypeEnum_ENUMMISTENHANCEDHARDWAREWARRANTY  JsiWarrantyTypeEnum = "MIST Enhanced Hardware Warranty"
-	JsiWarrantyTypeEnum_ENUMMISTSTANDARDWARRANTY          JsiWarrantyTypeEnum = "MIST Standard Warranty"
-	JsiWarrantyTypeEnum_ENUMDETERMINELIFETIMEWARRANTY     JsiWarrantyTypeEnum = "Determine Lifetime warranty"
-)
-
 // JunosPortConfigDuplexEnum is a string enum.
 // enum: `auto`, `full`, `half`
 type JunosPortConfigDuplexEnum string
@@ -1662,6 +1683,14 @@ const (
 	MapViewEnum_ROADMAP   MapViewEnum = "roadmap"
 	MapViewEnum_SATELLITE MapViewEnum = "satellite"
 	MapViewEnum_TERRAIN   MapViewEnum = "terrain"
+)
+
+// MarvisConfigFeedbackTypeEnum is a string enum.
+// Feedback type. enum: `invalid`
+type MarvisConfigFeedbackTypeEnum string
+
+const (
+	MarvisConfigFeedbackTypeEnum_INVALID MarvisConfigFeedbackTypeEnum = "invalid"
 )
 
 // MfaSecretTypeEnum is a string enum.
@@ -2364,6 +2393,15 @@ const (
 	OrgPskPortalLogsCountDistinctEnum_USERID      OrgPskPortalLogsCountDistinctEnum = "user_id"
 )
 
+// OrgScepEventsSearchTypeEnum is a string enum.
+// enum: `failure`, `success`
+type OrgScepEventsSearchTypeEnum string
+
+const (
+	OrgScepEventsSearchTypeEnum_FAILURE OrgScepEventsSearchTypeEnum = "failure"
+	OrgScepEventsSearchTypeEnum_SUCCESS OrgScepEventsSearchTypeEnum = "success"
+)
+
 // OrgSettingAutoDeviceNamingRuleSrcEnum is a string enum.
 // Device attribute used to generate the name. enum: `lldp_port_desc`, `mac`
 type OrgSettingAutoDeviceNamingRuleSrcEnum string
@@ -2541,6 +2579,16 @@ type OrgUiSettingsPurposeEnum string
 
 const (
 	OrgUiSettingsPurposeEnum_MARVISDASHBOARD OrgUiSettingsPurposeEnum = "marvisdashboard"
+)
+
+// OrgVarsCountDistinctEnum is a string enum.
+// enum: `site_id`, `src`, `var`
+type OrgVarsCountDistinctEnum string
+
+const (
+	OrgVarsCountDistinctEnum_SITEID  OrgVarsCountDistinctEnum = "site_id"
+	OrgVarsCountDistinctEnum_SRC     OrgVarsCountDistinctEnum = "src"
+	OrgVarsCountDistinctEnum_ENUMVAR OrgVarsCountDistinctEnum = "var"
 )
 
 // OrgWanClientsCountDistinctEnum is a string enum.
@@ -3086,6 +3134,15 @@ const (
 	ScanDataItemBandEnum_ENUM5  ScanDataItemBandEnum = "5"
 )
 
+// ScepEventTypeEnum is a string enum.
+// enum: `SCEP_PKI_OPERATION_FAILURE`, `SCEP_PKI_OPERATION_SUCCESS`
+type ScepEventTypeEnum string
+
+const (
+	ScepEventTypeEnum_SCEPPKIOPERATIONFAILURE ScepEventTypeEnum = "SCEP_PKI_OPERATION_FAILURE"
+	ScepEventTypeEnum_SCEPPKIOPERATIONSUCCESS ScepEventTypeEnum = "SCEP_PKI_OPERATION_SUCCESS"
+)
+
 // SearchOrgDevicesMxtunnelStatusEnum is a string enum.
 // Mist Tunnel status filter for organization device search. enum: `down`, `up`
 type SearchOrgDevicesMxtunnelStatusEnum string
@@ -3541,6 +3598,16 @@ const (
 	SystemDefinedPortUsagesEnum_AP     SystemDefinedPortUsagesEnum = "ap"
 	SystemDefinedPortUsagesEnum_IOT    SystemDefinedPortUsagesEnum = "iot"
 	SystemDefinedPortUsagesEnum_UPLINK SystemDefinedPortUsagesEnum = "uplink"
+)
+
+// SiteSettingMistNacUserRoleSourceEnum is a string enum.
+// Source of the Mist NAC user role sent to firewall gateways. enum: `idp_role`, `radius_group`, `none`
+type SiteSettingMistNacUserRoleSourceEnum string
+
+const (
+	SiteSettingMistNacUserRoleSourceEnum_IDPROLE     SiteSettingMistNacUserRoleSourceEnum = "idp_role"
+	SiteSettingMistNacUserRoleSourceEnum_RADIUSGROUP SiteSettingMistNacUserRoleSourceEnum = "radius_group"
+	SiteSettingMistNacUserRoleSourceEnum_NONE        SiteSettingMistNacUserRoleSourceEnum = "none"
 )
 
 // SiteSkyAtpEventsCountDistinctEnum is a string enum.
@@ -4202,6 +4269,15 @@ const (
 	SwitchMetricTypeEnum_ACTIVEPORTSSUMMARY SwitchMetricTypeEnum = "active_ports_summary"
 )
 
+// SwitchNetworkMulticastIgmpVersionEnum is a string enum.
+// IGMP version. '2' (default, ASM/IGMPv2) / '3' (SSM/IGMPv3)
+type SwitchNetworkMulticastIgmpVersionEnum string
+
+const (
+	SwitchNetworkMulticastIgmpVersionEnum_ENUM2 SwitchNetworkMulticastIgmpVersionEnum = "2"
+	SwitchNetworkMulticastIgmpVersionEnum_ENUM3 SwitchNetworkMulticastIgmpVersionEnum = "3"
+)
+
 // SwitchPortLocalUsageDot1xEnum is a string enum.
 // if dot1x is desired, set to dot1x. enum: `dot1x`
 type SwitchPortLocalUsageDot1xEnum string
@@ -4221,7 +4297,7 @@ const (
 )
 
 // SwitchPortLocalUsageMacAuthProtocolEnum is a string enum.
-// Only if `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`
+// Only if `enable_mac_auth` ==`true`. When Mist NAC is enabled, this is forced to `pap`, unless the Org `mist_nac.enable_eap_md5_for_mab` setting is enabled: in that case `eap-md5` is kept and the port still performs MAB (mac-radius) but sends the request as EAP-MD5. enum: `eap-md5`, `eap-peap`, `pap`
 type SwitchPortLocalUsageMacAuthProtocolEnum string
 
 const (
@@ -4296,7 +4372,7 @@ const (
 )
 
 // SwitchPortUsageMacAuthProtocolEnum is a string enum.
-// Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`
+// Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. When Mist NAC is enabled, this is forced to `pap`, unless the Org `mist_nac.enable_eap_md5_for_mab` setting is enabled: in that case `eap-md5` is kept and the port still performs MAB (mac-radius) but sends the request as EAP-MD5. enum: `eap-md5`, `eap-peap`, `pap`
 type SwitchPortUsageMacAuthProtocolEnum string
 
 const (
@@ -4677,6 +4753,17 @@ const (
 	UpgradeDeviceStrategyEnum_CANARY  UpgradeDeviceStrategyEnum = "canary"
 	UpgradeDeviceStrategyEnum_RRM     UpgradeDeviceStrategyEnum = "rrm"
 	UpgradeDeviceStrategyEnum_SERIAL  UpgradeDeviceStrategyEnum = "serial"
+)
+
+// UpgradeDeviceStrategyDeprecatedEnum is a string enum.
+// Deprecated; use `download_strategy` and `reboot_strategy` instead. `big_bang` (upgrade all at once, no orchestration), `serial` (one at a time), `canary`, or `rrm` (AP only); default is big_bang
+type UpgradeDeviceStrategyDeprecatedEnum string
+
+const (
+	UpgradeDeviceStrategyDeprecatedEnum_BIGBANG UpgradeDeviceStrategyDeprecatedEnum = "big_bang"
+	UpgradeDeviceStrategyDeprecatedEnum_CANARY  UpgradeDeviceStrategyDeprecatedEnum = "canary"
+	UpgradeDeviceStrategyDeprecatedEnum_RRM     UpgradeDeviceStrategyDeprecatedEnum = "rrm"
+	UpgradeDeviceStrategyDeprecatedEnum_SERIAL  UpgradeDeviceStrategyDeprecatedEnum = "serial"
 )
 
 // UpgradeInfoStatusEnum is a string enum.
@@ -5584,30 +5671,4 @@ type ZoneTypeEnum string
 const (
 	ZoneTypeEnum_RSSIZONES ZoneTypeEnum = "rssizones"
 	ZoneTypeEnum_ZONES     ZoneTypeEnum = "zones"
-)
-
-// EnforcementLevelEnum is a string enum.
-// Level at which the license is enforced
-type EnforcementLevelEnum string
-
-const (
-	EnforcementLevelEnum_ORG  EnforcementLevelEnum = "org"
-	EnforcementLevelEnum_SITE EnforcementLevelEnum = "site"
-)
-
-// IgmpVersionEnum is a string enum.
-// IGMP version. '2' (default, ASM/IGMPv2) / '3' (SSM/IGMPv3)
-type IgmpVersionEnum string
-
-const (
-	IgmpVersionEnum_ENUM2 IgmpVersionEnum = "2"
-	IgmpVersionEnum_ENUM3 IgmpVersionEnum = "3"
-)
-
-// TypeEnum is a string enum.
-// Feedback type. enum: `invalid`
-type TypeEnum string
-
-const (
-	TypeEnum_INVALID TypeEnum = "invalid"
 )

@@ -36,7 +36,7 @@ func main() {
         MapId:                uuid.MustParse("0000145e-0000-0000-0000-000000000000"),
         OccupancyLimit:       178,
         OrgId:                uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61"),
-        Timestamp:            float64(236.28),
+        Timestamp:            0.0,
         Type:                 models.WebhookOccupancyAlertTypeEnum_COMPLIANCEOK,
         ZoneId:               uuid.MustParse("00000c4a-0000-0000-0000-000000000000"),
         ZoneName:             "zone_name0",

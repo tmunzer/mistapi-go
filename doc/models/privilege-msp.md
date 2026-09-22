@@ -31,7 +31,6 @@ import (
 func main() {
     privilegeMsp := models.PrivilegeMsp{
         OrgId:                models.ToPointer(uuid.MustParse("0000230a-0000-0000-0000-000000000000")),
-        OrgName:              models.ToPointer("org_name4"),
         OrggroupId:           models.ToPointer(uuid.MustParse("00000014-0000-0000-0000-000000000000")),
         Role:                 models.PrivilegeMspRoleEnum_READ,
         Scope:                models.PrivilegeMspScopeEnum_ORG,

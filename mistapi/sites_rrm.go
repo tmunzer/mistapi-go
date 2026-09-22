@@ -23,7 +23,7 @@ func NewSitesRRM(baseController baseController) *SitesRRM {
 	return &sitesRRM
 }
 
-// GetSiteChannelScores takes context, siteId, band, start, end as parameters and
+// GetSiteChannelScores takes context, siteId, band, ap, start, end as parameters and
 // returns an models.ApiResponse with models.ResponseRrmChannelScores data and
 // an error if there was an issue with the request or response.
 // Get Site Channel Scores
@@ -31,6 +31,7 @@ func (s *SitesRRM) GetSiteChannelScores(
 	ctx context.Context,
 	siteId uuid.UUID,
 	band models.Dot11BandEnum,
+	ap *string,
 	start *string,
 	end *string) (
 	models.ApiResponse[models.ResponseRrmChannelScores],
@@ -54,6 +55,9 @@ func (s *SitesRRM) GetSiteChannelScores(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
+	if ap != nil {
+		req.QueryParam("ap", *ap)
+	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}

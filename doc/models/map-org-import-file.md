@@ -23,7 +23,6 @@ package main
 
 import (
     "mistapi/models"
-    "github.com/google/uuid"
 )
 
 func main() {
@@ -35,7 +34,6 @@ func main() {
             ImportAllFloorplans:  models.ToPointer(false),
             ImportHeight:         models.ToPointer(false),
             ImportOrientation:    models.ToPointer(false),
-            SiteId:               models.ToPointer(uuid.MustParse("00001f12-0000-0000-0000-000000000000")),
             VendorName:           models.MapOrgImportFileJsonVendorNameEnum_EKAHAU,
         }),
     }

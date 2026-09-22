@@ -35,10 +35,7 @@ func main() {
         Next:                 models.ToPointer("next4"),
         Results:              []models.StatsSwitchPort{
             models.StatsSwitchPort{
-                Active:               models.ToPointer(false),
                 AuthState:            models.ToPointer(models.PortAuthStateEnum_AUTHENTICATED),
-                Disabled:             models.ToPointer(false),
-                ForSite:              models.ToPointer(false),
                 FullDuplex:           models.ToPointer(true),
                 Mac:                  "5c4527a96580",
                 NeighborMac:          models.ToPointer("64d814353400"),

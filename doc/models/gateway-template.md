@@ -27,6 +27,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
 | `Id` | `*uuid.UUID` | Optional, Read-only | Unique ID of the object instance in the Mist Organization |
 | `IdpProfiles` | [`map[string]models.IdpProfile`](../../doc/models/idp-profile.md) | Optional | Property key is the profile name |
 | `IpConfigs` | [`map[string]models.GatewayIpConfigProperty`](../../doc/models/gateway-ip-config-property.md) | Optional | Property key is the network name |
+| `MnhaConfig` | [`*models.GatewayMnhaConfig`](../../doc/models/gateway-mnha-config.md) | Optional | Multi-Node High Availability (MNHA) configuration, supported on SRX devices only. When enabled, the device operates in MNHA mode instead of chassis-cluster mode. |
 | `ModifiedTime` | `*float64` | Optional, Read-only | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | Display name of the gateway template |
 | `Networks` | [`[]models.Network`](../../doc/models/network.md) | Optional | List of organization network definitions |
@@ -73,7 +74,6 @@ func main() {
                 Via:                    models.BgpConfigViaEnum_VPN,
             },
         },
-        CreatedTime:             models.ToPointer(float64(121.78)),
         DhcpdConfig:             models.ToPointer(models.DhcpdConfig{
             Enabled:              models.ToPointer(false),
             AdditionalProperties: map[string]models.DhcpdConfigProperty{

@@ -38,7 +38,6 @@ import (
 
 func main() {
     evpnTopology := models.EvpnTopology{
-        CreatedTime:          models.ToPointer(float64(145.14)),
         EvpnOptions:          models.ToPointer(models.EvpnOptions{
             AutoLoopbackSubnet:   models.ToPointer("auto_loopback_subnet4"),
             AutoLoopbackSubnet6:  models.ToPointer("auto_loopback_subnet60"),
@@ -47,7 +46,6 @@ func main() {
             CoreAsBorder:         models.ToPointer(false),
         }),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
-        ModifiedTime:         models.ToPointer(float64(189.82)),
         Name:                 models.ToPointer("CC"),
         OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
         SiteId:               models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
@@ -65,7 +63,7 @@ func main() {
                             IsolationVlanId:      models.ToPointer("isolation_vlan_id8"),
                             Multicast:            models.ToPointer(models.SwitchNetworkMulticast{
                                 Enabled:              models.ToPointer(false),
-                                IgmpVersion:          models.ToPointer(models.IgmpVersionEnum_ENUM2),
+                                IgmpVersion:          models.ToPointer(models.SwitchNetworkMulticastIgmpVersionEnum_ENUM2),
                             }),
                             VlanId:               models.VlanIdWithVariableContainer.FromString("String7"),
                         },
@@ -76,7 +74,7 @@ func main() {
                             IsolationVlanId:      models.ToPointer("isolation_vlan_id8"),
                             Multicast:            models.ToPointer(models.SwitchNetworkMulticast{
                                 Enabled:              models.ToPointer(false),
-                                IgmpVersion:          models.ToPointer(models.IgmpVersionEnum_ENUM2),
+                                IgmpVersion:          models.ToPointer(models.SwitchNetworkMulticastIgmpVersionEnum_ENUM2),
                             }),
                             VlanId:               models.VlanIdWithVariableContainer.FromString("String7"),
                         },
@@ -147,9 +145,6 @@ func main() {
                     },
                 }),
                 DeviceprofileId:      models.ToPointer(uuid.MustParse("6a1deab1-96df-4fa2-8455-d5253f943d06")),
-                DownlinkIps:          []string{
-                    "downlink_ips6",
-                },
                 Downlinks:            []string{
                     "5c5b35000005",
                     "5c5b35000006",

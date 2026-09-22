@@ -15,7 +15,7 @@ Paginated list of applications impacted by an SLE metric
 | `Classifier` | `*string` | Optional | Requested SLE classifier filter applied to the query |
 | `End` | `*int` | Optional | Last timestamp in the impacted applications window |
 | `Failure` | `*string` | Optional | Requested SLE failure filter applied to the query |
-| `Limit` | `*string` | Optional | Maximum number of impacted application rows returned per page |
+| `Limit` | `*int` | Optional | Maximum number of impacted application rows returned per page |
 | `Metric` | `*string` | Optional | SLE metric name used for the impacted applications query |
 | `Page` | `*int` | Optional | Current page number for impacted application results |
 | `Start` | `*int` | Optional | First timestamp in the impacted applications window |
@@ -51,7 +51,7 @@ func main() {
         Classifier:           models.ToPointer("classifier8"),
         End:                  models.ToPointer(114),
         Failure:              models.ToPointer("failure6"),
-        Limit:                models.ToPointer("limit2"),
+        Limit:                models.ToPointer(56),
     }
 
 }

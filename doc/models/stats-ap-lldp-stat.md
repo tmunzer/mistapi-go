@@ -42,9 +42,6 @@ import (
 
 func main() {
     statsApLldpStat := models.StatsApLldpStat{
-        ChassisId:            models.NewOptional(models.ToPointer("chassis_id8")),
-        LldpMedSupported:     models.NewOptional(models.ToPointer(false)),
-        MgmtAddr:             models.NewOptional(models.ToPointer("mgmt_addr6")),
         MgmtAddrs:            []string{
             "mgmt_addrs1",
         },

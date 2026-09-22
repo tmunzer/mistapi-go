@@ -30,21 +30,17 @@ import (
 
 func main() {
     responseOrgSearch := models.ResponseOrgSearch{
-        End:                  float64(20.8),
-        Limit:                138,
+        End:                  0.0,
+        Limit:                0,
         Next:                 models.ToPointer("next0"),
         Results:              []models.ResponseOrgSearchItem{
             models.ResponseOrgSearchItem{
                 MspId:                models.ToPointer(uuid.MustParse("b9d42c2e-88ee-41f8-b798-f009ce7fe909")),
-                Name:                 models.ToPointer("name6"),
-                NumAps:               models.ToPointer(140),
-                NumGateways:          models.ToPointer(112),
-                NumSites:             models.ToPointer(50),
                 OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
             },
         },
-        Start:                float64(232.86),
-        Total:                232,
+        Start:                0.0,
+        Total:                0,
     }
 
 }

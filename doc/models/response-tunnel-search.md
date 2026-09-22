@@ -34,52 +34,25 @@ func main() {
         Next:                 models.ToPointer("next8"),
         Results:              []models.ResponseTunnelSearchItem{
             models.ResponseTunnelSearchItemContainer.FromStatsMxtunnel(models.StatsMxtunnel{
-                Ap:                   models.ToPointer("ap4"),
-                ForSite:              models.ToPointer(false),
                 Fwupdate:             models.ToPointer(models.FwupdateStat{
-                    Progress:             models.NewOptional(models.ToPointer(100)),
-                    Status:               models.NewOptional(models.ToPointer(models.FwupdateStatStatusEnum_INPROGRESS)),
-                    StatusId:             models.NewOptional(models.ToPointer(70)),
-                    Timestamp:            models.ToPointer(float64(147.68)),
-                    WillRetry:            models.NewOptional(models.ToPointer(false)),
                 }),
-                LastSeen:             models.NewOptional(models.ToPointer(float64(249.6))),
-                Mtu:                  models.ToPointer(34),
-                RemoteIp:             "remote_ip4",
+                RemoteIp:             "",
                 AdditionalProperties: map[string]interface{}{
                     "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
                 },
             }),
             models.ResponseTunnelSearchItemContainer.FromStatsMxtunnel(models.StatsMxtunnel{
-                Ap:                   models.ToPointer("ap4"),
-                ForSite:              models.ToPointer(false),
                 Fwupdate:             models.ToPointer(models.FwupdateStat{
-                    Progress:             models.NewOptional(models.ToPointer(100)),
-                    Status:               models.NewOptional(models.ToPointer(models.FwupdateStatStatusEnum_INPROGRESS)),
-                    StatusId:             models.NewOptional(models.ToPointer(70)),
-                    Timestamp:            models.ToPointer(float64(147.68)),
-                    WillRetry:            models.NewOptional(models.ToPointer(false)),
                 }),
-                LastSeen:             models.NewOptional(models.ToPointer(float64(249.6))),
-                Mtu:                  models.ToPointer(34),
-                RemoteIp:             "remote_ip4",
+                RemoteIp:             "",
                 AdditionalProperties: map[string]interface{}{
                     "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
                 },
             }),
             models.ResponseTunnelSearchItemContainer.FromStatsMxtunnel(models.StatsMxtunnel{
-                Ap:                   models.ToPointer("ap4"),
-                ForSite:              models.ToPointer(false),
                 Fwupdate:             models.ToPointer(models.FwupdateStat{
-                    Progress:             models.NewOptional(models.ToPointer(100)),
-                    Status:               models.NewOptional(models.ToPointer(models.FwupdateStatStatusEnum_INPROGRESS)),
-                    StatusId:             models.NewOptional(models.ToPointer(70)),
-                    Timestamp:            models.ToPointer(float64(147.68)),
-                    WillRetry:            models.NewOptional(models.ToPointer(false)),
                 }),
-                LastSeen:             models.NewOptional(models.ToPointer(float64(249.6))),
-                Mtu:                  models.ToPointer(34),
-                RemoteIp:             "remote_ip4",
+                RemoteIp:             "",
                 AdditionalProperties: map[string]interface{}{
                     "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
                 },

@@ -49,7 +49,6 @@ func main() {
         AdminId:              models.ToPointer(uuid.MustParse("456b7016-a916-a4b1-78dd-72b947c152b7")),
         ComplianceStatus:     models.ToPointer(models.AdminComplianceStatusEnum_BLOCKED),
         Email:                models.ToPointer("jsnow@abc.com"),
-        EnableTwoFactor:      models.ToPointer(false),
         ExpireTime:           models.ToPointer(6),
         FirstName:            models.ToPointer("John"),
         Hours:                models.ToPointer(24),

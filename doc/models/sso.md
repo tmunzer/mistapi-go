@@ -75,10 +75,8 @@ import (
 
 func main() {
     sso := models.Sso{
-        CreatedTime:              models.ToPointer(float64(58.56)),
         CustomLogoutUrl:          models.ToPointer("custom_logout_url0"),
         DefaultRole:              models.ToPointer("default_role8"),
-        Domain:                   models.ToPointer("domain2"),
         GroupFilter:              models.ToPointer("group_filter4"),
         Id:                       models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
         IdpType:                  models.ToPointer(models.SsoIdpTypeEnum_SAML),

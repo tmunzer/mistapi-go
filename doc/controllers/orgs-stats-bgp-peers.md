@@ -210,6 +210,7 @@ if err != nil {
   "results": [
     {
       "evpn_overlay": true,
+      "flap_count": 3,
       "for_overlay": true,
       "local_as": 65000,
       "mac": "020001c04668",
@@ -218,6 +219,7 @@ if err != nil {
       "neighbor_mac": "020001c04600",
       "node": "node0",
       "org_id": "0c160b7f-1027-4cd1-923b-744534c4b070",
+      "router_id": "172.16.254.2",
       "rx_pkts": 63366,
       "rx_routes": 60,
       "site_id": "725a8d34-a126-4f2c-b990-d1219421cb75",

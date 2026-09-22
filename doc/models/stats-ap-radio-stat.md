@@ -28,24 +28,12 @@ func main() {
     statsApRadioStat := models.StatsApRadioStat{
         Band24:               models.ToPointer(models.ApRadioStat{
             Bandwidth:              models.ToPointer(models.Dot11BandwidthEnum_ENUM160),
-            Channel:                models.NewOptional(models.ToPointer(80)),
-            DynamicChainingEnabled: models.NewOptional(models.ToPointer(false)),
-            Mac:                    models.NewOptional(models.ToPointer("mac4")),
-            NoiseFloor:             models.NewOptional(models.ToPointer(180)),
         }),
         Band5:                models.ToPointer(models.ApRadioStat{
             Bandwidth:              models.ToPointer(models.Dot11BandwidthEnum_ENUM20),
-            Channel:                models.NewOptional(models.ToPointer(132)),
-            DynamicChainingEnabled: models.NewOptional(models.ToPointer(false)),
-            Mac:                    models.NewOptional(models.ToPointer("mac6")),
-            NoiseFloor:             models.NewOptional(models.ToPointer(128)),
         }),
         Band6:                models.ToPointer(models.ApRadioStat{
             Bandwidth:              models.ToPointer(models.Dot11BandwidthEnum_ENUM80),
-            Channel:                models.NewOptional(models.ToPointer(200)),
-            DynamicChainingEnabled: models.NewOptional(models.ToPointer(false)),
-            Mac:                    models.NewOptional(models.ToPointer("mac8")),
-            NoiseFloor:             models.NewOptional(models.ToPointer(60)),
         }),
     }
 

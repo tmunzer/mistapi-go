@@ -13,6 +13,8 @@ Result of a past spectrum analysis
 |  --- | --- | --- | --- |
 | `Band` | `*string` | Optional | Radio band on which the spectrum analysis was run (for example, 24, 5, or 6) |
 | `ChannelUsage` | [`[]models.ResponsePastSpectrumAnalysisChannelUsage`](../../doc/models/response-past-spectrum-analysis-channel-usage.md) | Optional | Per-channel utilization measurements captured during spectrum analysis |
+| `DeviceId` | `*uuid.UUID` | Optional | AP device UUID used for a single-AP spectrum analysis |
+| `DeviceIds` | `[]uuid.UUID` | Optional | AP device UUIDs used for a multi-AP spectrum analysis; maximum 5 devices<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `5` |
 | `FftSamples` | [`[]models.ResponsePastSpectrumAnalysisFftSample`](../../doc/models/response-past-spectrum-analysis-fft-sample.md) | Optional | List of FFT samples for the spectrum analysis |
 | `Mac` | `*string` | Optional | AP MAC address for the access point that ran the spectrum analysis |
 | `OrgId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist organization |
@@ -46,6 +48,10 @@ func main() {
                 Wifi:                 models.ToPointer(float64(198.3)),
             },
         },
+        DeviceId:             models.ToPointer(uuid.MustParse("00001d14-0000-0000-0000-000000000000")),
+        DeviceIds:            []uuid.UUID{
+            uuid.MustParse("00000b29-0000-0000-0000-000000000000"),
+        },
         FftSamples:           []models.ResponsePastSpectrumAnalysisFftSample{
             models.ResponsePastSpectrumAnalysisFftSample{
                 Frequency:            models.ToPointer(float64(91.6)),
@@ -58,7 +64,6 @@ func main() {
                 Signal7:              models.ToPointer(float64(18.34)),
             },
         },
-        Mac:                  models.ToPointer("mac2"),
         OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
     }
 

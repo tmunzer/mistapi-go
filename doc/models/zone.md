@@ -36,11 +36,7 @@ import (
 
 func main() {
     zone := models.Zone{
-        CreatedTime:          models.ToPointer(float64(89.02)),
-        ForSite:              models.ToPointer(false),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
-        MapId:                models.ToPointer(uuid.MustParse("000005ac-0000-0000-0000-000000000000")),
-        ModifiedTime:         models.ToPointer(float64(245.94)),
         OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
         SiteId:               models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
         Vertices:             []models.ZoneVertex{

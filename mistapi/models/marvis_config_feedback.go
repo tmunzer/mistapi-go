@@ -13,8 +13,8 @@ type MarvisConfigFeedback struct {
 	// Free-text note about the feedback
 	Note *string `json:"note,omitempty"`
 	// Feedback type. enum: `invalid`
-	Type                 *TypeEnum              `json:"type,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"_"`
+	Type                 *MarvisConfigFeedbackTypeEnum `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}        `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for MarvisConfigFeedback,
@@ -71,6 +71,6 @@ func (m *MarvisConfigFeedback) UnmarshalJSON(input []byte) error {
 
 // tempMarvisConfigFeedback is a temporary struct used for validating the fields of MarvisConfigFeedback.
 type tempMarvisConfigFeedback struct {
-	Note *string   `json:"note,omitempty"`
-	Type *TypeEnum `json:"type,omitempty"`
+	Note *string                       `json:"note,omitempty"`
+	Type *MarvisConfigFeedbackTypeEnum `json:"type,omitempty"`
 }

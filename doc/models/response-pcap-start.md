@@ -24,7 +24,7 @@ Packet capture session created by a start request
 | `NumPackets` | `*int` | Optional | Maximum number of packets to capture; use 0 for unlimited |
 | `OrgId` | `uuid.UUID` | Required, Read-only | Unique identifier of a Mist organization |
 | `Raw` | `*bool` | Optional | Whether raw packet data is included in the capture output |
-| `SiteId` | `*string` | Required | Site associated with the packet capture session, when site-scoped |
+| `SiteId` | `*uuid.UUID` | Required | Site associated with the packet capture session, when site-scoped |
 | `Ssid` | `models.Optional[string]` | Optional | Wireless network SSID filter applied to the packet capture, or null when no SSID filter is used |
 | `TcpdumpParserExpression` | `models.Optional[string]` | Optional | Tcpdump parser expression applied to the packet capture, or null when no parser expression is used |
 | `Timestamp` | `float64` | Required, Read-only | Epoch timestamp, in seconds |
@@ -52,8 +52,8 @@ func main() {
         Enabled:                 models.ToPointer(false),
         Id:                      uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f"),
         OrgId:                   uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61"),
-        SiteId:                  models.ToPointer("site_id0"),
-        Timestamp:               float64(54.02),
+        SiteId:                  models.ToPointer(uuid.MustParse("00001702-0000-0000-0000-000000000000")),
+        Timestamp:               0.0,
         Type:                    "type6",
     }
 

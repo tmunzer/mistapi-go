@@ -43,7 +43,7 @@ func main() {
                         Channel:              72,
                         Rssi:                 float64(228.1),
                         Ssid:                 "ssid4",
-                        Timestamp:            float64(102.06),
+                        Timestamp:            0.0,
                     },
                 },
                 SiteId:               uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6"),

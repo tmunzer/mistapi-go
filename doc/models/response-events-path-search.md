@@ -25,7 +25,6 @@ package main
 
 import (
     "mistapi/models"
-    "github.com/google/uuid"
 )
 
 func main() {
@@ -37,14 +36,12 @@ func main() {
             models.ServicePathEvent{
                 Mac:                  models.ToPointer("mac0"),
                 Model:                models.ToPointer("model4"),
-                OrgId:                models.ToPointer(uuid.MustParse("00002492-0000-0000-0000-000000000000")),
                 Policy:               models.ToPointer("policy8"),
                 PortId:               models.ToPointer("port_id6"),
             },
             models.ServicePathEvent{
                 Mac:                  models.ToPointer("mac0"),
                 Model:                models.ToPointer("model4"),
-                OrgId:                models.ToPointer(uuid.MustParse("00002492-0000-0000-0000-000000000000")),
                 Policy:               models.ToPointer("policy8"),
                 PortId:               models.ToPointer("port_id6"),
             },

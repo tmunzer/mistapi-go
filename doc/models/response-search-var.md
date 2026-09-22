@@ -25,7 +25,6 @@ package main
 
 import (
     "mistapi/models"
-    "github.com/google/uuid"
 )
 
 func main() {
@@ -35,24 +34,12 @@ func main() {
         Next:                 models.ToPointer("next4"),
         Results:              []models.ResponseSearchVarItem{
             models.ResponseSearchVarItem{
-                CreatedTime:          models.ToPointer(float64(73.76)),
-                ModifiedTime:         models.ToPointer(float64(5.2)),
-                OrgId:                models.ToPointer(uuid.MustParse("00002492-0000-0000-0000-000000000000")),
-                SiteId:               models.ToPointer(uuid.MustParse("00001420-0000-0000-0000-000000000000")),
                 Src:                  models.ToPointer("src8"),
             },
             models.ResponseSearchVarItem{
-                CreatedTime:          models.ToPointer(float64(73.76)),
-                ModifiedTime:         models.ToPointer(float64(5.2)),
-                OrgId:                models.ToPointer(uuid.MustParse("00002492-0000-0000-0000-000000000000")),
-                SiteId:               models.ToPointer(uuid.MustParse("00001420-0000-0000-0000-000000000000")),
                 Src:                  models.ToPointer("src8"),
             },
             models.ResponseSearchVarItem{
-                CreatedTime:          models.ToPointer(float64(73.76)),
-                ModifiedTime:         models.ToPointer(float64(5.2)),
-                OrgId:                models.ToPointer(uuid.MustParse("00002492-0000-0000-0000-000000000000")),
-                SiteId:               models.ToPointer(uuid.MustParse("00001420-0000-0000-0000-000000000000")),
                 Src:                  models.ToPointer("src8"),
             },
         },

@@ -31,8 +31,6 @@ import (
 
 func main() {
     statsApEslStat := models.StatsApEslStat{
-        Channel:              models.NewOptional(models.ToPointer(118)),
-        Connected:            models.NewOptional(models.ToPointer(false)),
         Ip:                   models.NewOptional(models.ToPointer("172.16.2.249")),
         Mac:                  models.NewOptional(models.ToPointer("98-6d-35-79-76-3b")),
         ProductId:            models.NewOptional(models.ToPointer("A4A2")),

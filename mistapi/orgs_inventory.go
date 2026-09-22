@@ -428,15 +428,17 @@ func (o *OrgsInventory) ReplaceOrgDevices(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgInventory takes context, orgId, mType, mac, model, name, siteId, serial, magic, master, sku, version, status, text, limit, sort, searchAfter as parameters and
+// SearchOrgInventory takes context, orgId, mType, mac, vcMac, masterMac, model, name, siteId, serial, magic, master, sku, version, status, text, modifiedAfter, disconnectedBefore, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.InventorySearch data and
 // an error if there was an issue with the request or response.
-// Search organization inventory records with filters for type, MAC address, model, name, site, serial number, Virtual Chassis master state, SKU, version, status, and text.
+// Search organization inventory records with filters for type, MAC address, Virtual Chassis MAC address, Virtual Chassis master MAC address, model, name, site, serial number, Virtual Chassis master state, SKU, version, status, and text.
 func (o *OrgsInventory) SearchOrgInventory(
 	ctx context.Context,
 	orgId uuid.UUID,
 	mType *models.DeviceTypeDefaultApEnum,
 	mac *string,
+	vcMac *string,
+	masterMac *string,
 	model *string,
 	name *string,
 	siteId *uuid.UUID,
@@ -447,6 +449,8 @@ func (o *OrgsInventory) SearchOrgInventory(
 	version *string,
 	status *string,
 	text *string,
+	modifiedAfter *int,
+	disconnectedBefore *int,
 	limit *int,
 	sort *string,
 	searchAfter *string) (
@@ -472,6 +476,12 @@ func (o *OrgsInventory) SearchOrgInventory(
 	}
 	if mac != nil {
 		req.QueryParam("mac", *mac)
+	}
+	if vcMac != nil {
+		req.QueryParam("vc_mac", *vcMac)
+	}
+	if masterMac != nil {
+		req.QueryParam("master_mac", *masterMac)
 	}
 	if model != nil {
 		req.QueryParam("model", *model)
@@ -502,6 +512,12 @@ func (o *OrgsInventory) SearchOrgInventory(
 	}
 	if text != nil {
 		req.QueryParam("text", *text)
+	}
+	if modifiedAfter != nil {
+		req.QueryParam("modified_after", *modifiedAfter)
+	}
+	if disconnectedBefore != nil {
+		req.QueryParam("disconnected_before", *disconnectedBefore)
 	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)

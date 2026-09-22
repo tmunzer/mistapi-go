@@ -34,7 +34,7 @@ GetOauth2AuthorizationUrlForLogin(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `provider` | `string` | Template, Required | - |
+| `provider` | `string` | Template, Required | Oauth2 provider name |
 | `forward` | `*string` | Query, Optional | Callback URL used after completing the OAuth login flow |
 
 ## Response Type
@@ -114,7 +114,7 @@ LoginOauth2(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `provider` | `string` | Template, Required | - |
+| `provider` | `string` | Template, Required | Oauth2 provider name |
 | `body` | [`*models.CodeString`](../../doc/models/code-string.md) | Body, Optional | Request Body |
 
 ## Response Type
@@ -186,7 +186,7 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `provider` | `string` | Template, Required | - |
+| `provider` | `string` | Template, Required | Oauth2 provider name |
 
 ## Response Type
 

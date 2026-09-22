@@ -21,6 +21,7 @@ Administrator invitation and initial registration payload
 | `FirstName` | `string` | Required | Given name for the registering admin user |
 | `InviteCode` | `*string` | Optional | Invite code used to authorize new admin registration |
 | `LastName` | `string` | Required | Family name for the registering admin user |
+| `NoTracking` | `*bool` | Optional | Optional privacy-consent setting. When omitted, defaults to true in GDPR environments and false in non-GDPR environments. |
 | `OrgName` | `string` | Required | Organization name supplied during initial admin registration |
 | `Password` | `string` | Required | Credential password for the registering admin account |
 | `Recaptcha` | `string` | Required | CAPTCHA verification token submitted during admin registration |

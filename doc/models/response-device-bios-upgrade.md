@@ -26,7 +26,6 @@ import (
 func main() {
     responseDeviceBiosUpgrade := models.ResponseDeviceBiosUpgrade{
         Status:               models.ToPointer("status0"),
-        Timestamp:            models.ToPointer(float64(153.66)),
     }
 
 }

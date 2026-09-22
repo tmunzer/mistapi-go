@@ -13,6 +13,8 @@ import (
 type BgpStats struct {
 	// If this is created for evpn overlay
 	EvpnOverlay *bool `json:"evpn_overlay,omitempty"`
+	// Number of times the BGP session has flapped
+	FlapCount *int `json:"flap_count,omitempty"`
 	// If this is created for overlay
 	ForOverlay *bool `json:"for_overlay,omitempty"`
 	// BGP AS, value in range 1-4294967294. Can be a Variable (e.g. `{{bgp_as}}` )
@@ -31,6 +33,8 @@ type BgpStats struct {
 	Node *string `json:"node,omitempty"`
 	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Local router ID (IP address) of the device reporting this BGP peer
+	RouterId *string `json:"router_id,omitempty"`
 	// Amount of packets received since connection
 	RxPkts Optional[int64] `json:"rx_pkts"`
 	// Number of received routes
@@ -58,8 +62,8 @@ type BgpStats struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (b BgpStats) String() string {
 	return fmt.Sprintf(
-		"BgpStats[EvpnOverlay=%v, ForOverlay=%v, LocalAs=%v, Mac=%v, Model=%v, Neighbor=%v, NeighborAs=%v, NeighborMac=%v, Node=%v, OrgId=%v, RxPkts=%v, RxRoutes=%v, SiteId=%v, State=%v, Timestamp=%v, TxPkts=%v, TxRoutes=%v, Up=%v, Uptime=%v, VrfName=%v, AdditionalProperties=%v]",
-		b.EvpnOverlay, b.ForOverlay, b.LocalAs, b.Mac, b.Model, b.Neighbor, b.NeighborAs, b.NeighborMac, b.Node, b.OrgId, b.RxPkts, b.RxRoutes, b.SiteId, b.State, b.Timestamp, b.TxPkts, b.TxRoutes, b.Up, b.Uptime, b.VrfName, b.AdditionalProperties)
+		"BgpStats[EvpnOverlay=%v, FlapCount=%v, ForOverlay=%v, LocalAs=%v, Mac=%v, Model=%v, Neighbor=%v, NeighborAs=%v, NeighborMac=%v, Node=%v, OrgId=%v, RouterId=%v, RxPkts=%v, RxRoutes=%v, SiteId=%v, State=%v, Timestamp=%v, TxPkts=%v, TxRoutes=%v, Up=%v, Uptime=%v, VrfName=%v, AdditionalProperties=%v]",
+		b.EvpnOverlay, b.FlapCount, b.ForOverlay, b.LocalAs, b.Mac, b.Model, b.Neighbor, b.NeighborAs, b.NeighborMac, b.Node, b.OrgId, b.RouterId, b.RxPkts, b.RxRoutes, b.SiteId, b.State, b.Timestamp, b.TxPkts, b.TxRoutes, b.Up, b.Uptime, b.VrfName, b.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for BgpStats.
@@ -68,7 +72,7 @@ func (b BgpStats) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(b.AdditionalProperties,
-		"evpn_overlay", "for_overlay", "local_as", "mac", "model", "neighbor", "neighbor_as", "neighbor_mac", "node", "org_id", "rx_pkts", "rx_routes", "site_id", "state", "timestamp", "tx_pkts", "tx_routes", "up", "uptime", "vrf_name"); err != nil {
+		"evpn_overlay", "flap_count", "for_overlay", "local_as", "mac", "model", "neighbor", "neighbor_as", "neighbor_mac", "node", "org_id", "router_id", "rx_pkts", "rx_routes", "site_id", "state", "timestamp", "tx_pkts", "tx_routes", "up", "uptime", "vrf_name"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(b.toMap())
@@ -80,6 +84,9 @@ func (b BgpStats) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, b.AdditionalProperties)
 	if b.EvpnOverlay != nil {
 		structMap["evpn_overlay"] = b.EvpnOverlay
+	}
+	if b.FlapCount != nil {
+		structMap["flap_count"] = b.FlapCount
 	}
 	if b.ForOverlay != nil {
 		structMap["for_overlay"] = b.ForOverlay
@@ -107,6 +114,9 @@ func (b BgpStats) toMap() map[string]any {
 	}
 	if b.OrgId != nil {
 		structMap["org_id"] = b.OrgId
+	}
+	if b.RouterId != nil {
+		structMap["router_id"] = b.RouterId
 	}
 	if b.RxPkts.IsValueSet() {
 		if b.RxPkts.Value() != nil {
@@ -157,13 +167,14 @@ func (b *BgpStats) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "evpn_overlay", "for_overlay", "local_as", "mac", "model", "neighbor", "neighbor_as", "neighbor_mac", "node", "org_id", "rx_pkts", "rx_routes", "site_id", "state", "timestamp", "tx_pkts", "tx_routes", "up", "uptime", "vrf_name")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "evpn_overlay", "flap_count", "for_overlay", "local_as", "mac", "model", "neighbor", "neighbor_as", "neighbor_mac", "node", "org_id", "router_id", "rx_pkts", "rx_routes", "site_id", "state", "timestamp", "tx_pkts", "tx_routes", "up", "uptime", "vrf_name")
 	if err != nil {
 		return err
 	}
 	b.AdditionalProperties = additionalProperties
 
 	b.EvpnOverlay = temp.EvpnOverlay
+	b.FlapCount = temp.FlapCount
 	b.ForOverlay = temp.ForOverlay
 	b.LocalAs = temp.LocalAs
 	b.Mac = temp.Mac
@@ -173,6 +184,7 @@ func (b *BgpStats) UnmarshalJSON(input []byte) error {
 	b.NeighborMac = temp.NeighborMac
 	b.Node = temp.Node
 	b.OrgId = temp.OrgId
+	b.RouterId = temp.RouterId
 	b.RxPkts = temp.RxPkts
 	b.RxRoutes = temp.RxRoutes
 	b.SiteId = temp.SiteId
@@ -189,6 +201,7 @@ func (b *BgpStats) UnmarshalJSON(input []byte) error {
 // tempBgpStats is a temporary struct used for validating the fields of BgpStats.
 type tempBgpStats struct {
 	EvpnOverlay *bool              `json:"evpn_overlay,omitempty"`
+	FlapCount   *int               `json:"flap_count,omitempty"`
 	ForOverlay  *bool              `json:"for_overlay,omitempty"`
 	LocalAs     *BgpAs             `json:"local_as,omitempty"`
 	Mac         *string            `json:"mac,omitempty"`
@@ -198,6 +211,7 @@ type tempBgpStats struct {
 	NeighborMac *string            `json:"neighbor_mac,omitempty"`
 	Node        *string            `json:"node,omitempty"`
 	OrgId       *uuid.UUID         `json:"org_id,omitempty"`
+	RouterId    *string            `json:"router_id,omitempty"`
 	RxPkts      Optional[int64]    `json:"rx_pkts"`
 	RxRoutes    *int               `json:"rx_routes,omitempty"`
 	SiteId      *uuid.UUID         `json:"site_id,omitempty"`

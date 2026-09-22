@@ -20,7 +20,6 @@ package main
 
 import (
     "mistapi/models"
-    "github.com/google/uuid"
 )
 
 func main() {
@@ -31,21 +30,18 @@ func main() {
                 ExpireTime:           models.ToPointer(238),
                 ScheduledTime:        models.ToPointer(52),
                 Scope:                models.ToPointer(models.SuppressedAlarmScopeEnum_ORG),
-                SiteId:               models.ToPointer(uuid.MustParse("00001420-0000-0000-0000-000000000000")),
             },
             models.ResponseOrgSuppressAlarmItem{
                 Duration:             models.ToPointer(202),
                 ExpireTime:           models.ToPointer(238),
                 ScheduledTime:        models.ToPointer(52),
                 Scope:                models.ToPointer(models.SuppressedAlarmScopeEnum_ORG),
-                SiteId:               models.ToPointer(uuid.MustParse("00001420-0000-0000-0000-000000000000")),
             },
             models.ResponseOrgSuppressAlarmItem{
                 Duration:             models.ToPointer(202),
                 ExpireTime:           models.ToPointer(238),
                 ScheduledTime:        models.ToPointer(52),
                 Scope:                models.ToPointer(models.SuppressedAlarmScopeEnum_ORG),
-                SiteId:               models.ToPointer(uuid.MustParse("00001420-0000-0000-0000-000000000000")),
             },
         },
     }

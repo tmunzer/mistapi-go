@@ -16,8 +16,8 @@ type SearchEventsWanClient struct {
 	Limit *int `json:"limit,omitempty"`
 	// URL for the next page of WAN client event results, when more results are available
 	Next *string `json:"next,omitempty"`
-	// WAN client event returned by WAN client event search APIs
-	Results *EventsClientWan `json:"results,omitempty"`
+	// WAN client event result data returned by a search response
+	Results []EventsClientWan `json:"results,omitempty"`
 	// Lower bound timestamp of the WAN client event search window, in epoch seconds
 	Start *int `json:"start,omitempty"`
 	// Count of WAN client event results matching the search
@@ -59,7 +59,7 @@ func (s SearchEventsWanClient) toMap() map[string]any {
 		structMap["next"] = s.Next
 	}
 	if s.Results != nil {
-		structMap["results"] = s.Results.toMap()
+		structMap["results"] = s.Results
 	}
 	if s.Start != nil {
 		structMap["start"] = s.Start
@@ -95,10 +95,10 @@ func (s *SearchEventsWanClient) UnmarshalJSON(input []byte) error {
 
 // tempSearchEventsWanClient is a temporary struct used for validating the fields of SearchEventsWanClient.
 type tempSearchEventsWanClient struct {
-	End     *int             `json:"end,omitempty"`
-	Limit   *int             `json:"limit,omitempty"`
-	Next    *string          `json:"next,omitempty"`
-	Results *EventsClientWan `json:"results,omitempty"`
-	Start   *int             `json:"start,omitempty"`
-	Total   *int             `json:"total,omitempty"`
+	End     *int              `json:"end,omitempty"`
+	Limit   *int              `json:"limit,omitempty"`
+	Next    *string           `json:"next,omitempty"`
+	Results []EventsClientWan `json:"results,omitempty"`
+	Start   *int              `json:"start,omitempty"`
+	Total   *int              `json:"total,omitempty"`
 }

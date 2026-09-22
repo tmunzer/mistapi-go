@@ -265,7 +265,7 @@ func (o *OrgsJSI) SearchOrgJsiAssetsAndContracts(
 	serial *string,
 	sku *string,
 	status *models.DeviceStatusEnum,
-	warrantyType *models.JsiWarrantyTypeEnum,
+	warrantyType *string,
 	endOfSaleAfter *string,
 	endOfSaleBefore *string,
 	eosAfter *string,

@@ -26,7 +26,7 @@ This event's request payload is of type [*models.WebhookPing](../../../../doc/mo
       "id": "487f6eca-6276-4993-bfeb-f3cbbbba4f08",
       "name": "string",
       "site_id": "72771e6a-6f5e-4de4-a5b9-1266c4197811",
-      "timestamp": 0.0
+      "timestamp": 0
     }
   ],
   "topic": "ping"

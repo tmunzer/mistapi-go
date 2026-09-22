@@ -47,7 +47,6 @@ func main() {
                 uuid.MustParse("00000634-0000-0000-0000-000000000000"),
             },
         }),
-        CreatedTime:           models.ToPointer(float64(247.46)),
         DeviceprofileIds:      []uuid.UUID{
             uuid.MustParse("0000104d-0000-0000-0000-000000000000"),
             uuid.MustParse("0000104e-0000-0000-0000-000000000000"),

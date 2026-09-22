@@ -1,27 +1,27 @@
-# Sites NAC Fingerprints
+# Orgs NAC Fingerprints
 
 ```go
-sitesNACFingerprints := client.SitesNACFingerprints()
+orgsNACFingerprints := client.OrgsNACFingerprints()
 ```
 
 ## Class Name
 
-`SitesNACFingerprints`
+`OrgsNACFingerprints`
 
 ## Methods
 
-* [Count Site Client Fingerprints](../../doc/controllers/sites-nac-fingerprints.md#count-site-client-fingerprints)
-* [Search Site Client Fingerprints](../../doc/controllers/sites-nac-fingerprints.md#search-site-client-fingerprints)
+* [Count Org Client Fingerprints](../../doc/controllers/orgs-nac-fingerprints.md#count-org-client-fingerprints)
+* [Search Org Client Fingerprints](../../doc/controllers/orgs-nac-fingerprints.md#search-org-client-fingerprints)
 
 
-# Count Site Client Fingerprints
+# Count Org Client Fingerprints
 
 Count Client Fingerprints
 
 ```go
-CountSiteClientFingerprints(
+CountOrgClientFingerprints(
     ctx context.Context,
-    siteId uuid.UUID,
+    orgId uuid.UUID,
     distinct *models.FingerprintsCountDistinctEnum,
     start *string,
     end *string,
@@ -39,7 +39,7 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
+| `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.FingerprintsCountDistinctEnum`](../../doc/models/fingerprints-count-distinct-enum.md) | Query, Optional | Field used to group this count response. enum: `family`, `model`, `os`, `os_type`<br><br>**Default**: `"family"` |
 | `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
 | `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
@@ -57,7 +57,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```go
 ctx := context.Background()
 
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.FingerprintsCountDistinctEnum_FAMILY
 
@@ -65,7 +65,7 @@ duration := "10m"
 
 limit := 100
 
-apiResponse, err := sitesNACFingerprints.CountSiteClientFingerprints(ctx, siteId, &distinct, nil, nil, &duration, &limit)
+apiResponse, err := orgsNACFingerprints.CountOrgClientFingerprints(ctx, orgId, &distinct, nil, nil, &duration, &limit)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
@@ -117,14 +117,14 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
-# Search Site Client Fingerprints
+# Search Org Client Fingerprints
 
 Search Client Fingerprints
 
 ```go
-SearchSiteClientFingerprints(
+SearchOrgClientFingerprints(
     ctx context.Context,
-    siteId uuid.UUID,
+    orgId uuid.UUID,
     family *string,
     clientType *models.NacAccessTypeEnum,
     model *string,
@@ -151,7 +151,7 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
+| `orgId` | `uuid.UUID` | Template, Required | - |
 | `family` | `*string` | Query, Optional | Device Category of the client device |
 | `clientType` | [`*models.NacAccessTypeEnum`](../../doc/models/nac-access-type-enum.md) | Query, Optional | Filter results by client type. enum: `wireless`, `wired`, `vty` |
 | `model` | `*string` | Query, Optional | Filter results by device model |
@@ -178,7 +178,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```go
 ctx := context.Background()
 
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 family := "EX Series Switch"
 
@@ -202,7 +202,7 @@ interval := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := sitesNACFingerprints.SearchSiteClientFingerprints(ctx, siteId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &limit, nil, nil, &duration, &interval, &sort, nil)
+apiResponse, err := orgsNACFingerprints.SearchOrgClientFingerprints(ctx, orgId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &limit, nil, nil, &duration, &interval, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

@@ -40,20 +40,6 @@ import (
 
 func main() {
     switchMatchingRule := models.SwitchMatchingRule{
-        AdditionalConfigCmds: []string{
-            "additional_config_cmds8",
-        },
-        DefaultPortUsage:     models.ToPointer("default_port_usage4"),
-        IpConfig:             models.ToPointer(models.SwitchMatchingRuleIpConfig{
-            Network:              models.ToPointer("network6"),
-            Type:                 models.ToPointer(models.IpTypeEnum_DHCP),
-        }),
-        Name:                 models.ToPointer("name8"),
-        OobIpConfig:          models.ToPointer(models.SwitchMatchingRuleOobIpConfig{
-            Type:                 models.ToPointer(models.IpTypeEnum_DHCP),
-            UseMgmtVrf:           models.ToPointer(false),
-            UseMgmtVrfForHostOut: models.ToPointer(false),
-        }),
         AdditionalProperties: map[string]string{
             "match_model": "EX4300",
             "match_name[0:3]": "abc",

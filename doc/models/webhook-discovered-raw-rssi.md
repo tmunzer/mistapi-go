@@ -41,9 +41,9 @@ func main() {
                 IsAsset:              models.ToPointer(false),
                 Mac:                  "mac4",
                 MapId:                uuid.MustParse("00001148-0000-0000-0000-000000000000"),
-                OrgId:                uuid.MustParse("00000dbc-0000-0000-0000-000000000000"),
+                OrgId:                uuid.MustParse(""),
                 Rssi:                 float64(58.22),
-                SiteId:               uuid.MustParse("0000245a-0000-0000-0000-000000000000"),
+                SiteId:               uuid.MustParse(""),
             },
             models.WebhookDiscoveredRawRssiEvent{
                 ApLoc:                []float64{
@@ -59,9 +59,9 @@ func main() {
                 IsAsset:              models.ToPointer(false),
                 Mac:                  "mac4",
                 MapId:                uuid.MustParse("00001148-0000-0000-0000-000000000000"),
-                OrgId:                uuid.MustParse("00000dbc-0000-0000-0000-000000000000"),
+                OrgId:                uuid.MustParse(""),
                 Rssi:                 float64(58.22),
-                SiteId:               uuid.MustParse("0000245a-0000-0000-0000-000000000000"),
+                SiteId:               uuid.MustParse(""),
             },
         },
         Topic:                "discovered-raw-rssi",

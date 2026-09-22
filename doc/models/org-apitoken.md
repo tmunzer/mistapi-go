@@ -40,7 +40,6 @@ import (
 func main() {
     orgApitoken := models.OrgApitoken{
         CreatedBy:            models.NewOptional(models.ToPointer("user@mycorp.com")),
-        CreatedTime:          models.ToPointer(float64(88.34)),
         Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
         Key:                  models.ToPointer("1qkb...QQCL"),
         LastUsed:             models.NewOptional(models.ToPointer(float64(1690115110))),
@@ -50,6 +49,14 @@ func main() {
             models.PrivilegeOrg{
                 Role:                 models.PrivilegeOrgRoleEnum_ADMIN,
                 Scope:                models.PrivilegeOrgScopeEnum_ORG,
+                SiteId:               models.ToPointer(uuid.MustParse("00002366-0000-0000-0000-000000000000")),
+                SitegroupId:          models.ToPointer(uuid.MustParse("000006ce-0000-0000-0000-000000000000")),
+                View:                 models.ToPointer("view4"),
+                Views:                []models.AdminPrivilegeViewEnum{
+                    models.AdminPrivilegeViewEnum_LOCATION,
+                    models.AdminPrivilegeViewEnum_LOBBYADMIN,
+                    models.AdminPrivilegeViewEnum_SWITCHADMIN,
+                },
             },
         },
         SrcIps:               []string{

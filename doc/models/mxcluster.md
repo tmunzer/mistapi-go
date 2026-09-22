@@ -49,8 +49,6 @@ import (
 
 func main() {
     mxcluster := models.Mxcluster{
-        CreatedTime:               models.ToPointer(float64(209.42)),
-        ForSite:                   models.ToPointer(false),
         Id:                        models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
         MistDas:                   models.ToPointer(models.MxedgeDas{
             CoaServers:           []models.MxedgeDasCoaServer{

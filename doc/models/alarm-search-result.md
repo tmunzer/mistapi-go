@@ -66,7 +66,7 @@ func main() {
                     "ffeeddccbbaa",
                     "ffeeddccbbab",
                 },
-                Timestamp:            float64(2.64),
+                Timestamp:            0.0,
                 Type:                 "rogue_client",
             },
         },

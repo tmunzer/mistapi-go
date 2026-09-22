@@ -13,6 +13,8 @@ import (
 // AssetFilter represents a AssetFilter struct.
 // BLE asset filter definition; all specified criteria must match
 type AssetFilter struct {
+	// Whether matching BLE advertisements are forwarded to AES when aeroscout is enabled on the device
+	AeroscoutForwarding *bool `json:"aeroscout_forwarding,omitempty"`
 	// Access point MAC address that must observe the BLE asset
 	ApMac *string `json:"ap_mac,omitempty"`
 	// BLE beam number used to filter asset observations
@@ -56,8 +58,8 @@ type AssetFilter struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a AssetFilter) String() string {
 	return fmt.Sprintf(
-		"AssetFilter[ApMac=%v, Beam=%v, CreatedTime=%v, Disabled=%v, EddystoneUidNamespace=%v, EddystoneUrl=%v, ForSite=%v, IbeaconMajor=%v, IbeaconUuid=%v, Id=%v, MfgCompanyId=%v, ModifiedTime=%v, MqttTopic=%v, Name=%v, OrgId=%v, Rssi=%v, ServiceUuid=%v, SiteId=%v, AdditionalProperties=%v]",
-		a.ApMac, a.Beam, a.CreatedTime, a.Disabled, a.EddystoneUidNamespace, a.EddystoneUrl, a.ForSite, a.IbeaconMajor, a.IbeaconUuid, a.Id, a.MfgCompanyId, a.ModifiedTime, a.MqttTopic, a.Name, a.OrgId, a.Rssi, a.ServiceUuid, a.SiteId, a.AdditionalProperties)
+		"AssetFilter[AeroscoutForwarding=%v, ApMac=%v, Beam=%v, CreatedTime=%v, Disabled=%v, EddystoneUidNamespace=%v, EddystoneUrl=%v, ForSite=%v, IbeaconMajor=%v, IbeaconUuid=%v, Id=%v, MfgCompanyId=%v, ModifiedTime=%v, MqttTopic=%v, Name=%v, OrgId=%v, Rssi=%v, ServiceUuid=%v, SiteId=%v, AdditionalProperties=%v]",
+		a.AeroscoutForwarding, a.ApMac, a.Beam, a.CreatedTime, a.Disabled, a.EddystoneUidNamespace, a.EddystoneUrl, a.ForSite, a.IbeaconMajor, a.IbeaconUuid, a.Id, a.MfgCompanyId, a.ModifiedTime, a.MqttTopic, a.Name, a.OrgId, a.Rssi, a.ServiceUuid, a.SiteId, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AssetFilter.
@@ -66,7 +68,7 @@ func (a AssetFilter) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(a.AdditionalProperties,
-		"ap_mac", "beam", "created_time", "disabled", "eddystone_uid_namespace", "eddystone_url", "for_site", "ibeacon_major", "ibeacon_uuid", "id", "mfg_company_id", "modified_time", "mqtt_topic", "name", "org_id", "rssi", "service_uuid", "site_id"); err != nil {
+		"aeroscout_forwarding", "ap_mac", "beam", "created_time", "disabled", "eddystone_uid_namespace", "eddystone_url", "for_site", "ibeacon_major", "ibeacon_uuid", "id", "mfg_company_id", "modified_time", "mqtt_topic", "name", "org_id", "rssi", "service_uuid", "site_id"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(a.toMap())
@@ -76,6 +78,9 @@ func (a AssetFilter) MarshalJSON() (
 func (a AssetFilter) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, a.AdditionalProperties)
+	if a.AeroscoutForwarding != nil {
+		structMap["aeroscout_forwarding"] = a.AeroscoutForwarding
+	}
 	if a.ApMac != nil {
 		structMap["ap_mac"] = a.ApMac
 	}
@@ -151,12 +156,13 @@ func (a *AssetFilter) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "beam", "created_time", "disabled", "eddystone_uid_namespace", "eddystone_url", "for_site", "ibeacon_major", "ibeacon_uuid", "id", "mfg_company_id", "modified_time", "mqtt_topic", "name", "org_id", "rssi", "service_uuid", "site_id")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aeroscout_forwarding", "ap_mac", "beam", "created_time", "disabled", "eddystone_uid_namespace", "eddystone_url", "for_site", "ibeacon_major", "ibeacon_uuid", "id", "mfg_company_id", "modified_time", "mqtt_topic", "name", "org_id", "rssi", "service_uuid", "site_id")
 	if err != nil {
 		return err
 	}
 	a.AdditionalProperties = additionalProperties
 
+	a.AeroscoutForwarding = temp.AeroscoutForwarding
 	a.ApMac = temp.ApMac
 	a.Beam = temp.Beam
 	a.CreatedTime = temp.CreatedTime
@@ -180,6 +186,7 @@ func (a *AssetFilter) UnmarshalJSON(input []byte) error {
 
 // tempAssetFilter is a temporary struct used for validating the fields of AssetFilter.
 type tempAssetFilter struct {
+	AeroscoutForwarding   *bool               `json:"aeroscout_forwarding,omitempty"`
 	ApMac                 *string             `json:"ap_mac,omitempty"`
 	Beam                  *int                `json:"beam,omitempty"`
 	CreatedTime           *float64            `json:"created_time,omitempty"`

@@ -25,7 +25,7 @@ This event's request payload is of type [*models.WebhookMinisReachability](../..
     {
       "avg_latency": 12.5,
       "device_mac": "7cb68d8f0440",
-      "loss_percentage": 0.0,
+      "loss_percentage": 0,
       "max_latency": 15.2,
       "min_latency": 10.1,
       "org_id": "203d3d02-dbc0-4c1b-9f41-76896a3330f4",

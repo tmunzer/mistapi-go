@@ -40,7 +40,7 @@ type ResponsePcapStart struct {
 	// Whether raw packet data is included in the capture output
 	Raw *bool `json:"raw,omitempty"`
 	// Site associated with the packet capture session, when site-scoped
-	SiteId *string `json:"site_id"`
+	SiteId *uuid.UUID `json:"site_id"`
 	// Wireless network SSID filter applied to the packet capture, or null when no SSID filter is used
 	Ssid Optional[string] `json:"ssid"`
 	// Tcpdump parser expression applied to the packet capture, or null when no parser expression is used
@@ -193,7 +193,7 @@ type tempResponsePcapStart struct {
 	NumPackets              *int             `json:"num_packets,omitempty"`
 	OrgId                   *uuid.UUID       `json:"org_id"`
 	Raw                     *bool            `json:"raw,omitempty"`
-	SiteId                  *string          `json:"site_id"`
+	SiteId                  *uuid.UUID       `json:"site_id"`
 	Ssid                    Optional[string] `json:"ssid"`
 	TcpdumpParserExpression Optional[string] `json:"tcpdump_parser_expression"`
 	Timestamp               *float64         `json:"timestamp"`

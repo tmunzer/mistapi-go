@@ -153,7 +153,7 @@ InitiateSiteAnalyzeSpectrum(
     ctx context.Context,
     siteId uuid.UUID,
     body *models.SpectrumAnalysis) (
-    models.ApiResponse[models.WebsocketSession],
+    models.ApiResponse[models.SpectrumAnalysisResponse],
     error)
 ```
 
@@ -172,7 +172,7 @@ This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **O
 
 **200**: OK
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SpectrumAnalysisResponse](../../doc/models/spectrum-analysis-response.md).
 
 ## Example Usage
 

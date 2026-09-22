@@ -23,6 +23,74 @@ func NewOrgsVars(baseController baseController) *OrgsVars {
 	return &orgsVars
 }
 
+// CountOrgVars takes context, orgId, distinct, siteId, mVar, src, start, end, duration, limit as parameters and
+// returns an models.ApiResponse with models.ResponseCount data and
+// an error if there was an issue with the request or response.
+// Count organization vars, optionally grouped by `distinct` and filtered by site, variable name, and source.
+// Example: /api/v1/orgs/{org_id}/vars/count?distinct=var
+func (o *OrgsVars) CountOrgVars(
+	ctx context.Context,
+	orgId uuid.UUID,
+	distinct *models.OrgVarsCountDistinctEnum,
+	siteId *string,
+	mVar *string,
+	src *models.VarSourceEnum,
+	start *string,
+	end *string,
+	duration *string,
+	limit *int) (
+	models.ApiResponse[models.ResponseCount],
+	error) {
+	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/vars/count")
+	req.AppendTemplateParams(orgId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("csrfToken"),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
+	})
+	if distinct != nil {
+		req.QueryParam("distinct", *distinct)
+	}
+	if siteId != nil {
+		req.QueryParam("site_id", *siteId)
+	}
+	if mVar != nil {
+		req.QueryParam("var", *mVar)
+	}
+	if src != nil {
+		req.QueryParam("src", *src)
+	}
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+	if duration != nil {
+		req.QueryParam("duration", *duration)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+
+	var result models.ResponseCount
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseCount](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
 // SearchOrgVars takes context, orgId, siteId, mVar, src, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseSearchVar data and
 // an error if there was an issue with the request or response.

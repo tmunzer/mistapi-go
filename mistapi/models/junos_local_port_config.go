@@ -44,7 +44,7 @@ type JunosLocalPortConfig struct {
 	MacAuthOnly *bool `json:"mac_auth_only,omitempty"`
 	// Only if `enable_mac_auth`==`true` + `mac_auth_only`==`false`, dot1x will be given priority then mac_auth. Enable this to prefer mac_auth over dot1x.
 	MacAuthPreferred *bool `json:"mac_auth_preferred,omitempty"`
-	// Only if `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`
+	// Only if `enable_mac_auth` ==`true`. When Mist NAC is enabled, this is forced to `pap`, unless the Org `mist_nac.enable_eap_md5_for_mab` setting is enabled: in that case `eap-md5` is kept and the port still performs MAB (mac-radius) but sends the request as EAP-MD5. enum: `eap-md5`, `eap-peap`, `pap`
 	MacAuthProtocol *SwitchPortLocalUsageMacAuthProtocolEnum `json:"mac_auth_protocol,omitempty"`
 	// Max number of MAC addresses, default is 0 for unlimited, otherwise range is 1 or higher, with upper bound constrained by platform
 	MacLimit *int `json:"mac_limit,omitempty"`

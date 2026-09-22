@@ -47,15 +47,15 @@ func main() {
         Uuid:                 uuid.MustParse("0000203a-0000-0000-0000-000000000000"),
         Vbeacons:             []models.SdkstatsWirelessClientVbeacon{
             models.SdkstatsWirelessClientVbeacon{
-                Id:                   uuid.MustParse("00001cc0-0000-0000-0000-000000000000"),
+                Id:                   uuid.MustParse(""),
                 Since:                float64(115.2),
             },
             models.SdkstatsWirelessClientVbeacon{
-                Id:                   uuid.MustParse("00001cc0-0000-0000-0000-000000000000"),
+                Id:                   uuid.MustParse(""),
                 Since:                float64(115.2),
             },
             models.SdkstatsWirelessClientVbeacon{
-                Id:                   uuid.MustParse("00001cc0-0000-0000-0000-000000000000"),
+                Id:                   uuid.MustParse(""),
                 Since:                float64(115.2),
             },
         },

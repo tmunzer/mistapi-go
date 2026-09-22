@@ -40,7 +40,7 @@ func main() {
         MapId:                uuid.MustParse("00000142-0000-0000-0000-000000000000"),
         Name:                 models.ToPointer("name2"),
         SiteId:               uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6"),
-        Timestamp:            float64(114.8),
+        Timestamp:            0.0,
         Trigger:              models.WebhookZoneEventTriggerEnum_ENTER,
         Type:                 models.WebhookZoneEventTypeEnum_SDK,
         ZoneId:               uuid.MustParse("00001f66-0000-0000-0000-000000000000"),

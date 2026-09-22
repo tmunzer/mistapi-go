@@ -90,7 +90,6 @@ func main() {
             MaxEntriesSupported:  models.ToPointer(8),
         }),
         AutoUpgradeStat:      models.ToPointer(models.StatsApAutoUpgrade{
-            Lastcheck:            models.NewOptional(models.ToPointer(int64(28))),
         }),
         CertExpiry:           models.ToPointer(int64(0)),
         Clients:              []models.StatsSwitchClientItem{

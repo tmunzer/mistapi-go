@@ -15,10 +15,14 @@ type OspfPeerStatsSearchResultsItems struct {
 	DeadTime *int `json:"dead_time,omitempty"`
 	// Router MAC address of the device advertising the OSPF peer
 	Mac *string `json:"mac,omitempty"`
+	// IP address of the OSPF neighbor
+	Neighbor *string `json:"neighbor,omitempty"`
+	// Router ID (IP address) of the OSPF neighbor
+	NeighborId *string `json:"neighbor_id,omitempty"`
 	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
-	// IP address of the OSPF neighbor
-	PeerIp *string `json:"peer_ip,omitempty"`
+	// IP address of the OSPF neighbor. Deprecated, use `neighbor` instead
+	PeerIp *string `json:"peer_ip,omitempty"` // Deprecated
 	// Interface on which the OSPF neighbor is learned
 	PortId *string `json:"port_id,omitempty"`
 	// OSPF priority advertised by the neighbor, from 0 to 255
@@ -40,8 +44,8 @@ type OspfPeerStatsSearchResultsItems struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (o OspfPeerStatsSearchResultsItems) String() string {
 	return fmt.Sprintf(
-		"OspfPeerStatsSearchResultsItems[DeadTime=%v, Mac=%v, OrgId=%v, PeerIp=%v, PortId=%v, Priority=%v, SiteId=%v, State=%v, Timestamp=%v, Up=%v, VrfName=%v, AdditionalProperties=%v]",
-		o.DeadTime, o.Mac, o.OrgId, o.PeerIp, o.PortId, o.Priority, o.SiteId, o.State, o.Timestamp, o.Up, o.VrfName, o.AdditionalProperties)
+		"OspfPeerStatsSearchResultsItems[DeadTime=%v, Mac=%v, Neighbor=%v, NeighborId=%v, OrgId=%v, PeerIp=%v, PortId=%v, Priority=%v, SiteId=%v, State=%v, Timestamp=%v, Up=%v, VrfName=%v, AdditionalProperties=%v]",
+		o.DeadTime, o.Mac, o.Neighbor, o.NeighborId, o.OrgId, o.PeerIp, o.PortId, o.Priority, o.SiteId, o.State, o.Timestamp, o.Up, o.VrfName, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OspfPeerStatsSearchResultsItems.
@@ -50,7 +54,7 @@ func (o OspfPeerStatsSearchResultsItems) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(o.AdditionalProperties,
-		"dead_time", "mac", "org_id", "peer_ip", "port_id", "priority", "site_id", "state", "timestamp", "up", "vrf_name"); err != nil {
+		"dead_time", "mac", "neighbor", "neighbor_id", "org_id", "peer_ip", "port_id", "priority", "site_id", "state", "timestamp", "up", "vrf_name"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(o.toMap())
@@ -65,6 +69,12 @@ func (o OspfPeerStatsSearchResultsItems) toMap() map[string]any {
 	}
 	if o.Mac != nil {
 		structMap["mac"] = o.Mac
+	}
+	if o.Neighbor != nil {
+		structMap["neighbor"] = o.Neighbor
+	}
+	if o.NeighborId != nil {
+		structMap["neighbor_id"] = o.NeighborId
 	}
 	if o.OrgId != nil {
 		structMap["org_id"] = o.OrgId
@@ -104,7 +114,7 @@ func (o *OspfPeerStatsSearchResultsItems) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dead_time", "mac", "org_id", "peer_ip", "port_id", "priority", "site_id", "state", "timestamp", "up", "vrf_name")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dead_time", "mac", "neighbor", "neighbor_id", "org_id", "peer_ip", "port_id", "priority", "site_id", "state", "timestamp", "up", "vrf_name")
 	if err != nil {
 		return err
 	}
@@ -112,6 +122,8 @@ func (o *OspfPeerStatsSearchResultsItems) UnmarshalJSON(input []byte) error {
 
 	o.DeadTime = temp.DeadTime
 	o.Mac = temp.Mac
+	o.Neighbor = temp.Neighbor
+	o.NeighborId = temp.NeighborId
 	o.OrgId = temp.OrgId
 	o.PeerIp = temp.PeerIp
 	o.PortId = temp.PortId
@@ -126,15 +138,17 @@ func (o *OspfPeerStatsSearchResultsItems) UnmarshalJSON(input []byte) error {
 
 // tempOspfPeerStatsSearchResultsItems is a temporary struct used for validating the fields of OspfPeerStatsSearchResultsItems.
 type tempOspfPeerStatsSearchResultsItems struct {
-	DeadTime  *int       `json:"dead_time,omitempty"`
-	Mac       *string    `json:"mac,omitempty"`
-	OrgId     *uuid.UUID `json:"org_id,omitempty"`
-	PeerIp    *string    `json:"peer_ip,omitempty"`
-	PortId    *string    `json:"port_id,omitempty"`
-	Priority  *int       `json:"priority,omitempty"`
-	SiteId    *uuid.UUID `json:"site_id,omitempty"`
-	State     *string    `json:"state,omitempty"`
-	Timestamp *float64   `json:"timestamp,omitempty"`
-	Up        *bool      `json:"up,omitempty"`
-	VrfName   *string    `json:"vrf_name,omitempty"`
+	DeadTime   *int       `json:"dead_time,omitempty"`
+	Mac        *string    `json:"mac,omitempty"`
+	Neighbor   *string    `json:"neighbor,omitempty"`
+	NeighborId *string    `json:"neighbor_id,omitempty"`
+	OrgId      *uuid.UUID `json:"org_id,omitempty"`
+	PeerIp     *string    `json:"peer_ip,omitempty"`
+	PortId     *string    `json:"port_id,omitempty"`
+	Priority   *int       `json:"priority,omitempty"`
+	SiteId     *uuid.UUID `json:"site_id,omitempty"`
+	State      *string    `json:"state,omitempty"`
+	Timestamp  *float64   `json:"timestamp,omitempty"`
+	Up         *bool      `json:"up,omitempty"`
+	VrfName    *string    `json:"vrf_name,omitempty"`
 }

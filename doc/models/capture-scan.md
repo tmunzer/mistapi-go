@@ -19,7 +19,7 @@ Initiate a Scan Radio Packet Capture
 | `ClientMac` | `models.Optional[string]` | Optional | Client MAC address used to filter the scan radio packet capture |
 | `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br><br>**Default**: `600`<br><br>**Constraints**: `>= 60`, `<= 86400` |
 | `Format` | [`*models.CaptureScanFormatEnum`](../../doc/models/capture-scan-format-enum.md) | Optional | Output format for the scan radio packet capture. enum: `pcap`, `stream`<br><br>**Default**: `"pcap"` |
-| `MaxPktLen` | `models.Optional[int]` | Optional | Maximum bytes captured from each packet, or null to use the default<br><br>**Default**: `512`<br><br>**Constraints**: `>= 64`, `<= 2048` |
+| `MaxPktLen` | `models.Optional[int]` | Optional | Maximum bytes captured from each packet; default is 512, minimum is 64 and maximum is 1536. Null uses the default.<br><br>**Default**: `512`<br><br>**Constraints**: `>= 64`, `<= 1536` |
 | `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br><br>**Default**: `1024`<br><br>**Constraints**: `>= 0`, `<= 10000` |
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist. |
 | `Type` | `string` | Required, Constant | Packet capture type discriminator for scan radio captures. enum: `scan`<br><br>**Value**: `"scan"` |

@@ -30,21 +30,12 @@ func main() {
     statsApL2tpStat := models.StatsApL2tpStat{
         Sessions:             []models.StatsApL2tpStatSession{
             models.StatsApL2tpStatSession{
-                LocalSid:             models.NewOptional(models.ToPointer(84)),
-                RemoteId:             models.NewOptional(models.ToPointer("remote_id6")),
-                RemoteSid:            models.NewOptional(models.ToPointer(208)),
                 State:                models.ToPointer(models.L2tpStateEnum_ESTABLISHEDWITHSESSION),
             },
             models.StatsApL2tpStatSession{
-                LocalSid:             models.NewOptional(models.ToPointer(84)),
-                RemoteId:             models.NewOptional(models.ToPointer("remote_id6")),
-                RemoteSid:            models.NewOptional(models.ToPointer(208)),
                 State:                models.ToPointer(models.L2tpStateEnum_ESTABLISHEDWITHSESSION),
             },
             models.StatsApL2tpStatSession{
-                LocalSid:             models.NewOptional(models.ToPointer(84)),
-                RemoteId:             models.NewOptional(models.ToPointer("remote_id6")),
-                RemoteSid:            models.NewOptional(models.ToPointer(208)),
                 State:                models.ToPointer(models.L2tpStateEnum_ESTABLISHEDWITHSESSION),
             },
         },
