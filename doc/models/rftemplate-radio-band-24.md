@@ -19,7 +19,7 @@ Radio Band AP settings
 | `Disabled` | `*bool` | Optional | Whether to disable the radio<br><br>**Default**: `false` |
 | `Power` | `models.Optional[int]` | Optional | Radio Tx power, in dBm. Can be an integer 0-25 for static power configuration, or `null` or unset for auto power mode<br><br>**Constraints**: `>= 0`, `<= 25` |
 | `PowerMax` | `models.Optional[int]` | Optional | When power=null/unset, max tx power to use, HW-specific values will be used if not set<br><br>**Constraints**: `>= 3`, `<= 18` |
-| `PowerMin` | `models.Optional[int]` | Optional | When power=null/unset, min tx power to use, HW-specific values will be used if not set<br><br>**Constraints**: `>= 3`, `<= 18` |
+| `PowerMin` | `models.Optional[int]` | Optional | When power=null/unset, min tx power to use, HW-specific values will be used if not set<br><br>**Constraints**: `>= 0`, `<= 18` |
 | `Preamble` | [`*models.RadioBandPreambleEnum`](../../doc/models/radio-band-preamble-enum.md) | Optional | enum: `auto`, `long`, `short`<br><br>**Default**: `"short"` |
 
 ## Example

@@ -1,7 +1,7 @@
 
 # Switch Radius
 
-Switch RADIUS override settings. By default, the switch `radius_config` is used; set `use_different_radius` to use alternate RADIUS settings.
+RADIUS settings for switch management authentication. `auth_servers`, `auth_servers_retries`, and `auth_servers_timeout` are required when `enabled`==`true` and `use_different_radius`==`true`.
 
 ## Structure
 
@@ -11,9 +11,12 @@ Switch RADIUS override settings. By default, the switch `radius_config` is used;
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `AuthServers` | [`[]models.SwitchMgmtRadiusAuthServer`](../../doc/models/switch-mgmt-radius-auth-server.md) | Optional | List of RADIUS authentication servers used for switch management authentication<br><br>**Constraints**: *Unique Items Required* |
+| `AuthServersRetries` | `*int` | Optional | RADIUS auth session retries. Required when `enabled`==`true` and `use_different_radius`==`true`.<br><br>**Default**: `3` |
+| `AuthServersTimeout` | `*int` | Optional | RADIUS auth session timeout, in seconds. Required when `enabled`==`true` and `use_different_radius`==`true`.<br><br>**Default**: `5` |
 | `Enabled` | `*bool` | Optional | Whether RADIUS is enabled for switch management authentication |
-| `RadiusConfig` | [`*models.SwitchRadiusConfig`](../../doc/models/switch-radius-config.md) | Optional | Switch RADIUS authentication and accounting configuration |
-| `UseDifferentRadius` | `*string` | Optional | Selector for alternate RADIUS settings instead of the default switch `radius_config` |
+| `Network` | `*string` | Optional | Source network used for connectivity to the RADIUS servers |
+| `UseDifferentRadius` | `*bool` | Optional | Whether to use alternate RADIUS settings instead of the default switch `radius_config` |
 
 ## Example
 
@@ -26,62 +29,17 @@ import (
 
 func main() {
     switchRadius := models.SwitchRadius{
+        AuthServers:          []models.SwitchMgmtRadiusAuthServer{
+            models.SwitchMgmtRadiusAuthServer{
+                Host:                 "host0",
+                Port:                 models.ToPointer(models.RadiusAuthPortContainer.FromNumber(36)),
+                Secret:               "secret4",
+            },
+        },
+        AuthServersRetries:   models.ToPointer(3),
+        AuthServersTimeout:   models.ToPointer(5),
         Enabled:              models.ToPointer(false),
-        RadiusConfig:         models.ToPointer(models.SwitchRadiusConfig{
-            AcctImmediateUpdate:  models.ToPointer(false),
-            AcctInterimInterval:  models.ToPointer(118),
-            AcctServers:          []models.RadiusAcctServer{
-                models.RadiusAcctServer{
-                    Host:                 "host4",
-                    KeywrapEnabled:       models.ToPointer(false),
-                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum_ASCII),
-                    KeywrapKek:           models.ToPointer("keywrap_kek0"),
-                    KeywrapMack:          models.ToPointer("keywrap_mack2"),
-                    Port:                 models.ToPointer(models.RadiusAcctPortContainer.FromNumber(176)),
-                    Secret:               "secret0",
-                },
-                models.RadiusAcctServer{
-                    Host:                 "host4",
-                    KeywrapEnabled:       models.ToPointer(false),
-                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum_ASCII),
-                    KeywrapKek:           models.ToPointer("keywrap_kek0"),
-                    KeywrapMack:          models.ToPointer("keywrap_mack2"),
-                    Port:                 models.ToPointer(models.RadiusAcctPortContainer.FromNumber(176)),
-                    Secret:               "secret0",
-                },
-            },
-            AuthServerSelection:  models.ToPointer(models.SwitchRadiusConfigAuthServerSelectionEnum_ORDERED),
-            AuthServers:          []models.RadiusAuthServer{
-                models.RadiusAuthServer{
-                    Host:                        "host0",
-                    KeywrapEnabled:              models.ToPointer(false),
-                    KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum_ASCII),
-                    KeywrapKek:                  models.ToPointer("keywrap_kek4"),
-                    KeywrapMack:                 models.ToPointer("keywrap_mack6"),
-                    Port:                        models.ToPointer(models.RadiusAuthPortContainer.FromNumber(36)),
-                    Secret:                      "secret4",
-                },
-                models.RadiusAuthServer{
-                    Host:                        "host0",
-                    KeywrapEnabled:              models.ToPointer(false),
-                    KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum_ASCII),
-                    KeywrapKek:                  models.ToPointer("keywrap_kek4"),
-                    KeywrapMack:                 models.ToPointer("keywrap_mack6"),
-                    Port:                        models.ToPointer(models.RadiusAuthPortContainer.FromNumber(36)),
-                    Secret:                      "secret4",
-                },
-                models.RadiusAuthServer{
-                    Host:                        "host0",
-                    KeywrapEnabled:              models.ToPointer(false),
-                    KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum_ASCII),
-                    KeywrapKek:                  models.ToPointer("keywrap_kek4"),
-                    KeywrapMack:                 models.ToPointer("keywrap_mack6"),
-                    Port:                        models.ToPointer(models.RadiusAuthPortContainer.FromNumber(36)),
-                    Secret:                      "secret4",
-                },
-            },
-        }),
-        UseDifferentRadius:   models.ToPointer("use_different_radius0"),
+        Network:              models.ToPointer("network4"),
     }
 
 }
