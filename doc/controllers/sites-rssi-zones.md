@@ -61,7 +61,7 @@ body := models.RssiZone{
             Rssi:                 0,
         },
     },
-    Name:                 models.ToPointer("string"),
+    Name:                 models.ToPointer("zone name"),
 }
 
 apiResponse, err := sitesRSSIZones.CreateSiteRssiZone(ctx, siteId, &body)
@@ -403,7 +403,7 @@ body := models.RssiZone{
             Rssi:                 0,
         },
     },
-    Name:                 models.ToPointer("string"),
+    Name:                 models.ToPointer("zone name"),
 }
 
 apiResponse, err := sitesRSSIZones.UpdateSiteRssiZone(ctx, siteId, rssizoneId, &body)

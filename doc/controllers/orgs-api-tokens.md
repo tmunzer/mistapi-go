@@ -430,6 +430,10 @@ body := models.OrgApitoken{
             Scope:                models.PrivilegeOrgScopeEnum_ORG,
         },
     },
+    SrcIps:               []string{
+        "63.3.56.0/24",
+        "63.3.55.4",
+    },
 }
 
 resp, err := orgsAPITokens.UpdateOrgApiToken(ctx, orgId, apitokenId, &body)
