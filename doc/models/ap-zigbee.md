@@ -31,7 +31,7 @@ func main() {
         AllowJoin:            models.ToPointer(models.ApZigbeeAllowJoinEnum_MANUAL),
         Channel:              models.ToPointer(0),
         Enabled:              models.ToPointer(false),
-        ExtendedPanId:        models.NewOptional(models.ToPointer("1311768467294899695")),
+        ExtendedPanId:        models.NewOptional(models.ToPointer("extended_pan_id0")),
         PanId:                models.NewOptional(models.ToPointer("0x1234")),
     }
 

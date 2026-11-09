@@ -82,7 +82,7 @@ type SwitchPortUsage struct {
 	// Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. Sets server fail fallback vlan
 	ServerFailNetwork Optional[string] `json:"server_fail_network"`
 	// Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. Interval, in seconds. Sets the wait time before retrying authentication after RADIUS failure to reduce client flapping. Range 120-65535
-	ServerFailRetryInterval *int `json:"server_fail_retry_interval,omitempty"`
+	ServerFailRetryInterval *SwitchPortUsageServerFailRetryInterval `json:"server_fail_retry_interval,omitempty"`
 	// Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. When RADIUS server reject / fails
 	ServerRejectNetwork Optional[string] `json:"server_reject_network"`
 	// Only if `mode`!=`dynamic`, Port speed, default is auto to automatically negotiate speed enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
@@ -250,7 +250,7 @@ func (s SwitchPortUsage) toMap() map[string]any {
 		}
 	}
 	if s.ServerFailRetryInterval != nil {
-		structMap["server_fail_retry_interval"] = s.ServerFailRetryInterval
+		structMap["server_fail_retry_interval"] = s.ServerFailRetryInterval.toMap()
 	}
 	if s.ServerRejectNetwork.IsValueSet() {
 		if s.ServerRejectNetwork.Value() != nil {
@@ -397,7 +397,7 @@ type tempSwitchPortUsage struct {
 	ResetDefaultWhen                         *SwitchPortUsageDynamicResetDefaultWhenEnum `json:"reset_default_when,omitempty"`
 	Rules                                    []SwitchPortUsageDynamicRule                `json:"rules,omitempty"`
 	ServerFailNetwork                        Optional[string]                            `json:"server_fail_network"`
-	ServerFailRetryInterval                  *int                                        `json:"server_fail_retry_interval,omitempty"`
+	ServerFailRetryInterval                  *SwitchPortUsageServerFailRetryInterval     `json:"server_fail_retry_interval,omitempty"`
 	ServerRejectNetwork                      Optional[string]                            `json:"server_reject_network"`
 	Speed                                    *SwitchPortUsageSpeedEnum                   `json:"speed,omitempty"`
 	StormControl                             *SwitchPortUsageStormControl                `json:"storm_control,omitempty"`

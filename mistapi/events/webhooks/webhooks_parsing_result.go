@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"mistapi/models"
+	"github.com/tmunzer/mistapi-go/mistapi/models"
 )
 
 // WebhooksParsingResult represents a WebhooksParsingResult struct.

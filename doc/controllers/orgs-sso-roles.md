@@ -55,21 +55,12 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SsoRoleOrg{
-    Name:                 "string",
+    Name:                 "name6",
+    OrgId:                models.ToPointer(uuid.MustParse("60f6bfdb-2f45-4022-8e2a-e00d977953fe")),
     Privileges:           []models.PrivilegeOrg{
         models.PrivilegeOrg{
             Role:                 models.PrivilegeOrgRoleEnum_ADMIN,
-            Scope:                models.PrivilegeOrgScopeEnum_ORG,
-        },
-        models.PrivilegeOrg{
-            Role:                 models.PrivilegeOrgRoleEnum_READ,
-            Scope:                models.PrivilegeOrgScopeEnum_SITE,
-            SiteId:               models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-        },
-        models.PrivilegeOrg{
-            Role:                 models.PrivilegeOrgRoleEnum_READ,
             Scope:                models.PrivilegeOrgScopeEnum_SITEGROUP,
-            SitegroupId:          models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
         },
     },
 }
@@ -413,21 +404,12 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 ssoroleId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SsoRoleOrg{
-    Name:                 "string",
+    Name:                 "name6",
+    OrgId:                models.ToPointer(uuid.MustParse("60f6bfdb-2f45-4022-8e2a-e00d977953fe")),
     Privileges:           []models.PrivilegeOrg{
         models.PrivilegeOrg{
             Role:                 models.PrivilegeOrgRoleEnum_ADMIN,
-            Scope:                models.PrivilegeOrgScopeEnum_ORG,
-        },
-        models.PrivilegeOrg{
-            Role:                 models.PrivilegeOrgRoleEnum_READ,
-            Scope:                models.PrivilegeOrgScopeEnum_SITE,
-            SiteId:               models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-        },
-        models.PrivilegeOrg{
-            Role:                 models.PrivilegeOrgRoleEnum_READ,
             Scope:                models.PrivilegeOrgScopeEnum_SITEGROUP,
-            SitegroupId:          models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
         },
     },
 }

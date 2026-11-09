@@ -56,24 +56,10 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Admin{
-    Email:                models.ToPointer("user@example.com"),
-    FirstName:            models.ToPointer("string"),
-    LastName:             models.ToPointer("string"),
-    Privileges:           []models.AdminPrivilege{
-        models.AdminPrivilege{
-            MspId:                models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            OrgId:                models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            OrggroupIds:          []uuid.UUID{
-                uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
-            },
-            Role:                 models.AdminPrivilegeRoleEnum_ADMIN,
-            Scope:                models.AdminPrivilegeScopeEnum_ORG,
-            SiteId:               models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            SitegroupIds:         []uuid.UUID{
-                uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
-            },
-        },
-    },
+    Email:                models.ToPointer("jsnow@abc.com"),
+    FirstName:            models.ToPointer("John"),
+    Hours:                models.ToPointer(24),
+    LastName:             models.ToPointer("Sno"),
 }
 
 resp, err := orgsAdmins.InviteOrgAdmin(ctx, orgId, &body)
@@ -393,30 +379,9 @@ adminId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Admin{
     Email:                models.ToPointer("jsnow@abc.com"),
-    ExpireTime:           models.ToPointer(0),
     FirstName:            models.ToPointer("John"),
     Hours:                models.ToPointer(24),
     LastName:             models.ToPointer("Sno"),
-    Phone:                models.ToPointer("string"),
-    Phone2:               models.ToPointer("string"),
-    Privileges:           []models.AdminPrivilege{
-        models.AdminPrivilege{
-            MspId:                models.ToPointer(uuid.MustParse("c0cf23fc-d82f-4219-988c-82fb61d8c875")),
-            OrgId:                models.ToPointer(uuid.MustParse("a40f5d1f-d889-42e9-94ea-b9b33585fc6b")),
-            OrggroupIds:          []uuid.UUID{
-                uuid.MustParse("497f6eca-6276-4993-bfeb-53d5bbba6f08"),
-            },
-            Role:                 models.AdminPrivilegeRoleEnum_ADMIN,
-            Scope:                models.AdminPrivilegeScopeEnum_ORG,
-            SiteId:               models.ToPointer(uuid.MustParse("72771e6a-6f5e-4de4-a5b9-1266c4197811")),
-            SitegroupIds:         []uuid.UUID{
-                uuid.MustParse("497f6eca-6276-4993-bfeb-53d6bbba6f08"),
-            },
-            Views:                []models.AdminPrivilegeViewEnum{
-                models.AdminPrivilegeViewEnum_SWITCHADMIN,
-            },
-        },
-    },
 }
 
 apiResponse, err := orgsAdmins.UpdateOrgAdmin(ctx, orgId, adminId, &body)
@@ -525,24 +490,10 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 inviteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Admin{
-    Email:                models.ToPointer("user@example.com"),
-    FirstName:            models.ToPointer("string"),
-    LastName:             models.ToPointer("string"),
-    Privileges:           []models.AdminPrivilege{
-        models.AdminPrivilege{
-            MspId:                models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            OrgId:                models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            OrggroupIds:          []uuid.UUID{
-                uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
-            },
-            Role:                 models.AdminPrivilegeRoleEnum_ADMIN,
-            Scope:                models.AdminPrivilegeScopeEnum_ORG,
-            SiteId:               models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            SitegroupIds:         []uuid.UUID{
-                uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
-            },
-        },
-    },
+    Email:                models.ToPointer("jsnow@abc.com"),
+    FirstName:            models.ToPointer("John"),
+    Hours:                models.ToPointer(24),
+    LastName:             models.ToPointer("Sno"),
 }
 
 resp, err := orgsAdmins.UpdateOrgAdminInvite(ctx, orgId, inviteId, &body)

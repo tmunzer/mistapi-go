@@ -46,7 +46,7 @@ Junos switch port usage template and authentication settings
 | `ResetDefaultWhen` | [`*models.SwitchPortUsageDynamicResetDefaultWhenEnum`](../../doc/models/switch-port-usage-dynamic-reset-default-when-enum.md) | Optional | Only if `mode`==`dynamic` Control when the DPC port should be changed to the default port usage. enum: `link_down`, `none` (let the DPC port keep at the current port usage)<br><br>**Default**: `"link_down"` |
 | `Rules` | [`[]models.SwitchPortUsageDynamicRule`](../../doc/models/switch-port-usage-dynamic-rule.md) | Optional | Only if `mode`==`dynamic`. Dynamic matching rules that select the port usage to apply |
 | `ServerFailNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. Sets server fail fallback vlan |
-| `ServerFailRetryInterval` | `*int` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. Interval, in seconds. Sets the wait time before retrying authentication after RADIUS failure to reduce client flapping. Range 120-65535<br><br>**Default**: `120`<br><br>**Constraints**: `>= 120`, `<= 65535` |
+| `ServerFailRetryInterval` | [`*models.SwitchPortUsageServerFailRetryInterval`](../../doc/models/containers/switch-port-usage-server-fail-retry-interval.md) | Optional | This is a container for any-of cases. |
 | `ServerRejectNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. When RADIUS server reject / fails |
 | `Speed` | [`*models.SwitchPortUsageSpeedEnum`](../../doc/models/switch-port-usage-speed-enum.md) | Optional | Only if `mode`!=`dynamic`, Port speed, default is auto to automatically negotiate speed enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`<br><br>**Default**: `"auto"` |
 | `StormControl` | [`*models.SwitchPortUsageStormControl`](../../doc/models/switch-port-usage-storm-control.md) | Optional | Switch storm control. Only if `mode`!=`dynamic` |
@@ -93,7 +93,6 @@ func main() {
         PoeDisabled:                              models.ToPointer(false),
         PoeKeepStateWhenReboot:                   models.ToPointer(false),
         ResetDefaultWhen:                         models.ToPointer(models.SwitchPortUsageDynamicResetDefaultWhenEnum_LINKDOWN),
-        ServerFailRetryInterval:                  models.ToPointer(120),
         Speed:                                    models.ToPointer(models.SwitchPortUsageSpeedEnum_AUTO),
         StpDisable:                               models.ToPointer(false),
         StpEdge:                                  models.ToPointer(false),

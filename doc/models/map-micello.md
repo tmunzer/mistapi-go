@@ -28,7 +28,7 @@ import (
 
 func main() {
     mapMicello := models.MapMicello{
-        AccountKey:           "",
+        AccountKey:           "account_key6",
         DefaultLevelId:       5,
         MapId:                uuid.MustParse("6f4bf402-45f9-2a56-6c8b-7f83d3bc98e9"),
         VendorName:           "micello",
